@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yuri Astrakhan",
+		]
+	},
+	"map-desc": "{{desc|name=Maps|url=https://www.mediawiki.org/wiki/Extension:Maps}}",
+	"map-tracking-category": "Name of the tracking category",
+	"map-tracking-category-desc": "Description on [[Special:TrackingCategories]] for the {{msg-mw|map-tracking-category}} tracking category.",
+	"map-broken-category": "Name of the tracking category",
+	"map-broken-category-desc": "Description on [[Special:TrackingCategories]] for the {{msg-mw|map-broken-category}} tracking category."
+}

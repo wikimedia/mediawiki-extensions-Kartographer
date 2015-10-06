@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yuri Astrakhan"
+		]
+	},
+	"map-desc": "Allows &lt;map&gt; tags to insert a map into a wiki page",
+	"map-tracking-category": "Pages with maps",
+	"map-tracking-category-desc": "The page includes a <code><nowiki><map></nowiki></code> tag.",
+	"map-broken-category": "Pages with broken maps",
+	"map-broken-category-desc": "The page includes a <code><nowiki><map></nowiki></code> tag with invalid usage."
+}
