@@ -7,7 +7,7 @@
  * @author Yuri Astrakhan
  */
 
-namespace Map;
+namespace Kartographer;
 
 use Html;
 use Parser;
@@ -15,7 +15,7 @@ use Parser;
 class Singleton {
 
 	public static function onParserFirstCallInit( Parser $parser ) {
-		$parser->setHook( 'map', 'Map\Singleton::onMapTag' );
+		$parser->setHook( 'map', 'Kartographer\Singleton::onMapTag' );
 		return true;
 	}
 
@@ -39,19 +39,19 @@ class Singleton {
 		if ( $zoom === false || $width === false || $height === false ||
 			 $latitude === false || $longitude === false
 		) {
-			$parserOutput->setExtensionData( 'map_broken', true );
+			$parserOutput->setExtensionData( 'kartographer_broken', true );
 			return $input;
 		}
 
-		$parserOutput->setExtensionData( 'map_valid', true );
+		$parserOutput->setExtensionData( 'kartographer_valid', true );
 
 		// https://maps.wikimedia.org/img/osm-intl,%1$s,%2$s,%3$s,%4$sx%5$s.jpeg
 		// 1=zoom, 2=lat, 3=lon, 4=width, 5=height, [6=scale]
 		// http://.../img/{source},{zoom},{lat},{lon},{width}x{height}[@{scale}x].{format}
-		global $wgMapStaticImgUrl;
+		global $wgKartographerStaticImgUrl;
 		$html = Html::rawElement( 'img', array(
-			'class' => 'mw-wiki-map-img',
-			'src' => sprintf( $wgMapStaticImgUrl, $zoom, $latitude, $longitude, $width, $height ),
+			'class' => 'mw-wiki-kartographer-img',
+			'src' => sprintf( $wgKartographerStaticImgUrl, $zoom, $latitude, $longitude, $width, $height ),
 		) );
 
 		return $html;
@@ -59,11 +59,11 @@ class Singleton {
 
 	public static function onParserAfterParse( Parser $parser ) {
 		$output = $parser->getOutput();
-		if ( $output->getExtensionData( 'map_broken' ) ) {
-			$output->addTrackingCategory( 'map-broken-category', $parser->getTitle() );
+		if ( $output->getExtensionData( 'kartographer_broken' ) ) {
+			$output->addTrackingCategory( 'kartographer-broken-category', $parser->getTitle() );
 		}
-		if ( $output->getExtensionData( 'map_valid' ) ) {
-			$output->addTrackingCategory( 'map-tracking-category', $parser->getTitle() );
+		if ( $output->getExtensionData( 'kartographer_valid' ) ) {
+			$output->addTrackingCategory( 'kartographer-tracking-category', $parser->getTitle() );
 		}
 		return true;
 	}

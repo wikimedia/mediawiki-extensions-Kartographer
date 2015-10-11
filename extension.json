@@ -1,22 +1,22 @@
 {
-	"name": "Map",
+	"name": "Kartographer",
 	"author": [
 		"Yuri Astrakhan"
 	],
-	"url": "https://www.mediawiki.org/wiki/Extension:Map",
-	"descriptionmsg": "map-desc",
+	"url": "https://www.mediawiki.org/wiki/Extension:Kartographer",
+	"descriptionmsg": "kartographer-desc",
 	"license-name": "MIT",
 	"type": "other",
 	"MessagesDirs": {
-		"Map": [
+		"Kartographer": [
 			"i18n"
 		]
 	},
 	"AutoloadClasses": {
-		"Map\\Singleton": "Map.hooks.php"
+		"Kartographer\\Singleton": "Kartographer.hooks.php"
 	},
 	"ResourceModules": {
-		"ext.map": {
+		"ext.kartographer": {
 			"scripts": [
 			],
 			"styles": [
@@ -32,24 +32,24 @@
 	},
 	"ResourceFileModulePaths": {
 		"localBasePath": "",
-		"remoteExtPath": "Map"
+		"remoteExtPath": "Kartographer"
 	},
 	"Hooks": {
 		"ParserFirstCallInit": [
-			"Map\\Singleton::onParserFirstCallInit"
+			"Kartographer\\Singleton::onParserFirstCallInit"
 		],
 		"ParserAfterParse": [
-			"Map\\Singleton::onParserAfterParse"
+			"Kartographer\\Singleton::onParserAfterParse"
 		]
 	},
 	"config": {
-		"MapStaticImgUrl": "https://maps.wikimedia.org/img/osm-intl,%1$s,%2$s,%3$s,%4$sx%5$s.jpeg",
-		"MapSrcsetScales": [1.3, 1.5, 2, 2.6, 3],
-		"MapStaticScaledImgUrl": "https://maps.wikimedia.org/img/osm-intl,%1$s,%2$s,%3$s,%4$sx%5$s@%5$sx.jpeg"
+		"KartographerStaticImgUrl": "https://maps.wikimedia.org/img/osm-intl,%1$s,%2$s,%3$s,%4$sx%5$s.jpeg",
+		"KartographerSrcsetScales": [1.3, 1.5, 2, 2.6, 3],
+		"KartographerStaticScaledImgUrl": "https://maps.wikimedia.org/img/osm-intl,%1$s,%2$s,%3$s,%4$sx%5$s@%5$sx.jpeg"
 	},
 	"TrackingCategories": [
-		"map-tracking-category",
-		"map-mapbroken-category"
+		"kartographer-tracking-category",
+		"kartographer-broken-category"
 	],
 	"manifest_version": 1
 }
