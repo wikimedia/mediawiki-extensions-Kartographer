@@ -1,8 +1,8 @@
 {
-  "name": "Map",
+  "name": "Kartographer",
   "version": "0.0.0",
   "private": true,
-  "description": "Build tools for the Map-MediaWiki extension.",
+  "description": "Build tools for the Kartographer-MediaWiki extension.",
   "scripts": {
     "test": "grunt test"
   },
