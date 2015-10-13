@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Metalhead64"
+		]
+	},
+	"kartographer-desc": "Erlaubt &lt;map&gt;-Tags zum Einfügen einer Karte in eine Wikiseite",
+	"kartographer-tracking-category": "Seiten mit Karten",
+	"kartographer-tracking-category-desc": "Die Seite enthält ein <code><nowiki><map></nowiki></code>-Tag.",
+	"kartographer-broken-category": "Seiten mit defekten Karten",
+	"kartographer-broken-category-desc": "Die Seite enthält ein <code><nowiki><map></nowiki></code>-Tag mit einer ungültigen Verwendung."
+}

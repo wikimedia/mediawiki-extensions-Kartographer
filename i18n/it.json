@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Beta16"
+		]
+	},
+	"kartographer-tracking-category": "Pagine con mappe",
+	"kartographer-tracking-category-desc": "La pagina include un tag <code><nowiki><map></nowiki></code>.",
+	"kartographer-broken-category": "Pagine con errori nelle mappe",
+	"kartographer-broken-category-desc": "La pagina include un tag <code><nowiki><map></nowiki></code> con utilizzo non valido."
+}

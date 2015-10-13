@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chrumps"
+		]
+	},
+	"kartographer-tracking-category": "Strony z mapami",
+	"kartographer-tracking-category-desc": "Strona zawiera znacznik <code><nowiki><map></nowiki></code>.",
+	"kartographer-broken-category": "Strony z uszkodzonymi mapami",
+	"kartographer-broken-category-desc": "Strona zawiera nieprawidłowo zastosowany znacznik <code><nowiki><map></nowiki></code>."
+}
