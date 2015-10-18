@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"WikiPhoenix"
+		]
+	},
+	"kartographer-tracking-category": "Sidor med kartor",
+	"kartographer-tracking-category-desc": "Sidan inkluderar taggen <code><nowiki><map></nowiki></code>.",
+	"kartographer-broken-category": "Sidor med trasiga kartor",
+	"kartographer-broken-category-desc": "Sidan inkluderar taggen <code><nowiki><map></nowiki></code> med felaktig användning."
+}
