@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sjoerddebruin"
+			"Sjoerddebruin",
+			"Siebrand"
 		]
 	},
 	"kartographer-tracking-category": "Pagina's met kaarten",
-	"kartographer-broken-category": "Pagina's met niet-werkende kaarten"
+	"kartographer-broken-category": "Pagina's met niet-werkende kaarten",
+	"kartographer-broken-category-desc": "De pagina bevat een label <code><nowiki><map></nowiki></code> dat onjuist wordt gebruikt."
 }
