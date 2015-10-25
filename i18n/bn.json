@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aftabuzzaman"
+		]
+	},
+	"kartographer-desc": "একটি উইকি পাতায় একটি মানচিত্র অন্তর্ভুক্ত করতে &lt;map&gt; ট্যাগের অনুমতি দেয়",
+	"kartographer-tracking-category": "মানচিত্রসহ পাতা",
+	"kartographer-tracking-category-desc": "পাতাটি একটি  <code><nowiki><map></nowiki></code> ট্যাগ অন্তর্ভুক্ত করে।",
+	"kartographer-broken-category": "ভাঙা মানচিত্রসহ পাতা",
+	"kartographer-broken-category-desc": "পাতাটি অবৈধ ব্যবহারসহ একটি <code><nowiki><map></nowiki></code> ট্যাগ অন্তর্ভুক্ত করে।"
+}
