@@ -4,9 +4,12 @@
   "private": true,
   "description": "Build tools for the Kartographer-MediaWiki extension.",
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "build-lib": "node_modules/.bin/browserify lib/mapbox-main.js -o lib/mapbox-lib.js && cp -rv node_modules/mapbox.js/theme/* lib/ && rm lib/images/render.sh"
   },
   "devDependencies": {
+    "mapbox.js": "^2.2.3",
+    "browserify": "^12.0.1",
     "grunt": "0.4.5",
     "grunt-cli": "0.1.13",
     "grunt-contrib-csslint": "0.5.0",
@@ -15,5 +18,9 @@
     "grunt-jscs": "2.1.0",
     "grunt-banana-checker": "0.3.0",
     "grunt-jsonlint": "1.0.4"
+  },
+  "dependencies": {
+    "leaflet": "^0.7.7",
+    "maki": "^0.5.0"
   }
 }

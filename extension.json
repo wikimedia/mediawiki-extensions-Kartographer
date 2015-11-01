@@ -16,13 +16,32 @@
 		"Kartographer\\Singleton": "Kartographer.hooks.php"
 	},
 	"ResourceModules": {
-		"ext.kartographer": {
+		"ext.kartographer.error": {
+			"styles": [
+				"styles/error.less"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"ext.kartographer.static": {
+			"styles": [
+			  "styles/static.less"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"ext.kartographer.live": {
 			"scripts": [
+			  "lib/mapbox-lib.js",
+			  "modules/kartographer.js"
 			],
 			"styles": [
-				"styles/common.less"
-			],
-			"dependencies": [
+			  "styles/live.less",
+			  "lib/style.css"
 			],
 			"targets": [
 				"mobile",
@@ -43,9 +62,10 @@
 		]
 	},
 	"config": {
-		"KartographerStaticImgUrl": "https://maps.wikimedia.org/img/osm-intl,%1$s,%2$s,%3$s,%4$sx%5$s.jpeg",
+		"KartographerDfltStyle": "osm-intl",
+		"KartographerStyles": ["osm-intl", "osm"],
 		"KartographerSrcsetScales": [1.3, 1.5, 2, 2.6, 3],
-		"KartographerStaticScaledImgUrl": "https://maps.wikimedia.org/img/osm-intl,%1$s,%2$s,%3$s,%4$sx%5$s@%5$sx.jpeg"
+		"KartographerMapServer": "https://maps.wikimedia.org"
 	},
 	"TrackingCategories": [
 		"kartographer-tracking-category",
