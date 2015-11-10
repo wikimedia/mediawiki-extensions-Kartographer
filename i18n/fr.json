@@ -1,8 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mattho69"
+			"Mattho69",
+			"Gomoko"
 		]
 	},
-	"kartographer-tracking-category": "Pages avec carte"
+	"kartographer-desc": "Autorise les balises &lt;map&gt; pour insérer une carte dans une page wiki",
+	"kartographer-tracking-category": "Pages avec carte",
+	"kartographer-tracking-category-desc": "La page inclut une balise <code><nowiki><map></nowiki></code>.",
+	"kartographer-broken-category": "Pages avec les cartes erronées",
+	"kartographer-broken-category-desc": "La page inclut une balise <code><nowiki><map></nowiki></code> avec une utilisation non valide."
 }
