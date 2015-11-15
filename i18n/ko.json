@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Revi"
+		]
+	},
+	"kartographer-desc": "&lt;map&gt; 태그를 사용해 지도를 위키 문서에 삽입할 수 있도록 허용",
+	"kartographer-tracking-category": "지도가 있는 문서",
+	"kartographer-tracking-category-desc": "이 문서는 <code><nowiki><map></nowiki></code> 태그를 포함합니다.",
+	"kartographer-broken-category": "깨진 지도가 있는 문서",
+	"kartographer-broken-category-desc": "이 문서는 <code><nowiki><map</nowiki></code> 태그를 잘못 사용한 문서를 포함합니다."
+}
