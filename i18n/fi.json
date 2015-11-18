@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Susannaanas"
+		]
+	},
+	"kartographer-desc": "Mahdollistaa <map> tagin lisäämisen wikisivulle",
+	"kartographer-tracking-category": "Sivut, joilla on karttoja",
+	"kartographer-tracking-category-desc": "Sivu sisältää <code><nowiki><map></nowiki></code> tagin.",
+	"kartographer-broken-category": "Sivut, joilla on rikkinäisiä karttoja",
+	"kartographer-broken-category-desc": "Sivu sisältää virheellisesti käytetyn <code><nowiki><map></nowiki></code> tagin."
+}
