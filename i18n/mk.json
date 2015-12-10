@@ -4,9 +4,12 @@
 			"Bjankuloski06"
 		]
 	},
-	"kartographer-desc": "Овозможува ознаки &lt;map&gt; за вметнување карта во страница на вики",
+	"kartographer-desc": "Овозможува ставање карти во викистраници",
+	"kartographer-errors": "Не можам да ја создадам картата\n$1",
+	"kartographer-error-bad_attr": "Атрибутот „$1“ има неважечка вредност",
+	"kartographer-error-bad_data": "Содржината на JSON е неточна",
 	"kartographer-tracking-category": "Страници со карти",
-	"kartographer-tracking-category-desc": "Оваа страница содржи ознака <code><nowiki><map></nowiki></code>.",
+	"kartographer-tracking-category-desc": "Оваа страница содржи карта",
 	"kartographer-broken-category": "Страници со расипани карти",
-	"kartographer-broken-category-desc": "Страницава има содржи <code><nowiki><map></nowiki></code> која се употребува неправилно."
+	"kartographer-broken-category-desc": "Оваа страница неправилно користи карта"
 }

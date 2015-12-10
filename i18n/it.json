@@ -4,9 +4,12 @@
 			"Beta16"
 		]
 	},
-	"kartographer-desc": "Permette il tag &lt;map&gt; per inserire mappe in una pagina wiki",
+	"kartographer-desc": "Permette di aggiungere mappe nelle pagine wiki",
+	"kartographer-errors": "Impossibile creare una mappa\n$1",
+	"kartographer-error-bad_attr": "L'attributo '$1' ha un valore non valido",
+	"kartographer-error-bad_data": "Il contenuto JSON non è corretto",
 	"kartographer-tracking-category": "Pagine con mappe",
-	"kartographer-tracking-category-desc": "La pagina include un tag <code><nowiki><map></nowiki></code>.",
+	"kartographer-tracking-category-desc": "La pagina include una mappa",
 	"kartographer-broken-category": "Pagine con errori nelle mappe",
-	"kartographer-broken-category-desc": "La pagina include un tag <code><nowiki><map></nowiki></code> con utilizzo non valido."
+	"kartographer-broken-category-desc": "La pagina include una mappa con utilizzo non valido"
 }

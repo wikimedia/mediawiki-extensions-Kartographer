@@ -5,9 +5,9 @@
 			"Sujiniku"
 		]
 	},
-	"kartographer-desc": "&lt;map&gt を許可; ウィキページに map を挿入するためのタグ",
+	"kartographer-desc": "ウィキページにマップを追加することを許可",
 	"kartographer-tracking-category": "地図があるページ",
-	"kartographer-tracking-category-desc": "そのページは <code><nowiki><map></nowiki></code> タグを含んでいます。",
+	"kartographer-tracking-category-desc": "そのページはマップを含んでいます",
 	"kartographer-broken-category": "破損した地図があるページ",
-	"kartographer-broken-category-desc": "そのページは <code><nowiki><map></nowiki></code> タグを含んでいます、無効な使用法と共に。"
+	"kartographer-broken-category-desc": "そのページは無効なマップ使用法を含んでいます"
 }

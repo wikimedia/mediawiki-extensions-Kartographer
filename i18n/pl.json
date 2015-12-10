@@ -4,8 +4,11 @@
 			"Chrumps"
 		]
 	},
+	"kartographer-errors": "Nie można utworzyć mapy\n$1",
+	"kartographer-error-bad_attr": "Atrybut '$1' ma niepoprawną wartość",
+	"kartographer-error-bad_data": "Zawartość JSON jest niepoprawna",
 	"kartographer-tracking-category": "Strony z mapami",
-	"kartographer-tracking-category-desc": "Strona zawiera znacznik <code><nowiki><map></nowiki></code>.",
+	"kartographer-tracking-category-desc": "Strona zawiera mapę",
 	"kartographer-broken-category": "Strony z uszkodzonymi mapami",
-	"kartographer-broken-category-desc": "Strona zawiera nieprawidłowo zastosowany znacznik <code><nowiki><map></nowiki></code>."
+	"kartographer-broken-category-desc": "Strona zawiera nieprawidłowe zastosowanie mapy"
 }

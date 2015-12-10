@@ -4,9 +4,12 @@
 			"Metalhead64"
 		]
 	},
-	"kartographer-desc": "Erlaubt &lt;map&gt;-Tags zum Einfügen einer Karte in eine Wikiseite",
+	"kartographer-desc": "Erlaubt das Einfügen von Karten in Wikiseiten",
+	"kartographer-errors": "Karte konnte nicht erstellt werden\n$1",
+	"kartographer-error-bad_attr": "Das Attribut „$1“ hat einen ungültigen Wert",
+	"kartographer-error-bad_data": "Der JSON-Inhalt ist nicht korrekt",
 	"kartographer-tracking-category": "Seiten mit Karten",
-	"kartographer-tracking-category-desc": "Die Seite enthält ein <code><nowiki><map></nowiki></code>-Tag.",
+	"kartographer-tracking-category-desc": "Die Seite enthält eine Karte",
 	"kartographer-broken-category": "Seiten mit defekten Karten",
-	"kartographer-broken-category-desc": "Die Seite enthält ein <code><nowiki><map></nowiki></code>-Tag mit einer ungültigen Verwendung."
+	"kartographer-broken-category-desc": "Die Seite enthält eine ungültige Kartenverwendung"
 }
