@@ -2,12 +2,16 @@
 	"@metadata": {
 		"authors": [
 			"Mattho69",
-			"Gomoko"
+			"Gomoko",
+			"Orlodrim"
 		]
 	},
-	"kartographer-desc": "Autorise les balises &lt;map&gt; pour insérer une carte dans une page wiki",
+	"kartographer-desc": "Permet l’ajout de cartes géographiques aux pages wiki",
+	"kartographer-errors": "Impossible de créer une carte\n$1",
+	"kartographer-error-bad_attr": "L’attribut « $1 » a une valeur invalide",
+	"kartographer-error-bad_data": "Le contenu JSON n’est pas valide",
 	"kartographer-tracking-category": "Pages avec carte",
-	"kartographer-tracking-category-desc": "La page inclut une balise <code><nowiki><map></nowiki></code>.",
+	"kartographer-tracking-category-desc": "La page contient une carte",
 	"kartographer-broken-category": "Pages avec les cartes erronées",
-	"kartographer-broken-category-desc": "La page inclut une balise <code><nowiki><map></nowiki></code> avec une utilisation non valide."
+	"kartographer-broken-category-desc": "La page contient une carte avec des erreurs de syntaxe."
 }

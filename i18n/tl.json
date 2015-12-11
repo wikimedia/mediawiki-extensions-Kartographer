@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Leeheonjin"
+		]
+	},
+	"kartographer-desc": "Payagang maragdagan ang mga mapa sa mga pahinang wiki",
+	"kartographer-errors": "Hindi maisagawa ang mapa\n$1",
+	"kartographer-error-bad_data": "Hindi wasto ang nilalamang JSON",
+	"kartographer-tracking-category-desc": "Kasama ng pahinang ito ang mapa"
+}
