@@ -4,9 +4,12 @@
 			"Liuxinyu970226"
 		]
 	},
-	"kartographer-desc": "允许&lt;map&gt;标签以插入地图至一个wiki页面",
+	"kartographer-desc": "允许将地图添加至wiki页面",
+	"kartographer-errors": "无法创建地图\n$1",
+	"kartographer-error-bad_attr": "属性“$1”有无效的值",
+	"kartographer-error-bad_data": "JSON内容不正确",
 	"kartographer-tracking-category": "有地图的页面",
-	"kartographer-tracking-category-desc": "页面包含<code><nowiki><map></nowiki></code>标签。",
+	"kartographer-tracking-category-desc": "页面包含地图",
 	"kartographer-broken-category": "有损坏地图的页面",
-	"kartographer-broken-category-desc": "页面包含无效用法的<code><nowiki><map></nowiki></code>标签。"
+	"kartographer-broken-category-desc": "页面包含无效的地图用法"
 }
