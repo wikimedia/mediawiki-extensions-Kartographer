@@ -33,9 +33,14 @@ class Singleton {
 									 array $args, Parser $parser, \PPFrame $frame ) {
 		global $wgKartographerStyles, $wgKartographerDfltStyle;
 		$output = $parser->getOutput();
+
+		// Expand preprocessor markup for content and all arguments
 		$input = trim( $parser->recursivePreprocess( $input, $frame ) );
 		if ( $input === '' ) {
 			$input = '[]';
+		}
+		foreach ( $args as &$v ) {
+			$v = $parser->recursivePreprocess( $v, $frame );
 		}
 
 		$status = FormatJson::parse( $input, FormatJson::TRY_FIXING | FormatJson::STRIP_COMMENTS );
@@ -49,7 +54,9 @@ class Singleton {
 
 		$mode = self::validateEnum( $status, $args, 'mode', false, 'static' );
 
-		$style = $zoom = $lat = $lon = $width = $height = $group = $groups = $liveId = null;
+		$style = $zoom = $lat = $lon = $width = $height = $groups = $liveId = null;
+		$group = isset( $args['group'] ) ? $args['group'] : '*';
+
 		switch ( $mode ) {
 			default:
 				$status->fatal( 'kartographer-error-bad_attr', 'mode' );
@@ -68,24 +75,21 @@ class Singleton {
 
 				// By default, show data from all groups defined with mode=data
 				// Otherwise, user may supply one or more (comma separated) groups
-				$groups = self::validateEnum( $status, $args, 'group', false, '*' );
-				if ( $groups !== '*' ) {
-					$groups = explode( ',', $groups );
+				if ( $group === '*' ) {
+					$groups = (array)$group;
+				} else {
+					$groups = explode( ',', $group );
 					foreach ( $groups as $grp ) {
 						if ( !self::validateGroup( $grp, $status ) ) {
 							break;
 						}
 					}
-				} else {
-					$groups = array( '*' );
 				}
+				$group = null;
 				break;
 
 			case 'data':
-				if ( !isset( $args['group'] ) ) {
-					$group = '*'; // use default group
-				} else {
-					$group = $args['group'];
+				if ( $group !== '*' ) {
 					self::validateGroup( $group, $status );
 				}
 				if ( !$value ) {
@@ -247,22 +251,18 @@ class Singleton {
 	private static function validateContent( $status ) {
 		$value = $status->getValue();
 
-//		if ( !is_array( $value ) ||
-//			 count( array_filter( array_keys( $value ), 'is_string' ) ) !== count( $value )
-//		) {
-
 		// The content must be a non-associative array of values
 		if ( !is_array( $value ) && !( $value instanceof stdClass ) ) {
 			$status->fatal( 'kartographer-error-bad_data' );
 			return false;
 		}
-		// TODO: TBD: security check?
+
 		return $value;
 	}
 
 	/**
-	 * @param $group
-	 * @param $status
+	 * @param string $group
+	 * @param Status $status
 	 * @return bool
 	 */
 	private static function validateGroup( $group, $status ) {
