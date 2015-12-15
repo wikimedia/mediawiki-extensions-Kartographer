@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Okras"
+		]
+	},
+	"kartographer-errors": "Не удаётся создать карту\n$1"
+}
