@@ -4,9 +4,12 @@
 			"Xuacu"
 		]
 	},
-	"kartographer-desc": "Permite les etiquetes &lt;map&gt; pa insertar un mapa nuna páxina wiki",
+	"kartographer-desc": "Permite amestar mapes a les páxines wiki",
+	"kartographer-errors": "Nun pudo crease un mapa\n$1",
+	"kartographer-error-bad_attr": "L'atributu '$1' tien un valor inválidu",
+	"kartographer-error-bad_data": "El conteníu JSON nun ye correutu",
 	"kartographer-tracking-category": "Páxines con mapes",
-	"kartographer-tracking-category-desc": "La páxina incluye una etiqueta <code><nowiki><map></nowiki></code>.",
+	"kartographer-tracking-category-desc": "La páxina incluye un mapa",
 	"kartographer-broken-category": "Páxines con mapes frañaos",
-	"kartographer-broken-category-desc": "La páxina incluye una etiqueta <code><nowiki><map></nowiki></code> con usu inválidu."
+	"kartographer-broken-category-desc": "La páxina incluye un usu inválidu de mapa."
 }
