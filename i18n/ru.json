@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Okras"
+			"Okras",
+			"Metastasis"
 		]
 	},
-	"kartographer-errors": "Не удаётся создать карту\n$1"
+	"kartographer-errors": "Не удаётся создать карту\n$1",
+	"kartographer-error-bad_data": "JSON содержит ошибки"
 }
