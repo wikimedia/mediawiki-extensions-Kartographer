@@ -1,12 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
-			"Banjo"
+			"Banjo",
+			"Elisardojm"
 		]
 	},
-	"kartographer-desc": "Permite o uso de etiquetas &lt;map&gt; para insertar un mapa nunha páxina da wiki",
+	"kartographer-desc": "Permite insertar mapas nas páxinas da wiki",
+	"kartographer-errors": "Imposible crear un mapa\n$1",
+	"kartographer-error-bad_attr": "O atributo '$1' ten un valor non válido",
+	"kartographer-error-bad_data": "O contido JSON non é correcto",
 	"kartographer-tracking-category": "Páxinas con mapas",
-	"kartographer-tracking-category-desc": "A páxina inclúe unha etiqueta <code><nowiki><map></nowiki></code>.",
+	"kartographer-tracking-category-desc": "A páxina inclúe un mapa",
 	"kartographer-broken-category": "Páxinas con mapas rotos",
-	"kartographer-broken-category-desc": "A páxina inclúe unha etiqueta <code><nowiki><map></nowiki></code> cun uso non válido."
+	"kartographer-broken-category-desc": "A páxina inclúe un mapa cun uso non válido."
 }
