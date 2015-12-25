@@ -4,6 +4,7 @@
 			"Robby"
 		]
 	},
+	"kartographer-desc": "Erméigelcht et fir Kaarten op d'Wikissäiten derbäizesetzen.",
 	"kartographer-errors": "Eng Kaart konnt net ugeluecht ginn\n$1",
 	"kartographer-error-bad_data": "Den JSON-Inhalt ass net korrekt",
 	"kartographer-tracking-category": "Säite mat Kaarten",
