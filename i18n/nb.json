@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Danmichaelo"
+		]
+	},
+	"kartographer-error-bad_data": "JSON-innholdet er ikke gyldig",
+	"kartographer-tracking-category-desc": "Denne siden inneholder et kart"
+}
