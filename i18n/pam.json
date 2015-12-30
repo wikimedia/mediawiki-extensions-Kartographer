@@ -1,9 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Leeheonjin"
+			"Leeheonjin",
+			"Amiel Guanlao"
 		]
 	},
-	"kartographer-error-bad_data": "Ali ya ustu ing JSON content",
-	"kartographer-tracking-category-desc": "Kayabe ya ing king bulung ing mapa"
+	"kartographer-error-bad_data": "Ali ya ustu ing laman ning JSON",
+	"kartographer-tracking-category-desc": "Makayabe ya ing mapa king pabulung."
 }
