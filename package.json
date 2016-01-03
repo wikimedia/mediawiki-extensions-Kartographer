@@ -17,7 +17,7 @@
     "grunt-contrib-watch": "0.6.1",
     "grunt-jscs": "2.1.0",
     "grunt-banana-checker": "0.3.0",
-    "grunt-jsonlint": "1.0.4"
+    "grunt-jsonlint": "1.0.7"
   },
   "dependencies": {
     "leaflet": "^0.7.7",
