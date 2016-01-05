@@ -12,14 +12,15 @@
 	config.HTTPS_URL = !forceHttps ? false : mapServer;
 
 	function bracketDevicePixelRatio() {
-		var brackets = mw.config.get( 'wgKartographerSrcsetScales' ),
+		var i, scale,
+			brackets = mw.config.get( 'wgKartographerSrcsetScales' ),
 			baseRatio = window.devicePixelRatio || 1;
 		if (!brackets) {
 			return 1;
 		}
 		brackets.unshift(1);
-		for (var i = 0; i < brackets.length; i++) {
-			var scale = brackets[i];
+		for (i = 0; i < brackets.length; i++) {
+			scale = brackets[i];
 			if (scale >= baseRatio || (baseRatio - scale) < 0.1) {
 				return scale;
 			}
@@ -29,10 +30,12 @@
 
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
 
-		var scale = bracketDevicePixelRatio();
+		var scale, urlFmt, mapData, geoJson, dataLayer;
+
+		scale = bracketDevicePixelRatio();
 		scale = (scale === 1) ? '' : ('@' + scale + 'x');
-		var urlFmt = '/{z}/{x}/{y}' + scale + '.png';
-		var mapData = mw.config.get( 'wgKartographerLiveData' ) || {};
+		urlFmt = '/{z}/{x}/{y}' + scale + '.png';
+		mapData = mw.config.get( 'wgKartographerLiveData' ) || {};
 
 		$content.find('.mw-kartographer-live').each(function () {
 			var $this = $(this),
@@ -49,7 +52,7 @@
 			}).addTo(map);
 
 			if (overlays) {
-				var geoJson = [];
+				geoJson = [];
 				$.each(overlays, function(_, group) {
 					if (group === '*') {
 						$.each(mapData, function (k, d) {
@@ -61,7 +64,7 @@
 						geoJson = geoJson.concat(mapData[group]);
 					}
 				});
-				var dataLayer = L.mapbox.featureLayer().addTo(map);
+				dataLayer = L.mapbox.featureLayer().addTo(map);
 				dataLayer.setGeoJSON(geoJson);
 			}
 		});

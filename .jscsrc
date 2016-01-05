@@ -1,12 +1,10 @@
 {
 	"preset": "wikimedia",
 
-	"requireMultipleVarDecl": false,
 	"requireSpaceAfterKeywords": false,
 	"requireSpaceBeforeKeywords": false,
 	"requireSpacesInsideBrackets": false,
 	"requireSpacesInsideParentheses": false,
-	"requireVarDeclFirst": false,
 
 	"jsDoc": {
 		"checkAnnotations": {
