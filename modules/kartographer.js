@@ -30,23 +30,25 @@
 
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
 
-		var scale, urlFmt, mapData, geoJson, dataLayer;
+		var scale, urlFormat, mapData;
 
 		scale = bracketDevicePixelRatio();
 		scale = ( scale === 1 ) ? '' : ( '@' + scale + 'x' );
-		urlFmt = '/{z}/{x}/{y}' + scale + '.png';
+		urlFormat = '/{z}/{x}/{y}' + scale + '.png';
 		mapData = mw.config.get( 'wgKartographerLiveData' ) || {};
 
 		$content.find( '.mw-kartographer-live' ).each( function () {
-			var $this = $( this ),
+			var dataLayer, geoJson,
+				$this = $( this ),
 				style = $this.data( 'style' ),
 				zoom = $this.data( 'zoom' ),
 				lat = $this.data( 'lat' ),
 				lon = $this.data( 'lon' ),
 				overlays = $this.data( 'overlays' ),
 				map = L.map( this ).setView( [ lat, lon ], zoom );
+
 			map.attributionControl.setPrefix( '' );
-			L.tileLayer( mapServer + '/' + style + urlFmt, {
+			L.tileLayer( mapServer + '/' + style + urlFormat, {
 				maxZoom: 18,
 				attribution: 'Wikimedia maps beta | Map data &copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
 			} ).addTo( map );
