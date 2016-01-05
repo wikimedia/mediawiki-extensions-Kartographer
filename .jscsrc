@@ -1,7 +1,6 @@
 {
 	"preset": "wikimedia",
 
-	"disallowTrailingComma": false,
 	"requireMultipleVarDecl": false,
 	"requireSpaceAfterKeywords": false,
 	"requireSpaceBeforeKeywords": false,
