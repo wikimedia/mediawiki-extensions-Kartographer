@@ -18,6 +18,7 @@
 	"jquery": true,
 
 	"globals": {
+		"L": false,
 		"mediaWiki": false,
 		"OO": false,
 		"ve": false,

@@ -14,7 +14,9 @@
 	function bracketDevicePixelRatio() {
 		var brackets = mw.config.get( 'wgKartographerSrcsetScales' ),
 			baseRatio = window.devicePixelRatio || 1;
-		if (!brackets) return 1;
+		if (!brackets) {
+			return 1;
+		}
 		brackets.unshift(1);
 		for (var i = 0; i < brackets.length; i++) {
 			var scale = brackets[i];
