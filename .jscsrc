@@ -1,8 +1,6 @@
 {
 	"preset": "wikimedia",
 
-	"requireSpacesInsideParentheses": false,
-
 	"jsDoc": {
 		"checkAnnotations": {
 			"preset": "jsduck5",
