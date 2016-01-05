@@ -1,0 +1,15 @@
+.ve-ce-mwMapsNode {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+}
+
+.ve-ui-mwMapsDialog-mapWidget {
+	margin: 0 auto 1em auto;
+	max-width: 866px;
+	max-height: 400px;
+	overflow: auto;
+}
+
+.ve-ui-mwMapsDialog-geoJSONWidget {
+	max-width: none;
+}

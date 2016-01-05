@@ -8,9 +8,17 @@
 	"kartographer-broken-category": "Pages with broken maps",
 	"kartographer-broken-category-desc": "The page includes an invalid map usage",
 	"kartographer-desc": "Allows maps to be added to the wiki pages",
+	"kartographer-errors": "Invalid parameters for the &lt;maps> tag:\n$1",
 	"kartographer-error-bad_attr": "Attribute '$1' has an invalid value",
 	"kartographer-error-bad_data": "The JSON content is not correct",
 	"kartographer-errors": "Invalid parameters for the &lt;maps> tag:\n$1",
 	"kartographer-tracking-category": "Pages with maps",
-	"kartographer-tracking-category-desc": "The page includes a map"
+	"kartographer-tracking-category-desc": "The page includes a map",
+	"visualeditor-mwmapsdialog-geojson": "GeoJSON",
+	"visualeditor-mwmapsdialog-mode": "Mode",
+	"visualeditor-mwmapsdialog-mode-data": "Data",
+	"visualeditor-mwmapsdialog-mode-interactive": "Interactive",
+	"visualeditor-mwmapsdialog-mode-static": "Static",
+	"visualeditor-mwmapsdialog-size": "Size",
+	"visualeditor-mwmapsdialog-title": "Map"
 }

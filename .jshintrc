@@ -20,9 +20,9 @@
 	"globals": {
 		"L": false,
 		"mediaWiki": false,
+		"mw": false,
 		"OO": false,
 		"ve": false,
-		"vg": false,
 		"QUnit": false
 	}
 }

@@ -12,5 +12,12 @@
 	"kartographer-error-bad_data": "This error is shown if the JSON content of the tag does not pass validation",
 	"kartographer-errors": "General message shown before all other specific errors\n\nParameters:\n* $1 - all errors combined as a bullet points list",
 	"kartographer-tracking-category": "Name of the tracking category",
-	"kartographer-tracking-category-desc": "Description on [[Special:TrackingCategories]] for the {{msg-mw|kartographer-tracking-category}} tracking category."
+	"kartographer-tracking-category-desc": "Description on [[Special:TrackingCategories]] for the {{msg-mw|kartographer-tracking-category}} tracking category.",
+	"visualeditor-mwmapsdialog-geojson": "Label for map GeoJSON data",
+	"visualeditor-mwmapsdialog-mode": "Label for map rendering mode",
+	"visualeditor-mwmapsdialog-mode-data": "Label for data-only map rendering",
+	"visualeditor-mwmapsdialog-mode-interactive": "Label for interactive map rendering",
+	"visualeditor-mwmapsdialog-mode-static": "Label for static map rendering",
+	"visualeditor-mwmapsdialog-size": "Label for map size",
+	"visualeditor-mwmapsdialog-title": "Title of the map dialog"
 }

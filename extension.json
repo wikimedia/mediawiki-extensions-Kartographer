@@ -47,6 +47,31 @@
 				"mobile",
 				"desktop"
 			]
+		},
+		"ext.kartographer.visualEditor": {
+			"scripts": [
+				"modules/ve-maps/ve.dm.MWMapsNode.js",
+				"modules/ve-maps/ve.ce.MWMapsNode.js",
+				"modules/ve-maps/ve.ui.MWMapsDialog.js",
+				"modules/ve-maps/ve.ui.MWMapsTool.js"
+			],
+			"styles": [
+				"modules/ve-maps/ve.ui.MWMaps.css"
+			],
+			"messages": [
+				"visualeditor-mwmapsdialog-geojson",
+				"visualeditor-mwmapsdialog-mode",
+				"visualeditor-mwmapsdialog-mode-data",
+				"visualeditor-mwmapsdialog-mode-interactive",
+				"visualeditor-mwmapsdialog-mode-static",
+				"visualeditor-mwmapsdialog-size",
+				"visualeditor-mwmapsdialog-title"
+			],
+			"dependencies": [
+				"ext.visualEditor.mwcore",
+				"oojs-ui.styles.icons-location",
+				"ext.kartographer"
+			]
 		}
 	},
 	"ResourceFileModulePaths": {
@@ -64,6 +89,9 @@
 			"Kartographer\\Hooks::onUnitTestsList"
 		]
 	},
+	"VisualEditorPluginModules": [
+		"ext.kartographer.visualEditor"
+	],
 	"config": {
 		"KartographerDfltStyle": "osm-intl",
 		"KartographerStyles": ["osm-intl", "osm"],
