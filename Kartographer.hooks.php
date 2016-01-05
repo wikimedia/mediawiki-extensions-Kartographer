@@ -18,7 +18,7 @@ use Status;
 class Singleton {
 
 	public static function onParserFirstCallInit( Parser $parser ) {
-		$parser->setHook( 'map', 'Kartographer\Singleton::onMapTag' );
+		$parser->setHook( 'maps', 'Kartographer\Singleton::onMapTag' );
 		return true;
 	}
 

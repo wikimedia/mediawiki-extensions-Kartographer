@@ -4,9 +4,9 @@
 			"Purodha"
 		]
 	},
-	"kartographer-desc": "Löht met „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">&lt;map&gt;</code>“ Befähle Kaate en Sigge em Wikki ennföhje.",
+	"kartographer-desc": "Löht met „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">&lt;maps&gt;</code>“ Befähle Kaate en Sigge em Wikki ennföhje.",
 	"kartographer-tracking-category": "Sigge met Kaate",
-	"kartographer-tracking-category-desc": "En heh dä Sigg es ene „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">&lt;map&gt;</code>“ Befähl.",
+	"kartographer-tracking-category-desc": "En heh dä Sigg es ene „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">&lt;maps&gt;</code>“ Befähl.",
 	"kartographer-broken-category": "Sigge met kapodde Kaate",
-	"kartographer-broken-category-desc": "En heh dä Sigg es ene „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">&lt;map&gt;</code>“ Befähl wi hä nit jebruch wähde kann."
+	"kartographer-broken-category-desc": "En heh dä Sigg es ene „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">&lt;maps&gt;</code>“ Befähl wi hä nit jebruch wähde kann."
 }

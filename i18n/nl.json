@@ -5,9 +5,9 @@
 			"Siebrand"
 		]
 	},
-	"kartographer-desc": "Maakt het mogelijk met het label &lt;map&gt; kaarten toe te voegen aan een wikipagina",
+	"kartographer-desc": "Maakt het mogelijk met het label &lt;maps&gt; kaarten toe te voegen aan een wikipagina",
 	"kartographer-tracking-category": "Pagina's met kaarten",
-	"kartographer-tracking-category-desc": "De pagina bevat het label <code><nowiki><map></nowiki></code>.",
+	"kartographer-tracking-category-desc": "De pagina bevat het label <code><nowiki><maps></nowiki></code>.",
 	"kartographer-broken-category": "Pagina's met niet-werkende kaarten",
-	"kartographer-broken-category-desc": "De pagina bevat een label <code><nowiki><map></nowiki></code> dat onjuist wordt gebruikt."
+	"kartographer-broken-category-desc": "De pagina bevat een label <code><nowiki><maps></nowiki></code> dat onjuist wordt gebruikt."
 }

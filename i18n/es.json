@@ -4,9 +4,9 @@
 			"Macofe"
 		]
 	},
-	"kartographer-desc": "Permite a las etiquetas &lt;map&gt; insertar un mapa en una página wiki",
+	"kartographer-desc": "Permite a las etiquetas &lt;maps&gt; insertar un mapa en una página wiki",
 	"kartographer-tracking-category": "Páginas con mapas",
 	"kartographer-tracking-category-desc": "La página incluye un mapa",
 	"kartographer-broken-category": "Páginas con mapas rotos",
-	"kartographer-broken-category-desc": "La página incluye una etiqueta <code><nowiki><map></nowiki></code> mal usada."
+	"kartographer-broken-category-desc": "La página incluye una etiqueta <code><nowiki><maps></nowiki></code> mal usada."
 }

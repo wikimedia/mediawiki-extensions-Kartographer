@@ -5,7 +5,7 @@
 		]
 	},
 	"kartographer-tracking-category": "Sidor med kartor",
-	"kartographer-tracking-category-desc": "Sidan inkluderar taggen <code><nowiki><map></nowiki></code>.",
+	"kartographer-tracking-category-desc": "Sidan inkluderar taggen <code><nowiki><maps></nowiki></code>.",
 	"kartographer-broken-category": "Sidor med trasiga kartor",
-	"kartographer-broken-category-desc": "Sidan inkluderar taggen <code><nowiki><map></nowiki></code> med felaktig användning."
+	"kartographer-broken-category-desc": "Sidan inkluderar taggen <code><nowiki><maps></nowiki></code> med felaktig användning."
 }
