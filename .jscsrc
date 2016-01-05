@@ -1,9 +1,6 @@
 {
 	"preset": "wikimedia",
 
-	"requireSpaceAfterKeywords": false,
-	"requireSpaceBeforeKeywords": false,
-	"requireSpacesInsideBrackets": false,
 	"requireSpacesInsideParentheses": false,
 
 	"jsDoc": {
