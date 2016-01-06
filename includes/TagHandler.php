@@ -31,6 +31,7 @@ class TagHandler {
 	) {
 		global $wgKartographerStyles, $wgKartographerDfltStyle;
 		$output = $parser->getOutput();
+		$output->addModuleStyles( 'ext.kartographer' );
 
 		if ( $input !== '' && $input !== null ) {
 			$status = FormatJson::parse( $input, FormatJson::TRY_FIXING | FormatJson::STRIP_COMMENTS );
@@ -129,6 +130,9 @@ class TagHandler {
 		}
 
 		$html = '';
+		$attrs = array(
+			'class' => 'mw-kartographer mw-kartographer-' . $mode,
+		);
 		switch ( $mode ) {
 			case 'static':
 				// http://.../img/{source},{zoom},{lat},{lon},{width}x{height} [ @{scale}x ] .{format}
@@ -139,7 +143,6 @@ class TagHandler {
 					$wgKartographerMapServer, $style, $zoom, $lat, $lon, $width, $height );
 
 				$imgAttrs = array(
-					'class' => 'mw-kartographer-img',
 					'src' => $statParams . '.jpeg' . $dataParam,
 					'width' => $width,
 					'height' => $height,
@@ -153,19 +156,15 @@ class TagHandler {
 					$imgAttrs['srcset'] = Html::srcSet( $srcSet );
 				}
 
-				$output->addModules( 'ext.kartographer.static' );
-				$html = Html::rawElement( 'img', $imgAttrs );
+				$html = Html::rawElement( 'div', $attrs, Html::rawElement( 'img', $imgAttrs ) );
 				break;
 
 			case 'interactive':
-				$attrs = array(
-					'class' => 'mw-kartographer-live',
-					'style' => "width:${width}px;height:${height}px;",
-					'data-style' => $style,
-					'data-zoom' => $zoom,
-					'data-lat' => $lat,
-					'data-lon' => $lon,
-				);
+				$attrs['style'] = "width:${width}px;height:${height}px;";
+				$attrs['data-style'] = $style;
+				$attrs['data-zoom'] = $zoom;
+				$attrs['data-lat'] = $lat;
+				$attrs['data-lon'] = $lon;
 				if ( $groups ) {
 					$attrs['data-overlays'] = FormatJson::encode( $groups, false,
 						FormatJson::ALL_OK );
@@ -176,13 +175,11 @@ class TagHandler {
 
 			case 'anchor':
 				if ( $counter !== false ) {
-					$html = Html::element( 'a', array(
-						'class' => 'mw-kartographer',
-						'data-zoom' => $zoom,
-						'data-lat' => $lat,
-						'data-lon' => $lon,
-						'data-style' => $style,
-					), $counter );
+					$attrs['data-style'] = $style;
+					$attrs['data-zoom'] = $zoom;
+					$attrs['data-lat'] = $lat;
+					$attrs['data-lon'] = $lon;
+					$html = Html::element( 'a', $attrs, $counter );
 				}
 				break;
 		}
@@ -365,7 +362,6 @@ class TagHandler {
 	 * @return string
 	 */
 	private static function reportError( ParserOutput $output, Status $status ) {
-		$output->addModules( 'ext.kartographer.error' );
 		$output->setExtensionData( 'kartographer_broken', true );
 		return Html::rawElement( 'div', array( 'class' => 'mw-kartographer-error' ),
 			$status->getWikiText( false, 'kartographer-errors' ) );

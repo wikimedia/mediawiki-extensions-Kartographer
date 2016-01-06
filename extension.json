@@ -18,21 +18,10 @@
 		"Kartographer\\TagHandler": "includes/TagHandler.php"
 	},
 	"ResourceModules": {
-		"ext.kartographer.data": {
-			"class": "Kartographer\\DataModule"
-		},
-		"ext.kartographer.error": {
+		"ext.kartographer": {
+			"class": "Kartographer\\DataModule",
 			"styles": [
-				"styles/error.less"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
-			]
-		},
-		"ext.kartographer.static": {
-			"styles": [
-			  "styles/static.less"
+				"styles/kartographer.less"
 			],
 			"targets": [
 				"mobile",
@@ -41,14 +30,13 @@
 		},
 		"ext.kartographer.live": {
 			"dependencies": [
-				"ext.kartographer.data"
+				"ext.kartographer"
 			],
 			"scripts": [
 			  "lib/mapbox-lib.js",
 			  "modules/kartographer.js"
 			],
 			"styles": [
-			  "styles/live.less",
 			  "lib/style.css"
 			],
 			"targets": [

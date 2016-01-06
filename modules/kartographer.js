@@ -37,7 +37,7 @@
 		urlFormat = '/{z}/{x}/{y}' + scale + '.png';
 		mapData = mw.config.get( 'wgKartographerLiveData' ) || {};
 
-		$content.find( '.mw-kartographer-live' ).each( function () {
+		$content.find( '.mw-kartographer-interactive' ).each( function () {
 			var dataLayer, geoJson,
 				$this = $( this ),
 				style = $this.data( 'style' ),
