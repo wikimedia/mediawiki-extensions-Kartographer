@@ -4,9 +4,12 @@
 			"Aftabuzzaman"
 		]
 	},
-	"kartographer-desc": "একটি উইকি পাতায় একটি মানচিত্র অন্তর্ভুক্ত করতে &lt;maps&gt; ট্যাগের অনুমতি দেয়",
+	"kartographer-desc": "উইকি পাতাসমূহে মানচিত্র অন্তর্ভুক্ত করতে অনুমতি দেয়",
+	"kartographer-errors": "একটি মানচিত্র তৈরি করা অসম্ভব\n$1",
+	"kartographer-error-bad_attr": "অ্যাট্রিবিউট '$1'-এ একটি অবৈধ মান আছে",
+	"kartographer-error-bad_data": "JSON সামগ্রী সঠিক নয়",
 	"kartographer-tracking-category": "মানচিত্রসহ পাতা",
-	"kartographer-tracking-category-desc": "পাতাটি একটি  <code><nowiki><maps></nowiki></code> ট্যাগ অন্তর্ভুক্ত করে।",
+	"kartographer-tracking-category-desc": "পাতাটি একটি মানচিত্র অন্তর্ভুক্ত করে",
 	"kartographer-broken-category": "ভাঙা মানচিত্রসহ পাতা",
-	"kartographer-broken-category-desc": "পাতাটি অবৈধ ব্যবহারসহ একটি <code><nowiki><maps></nowiki></code> ট্যাগ অন্তর্ভুক্ত করে।"
+	"kartographer-broken-category-desc": "পাতা একটি অকার্যকর মানচিত্র অন্তর্ভুক্ত করে"
 }
