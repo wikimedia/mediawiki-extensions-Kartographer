@@ -107,12 +107,14 @@ class Singleton {
 		}
 
 		// Merge existing data with the new tag's data under the same group name
+		$counter = false;
 		if ( $value ) {
 			if ( !$group ) {
 				// If it's not mode=data, the tag's data is private for this tag only
 				$group = '_' . sha1( FormatJson::encode( $value, false, FormatJson::ALL_OK ) );
 			}
 			$data = $output->getExtensionData( 'kartographer_data' ) ?: new stdClass();
+			$counter = self::processCounters( $value, $data );
 			if ( isset( $data->$group ) ) {
 				$data->$group = array_merge( $data->$group, $value );
 			} else {
@@ -173,6 +175,10 @@ class Singleton {
 				}
 				$output->setExtensionData( 'kartographer_interact', true );
 				$html = Html::rawElement( 'div', $attrs );
+				break;
+
+			case 'data':
+				$html = $counter === false ? '' : $counter;
 				break;
 		}
 		$output->setExtensionData( 'kartographer_valid', true );
@@ -251,8 +257,10 @@ class Singleton {
 	private static function validateContent( $status ) {
 		$value = $status->getValue();
 
-		// The content must be a non-associative array of values
-		if ( !is_array( $value ) && !( $value instanceof stdClass ) ) {
+		// The content must be a non-associative array of values or an object
+		if ( $value instanceof stdClass ) {
+			$value = array ( $value );
+		} elseif ( !is_array( $value ) ) {
 			$status->fatal( 'kartographer-error-bad_data' );
 			return false;
 		}
@@ -271,5 +279,83 @@ class Singleton {
 			return false;
 		}
 		return true;
+	}
+
+	/**
+	 *
+	 * @param mixed $values
+	 * @param stdClass $data
+	 * @return bool|int|string
+	 */
+	private static function processCounters( $values, $data ) {
+		if ( !property_exists( $data, 'counters' ) ) {
+			$numCounters = new stdClass();
+			$alphaCounters = new stdClass();
+			$data->counters = (object) array( 'numeric' => $numCounters, 'alpha' => $alphaCounters );
+		} else {
+			$numCounters = $data->counters->numeric;
+			$alphaCounters = $data->counters->alpha;
+		}
+		return self::processItemList( $values, $numCounters, $alphaCounters );
+	}
+
+	/**
+	 * @param $values
+	 * @param $numCounters
+	 * @param $alphaCounters
+	 * @return bool|string
+	 */
+	private static function processItemList( $values, $numCounters, $alphaCounters ) {
+		$firstMarker = false;
+		if ( !is_array( $values ) ) {
+			return $firstMarker;
+		}
+		foreach ( $values as $item ) {
+			if ( property_exists( $item, 'properties' ) ) {
+				$props = $item->properties;
+				if ( property_exists( $props, 'counter' ) ) {
+					$grp = $props->counter;
+					unset( $props->counter );
+					$count =
+						property_exists( $numCounters, $grp ) ? min( $numCounters->$grp + 1, 99 )
+							: 1;
+					$marker = strval( $count );
+					$numCounters->$grp = $count;
+				} elseif ( property_exists( $props, 'letter' ) ) {
+					$grp = $props->letter;
+					unset( $props->letter );
+					$count =
+						property_exists( $alphaCounters, $grp ) ? min( $alphaCounters->$grp + 1,
+							26 ) : 1;
+					$marker = chr( ord( 'a' ) + $count - 1 );  // letters a..z
+					$alphaCounters->$grp = $count;
+				} else {
+					$marker = false;
+				}
+
+				if ( $marker !== false ) {
+					$props->{'marker-symbol'} = $marker;
+					if ( $firstMarker === false ) {
+						$firstMarker = $marker;
+					}
+				}
+			}
+			if ( !property_exists( $item, 'type' ) ) {
+				continue;
+			}
+			$type = $item->type;
+			if ( $type === 'FeatureCollection' && property_exists( $item, 'features' ) ) {
+				$tmp = self::processItemList( $item->features, $numCounters, $alphaCounters );
+				if ( $firstMarker === false ) {
+					$firstMarker = $tmp;
+				}
+			} elseif ( $type === 'GeometryCollection' && property_exists( $item, 'geometries' ) ) {
+				$tmp = self::processItemList( $item->geometries, $numCounters, $alphaCounters );
+				if ( $firstMarker === false ) {
+					$firstMarker = $tmp;
+				}
+			}
+		}
+		return $firstMarker;
 	}
 }
