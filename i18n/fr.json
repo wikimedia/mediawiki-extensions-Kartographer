@@ -7,7 +7,7 @@
 		]
 	},
 	"kartographer-desc": "Permet l’ajout de cartes géographiques aux pages wiki",
-	"kartographer-errors": "Impossible de créer une carte\n$1",
+	"kartographer-errors": "Paramètres non valides pour la balise &lt;maps> :\n$1",
 	"kartographer-error-bad_attr": "L’attribut « $1 » a une valeur invalide",
 	"kartographer-error-bad_data": "Le contenu JSON n’est pas valide",
 	"kartographer-tracking-category": "Pages avec carte",

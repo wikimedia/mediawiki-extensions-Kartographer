@@ -5,7 +5,7 @@
 		]
 	},
 	"kartographer-desc": "Erméigelcht et fir Kaarten op d'Wikissäiten derbäizesetzen.",
-	"kartographer-errors": "Eng Kaart konnt net ugeluecht ginn\n$1",
+	"kartographer-errors": "Net valabel Parametere fir den Tag &lt;maps>:\n$1",
 	"kartographer-error-bad_data": "Den JSON-Inhalt ass net korrekt",
 	"kartographer-tracking-category": "Säite mat Kaarten",
 	"kartographer-tracking-category-desc": "An der Säit ass eng Kaart dran",

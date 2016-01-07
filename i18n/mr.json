@@ -6,7 +6,7 @@
 		]
 	},
 	"kartographer-desc": "विकिपानावर नकाशे जोडण्यास परवानगी द्या",
-	"kartographer-errors": "नकाशा तयार करु शकलो नाही\n$1",
+	"kartographer-errors": "&lt;maps> या खूणपताकेसाठी अवैध प्राचले \n$1",
 	"kartographer-error-bad_data": "JSON आशय बरोबर नाही",
 	"kartographer-tracking-category": "नकाशे असलेली पाने",
 	"kartographer-tracking-category-desc": "या पानात नकाशाचा अंतर्भाव आहे",

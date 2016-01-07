@@ -5,7 +5,7 @@
 		]
 	},
 	"kartographer-desc": "Permette di aggiungere mappe nelle pagine wiki",
-	"kartographer-errors": "Impossibile creare una mappa\n$1",
+	"kartographer-errors": "Parametri non validi per il tag &lt;maps>:\n$1",
 	"kartographer-error-bad_attr": "L'attributo '$1' ha un valore non valido",
 	"kartographer-error-bad_data": "Il contenuto JSON non è corretto",
 	"kartographer-tracking-category": "Pagine con mappe",
