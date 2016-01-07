@@ -12,6 +12,7 @@ namespace Kartographer;
 use stdClass;
 use Html;
 use Parser;
+use ParserOutput;
 use FormatJson;
 use Status;
 
@@ -53,25 +54,31 @@ class Singleton {
 		}
 
 		$mode = self::validateEnum( $status, $args, 'mode', false, 'static' );
+		if ( !in_array( $mode, array( 'interactive', 'static', 'data', 'anchor' ) ) ) {
+			$status->fatal( 'kartographer-error-bad_attr', 'mode' );
+			return self::reportError( $output, $status );
+		}
 
 		$style = $zoom = $lat = $lon = $width = $height = $groups = $liveId = null;
 		$group = isset( $args['group'] ) ? $args['group'] : '*';
 
 		switch ( $mode ) {
-			default:
-				$status->fatal( 'kartographer-error-bad_attr', 'mode' );
-				break;
-
-			/** @noinspection PhpMissingBreakStatementInspection */
 			case 'interactive':
 			case 'static':
+			case 'anchor':
 				$zoom = self::validateNumber( $status, $args, 'zoom', true );
 				$lat = self::validateNumber( $status, $args, 'latitude', false );
 				$lon = self::validateNumber( $status, $args, 'longitude', false );
+				$style = self::validateEnum( $status, $args, 'style', $wgKartographerStyles,
+					$wgKartographerDfltStyle );
+				break;
+		}
+
+		switch ( $mode ) {
+			case 'interactive':
+			case 'static':
 				$width = self::validateNumber( $status, $args, 'width', true );
 				$height = self::validateNumber( $status, $args, 'height', true );
-				$style = self::validateEnum( $status, $args, 'style', $wgKartographerStyles,
-						$wgKartographerDfltStyle );
 
 				// By default, show data from all groups defined with mode=data
 				// Otherwise, user may supply one or more (comma separated) groups
@@ -89,6 +96,7 @@ class Singleton {
 				break;
 
 			case 'data':
+			case 'anchor':
 				if ( $group !== '*' ) {
 					self::validateGroup( $group, $status );
 				}
@@ -100,10 +108,7 @@ class Singleton {
 		}
 
 		if ( !$status->isOK() ) {
-			$output->addModules( 'ext.kartographer.error' );
-			$output->setExtensionData( 'kartographer_broken', true );
-			return Html::rawElement( 'div', array( 'class' => 'mw-kartographer-error' ),
-					$status->getWikiText( false, 'kartographer-errors' ) );
+			return self::reportError( $output, $status );
 		}
 
 		// Merge existing data with the new tag's data under the same group name
@@ -177,8 +182,16 @@ class Singleton {
 				$html = Html::rawElement( 'div', $attrs );
 				break;
 
-			case 'data':
-				$html = $counter === false ? '' : $counter;
+			case 'anchor':
+				if ( $counter !== false ) {
+					$html = Html::element( 'a', array(
+						'class' => 'mw-kartographer',
+						'data-zoom' => $zoom,
+						'data-lat' => $lat,
+						'data-lon' => $lon,
+						'data-style' => $style,
+					), $counter );
+				}
 				break;
 		}
 		$output->setExtensionData( 'kartographer_valid', true );
@@ -357,5 +370,17 @@ class Singleton {
 			}
 		}
 		return $firstMarker;
+	}
+
+	/**
+	 * @param ParserOutput $output
+	 * @param Status $status
+	 * @return string
+	 */
+	private static function reportError( $output, $status ) {
+		$output->addModules( 'ext.kartographer.error' );
+		$output->setExtensionData( 'kartographer_broken', true );
+		return Html::rawElement( 'div', array( 'class' => 'mw-kartographer-error' ),
+			$status->getWikiText( false, 'kartographer-errors' ) );
 	}
 }
