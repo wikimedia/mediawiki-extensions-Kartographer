@@ -5,7 +5,7 @@
 		]
 	},
 	"kartographer-desc": "允许将地图添加至wiki页面",
-	"kartographer-errors": "无法创建地图\n$1",
+	"kartographer-errors": "&lt;maps>标签的参数无效：\n$1",
 	"kartographer-error-bad_attr": "属性“$1”有无效的值",
 	"kartographer-error-bad_data": "JSON内容不正确",
 	"kartographer-tracking-category": "有地图的页面",

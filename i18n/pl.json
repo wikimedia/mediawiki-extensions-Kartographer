@@ -4,7 +4,7 @@
 			"Chrumps"
 		]
 	},
-	"kartographer-errors": "Nie można utworzyć mapy\n$1",
+	"kartographer-errors": "Błędne parametry dla znacznika &lt;maps>:\n$1",
 	"kartographer-error-bad_attr": "Atrybut '$1' ma niepoprawną wartość",
 	"kartographer-error-bad_data": "Zawartość JSON jest niepoprawna",
 	"kartographer-tracking-category": "Strony z mapami",
