@@ -144,13 +144,16 @@ class Singleton {
 				// Optional query value:  ? data = {title}|{group1}|{group2}|...
 				global $wgKartographerMapServer, $wgKartographerSrcsetScales;
 
-				$statParams = sprintf( '%s/img/%s,%s,%s,%s,%sx%s', $wgKartographerMapServer, $style,
-						$zoom, $lat, $lon, $width, $height );
-				$attrs = array(
-						'class' => 'mw-kartographer-img',
-						'src' => $statParams . '.jpeg' . $dataParam,
-						'width' => $width,
-						'height' => $height,
+				$statParams = sprintf( '%s/img/%s,%s,%s,%s,%sx%s',
+					$wgKartographerMapServer, $style,
+					$zoom, $lat, $lon, $width, $height
+				);
+
+				$imgAttrs = array(
+					'class' => 'mw-kartographer-img',
+					'src' => $statParams . '.jpeg' . $dataParam,
+					'width' => $width,
+					'height' => $height,
 				);
 				if ( $wgKartographerSrcsetScales ) {
 					$srcSet = array();
@@ -158,21 +161,21 @@ class Singleton {
 						$s = '@' . $scale . 'x';
 						$srcSet[$scale] = $statParams . $s . '.jpeg' . $dataParam;
 					}
-					$attrs['srcset'] = Html::srcSet( $srcSet );
+					$imgAttrs['srcset'] = Html::srcSet( $srcSet );
 				}
 
 				$output->addModules( 'ext.kartographer.static' );
-				$html = Html::rawElement( 'img', $attrs );
+				$html = Html::rawElement( 'img', $imgAttrs );
 				break;
 
 			case 'interactive':
 				$attrs = array(
-						'class' => 'mw-kartographer-live',
-						'style' => "width:${width}px;height:${height}px",
-						'data-style' => $style,
-						'data-zoom' => $zoom,
-						'data-lat' => $lat,
-						'data-lon' => $lon,
+					'class' => 'mw-kartographer-live',
+					'style' => "width:${width}px;height:${height}px;",
+					'data-style' => $style,
+					'data-zoom' => $zoom,
+					'data-lat' => $lat,
+					'data-lon' => $lon,
 				);
 				if ( $groups ) {
 					$attrs['data-overlays'] = FormatJson::encode( $groups, false,
