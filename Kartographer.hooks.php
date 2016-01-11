@@ -9,6 +9,7 @@
 
 namespace Kartographer;
 
+use PPFrame;
 use stdClass;
 use Html;
 use Parser;
@@ -18,6 +19,12 @@ use Status;
 
 class Singleton {
 
+	/**
+	 * ParserFirstCallInit hook handler
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ParserFirstCallInit
+	 * @param Parser $parser
+	 * @return bool
+	 */
 	public static function onParserFirstCallInit( Parser $parser ) {
 		$parser->setHook( 'maps', 'Kartographer\Singleton::onMapTag' );
 		return true;
@@ -27,30 +34,28 @@ class Singleton {
 	 * @param string $input
 	 * @param array $args
 	 * @param Parser $parser
-	 * @param \PPFrame $frame
+	 * @param PPFrame $frame
 	 * @return string
 	 */
-	public static function onMapTag( $input, /** @noinspection PhpUnusedParameterInspection */
-									 array $args, Parser $parser, \PPFrame $frame ) {
+	public static function onMapTag(
+		/** @noinspection PhpUnusedParameterInspection */
+		$input, array $args, Parser $parser, PPFrame $frame
+	) {
 		global $wgKartographerStyles, $wgKartographerDfltStyle;
 		$output = $parser->getOutput();
 
-		// Expand preprocessor markup for content and all arguments
-		$input = trim( $parser->recursivePreprocess( $input, $frame ) );
-		if ( $input === '' ) {
-			$input = '[]';
-		}
-		foreach ( $args as &$v ) {
-			$v = $parser->recursivePreprocess( $v, $frame );
-		}
-
-		$status = FormatJson::parse( $input, FormatJson::TRY_FIXING | FormatJson::STRIP_COMMENTS );
-		$value = false;
-		if ( $status->isOK() ) {
-			$value = self::validateContent( $status );
-			if ( $value && !is_array( $value ) ) {
-				$value = array( $value );
+		if ( $input !== '' ) {
+			$status = FormatJson::parse( $input, FormatJson::TRY_FIXING | FormatJson::STRIP_COMMENTS );
+			$value = false;
+			if ( $status->isOK() ) {
+				$value = self::validateContent( $status );
+				if ( $value && !is_array( $value ) ) {
+					$value = array( $value );
+				}
 			}
+		} else {
+			$status = Status::newGood();
+			$value = array();
 		}
 
 		$mode = self::validateEnum( $status, $args, 'mode', false, 'static' );
@@ -59,19 +64,17 @@ class Singleton {
 			return self::reportError( $output, $status );
 		}
 
-		$style = $zoom = $lat = $lon = $width = $height = $groups = $liveId = null;
+		$width = $height = $groups = $liveId = null;
 		$group = isset( $args['group'] ) ? $args['group'] : '*';
 
-		switch ( $mode ) {
-			case 'interactive':
-			case 'static':
-			case 'anchor':
-				$zoom = self::validateNumber( $status, $args, 'zoom', true );
-				$lat = self::validateNumber( $status, $args, 'latitude', false );
-				$lon = self::validateNumber( $status, $args, 'longitude', false );
-				$style = self::validateEnum( $status, $args, 'style', $wgKartographerStyles,
-					$wgKartographerDfltStyle );
-				break;
+		if ( in_array( $mode, array( 'interactive', 'static', 'anchor' ) ) ) {
+			$zoom = self::validateNumber( $status, $args, 'zoom', true );
+			$lat = self::validateNumber( $status, $args, 'latitude', false );
+			$lon = self::validateNumber( $status, $args, 'longitude', false );
+			$style = self::validateEnum( $status, $args, 'style', $wgKartographerStyles,
+				$wgKartographerDfltStyle );
+		} else {
+			$style = $zoom = $lat = $lon = null;
 		}
 
 		switch ( $mode ) {
@@ -145,9 +148,7 @@ class Singleton {
 				global $wgKartographerMapServer, $wgKartographerSrcsetScales;
 
 				$statParams = sprintf( '%s/img/%s,%s,%s,%s,%sx%s',
-					$wgKartographerMapServer, $style,
-					$zoom, $lat, $lon, $width, $height
-				);
+					$wgKartographerMapServer, $style, $zoom, $lat, $lon, $width, $height );
 
 				$imgAttrs = array(
 					'class' => 'mw-kartographer-img',
@@ -201,6 +202,12 @@ class Singleton {
 		return $html;
 	}
 
+	/**
+	 * ParserAfterParse hook handler
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ParserAfterParse
+	 * @param Parser $parser
+	 * @return bool
+	 */
 	public static function onParserAfterParse( Parser $parser ) {
 		$output = $parser->getOutput();
 		if ( $output->getExtensionData( 'kartographer_broken' ) ) {
@@ -212,14 +219,13 @@ class Singleton {
 		if ( $output->getExtensionData( 'kartographer_interact' ) ) {
 			$output->addModules( 'ext.kartographer.live' );
 
-			global $wgKartographerSrcsetScales, $wgKartographerMapServer, $wgKartographerIconServer, $wgKartographerForceHttps;
+			global $wgKartographerSrcsetScales, $wgKartographerMapServer, $wgKartographerIconServer;
 			if ( $wgKartographerSrcsetScales ) {
 				$output->addJsConfigVars( 'wgKartographerSrcsetScales',
 					$wgKartographerSrcsetScales );
 			}
 			$output->addJsConfigVars( 'wgKartographerMapServer', $wgKartographerMapServer );
 			$output->addJsConfigVars( 'wgKartographerIconServer', $wgKartographerIconServer );
-			$output->addJsConfigVars( 'wgKartographerForceHttps', $wgKartographerForceHttps );
 
 			$output->addJsConfigVars( 'wgKartographerLiveData', $output->getExtensionData( 'kartographer_data' ) );
 		}
@@ -285,12 +291,13 @@ class Singleton {
 	}
 
 	/**
+	 * Make sure that the group name is only alphanumeric
 	 * @param string $group
 	 * @param Status $status
 	 * @return bool
 	 */
 	private static function validateGroup( $group, $status ) {
-		if ( !preg_match( '/^[a-zA-Z0-9)]+$/', $group ) ) {
+		if ( !preg_match( '/^[a-zA-Z0-9]+$/', $group ) ) {
 			$status->fatal( 'kartographer-error-bad_attr', 'group' );
 			return false;
 		}
@@ -298,30 +305,31 @@ class Singleton {
 	}
 
 	/**
-	 *
+	 * For all GeoJSON items that contain 'counter' and 'letter' properties,
+	 * recursively replace them with an automatically incremented marker icon.
 	 * @param mixed $values
 	 * @param stdClass $data
-	 * @return bool|int|string
+	 * @return bool|string returns the very first counter value that has been used
 	 */
 	private static function processCounters( $values, $data ) {
 		if ( !property_exists( $data, 'counters' ) ) {
 			$numCounters = new stdClass();
 			$alphaCounters = new stdClass();
-			$data->counters = (object) array( 'numeric' => $numCounters, 'alpha' => $alphaCounters );
+			$data->counters = array( 'numeric' => $numCounters, 'alpha' => $alphaCounters );
 		} else {
-			$numCounters = $data->counters->numeric;
-			$alphaCounters = $data->counters->alpha;
+			$numCounters = $data->counters['numeric'];
+			$alphaCounters = $data->counters['alpha'];
 		}
-		return self::processItemList( $values, $numCounters, $alphaCounters );
+		return self::doCountersRecursive( $values, $numCounters, $alphaCounters );
 	}
 
 	/**
 	 * @param $values
-	 * @param $numCounters
-	 * @param $alphaCounters
-	 * @return bool|string
+	 * @param stdClass $numCounters numeric-counter-name -> integer
+	 * @param stdClass $alphaCounters alpha-counter-name -> integer
+	 * @return bool|string returns the very first counter value that has been used
 	 */
-	private static function processItemList( $values, $numCounters, $alphaCounters ) {
+	private static function doCountersRecursive( $values, $numCounters, $alphaCounters ) {
 		$firstMarker = false;
 		if ( !is_array( $values ) ) {
 			return $firstMarker;
@@ -332,17 +340,17 @@ class Singleton {
 				if ( property_exists( $props, 'counter' ) ) {
 					$grp = $props->counter;
 					unset( $props->counter );
-					$count =
-						property_exists( $numCounters, $grp ) ? min( $numCounters->$grp + 1, 99 )
-							: 1;
+					$count = property_exists( $numCounters, $grp )
+						? min( $numCounters->$grp + 1, 99 )
+						: 1;
 					$marker = strval( $count );
 					$numCounters->$grp = $count;
 				} elseif ( property_exists( $props, 'letter' ) ) {
 					$grp = $props->letter;
 					unset( $props->letter );
-					$count =
-						property_exists( $alphaCounters, $grp ) ? min( $alphaCounters->$grp + 1,
-							26 ) : 1;
+					$count = property_exists( $alphaCounters, $grp )
+						? min( $alphaCounters->$grp + 1, 26 )
+						: 1;
 					$marker = chr( ord( 'a' ) + $count - 1 );  // letters a..z
 					$alphaCounters->$grp = $count;
 				} else {
@@ -361,12 +369,12 @@ class Singleton {
 			}
 			$type = $item->type;
 			if ( $type === 'FeatureCollection' && property_exists( $item, 'features' ) ) {
-				$tmp = self::processItemList( $item->features, $numCounters, $alphaCounters );
+				$tmp = self::doCountersRecursive( $item->features, $numCounters, $alphaCounters );
 				if ( $firstMarker === false ) {
 					$firstMarker = $tmp;
 				}
 			} elseif ( $type === 'GeometryCollection' && property_exists( $item, 'geometries' ) ) {
-				$tmp = self::processItemList( $item->geometries, $numCounters, $alphaCounters );
+				$tmp = self::doCountersRecursive( $item->geometries, $numCounters, $alphaCounters );
 				if ( $firstMarker === false ) {
 					$firstMarker = $tmp;
 				}
@@ -380,7 +388,7 @@ class Singleton {
 	 * @param Status $status
 	 * @return string
 	 */
-	private static function reportError( $output, $status ) {
+	private static function reportError( ParserOutput $output, Status $status ) {
 		$output->addModules( 'ext.kartographer.error' );
 		$output->setExtensionData( 'kartographer_broken', true );
 		return Html::rawElement( 'div', array( 'class' => 'mw-kartographer-error' ),
