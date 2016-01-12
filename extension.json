@@ -13,7 +13,7 @@
 		]
 	},
 	"AutoloadClasses": {
-		"Kartographer\\Singleton": "Kartographer.hooks.php"
+		"Kartographer\\Singleton": "includes/Kartographer.hooks.php"
 	},
 	"ResourceModules": {
 		"ext.kartographer.error": {
