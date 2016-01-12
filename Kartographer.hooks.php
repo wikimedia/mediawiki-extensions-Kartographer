@@ -31,6 +31,19 @@ class Singleton {
 	}
 
 	/**
+	 * Register our unit tests
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/UnitTestsList
+	 * @param string[] $files
+	 * @return bool
+	 */
+	public static function onUnitTestsList( array &$files ) {
+		global $IP;
+
+		$files[] = "$IP/extensions/Kartographer/tests/phpunit";
+		return true;
+	}
+
+	/**
 	 * @param string $input
 	 * @param array $args
 	 * @param Parser $parser

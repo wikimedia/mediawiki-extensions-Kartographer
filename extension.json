@@ -59,6 +59,9 @@
 		],
 		"ParserAfterParse": [
 			"Kartographer\\Singleton::onParserAfterParse"
+		],
+		"UnitTestsList": [
+			"Kartographer\\Singleton::onUnitTestsList"
 		]
 	},
 	"config": {
