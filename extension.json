@@ -13,10 +13,14 @@
 		]
 	},
 	"AutoloadClasses": {
+		"Kartographer\\DataModule": "includes/DataModule.php",
 		"Kartographer\\Hooks": "includes/Hooks.php",
 		"Kartographer\\TagHandler": "includes/TagHandler.php"
 	},
 	"ResourceModules": {
+		"ext.kartographer.data": {
+			"class": "Kartographer\\DataModule"
+		},
 		"ext.kartographer.error": {
 			"styles": [
 				"styles/error.less"
@@ -36,6 +40,9 @@
 			]
 		},
 		"ext.kartographer.live": {
+			"dependencies": [
+				"ext.kartographer.data"
+			],
 			"scripts": [
 			  "lib/mapbox-lib.js",
 			  "modules/kartographer.js"

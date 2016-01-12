@@ -196,6 +196,7 @@ class TagHandler {
 	 */
 	public static function finalParseStep( Parser $parser ) {
 		$output = $parser->getOutput();
+
 		if ( $output->getExtensionData( 'kartographer_broken' ) ) {
 			$output->addTrackingCategory( 'kartographer-broken-category', $parser->getTitle() );
 		}
@@ -204,15 +205,6 @@ class TagHandler {
 		}
 		if ( $output->getExtensionData( 'kartographer_interact' ) ) {
 			$output->addModules( 'ext.kartographer.live' );
-
-			global $wgKartographerSrcsetScales, $wgKartographerMapServer, $wgKartographerIconServer;
-			if ( $wgKartographerSrcsetScales ) {
-				$output->addJsConfigVars( 'wgKartographerSrcsetScales',
-					$wgKartographerSrcsetScales );
-			}
-			$output->addJsConfigVars( 'wgKartographerMapServer', $wgKartographerMapServer );
-			$output->addJsConfigVars( 'wgKartographerIconServer', $wgKartographerIconServer );
-
 			$output->addJsConfigVars( 'wgKartographerLiveData', $output->getExtensionData( 'kartographer_data' ) );
 		}
 	}
