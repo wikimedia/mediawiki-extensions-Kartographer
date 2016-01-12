@@ -13,7 +13,8 @@
 		]
 	},
 	"AutoloadClasses": {
-		"Kartographer\\Singleton": "includes/Kartographer.hooks.php"
+		"Kartographer\\Hooks": "includes/Hooks.php",
+		"Kartographer\\TagHandler": "includes/TagHandler.php"
 	},
 	"ResourceModules": {
 		"ext.kartographer.error": {
@@ -55,13 +56,13 @@
 	},
 	"Hooks": {
 		"ParserFirstCallInit": [
-			"Kartographer\\Singleton::onParserFirstCallInit"
+			"Kartographer\\Hooks::onParserFirstCallInit"
 		],
 		"ParserAfterParse": [
-			"Kartographer\\Singleton::onParserAfterParse"
+			"Kartographer\\Hooks::onParserAfterParse"
 		],
 		"UnitTestsList": [
-			"Kartographer\\Singleton::onUnitTestsList"
+			"Kartographer\\Hooks::onUnitTestsList"
 		]
 	},
 	"config": {

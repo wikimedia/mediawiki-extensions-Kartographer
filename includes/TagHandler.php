@@ -9,40 +9,15 @@
 
 namespace Kartographer;
 
-use PPFrame;
-use stdClass;
+use FormatJson;
 use Html;
 use Parser;
 use ParserOutput;
-use FormatJson;
+use PPFrame;
 use Status;
+use stdClass;
 
-class Singleton {
-
-	/**
-	 * ParserFirstCallInit hook handler
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ParserFirstCallInit
-	 * @param Parser $parser
-	 * @return bool
-	 */
-	public static function onParserFirstCallInit( Parser $parser ) {
-		$parser->setHook( 'maps', 'Kartographer\Singleton::onMapTag' );
-		return true;
-	}
-
-	/**
-	 * Register our unit tests
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/UnitTestsList
-	 * @param string[] $files
-	 * @return bool
-	 */
-	public static function onUnitTestsList( array &$files ) {
-		global $IP;
-
-		$files[] = "$IP/extensions/Kartographer/tests/phpunit";
-		return true;
-	}
-
+class TagHandler {
 	/**
 	 * @param string $input
 	 * @param array $args
@@ -50,7 +25,7 @@ class Singleton {
 	 * @param PPFrame $frame
 	 * @return string
 	 */
-	public static function onMapTag(
+	public static function handleMapsTag(
 		/** @noinspection PhpUnusedParameterInspection */
 		$input, array $args, Parser $parser, PPFrame $frame
 	) {
@@ -193,7 +168,7 @@ class Singleton {
 				);
 				if ( $groups ) {
 					$attrs['data-overlays'] = FormatJson::encode( $groups, false,
-							FormatJson::ALL_OK );
+						FormatJson::ALL_OK );
 				}
 				$output->setExtensionData( 'kartographer_interact', true );
 				$html = Html::rawElement( 'div', $attrs );
@@ -216,12 +191,10 @@ class Singleton {
 	}
 
 	/**
-	 * ParserAfterParse hook handler
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ParserAfterParse
+	 * Handles the last step of parse process
 	 * @param Parser $parser
-	 * @return bool
 	 */
-	public static function onParserAfterParse( Parser $parser ) {
+	public static function finalParseStep( Parser $parser ) {
 		$output = $parser->getOutput();
 		if ( $output->getExtensionData( 'kartographer_broken' ) ) {
 			$output->addTrackingCategory( 'kartographer-broken-category', $parser->getTitle() );
@@ -242,8 +215,6 @@ class Singleton {
 
 			$output->addJsConfigVars( 'wgKartographerLiveData', $output->getExtensionData( 'kartographer_data' ) );
 		}
-
-		return true;
 	}
 
 	/**
