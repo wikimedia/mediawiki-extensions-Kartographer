@@ -32,7 +32,7 @@ class TagHandler {
 		global $wgKartographerStyles, $wgKartographerDfltStyle;
 		$output = $parser->getOutput();
 
-		if ( $input !== '' ) {
+		if ( $input !== '' && $input !== null ) {
 			$status = FormatJson::parse( $input, FormatJson::TRY_FIXING | FormatJson::STRIP_COMMENTS );
 			$value = false;
 			if ( $status->isOK() ) {
