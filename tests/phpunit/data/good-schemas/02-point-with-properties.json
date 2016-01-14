@@ -1,0 +1,11 @@
+{
+	"type": "Point",
+	"coordinates": [ -122.3988, 37.8013 ],
+	"properties": {
+		"title": "foo bar",
+		"marker-symbol": "museum",
+		"marker-size": "medium",
+		"marker-color": "0050d0",
+		"stroke": "#eee"
+	}
+}

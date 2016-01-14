@@ -22,7 +22,7 @@
 	"kartographer-error-context-multi": "&lt;$1&gt; problems:\n$2",
 	"kartographer-error-missing-attr": "Attribute \"$1\" is missing",
 	"kartographer-error-bad_attr": "Attribute \"$1\" has an invalid value",
-	"kartographer-error-bad_data": "The JSON content is not correct",
+	"kartographer-error-bad_data": "The JSON content is not valid GeoJSON+simplestyle",
 	"kartographer-tracking-category": "Pages with maps",
 	"kartographer-tracking-category-desc": "The page includes a map",
 	"kartographer-coord-combined": "$1 $2",
