@@ -5,6 +5,6 @@
 			"Metastasis"
 		]
 	},
-	"kartographer-errors": "Не удаётся создать карту\n$1",
+	"kartographer-errors": "Неверные параметры для тега &lt;maps>:\n$1",
 	"kartographer-error-bad_data": "JSON содержит ошибки"
 }
