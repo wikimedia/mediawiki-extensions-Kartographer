@@ -6,7 +6,7 @@
 		]
 	},
 	"kartographer-desc": "ウィキページにマップを追加することを許可",
-	"kartographer-errors": "マップを作成できません\n$1",
+	"kartographer-errors": "不正なパラメータ for the &lt;maps> tag:\n$1",
 	"kartographer-error-bad_attr": "属性 '$1' は無効な値です",
 	"kartographer-error-bad_data": "JSON コンテンツが正しくありません",
 	"kartographer-tracking-category": "地図があるページ",
