@@ -28,7 +28,7 @@ ve.ui.MWMapsDialogTool.static.name = 'mwMaps';
 ve.ui.MWMapsDialogTool.static.group = 'object';
 ve.ui.MWMapsDialogTool.static.icon = 'map';
 ve.ui.MWMapsDialogTool.static.title = OO.ui.deferMsg( 'visualeditor-mwmapsdialog-title' );
-ve.ui.MWMapsDialogTool.static.modelClasses = [ ve.dm.MWMapsNode ];
+ve.ui.MWMapsDialogTool.static.modelClasses = [ ve.dm.MWMapsNode, ve.dm.MWInlineMapsNode ];
 ve.ui.MWMapsDialogTool.static.commandName = 'mwMaps';
 
 /* Registration */

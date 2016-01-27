@@ -50,6 +50,8 @@
 		},
 		"ext.kartographer.visualEditor": {
 			"scripts": [
+				"modules/ve-maps/ve.dm.MWInlineMapsNode.js",
+				"modules/ve-maps/ve.ce.MWInlineMapsNode.js",
 				"modules/ve-maps/ve.dm.MWMapsNode.js",
 				"modules/ve-maps/ve.ce.MWMapsNode.js",
 				"modules/ve-maps/ve.ui.MWMapsDialog.js",
@@ -62,6 +64,7 @@
 				"visualeditor-mwmapsdialog-geojson",
 				"visualeditor-mwmapsdialog-mode",
 				"visualeditor-mwmapsdialog-mode-data",
+				"visualeditor-mwmapsdialog-mode-link",
 				"visualeditor-mwmapsdialog-mode-interactive",
 				"visualeditor-mwmapsdialog-mode-static",
 				"visualeditor-mwmapsdialog-size",

@@ -1,5 +1,5 @@
 /*!
- * VisualEditor DataModel MWMaps class.
+ * VisualEditor DataModel MWMapsNode class.
  *
  * @copyright 2011-2015 VisualEditor Team and others; see http://ve.mit-license.org
  */
@@ -34,6 +34,8 @@ OO.mixinClass( ve.dm.MWMapsNode, ve.dm.ResizableNode );
 ve.dm.MWMapsNode.static.name = 'mwMaps';
 
 ve.dm.MWMapsNode.static.extensionName = 'maps';
+
+ve.dm.MWMapsNode.static.matchTagNames = [ 'div' ];
 
 /* Static methods */
 

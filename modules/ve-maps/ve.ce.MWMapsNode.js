@@ -1,5 +1,5 @@
 /*!
- * VisualEditor ContentEditable MWMaps class.
+ * VisualEditor ContentEditable MWMapsNode class.
  *
  * @copyright 2011-2015 VisualEditor Team and others; see http://ve.mit-license.org
  */
@@ -8,7 +8,7 @@
  * ContentEditable paragraph node.
  *
  * @class
- * @extends ve.ce.LeafNode
+ * @extends ve.ce.MWBlockExtensionNode
  * @mixins ve.ce.ResizableNode
  *
  * @constructor

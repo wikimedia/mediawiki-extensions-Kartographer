@@ -19,6 +19,7 @@
 	"visualeditor-mwmapsdialog-mode": "Label for map rendering mode\n{{Identical|Mode}}",
 	"visualeditor-mwmapsdialog-mode-data": "Label for data-only map rendering\n{{Identical|Data}}",
 	"visualeditor-mwmapsdialog-mode-interactive": "Label for interactive map rendering\n{{Identical|Interactive}}",
+	"visualeditor-mwmapsdialog-mode-link": "Label for link map rendering",
 	"visualeditor-mwmapsdialog-mode-static": "Label for static map rendering\n{{Identical|Static}}",
 	"visualeditor-mwmapsdialog-size": "Label for map size\n{{Identical|Size}}",
 	"visualeditor-mwmapsdialog-title": "Title of the map dialog\n{{Identical|Map}}"
