@@ -363,7 +363,7 @@ class TagHandler {
 	 */
 	private static function reportError( ParserOutput $output, Status $status ) {
 		$output->setExtensionData( 'kartographer_broken', true );
-		return Html::rawElement( 'div', array( 'class' => 'mw-kartographer-error' ),
+		return Html::rawElement( 'div', array( 'class' => 'mw-kartographer mw-kartographer-error' ),
 			$status->getWikiText( false, 'kartographer-errors' ) );
 	}
 }
