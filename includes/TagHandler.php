@@ -48,7 +48,7 @@ class TagHandler {
 		}
 
 		$mode = self::validateEnum( $status, $args, 'mode', false, 'static' );
-		if ( !in_array( $mode, array( 'interactive', 'static', 'data', 'anchor' ) ) ) {
+		if ( !in_array( $mode, array( 'interactive', 'static', 'data', 'link' ) ) ) {
 			$status->fatal( 'kartographer-error-bad_attr', 'mode' );
 			return self::reportError( $output, $status );
 		}
@@ -56,7 +56,7 @@ class TagHandler {
 		$width = $height = $groups = $liveId = null;
 		$group = isset( $args['group'] ) ? $args['group'] : '*';
 
-		if ( in_array( $mode, array( 'interactive', 'static', 'anchor' ) ) ) {
+		if ( in_array( $mode, array( 'interactive', 'static', 'link' ) ) ) {
 			$zoom = self::validateNumber( $status, $args, 'zoom', true );
 			$lat = self::validateNumber( $status, $args, 'latitude', false );
 			$lon = self::validateNumber( $status, $args, 'longitude', false );
@@ -88,7 +88,7 @@ class TagHandler {
 				break;
 
 			case 'data':
-			case 'anchor':
+			case 'link':
 				if ( $group !== '*' ) {
 					self::validateGroup( $group, $status );
 				}
@@ -173,7 +173,7 @@ class TagHandler {
 				$html = Html::rawElement( 'div', $attrs );
 				break;
 
-			case 'anchor':
+			case 'link':
 				if ( $counter !== false ) {
 					$attrs['data-style'] = $style;
 					$attrs['data-zoom'] = $zoom;
