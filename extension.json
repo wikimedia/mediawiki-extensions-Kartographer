@@ -30,7 +30,8 @@
 		},
 		"ext.kartographer.live": {
 			"dependencies": [
-				"ext.kartographer"
+				"ext.kartographer",
+				"mediawiki.jqueryMsg"
 			],
 			"scripts": [
 			  "lib/mapbox-lib.js",
@@ -38,6 +39,9 @@
 			],
 			"styles": [
 			  "lib/style.css"
+			],
+			"messages": [
+				"kartographer-attribution"
 			],
 			"targets": [
 				"mobile",

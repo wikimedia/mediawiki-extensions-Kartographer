@@ -50,7 +50,7 @@
 			map.attributionControl.setPrefix( '' );
 			L.tileLayer( mapServer + '/' + style + urlFormat, {
 				maxZoom: 18,
-				attribution: 'Wikimedia maps beta | Map data &copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
+				attribution: mw.message( 'kartographer-attribution' ).parse()
 			} ).addTo( map );
 
 			if ( overlays ) {
