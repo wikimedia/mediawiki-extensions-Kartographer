@@ -10,9 +10,12 @@ namespace Kartographer;
 
 use ResourceLoader;
 use ResourceLoaderContext;
-use ResourceLoaderFileModule;
+use ResourceLoaderModule;
 
-class DataModule extends ResourceLoaderFileModule {
+class DataModule extends ResourceLoaderModule {
+
+	protected $origin = self::ORIGIN_USER_SITEWIDE;
+	protected $targets = array( 'desktop', 'mobile' );
 
 	public function getScript( ResourceLoaderContext $context ) {
 		$config = $context->getResourceLoader()->getConfig();
@@ -21,5 +24,9 @@ class DataModule extends ResourceLoaderFileModule {
 			'wgKartographerIconServer' => $config->get( 'KartographerIconServer' ),
 			'wgKartographerSrcsetScales' => $config->get( 'KartographerSrcsetScales' ),
 		) );
+	}
+
+	public function enableModuleContentVersion() {
+		return true;
 	}
 }
