@@ -4,12 +4,20 @@
 			"Metalhead64"
 		]
 	},
+	"kartographer-attribution": "Wikimedia Karten Beta | Kartendaten © [http://openstreetmap.org/copyright OpenStreetMap-Autoren]",
+	"kartographer-broken-category": "Seiten mit defekten Karten",
+	"kartographer-broken-category-desc": "Die Seite enthält eine ungültige Kartenverwendung",
 	"kartographer-desc": "Erlaubt das Einfügen von Karten in Wikiseiten",
 	"kartographer-errors": "Ungültige Parameter für das Tag &lt;maps>:\n$1",
 	"kartographer-error-bad_attr": "Das Attribut „$1“ hat einen ungültigen Wert",
 	"kartographer-error-bad_data": "Der JSON-Inhalt ist nicht korrekt",
 	"kartographer-tracking-category": "Seiten mit Karten",
 	"kartographer-tracking-category-desc": "Die Seite enthält eine Karte",
-	"kartographer-broken-category": "Seiten mit defekten Karten",
-	"kartographer-broken-category-desc": "Die Seite enthält eine ungültige Kartenverwendung"
+	"visualeditor-mwmapsdialog-geojson": "GeoJSON",
+	"visualeditor-mwmapsdialog-mode": "Modus",
+	"visualeditor-mwmapsdialog-mode-data": "Daten",
+	"visualeditor-mwmapsdialog-mode-interactive": "Interaktiv",
+	"visualeditor-mwmapsdialog-mode-static": "Statisch",
+	"visualeditor-mwmapsdialog-size": "Größe",
+	"visualeditor-mwmapsdialog-title": "Karte"
 }

@@ -5,9 +5,9 @@
 			"Siebrand"
 		]
 	},
+	"kartographer-broken-category": "Pagina's met niet-werkende kaarten",
+	"kartographer-broken-category-desc": "De pagina bevat een ongeldig gebruik van een kaart",
 	"kartographer-desc": "Maakt het mogelijk kaarten toe te voegen aan wikipagina's",
 	"kartographer-tracking-category": "Pagina's met kaarten",
-	"kartographer-tracking-category-desc": "De pagina bevat een kaart",
-	"kartographer-broken-category": "Pagina's met niet-werkende kaarten",
-	"kartographer-broken-category-desc": "De pagina bevat een ongeldig gebruik van een kaart"
+	"kartographer-tracking-category-desc": "De pagina bevat een kaart"
 }

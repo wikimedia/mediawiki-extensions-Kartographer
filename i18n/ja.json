@@ -5,12 +5,12 @@
 			"Sujiniku"
 		]
 	},
+	"kartographer-broken-category": "破損した地図があるページ",
+	"kartographer-broken-category-desc": "そのページは無効なマップ使用法を含んでいます",
 	"kartographer-desc": "ウィキページにマップを追加することを許可",
 	"kartographer-errors": "不正なパラメータ for the &lt;maps> tag:\n$1",
 	"kartographer-error-bad_attr": "属性 '$1' は無効な値です",
 	"kartographer-error-bad_data": "JSON コンテンツが正しくありません",
 	"kartographer-tracking-category": "地図があるページ",
-	"kartographer-tracking-category-desc": "そのページはマップを含んでいます",
-	"kartographer-broken-category": "破損した地図があるページ",
-	"kartographer-broken-category-desc": "そのページは無効なマップ使用法を含んでいます"
+	"kartographer-tracking-category-desc": "そのページはマップを含んでいます"
 }
