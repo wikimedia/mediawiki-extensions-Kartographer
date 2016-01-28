@@ -4,12 +4,19 @@
 			"Liuxinyu970226"
 		]
 	},
+	"kartographer-attribution": "维基媒体地图测试版 | 地图数据© [http://openstreetmap.org/copyright OpenStreetMap贡献者]",
+	"kartographer-broken-category": "有损坏地图的页面",
+	"kartographer-broken-category-desc": "页面包含无效的地图用法",
 	"kartographer-desc": "允许将地图添加至wiki页面",
 	"kartographer-errors": "&lt;maps>标签的参数无效：\n$1",
 	"kartographer-error-bad_attr": "属性“$1”有无效的值",
 	"kartographer-error-bad_data": "JSON内容不正确",
 	"kartographer-tracking-category": "有地图的页面",
 	"kartographer-tracking-category-desc": "页面包含地图",
-	"kartographer-broken-category": "有损坏地图的页面",
-	"kartographer-broken-category-desc": "页面包含无效的地图用法"
+	"visualeditor-mwmapsdialog-mode": "模式",
+	"visualeditor-mwmapsdialog-mode-data": "数据",
+	"visualeditor-mwmapsdialog-mode-interactive": "交互式",
+	"visualeditor-mwmapsdialog-mode-static": "静态",
+	"visualeditor-mwmapsdialog-size": "大小",
+	"visualeditor-mwmapsdialog-title": "地图"
 }

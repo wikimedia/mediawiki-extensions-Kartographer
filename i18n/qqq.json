@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Yuri Astrakhan"
+			"Yuri Astrakhan",
+			"Liuxinyu970226"
 		]
 	},
 	"kartographer-attribution": "Attribution text shown at the bottom of the map",
@@ -14,10 +15,10 @@
 	"kartographer-tracking-category": "Name of the tracking category",
 	"kartographer-tracking-category-desc": "Description on [[Special:TrackingCategories]] for the {{msg-mw|kartographer-tracking-category}} tracking category.",
 	"visualeditor-mwmapsdialog-geojson": "Label for map GeoJSON data",
-	"visualeditor-mwmapsdialog-mode": "Label for map rendering mode",
-	"visualeditor-mwmapsdialog-mode-data": "Label for data-only map rendering",
-	"visualeditor-mwmapsdialog-mode-interactive": "Label for interactive map rendering",
-	"visualeditor-mwmapsdialog-mode-static": "Label for static map rendering",
-	"visualeditor-mwmapsdialog-size": "Label for map size",
-	"visualeditor-mwmapsdialog-title": "Title of the map dialog"
+	"visualeditor-mwmapsdialog-mode": "Label for map rendering mode\n{{Identical|Mode}}",
+	"visualeditor-mwmapsdialog-mode-data": "Label for data-only map rendering\n{{Identical|Data}}",
+	"visualeditor-mwmapsdialog-mode-interactive": "Label for interactive map rendering\n{{Identical|Interactive}}",
+	"visualeditor-mwmapsdialog-mode-static": "Label for static map rendering\n{{Identical|Static}}",
+	"visualeditor-mwmapsdialog-size": "Label for map size\n{{Identical|Size}}",
+	"visualeditor-mwmapsdialog-title": "Title of the map dialog\n{{Identical|Map}}"
 }

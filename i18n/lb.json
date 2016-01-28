@@ -4,11 +4,14 @@
 			"Robby"
 		]
 	},
+	"kartographer-broken-category": "Säite mat futtisse Kaarten",
+	"kartographer-broken-category-desc": "D'Säit huet en net valabele Gebrauch vun enger Kaart",
 	"kartographer-desc": "Erméigelcht et fir Kaarten op d'Wikissäiten derbäizesetzen.",
 	"kartographer-errors": "Net valabel Parametere fir den Tag &lt;maps>:\n$1",
 	"kartographer-error-bad_data": "Den JSON-Inhalt ass net korrekt",
 	"kartographer-tracking-category": "Säite mat Kaarten",
 	"kartographer-tracking-category-desc": "An der Säit ass eng Kaart dran",
-	"kartographer-broken-category": "Säite mat futtisse Kaarten",
-	"kartographer-broken-category-desc": "D'Säit huet en net valabele Gebrauch vun enger Kaart"
+	"visualeditor-mwmapsdialog-mode-static": "Statesch",
+	"visualeditor-mwmapsdialog-size": "Gréisst",
+	"visualeditor-mwmapsdialog-title": "Kaart"
 }
