@@ -4,5 +4,12 @@
 			"Vitorvicentevalente"
 		]
 	},
-	"kartographer-tracking-category": "Páginas com mapas"
+	"kartographer-attribution": "Mapas beta Wikimedia | Dados de mapa © [http://openstreetmap.org/copyright contribuidores OpenStreetMap]",
+	"kartographer-tracking-category": "Páginas com mapas",
+	"visualeditor-mwmapsdialog-mode": "Modo",
+	"visualeditor-mwmapsdialog-mode-data": "Dados",
+	"visualeditor-mwmapsdialog-mode-interactive": "Interativo",
+	"visualeditor-mwmapsdialog-mode-static": "Estático",
+	"visualeditor-mwmapsdialog-size": "Tamanho",
+	"visualeditor-mwmapsdialog-title": "Mapa"
 }

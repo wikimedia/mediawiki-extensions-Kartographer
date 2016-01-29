@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Yuri Astrakhan",
-			"Liuxinyu970226"
+			"Liuxinyu970226",
+			"Raymond"
 		]
 	},
 	"kartographer-attribution": "Attribution text shown at the bottom of the map",
@@ -14,7 +15,7 @@
 	"kartographer-error-bad_data": "This error is shown if the JSON content of the tag does not pass validation",
 	"kartographer-tracking-category": "Name of the tracking category",
 	"kartographer-tracking-category-desc": "Description on [[Special:TrackingCategories]] for the {{msg-mw|kartographer-tracking-category}} tracking category.",
-	"visualeditor-mwmapsdialog-geojson": "Label for map GeoJSON data",
+	"visualeditor-mwmapsdialog-geojson": "{{optional}}\nLabel for map GeoJSON data",
 	"visualeditor-mwmapsdialog-mode": "Label for map rendering mode\n{{Identical|Mode}}",
 	"visualeditor-mwmapsdialog-mode-data": "Label for data-only map rendering\n{{Identical|Data}}",
 	"visualeditor-mwmapsdialog-mode-interactive": "Label for interactive map rendering\n{{Identical|Interactive}}",
