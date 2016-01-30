@@ -106,12 +106,17 @@ class TagHandler {
 		// Merge existing data with the new tag's data under the same group name
 		$counter = false;
 		if ( $value ) {
+			// For all GeoJSON items whose marker-symbol value begins with '-counter' and '-letter',
+			// recursively replace them with an automatically incremented marker icon.
+			$counters = $output->getExtensionData( 'kartographer_counters' ) ?: new stdClass();
+			$counter = self::doCountersRecursive( $value, $counters );
+			$output->setExtensionData( 'kartographer_counters', $counters );
+
 			if ( !$group ) {
 				// If it's not mode=data, the tag's data is private for this tag only
 				$group = '_' . sha1( FormatJson::encode( $value, false, FormatJson::ALL_OK ) );
 			}
 			$data = $output->getExtensionData( 'kartographer_data' ) ?: new stdClass();
-			$counter = self::processCounters( $value, $data );
 			if ( isset( $data->$group ) ) {
 				$data->$group = array_merge( $data->$group, $value );
 			} else {
@@ -278,60 +283,32 @@ class TagHandler {
 	}
 
 	/**
-	 * For all GeoJSON items that contain 'counter' and 'letter' properties,
-	 * recursively replace them with an automatically incremented marker icon.
-	 * @param mixed $values
-	 * @param stdClass $data
-	 * @return bool|string returns the very first counter value that has been used
-	 */
-	private static function processCounters( $values, $data ) {
-		if ( !property_exists( $data, 'counters' ) ) {
-			$numCounters = new stdClass();
-			$alphaCounters = new stdClass();
-			$data->counters = array( 'numeric' => $numCounters, 'alpha' => $alphaCounters );
-		} else {
-			$numCounters = $data->counters['numeric'];
-			$alphaCounters = $data->counters['alpha'];
-		}
-		return self::doCountersRecursive( $values, $numCounters, $alphaCounters );
-	}
-
-	/**
 	 * @param $values
-	 * @param stdClass $numCounters numeric-counter-name -> integer
-	 * @param stdClass $alphaCounters alpha-counter-name -> integer
+	 * @param stdClass $counters counter-name -> integer
 	 * @return bool|string returns the very first counter value that has been used
 	 */
-	private static function doCountersRecursive( $values, $numCounters, $alphaCounters ) {
+	private static function doCountersRecursive( $values, $counters ) {
 		$firstMarker = false;
 		if ( !is_array( $values ) ) {
 			return $firstMarker;
 		}
 		foreach ( $values as $item ) {
-			if ( property_exists( $item, 'properties' ) ) {
-				$props = $item->properties;
-				if ( property_exists( $props, 'counter' ) ) {
-					$grp = $props->counter;
-					unset( $props->counter );
-					$count = property_exists( $numCounters, $grp )
-						? min( $numCounters->$grp + 1, 99 )
-						: 1;
-					$marker = strval( $count );
-					$numCounters->$grp = $count;
-				} elseif ( property_exists( $props, 'letter' ) ) {
-					$grp = $props->letter;
-					unset( $props->letter );
-					$count = property_exists( $alphaCounters, $grp )
-						? min( $alphaCounters->$grp + 1, 26 )
-						: 1;
-					$marker = chr( ord( 'a' ) + $count - 1 );  // letters a..z
-					$alphaCounters->$grp = $count;
-				} else {
-					$marker = false;
-				}
-
-				if ( $marker !== false ) {
-					$props->{'marker-symbol'} = $marker;
+			if ( property_exists( $item, 'properties' ) &&
+				 property_exists( $item->properties, 'marker-symbol' )
+			) {
+				$marker = $item->properties->{'marker-symbol'};
+				// all special markers begin with a dash
+				// both 'number' and 'letter' have 6 symbols
+				$type = substr( $marker, 0, 7 );
+				$isNumber = $type === '-number';
+				if ( $isNumber || $type === '-letter' ) {
+					// numbers 1..99 or letters a..z
+					$count = property_exists( $counters, $marker ) ? $counters->$marker : 0;
+					if ( $count < ( $isNumber ? 99 : 26 ) ) {
+						$counters->$marker = ++$count;
+					}
+					$marker = $isNumber ? strval( $count ) : chr( ord( 'a' ) + $count - 1 );
+					$item->properties->{'marker-symbol'} = $marker;
 					if ( $firstMarker === false ) {
 						$firstMarker = $marker;
 					}
@@ -342,12 +319,12 @@ class TagHandler {
 			}
 			$type = $item->type;
 			if ( $type === 'FeatureCollection' && property_exists( $item, 'features' ) ) {
-				$tmp = self::doCountersRecursive( $item->features, $numCounters, $alphaCounters );
+				$tmp = self::doCountersRecursive( $item->features, $counters );
 				if ( $firstMarker === false ) {
 					$firstMarker = $tmp;
 				}
 			} elseif ( $type === 'GeometryCollection' && property_exists( $item, 'geometries' ) ) {
-				$tmp = self::doCountersRecursive( $item->geometries, $numCounters, $alphaCounters );
+				$tmp = self::doCountersRecursive( $item->geometries, $counters );
 				if ( $firstMarker === false ) {
 					$firstMarker = $tmp;
 				}
