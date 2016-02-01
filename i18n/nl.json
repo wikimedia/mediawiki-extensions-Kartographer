@@ -9,5 +9,10 @@
 	"kartographer-broken-category-desc": "De pagina bevat een ongeldig gebruik van een kaart",
 	"kartographer-desc": "Maakt het mogelijk kaarten toe te voegen aan wikipagina's",
 	"kartographer-tracking-category": "Pagina's met kaarten",
-	"kartographer-tracking-category-desc": "De pagina bevat een kaart"
+	"kartographer-tracking-category-desc": "De pagina bevat een kaart",
+	"visualeditor-mwmapsdialog-mode-data": "Gegevens",
+	"visualeditor-mwmapsdialog-mode-interactive": "Interactief",
+	"visualeditor-mwmapsdialog-mode-static": "Statisch",
+	"visualeditor-mwmapsdialog-size": "Grootte",
+	"visualeditor-mwmapsdialog-title": "Kaart"
 }

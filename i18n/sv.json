@@ -4,8 +4,13 @@
 			"WikiPhoenix"
 		]
 	},
+	"kartographer-broken-category": "Sidor med trasiga kartor",
+	"kartographer-broken-category-desc": "Sidan inkluderar taggen <code><nowiki><maps></nowiki></code> med felaktig användning.",
 	"kartographer-tracking-category": "Sidor med kartor",
 	"kartographer-tracking-category-desc": "Sidan inkluderar taggen <code><nowiki><maps></nowiki></code>.",
-	"kartographer-broken-category": "Sidor med trasiga kartor",
-	"kartographer-broken-category-desc": "Sidan inkluderar taggen <code><nowiki><maps></nowiki></code> med felaktig användning."
+	"visualeditor-mwmapsdialog-mode": "Läge",
+	"visualeditor-mwmapsdialog-mode-data": "Data",
+	"visualeditor-mwmapsdialog-mode-interactive": "Interaktiv",
+	"visualeditor-mwmapsdialog-size": "Storlek",
+	"visualeditor-mwmapsdialog-title": "Karta"
 }

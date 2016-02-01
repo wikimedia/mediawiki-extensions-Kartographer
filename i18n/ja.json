@@ -12,5 +12,8 @@
 	"kartographer-error-bad_attr": "属性 '$1' は無効な値です",
 	"kartographer-error-bad_data": "JSON コンテンツが正しくありません",
 	"kartographer-tracking-category": "地図があるページ",
-	"kartographer-tracking-category-desc": "そのページはマップを含んでいます"
+	"kartographer-tracking-category-desc": "そのページはマップを含んでいます",
+	"visualeditor-mwmapsdialog-mode": "モード",
+	"visualeditor-mwmapsdialog-mode-data": "データ",
+	"visualeditor-mwmapsdialog-size": "サイズ"
 }

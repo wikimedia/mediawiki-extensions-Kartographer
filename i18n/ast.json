@@ -4,12 +4,19 @@
 			"Xuacu"
 		]
 	},
+	"kartographer-attribution": "Wikimedia maps beta | Datos del mapa © [http://openstreetmap.org/copyright collaboradores d'OpenStreetMap]",
+	"kartographer-broken-category": "Páxines con mapes frañaos",
+	"kartographer-broken-category-desc": "La páxina incluye un usu inválidu de mapa.",
 	"kartographer-desc": "Permite amestar mapes a les páxines wiki",
-	"kartographer-errors": "Nun pudo crease un mapa\n$1",
+	"kartographer-errors": "Parámetros inválidos pa la etiqueta &lt;maps>:\n$1",
 	"kartographer-error-bad_attr": "L'atributu '$1' tien un valor inválidu",
 	"kartographer-error-bad_data": "El conteníu JSON nun ye correutu",
 	"kartographer-tracking-category": "Páxines con mapes",
 	"kartographer-tracking-category-desc": "La páxina incluye un mapa",
-	"kartographer-broken-category": "Páxines con mapes frañaos",
-	"kartographer-broken-category-desc": "La páxina incluye un usu inválidu de mapa."
+	"visualeditor-mwmapsdialog-mode": "Mou",
+	"visualeditor-mwmapsdialog-mode-data": "Datos",
+	"visualeditor-mwmapsdialog-mode-interactive": "Interactiva",
+	"visualeditor-mwmapsdialog-mode-static": "Estática",
+	"visualeditor-mwmapsdialog-size": "Tamañu",
+	"visualeditor-mwmapsdialog-title": "Mapa"
 }
