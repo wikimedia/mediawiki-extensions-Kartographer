@@ -5,8 +5,6 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 
-/* global L */
-
 /**
  * Dialog for editing MW maps.
  *
@@ -189,24 +187,32 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
  * Setup the map control
  */
 ve.ui.MWMapsDialog.prototype.setupMap = function () {
-	var style = 'osm-intl',
-		urlFormat = '/{z}/{x}/{y}.png',
-		mapServer = mw.config.get( 'wgKartographerMapServer' ),
-		mwAttrs = this.selectedNode && this.selectedNode.getAttribute( 'mw' ).attrs;
+	var latitude, longitude, zoom, geoJson,
+		mwData = this.selectedNode && this.selectedNode.getAttribute( 'mw' ),
+		mwAttrs = mwData && mwData.attrs;
 
-	this.map = L.map( this.$map[ 0 ] );
-
-	this.map.attributionControl.setPrefix( '' );
-	L.tileLayer( mapServer + '/' + style + urlFormat, {
-		maxZoom: 18,
-		attribution: mw.message( 'kartographer-attribution' ).parse()
-	} ).addTo( this.map );
-
-	if ( mwAttrs ) {
-		this.map.setView( [ +mwAttrs.latitude, +mwAttrs.longitude ], +mwAttrs.zoom );
+	if ( mwAttrs && mwAttrs.zoom ) {
+		latitude = +mwAttrs.latitude;
+		longitude = +mwAttrs.longitude;
+		zoom = +mwAttrs.zoom;
 	} else {
-		this.map.setView( [ 0, 0 ], 2 );
+		latitude = 0;
+		longitude = 0;
+		zoom = 2;
 	}
+
+	try {
+		geoJson = mwData && JSON.parse( mwData.body.extsrc );
+	} catch ( e ) {}
+
+	this.map = mw.kartographer.createMap( this.$map[ 0 ], {
+		latitude: latitude,
+		longitude: longitude,
+		zoom: zoom,
+		// TODO: Support style editing
+		geoJson: geoJson
+	} );
+
 	this.onDimensionsChange();
 };
 

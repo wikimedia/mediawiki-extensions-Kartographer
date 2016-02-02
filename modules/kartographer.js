@@ -2,7 +2,8 @@
 
 	// Load this script after lib/mapbox-lib.js
 
-	var mapServer = mw.config.get( 'wgKartographerMapServer' ),
+	var scale, urlFormat,
+		mapServer = mw.config.get( 'wgKartographerMapServer' ),
 		forceHttps = mapServer[ 4 ] === 's',
 		config = L.mapbox.config;
 
@@ -28,47 +29,71 @@
 		return brackets[ brackets.length - 1 ];
 	}
 
+	scale = ( bracketDevicePixelRatio() === 1 ) ? '' : ( '@' + scale + 'x' );
+	urlFormat = '/{z}/{x}/{y}' + scale + '.png';
+
+	mw.kartographer = {};
+
+	/**
+	 * Create a new interactive map
+	 *
+	 * @param {HTMLElement} container Map container
+	 * @param {Object} data Map data
+	 * @param {number} data.latitude Latitude
+	 * @param {number} data.longitude Longitude
+	 * @param {number} data.zoom Zoom
+	 * @param {string} [data.style] Map style
+	 * @param {Object} [data.geoJson] Raw GeoJSON
+	 * @param {Object} [data.overlays] Overlays
+	 * @return {L.map} Map object
+	 */
+	mw.kartographer.createMap = function ( container, data ) {
+		var dataLayer, geoJson,
+			style = data.style || mw.config.get( 'wgKartographerDfltStyle' ),
+			mapData = mw.config.get( 'wgKartographerLiveData' ) || {},
+			map = L.map( container ).setView( [ data.latitude, data.longitude ], data.zoom );
+
+		map.attributionControl.setPrefix( '' );
+		L.tileLayer( mapServer + '/' + style + urlFormat, {
+			maxZoom: 18,
+			attribution: mw.message( 'kartographer-attribution' ).parse()
+		} ).addTo( map );
+
+		geoJson = data.geoJson || [];
+
+		if ( data.overlays ) {
+			geoJson = [];
+			$.each( data.overlays, function ( _, group ) {
+				if ( group === '*' ) {
+					$.each( mapData, function ( k, d ) {
+						if ( k[ 0 ] !== '_' ) {
+							geoJson = geoJson.concat( d );
+						}
+					} );
+				} else if ( mapData.hasOwnProperty( group ) ) {
+					geoJson = geoJson.concat( mapData[ group ] );
+				}
+			} );
+		}
+		if ( geoJson.length ) {
+			dataLayer = L.mapbox.featureLayer().addTo( map );
+			dataLayer.setGeoJSON( geoJson );
+		}
+
+		return map;
+	};
+
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
-
-		var scale, urlFormat, mapData;
-
-		scale = bracketDevicePixelRatio();
-		scale = ( scale === 1 ) ? '' : ( '@' + scale + 'x' );
-		urlFormat = '/{z}/{x}/{y}' + scale + '.png';
-		mapData = mw.config.get( 'wgKartographerLiveData' ) || {};
-
 		$content.find( '.mw-kartographer-interactive' ).each( function () {
-			var dataLayer, geoJson,
-				$this = $( this ),
-				style = $this.data( 'style' ),
-				zoom = $this.data( 'zoom' ),
-				lat = $this.data( 'lat' ),
-				lon = $this.data( 'lon' ),
-				overlays = $this.data( 'overlays' ),
-				map = L.map( this ).setView( [ lat, lon ], zoom );
+			var $this = $( this );
 
-			map.attributionControl.setPrefix( '' );
-			L.tileLayer( mapServer + '/' + style + urlFormat, {
-				maxZoom: 18,
-				attribution: mw.message( 'kartographer-attribution' ).parse()
-			} ).addTo( map );
-
-			if ( overlays ) {
-				geoJson = [];
-				$.each( overlays, function ( _, group ) {
-					if ( group === '*' ) {
-						$.each( mapData, function ( k, d ) {
-							if ( k[ 0 ] !== '_' ) {
-								geoJson = geoJson.concat( d );
-							}
-						} );
-					} else if ( mapData.hasOwnProperty( group ) ) {
-						geoJson = geoJson.concat( mapData[ group ] );
-					}
-				} );
-				dataLayer = L.mapbox.featureLayer().addTo( map );
-				dataLayer.setGeoJSON( geoJson );
-			}
+			mw.kartographer.createMap( this, {
+				latitude: +$this.data( 'lat' ),
+				longitude: +$this.data( 'lon' ),
+				zoom: +$this.data( 'zoom' ),
+				style: $this.data( 'style' ),
+				overlays: $this.data( 'overlays' )
+			} );
 		} );
 	} );
 }( jQuery, mediaWiki ) );
