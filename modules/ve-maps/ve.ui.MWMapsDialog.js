@@ -126,6 +126,7 @@ ve.ui.MWMapsDialog.prototype.onDimensionsChange = function () {
  */
 ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 	var center, latitude, longitude, zoom,
+		mode = this.modeSelect.getSelectedItem().getData(),
 		dimensions = this.scalable.getBoundedDimensions(
 			this.dimensions.getDimensions()
 		);
@@ -145,6 +146,8 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 	mwData.attrs.width = dimensions.width.toString();
 	mwData.attrs.height = dimensions.height.toString();
 	mwData.attrs.zoom = zoom.toString();
+
+	mwData.attrs.mode = mode;
 };
 
 /**
