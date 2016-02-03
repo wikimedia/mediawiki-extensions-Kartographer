@@ -38,7 +38,6 @@ ve.ce.MWMapsNode = function VeCeMWMaps( model, config ) {
 		.empty()
 		.addClass( 've-ce-mwMapsNode' )
 		.css( this.model.getCurrentDimensions() );
-	this.update();
 };
 
 /* Inheritance */
@@ -58,6 +57,20 @@ ve.ce.MWMapsNode.static.primaryCommandName = 'mwMaps';
 /* Methods */
 
 /**
+ * A map requires interactive rendering
+ *
+ * Maps without GeoJSON can be rendered as static
+ *
+ * @return {boolean} Maps requires interactive rendering
+ */
+ve.ce.MWMapsNode.prototype.requiresInteractive = function () {
+	var mwData = this.model.getAttribute( 'mw' ),
+		mwAttrs = mwData && mwData.attrs;
+
+	return mwAttrs && mwAttrs.mode === 'interactive' && mwData.body.extsrc;
+};
+
+/**
  * Update the rendering of the 'align', src', 'width' and 'height' attributes
  * when they change in the model.
  *
@@ -68,13 +81,72 @@ ve.ce.MWMapsNode.static.primaryCommandName = 'mwMaps';
  */
 ve.ce.MWMapsNode.prototype.onAttributeChange = function () {
 	this.update();
-	$( '<img>' ).attr( 'src', this.model.getUrl( 1000, 1000 ) );
+};
+
+/**
+ * @inheritdoc
+ */
+ve.ce.MWMapsNode.prototype.onSetup = function () {
+	ve.ce.MWMapsNode.super.prototype.onSetup.call( this );
+
+	this.update();
+};
+
+/**
+ * Update the map rendering
+ */
+ve.ce.MWMapsNode.prototype.update = function () {
+	var geoJson, latitude, longitude, zoom,
+		node = this,
+		mwData = this.model.getAttribute( 'mw' ),
+		mwAttrs = mwData && mwData.attrs,
+		requiresInteractive = this.requiresInteractive();
+
+	if ( requiresInteractive ) {
+		if ( !this.map && this.getRoot() ) {
+
+			// Target is not yet visible on first setup, so defer
+			latitude = +mwAttrs.latitude;
+			longitude = +mwAttrs.longitude;
+			zoom = +mwAttrs.zoom;
+
+			try {
+				geoJson = mwData && JSON.parse( mwData.body.extsrc );
+			} catch ( e ) {}
+
+			this.map = mw.kartographer.createMap( node.$element[ 0 ], {
+				latitude: latitude,
+				longitude: longitude,
+				zoom: zoom,
+				// TODO: Support style editing
+				geoJson: geoJson
+			} );
+
+			// The surface is hidden on first load in MW, so wait until first
+			// focus when we know the surface is visible
+			if ( !this.$element.is( ':visible' ) ) {
+				this.getRoot().getSurface().once( 'focus', function () {
+					node.map.invalidateSize();
+				} );
+			}
+		} else if ( this.map ) {
+			this.map.invalidateSize();
+		}
+	} else {
+		if ( this.map ) {
+			// Node was previously interactive
+			this.map.remove();
+			this.map = null;
+		}
+		this.updateStatic();
+		$( '<img>' ).attr( 'src', this.model.getUrl( 1000, 1000 ) );
+	}
 };
 
 /**
  * Update the static rendering
  */
-ve.ce.MWMapsNode.prototype.update = function ( width, height ) {
+ve.ce.MWMapsNode.prototype.updateStatic = function ( width, height ) {
 	var url, node = this;
 
 	if ( !this.model.getCurrentDimensions().width ) {
@@ -100,7 +172,11 @@ ve.ce.MWMapsNode.prototype.onResizableResizing = function () {
 	// Mixin method
 	ve.ce.ResizableNode.prototype.onResizableResizing.apply( this, arguments );
 
-	this.update( 1000, 1000 );
+	if ( !this.requiresInteractive() ) {
+		this.updateStatic( 1000, 1000 );
+	} else if ( this.map ) {
+		this.map.invalidateSize();
+	}
 };
 
 /**
