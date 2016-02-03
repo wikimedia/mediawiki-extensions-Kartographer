@@ -96,39 +96,11 @@ ve.ce.MWMapsNode.prototype.onSetup = function () {
  * Update the map rendering
  */
 ve.ce.MWMapsNode.prototype.update = function () {
-	var geoJson, latitude, longitude, zoom,
-		node = this,
-		mwData = this.model.getAttribute( 'mw' ),
-		mwAttrs = mwData && mwData.attrs,
-		requiresInteractive = this.requiresInteractive();
+	var requiresInteractive = this.requiresInteractive();
 
 	if ( requiresInteractive ) {
 		if ( !this.map && this.getRoot() ) {
-
-			// Target is not yet visible on first setup, so defer
-			latitude = +mwAttrs.latitude;
-			longitude = +mwAttrs.longitude;
-			zoom = +mwAttrs.zoom;
-
-			try {
-				geoJson = mwData && JSON.parse( mwData.body.extsrc );
-			} catch ( e ) {}
-
-			this.map = mw.kartographer.createMap( node.$element[ 0 ], {
-				latitude: latitude,
-				longitude: longitude,
-				zoom: zoom,
-				// TODO: Support style editing
-				geoJson: geoJson
-			} );
-
-			// The surface is hidden on first load in MW, so wait until first
-			// focus when we know the surface is visible
-			if ( !this.$element.is( ':visible' ) ) {
-				this.getRoot().getSurface().once( 'focus', function () {
-					node.map.invalidateSize();
-				} );
-			}
+			mw.loader.using( 'ext.kartographer.live' ).then( this.setupMap.bind( this ) );
 		} else if ( this.map ) {
 			this.map.invalidateSize();
 		}
@@ -140,6 +112,39 @@ ve.ce.MWMapsNode.prototype.update = function () {
 		}
 		this.updateStatic();
 		$( '<img>' ).attr( 'src', this.model.getUrl( 1000, 1000 ) );
+	}
+};
+
+/**
+ * Setup an interactive map
+ */
+ve.ce.MWMapsNode.prototype.setupMap = function () {
+	var geoJson,
+		node = this,
+		mwData = this.model.getAttribute( 'mw' ),
+		mwAttrs = mwData && mwData.attrs,
+		latitude = +mwAttrs.latitude,
+		longitude = +mwAttrs.longitude,
+		zoom = +mwAttrs.zoom;
+
+	try {
+		geoJson = mwData && JSON.parse( mwData.body.extsrc );
+	} catch ( e ) {}
+
+	this.map = mw.kartographer.createMap( this.$element[ 0 ], {
+		latitude: latitude,
+		longitude: longitude,
+		zoom: zoom,
+		// TODO: Support style editing
+		geoJson: geoJson
+	} );
+
+	// The surface is hidden on first load in MW, so wait until first
+	// focus when we know the surface is visible
+	if ( !this.$element.is( ':visible' ) ) {
+		this.getRoot().getSurface().once( 'focus', function () {
+			node.map.invalidateSize();
+		} );
 	}
 };
 
