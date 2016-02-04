@@ -74,6 +74,10 @@
 				"ext.visualEditor.mwcore",
 				"oojs-ui.styles.icons-location",
 				"ext.kartographer"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
 			]
 		}
 	},
