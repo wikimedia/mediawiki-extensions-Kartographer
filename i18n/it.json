@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Beta16"
+			"Beta16",
+			"Marsitown"
 		]
 	},
 	"kartographer-attribution": "Mappe Wikimedia beta | Dati mappa © [http://openstreetmap.org/copyright contributori OpenStreetMap]",
@@ -16,6 +17,7 @@
 	"visualeditor-mwmapsdialog-mode": "Modalità",
 	"visualeditor-mwmapsdialog-mode-data": "Dati",
 	"visualeditor-mwmapsdialog-mode-interactive": "Interattiva",
+	"visualeditor-mwmapsdialog-mode-link": "Collegamento",
 	"visualeditor-mwmapsdialog-mode-static": "Statico",
 	"visualeditor-mwmapsdialog-size": "Dimensione",
 	"visualeditor-mwmapsdialog-title": "Mappa"
