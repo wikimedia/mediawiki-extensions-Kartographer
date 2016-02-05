@@ -48,11 +48,22 @@
 	 * @return {L.map} Map object
 	 */
 	mw.kartographer.createMap = function ( container, data ) {
-		var dataLayer, geoJson,
+		var dataLayer, geoJson, map,
 			style = data.style || mw.config.get( 'wgKartographerDfltStyle' ),
-			mapData = mw.config.get( 'wgKartographerLiveData' ) || {},
-			map = L.map( container ).setView( [ data.latitude, data.longitude ], data.zoom );
+			mapData = mw.config.get( 'wgKartographerLiveData' ) || {};
 
+		map = L.map( container );
+		if ( !container.clientWidth ) {
+			// HACK: If the container is not naturally measureable, try jQuery
+			// which will pick up CSS dimensions. T125263
+			/*jscs:disable disallowDanglingUnderscores */
+			map._size = new L.Point(
+				$( container ).width(),
+				$( container ).height()
+			);
+			/*jscs:enable disallowDanglingUnderscores */
+		}
+		map.setView( [ data.latitude, data.longitude ], data.zoom );
 		map.attributionControl.setPrefix( '' );
 		L.tileLayer( mapServer + '/' + style + urlFormat, {
 			maxZoom: 18,
