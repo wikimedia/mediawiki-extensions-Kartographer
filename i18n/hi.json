@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Upendradutt93"
+			"Upendradutt93",
+			"Sfic"
 		]
 	},
+	"visualeditor-mwmapsdialog-mode-link": "कड़ी",
 	"visualeditor-mwmapsdialog-mode-static": "स्थिर",
 	"visualeditor-mwmapsdialog-size": "आकार",
 	"visualeditor-mwmapsdialog-title": "मानचित्र"
