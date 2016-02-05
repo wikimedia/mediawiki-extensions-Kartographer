@@ -120,7 +120,6 @@ ve.ce.MWMapsNode.prototype.update = function () {
  */
 ve.ce.MWMapsNode.prototype.setupMap = function () {
 	var geoJson,
-		node = this,
 		mwData = this.model.getAttribute( 'mw' ),
 		mwAttrs = mwData && mwData.attrs,
 		latitude = +mwAttrs.latitude,
@@ -138,14 +137,6 @@ ve.ce.MWMapsNode.prototype.setupMap = function () {
 		// TODO: Support style editing
 		geoJson: geoJson
 	} );
-
-	// The surface is hidden on first load in MW, so wait until first
-	// focus when we know the surface is visible
-	if ( !this.$element.is( ':visible' ) ) {
-		this.getRoot().getSurface().once( 'focus', function () {
-			node.map.invalidateSize();
-		} );
-	}
 };
 
 /**
