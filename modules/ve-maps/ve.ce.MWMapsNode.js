@@ -137,6 +137,13 @@ ve.ce.MWMapsNode.prototype.setupMap = function () {
 		// TODO: Support style editing
 		geoJson: geoJson
 	} );
+
+	// Disable interaction
+	this.map.dragging.disable();
+	this.map.touchZoom.disable();
+	this.map.doubleClickZoom.disable();
+	this.map.scrollWheelZoom.disable();
+	this.map.keyboard.disable();
 };
 
 /**
