@@ -29,7 +29,8 @@
 		return brackets[ brackets.length - 1 ];
 	}
 
-	scale = ( bracketDevicePixelRatio() === 1 ) ? '' : ( '@' + scale + 'x' );
+	scale = bracketDevicePixelRatio();
+	scale = ( scale === 1 ) ? '' : ( '@' + scale + 'x' );
 	urlFormat = '/{z}/{x}/{y}' + scale + '.png';
 
 	mw.kartographer = {};
