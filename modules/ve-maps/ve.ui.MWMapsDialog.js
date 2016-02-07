@@ -49,6 +49,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	this.map = null;
 	this.mapPromise = null;
 	this.scalable = null;
+	this.updatingGeoJson = false;
 
 	this.dimensions = new ve.ui.DimensionsWidget();
 
@@ -251,10 +252,11 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 		return;
 	}
 
-	this.mapPromise = mw.loader.using( 'ext.kartographer.live' ).then( function () {
-		var latitude, longitude, zoom,
+	this.mapPromise = mw.loader.using( 'ext.kartographer.editor' ).then( function () {
+		var latitude, longitude, zoom, geoJsonLayer, drawControl,
 			mwData = dialog.selectedNode && dialog.selectedNode.getAttribute( 'mw' ),
-			mwAttrs = mwData && mwData.attrs;
+			mwAttrs = mwData && mwData.attrs,
+			defaultShapeOptions = { shapeOptions: L.mapbox.simplestyle.style( {} ) };
 
 		if ( mwAttrs && mwAttrs.zoom ) {
 			latitude = +mwAttrs.latitude;
@@ -275,6 +277,39 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 
 		dialog.updateGeoJson();
 		dialog.onDimensionsChange();
+
+		geoJsonLayer = mw.kartographer.getKartographerLayer( dialog.map );
+		drawControl = new L.Control.Draw( {
+			edit: { featureGroup: geoJsonLayer },
+			draw: {
+				circle: false,
+				// TODO: Determine metric preference from locale information
+				polyline: defaultShapeOptions,
+				polygon: defaultShapeOptions,
+				rectangle: defaultShapeOptions,
+				marker: { icon: L.mapbox.marker.icon( {} ) }
+			}
+		} ).addTo( dialog.map );
+
+		function update() {
+			// Prevent circular update of map
+			dialog.updatingGeoJson = true;
+			try {
+				dialog.input.setValue( JSON.stringify( geoJsonLayer.toGeoJSON(), null, '  ' ) );
+			} finally {
+				dialog.updatingGeoJson = false;
+			}
+		}
+
+		function created( e ) {
+			e.layer.addTo( geoJsonLayer );
+			update();
+		}
+
+		dialog.map
+			.on( 'draw:edited', update )
+			.on( 'draw:deleted', update )
+			.on( 'draw:created', created );
 	} );
 };
 
@@ -284,11 +319,11 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 ve.ui.MWMapsDialog.prototype.updateGeoJson = function () {
 	var isValid;
 
-	if ( !this.map ) {
+	if ( !this.map || this.updatingGeoJson ) {
 		return;
 	}
 
-	isValid = mw.kartographer.setGeoJsonString( this.map, this.input.getValue() );
+	isValid = mw.kartographer.updateKartographerLayer( this.map, this.input.getValue() );
 	this.input.setValidityFlag( isValid );
 };
 
