@@ -287,8 +287,10 @@ ve.ui.MWMapsDialog.prototype.getTeardownProcess = function ( data ) {
 	return ve.ui.MWMapsDialog.super.prototype.getTeardownProcess.call( this, data )
 		.first( function () {
 			this.dimensions.clear();
-			this.map.remove();
-			this.map = null;
+			if ( this.map ) {
+				this.map.remove();
+				this.map = null;
+			}
 		}, this );
 };
 
