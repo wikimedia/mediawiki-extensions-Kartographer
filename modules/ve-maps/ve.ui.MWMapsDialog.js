@@ -157,6 +157,9 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 			this.dimensions.getDimensions()
 		);
 
+	// Parent method
+	ve.ui.MWMapsDialog.super.prototype.updateMwData.call( this, mwData );
+
 	if ( mode !== 'data' ) {
 		if ( this.map ) {
 			center = this.map.getCenter();
