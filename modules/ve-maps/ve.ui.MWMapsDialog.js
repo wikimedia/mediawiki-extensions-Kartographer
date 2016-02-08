@@ -71,7 +71,10 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		.setRTL( false );
 
 	// Events
-	this.input.connect( this, { resize: 'updateSize' } );
+	this.input.connect( this, {
+		change: 'updateGeoJson',
+		resize: 'updateSize'
+	} );
 	this.dimensions.connect( this, {
 		widthChange: 'onDimensionsChange',
 		heightChange: 'onDimensionsChange'
@@ -250,7 +253,7 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 	}
 
 	return mw.loader.using( 'ext.kartographer.live' ).then( function () {
-		var latitude, longitude, zoom, geoJson,
+		var latitude, longitude, zoom,
 			mwData = dialog.selectedNode && dialog.selectedNode.getAttribute( 'mw' ),
 			mwAttrs = mwData && mwData.attrs;
 
@@ -264,20 +267,30 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 			zoom = 2;
 		}
 
-		try {
-			geoJson = mwData && JSON.parse( mwData.body.extsrc );
-		} catch ( e ) {}
-
 		dialog.map = mw.kartographer.createMap( dialog.$map[ 0 ], {
 			latitude: latitude,
 			longitude: longitude,
-			zoom: zoom,
+			zoom: zoom
 			// TODO: Support style editing
-			geoJson: geoJson
 		} );
 
+		dialog.updateGeoJson();
 		dialog.onDimensionsChange();
 	} );
+};
+
+/**
+ * Update the GeoJSON layer from the current input state
+ */
+ve.ui.MWMapsDialog.prototype.updateGeoJson = function () {
+	var isValid;
+
+	if ( !this.map ) {
+		return;
+	}
+
+	isValid = mw.kartographer.setGeoJsonString( this.map, this.input.getValue() );
+	this.input.setValidityFlag( isValid );
 };
 
 /**

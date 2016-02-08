@@ -25,6 +25,7 @@ ve.ce.MWMapsNode = function VeCeMWMaps( model, config ) {
 	ve.ce.ResizableNode.call( this, this.$element, config );
 
 	this.$imageLoader = null;
+	this.geoJson = null;
 
 	// Events
 	this.model.connect( this, { attributeChange: 'onAttributeChange' } );
@@ -103,6 +104,7 @@ ve.ce.MWMapsNode.prototype.update = function () {
 			mw.loader.using( 'ext.kartographer.live' ).then( this.setupMap.bind( this ) );
 		} else if ( this.map ) {
 			this.map.invalidateSize();
+			this.updateGeoJson();
 		}
 	} else {
 		if ( this.map ) {
@@ -119,24 +121,20 @@ ve.ce.MWMapsNode.prototype.update = function () {
  * Setup an interactive map
  */
 ve.ce.MWMapsNode.prototype.setupMap = function () {
-	var geoJson,
-		mwData = this.model.getAttribute( 'mw' ),
+	var mwData = this.model.getAttribute( 'mw' ),
 		mwAttrs = mwData && mwData.attrs,
 		latitude = +mwAttrs.latitude,
 		longitude = +mwAttrs.longitude,
 		zoom = +mwAttrs.zoom;
 
-	try {
-		geoJson = mwData && JSON.parse( mwData.body.extsrc );
-	} catch ( e ) {}
-
 	this.map = mw.kartographer.createMap( this.$element[ 0 ], {
 		latitude: latitude,
 		longitude: longitude,
-		zoom: zoom,
+		zoom: zoom
 		// TODO: Support style editing
-		geoJson: geoJson
 	} );
+
+	this.updateGeoJson();
 
 	// Disable interaction
 	this.map.dragging.disable();
@@ -144,6 +142,19 @@ ve.ce.MWMapsNode.prototype.setupMap = function () {
 	this.map.doubleClickZoom.disable();
 	this.map.scrollWheelZoom.disable();
 	this.map.keyboard.disable();
+};
+
+/**
+ * Update the GeoJSON layer from the current model state
+ */
+ve.ce.MWMapsNode.prototype.updateGeoJson = function () {
+	var mwData = this.model.getAttribute( 'mw' ),
+		geoJson = mwData && mwData.body.extsrc;
+
+	if ( geoJson !== this.geoJson ) {
+		mw.kartographer.setGeoJsonString( this.map, mwData && mwData.body.extsrc );
+		this.geoJson = geoJson;
+	}
 };
 
 /**
