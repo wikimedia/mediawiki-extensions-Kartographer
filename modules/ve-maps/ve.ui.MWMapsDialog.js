@@ -212,6 +212,8 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 				mode = attributes && attributes.mode || 'interactive',
 				isInline = this.selectedNode instanceof ve.dm.MWInlineMapsNode;
 
+			this.input.clearUndoStack();
+
 			this.modeSelect.selectItemByData( mode );
 
 			this.actions.setMode( this.selectedNode ? 'edit' : 'insert' );
