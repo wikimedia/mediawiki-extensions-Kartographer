@@ -5,7 +5,7 @@
   "description": "Build tools for the Kartographer-MediaWiki extension.",
   "scripts": {
     "test": "grunt test",
-    "build-lib": "node_modules/.bin/browserify lib/mapbox-main.js -o lib/mapbox-lib.js && cp -rv node_modules/mapbox.js/theme/* lib/ && rm lib/images/render.sh"
+    "build-lib": "node_modules/.bin/browserify lib/mapbox/mapbox-main.js -o lib/mapbox/mapbox-lib.js && cp -rv node_modules/mapbox.js/theme/* lib/mapbox/ && rm lib/mapbox/images/render.sh"
   },
   "devDependencies": {
     "mapbox.js": "^2.2.3",
