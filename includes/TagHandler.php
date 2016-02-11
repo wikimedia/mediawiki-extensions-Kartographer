@@ -41,6 +41,8 @@ class TagHandler {
 				if ( $value && !is_array( $value ) ) {
 					$value = array( $value );
 				}
+				$sanitizer = new SimpleStyleSanitizer( $parser, $frame );
+				$sanitizer->sanitize( $value );
 			}
 		} else {
 			$status = Status::newGood();

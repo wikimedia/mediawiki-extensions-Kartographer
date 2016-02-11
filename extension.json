@@ -15,6 +15,7 @@
 	"AutoloadClasses": {
 		"Kartographer\\DataModule": "includes/DataModule.php",
 		"Kartographer\\Hooks": "includes/Hooks.php",
+		"Kartographer\\SimpleStyleSanitizer": "includes/SimpleStyleSanitizer.php",
 		"Kartographer\\TagHandler": "includes/TagHandler.php"
 	},
 	"ResourceModules": {
