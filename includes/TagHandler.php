@@ -129,16 +129,11 @@ class TagHandler {
 				$groups[] = $group;
 			}
 		}
-		if ( $groups ) {
-			$title = $parser->getTitle()->getPrefixedDBkey();
-			$dataParam = '?data=' . rawurlencode( $title ) . '|' . implode( '|', $groups );
-		} else {
-			$dataParam = '';
-		}
 
 		$html = '';
 		$attrs = array(
 			'class' => 'mw-kartographer mw-kartographer-' . $mode,
+			'mw-data' => 'interface',
 		);
 		switch ( $mode ) {
 			case 'static':
@@ -149,6 +144,12 @@ class TagHandler {
 				$statParams = sprintf( '%s/img/%s,%s,%s,%s,%sx%s',
 					$wgKartographerMapServer, $style, $zoom, $lat, $lon, $width, $height );
 
+				$dataParam = '';
+				if ( $groups ) {
+					$groups2 = $groups;
+					array_unshift( $groups2, $parser->getTitle()->getPrefixedDBkey() );
+					$dataParam = '?data=' . implode( '|', array_map( 'rawurlencode', $groups2 ) );
+				}
 				$imgAttrs = array(
 					'src' => $statParams . '.jpeg' . $dataParam,
 					'width' => $width,
@@ -343,6 +344,6 @@ class TagHandler {
 	private static function reportError( ParserOutput $output, Status $status ) {
 		$output->setExtensionData( 'kartographer_broken', true );
 		return Html::rawElement( 'div', array( 'class' => 'mw-kartographer mw-kartographer-error' ),
-			$status->getWikiText( false, 'kartographer-errors' ) );
+			$status->getHTML( false, 'kartographer-errors' ) );
 	}
 }

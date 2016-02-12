@@ -156,6 +156,11 @@
 		$content.find( '.mw-kartographer-interactive' ).each( function () {
 			var $this = $( this );
 
+			// Prevent users from adding map divs directly via wikitext
+			if ( $this.attr( 'mw-data' ) !== 'interface' ) {
+				return;
+			}
+
 			mw.kartographer.createMap( this, {
 				latitude: +$this.data( 'lat' ),
 				longitude: +$this.data( 'lon' ),
