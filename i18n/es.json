@@ -5,10 +5,11 @@
 			"YoViajo"
 		]
 	},
+	"kartographer-attribution": "Mapas beta de Wikimedia | Datos del mapa © [http://openstreetmap.org/copyright Colaboradores de OpenStreetMap]",
 	"kartographer-broken-category": "Páginas con mapas rotos",
 	"kartographer-broken-category-desc": "La página incluye un uso no válido de mapas.",
 	"kartographer-desc": "Permite insertar mapas en una página wiki",
-	"kartographer-errors": "Parámetros no válidas para la etiqueta &lt;maps>:\n$1",
+	"kartographer-errors": "Parámetros no válidos para la etiqueta &lt;maps>:\n$1",
 	"kartographer-error-bad_attr": "El atributo '$1' tiene un valor no válido",
 	"kartographer-error-bad_data": "El contenido JSON no es correcto",
 	"kartographer-tracking-category": "Páginas con mapas",
