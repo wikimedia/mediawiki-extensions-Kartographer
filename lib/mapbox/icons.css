@@ -1,0 +1,14 @@
+/**
+ * SVG icons
+ */
+
+.leaflet-control-attribution:after,
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out,
+.leaflet-popup-close-button,
+.leaflet-control-layers-toggle,
+.leaflet-container.dark .map-tooltip .close,
+.map-tooltip .close,
+.mapbox-icon {
+	background-image: url( images/icons-subset.svg );
+}

@@ -49,6 +49,7 @@
 			],
 			"styles": [
 				"lib/mapbox/style.css",
+				"lib/mapbox/icons.css",
 				"lib/mapbox-style-fixes.css"
 			],
 			"messages": [
@@ -70,7 +71,8 @@
 				"lib/leaflet.draw/leaflet.draw.i18n.js"
 			],
 			"styles": [
-				"lib/leaflet.draw/leaflet.draw.css"
+				"lib/leaflet.draw/leaflet.draw.css",
+				"lib/leaflet.draw/icons.css"
 			],
 			"messages": [
 				"leafletdraw-draw-handlers-circle-radius",
