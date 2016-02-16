@@ -31,10 +31,15 @@
 		},
 		"mapbox": {
 			"scripts": [
-				"lib/mapbox/mapbox-lib.js"
+				"lib/mapbox/mapbox-lib.js",
+				"lib/mapbox/mapbox.i18n.js"
 			],
 			"styles": [
 				"lib/mapbox/style.css"
+			],
+			"messages": [
+				"mapbox-control-zoomin-title",
+				"mapbox-control-zoomout-title"
 			],
 			"targets": [
 				"mobile",

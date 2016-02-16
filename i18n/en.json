@@ -14,6 +14,8 @@
 	"kartographer-errors": "Invalid parameters for the &lt;maps> tag:\n$1",
 	"kartographer-tracking-category": "Pages with maps",
 	"kartographer-tracking-category-desc": "The page includes a map",
+	"mapbox-control-zoomin-title": "Zoom in",
+	"mapbox-control-zoomout-title": "Zoom out",
 	"visualeditor-mwmapsdialog-geojson": "GeoJSON",
 	"visualeditor-mwmapsdialog-mode": "Mode",
 	"visualeditor-mwmapsdialog-mode-data": "Data",
