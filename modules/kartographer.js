@@ -46,7 +46,7 @@
 	 * @param {string} [data.style] Map style
 	 * @param {Object} [data.geoJson] Raw GeoJSON
 	 * @param {Object} [data.overlays] Overlays
-	 * @return {L.Map} Map object
+	 * @return {L.mapbox.Map} Map object
 	 */
 	mw.kartographer.createMap = function ( container, data ) {
 		var geoJson, map,
@@ -95,42 +95,61 @@
 	};
 
 	/**
+	 * Get GeoJSON layer for the specified map.
+	 *
+	 * If a layer doesn't exist, create and attach one.
+	 *
+	 * @param {L.mapbox.Map} map Map to get layers from
+	 * @return {L.mapbox.FeatureLayer|null} GeoJSON layer, if present
+	 */
+	mw.kartographer.getGeoJsonLayer = function ( map ) {
+		var geoJsonLayer = null;
+		map.eachLayer( function ( layer ) {
+			if ( !geoJsonLayer && layer instanceof L.mapbox.FeatureLayer && layer.getGeoJSON() ) {
+				geoJsonLayer = layer;
+			}
+		} );
+		return geoJsonLayer;
+	};
+
+	/**
 	 * Set the GeoJSON for a map, removing any existing GeoJSON layer.
 	 *
-	 * @param {L.Map} map Map to set the GeoJSON for
+	 * @param {L.mapbox.Map} map Map to set the GeoJSON for
 	 * @param {Object|null} geoJson GeoJSON data, or null to clear
 	 * @return {boolean} The GeoJSON provided was valid as was applied
 	 */
 	mw.kartographer.setGeoJson = function ( map, geoJson ) {
-		var newLayer;
+		var geoJsonLayer = mw.kartographer.getGeoJsonLayer( map ),
+			isNew = !geoJsonLayer;
+
+		if ( isNew ) {
+			geoJsonLayer = L.mapbox.featureLayer();
+		}
 
 		if ( geoJson ) {
 			try {
-				newLayer = L.mapbox.featureLayer().setGeoJSON( geoJson );
+				geoJsonLayer.setGeoJSON( geoJson );
 			} catch ( e ) {
 				// Invalid GeoJSON
 				return false;
 			}
+		} else {
+			map.removeLayer( geoJsonLayer );
 		}
 
-		// Remove any existing GeoJSON layers
-		map.eachLayer( function ( layer ) {
-			if ( layer instanceof L.mapbox.FeatureLayer && layer.getGeoJSON() ) {
-				map.removeLayer( layer );
-			}
-		} );
-
-		// Add new layer if geoJson was non-null
-		if ( newLayer ) {
-			map.addLayer( newLayer );
+		// Only attach new layer once GeoJSON has been set
+		if ( isNew ) {
+			map.addLayer( geoJsonLayer );
 		}
+
 		return true;
 	};
 
 	/**
 	 * Set the GeoJSON for a map as string
 	 *
-	 * @param {L.Map} map Map to set the GeoJSON for
+	 * @param {L.mapbox.Map} map Map to set the GeoJSON for
 	 * @param {string} geoJsonString GeoJSON data, empty string to clear
 	 * @return {boolean} The GeoJSON string provided was valid as was applied
 	 */
