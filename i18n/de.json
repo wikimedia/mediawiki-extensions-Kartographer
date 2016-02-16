@@ -13,6 +13,8 @@
 	"kartographer-error-bad_data": "Der JSON-Inhalt ist nicht korrekt",
 	"kartographer-tracking-category": "Seiten mit Karten",
 	"kartographer-tracking-category-desc": "Die Seite enthält eine Karte",
+	"mapbox-control-zoomin-title": "Vergrößern",
+	"mapbox-control-zoomout-title": "Verkleinern",
 	"visualeditor-mwmapsdialog-geojson": "GeoJSON",
 	"visualeditor-mwmapsdialog-mode": "Modus",
 	"visualeditor-mwmapsdialog-mode-data": "Daten",
