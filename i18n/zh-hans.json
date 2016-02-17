@@ -13,6 +13,8 @@
 	"kartographer-error-bad_data": "JSON内容不正确",
 	"kartographer-tracking-category": "有地图的页面",
 	"kartographer-tracking-category-desc": "页面包含地图",
+	"mapbox-control-zoomin-title": "放大",
+	"mapbox-control-zoomout-title": "缩小",
 	"visualeditor-mwmapsdialog-mode": "模式",
 	"visualeditor-mwmapsdialog-mode-data": "数据",
 	"visualeditor-mwmapsdialog-mode-interactive": "交互式",

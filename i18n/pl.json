@@ -11,6 +11,8 @@
 	"kartographer-error-bad_data": "Zawartość JSON jest niepoprawna",
 	"kartographer-tracking-category": "Strony z mapami",
 	"kartographer-tracking-category-desc": "Strona zawiera mapę",
+	"mapbox-control-zoomin-title": "Powiększ",
+	"mapbox-control-zoomout-title": "Pomniejsz",
 	"visualeditor-mwmapsdialog-mode": "Tryb",
 	"visualeditor-mwmapsdialog-mode-data": "Dane",
 	"visualeditor-mwmapsdialog-mode-interactive": "Interaktywny",

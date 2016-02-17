@@ -13,6 +13,8 @@
 	"kartographer-error-bad_data": "JSON コンテンツが正しくありません",
 	"kartographer-tracking-category": "地図があるページ",
 	"kartographer-tracking-category-desc": "そのページはマップを含んでいます",
+	"mapbox-control-zoomin-title": "拡大",
+	"mapbox-control-zoomout-title": "縮小",
 	"visualeditor-mwmapsdialog-mode": "モード",
 	"visualeditor-mwmapsdialog-mode-data": "データ",
 	"visualeditor-mwmapsdialog-mode-link": "リンク",
