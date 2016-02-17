@@ -27,7 +27,7 @@ OO.inheritClass( ve.dm.MWInlineMapsNode, ve.dm.MWInlineExtensionNode );
 
 ve.dm.MWInlineMapsNode.static.name = 'mwInlineMaps';
 
-ve.dm.MWInlineMapsNode.static.extensionName = 'maps';
+ve.dm.MWInlineMapsNode.static.extensionName = 'mapframe';
 
 /* Static methods */
 

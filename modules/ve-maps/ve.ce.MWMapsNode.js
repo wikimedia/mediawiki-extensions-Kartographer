@@ -65,10 +65,9 @@ ve.ce.MWMapsNode.static.primaryCommandName = 'mwMaps';
  * @return {boolean} Maps requires interactive rendering
  */
 ve.ce.MWMapsNode.prototype.requiresInteractive = function () {
-	var mwData = this.model.getAttribute( 'mw' ),
-		mwAttrs = mwData && mwData.attrs;
+	var mwData = this.model.getAttribute( 'mw' );
 
-	return mwAttrs && mwAttrs.mode === 'interactive' && mwData.body.extsrc;
+	return mwData.body.extsrc;
 };
 
 /**

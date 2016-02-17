@@ -33,7 +33,7 @@ OO.mixinClass( ve.dm.MWMapsNode, ve.dm.ResizableNode );
 
 ve.dm.MWMapsNode.static.name = 'mwMaps';
 
-ve.dm.MWMapsNode.static.extensionName = 'maps';
+ve.dm.MWMapsNode.static.extensionName = 'mapframe';
 
 ve.dm.MWMapsNode.static.matchTagNames = [ 'div' ];
 

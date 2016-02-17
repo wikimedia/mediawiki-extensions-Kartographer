@@ -9,6 +9,7 @@
 
 namespace Kartographer;
 
+use Kartographer\Tag\TagHandler;
 use Parser;
 
 class Hooks {
@@ -20,7 +21,9 @@ class Hooks {
 	 * @return bool
 	 */
 	public static function onParserFirstCallInit( Parser $parser ) {
-		$parser->setHook( 'maps', 'Kartographer\TagHandler::handleMapsTag' );
+		$parser->setHook( 'mapframe', 'Kartographer\Tag\MapFrame::entryPoint' );
+		$parser->setHook( 'maplink', 'Kartographer\Tag\MapLink::entryPoint' );
+		$parser->setHook( 'mapdata', 'Kartographer\Tag\MapData::entryPoint' );
 		return true;
 	}
 

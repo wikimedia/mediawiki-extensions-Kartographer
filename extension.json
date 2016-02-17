@@ -16,7 +16,10 @@
 		"Kartographer\\DataModule": "includes/DataModule.php",
 		"Kartographer\\Hooks": "includes/Hooks.php",
 		"Kartographer\\SimpleStyleSanitizer": "includes/SimpleStyleSanitizer.php",
-		"Kartographer\\TagHandler": "includes/TagHandler.php"
+		"Kartographer\\Tag\\MapFrame": "includes/Tag/MapFrame.php",
+		"Kartographer\\Tag\\MapData": "includes/Tag/MapData.php",
+		"Kartographer\\Tag\\MapLink": "includes/Tag/MapLink.php",
+		"Kartographer\\Tag\\TagHandler": "includes/Tag/TagHandler.php"
 	},
 	"ResourceModules": {
 		"ext.kartographer": {
@@ -175,12 +178,16 @@
 	"VisualEditorPluginModules": [
 		"ext.kartographer.visualEditor"
 	],
+	"ParserTestFiles": [
+		"tests/parserTests.txt"
+	],
 	"config": {
 		"KartographerDfltStyle": "osm-intl",
 		"KartographerStyles": ["osm-intl", "osm"],
 		"KartographerSrcsetScales": [1.3, 1.5, 2, 2.6, 3],
 		"KartographerMapServer": "https://maps.wikimedia.org",
-		"KartographerIconServer": "https://maps.wikimedia.org"
+		"KartographerIconServer": "https://maps.wikimedia.org",
+		"KartographerFrameMode": "interactive"
 	},
 	"TrackingCategories": [
 		"kartographer-tracking-category",

@@ -1,0 +1,103 @@
+!! test
+Mapdata shouldn't return anything
+!! input
+<mapdata>
+{
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.3988, 37.8013]
+    }
+}</mapdata>
+!! result
+
+!! end
+
+!! test
+<maplink> - custom link text
+!! input
+<maplink latitude=10 longitude=20 zoom=13 text='Foo &amp; bar'/>
+!! result
+<p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20">Foo &amp; bar</a>
+</p>
+!! end
+
+!! test
+<maplink> - HTML sanitization
+!! input
+<maplink latitude=10 longitude=20 zoom=13 text='<&'/>
+!! result
+<p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20">&lt;&amp;</a>
+</p>
+!! end
+
+!! test
+<maplink> - counters and markers
+!! input
+<maplink latitude=10 longitude=20 zoom=13 text='Foo'>
+{
+"type": "Feature",
+	"geometry": {
+		"type": "Point",
+		"coordinates": [-122.3988, 37.8013]
+	},
+	"properties": {
+		"marker-symbol": "-number"
+	}
+}
+</maplink>
+
+<maplink latitude=10 longitude=20 zoom=13>
+{
+"type": "Feature",
+	"geometry": {
+		"type": "Point",
+		"coordinates": [-122.3988, 37.8013]
+	},
+	"properties": {
+		"marker-symbol": "-number"
+	}
+}
+</maplink>
+
+<maplink latitude=10 longitude=20 zoom=13>
+{
+"type": "Feature",
+	"geometry": {
+		"type": "Point",
+		"coordinates": [-122.3988, 37.8013]
+	},
+	"properties": {
+		"marker-symbol": "-letter"
+	}
+}
+</maplink>
+
+<maplink latitude=10 longitude=20 zoom=13>
+{
+"type": "Feature",
+	"geometry": {
+		"type": "Point",
+		"coordinates": [-122.3988, 37.8013]
+	},
+	"properties": {
+		"marker-symbol": "-letter"
+	}
+}
+</maplink>
+!! result
+<p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20">Foo</a>
+</p><p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20">2</a>
+</p><p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20">a</a>
+</p><p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20">b</a>
+</p>
+!! end
+
+!! test
+<mapframe>
+!! input
+<mapframe latitude=10 longitude=20 zoom=13 width=640 height=480/>
+!! result
+<div class="mw-kartographer mw-kartographer-interactive" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;*&quot;]"></div>
+
+!! end
