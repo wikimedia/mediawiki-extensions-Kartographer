@@ -9,6 +9,8 @@
 	"kartographer-broken-category-desc": "Sidan inkluderar taggen <code><nowiki><maps></nowiki></code> med felaktig användning.",
 	"kartographer-tracking-category": "Sidor med kartor",
 	"kartographer-tracking-category-desc": "Sidan inkluderar taggen <code><nowiki><maps></nowiki></code>.",
+	"mapbox-control-zoomin-title": "Zooma in",
+	"mapbox-control-zoomout-title": "Zooma ut",
 	"visualeditor-mwmapsdialog-mode": "Läge",
 	"visualeditor-mwmapsdialog-mode-data": "Data",
 	"visualeditor-mwmapsdialog-mode-interactive": "Interaktiv",

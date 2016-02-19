@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Cedric31"
+		]
+	},
+	"mapbox-control-zoomin-title": "Zoom avant",
+	"mapbox-control-zoomout-title": "Zoom arrièr"
+}
