@@ -29,6 +29,10 @@
 		return brackets[ brackets.length - 1 ];
 	}
 
+	function isPrivateGroup( groupName ) {
+		return groupName[ 0 ] === '_';
+	}
+
 	scale = bracketDevicePixelRatio();
 	scale = ( scale === 1 ) ? '' : ( '@' + scale + 'x' );
 	urlFormat = '/{z}/{x}/{y}' + scale + '.png';
@@ -44,18 +48,17 @@
 	 * @param {number} data.longitude Longitude
 	 * @param {number} data.zoom Zoom
 	 * @param {string} [data.style] Map style
-	 * @param {Object} [data.geoJson] Raw GeoJSON
-	 * @param {Object} [data.overlays] Overlays
+	 * @param {string[]} [data.overlays] Names of overlay groups to show
 	 * @return {L.mapbox.Map} Map object
 	 */
 	mw.kartographer.createMap = function ( container, data ) {
-		var geoJson, map,
+		var map,
 			style = data.style || mw.config.get( 'wgKartographerDfltStyle' ),
 			mapData = mw.config.get( 'wgKartographerLiveData' ) || {};
 
 		map = L.map( container );
 		if ( !container.clientWidth ) {
-			// HACK: If the container is not naturally measureable, try jQuery
+			// HACK: If the container is not naturally measurable, try jQuery
 			// which will pick up CSS dimensions. T125263
 			/*jscs:disable disallowDanglingUnderscores */
 			map._size = new L.Point(
@@ -71,104 +74,84 @@
 			attribution: mw.message( 'kartographer-attribution' ).parse()
 		} ).addTo( map );
 
-		geoJson = data.geoJson || [];
-
 		if ( data.overlays ) {
-			geoJson = [];
-			$.each( data.overlays, function ( _, group ) {
+			$.each( data.overlays, function ( index, group ) {
 				if ( group === '*' ) {
 					$.each( mapData, function ( k, d ) {
-						if ( k[ 0 ] !== '_' ) {
-							geoJson = geoJson.concat( d );
+						if ( !isPrivateGroup( k ) ) {
+							mw.kartographer.addDataLayer( map, d );
 						}
 					} );
 				} else if ( mapData.hasOwnProperty( group ) ) {
-					geoJson = geoJson.concat( mapData[ group ] );
+					if ( index + 1 === data.overlays.length ) {
+						map.kartographerLayer =
+							mw.kartographer.addDataLayer( map, mapData[ group ] );
+					} else {
+						mw.kartographer.addDataLayer( map, mapData[ group ] );
+					}
 				}
 			} );
-		}
-		if ( geoJson.length ) {
-			mw.kartographer.setGeoJson( map, geoJson );
 		}
 
 		return map;
 	};
 
 	/**
-	 * Get GeoJSON layer for the specified map.
+	 * Create a new GeoJSON layer and add it to map.
+	 *
+	 * @param {L.mapbox.Map} map Map to get layers from
+	 * @param {Object} geoJson
+	 */
+	mw.kartographer.addDataLayer = function ( map, geoJson ) {
+		try {
+			return L.mapbox.featureLayer( geoJson ).addTo( map );
+		} catch ( e ) {
+			mw.log( e );
+		}
+	};
+
+	/**
+	 * Get "editable" geojson layer for the map.
 	 *
 	 * If a layer doesn't exist, create and attach one.
 	 *
 	 * @param {L.mapbox.Map} map Map to get layers from
+	 * @param {L.mapbox.FeatureLayer} map.kartographerLayer show tag-specific info in this layer
 	 * @return {L.mapbox.FeatureLayer|null} GeoJSON layer, if present
 	 */
-	mw.kartographer.getGeoJsonLayer = function ( map ) {
-		var geoJsonLayer = null;
-		map.eachLayer( function ( layer ) {
-			if ( !geoJsonLayer && layer instanceof L.mapbox.FeatureLayer && layer.getGeoJSON() ) {
-				geoJsonLayer = layer;
-			}
-		} );
-		return geoJsonLayer;
+	mw.kartographer.getKartographerLayer = function ( map ) {
+		if ( !map.kartographerLayer ) {
+			map.kartographerLayer = L.mapbox.featureLayer().addTo( map );
+		}
+		return map.kartographerLayer;
 	};
 
 	/**
-	 * Set the GeoJSON for a map, removing any existing GeoJSON layer.
-	 *
-	 * @param {L.mapbox.Map} map Map to set the GeoJSON for
-	 * @param {Object|null} geoJson GeoJSON data, or null to clear
-	 * @return {boolean} The GeoJSON provided was valid as was applied
-	 */
-	mw.kartographer.setGeoJson = function ( map, geoJson ) {
-		var geoJsonLayer = mw.kartographer.getGeoJsonLayer( map ),
-			isNew = !geoJsonLayer;
-
-		if ( isNew ) {
-			geoJsonLayer = L.mapbox.featureLayer();
-		}
-
-		if ( geoJson ) {
-			try {
-				geoJsonLayer.setGeoJSON( geoJson );
-			} catch ( e ) {
-				// Invalid GeoJSON
-				return false;
-			}
-		} else {
-			map.removeLayer( geoJsonLayer );
-		}
-
-		// Only attach new layer once GeoJSON has been set
-		if ( isNew ) {
-			map.addLayer( geoJsonLayer );
-		}
-
-		return true;
-	};
-
-	/**
-	 * Set the GeoJSON for a map as string
+	 * Update "editable" geojson layer from a string
 	 *
 	 * @param {L.mapbox.Map} map Map to set the GeoJSON for
 	 * @param {string} geoJsonString GeoJSON data, empty string to clear
 	 * @return {boolean} The GeoJSON string provided was valid as was applied
 	 */
-	mw.kartographer.setGeoJsonString = function ( map, geoJsonString ) {
-		var geoJson;
+	mw.kartographer.updateKartographerLayer = function ( map, geoJsonString ) {
+		var geoJson, layer, isValid = true;
 
 		if ( geoJsonString ) {
 			try {
 				geoJson = JSON.parse( geoJsonString );
 			} catch ( e ) {
-				// Invalid JSON
-				return false;
+				// Invalid JSON, clear it
+				isValid = false;
 			}
-		} else {
-			// If the input string is empty, pass null to #setGeoJson to clear
-			geoJson = null;
 		}
 
-		return mw.kartographer.setGeoJson( map, geoJson );
+		try {
+			layer = mw.kartographer.getKartographerLayer( map );
+			layer.setGeoJSON( !isValid || geoJson === undefined ? [] : geoJson );
+			return isValid;
+		} catch ( e ) {
+			return false;
+		}
 	};
 
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
