@@ -4,6 +4,7 @@
 			"Sayginer"
 		]
 	},
+	"kartographer-broken-category-desc": "Sayfa geçersiz bir harita kullanımını içeriyor",
 	"kartographer-desc": "Viki sayfalarına haritalar eklenmesine imkân tanır",
-	"kartographer-broken-category-desc": "Sayfa geçersiz bir harita kullanımını içeriyor"
+	"mapbox-control-zoomin-title": "Yakınlaştır"
 }

@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Piramidion"
+		]
+	},
+	"kartographer-attribution": "Карти Вікімедіа бета | Картографічні дані © [http://openstreetmap.org/copyright Дописувачі OpenStreetMap]",
+	"kartographer-broken-category": "Сторінки зі зламаними картами",
+	"kartographer-broken-category-desc": "Сторінка містить неправильне використання карти",
+	"kartographer-desc": "Дозволяє додавати карти до сторінок у вікі",
+	"kartographer-errors": "Хибні параметри для тегу &lt;maps>:\n$1",
+	"kartographer-error-bad_attr": "Атрибут '$1' має недійсне значення",
+	"kartographer-error-bad_data": "JSON-вміст неправильний",
+	"kartographer-tracking-category": "Сторінки з картами",
+	"kartographer-tracking-category-desc": "Ця сторінка містить карту",
+	"mapbox-control-zoomin-title": "Збільшити",
+	"mapbox-control-zoomout-title": "Зменшити",
+	"visualeditor-mwmapsdialog-mode": "Режим",
+	"visualeditor-mwmapsdialog-mode-data": "Дані",
+	"visualeditor-mwmapsdialog-mode-interactive": "Інтерактивна",
+	"visualeditor-mwmapsdialog-mode-link": "Посилання",
+	"visualeditor-mwmapsdialog-mode-static": "Статична",
+	"visualeditor-mwmapsdialog-size": "Розмір",
+	"visualeditor-mwmapsdialog-title": "Карта"
+}
