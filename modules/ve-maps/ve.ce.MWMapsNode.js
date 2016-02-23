@@ -152,7 +152,7 @@ ve.ce.MWMapsNode.prototype.updateGeoJson = function () {
 		geoJson = mwData && mwData.body.extsrc;
 
 	if ( geoJson !== this.geoJson ) {
-		mw.kartographer.setGeoJsonString( this.map, mwData && mwData.body.extsrc );
+		mw.kartographer.updateKartographerLayer( this.map, mwData && mwData.body.extsrc );
 		this.geoJson = geoJson;
 	}
 };
