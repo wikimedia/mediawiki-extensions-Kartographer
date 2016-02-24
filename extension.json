@@ -35,7 +35,8 @@
 				"lib/mapbox/mapbox.i18n.js"
 			],
 			"styles": [
-				"lib/mapbox/style.css"
+				"lib/mapbox/style.css",
+				"lib/mapbox-style-fixes.css"
 			],
 			"messages": [
 				"mapbox-control-zoomin-title",
