@@ -47,6 +47,9 @@
 			]
 		},
 		"leaflet.draw": {
+			"dependencies": [
+				"mapbox"
+			],
 			"scripts": [
 				"lib/leaflet.draw/leaflet.draw-src.js",
 				"lib/leaflet.draw/leaflet.draw.i18n.js"
