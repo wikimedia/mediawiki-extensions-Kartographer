@@ -14,6 +14,8 @@
 	"kartographer-error-bad_data": "O contido JSON non é correcto",
 	"kartographer-tracking-category": "Páxinas con mapas",
 	"kartographer-tracking-category-desc": "A páxina inclúe un mapa",
+	"leafletdraw-draw-handlers-circle-radius": "Radio",
+	"leafletdraw-draw-toolbar-actions-text": "Cancelar",
 	"mapbox-control-zoomin-title": "Ampliar",
 	"mapbox-control-zoomout-title": "Reducir",
 	"visualeditor-mwmapsdialog-mode": "Modo",
