@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Macofe",
-			"YoViajo"
+			"YoViajo",
+			"Mgpena"
 		]
 	},
 	"kartographer-attribution": "Mapas beta de Wikimedia | Datos del mapa © [http://openstreetmap.org/copyright Colaboradores de OpenStreetMap]",
@@ -18,7 +19,7 @@
 	"leafletdraw-draw-handlers-circle-tooltip-start": "Haz clic y arrastra para dibujar un círculo",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Haz clic en el mapa para colocar un marcador",
 	"leafletdraw-draw-handlers-polygon-tooltip-cont": "Haz clic para continuar dibujando esta forma",
-	"leafletdraw-draw-handlers-polygon-tooltip-end": "Haz clic en el primer punto para cerrar esta forma",
+	"leafletdraw-draw-handlers-polygon-tooltip-end": "Haz clic en el primer punto para cerrar esta figura",
 	"leafletdraw-draw-handlers-polygon-tooltip-start": "Haz clic para empezar a dibujar una figura",
 	"leafletdraw-draw-handlers-polyline-error": "Error: los bordes de la forma no se pueden cruzar",
 	"leafletdraw-draw-handlers-polyline-tooltip-cont": "Haz clic para continuar dibujando esta línea",
