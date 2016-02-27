@@ -1,10 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"محمد أحمد عبد الفتاح"
+			"محمد أحمد عبد الفتاح",
+			"Maroen1990"
 		]
 	},
+	"leafletdraw-draw-toolbar-undo-text": " احذف اخر نقطة",
+	"leafletdraw-edit-toolbar-actions-cancel-text": "إلغاء",
 	"leafletdraw-edit-toolbar-actions-save-text": "احفظ",
 	"leafletdraw-edit-toolbar-actions-save-title": "احفظ التغييرات",
+	"leafletdraw-edit-toolbar-buttons-remove": "حذف طبقات",
 	"visualeditor-mwmapsdialog-title": "خريطة"
 }
