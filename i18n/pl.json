@@ -19,6 +19,8 @@
 	"leafletdraw-edit-toolbar-actions-cancel-text": "Anuluj",
 	"leafletdraw-edit-toolbar-actions-save-text": "Zapisz",
 	"leafletdraw-edit-toolbar-actions-save-title": "Zapisywanie zmian",
+	"leafletdraw-edit-toolbar-buttons-edit": "Edycja warstw",
+	"leafletdraw-edit-toolbar-buttons-editdisabled": "Brak warstw do edycji",
 	"leafletdraw-edit-toolbar-buttons-remove": "Usuwanie warstw",
 	"mapbox-control-zoomin-title": "Powiększ",
 	"mapbox-control-zoomout-title": "Pomniejsz",
