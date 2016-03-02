@@ -39,7 +39,7 @@ ve.ui.MWMapsDialog.static.modelClasses = [ ve.dm.MWMapsNode, ve.dm.MWInlineMapsN
  * @inheritdoc
  */
 ve.ui.MWMapsDialog.prototype.initialize = function () {
-	var panel, modeField;
+	var panel;
 
 	// Parent method
 	ve.ui.MWMapsDialog.super.prototype.initialize.call( this );
@@ -52,13 +52,6 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	this.updatingGeoJson = false;
 
 	this.dimensions = new ve.ui.DimensionsWidget();
-
-	this.modeSelect = new OO.ui.ButtonSelectWidget().addItems( [
-		new OO.ui.ButtonOptionWidget( { data: 'interactive', label: ve.msg( 'visualeditor-mwmapsdialog-mode-interactive' ) } ),
-		new OO.ui.ButtonOptionWidget( { data: 'static', label: ve.msg( 'visualeditor-mwmapsdialog-mode-static' ) } ),
-		new OO.ui.ButtonOptionWidget( { data: 'link', label: ve.msg( 'visualeditor-mwmapsdialog-mode-link' ) } ),
-		new OO.ui.ButtonOptionWidget( { data: 'data', label: ve.msg( 'visualeditor-mwmapsdialog-mode-data' ) } )
-	] );
 
 	this.input = new ve.ui.MWAceEditorWidget( {
 		multiline: true,
@@ -79,7 +72,6 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		widthChange: 'onDimensionsChange',
 		heightChange: 'onDimensionsChange'
 	} );
-	this.modeSelect.connect( this, { select: 'onModeSelectSelect' } );
 
 	panel = new OO.ui.PanelLayout( {
 		padded: true,
@@ -91,17 +83,12 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		label: ve.msg( 'visualeditor-mwmapsdialog-size' )
 	} );
 
-	modeField = new OO.ui.FieldLayout( this.modeSelect, {
-		align: 'right',
-		label: ve.msg( 'visualeditor-mwmapsdialog-mode' )
-	} );
-
 	this.geoJsonField = new OO.ui.FieldLayout( this.input, {
 		align: 'top',
 		label: ve.msg( 'visualeditor-mwmapsdialog-geojson' )
 	} );
 
-	panel.$element.append( this.dimensionsField.$element, modeField.$element, this.$mapContainer, this.geoJsonField.$element );
+	panel.$element.append( this.dimensionsField.$element, this.$mapContainer, this.geoJsonField.$element );
 	this.$body.append( panel.$element );
 };
 
@@ -132,30 +119,10 @@ ve.ui.MWMapsDialog.prototype.onDimensionsChange = function () {
 };
 
 /**
- * Handle select events on the mode select widget
- *
- * @param {OO.ui.OptionWidget|null} item Selected item
- */
-ve.ui.MWMapsDialog.prototype.onModeSelectSelect = function ( item ) {
-	var mode = item && item.getData();
-
-	this.geoJsonField.toggle( mode !== 'static' );
-	this.dimensionsField.toggle( mode !== 'data' );
-	this.$mapContainer.toggleClass( 'oo-ui-element-hidden', mode === 'data' );
-
-	this.updateSize();
-
-	if ( mode !== 'data' ) {
-		this.setupMap();
-	}
-};
-
-/**
  * @inheritdoc ve.ui.MWExtensionWindow
  */
 ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 	var center, latitude, longitude, zoom,
-		mode = this.modeSelect.getSelectedItem().getData(),
 		dimensions = this.scalable.getBoundedDimensions(
 			this.dimensions.getDimensions()
 		);
@@ -163,30 +130,20 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 	// Parent method
 	ve.ui.MWMapsDialog.super.prototype.updateMwData.call( this, mwData );
 
-	if ( mode !== 'data' ) {
-		if ( this.map ) {
-			center = this.map.getCenter();
-			latitude = center.lat;
-			longitude = center.lng;
-			zoom = this.map.getZoom();
-		} else {
-			// Map not loaded in insert, can't insert
-			return;
-		}
-		mwData.attrs.latitude = latitude.toString();
-		mwData.attrs.longitude = longitude.toString();
-		mwData.attrs.zoom = zoom.toString();
-		mwData.attrs.width = dimensions.width.toString();
-		mwData.attrs.height = dimensions.height.toString();
+	if ( this.map ) {
+		center = this.map.getCenter();
+		latitude = center.lat;
+		longitude = center.lng;
+		zoom = this.map.getZoom();
 	} else {
-		delete mwData.attrs.latitude;
-		delete mwData.attrs.longitude;
-		delete mwData.attrs.zoom;
-		delete mwData.attrs.width;
-		delete mwData.attrs.height;
+		// Map not loaded in insert, can't insert
+		return;
 	}
-
-	mwData.attrs.mode = mode;
+	mwData.attrs.latitude = latitude.toString();
+	mwData.attrs.longitude = longitude.toString();
+	mwData.attrs.zoom = zoom.toString();
+	mwData.attrs.width = dimensions.width.toString();
+	mwData.attrs.height = dimensions.height.toString();
 };
 
 /**
@@ -195,12 +152,7 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 ve.ui.MWMapsDialog.prototype.getReadyProcess = function ( data ) {
 	return ve.ui.MWMapsDialog.super.prototype.getReadyProcess.call( this, data )
 		.next( function () {
-			var attributes = this.selectedNode && this.selectedNode.getAttribute( 'mw' ).attrs,
-				mode = attributes && attributes.mode || 'interactive';
-
-			if ( mode !== 'data' ) {
-				this.setupMap();
-			}
+			this.setupMap();
 		}, this );
 };
 
@@ -211,32 +163,17 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 	data = data || {};
 	return ve.ui.MWMapsDialog.super.prototype.getSetupProcess.call( this, data )
 		.next( function () {
-			var attributes = this.selectedNode && this.selectedNode.getAttribute( 'mw' ).attrs,
-				mode = attributes && attributes.mode || 'interactive',
-				isInline = this.selectedNode instanceof ve.dm.MWInlineMapsNode;
-
 			this.input.clearUndoStack();
-
-			this.modeSelect.selectItemByData( mode );
 
 			this.actions.setMode( this.selectedNode ? 'edit' : 'insert' );
 
 			if ( this.selectedNode instanceof ve.dm.MWMapsNode ) {
 				this.scalable = this.selectedNode.getScalable();
-			} else if ( this.selectedNode && mode === 'link' ) {
-				this.scalable = ve.dm.MWMapsNode.static.createScalable( {
-					width: this.selectedNode.getAttribute( 'width' ),
-					height: this.selectedNode.getAttribute( 'height' )
-				} );
 			} else {
 				this.scalable = ve.dm.MWMapsNode.static.createScalable( { width: 400, height: 300 } );
 			}
 
 			// TODO: Support block/inline conversion
-			this.modeSelect.getItemFromData( 'interactive' ).toggle( !isInline );
-			this.modeSelect.getItemFromData( 'static' ).toggle( !isInline );
-			this.modeSelect.getItemFromData( 'link' ).toggle( isInline );
-			this.modeSelect.getItemFromData( 'data' ).toggle( isInline );
 
 			this.dimensions.setDimensions( this.scalable.getCurrentDimensions() );
 		}, this );

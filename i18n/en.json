@@ -50,11 +50,6 @@
 	"mapbox-control-zoomin-title": "Zoom in",
 	"mapbox-control-zoomout-title": "Zoom out",
 	"visualeditor-mwmapsdialog-geojson": "GeoJSON",
-	"visualeditor-mwmapsdialog-mode": "Mode",
-	"visualeditor-mwmapsdialog-mode-data": "Data",
-	"visualeditor-mwmapsdialog-mode-interactive": "Interactive",
-	"visualeditor-mwmapsdialog-mode-link": "Link",
-	"visualeditor-mwmapsdialog-mode-static": "Static",
 	"visualeditor-mwmapsdialog-size": "Size",
 	"visualeditor-mwmapsdialog-title": "Map"
 }
