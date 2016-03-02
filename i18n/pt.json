@@ -16,11 +16,6 @@
 	"leafletdraw-edit-toolbar-actions-save-title": "Gravar alterações",
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Sem camadas para editar",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Sem camadas para eliminar",
-	"visualeditor-mwmapsdialog-mode": "Modo",
-	"visualeditor-mwmapsdialog-mode-data": "Dados",
-	"visualeditor-mwmapsdialog-mode-interactive": "Interativo",
-	"visualeditor-mwmapsdialog-mode-link": "Ligar",
-	"visualeditor-mwmapsdialog-mode-static": "Estático",
 	"visualeditor-mwmapsdialog-size": "Tamanho",
 	"visualeditor-mwmapsdialog-title": "Mapa"
 }

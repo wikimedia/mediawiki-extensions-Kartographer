@@ -7,7 +7,8 @@
 	"kartographer-broken-category": "Säite mat futtisse Kaarten",
 	"kartographer-broken-category-desc": "D'Säit huet en net valabele Gebrauch vun enger Kaart",
 	"kartographer-desc": "Erméigelcht et fir Kaarten op d'Wikissäiten derbäizesetzen.",
-	"kartographer-errors": "Net valabel Parametere fir den Tag &lt;maps>:\n$1",
+	"kartographer-error-context": "&lt;$1&gt;: $2",
+	"kartographer-error-context-multi": "&lt;$1&gt;-Problemer:\n$2",
 	"kartographer-error-bad_data": "Den JSON-Inhalt ass net korrekt",
 	"kartographer-tracking-category": "Säite mat Kaarten",
 	"kartographer-tracking-category-desc": "An der Säit ass eng Kaart dran",
@@ -21,10 +22,6 @@
 	"leafletdraw-edit-toolbar-actions-cancel-title": "Ännerung ofbriechen, all Ännerungen ignoréieren",
 	"leafletdraw-edit-toolbar-actions-save-text": "Späicheren",
 	"leafletdraw-edit-toolbar-actions-save-title": "Ännerunge späicheren",
-	"visualeditor-mwmapsdialog-mode-data": "Donnéeën",
-	"visualeditor-mwmapsdialog-mode-interactive": "Interaktiv",
-	"visualeditor-mwmapsdialog-mode-link": "Link",
-	"visualeditor-mwmapsdialog-mode-static": "Statesch",
 	"visualeditor-mwmapsdialog-size": "Gréisst",
 	"visualeditor-mwmapsdialog-title": "Kaart"
 }

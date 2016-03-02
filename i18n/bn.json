@@ -7,7 +7,6 @@
 	"kartographer-broken-category": "ভাঙা মানচিত্রসহ পাতা",
 	"kartographer-broken-category-desc": "পাতা একটি অকার্যকর মানচিত্র অন্তর্ভুক্ত করে",
 	"kartographer-desc": "উইকি পাতাসমূহে মানচিত্র অন্তর্ভুক্ত করতে অনুমতি দেয়",
-	"kartographer-errors": "&lt;maps> ট্যাগের জন্য অকার্যকল প্যারামিটার:\n$1",
 	"kartographer-error-bad_attr": "অ্যাট্রিবিউট '$1'-এ একটি অবৈধ মান আছে",
 	"kartographer-error-bad_data": "JSON সামগ্রী সঠিক নয়",
 	"kartographer-tracking-category": "মানচিত্রসহ পাতা",

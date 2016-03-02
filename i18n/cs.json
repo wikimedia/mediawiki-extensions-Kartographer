@@ -9,7 +9,6 @@
 	"kartographer-broken-category": "Stránky s rozbitými mapami",
 	"kartographer-broken-category-desc": "Tato stránka obsahuje chybně použitou mapu",
 	"kartographer-desc": "Umožňuje na stránky wiki přidávat mapy",
-	"kartographer-errors": "Chybné parametry značky &lt;maps>:\n$1",
 	"kartographer-error-bad_attr": "Atribut „$1“ má neplatnou hodnotu",
 	"kartographer-error-bad_data": "JSON obsah není správný",
 	"kartographer-tracking-category": "Stránky s mapou",
@@ -43,10 +42,6 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Žádné vrstvy k úpravě",
 	"leafletdraw-edit-toolbar-buttons-remove": "Smazat vrstvy",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Žádné vrstvy k smazání",
-	"visualeditor-mwmapsdialog-mode": "Režim",
-	"visualeditor-mwmapsdialog-mode-data": "Data",
-	"visualeditor-mwmapsdialog-mode-interactive": "Interaktivní",
-	"visualeditor-mwmapsdialog-mode-static": "Statická",
 	"visualeditor-mwmapsdialog-size": "Velikost",
 	"visualeditor-mwmapsdialog-title": "Mapa"
 }

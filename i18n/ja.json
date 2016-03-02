@@ -8,7 +8,6 @@
 	"kartographer-broken-category": "破損した地図があるページ",
 	"kartographer-broken-category-desc": "そのページは無効なマップ使用法を含んでいます",
 	"kartographer-desc": "ウィキページにマップを追加することを許可",
-	"kartographer-errors": "不正なパラメータ for the &lt;maps> tag:\n$1",
 	"kartographer-error-bad_attr": "属性 '$1' は無効な値です",
 	"kartographer-error-bad_data": "JSON コンテンツが正しくありません",
 	"kartographer-tracking-category": "地図があるページ",
@@ -20,9 +19,6 @@
 	"leafletdraw-edit-toolbar-buttons-edit": "レイヤーを編集",
 	"mapbox-control-zoomin-title": "拡大",
 	"mapbox-control-zoomout-title": "縮小",
-	"visualeditor-mwmapsdialog-mode": "モード",
-	"visualeditor-mwmapsdialog-mode-data": "データ",
-	"visualeditor-mwmapsdialog-mode-link": "リンク",
 	"visualeditor-mwmapsdialog-size": "サイズ",
 	"visualeditor-mwmapsdialog-title": "地図"
 }

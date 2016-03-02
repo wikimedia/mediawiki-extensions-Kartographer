@@ -10,7 +10,6 @@
 	"kartographer-broken-category": "Páginas con mapas rotos",
 	"kartographer-broken-category-desc": "La página incluye un uso no válido de mapas.",
 	"kartographer-desc": "Permite insertar mapas en una página wiki",
-	"kartographer-errors": "Parámetros no válidos para la etiqueta &lt;maps>:\n$1",
 	"kartographer-error-bad_attr": "El atributo '$1' tiene un valor no válido",
 	"kartographer-error-bad_data": "El contenido JSON no es correcto",
 	"kartographer-tracking-category": "Páginas con mapas",
@@ -49,11 +48,6 @@
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "No hay capas que eliminar",
 	"mapbox-control-zoomin-title": "Acercar",
 	"mapbox-control-zoomout-title": "Alejar",
-	"visualeditor-mwmapsdialog-mode": "Modo",
-	"visualeditor-mwmapsdialog-mode-data": "Datos",
-	"visualeditor-mwmapsdialog-mode-interactive": "Interactivo",
-	"visualeditor-mwmapsdialog-mode-link": "Enlace",
-	"visualeditor-mwmapsdialog-mode-static": "Estático",
 	"visualeditor-mwmapsdialog-size": "Tamaño",
 	"visualeditor-mwmapsdialog-title": "Mapa"
 }
