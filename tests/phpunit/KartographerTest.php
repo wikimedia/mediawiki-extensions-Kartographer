@@ -74,19 +74,15 @@ class KartographerTest extends MediaWikiTestCase {
 				"description":"<a href=\"\/w\/index.php?title=Link_to_nowhere&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Link to nowhere (page does not exist)\">Link to nowhere<\/a>"}}
 			]}';
 		return [
-			[ false, '<mapdata/>', 'Empty <mapdata> is meaningless' ],
-			[ false, '<mapdata></mapdata>', 'Empty <mapdata> is meaningless 2' ],
 			[ 'null', '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013/>', '<mapframe> without JSON' ],
 			[ 'null', '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013></mapframe>', '<mapframe> without JSON 2' ],
 			//[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013 mode=interactive>123</mapframe>', 'Invalid JSON' ],
-			//[ false, '<mapdata>fail</mapdata>', 'Invalid JSON 2' ],
 			//[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013 mode=interactive>{{"":""}}</maps>', 'Invalid JSON 3' ],
 			[ "{\"*\":[$validJson]}", "<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>$validJson</mapframe>", '<mapframe> with GeoJSON' ],
 			[ "{\"*\":[$validJson]}", "<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>[$validJson]</mapframe>", '<mapframe> with GeoJSON array' ],
 			[ $wikitextJsonParsed, "<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>[{$this->wikitextJson}]</mapframe>", '<mapframe> with parsable text and description' ],
 			[ $wikitextJsonParsed, "<maplink zoom=13 longitude=-122.3988 latitude=37.8013>[{$this->wikitextJson}]</maplink>", '<maplink> with parsable text and description' ],
 			// Bugs
-			[ false, "<mapdata> \n\t\r</mapdata>", 'T127345: whitespace-only tag content, <mapdata>' ],
 			[ 'null', "<maplink zoom=13 longitude=-122.3988 latitude=37.8013>\t\r\n </maplink>", 'T127345: whitespace-only tag content, <maplink>' ],
 		];
 	}

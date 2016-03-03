@@ -23,7 +23,6 @@ class Hooks {
 	public static function onParserFirstCallInit( Parser $parser ) {
 		$parser->setHook( 'mapframe', 'Kartographer\Tag\MapFrame::entryPoint' );
 		$parser->setHook( 'maplink', 'Kartographer\Tag\MapLink::entryPoint' );
-		$parser->setHook( 'mapdata', 'Kartographer\Tag\MapData::entryPoint' );
 		return true;
 	}
 

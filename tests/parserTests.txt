@@ -1,19 +1,4 @@
 !! test
-Mapdata shouldn't return anything
-!! input
-<mapdata>
-{
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [-122.3988, 37.8013]
-    }
-}</mapdata>
-!! result
-
-!! end
-
-!! test
 <maplink> - custom link text
 !! input
 <maplink latitude=10 longitude=20 zoom=13 text='Foo &amp; bar'/>

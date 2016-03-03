@@ -12,7 +12,6 @@
 	"kartographer-error-context-multi": "&lt;$1&gt; problems:\n$2",
 	"kartographer-error-bad_attr": "Attribute '$1' has an invalid value",
 	"kartographer-error-bad_data": "The JSON content is not correct",
-	"kartographer-error-no-geometry": "&lt;mapdata&gt; must contain at least one GeoJSON feature",
 	"kartographer-tracking-category": "Pages with maps",
 	"kartographer-tracking-category-desc": "The page includes a map",
 	"leafletdraw-draw-handlers-circle-radius": "Radius",

@@ -17,7 +17,6 @@
 		"Kartographer\\Hooks": "includes/Hooks.php",
 		"Kartographer\\SimpleStyleSanitizer": "includes/SimpleStyleSanitizer.php",
 		"Kartographer\\Tag\\MapFrame": "includes/Tag/MapFrame.php",
-		"Kartographer\\Tag\\MapData": "includes/Tag/MapData.php",
 		"Kartographer\\Tag\\MapLink": "includes/Tag/MapLink.php",
 		"Kartographer\\Tag\\TagHandler": "includes/Tag/TagHandler.php"
 	},
