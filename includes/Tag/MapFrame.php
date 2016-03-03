@@ -11,6 +11,8 @@ use UnexpectedValueException;
  * The <mapframe> tag inserts a map into wiki page
  */
 class MapFrame extends TagHandler {
+	protected $tag = 'mapframe';
+
 	private $width;
 	private $height;
 

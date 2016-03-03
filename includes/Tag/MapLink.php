@@ -8,6 +8,7 @@ use Html;
  * The <maplink> tag creates a link that, when clicked,
  */
 class MapLink extends TagHandler {
+	protected $tag = 'maplink';
 
 	protected function parseArgs() {
 		$this->parseMapArgs();

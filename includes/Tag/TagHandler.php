@@ -9,9 +9,11 @@
 
 namespace Kartographer\Tag;
 
+use Exception;
 use FormatJson;
 use Html;
 use Kartographer\SimpleStyleSanitizer;
+use Message;
 use Parser;
 use ParserOutput;
 use PPFrame;
@@ -22,6 +24,9 @@ use stdClass;
  * Base class for all <map...> tags
  */
 abstract class TagHandler {
+	/** @var string */
+	protected $tag;
+
 	/** @var Status */
 	protected $status;
 
@@ -176,7 +181,7 @@ abstract class TagHandler {
 	protected function getText( $name, $default, $regexp = false ) {
 		if ( !isset( $this->args[$name] ) ) {
 			if ( $default === false ) {
-				$this->status->fatal( 'kartographer-error-bad_attr', $name );
+				$this->status->fatal( 'kartographer-error-missing-attr', $name );
 			}
 			return $default;
 		}
@@ -302,7 +307,26 @@ abstract class TagHandler {
 	 */
 	private function reportError() {
 		$this->parser->getOutput()->setExtensionData( 'kartographer_broken', true );
+		$errors = array_merge( $this->status->getErrorsByType( 'error' ),
+			$this->status->getErrorsByType( 'warning' )
+		);
+		if ( !count( $errors ) ) {
+			throw new Exception( __METHOD__ , '(): attempt to report error when none took place' );
+		}
+		$lang = $this->parser->getTitle()->getPageLanguage();
+		$message = count( $errors ) > 1 ? 'kartographer-error-context-multi'
+			: 'kartographer-error-context';
+		// Status sucks, redoing a bunch of its code here
+		$errorText = implode( "\n* ", array_map( function( array $err ) use ( $lang ) {
+				return wfMessage( $err['message'] )
+					->params( $err['params'] )
+					->inLanguage( $lang )
+					->plain();
+			}, $errors ) );
+		if ( count( $errors ) > 1 ) {
+			$errorText = '* ' . $errorText;
+		}
 		return Html::rawElement( 'div', array( 'class' => 'mw-kartographer mw-kartographer-error' ),
-			$this->status->getHTML( 'kartographer-error-context', 'kartographer-error-context-multi' ) );
+			wfMessage( $message, $this->tag, $errorText )->inLanguage( $lang )->parse() );
 	}
 }

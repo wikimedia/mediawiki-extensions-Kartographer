@@ -86,3 +86,19 @@
 <div class="mw-kartographer mw-kartographer-interactive" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;*&quot;]"></div>
 
 !! end
+
+!! test
+Error messages
+!! input
+<maplink latitude=10 longitude=fail text=Derp>>Derp goes here</maplink>
+<mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=crap style=derp />
+!! result
+<div class="mw-kartographer mw-kartographer-error"><p>&lt;maplink&gt; problems:
+</p>
+<ul><li> Syntax error</li>
+<li> Attribute "longitude" has an invalid value</li>
+<li> Attribute "zoom" is missing</li></ul>
+</div>
+<div class="mw-kartographer mw-kartographer-error">&lt;mapframe&gt;: Attribute "style" has an invalid value</div>
+
+!! end
