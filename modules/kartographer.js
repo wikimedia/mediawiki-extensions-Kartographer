@@ -179,7 +179,13 @@
 				data.longitude = center.lng;
 				data.zoom = map.getZoom();
 			}
-			getWindowManager().openWindow( mapDialog, data );
+			getWindowManager()
+				.openWindow( mapDialog, data )
+				.then( function ( opened ) { return opened; } )
+				.then( function ( closing ) {
+					map.setView( mapDialog.map.getCenter(), mapDialog.map.getZoom() );
+					return closing;
+				} );
 		} );
 	};
 
