@@ -183,7 +183,9 @@
 				.openWindow( mapDialog, data )
 				.then( function ( opened ) { return opened; } )
 				.then( function ( closing ) {
-					map.setView( mapDialog.map.getCenter(), mapDialog.map.getZoom() );
+					if ( map ) {
+						map.setView( mapDialog.map.getCenter(), mapDialog.map.getZoom() );
+					}
 					return closing;
 				} );
 		} );
