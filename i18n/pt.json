@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Vitorvicentevalente"
+			"Vitorvicentevalente",
+			"Önni"
 		]
 	},
 	"kartographer-attribution": "Mapas beta Wikimedia | Dados de mapa © [http://openstreetmap.org/copyright contribuidores OpenStreetMap]",
+	"kartographer-error-bad_attr": "O atributo \"$1\" tem um valor inválido",
 	"kartographer-tracking-category": "Páginas com mapas",
 	"leafletdraw-draw-handlers-polyline-tooltip-cont": "Clique para continuar a desenhar esta linha",
 	"leafletdraw-draw-handlers-polyline-tooltip-start": "Clique para começar a desenhar uma linha",
