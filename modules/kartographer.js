@@ -164,11 +164,24 @@
 		return windowManager;
 	}
 
-	function openFullscreenMap( data ) {
+	/**
+	 * Open a full screen map
+	 *
+	 * @param {Object} data Map data
+	 * @param {L.mapbox.Map} [map] Optional map to get current state from
+	 */
+	mw.kartographer.openFullscreenMap = function ( data, map ) {
 		mw.loader.using( 'ext.kartographer.fullscreen' ).done( function () {
+			var center;
+			if ( map ) {
+				center = map.getCenter();
+				data.latitude = center.lat;
+				data.longitude = center.lng;
+				data.zoom = map.getZoom();
+			}
 			getWindowManager().openWindow( mapDialog, data );
 		} );
-	}
+	};
 
 	function getMapData( $el ) {
 		// Prevent users from adding map divs directly via wikitext
@@ -192,7 +205,7 @@
 
 			if ( data ) {
 				$this.on( 'click', function () {
-					openFullscreenMap( data );
+					mw.kartographer.openFullscreenMap( data );
 					return false;
 				} );
 			}
@@ -210,11 +223,7 @@
 
 				map.doubleClickZoom.disable();
 				$this.on( 'dblclick', function () {
-					var center = map.getCenter();
-					data.latitude = center.lat;
-					data.longitude = center.lng;
-					data.zoom = map.getZoom();
-					openFullscreenMap( data );
+					mw.kartographer.openFullscreenMap( data, map );
 				} );
 			}
 		} );
