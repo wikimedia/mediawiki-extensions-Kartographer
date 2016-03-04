@@ -10,6 +10,8 @@
 	"kartographer-broken-category": "Páginas con mapas rotos",
 	"kartographer-broken-category-desc": "La página incluye un uso no válido de mapas.",
 	"kartographer-desc": "Permite insertar mapas en una página wiki",
+	"kartographer-error-context": "&lt;$1&gt;: $2",
+	"kartographer-error-context-multi": "Problemas de &lt;$1&gt;:\n$2",
 	"kartographer-error-bad_attr": "El atributo '$1' tiene un valor no válido",
 	"kartographer-error-bad_data": "El contenido JSON no es correcto",
 	"kartographer-tracking-category": "Páginas con mapas",

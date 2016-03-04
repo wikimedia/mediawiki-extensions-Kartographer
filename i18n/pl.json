@@ -8,6 +8,7 @@
 	"kartographer-broken-category-desc": "Strona zawiera nieprawidłowe zastosowanie mapy",
 	"kartographer-error-context": "&lt;$1&gt;: $2",
 	"kartographer-error-context-multi": "&lt;$1&gt; problemy:\n$2",
+	"kartographer-error-missing-attr": "Brak atrybutu „$1”",
 	"kartographer-error-bad_attr": "Atrybut '$1' ma niepoprawną wartość",
 	"kartographer-error-bad_data": "Zawartość JSON jest niepoprawna",
 	"kartographer-tracking-category": "Strony z mapami",

@@ -13,7 +13,6 @@
 	"kartographer-error-context-multi": "problemas de &lt;$1&gt;:\n$2",
 	"kartographer-error-bad_attr": "O atributo '$1' ten un valor non válido",
 	"kartographer-error-bad_data": "O contido JSON non é correcto",
-	"kartographer-error-no-geometry": "&lt;mapdata&gt; debe conter polo menos unha funcionalidade GeoJSON",
 	"kartographer-tracking-category": "Páxinas con mapas",
 	"kartographer-tracking-category-desc": "A páxina inclúe un mapa",
 	"leafletdraw-draw-handlers-circle-radius": "Radio",

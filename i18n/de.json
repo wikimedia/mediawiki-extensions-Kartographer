@@ -10,9 +10,9 @@
 	"kartographer-desc": "Erlaubt das Einfügen von Karten in Wikiseiten",
 	"kartographer-error-context": "&lt;$1&gt;: $2",
 	"kartographer-error-context-multi": "&lt;$1&gt;-Probleme:\n$2",
+	"kartographer-error-missing-attr": "Das Attribut „$1“ fehlt",
 	"kartographer-error-bad_attr": "Das Attribut „$1“ hat einen ungültigen Wert",
 	"kartographer-error-bad_data": "Der JSON-Inhalt ist nicht korrekt",
-	"kartographer-error-no-geometry": "&lt;mapdata&gt; muss mindestens eine GeoJSON-Funktion beinhalten",
 	"kartographer-tracking-category": "Seiten mit Karten",
 	"kartographer-tracking-category-desc": "Die Seite enthält eine Karte",
 	"leafletdraw-draw-handlers-circle-radius": "Radius",
@@ -49,6 +49,7 @@
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Keine zu löschenden Ebenen",
 	"mapbox-control-zoomin-title": "Vergrößern",
 	"mapbox-control-zoomout-title": "Verkleinern",
+	"kartographer-fullscreen-close": "Schließen",
 	"visualeditor-mwmapsdialog-geojson": "GeoJSON",
 	"visualeditor-mwmapsdialog-size": "Größe",
 	"visualeditor-mwmapsdialog-title": "Karte"
