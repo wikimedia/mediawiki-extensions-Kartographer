@@ -31,4 +31,13 @@ class DataModule extends ResourceLoaderModule {
 	public function enableModuleContentVersion() {
 		return true;
 	}
+
+	/**
+	 * @see ResourceLoaderModule::supportsURLLoading
+	 *
+	 * @return bool
+	 */
+	public function supportsURLLoading() {
+		return false; // always use getScript() to acquire JavaScript (even in debug mode)
+	}
 }
