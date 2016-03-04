@@ -51,6 +51,7 @@
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Tooltip for delete layers button when disabled",
 	"mapbox-control-zoomin-title": "Title for map zoom in button\n{{Identical|Zoom in}}",
 	"mapbox-control-zoomout-title": "Title for map zoom out button\n{{Identical|Zoom out}}",
+	"kartographer-fullscreen-close": "Title of the fullscreen close button\n{{Identical|Close}}",
 	"visualeditor-mwmapsdialog-geojson": "{{optional}}\nLabel for map GeoJSON data",
 	"visualeditor-mwmapsdialog-size": "Label for map size\n{{Identical|Size}}",
 	"visualeditor-mwmapsdialog-title": "Title of the map dialog\n{{Identical|Map}}"

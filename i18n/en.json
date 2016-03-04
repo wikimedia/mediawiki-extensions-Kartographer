@@ -49,6 +49,7 @@
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "No layers to delete",
 	"mapbox-control-zoomin-title": "Zoom in",
 	"mapbox-control-zoomout-title": "Zoom out",
+	"kartographer-fullscreen-close": "Close",
 	"visualeditor-mwmapsdialog-geojson": "GeoJSON",
 	"visualeditor-mwmapsdialog-size": "Size",
 	"visualeditor-mwmapsdialog-title": "Map"

@@ -22,7 +22,9 @@
 	},
 	"ResourceModules": {
 		"ext.kartographer": {
-			"class": "Kartographer\\DataModule",
+			"class": "Kartographer\\DataModule"
+		},
+		"ext.kartographer.style": {
 			"styles": [
 				"styles/kartographer.less"
 			],
@@ -110,6 +112,22 @@
 			],
 			"messages": [
 				"kartographer-attribution"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"ext.kartographer.fullscreen": {
+			"dependencies": [
+				"oojs-ui-windows"
+			],
+			"scripts": [
+				"modules/kartographer.MapDialog.js"
+			],
+			"messages": [
+				"kartographer-fullscreen-close",
+				"visualeditor-mwmapsdialog-title"
 			],
 			"targets": [
 				"mobile",

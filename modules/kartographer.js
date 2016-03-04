@@ -2,7 +2,7 @@
 
 	// Load this script after lib/mapbox-lib.js
 
-	var scale, urlFormat,
+	var scale, urlFormat, windowManager, mapDialog,
 		mapServer = mw.config.get( 'wgKartographerMapServer' ),
 		forceHttps = mapServer[ 4 ] === 's',
 		config = L.mapbox.config;
@@ -154,22 +154,69 @@
 		}
 	};
 
+	function getWindowManager() {
+		if ( !windowManager ) {
+			windowManager = new OO.ui.WindowManager();
+			mapDialog = new mw.kartographer.MapDialog();
+			$( 'body' ).append( windowManager.$element );
+			windowManager.addWindows( [ mapDialog ] );
+		}
+		return windowManager;
+	}
+
+	function openFullscreenMap( data ) {
+		mw.loader.using( 'ext.kartographer.fullscreen' ).done( function () {
+			getWindowManager().openWindow( mapDialog, data );
+		} );
+	}
+
+	function getMapData( $el ) {
+		// Prevent users from adding map divs directly via wikitext
+		if ( $el.attr( 'mw-data' ) !== 'interface' ) {
+			return;
+		}
+
+		return {
+			latitude: +$el.data( 'lat' ),
+			longitude: +$el.data( 'lon' ),
+			zoom: +$el.data( 'zoom' ),
+			style: $el.data( 'style' ),
+			overlays: $el.data( 'overlays' )
+		};
+	}
+
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
-		$content.find( '.mw-kartographer-interactive' ).each( function () {
-			var $this = $( this );
+		$content.find( '.mw-kartographer-link' ).each( function () {
+			var $this = $( this ),
+				data = getMapData( $this );
 
-			// Prevent users from adding map divs directly via wikitext
-			if ( $this.attr( 'mw-data' ) !== 'interface' ) {
-				return;
+			if ( data ) {
+				$this.on( 'click', function () {
+					openFullscreenMap( data );
+					return false;
+				} );
 			}
+		} );
 
-			mw.kartographer.createMap( this, {
-				latitude: +$this.data( 'lat' ),
-				longitude: +$this.data( 'lon' ),
-				zoom: +$this.data( 'zoom' ),
-				style: $this.data( 'style' ),
-				overlays: $this.data( 'overlays' )
-			} );
+		$content.find( '.mw-kartographer-interactive' ).each( function () {
+			var map,
+				$this = $( this ),
+				data = getMapData( $this );
+
+			if ( data ) {
+				map = mw.kartographer.createMap( this, data );
+
+				// TODO: Bind this to a fullscreen button in the map as well
+
+				map.doubleClickZoom.disable();
+				$this.on( 'dblclick', function () {
+					var center = map.getCenter();
+					data.latitude = center.lat;
+					data.longitude = center.lng;
+					data.zoom = map.getZoom();
+					openFullscreenMap( data );
+				} );
+			}
 		} );
 	} );
 }( jQuery, mediaWiki ) );

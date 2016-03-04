@@ -93,7 +93,7 @@ abstract class TagHandler {
 		$this->parser = $parser;
 		$this->frame = $frame;
 		$output = $parser->getOutput();
-		$output->addModuleStyles( 'ext.kartographer' );
+		$output->addModuleStyles( 'ext.kartographer.style' );
 
 		$this->status = Status::newGood();
 		$this->args = $args;
