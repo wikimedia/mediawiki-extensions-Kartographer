@@ -43,6 +43,7 @@
 				"lib/mapbox-style-fixes.css"
 			],
 			"messages": [
+				"kartographer-fullscreen-text",
 				"mapbox-control-zoomin-title",
 				"mapbox-control-zoomout-title"
 			],

@@ -39,6 +39,32 @@
 
 	mw.kartographer = {};
 
+	mw.kartographer.FullScreenControl = L.Control.extend( {
+		options: {
+			// Do not switch for RTL because zoom also stays in place
+			position: 'topright'
+		},
+
+		onAdd: function ( map ) {
+			var container = L.DomUtil.create( 'div', 'leaflet-control-mapbox-share leaflet-bar' ),
+				link = L.DomUtil.create( 'a', 'mapbox-share mapbox-icon mapbox-icon-share', container );
+
+			link.href = '#';
+			link.title = mw.msg( 'kartographer-fullscreen-text' );
+			this.map = map;
+
+			L.DomEvent.addListener( link, 'click', this.onShowFullScreen, this );
+			L.DomEvent.disableClickPropagation( container );
+
+			return container;
+		},
+
+		onShowFullScreen: function ( e ) {
+			L.DomEvent.stop( e );
+			mw.kartographer.openFullscreenMap( this.options.mapPositionData, this.map );
+		}
+	} );
+
 	/**
 	 * Create a new interactive map
 	 *
@@ -49,6 +75,7 @@
 	 * @param {number} data.zoom Zoom
 	 * @param {string} [data.style] Map style
 	 * @param {string[]} [data.overlays] Names of overlay groups to show
+	 * @param {boolean} [data.enableFullScreenButton] add zoom
 	 * @return {L.mapbox.Map} Map object
 	 */
 	mw.kartographer.createMap = function ( container, data ) {
@@ -69,6 +96,11 @@
 		}
 		map.setView( [ data.latitude, data.longitude ], data.zoom );
 		map.attributionControl.setPrefix( '' );
+
+		if ( data.enableFullScreenButton ) {
+			map.addControl( new mw.kartographer.FullScreenControl( { mapPositionData: data } ) );
+		}
+
 		L.tileLayer( mapServer + '/' + style + urlFormat, {
 			maxZoom: 18,
 			attribution: mw.message( 'kartographer-attribution' ).parse()
@@ -179,6 +211,8 @@
 				data.longitude = center.lng;
 				data.zoom = map.getZoom();
 			}
+			// full screen map should never show "full screen" button
+			data.enableFullScreenButton = false;
 			getWindowManager()
 				.openWindow( mapDialog, data )
 				.then( function ( opened ) { return opened; } )
@@ -225,9 +259,8 @@
 				data = getMapData( $this );
 
 			if ( data ) {
+				data.enableFullScreenButton = true;
 				map = mw.kartographer.createMap( this, data );
-
-				// TODO: Bind this to a fullscreen button in the map as well
 
 				map.doubleClickZoom.disable();
 				$this.on( 'dblclick', function () {
