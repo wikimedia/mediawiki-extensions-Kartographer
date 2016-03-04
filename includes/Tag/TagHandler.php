@@ -13,7 +13,7 @@ use Exception;
 use FormatJson;
 use Html;
 use Kartographer\SimpleStyleSanitizer;
-use Message;
+use Language;
 use Parser;
 use ParserOutput;
 use PPFrame;
@@ -63,6 +63,9 @@ abstract class TagHandler {
 	/** @var PPFrame */
 	protected $frame;
 
+	/** @var Language */
+	protected $language;
+
 	public function __construct() {
 		$this->defaultAttributes = [ 'class' => 'mw-kartographer', 'mw-data' => 'interface' ];
 	}
@@ -92,6 +95,7 @@ abstract class TagHandler {
 	private final function handle( $input, array $args, Parser $parser, PPFrame $frame ) {
 		$this->parser = $parser;
 		$this->frame = $frame;
+		$this->language = $parser->getTitle()->getPageLanguage();
 		$output = $parser->getOutput();
 		$output->addModuleStyles( 'ext.kartographer.style' );
 
@@ -140,8 +144,16 @@ abstract class TagHandler {
 		$this->status->merge( $status );
 	}
 
+	/**
+	 * When overridden in a descendant class, parses tag attributes in $this->args
+	 * @return void
+	 */
 	protected abstract function parseArgs();
 
+	/**
+	 * When overridden in a descendant class, returns tag HTML
+	 * @return string
+	 */
 	protected abstract function render();
 
 	protected function parseMapArgs() {
@@ -168,6 +180,11 @@ abstract class TagHandler {
 		return $value;
 	}
 
+	/**
+	 * @param $name
+	 * @param bool $default
+	 * @return float|string
+	 */
 	protected function getFloat( $name, $default = false ) {
 		$value = $this->getText( $name, $default, '/^-?[0-9]*\.?[0-9]+$/' );
 		if ( $value !== false ) {
@@ -177,7 +194,14 @@ abstract class TagHandler {
 		return $value;
 	}
 
-
+	/**
+	 * Returns value of a named tag attribute with optional validation
+	 *
+	 * @param string $name Attribute name
+	 * @param string|bool $default Default value or false to trigger error if absent
+	 * @param string|bool $regexp Regular expression to validate against or false to not validate
+	 * @return string
+	 */
 	protected function getText( $name, $default, $regexp = false ) {
 		if ( !isset( $this->args[$name] ) ) {
 			if ( $default === false ) {
@@ -313,20 +337,19 @@ abstract class TagHandler {
 		if ( !count( $errors ) ) {
 			throw new Exception( __METHOD__ , '(): attempt to report error when none took place' );
 		}
-		$lang = $this->parser->getTitle()->getPageLanguage();
 		$message = count( $errors ) > 1 ? 'kartographer-error-context-multi'
 			: 'kartographer-error-context';
 		// Status sucks, redoing a bunch of its code here
-		$errorText = implode( "\n* ", array_map( function( array $err ) use ( $lang ) {
+		$errorText = implode( "\n* ", array_map( function( array $err ) {
 				return wfMessage( $err['message'] )
 					->params( $err['params'] )
-					->inLanguage( $lang )
+					->inLanguage( $this->language )
 					->plain();
 			}, $errors ) );
 		if ( count( $errors ) > 1 ) {
 			$errorText = '* ' . $errorText;
 		}
 		return Html::rawElement( 'div', array( 'class' => 'mw-kartographer mw-kartographer-error' ),
-			wfMessage( $message, $this->tag, $errorText )->inLanguage( $lang )->parse() );
+			wfMessage( $message, $this->tag, $errorText )->inLanguage( $this->language )->parse() );
 	}
 }

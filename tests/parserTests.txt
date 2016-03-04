@@ -82,8 +82,14 @@
 <mapframe>
 !! input
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480/>
+<mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=left/>
+<mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=center/>
+<mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=right/>
 !! result
-<div class="mw-kartographer mw-kartographer-interactive" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;*&quot;]"></div>
+<div class="mw-kartographer mw-kartographer-interactive mw-halign-right" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;*&quot;]"></div>
+<div class="mw-kartographer mw-kartographer-interactive mw-halign-left" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;*&quot;]"></div>
+<div class="mw-kartographer mw-kartographer-interactive mw-halign-center" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;*&quot;]"></div>
+<div class="mw-kartographer mw-kartographer-interactive mw-halign-right" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;*&quot;]"></div>
 
 !! end
 
@@ -99,6 +105,10 @@ Error messages
 <li> Attribute "longitude" has an invalid value</li>
 <li> Attribute "zoom" is missing</li></ul>
 </div>
-<div class="mw-kartographer mw-kartographer-error">&lt;mapframe&gt;: Attribute "style" has an invalid value</div>
+<div class="mw-kartographer mw-kartographer-error"><p>&lt;mapframe&gt; problems:
+</p>
+<ul><li> Attribute "style" has an invalid value</li>
+<li> Attribute "align" has an invalid value</li></ul>
+</div>
 
 !! end

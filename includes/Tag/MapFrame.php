@@ -15,12 +15,15 @@ class MapFrame extends TagHandler {
 
 	private $width;
 	private $height;
+	private $align;
 
 	protected function parseArgs() {
 		$this->parseMapArgs();
 		// @todo: should these have defaults?
 		$this->width = $this->getInt( 'width' );
 		$this->height = $this->getInt( 'height' );
+		$defaultAlign = $this->language->isRTL() ? 'left' : 'right';
+		$this->align = $this->getText( 'align', $defaultAlign, '/^(left|center|right)$/' );
 	}
 
 	/**
@@ -28,6 +31,12 @@ class MapFrame extends TagHandler {
 	 */
 	protected function render() {
 		global $wgKartographerFrameMode;
+
+		$alignClasses = [
+			'left' => 'mw-halign-left',
+			'center' => 'mw-halign-center',
+			'right' => 'mw-halign-right',
+		];
 
 		switch ( $wgKartographerFrameMode ) {
 			/* Not implemented in Kartotherian yet
@@ -69,6 +78,9 @@ class MapFrame extends TagHandler {
 				$this->parser->getOutput()->addModules( 'ext.kartographer.live' );
 				$attrs = $this->defaultAttributes;
 				$attrs['class'] .= ' mw-kartographer-interactive';
+				if ( isset( $alignClasses[$this->align] ) ) {
+					$attrs['class'] .= ' ' . $alignClasses[$this->align];
+				}
 				$attrs['style'] = "width:{$this->width}px; height:{$this->height}px;";
 				$attrs['data-style'] = $this->style;
 				$attrs['data-zoom'] = $this->zoom;
