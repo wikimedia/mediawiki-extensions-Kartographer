@@ -1,22 +1,31 @@
 {
 	"@metadata": {
 		"authors": [
-			"Aftabuzzaman"
+			"Aftabuzzaman",
+			"Bodhisattwa"
 		]
 	},
+	"kartographer-attribution": "উইকিমিডিয়া মানচিত্র বেটা | মানচিত্রের উপাত্ত © [http://openstreetmap.org/copyright ওপেনস্ট্রীটম্যাপ অবদানকারী]",
 	"kartographer-broken-category": "ভাঙা মানচিত্রসহ পাতা",
 	"kartographer-broken-category-desc": "পাতা একটি অকার্যকর মানচিত্র অন্তর্ভুক্ত করে",
 	"kartographer-desc": "উইকি পাতাসমূহে মানচিত্র অন্তর্ভুক্ত করতে অনুমতি দেয়",
+	"kartographer-error-context": "&lt;$1&gt;: $2",
+	"kartographer-error-context-multi": "&lt;$1&gt; সমস্যা:\n$2",
 	"kartographer-error-bad_attr": "অ্যাট্রিবিউট '$1'-এ একটি অবৈধ মান আছে",
 	"kartographer-error-bad_data": "JSON সামগ্রী সঠিক নয়",
 	"kartographer-tracking-category": "মানচিত্রসহ পাতা",
 	"kartographer-tracking-category-desc": "পাতাটি একটি মানচিত্র অন্তর্ভুক্ত করে",
 	"leafletdraw-draw-handlers-circle-radius": "ব্যাসার্ধ",
+	"leafletdraw-draw-handlers-circle-tooltip-start": "একটি বৃত্ত আঁকতে ক্লিক করে টেনে আনুন",
 	"leafletdraw-draw-handlers-polyline-tooltip-start": "একটি রেখা আঁকা শুরু করতে ক্লিক করুন",
 	"leafletdraw-draw-handlers-simpleshape-tooltip-end": "অঙ্কন শেষ করতে মাউস ছেড়ে দিন",
-	"leafletdraw-draw-toolbar-actions-text": "বাতিল",
+	"leafletdraw-draw-toolbar-actions-text": "বাতিল করুন",
 	"leafletdraw-draw-toolbar-buttons-circle": "একটি বৃত্ত আঁকুন",
-	"leafletdraw-edit-toolbar-actions-cancel-text": "বাতিল",
+	"leafletdraw-edit-toolbar-actions-cancel-text": "বাতিল করুন",
 	"leafletdraw-edit-toolbar-actions-save-text": "সংরক্ষণ",
-	"leafletdraw-edit-toolbar-actions-save-title": "পরিবর্তন সংরক্ষণ"
+	"leafletdraw-edit-toolbar-actions-save-title": "পরিবর্তন সংরক্ষণ করুন",
+	"kartographer-fullscreen-close": "বন্ধ করুন",
+	"kartographer-fullscreen-text": "পূর্ণ স্ক্রিনে দেখান",
+	"visualeditor-mwmapsdialog-size": "আকার",
+	"visualeditor-mwmapsdialog-title": "মানচিত্র"
 }

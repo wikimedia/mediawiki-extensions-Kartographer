@@ -49,6 +49,8 @@
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Nessun livello da cancellare",
 	"mapbox-control-zoomin-title": "Zoom avanti",
 	"mapbox-control-zoomout-title": "Zoom indietro",
+	"kartographer-fullscreen-close": "Chiudi",
+	"kartographer-fullscreen-text": "Visualizza a schermo intero",
 	"visualeditor-mwmapsdialog-size": "Dimensione",
 	"visualeditor-mwmapsdialog-title": "Mappa"
 }

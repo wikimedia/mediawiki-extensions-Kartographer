@@ -49,6 +49,8 @@
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "没有要删除的图层",
 	"mapbox-control-zoomin-title": "放大",
 	"mapbox-control-zoomout-title": "缩小",
+	"kartographer-fullscreen-close": "关闭",
+	"kartographer-fullscreen-text": "全屏显示",
 	"visualeditor-mwmapsdialog-size": "大小",
 	"visualeditor-mwmapsdialog-title": "地图"
 }

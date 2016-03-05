@@ -3,7 +3,8 @@
 		"authors": [
 			"Mattho69",
 			"Gomoko",
-			"Orlodrim"
+			"Orlodrim",
+			"Wladek92"
 		]
 	},
 	"kartographer-attribution": "Bêta des cartes de Wikimédia | Données de carte © [http://openstreetmap.org/copyright contributeurs de OpenStreetMap]",
@@ -51,6 +52,8 @@
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Aucune couche à supprimer",
 	"mapbox-control-zoomin-title": "Zoom avant",
 	"mapbox-control-zoomout-title": "Zoom arrière",
+	"kartographer-fullscreen-close": "Fermer",
+	"kartographer-fullscreen-text": "Afficher en plein écran",
 	"visualeditor-mwmapsdialog-size": "Taille",
 	"visualeditor-mwmapsdialog-title": "Carte"
 }
