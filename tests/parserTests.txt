@@ -71,10 +71,10 @@
 }
 </maplink>
 !! result
-<p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20">Foo</a>
-</p><p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20">2</a>
-</p><p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20">a</a>
-</p><p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20">b</a>
+<p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_b34053f88dea58fe70a7da09c558f792394f6e11&quot;]">Foo</a>
+</p><p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_2e4133dc429eb3c3abf4e45916c073e841f9d193&quot;]">2</a>
+</p><p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_dd3c7bae539f7c3747c64d043c97e1a8834fbc8f&quot;]">a</a>
+</p><p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_8ce73f7395e427bd6f462824717c0a214b3ca564&quot;]">b</a>
 </p>
 !! end
 
@@ -86,10 +86,10 @@
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=center/>
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=right/>
 !! result
-<div class="mw-kartographer mw-kartographer-interactive floatright" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;*&quot;]"></div>
-<div class="mw-kartographer mw-kartographer-interactive floatleft" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;*&quot;]"></div>
-<div class="mw-kartographer mw-kartographer-interactive center" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;*&quot;]"></div>
-<div class="mw-kartographer mw-kartographer-interactive floatright" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;*&quot;]"></div>
+<div class="mw-kartographer mw-kartographer-interactive floatright" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20"></div>
+<div class="mw-kartographer mw-kartographer-interactive floatleft" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20"></div>
+<div class="mw-kartographer mw-kartographer-interactive center" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20"></div>
+<div class="mw-kartographer mw-kartographer-interactive floatright" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20"></div>
 
 !! end
 

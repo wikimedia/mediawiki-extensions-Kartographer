@@ -51,10 +51,10 @@ class MapFrame extends TagHandler {
 				);
 
 				$dataParam = '';
-				$groups = $this->groups;
-				if ( $groups ) {
-					array_unshift( $groups, $this->parser->getTitle()->getPrefixedDBkey() );
-					$dataParam = '?data=' . implode( '|', array_map( 'rawurlencode', $groups ) );
+				$showGroups = $this->showGroups;
+				if ( $showGroups ) {
+					array_unshift( $showGroups, $this->parser->getTitle()->getPrefixedDBkey() );
+					$dataParam = '?data=' . implode( '|', array_map( 'rawurlencode', $showGroups ) );
 				}
 				$imgAttrs = array(
 					'src' => $statParams . '.jpeg' . $dataParam,
@@ -86,8 +86,8 @@ class MapFrame extends TagHandler {
 				$attrs['data-zoom'] = $this->zoom;
 				$attrs['data-lat'] = $this->lat;
 				$attrs['data-lon'] = $this->lon;
-				if ( $this->groups ) {
-					$attrs['data-overlays'] = FormatJson::encode( $this->groups, false,
+				if ( $this->showGroups ) {
+					$attrs['data-overlays'] = FormatJson::encode( $this->showGroups, false,
 						FormatJson::ALL_OK );
 				}
 				$this->parser->getOutput()->setExtensionData( 'kartographer_interact', true );

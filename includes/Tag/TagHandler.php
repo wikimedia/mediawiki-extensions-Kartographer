@@ -48,8 +48,11 @@ abstract class TagHandler {
 	/** @var string */
 	protected $style;
 
-	/** @var string[] */
-	protected $groups;
+	/** @var string name of the group, or null for private */
+	protected $groupName;
+
+	/** @var string[] list of groups to show */
+	protected $showGroups = [];
 
 	/** @var string[] */
 	protected $defaultAttributes;
@@ -167,8 +170,21 @@ abstract class TagHandler {
 	}
 
 	private function parseGroups() {
-		$text = $this->getText( 'group', '*', '/^[a-zA-Z0-9]+(\s*,\s*[a-zA-Z0-9]+)*$/' );
-		$this->groups = array_map( 'trim', explode( ',', $text ) );
+		$this->groupName = $this->getText( 'group', null, '/^[a-zA-Z0-9]+$/' );
+
+		$text = $this->getText( 'show', null, '/^[a-zA-Z0-9]+(\s*,\s*[a-zA-Z0-9]+)*$/' );
+		if ( $text !== null ) {
+			$this->showGroups = array_map( 'trim', explode( ',', $text ) );
+		}
+
+		// Make sure the current group is shown for this map, even if there is no geojson
+		// Private group will be added during the save, as it requires hash calculation
+		if ( $this->groupName !== null ) {
+			$this->showGroups[] = $this->groupName;
+		}
+
+		// Make sure there are no group name duplicates
+		$this->showGroups = array_unique( $this->showGroups );
 	}
 
 	protected function getInt( $name, $default = false ) {
@@ -232,9 +248,15 @@ abstract class TagHandler {
 		$this->counter = $this->doCountersRecursive( $this->geometries, $counters );
 		$output->setExtensionData( 'kartographer_counters', $counters );
 
+		if ( $this->groupName === null ) {
+			$group = '_' . sha1( FormatJson::encode( $this->geometries, false, FormatJson::ALL_OK ) );
+			$this->groupName = $group;
+			$this->showGroups[] = $group;
+			// no need to array_unique() because it's impossible to manually add a private group
+		} else {
+			$group = $this->groupName;
+		}
 
-		//$group = '_' . sha1( FormatJson::encode( $this->geometries, false, FormatJson::ALL_OK ) );
-		$group = '*';
 		$data = $output->getExtensionData( 'kartographer_data' ) ?: new stdClass();
 		if ( isset( $data->$group ) ) {
 			$data->$group = array_merge( $data->$group, $this->geometries );

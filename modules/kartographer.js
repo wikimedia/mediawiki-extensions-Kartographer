@@ -29,10 +29,6 @@
 		return brackets[ brackets.length - 1 ];
 	}
 
-	function isPrivateGroup( groupName ) {
-		return groupName[ 0 ] === '_';
-	}
-
 	scale = bracketDevicePixelRatio();
 	scale = ( scale === 1 ) ? '' : ( '@' + scale + 'x' );
 	urlFormat = '/{z}/{x}/{y}' + scale + '.png';
@@ -108,19 +104,10 @@
 
 		if ( data.overlays ) {
 			$.each( data.overlays, function ( index, group ) {
-				if ( group === '*' ) {
-					$.each( mapData, function ( k, d ) {
-						if ( !isPrivateGroup( k ) ) {
-							mw.kartographer.addDataLayer( map, d );
-						}
-					} );
-				} else if ( mapData.hasOwnProperty( group ) ) {
-					if ( index + 1 === data.overlays.length ) {
-						map.kartographerLayer =
-							mw.kartographer.addDataLayer( map, mapData[ group ] );
-					} else {
-						mw.kartographer.addDataLayer( map, mapData[ group ] );
-					}
+				if ( mapData.hasOwnProperty( group ) ) {
+					mw.kartographer.addDataLayer( map, mapData[ group ] );
+				} else {
+					mw.log( 'Layer not found "' + group + '"' );
 				}
 			} );
 		}

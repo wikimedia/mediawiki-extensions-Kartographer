@@ -2,6 +2,7 @@
 
 namespace Kartographer\Tag;
 
+use FormatJson;
 use Html;
 
 /**
@@ -29,6 +30,10 @@ class MapLink extends TagHandler {
 		$attrs['data-zoom'] = $this->zoom;
 		$attrs['data-lat'] = $this->lat;
 		$attrs['data-lon'] = $this->lon;
+		if ( $this->showGroups ) {
+			$attrs['data-overlays'] = FormatJson::encode( $this->showGroups, false,
+				FormatJson::ALL_OK );
+		}
 
 		return Html::rawElement( 'a', $attrs, $text );
 	}
