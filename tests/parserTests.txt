@@ -86,10 +86,10 @@
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=center/>
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=right/>
 !! result
-<div class="mw-kartographer mw-kartographer-interactive mw-halign-right" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;*&quot;]"></div>
-<div class="mw-kartographer mw-kartographer-interactive mw-halign-left" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;*&quot;]"></div>
-<div class="mw-kartographer mw-kartographer-interactive mw-halign-center" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;*&quot;]"></div>
-<div class="mw-kartographer mw-kartographer-interactive mw-halign-right" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;*&quot;]"></div>
+<div class="mw-kartographer mw-kartographer-interactive floatright" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;*&quot;]"></div>
+<div class="mw-kartographer mw-kartographer-interactive floatleft" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;*&quot;]"></div>
+<div class="mw-kartographer mw-kartographer-interactive center" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;*&quot;]"></div>
+<div class="mw-kartographer mw-kartographer-interactive floatright" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;*&quot;]"></div>
 
 !! end
 

@@ -33,9 +33,9 @@ class MapFrame extends TagHandler {
 		global $wgKartographerFrameMode;
 
 		$alignClasses = [
-			'left' => 'mw-halign-left',
-			'center' => 'mw-halign-center',
-			'right' => 'mw-halign-right',
+			'left' => 'floatleft',
+			'center' => 'center',
+			'right' => 'floatright',
 		];
 
 		switch ( $wgKartographerFrameMode ) {
