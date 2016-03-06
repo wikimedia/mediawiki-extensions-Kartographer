@@ -88,7 +88,11 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		label: ve.msg( 'visualeditor-mwmapsdialog-geojson' )
 	} );
 
-	panel.$element.append( this.dimensionsField.$element, this.$mapContainer, this.geoJsonField.$element );
+	panel.$element.append(
+		this.dimensionsField.$element,
+		this.$mapContainer,
+		this.geoJsonField.$element
+	);
 	this.$body.append( panel.$element );
 };
 
@@ -115,6 +119,18 @@ ve.ui.MWMapsDialog.prototype.onDimensionsChange = function () {
 	this.map.invalidateSize();
 	if ( center ) {
 		this.map.setView( center );
+	}
+};
+
+/**
+ * Reset the map's position
+ */
+ve.ui.MWMapsDialog.prototype.resetMapPosition = function () {
+	var position;
+
+	if ( this.map ) {
+		position = this.getInitialMapPosition();
+		this.map.setView( [ position.latitude, position.longitude ], position.zoom );
 	}
 };
 
@@ -190,30 +206,16 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 	}
 
 	this.mapPromise = mw.loader.using( 'ext.kartographer.editor' ).then( function () {
-		var latitude, longitude, zoom, geoJsonLayer, drawControl,
-			mwData = dialog.selectedNode && dialog.selectedNode.getAttribute( 'mw' ),
-			mwAttrs = mwData && mwData.attrs,
-			defaultShapeOptions = { shapeOptions: L.mapbox.simplestyle.style( {} ) };
+		var geoJsonLayer, drawControl,
+			defaultShapeOptions = { shapeOptions: L.mapbox.simplestyle.style( {} ) },
+			mapPosition = dialog.getInitialMapPosition();
 
-		if ( mwAttrs && mwAttrs.zoom ) {
-			latitude = +mwAttrs.latitude;
-			longitude = +mwAttrs.longitude;
-			zoom = +mwAttrs.zoom;
-		} else {
-			latitude = 0;
-			longitude = 0;
-			zoom = 2;
-		}
-
-		dialog.map = mw.kartographer.createMap( dialog.$map[ 0 ], {
-			latitude: latitude,
-			longitude: longitude,
-			zoom: zoom
-			// TODO: Support style editing
-		} );
+		// TODO: Support 'style' editing
+		dialog.map = mw.kartographer.createMap( dialog.$map[ 0 ], mapPosition );
 
 		dialog.updateGeoJson();
 		dialog.onDimensionsChange();
+		dialog.resetMapPosition();
 
 		geoJsonLayer = mw.kartographer.getKartographerLayer( dialog.map );
 		drawControl = new L.Control.Draw( {
@@ -248,6 +250,32 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 			.on( 'draw:deleted', update )
 			.on( 'draw:created', created );
 	} );
+};
+
+/**
+ * Get the initial map position (coordinates and zoom level)
+ *
+ * @return {Object} Object containing latitude, longitude and zoom
+ */
+ve.ui.MWMapsDialog.prototype.getInitialMapPosition = function () {
+	var latitude, longitude, zoom,
+		mwData = this.selectedNode && this.selectedNode.getAttribute( 'mw' ),
+		mwAttrs = mwData && mwData.attrs;
+
+	if ( mwAttrs && mwAttrs.zoom ) {
+		latitude = +mwAttrs.latitude;
+		longitude = +mwAttrs.longitude;
+		zoom = +mwAttrs.zoom;
+	} else {
+		latitude = 30;
+		longitude = 0;
+		zoom = 2;
+	}
+	return {
+		latitude: latitude,
+		longitude: longitude,
+		zoom: zoom
+	};
 };
 
 /**
