@@ -6,6 +6,7 @@
 		]
 	},
 	"kartographer-attribution": "Mapas beta Wikimedia | Dados de mapa © [http://openstreetmap.org/copyright contribuidores OpenStreetMap]",
+	"kartographer-error-missing-attr": "Atributo \"$1\" em falta",
 	"kartographer-error-bad_attr": "O atributo \"$1\" tem um valor inválido",
 	"kartographer-tracking-category": "Páginas com mapas",
 	"leafletdraw-draw-handlers-polyline-tooltip-cont": "Clique para continuar a desenhar esta linha",
@@ -18,6 +19,7 @@
 	"leafletdraw-edit-toolbar-actions-save-title": "Gravar alterações",
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Sem camadas para editar",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Sem camadas para eliminar",
+	"kartographer-fullscreen-close": "Fechar",
 	"visualeditor-mwmapsdialog-size": "Tamanho",
 	"visualeditor-mwmapsdialog-title": "Mapa"
 }

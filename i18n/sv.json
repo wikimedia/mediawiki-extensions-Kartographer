@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"WikiPhoenix"
+			"WikiPhoenix",
+			"Rockyfelle"
 		]
 	},
 	"kartographer-attribution": "Wikimedia maps beta | Kartdata © [http://openstreetmap.org/copyright OpenStreetMaps bidragsgivare]",
@@ -18,6 +19,7 @@
 	"leafletdraw-edit-toolbar-buttons-edit": "Redigera lager",
 	"mapbox-control-zoomin-title": "Zooma in",
 	"mapbox-control-zoomout-title": "Zooma ut",
+	"kartographer-fullscreen-text": "Visa i fullskärm",
 	"visualeditor-mwmapsdialog-size": "Storlek",
 	"visualeditor-mwmapsdialog-title": "Karta"
 }

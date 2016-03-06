@@ -6,9 +6,11 @@
 		]
 	},
 	"kartographer-broken-category": "Puslapiai su neveikiančiais žemėlapiais",
+	"kartographer-error-bad_attr": "Atributas „$1“ turi neleistiną reikšmę",
 	"kartographer-tracking-category": "Puslapiai su žemėlapiais",
 	"leafletdraw-draw-handlers-circle-radius": "Spindulys",
 	"leafletdraw-draw-toolbar-actions-text": "Atšaukti",
+	"leafletdraw-draw-toolbar-actions-title": "Atšaukti piešinį",
 	"leafletdraw-draw-toolbar-buttons-circle": "Piešti apskritimą",
 	"leafletdraw-draw-toolbar-buttons-polygon": "Piešti poligoną",
 	"leafletdraw-draw-toolbar-buttons-rectangle": "Piešti stačiakampį",
@@ -18,5 +20,6 @@
 	"leafletdraw-edit-toolbar-actions-save-title": "Išsaugoti pakeitimus",
 	"leafletdraw-edit-toolbar-buttons-edit": "Keisti sluoksnius",
 	"leafletdraw-edit-toolbar-buttons-remove": "Ištrinti sluoksnius",
-	"kartographer-fullscreen-close": "Uždaryti"
+	"kartographer-fullscreen-close": "Uždaryti",
+	"kartographer-fullscreen-text": "Rodyti per visą ekraną"
 }

@@ -14,5 +14,7 @@
 	"leafletdraw-edit-toolbar-buttons-remove": "حذف طبقات",
 	"mapbox-control-zoomin-title": "تكبير",
 	"mapbox-control-zoomout-title": "تصغير",
+	"kartographer-fullscreen-close": "أغلق",
+	"kartographer-fullscreen-text": "اعرض بملء الشاشة",
 	"visualeditor-mwmapsdialog-title": "خريطة"
 }

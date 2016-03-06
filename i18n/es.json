@@ -50,6 +50,8 @@
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "No hay capas que eliminar",
 	"mapbox-control-zoomin-title": "Acercar",
 	"mapbox-control-zoomout-title": "Alejar",
+	"kartographer-fullscreen-close": "Cerrar",
+	"kartographer-fullscreen-text": "Mostrar en pantalla completa",
 	"visualeditor-mwmapsdialog-size": "Tamaño",
 	"visualeditor-mwmapsdialog-title": "Mapa"
 }
