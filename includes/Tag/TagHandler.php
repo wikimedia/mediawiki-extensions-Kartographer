@@ -170,6 +170,14 @@ abstract class TagHandler {
 	}
 
 	private function parseGroups() {
+		global $wgKartographerWikivoyageMode;
+
+		if ( !$wgKartographerWikivoyageMode ) {
+			// if we ignore all the 'group' and 'show' parameters,
+			// each tag stays private, and will be unable to share data
+			return;
+		}
+
 		$this->groupName = $this->getText( 'group', null, '/^[a-zA-Z0-9]+$/' );
 
 		$text = $this->getText( 'show', null, '/^[a-zA-Z0-9]+(\s*,\s*[a-zA-Z0-9]+)*$/' );
