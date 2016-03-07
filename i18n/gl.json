@@ -11,6 +11,7 @@
 	"kartographer-desc": "Permite insertar mapas nas páxinas da wiki",
 	"kartographer-error-context": "&lt;$1&gt;: $2",
 	"kartographer-error-context-multi": "problemas de &lt;$1&gt;:\n$2",
+	"kartographer-error-missing-attr": "Falta o atributo \"$1\"",
 	"kartographer-error-bad_attr": "O atributo '$1' ten un valor non válido",
 	"kartographer-error-bad_data": "O contido JSON non é correcto",
 	"kartographer-tracking-category": "Páxinas con mapas",
@@ -49,6 +50,8 @@
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Non hai capas para borrar",
 	"mapbox-control-zoomin-title": "Ampliar",
 	"mapbox-control-zoomout-title": "Reducir",
+	"kartographer-fullscreen-close": "Pechar",
+	"kartographer-fullscreen-text": "Mostrar a pantalla completa",
 	"visualeditor-mwmapsdialog-size": "Tamaño",
 	"visualeditor-mwmapsdialog-title": "Mapa"
 }

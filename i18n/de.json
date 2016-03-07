@@ -52,6 +52,7 @@
 	"kartographer-fullscreen-close": "Schließen",
 	"kartographer-fullscreen-text": "Im Vollbild anzeigen",
 	"visualeditor-mwmapsdialog-geojson": "GeoJSON",
+	"visualeditor-mwmapsdialog-reset-map": "Kartenposition zurücksetzen",
 	"visualeditor-mwmapsdialog-size": "Größe",
 	"visualeditor-mwmapsdialog-title": "Karte"
 }
