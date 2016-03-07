@@ -359,6 +359,7 @@ abstract class TagHandler {
 
 	/**
 	 * @return string
+	 * @throws Exception
 	 */
 	private function reportError() {
 		$this->parser->getOutput()->setExtensionData( 'kartographer_broken', true );
@@ -366,7 +367,7 @@ abstract class TagHandler {
 			$this->status->getErrorsByType( 'warning' )
 		);
 		if ( !count( $errors ) ) {
-			throw new Exception( __METHOD__ , '(): attempt to report error when none took place' );
+			throw new Exception( __METHOD__ . '(): attempt to report error when none took place' );
 		}
 		$message = count( $errors ) > 1 ? 'kartographer-error-context-multi'
 			: 'kartographer-error-context';
