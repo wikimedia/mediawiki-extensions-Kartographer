@@ -50,6 +50,9 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	this.mapPromise = null;
 	this.scalable = null;
 	this.updatingGeoJson = false;
+	this.startDimensions = null;
+	this.initialGeoJson = null;
+	this.positionModified = false;
 
 	this.dimensions = new ve.ui.DimensionsWidget();
 
@@ -120,18 +123,38 @@ ve.ui.MWMapsDialog.prototype.onDimensionsChange = function () {
 	if ( center ) {
 		this.map.setView( center );
 	}
+	this.updateActions();
 };
 
 /**
  * Reset the map's position
  */
 ve.ui.MWMapsDialog.prototype.resetMapPosition = function () {
-	var position;
+	var position,
+		dialog = this;
 
 	if ( this.map ) {
 		position = this.getInitialMapPosition();
 		this.map.setView( [ position.latitude, position.longitude ], position.zoom );
+		this.positionModified = false;
+		this.updateActions();
+
+		this.map.once( 'movestart', function () {
+			dialog.positionModified = true;
+			dialog.updateActions();
+		} );
 	}
+};
+
+/**
+ * Update action states
+ */
+ve.ui.MWMapsDialog.prototype.updateActions = function () {
+	var modified = this.positionModified ||
+		!ve.compare( this.dimensions.getDimensions(), this.startDimensions ) ||
+		this.input.getValue() !== this.initialGeoJson;
+
+	this.actions.setAbilities( { done: modified } );
 };
 
 /**
@@ -180,6 +203,7 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 	return ve.ui.MWMapsDialog.super.prototype.getSetupProcess.call( this, data )
 		.next( function () {
 			this.input.clearUndoStack();
+			this.positionModified = false;
 
 			this.actions.setMode( this.selectedNode ? 'edit' : 'insert' );
 
@@ -192,6 +216,10 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 			// TODO: Support block/inline conversion
 
 			this.dimensions.setDimensions( this.scalable.getCurrentDimensions() );
+			this.startDimensions = ve.copy( this.dimensions.getDimensions() );
+			this.initialGeoJson = this.input.getValue();
+
+			this.updateActions();
 		}, this );
 };
 
@@ -238,6 +266,7 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 			} finally {
 				dialog.updatingGeoJson = false;
 			}
+			dialog.updateActions();
 		}
 
 		function created( e ) {
@@ -290,6 +319,7 @@ ve.ui.MWMapsDialog.prototype.updateGeoJson = function () {
 
 	isValid = mw.kartographer.updateKartographerLayer( this.map, this.input.getValue() );
 	this.input.setValidityFlag( isValid );
+	this.updateActions();
 };
 
 /**
