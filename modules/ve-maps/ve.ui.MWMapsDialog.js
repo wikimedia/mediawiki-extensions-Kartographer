@@ -66,6 +66,10 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		.toggleLineNumbers( false )
 		.setRTL( false );
 
+	this.resetMapButton = new OO.ui.ButtonWidget( {
+		label: ve.msg( 'visualeditor-mwmapsdialog-reset-map' )
+	} );
+
 	// Events
 	this.input.connect( this, {
 		change: 'updateGeoJson',
@@ -75,6 +79,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		widthChange: 'onDimensionsChange',
 		heightChange: 'onDimensionsChange'
 	} );
+	this.resetMapButton.connect( this, { click: 'resetMapPosition' } );
 
 	panel = new OO.ui.PanelLayout( {
 		padded: true,
@@ -86,6 +91,8 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		label: ve.msg( 'visualeditor-mwmapsdialog-size' )
 	} );
 
+	this.$resetMapButtonContainer = $( '<div>' ).addClass( 've-ui-mwMapsDialog-resetMapButton' );
+
 	this.geoJsonField = new OO.ui.FieldLayout( this.input, {
 		align: 'top',
 		label: ve.msg( 'visualeditor-mwmapsdialog-geojson' )
@@ -94,6 +101,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	panel.$element.append(
 		this.dimensionsField.$element,
 		this.$mapContainer,
+		this.$resetMapButtonContainer.append( this.resetMapButton.$element ),
 		this.geoJsonField.$element
 	);
 	this.$body.append( panel.$element );
@@ -138,10 +146,12 @@ ve.ui.MWMapsDialog.prototype.resetMapPosition = function () {
 		this.map.setView( [ position.latitude, position.longitude ], position.zoom );
 		this.positionModified = false;
 		this.updateActions();
+		this.resetMapButton.setDisabled( true );
 
 		this.map.once( 'movestart', function () {
 			dialog.positionModified = true;
 			dialog.updateActions();
+			dialog.resetMapButton.setDisabled( false );
 		} );
 	}
 };
@@ -214,6 +224,8 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 			}
 
 			// TODO: Support block/inline conversion
+
+			this.$resetMapButtonContainer.toggle( !!this.selectedNode );
 
 			this.dimensions.setDimensions( this.scalable.getCurrentDimensions() );
 			this.startDimensions = ve.copy( this.dimensions.getDimensions() );

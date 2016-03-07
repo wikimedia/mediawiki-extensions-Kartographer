@@ -13,3 +13,8 @@
 .ve-ui-mwMapsDialog-geoJSONWidget {
 	max-width: none;
 }
+
+.ve-ui-mwMapsDialog-resetMapButton {
+	margin-bottom: 1em;
+	text-align: center;
+}

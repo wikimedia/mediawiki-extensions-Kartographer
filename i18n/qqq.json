@@ -54,6 +54,7 @@
 	"kartographer-fullscreen-close": "Title of the fullscreen close button\n{{Identical|Close}}",
 	"kartographer-fullscreen-text": "Tooltip for a button that puts the map into full screen",
 	"visualeditor-mwmapsdialog-geojson": "{{optional}}\nLabel for map GeoJSON data",
+	"visualeditor-mwmapsdialog-reset-map": "Label for resetting the map's position",
 	"visualeditor-mwmapsdialog-size": "Label for map size\n{{Identical|Size}}",
 	"visualeditor-mwmapsdialog-title": "Title of the map dialog\n{{Identical|Map}}"
 }

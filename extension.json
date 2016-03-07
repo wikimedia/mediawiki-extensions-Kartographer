@@ -164,6 +164,7 @@
 				"visualeditor-mwmapsdialog-mode-link",
 				"visualeditor-mwmapsdialog-mode-interactive",
 				"visualeditor-mwmapsdialog-mode-static",
+				"visualeditor-mwmapsdialog-reset-map",
 				"visualeditor-mwmapsdialog-size",
 				"visualeditor-mwmapsdialog-title"
 			],
