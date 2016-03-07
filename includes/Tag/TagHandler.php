@@ -325,7 +325,8 @@ abstract class TagHandler {
 					$marker = $isNumber ? strval( $count ) : chr( ord( 'a' ) + $count - 1 );
 					$item->properties->{'marker-symbol'} = $marker;
 					if ( $firstMarker === false ) {
-						$firstMarker = $marker;
+						// GeoJSON is in lowercase, but the letter is shown as uppercase
+						$firstMarker = mb_strtoupper( $marker );
 					}
 				}
 			}
