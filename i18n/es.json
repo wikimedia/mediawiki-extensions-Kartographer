@@ -12,6 +12,7 @@
 	"kartographer-desc": "Permite insertar mapas en una página wiki",
 	"kartographer-error-context": "&lt;$1&gt;: $2",
 	"kartographer-error-context-multi": "Problemas de &lt;$1&gt;:\n$2",
+	"kartographer-error-missing-attr": "Falta el atributo \"$1\"",
 	"kartographer-error-bad_attr": "El atributo '$1' tiene un valor no válido",
 	"kartographer-error-bad_data": "El contenido JSON no es correcto",
 	"kartographer-tracking-category": "Páginas con mapas",
@@ -52,6 +53,7 @@
 	"mapbox-control-zoomout-title": "Alejar",
 	"kartographer-fullscreen-close": "Cerrar",
 	"kartographer-fullscreen-text": "Mostrar en pantalla completa",
+	"visualeditor-mwmapsdialog-reset-map": "Restablecer la posición en el mapa",
 	"visualeditor-mwmapsdialog-size": "Tamaño",
 	"visualeditor-mwmapsdialog-title": "Mapa"
 }

@@ -54,6 +54,7 @@
 	"mapbox-control-zoomout-title": "Zoom arrière",
 	"kartographer-fullscreen-close": "Fermer",
 	"kartographer-fullscreen-text": "Afficher en plein écran",
+	"visualeditor-mwmapsdialog-reset-map": "Réinitialiser la position de la carte",
 	"visualeditor-mwmapsdialog-size": "Taille",
 	"visualeditor-mwmapsdialog-title": "Carte"
 }

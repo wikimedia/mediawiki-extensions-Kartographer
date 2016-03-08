@@ -20,6 +20,7 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Sem camadas para editar",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Sem camadas para eliminar",
 	"kartographer-fullscreen-close": "Fechar",
+	"visualeditor-mwmapsdialog-reset-map": "Redefinir posicionamento do mapa",
 	"visualeditor-mwmapsdialog-size": "Tamanho",
 	"visualeditor-mwmapsdialog-title": "Mapa"
 }
