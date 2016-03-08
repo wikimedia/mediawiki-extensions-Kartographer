@@ -115,6 +115,14 @@
 		return map;
 	};
 
+	mw.kartographer.dataLayerOpts = {
+		// Disable double-sanitization by mapbox's internal sanitizer
+		// because geojson has already passed through the MW internal sanitizer
+		sanitizer: function ( v ) {
+			return v;
+		}
+	};
+
 	/**
 	 * Create a new GeoJSON layer and add it to map.
 	 *
@@ -123,7 +131,7 @@
 	 */
 	mw.kartographer.addDataLayer = function ( map, geoJson ) {
 		try {
-			return L.mapbox.featureLayer( geoJson ).addTo( map );
+			return L.mapbox.featureLayer( geoJson, mw.kartographer.dataLayerOpts ).addTo( map );
 		} catch ( e ) {
 			mw.log( e );
 		}
