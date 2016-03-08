@@ -96,7 +96,14 @@ ve.ce.MWMapsNode.prototype.onSetup = function () {
  * Update the map rendering
  */
 ve.ce.MWMapsNode.prototype.update = function () {
-	var requiresInteractive = this.requiresInteractive();
+	var requiresInteractive = this.requiresInteractive(),
+		align = ve.getProp( this.model.getAttribute( 'mw' ), 'attrs', 'align' ) ||
+			( this.model.doc.getDir() === 'ltr' ? 'right' : 'left' ),
+		alignClasses = {
+			left: 'floatleft',
+			center: 'center',
+			right: 'floatright'
+		};
 
 	if ( requiresInteractive ) {
 		if ( !this.map && this.getRoot() ) {
@@ -114,6 +121,9 @@ ve.ce.MWMapsNode.prototype.update = function () {
 		this.updateStatic();
 		$( '<img>' ).attr( 'src', this.model.getUrl( 1000, 1000 ) );
 	}
+	this.$element
+		.removeClass( 'floatleft center floatright' )
+		.addClass( alignClasses[ align ] );
 };
 
 /**
