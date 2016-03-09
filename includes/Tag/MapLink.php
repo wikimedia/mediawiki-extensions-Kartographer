@@ -4,6 +4,7 @@ namespace Kartographer\Tag;
 
 use FormatJson;
 use Html;
+use Kartographer\CoordFormatter;
 
 /**
  * The <maplink> tag creates a link that, when clicked,
@@ -20,10 +21,11 @@ class MapLink extends TagHandler {
 		if ( is_numeric( $counter ) ) {
 			$counter = $this->parser->getTargetLanguage()->formatNum( $counter );
 		}
-		$text = $this->parser->recursiveTagParse(
-			$this->getText( 'text', $counter, '/\S+/' ),
-			$this->frame
-		);
+		$text = $this->getText( 'text', null, '/\S+/' );
+		if ( $text === null ) {
+			$text = $counter ?: CoordFormatter::format( $this->lat, $this->lon, $this->language );
+		}
+		$text = $this->parser->recursiveTagParse( $text, $this->frame );
 		$attrs = $this->defaultAttributes;
 		$attrs['class'] .= ' mw-kartographer-link';
 		$attrs['data-style'] = $this->style;
