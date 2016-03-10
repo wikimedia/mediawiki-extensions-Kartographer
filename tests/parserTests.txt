@@ -58,7 +58,7 @@
 }
 </maplink>
 
-<maplink latitude=10 longitude=20 zoom=13>
+<maplink latitude=10 longitude=20 zoom=13 mapstyle=osm>
 {
 "type": "Feature",
 	"geometry": {
@@ -74,7 +74,7 @@
 <p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_b34053f88dea58fe70a7da09c558f792394f6e11&quot;]">Foo</a>
 </p><p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_2e4133dc429eb3c3abf4e45916c073e841f9d193&quot;]">2</a>
 </p><p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_dd3c7bae539f7c3747c64d043c97e1a8834fbc8f&quot;]">A</a>
-</p><p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_8ce73f7395e427bd6f462824717c0a214b3ca564&quot;]">B</a>
+</p><p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_8ce73f7395e427bd6f462824717c0a214b3ca564&quot;]">B</a>
 </p>
 !! end
 
@@ -107,7 +107,7 @@
 Error messages
 !! input
 <maplink latitude=10 longitude=fail text=Derp>>Derp goes here</maplink>
-<mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=crap style=derp />
+<mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=crap mapstyle=derp />
 !! result
 <div class="mw-kartographer mw-kartographer-error"><p>&lt;maplink&gt; problems:
 </p>
@@ -117,8 +117,19 @@ Error messages
 </div>
 <div class="mw-kartographer mw-kartographer-error"><p>&lt;mapframe&gt; problems:
 </p>
-<ul><li> Attribute "style" has an invalid value</li>
+<ul><li> Attribute "mapstyle" has an invalid value</li>
 <li> Attribute "align" has an invalid value</li></ul>
 </div>
 
+!! end
+
+!! test
+CSS sanitization
+!! input
+<maplink latitude=10 longitude=20 zoom=10 style="color: red;" text="<span style='color: red;'&gt;foo</span&gt;"/>
+<maplink latitude=10 longitude=20 zoom=10 style="foo: bar; background-image: url(https://example.com);" text="<span style='foo: bar; background-image: url(https://example.com);'&gt;foo</span&gt;"/>
+!! result
+<p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" style="color: red;" data-style="osm-intl" data-zoom="10" data-lat="10" data-lon="20"><span style="color: red;">foo</span></a>
+<a class="mw-kartographer mw-kartographer-link" mw-data="interface" style="/* insecure input */" data-style="osm-intl" data-zoom="10" data-lat="10" data-lon="20"><span style="/* insecure input */">foo</span></a>
+</p>
 !! end

@@ -18,7 +18,7 @@ class MapFrame extends TagHandler {
 	private $align;
 
 	protected function parseArgs() {
-		$this->parseMapArgs();
+		parent::parseArgs();
 		// @todo: should these have defaults?
 		$this->width = $this->getInt( 'width' );
 		$this->height = $this->getInt( 'height' );
@@ -76,13 +76,13 @@ class MapFrame extends TagHandler {
 
 			case 'interactive':
 				$this->parser->getOutput()->addModules( 'ext.kartographer.live' );
-				$attrs = $this->defaultAttributes;
+				$attrs = $this->getDefaultAttributes();
 				$attrs['class'] .= ' mw-kartographer-interactive';
 				if ( isset( $alignClasses[$this->align] ) ) {
 					$attrs['class'] .= ' ' . $alignClasses[$this->align];
 				}
 				$attrs['style'] = "width:{$this->width}px; height:{$this->height}px;";
-				$attrs['data-style'] = $this->style;
+				$attrs['data-style'] = $this->mapStyle;
 				$attrs['data-zoom'] = $this->zoom;
 				$attrs['data-lat'] = $this->lat;
 				$attrs['data-lon'] = $this->lon;
