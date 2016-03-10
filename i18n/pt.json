@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Vitorvicentevalente",
-			"Önni"
+			"Önni",
+			"Fúlvio"
 		]
 	},
 	"kartographer-attribution": "Mapas beta Wikimedia | Dados de mapa © [http://openstreetmap.org/copyright contribuidores OpenStreetMap]",
@@ -19,7 +20,10 @@
 	"leafletdraw-edit-toolbar-actions-save-title": "Gravar alterações",
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Sem camadas para editar",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Sem camadas para eliminar",
+	"mapbox-control-zoomin-title": "Aumentar o zoom",
+	"mapbox-control-zoomout-title": "Diminuir o zoom",
 	"kartographer-fullscreen-close": "Fechar",
+	"kartographer-fullscreen-text": "Mostrar em ecrã inteiro",
 	"visualeditor-mwmapsdialog-reset-map": "Redefinir posicionamento do mapa",
 	"visualeditor-mwmapsdialog-size": "Tamanho",
 	"visualeditor-mwmapsdialog-title": "Mapa"
