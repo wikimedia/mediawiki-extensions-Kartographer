@@ -79,6 +79,16 @@
 !! end
 
 !! test
+<maplink> - autolabelling with coordinates
+!! input
+<maplink latitude=10 longitude=20 zoom=13 />
+!! result
+<p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20">10°0′0″N 20°0′0″E</a>
+</p>
+!! end
+
+
+!! test
 <mapframe>
 !! input
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480/>

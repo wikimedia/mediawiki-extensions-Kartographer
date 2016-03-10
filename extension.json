@@ -13,6 +13,7 @@
 		]
 	},
 	"AutoloadClasses": {
+		"Kartographer\\CoordFormatter": "includes/CoordFormatter.php",
 		"Kartographer\\DataModule": "includes/DataModule.php",
 		"Kartographer\\Hooks": "includes/Hooks.php",
 		"Kartographer\\SimpleStyleSanitizer": "includes/SimpleStyleSanitizer.php",
