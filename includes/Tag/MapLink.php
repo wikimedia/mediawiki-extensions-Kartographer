@@ -12,10 +12,6 @@ use Kartographer\CoordFormatter;
 class MapLink extends TagHandler {
 	protected $tag = 'maplink';
 
-	protected function parseArgs() {
-		$this->parseMapArgs();
-	}
-
 	protected function render() {
 		$counter = $this->counter;
 		if ( is_numeric( $counter ) ) {
@@ -26,9 +22,9 @@ class MapLink extends TagHandler {
 			$text = $counter ?: CoordFormatter::format( $this->lat, $this->lon, $this->language );
 		}
 		$text = $this->parser->recursiveTagParse( $text, $this->frame );
-		$attrs = $this->defaultAttributes;
+		$attrs = $this->getDefaultAttributes();
 		$attrs['class'] .= ' mw-kartographer-link';
-		$attrs['data-style'] = $this->style;
+		$attrs['data-style'] = $this->mapStyle;
 		$attrs['data-zoom'] = $this->zoom;
 		$attrs['data-lat'] = $this->lat;
 		$attrs['data-lon'] = $this->lon;

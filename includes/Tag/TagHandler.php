@@ -17,6 +17,7 @@ use Language;
 use Parser;
 use ParserOutput;
 use PPFrame;
+use Sanitizer;
 use Status;
 use stdClass;
 
@@ -46,6 +47,9 @@ abstract class TagHandler {
 	protected $zoom;
 
 	/** @var string */
+	protected $mapStyle;
+
+	/** @var string */
 	protected $style;
 
 	/** @var string name of the group, or null for private */
@@ -53,9 +57,6 @@ abstract class TagHandler {
 
 	/** @var string[] list of groups to show */
 	protected $showGroups = [];
-
-	/** @var string[] */
-	protected $defaultAttributes;
 
 	/** @var int|null */
 	protected $counter = null;
@@ -68,10 +69,6 @@ abstract class TagHandler {
 
 	/** @var Language */
 	protected $language;
-
-	public function __construct() {
-		$this->defaultAttributes = [ 'class' => 'mw-kartographer', 'mw-data' => 'interface' ];
-	}
 
 	/**
 	 * Entry point for all tags
@@ -148,26 +145,37 @@ abstract class TagHandler {
 	}
 
 	/**
-	 * When overridden in a descendant class, parses tag attributes in $this->args
+	 * Parses tag attributes in $this->args
 	 * @return void
 	 */
-	protected abstract function parseArgs();
-
-	/**
-	 * When overridden in a descendant class, returns tag HTML
-	 * @return string
-	 */
-	protected abstract function render();
-
-	protected function parseMapArgs() {
+	protected function parseArgs() {
 		global $wgKartographerStyles, $wgKartographerDfltStyle;
 
 		$this->lat = $this->getFloat( 'latitude' );
 		$this->lon = $this->getFloat( 'longitude' );
 		$this->zoom = $this->getInt( 'zoom' );
 		$regexp = '/^(' . implode( '|', $wgKartographerStyles ) . ')$/';
-		$this->style = $this->getText( 'style', $wgKartographerDfltStyle, $regexp );
+		$this->mapStyle = $this->getText( 'mapstyle', $wgKartographerDfltStyle, $regexp );
+		$this->style = Sanitizer::checkCss( trim( $this->getText( 'style', '' ) ) );
 	}
+
+	/**
+	 * Returns default HTML attributes of the outermost tag of the output
+	 * @return string[]
+	 */
+	protected function getDefaultAttributes() {
+		$attrs = [ 'class' => 'mw-kartographer', 'mw-data' => 'interface' ];
+		if ( $this->style ) {
+			$attrs['style'] = $this->style;
+		}
+		return $attrs;
+	}
+
+	/**
+	 * When overridden in a descendant class, returns tag HTML
+	 * @return string
+	 */
+	protected abstract function render();
 
 	private function parseGroups() {
 		global $wgKartographerWikivoyageMode;
