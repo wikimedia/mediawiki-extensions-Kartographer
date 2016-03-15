@@ -4,11 +4,12 @@
 			"Mattho69",
 			"Gomoko",
 			"Orlodrim",
-			"Wladek92"
+			"Wladek92",
+			"Jean-Frédéric"
 		]
 	},
 	"kartographer-attribution": "Bêta des cartes de Wikimédia | Données de carte © [http://openstreetmap.org/copyright contributeurs de OpenStreetMap]",
-	"kartographer-broken-category": "Pages avec les cartes erronées",
+	"kartographer-broken-category": "Pages avec des cartes contenant des erreurs",
 	"kartographer-broken-category-desc": "La page contient une carte avec des erreurs de syntaxe.",
 	"kartographer-desc": "Permet l’ajout de cartes géographiques aux pages wiki",
 	"kartographer-error-context": "&lt;$1&gt; : $2",

@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"C.R."
+		]
+	},
+	"kartographer-attribution": "Wikimedia maps beta | Dati mappa © [http://openstreetmap.org/copyright cuntribbute a OpenStreetMap]",
+	"kartographer-broken-category": "Paggene ch'errure dint' 'e mappe",
+	"kartographer-broken-category-desc": "'A paggena azzeccasse na mappa 'e uso invalido",
+	"kartographer-desc": "Premmettesse 'azzeccà mappe ncopp' 'e paggene wiki",
+	"kartographer-error-context": "&lt;$1&gt;: $2"
+}
