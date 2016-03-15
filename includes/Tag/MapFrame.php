@@ -22,7 +22,7 @@ class MapFrame extends TagHandler {
 		// @todo: should these have defaults?
 		$this->width = $this->getInt( 'width' );
 		$this->height = $this->getInt( 'height' );
-		$defaultAlign = $this->language->isRTL() ? 'left' : 'right';
+		$defaultAlign = $this->getLanguage()->isRTL() ? 'left' : 'right';
 		$this->align = $this->getText( 'align', $defaultAlign, '/^(left|center|right)$/' );
 	}
 

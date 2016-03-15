@@ -16,7 +16,8 @@ class MapLink extends TagHandler {
 		// @todo: Mapbox markers don't support localized numbers yet
 		$text = $this->getText( 'text', null, '/\S+/' );
 		if ( $text === null ) {
-			$text = $this->counter ?: CoordFormatter::format( $this->lat, $this->lon, $this->language );
+			$text = $this->counter
+				?: CoordFormatter::format( $this->lat, $this->lon, $this->getLanguage() );
 		}
 		$text = $this->parser->recursiveTagParse( $text, $this->frame );
 		$style = $this->extractMarkerCss();

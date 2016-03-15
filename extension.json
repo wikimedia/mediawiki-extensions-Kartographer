@@ -13,13 +13,17 @@
 		]
 	},
 	"AutoloadClasses": {
+		"Kartographer\\ApiSanitizeMapData": "includes/ApiSanitizeMapData.php",
 		"Kartographer\\CoordFormatter": "includes/CoordFormatter.php",
 		"Kartographer\\DataModule": "includes/DataModule.php",
 		"Kartographer\\Hooks": "includes/Hooks.php",
-		"Kartographer\\SimpleStyleSanitizer": "includes/SimpleStyleSanitizer.php",
+		"Kartographer\\SimpleStyleParser": "includes/SimpleStyleParser.php",
 		"Kartographer\\Tag\\MapFrame": "includes/Tag/MapFrame.php",
 		"Kartographer\\Tag\\MapLink": "includes/Tag/MapLink.php",
 		"Kartographer\\Tag\\TagHandler": "includes/Tag/TagHandler.php"
+	},
+	"APIModules": {
+		"sanitize-mapdata": "Kartographer\\ApiSanitizeMapData"
 	},
 	"ResourceModules": {
 		"ext.kartographer": {
