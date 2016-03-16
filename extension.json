@@ -160,11 +160,6 @@
 			],
 			"messages": [
 				"visualeditor-mwmapsdialog-geojson",
-				"visualeditor-mwmapsdialog-mode",
-				"visualeditor-mwmapsdialog-mode-data",
-				"visualeditor-mwmapsdialog-mode-link",
-				"visualeditor-mwmapsdialog-mode-interactive",
-				"visualeditor-mwmapsdialog-mode-static",
 				"visualeditor-mwmapsdialog-reset-map",
 				"visualeditor-mwmapsdialog-size",
 				"visualeditor-mwmapsdialog-title"
