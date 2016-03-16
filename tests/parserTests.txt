@@ -133,3 +133,72 @@ CSS sanitization
 <a class="mw-kartographer mw-kartographer-link" mw-data="interface" style="/* insecure input */" data-style="osm-intl" data-zoom="10" data-lat="10" data-lon="20"><span style="/* insecure input */">foo</span></a>
 </p>
 !! end
+
+!! test
+Marker styles
+!! input
+<maplink latitude=10 longitude=20 zoom=13>[
+{
+	"type": "Feature",
+	"geometry": {
+		"type": "Point",
+		"coordinates": [1, 2]
+ 	}
+},
+{
+"type": "Feature",
+	"geometry": {
+		"type": "Point",
+		"coordinates": [-122.3988, 37.8013]
+	},
+	"properties": {
+		"marker-symbol": "-letter",
+		"marker-color": "#abc"
+	}
+},
+{
+"type": "Feature",
+	"geometry": {
+		"type": "Point",
+		"coordinates": [-122.3988, 37.8013]
+	},
+	"properties": {
+		"marker-symbol": "-number",
+		"marker-color": "#DDEEFF"
+	}
+}
+]</maplink>
+
+<maplink latitude=10 longitude=20 zoom=13 style="border: yellow;">
+{
+"type": "Feature",
+	"geometry": {
+		"type": "Point",
+		"coordinates": [-122.3988, 37.8013]
+	},
+	"properties": {
+		"marker-symbol": "-number",
+		"marker-color": "fff"
+	}
+}
+</maplink>
+
+<maplink latitude=10 longitude=20 zoom=13>
+{
+"type": "Feature",
+	"geometry": {
+		"type": "Point",
+		"coordinates": [-122.3988, 37.8013]
+	},
+	"properties": {
+		"marker-symbol": "-number",
+		"marker-color": "something bad"
+	}
+}
+</maplink>
+!! result
+<p><a class="mw-kartographer mw-kartographer-link mw-kartographer-autostyled" mw-data="interface" style="background: #abc;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_19a72be79a2653cf0eeccdba3776a568873e8865&quot;]">A</a>
+</p><p><a class="mw-kartographer mw-kartographer-link mw-kartographer-autostyled" mw-data="interface" style="background: #fff; border: yellow;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_348b58ab5ba1db004b387561db7d945cdf90cea0&quot;]">2</a>
+</p><p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_737b28c57ddefefdb1da5a25bc09425dd124b6b6&quot;]">3</a>
+</p>
+!! end

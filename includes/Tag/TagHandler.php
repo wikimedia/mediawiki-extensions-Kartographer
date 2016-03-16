@@ -50,7 +50,7 @@ abstract class TagHandler {
 	protected $mapStyle;
 
 	/** @var string */
-	protected $style;
+	protected $style = '';
 
 	/** @var string name of the group, or null for private */
 	protected $groupName;
@@ -69,6 +69,9 @@ abstract class TagHandler {
 
 	/** @var Language */
 	protected $language;
+
+	/** @var stdClass */
+	protected $markerProperties;
 
 	/**
 	 * Entry point for all tags
@@ -161,12 +164,14 @@ abstract class TagHandler {
 
 	/**
 	 * Returns default HTML attributes of the outermost tag of the output
+	 * @param string $extraStyle
 	 * @return string[]
 	 */
-	protected function getDefaultAttributes() {
+	protected function getDefaultAttributes( $extraStyle = '' ) {
 		$attrs = [ 'class' => 'mw-kartographer', 'mw-data' => 'interface' ];
-		if ( $this->style ) {
-			$attrs['style'] = $this->style;
+		$style = trim( "{$extraStyle} {$this->style}" );
+		if ( $style ) {
+			$attrs['style'] = $style;
 		}
 		return $attrs;
 	}
@@ -261,7 +266,10 @@ abstract class TagHandler {
 		// For all GeoJSON items whose marker-symbol value begins with '-counter' and '-letter',
 		// recursively replace them with an automatically incremented marker icon.
 		$counters = $output->getExtensionData( 'kartographer_counters' ) ?: new stdClass();
-		$this->counter = $this->doCountersRecursive( $this->geometries, $counters );
+		$marker = $this->doCountersRecursive( $this->geometries, $counters );
+		if ( $marker ) {
+			list( $this->counter, $this->markerProperties ) = $marker;
+		}
 		$output->setExtensionData( 'kartographer_counters', $counters );
 
 		if ( $this->groupName === null ) {
@@ -316,7 +324,7 @@ abstract class TagHandler {
 	/**
 	 * @param $values
 	 * @param stdClass $counters counter-name -> integer
-	 * @return bool|string returns the very first counter value that has been used
+	 * @return bool|array [ marker, marker properties ]
 	 */
 	private function doCountersRecursive( $values, &$counters ) {
 		$firstMarker = false;
@@ -342,7 +350,7 @@ abstract class TagHandler {
 					$item->properties->{'marker-symbol'} = $marker;
 					if ( $firstMarker === false ) {
 						// GeoJSON is in lowercase, but the letter is shown as uppercase
-						$firstMarker = mb_strtoupper( $marker );
+						$firstMarker = [ mb_strtoupper( $marker ), $item->properties ];
 					}
 				}
 			}

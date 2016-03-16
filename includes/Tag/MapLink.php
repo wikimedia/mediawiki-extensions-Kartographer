@@ -13,17 +13,19 @@ class MapLink extends TagHandler {
 	protected $tag = 'maplink';
 
 	protected function render() {
-		$counter = $this->counter;
-		if ( is_numeric( $counter ) ) {
-			$counter = $this->parser->getTargetLanguage()->formatNum( $counter );
-		}
+		// @todo: Mapbox markers don't support localized numbers yet
 		$text = $this->getText( 'text', null, '/\S+/' );
 		if ( $text === null ) {
-			$text = $counter ?: CoordFormatter::format( $this->lat, $this->lon, $this->language );
+			$text = $this->counter ?: CoordFormatter::format( $this->lat, $this->lon, $this->language );
 		}
 		$text = $this->parser->recursiveTagParse( $text, $this->frame );
-		$attrs = $this->getDefaultAttributes();
+		$style = $this->extractMarkerCss();
+
+		$attrs = $this->getDefaultAttributes( $style );
 		$attrs['class'] .= ' mw-kartographer-link';
+		if ( $style ) {
+			$attrs['class'] .= ' mw-kartographer-autostyled';
+		}
 		$attrs['data-style'] = $this->mapStyle;
 		$attrs['data-zoom'] = $this->zoom;
 		$attrs['data-lat'] = $this->lat;
@@ -34,5 +36,25 @@ class MapLink extends TagHandler {
 		}
 
 		return Html::rawElement( 'a', $attrs, $text );
+	}
+
+	/**
+	 * Extracts CSS style to be used by the link from GeoJSON
+	 * @return string
+	 */
+	private function extractMarkerCss() {
+		global $wgKartographerUseMarkerStyle;
+
+		if ( $wgKartographerUseMarkerStyle
+			&& $this->markerProperties
+			&& property_exists( $this->markerProperties, 'marker-color' )
+		) {
+			preg_match( '/^#?(([0-9a-fA-F]{3}){1,2})$/', $this->markerProperties->{'marker-color'}, $m );
+			if ( $m && $m[2] ) {
+				return "background: #{$m[2]};";
+			}
+		}
+
+		return '';
 	}
 }
