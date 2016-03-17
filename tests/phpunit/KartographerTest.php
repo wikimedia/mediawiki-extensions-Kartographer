@@ -34,12 +34,8 @@ class KartographerTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideTagData
 	 */
-	public function testTagData( $expected, $input, $message ) {
-		$parser = new Parser();
-		$options = new ParserOptions();
-		$title = Title::newFromText( 'Test' );
-
-		$output = $parser->parse( $input, $title, $options );
+	public function t1estTagData( $expected, $input, $message ) {
+		$output = $this->parse( $input );
 
 		if ( $expected === false ) {
 			$this->assertTrue( $output->getExtensionData( 'kartographer_broken' ), 'Parse is expected to fail' );
@@ -85,6 +81,47 @@ class KartographerTest extends MediaWikiTestCase {
 			// Bugs
 			[ 'null', "<maplink zoom=13 longitude=-122.3988 latitude=37.8013>\t\r\n </maplink>", 'T127345: whitespace-only tag content, <maplink>' ],
 		];
+	}
+
+	public function testLiveData() {
+		$text =
+<<<WIKITEXT
+<maplink latitude=10 longitude=20 zoom=13>
+{
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.3988, 37.8013]
+    }
+}
+</maplink>
+<mapframe width=200 height=200 latitude=10 longitude=20 zoom=13>
+{
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [10, 20]
+    }
+}
+</mapframe>
+WIKITEXT;
+		$output = $this->parse( $text );
+		$vars = $output->getJsConfigVars();
+		$this->assertArrayHasKey( 'wgKartographerLiveData', $vars );
+		$this->assertArrayEquals( [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2' ], array_keys( $vars['wgKartographerLiveData'] ) );
+	}
+
+	/**
+	 * Parses wikitext
+	 * @param string $text
+	 * @return ParserOutput
+	 */
+	private function parse( $text ) {
+		$parser = new Parser();
+		$options = new ParserOptions();
+		$title = Title::newFromText( 'Test' );
+
+		return $parser->parse( $text, $title, $options );
 	}
 
 	private function hasTrackingCategory( ParserOutput $output, $key ) {

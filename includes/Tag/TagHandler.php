@@ -297,14 +297,18 @@ abstract class TagHandler {
 	public static function finalParseStep( Parser $parser ) {
 		$output = $parser->getOutput();
 
+		$data = $output->getExtensionData( 'kartographer_data' );
 		if ( $output->getExtensionData( 'kartographer_broken' ) ) {
 			$output->addTrackingCategory( 'kartographer-broken-category', $parser->getTitle() );
 		}
 		if ( $output->getExtensionData( 'kartographer_valid' ) ) {
 			$output->addTrackingCategory( 'kartographer-tracking-category', $parser->getTitle() );
 		}
-		if ( $output->getExtensionData( 'kartographer_interact' ) ) {
-			$output->addJsConfigVars( 'wgKartographerLiveData', $output->getExtensionData( 'kartographer_data' ) );
+		$interact = $output->getExtensionData( 'kartographer_interact' );
+		if ( $interact ) {
+			$interact = array_flip( array_unique( $interact ) );
+			$liveData = array_intersect_key( (array)$data, $interact );
+			$output->addJsConfigVars( 'wgKartographerLiveData', $liveData );
 		}
 	}
 
