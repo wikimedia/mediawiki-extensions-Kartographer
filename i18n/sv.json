@@ -8,7 +8,6 @@
 	"kartographer-attribution": "Wikimedia maps beta | Kartdata © [http://openstreetmap.org/copyright OpenStreetMaps bidragsgivare]",
 	"kartographer-broken-category": "Sidor med trasiga kartor",
 	"kartographer-broken-category-desc": "Sidan inkluderar taggen <code><nowiki><maps></nowiki></code> med felaktig användning.",
-	"kartographer-error-context": "&lt;$1&gt;: $2",
 	"kartographer-error-context-multi": "&lt;$1&gt; problem:\n$2",
 	"kartographer-error-missing-attr": "Attributen \"$1\" saknas",
 	"kartographer-tracking-category": "Sidor med kartor",

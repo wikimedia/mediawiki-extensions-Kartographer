@@ -8,7 +8,6 @@
 	"kartographer-broken-category": "Seiten mit defekten Karten",
 	"kartographer-broken-category-desc": "Die Seite enthält eine ungültige Kartenverwendung",
 	"kartographer-desc": "Erlaubt das Einfügen von Karten in Wikiseiten",
-	"kartographer-error-context": "&lt;$1&gt;: $2",
 	"kartographer-error-context-multi": "&lt;$1&gt;-Probleme:\n$2",
 	"kartographer-error-missing-attr": "Das Attribut „$1“ fehlt",
 	"kartographer-error-bad_attr": "Das Attribut „$1“ hat einen ungültigen Wert",

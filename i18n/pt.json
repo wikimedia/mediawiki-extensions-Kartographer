@@ -11,7 +11,6 @@
 	"kartographer-broken-category": "Páginas com mapas inválidos",
 	"kartographer-broken-category-desc": "A página inclui uma utilização inválida de mapas",
 	"kartographer-desc": "Permite a inserção de mapas nas páginas wiki",
-	"kartographer-error-context": "&lt;$1&gt;: $2",
 	"kartographer-error-context-multi": "Problemas de &lt;$1&gt;:\n$2",
 	"kartographer-error-missing-attr": "Atributo \"$1\" em falta",
 	"kartographer-error-bad_attr": "O atributo \"$1\" tem um valor inválido",
