@@ -9,7 +9,6 @@
 	"kartographer-broken-category": "Stránky s rozbitými mapami",
 	"kartographer-broken-category-desc": "Tato stránka obsahuje chybně použitou mapu",
 	"kartographer-desc": "Umožňuje na stránky wiki přidávat mapy",
-	"kartographer-error-context": "&lt;$1&gt;: $2",
 	"kartographer-error-context-multi": "Problémy u &lt;$1&gt;:\n$2",
 	"kartographer-error-missing-attr": "Chybí atribut „$1“",
 	"kartographer-error-bad_attr": "Atribut „$1“ má neplatnou hodnotu",
