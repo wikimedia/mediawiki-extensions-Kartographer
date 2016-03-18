@@ -34,7 +34,7 @@ class KartographerTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideTagData
 	 */
-	public function t1estTagData( $expected, $input, $message ) {
+	public function testTagData( $expected, $input, $message ) {
 		$output = $this->parse( $input );
 
 		if ( $expected === false ) {
