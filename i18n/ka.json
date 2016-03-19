@@ -1,0 +1,24 @@
+{
+	"@metadata": {
+		"authors": [
+			"BRUTE"
+		]
+	},
+	"kartographer-tracking-category": "გვერდები რუკებით",
+	"kartographer-tracking-category-desc": "ეს გვერდი შეიცავს რუკას",
+	"leafletdraw-draw-handlers-circle-radius": "რადიუსი",
+	"leafletdraw-draw-toolbar-actions-text": "გაუქმება",
+	"leafletdraw-edit-toolbar-actions-save-text": "შენახვა",
+	"leafletdraw-edit-toolbar-actions-save-title": "ცვლილებების შენახვა",
+	"leafletdraw-edit-toolbar-buttons-edit": "შრეების რედაქტირება",
+	"leafletdraw-edit-toolbar-buttons-editdisabled": "ვერ მოიძებნა შრეები რედაქტირებისთვის",
+	"leafletdraw-edit-toolbar-buttons-remove": "შრეების წაშლა",
+	"leafletdraw-edit-toolbar-buttons-removedisabled": "ვერ მოიძებნა შრეები წაშლისთვის",
+	"mapbox-control-zoomin-title": "გადიდება",
+	"mapbox-control-zoomout-title": "დაპატარავება",
+	"kartographer-fullscreen-close": "დახურვა",
+	"kartographer-fullscreen-text": "მთელ ეკრანზე ჩვენება",
+	"visualeditor-mwmapsdialog-reset-map": "რუკის პოზიციის საწყის კონფიგურაციაზე დაბრუნება",
+	"visualeditor-mwmapsdialog-size": "ზომა",
+	"visualeditor-mwmapsdialog-title": "რუკა"
+}
