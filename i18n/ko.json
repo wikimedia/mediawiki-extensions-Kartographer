@@ -4,7 +4,8 @@
 			"Revi",
 			"Priviet",
 			"SeoJeongHo",
-			"HDNua"
+			"HDNua",
+			"아라"
 		]
 	},
 	"kartographer-broken-category": "깨진 지도가 있는 문서",
@@ -14,6 +15,7 @@
 	"kartographer-error-bad_attr": "\"$1\" 속성의 값이 잘못되었습니다.",
 	"kartographer-tracking-category": "지도가 있는 문서",
 	"kartographer-tracking-category-desc": "이 문서는 지도를 포함합니다",
+	"leafletdraw-draw-handlers-simpleshape-tooltip-end": "그리기를 마치려면 마우스를 놓으세요",
 	"kartographer-fullscreen-close": "닫기",
 	"kartographer-fullscreen-text": "전체 화면으로 보기",
 	"visualeditor-mwmapsdialog-reset-map": "map 위치 초기화",
