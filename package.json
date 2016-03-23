@@ -5,7 +5,7 @@
   "description": "Build tools for the Kartographer-MediaWiki extension.",
   "scripts": {
     "test": "grunt test",
-    "build-lib": "node_modules/.bin/browserify lib/mapbox/mapbox-main.js -o lib/mapbox/mapbox-lib.js && cp -rv node_modules/mapbox.js/theme/* lib/mapbox/ && rm lib/mapbox/images/render.sh"
+    "build-lib": "node_modules/.bin/browserify lib/mapbox/mapbox-main.js -o lib/mapbox/mapbox-lib.js && cp -rv node_modules/mapbox.js/theme/* lib/mapbox/ && rm lib/mapbox/images/render.sh && cp -v node_modules/leaflet-sleep/Leaflet.Sleep.js lib/leaflet.sleep.js"
   },
   "devDependencies": {
     "mapbox.js": "^2.3.0",
@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "leaflet": "^0.7.7",
+    "leaflet-sleep": "^0.1.0",
     "maki": "^0.5.0"
   }
 }

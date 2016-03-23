@@ -248,6 +248,13 @@
 			}
 		} );
 
+		L.Map.mergeOptions( {
+			sleepTime: 250,
+			wakeTime: 1000,
+			sleepNote: false,
+			sleepOpacity: 1
+		} );
+
 		$content.find( '.mw-kartographer-interactive' ).each( function () {
 			var map,
 				$this = $( this ),

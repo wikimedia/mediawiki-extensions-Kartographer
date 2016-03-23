@@ -110,6 +110,7 @@
 				"mediawiki.jqueryMsg"
 			],
 			"scripts": [
+				"lib/leaflet.sleep.js",
 				"modules/kartographer.js"
 			],
 			"messages": [
