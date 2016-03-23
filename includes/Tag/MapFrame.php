@@ -5,6 +5,7 @@ namespace Kartographer\Tag;
 
 use FormatJson;
 use Html;
+use ParserOutput;
 use UnexpectedValueException;
 
 /**
@@ -37,6 +38,8 @@ class MapFrame extends TagHandler {
 			'center' => 'center',
 			'right' => 'floatright',
 		];
+
+		$output = $this->parser->getOutput();
 
 		switch ( $wgKartographerFrameMode ) {
 			/* Not implemented in Kartotherian yet
@@ -76,7 +79,7 @@ class MapFrame extends TagHandler {
 
 			case 'interactive':
 				$this->parser->getOutput()->addModules( 'ext.kartographer.live' );
-				$this->parser->getOutput()->setExtensionData( 'kartographer_interact', true );
+
 
 				$attrs = $this->getDefaultAttributes();
 				$attrs['class'] .= ' mw-kartographer-interactive';
@@ -93,6 +96,12 @@ class MapFrame extends TagHandler {
 					$attrs['data-overlays'] = FormatJson::encode( $this->showGroups, false,
 						FormatJson::ALL_OK );
 				}
+
+				$groups = $output->getExtensionData( 'kartographer_interact' );
+				$groups = $groups ?: [];
+				$groups = array_merge( $groups, $this->showGroups );
+				$output->setExtensionData( 'kartographer_interact', $groups );
+
 				return Html::rawElement( 'div', $attrs );
 				break;
 			default:

@@ -84,6 +84,34 @@ class KartographerTest extends MediaWikiTestCase {
 		];
 	}
 
+	public function testLiveData() {
+		$text =
+<<<WIKITEXT
+<maplink latitude=10 longitude=20 zoom=13>
+{
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.3988, 37.8013]
+    }
+}
+</maplink>
+<mapframe width=200 height=200 latitude=10 longitude=20 zoom=13>
+{
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [10, 20]
+    }
+}
+</mapframe>
+WIKITEXT;
+		$output = $this->parse( $text );
+		$vars = $output->getJsConfigVars();
+		$this->assertArrayHasKey( 'wgKartographerLiveData', $vars );
+		$this->assertArrayEquals( [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2' ], array_keys( $vars['wgKartographerLiveData'] ) );
+	}
+
 	/**
 	 * Parses wikitext
 	 * @param string $text
