@@ -1,9 +1,32 @@
 {
 	"@metadata": {
 		"authors": [
-			"Айсар"
+			"Айсар",
+			"Янмурза Баки"
 		]
 	},
+	"kartographer-attribution": "Бета карталары Викимедиаһы - | картографик мәғлүмәттәр © [http://openstreetmap.org/copyright ҡатнашыусылар OpenStreetMap]",
+	"kartographer-error-context-multi": " проблемы:\n$2-нең проблемалары &LT;$1&ГТ;",
+	"kartographer-error-bad_data": "JSON-да хаталар бар",
+	"kartographer-tracking-category": "Карталы биттәр",
+	"leafletdraw-draw-handlers-circle-radius": "Радиус",
+	"leafletdraw-draw-handlers-marker-tooltip-start": "Маркерҙе күсереү өсөн, картаға сиртегеҙ.",
+	"leafletdraw-draw-handlers-polygon-tooltip-cont": "Был формалағы һүрәт төшөрөүҙе дауам итеү өсөн төймәгә баҫығыҙ.",
+	"leafletdraw-draw-toolbar-actions-text": "Кире алырға",
+	"leafletdraw-draw-toolbar-actions-title": "Һүрәт төшөрөүҙе кире алырға",
+	"leafletdraw-draw-toolbar-buttons-circle": "Даирәне төшөрөргә",
+	"leafletdraw-draw-toolbar-buttons-marker": "Һүрәт төшөргәндә маркер ҡулланырға",
+	"leafletdraw-edit-toolbar-actions-cancel-text": "Кире алырға",
+	"leafletdraw-edit-toolbar-actions-save-text": "Һаҡларға",
+	"leafletdraw-edit-toolbar-actions-save-title": "Үҙгәрештәрҙе һаҡларға",
+	"leafletdraw-edit-toolbar-buttons-editdisabled": "Үҙгәртеүгә ҡатламдар юҡ",
+	"leafletdraw-edit-toolbar-buttons-remove": "Ҡатламдарҙы юйырға",
+	"leafletdraw-edit-toolbar-buttons-removedisabled": "Юйырға ҡатламдар юҡ",
+	"mapbox-control-zoomin-title": "Яҡынайтырға",
+	"mapbox-control-zoomout-title": "Йырағайтырға",
 	"kartographer-fullscreen-close": "Ябырға",
-	"kartographer-fullscreen-text": "Тулы экранда күрһәтергә"
+	"kartographer-fullscreen-text": "Тулы экранда күрһәтергә",
+	"visualeditor-mwmapsdialog-reset-map": "Карта позицияһын ташларға",
+	"visualeditor-mwmapsdialog-size": "Күләме",
+	"visualeditor-mwmapsdialog-title": "Карта"
 }

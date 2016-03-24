@@ -8,6 +8,8 @@
 	"kartographer-broken-category": "Страници со расипани карти",
 	"kartographer-broken-category-desc": "Оваа страница неправилно користи карта",
 	"kartographer-desc": "Овозможува ставање карти во викистраници",
+	"kartographer-error-context-multi": "&lt;$1&gt; проблеми:\n$2",
+	"kartographer-error-missing-attr": "Недостасува атрибутот „$1“",
 	"kartographer-error-bad_attr": "Атрибутот „$1“ има неважечка вредност",
 	"kartographer-error-bad_data": "Содржината на JSON е неточна",
 	"kartographer-tracking-category": "Страници со карти",
@@ -46,7 +48,10 @@
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Нема слоеви за бришење",
 	"mapbox-control-zoomin-title": "Приближи",
 	"mapbox-control-zoomout-title": "Оддалечи",
+	"kartographer-fullscreen-close": "Затвори",
+	"kartographer-fullscreen-text": "Прикажи во полн екран",
 	"visualeditor-mwmapsdialog-geojson": "GeoJSON",
+	"visualeditor-mwmapsdialog-reset-map": "Одново положба",
 	"visualeditor-mwmapsdialog-size": "Големина",
 	"visualeditor-mwmapsdialog-title": "Карта"
 }
