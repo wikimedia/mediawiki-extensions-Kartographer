@@ -2,9 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Okras",
-			"Metastasis"
+			"Metastasis",
+			"Лилиә"
 		]
 	},
+	"kartographer-broken-category": "Графиктары боҙолған биттәр",
+	"kartographer-broken-category-desc": "Был биттә файҙаланырға яраҡһыҙ графиктар",
+	"kartographer-desc": "Позволяет добавлять на вики-страницы карты.",
 	"kartographer-error-bad_data": "JSON содержит ошибки",
 	"leafletdraw-draw-handlers-circle-radius": "Радиус",
 	"leafletdraw-draw-toolbar-actions-text": "Отмена",
