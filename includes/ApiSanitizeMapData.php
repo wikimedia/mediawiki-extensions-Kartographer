@@ -15,6 +15,7 @@ use FormatJson;
 use Html;
 use Parser;
 use ParserOptions;
+use stdClass;
 use Title;
 
 /**
@@ -50,10 +51,13 @@ class ApiSanitizeMapData extends ApiBase {
 			$error =  $status->getHTML( false, false, $this->getLanguage() );
 			$this->getResult()->addValue( null, $this->getModuleName(), [ 'error' => $error ] );
 		} else {
+			$data = $status->getValue();
+			$counters = new stdClass();
+			SimpleStyleParser::doCountersRecursive( $data, $counters );
 			$this->getResult()
 				->addValue( null,
 					$this->getModuleName(),
-					[ 'sanitized' => FormatJson::encode( $status->getValue(), false, FormatJson::ALL_OK ) ]
+					[ 'sanitized' => FormatJson::encode( $data, false, FormatJson::ALL_OK ) ]
 				);
 		}
 	}

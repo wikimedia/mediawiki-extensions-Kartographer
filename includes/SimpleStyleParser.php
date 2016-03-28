@@ -63,11 +63,11 @@ class SimpleStyleParser {
 	}
 
 	/**
-	 * @param $values
+	 * @param stdClass[] $values
 	 * @param stdClass $counters counter-name -> integer
 	 * @return bool|array [ marker, marker properties ]
 	 */
-	public static function doCountersRecursive( $values, &$counters ) {
+	public static function doCountersRecursive( array &$values, &$counters ) {
 		$firstMarker = false;
 		if ( !is_array( $values ) ) {
 			return $firstMarker;

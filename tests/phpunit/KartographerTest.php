@@ -19,7 +19,8 @@ class KartographerTest extends MediaWikiTestCase {
     },
     "properties": {
       "title": "<script>alert(document.cookie);</script>",
-      "description": "[[Link to nowhere]]"
+      "description": "[[Link to nowhere]]",
+      "marker-symbol": "-number"
     }
   }';
 
@@ -59,23 +60,23 @@ class KartographerTest extends MediaWikiTestCase {
     },
     "properties": {
       "title": "Foo bar",
-      "marker-symbol": "museum",
+      "marker-symbol": "1",
       "marker-size": "medium",
       "marker-color": "0050d0"
     }
   }';
-		$wikitextJsonParsed = '{"_b3a06246589b01ce9e9c2ba3dc97e265f7ea0308":[
+		$wikitextJsonParsed = '{"_be34df99c99d1efd9eaa8eabc87a43f2541a67e5":[
 				{"type":"Feature","geometry":{"type":"Point","coordinates":[-122.3988,37.8013]},
 				"properties":{"title":"&lt;script&gt;alert(document.cookie);&lt;\/script&gt;",
-				"description":"<a href=\"\/w\/index.php?title=Link_to_nowhere&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Link to nowhere (page does not exist)\">Link to nowhere<\/a>"}}
+				"description":"<a href=\"\/w\/index.php?title=Link_to_nowhere&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Link to nowhere (page does not exist)\">Link to nowhere<\/a>","marker-symbol":"1"}}
 			]}';
 		return [
 			[ 'null', '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013/>', '<mapframe> without JSON' ],
 			[ 'null', '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013></mapframe>', '<mapframe> without JSON 2' ],
 			//[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013 mode=interactive>123</mapframe>', 'Invalid JSON' ],
 			//[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013 mode=interactive>{{"":""}}</maps>', 'Invalid JSON 3' ],
-			[ "{\"_bc2671e0e7a829e9d19c743d6701fa410dd04827\":[$validJson]}", "<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>$validJson</mapframe>", '<mapframe> with GeoJSON' ],
-			[ "{\"_bc2671e0e7a829e9d19c743d6701fa410dd04827\":[$validJson]}", "<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>[$validJson]</mapframe>", '<mapframe> with GeoJSON array' ],
+			[ "{\"_4622d19afa2e6480c327846395ed932ba6fa56d4\":[$validJson]}", "<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>$validJson</mapframe>", '<mapframe> with GeoJSON' ],
+			[ "{\"_4622d19afa2e6480c327846395ed932ba6fa56d4\":[$validJson]}", "<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>[$validJson]</mapframe>", '<mapframe> with GeoJSON array' ],
 			[ $wikitextJsonParsed, "<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>[{$this->wikitextJson}]</mapframe>", '<mapframe> with parsable text and description' ],
 			[ $wikitextJsonParsed, "<maplink zoom=13 longitude=-122.3988 latitude=37.8013>[{$this->wikitextJson}]</maplink>", '<maplink> with parsable text and description' ],
 			// Bugs

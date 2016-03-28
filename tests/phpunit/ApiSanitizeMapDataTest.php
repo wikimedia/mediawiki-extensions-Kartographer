@@ -68,7 +68,8 @@ class ApiSanitizeMapDataTest extends MediaWikiTestCase {
     },
     "properties": {
       "title": "A&B",
-      "description": "[[Link to nowhere]]"
+      "description": "[[Link to nowhere]]",
+      "marker-symbol": "-letter"
     }
 },]', true, '[{
 	"type":"Feature",
@@ -77,7 +78,8 @@ class ApiSanitizeMapDataTest extends MediaWikiTestCase {
 		"coordinates":[-122.3988,37.8013]},
 		"properties":{
 			"title":"A&amp;B",
-			"description":"<a href=\"\/w\/index.php?title=Link_to_nowhere&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Link to nowhere (page does not exist)\">Link to nowhere<\/a>"
+			"description":"<a href=\"\/w\/index.php?title=Link_to_nowhere&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Link to nowhere (page does not exist)\">Link to nowhere<\/a>",
+			"marker-symbol":"a"
 		}
 	}]' ],
 		];
