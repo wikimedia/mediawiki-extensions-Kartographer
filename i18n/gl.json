@@ -5,6 +5,9 @@
 			"Elisardojm"
 		]
 	},
+	"apihelp-sanitize-mapdata-description": "Realiza a validación dos datos para a extensión Kartographer",
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON a sanear",
+	"apihelp-sanitize-mapdata-example": "Sanear un blob GeoJSON",
 	"kartographer-attribution": "Mapas beta Wikimedia | Datos de mapa © [http://openstreetmap.org/copyright contribuidores de OpenStreetMap]",
 	"kartographer-broken-category": "Páxinas con mapas rotos",
 	"kartographer-broken-category-desc": "A páxina inclúe un mapa cun uso non válido.",
