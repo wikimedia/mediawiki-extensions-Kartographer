@@ -76,6 +76,8 @@ class MapFrame extends TagHandler {
 
 			case 'interactive':
 				$this->parser->getOutput()->addModules( 'ext.kartographer.live' );
+				$this->parser->getOutput()->setExtensionData( 'kartographer_interact', true );
+
 				$attrs = $this->getDefaultAttributes();
 				$attrs['class'] .= ' mw-kartographer-interactive';
 				if ( isset( $alignClasses[$this->align] ) ) {
@@ -90,7 +92,6 @@ class MapFrame extends TagHandler {
 					$attrs['data-overlays'] = FormatJson::encode( $this->showGroups, false,
 						FormatJson::ALL_OK );
 				}
-				$this->parser->getOutput()->setExtensionData( 'kartographer_interact', true );
 				return Html::rawElement( 'div', $attrs );
 				break;
 			default:
