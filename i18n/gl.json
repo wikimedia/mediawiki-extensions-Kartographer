@@ -6,6 +6,7 @@
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Realiza a validación dos datos para a extensión Kartographer",
+	"apihelp-sanitize-mapdata-param-title": "Título da páxina no que este GeoJSON se supón que está localizado. Se non se indica o título, usarase un título ficticio.",
 	"apihelp-sanitize-mapdata-param-text": "GeoJSON a sanear",
 	"apihelp-sanitize-mapdata-example": "Sanear un blob GeoJSON",
 	"kartographer-attribution": "Mapas beta Wikimedia | Datos de mapa © [http://openstreetmap.org/copyright contribuidores de OpenStreetMap]",

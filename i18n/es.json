@@ -6,6 +6,7 @@
 			"Mgpena"
 		]
 	},
+	"apihelp-sanitize-mapdata-description": "Realiza la validación de datos para la extensión Kartographer",
 	"kartographer-attribution": "Mapas beta de Wikimedia | Datos del mapa © [http://openstreetmap.org/copyright Colaboradores de OpenStreetMap]",
 	"kartographer-broken-category": "Páginas con mapas rotos",
 	"kartographer-broken-category-desc": "La página incluye un uso no válido de mapas.",
