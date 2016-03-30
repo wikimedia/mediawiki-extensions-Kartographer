@@ -13,6 +13,8 @@ class MapLink extends TagHandler {
 	protected $tag = 'maplink';
 
 	protected function render() {
+		$this->parser->getOutput()->addModules( 'ext.kartographer.live' );
+
 		// @todo: Mapbox markers don't support localized numbers yet
 		$text = $this->getText( 'text', null, '/\S+/' );
 		if ( $text === null ) {
