@@ -1,0 +1,9 @@
+This document describes event hooks fired by the Kartographer extension.
+
+== JS hooks ==
+
+`wikipage.maps` is fired once the map is created.
+
+Params:
+* {object} map Map object.
+* {boolean} isFullScreen Whether the map is displayed in a full screen dialog.

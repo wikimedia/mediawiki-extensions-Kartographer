@@ -263,8 +263,10 @@
 			if ( data ) {
 				data.enableFullScreenButton = true;
 				map = mw.kartographer.createMap( this, data );
-
 				map.doubleClickZoom.disable();
+
+				mw.hook( 'wikipage.maps' ).fire( map, false /* isFullScreen */ );
+
 				$this.on( 'dblclick', function () {
 					mw.kartographer.openFullscreenMap( data, map );
 				} );

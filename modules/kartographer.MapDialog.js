@@ -31,6 +31,7 @@ mw.kartographer.MapDialog.prototype.getSetupProcess = function ( data ) {
 	return mw.kartographer.MapDialog.super.prototype.getSetupProcess.call( this, data )
 		.next( function () {
 			this.map = mw.kartographer.createMap( this.$map[ 0 ], data );
+			mw.hook( 'wikipage.maps' ).fire( this.map, true /* isFullScreen */ );
 		}, this );
 };
 
