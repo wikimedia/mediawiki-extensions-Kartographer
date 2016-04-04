@@ -166,9 +166,9 @@ class SimpleStyleParser {
 				if ( !is_string( $properties->$prop ) ) {
 					unset( $properties->$prop ); // Dunno what the hell it is, ditch
 				} else {
-					$properties->$prop = Parser::stripOuterParagraph(
+					$properties->$prop = trim( Parser::stripOuterParagraph(
 						$this->parser->recursiveTagParseFully( $properties->$prop, $this->frame )
-					);
+					) );
 				}
 			}
 		}
