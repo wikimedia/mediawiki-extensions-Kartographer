@@ -94,12 +94,12 @@
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480/>
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=left/>
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=center/>
-<mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=right/>
+<mapframe latitude=10 longitude=20 zoom=13 width=50% height=480 align=right/>
 !! result
 <div class="mw-kartographer mw-kartographer-interactive floatright" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20"></div>
 <div class="mw-kartographer mw-kartographer-interactive floatleft" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20"></div>
 <div class="mw-kartographer mw-kartographer-interactive center" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20"></div>
-<div class="mw-kartographer mw-kartographer-interactive floatright" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20"></div>
+<div class="mw-kartographer mw-kartographer-interactive floatright" mw-data="interface" style="width:50%; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20"></div>
 
 !! end
 
@@ -107,7 +107,11 @@
 Error messages
 !! input
 <maplink latitude=10 longitude=fail text=Derp>>Derp goes here</maplink>
-<mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=crap mapstyle=derp />
+<mapframe latitude=10 longitude=20 zoom=13 width=" 640	" height=480 align=crap mapstyle=derp />
+<mapframe latitude=10 longitude=20 zoom=13 width=% height=480/>
+<mapframe latitude=10 longitude=20 zoom=13 width=0% height=480/>
+<mapframe latitude=10 longitude=20 zoom=13 width=05% height=480/>
+<mapframe latitude=10 longitude=20 zoom=13 width=300% height=480/>
 !! result
 <div class="mw-kartographer mw-kartographer-error"><p>&lt;maplink&gt; problems:
 </p>
@@ -120,6 +124,10 @@ Error messages
 <ul><li> Attribute "mapstyle" has an invalid value</li>
 <li> Attribute "align" has an invalid value</li></ul>
 </div>
+<div class="mw-kartographer mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
+<div class="mw-kartographer mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
+<div class="mw-kartographer mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
+<div class="mw-kartographer mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
 
 !! end
 

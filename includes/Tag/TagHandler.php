@@ -246,7 +246,7 @@ abstract class TagHandler {
 			}
 			return $default;
 		}
-		$value = $this->args[$name];
+		$value = trim( $this->args[$name] );
 		if ( $regexp && !preg_match( $regexp, $value ) ) {
 			$value = false;
 			$this->status->fatal( 'kartographer-error-bad_attr', $name );

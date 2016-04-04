@@ -20,7 +20,7 @@ class MapFrame extends TagHandler {
 	protected function parseArgs() {
 		parent::parseArgs();
 		// @todo: should these have defaults?
-		$this->width = $this->getInt( 'width' );
+		$this->width = $this->getText( 'width', false, '/^(\d+|([1-9]\d?|100)%)$/' );
 		$this->height = $this->getInt( 'height' );
 		$defaultAlign = $this->getLanguage()->isRTL() ? 'left' : 'right';
 		$this->align = $this->getText( 'align', $defaultAlign, '/^(left|center|right)$/' );
@@ -83,7 +83,8 @@ class MapFrame extends TagHandler {
 				if ( isset( $alignClasses[$this->align] ) ) {
 					$attrs['class'] .= ' ' . $alignClasses[$this->align];
 				}
-				$attrs['style'] = "width:{$this->width}px; height:{$this->height}px;";
+				$width = is_numeric( $this->width ) ? "{$this->width}px" : $this->width;
+				$attrs['style'] = "width:{$width}; height:{$this->height}px;";
 				$attrs['data-style'] = $this->mapStyle;
 				$attrs['data-zoom'] = $this->zoom;
 				$attrs['data-lat'] = $this->lat;
