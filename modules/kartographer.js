@@ -76,8 +76,7 @@
 	 */
 	mw.kartographer.createMap = function ( container, data ) {
 		var map,
-			style = data.style || mw.config.get( 'wgKartographerDfltStyle' ),
-			mapData = mw.config.get( 'wgKartographerLiveData' ) || {};
+			style = data.style || mw.config.get( 'wgKartographerDfltStyle' );
 
 		map = L.map( container );
 		if ( !container.clientWidth ) {
@@ -103,13 +102,17 @@
 		} ).addTo( map );
 
 		if ( data.overlays ) {
-			$.each( data.overlays, function ( index, group ) {
-				if ( mapData.hasOwnProperty( group ) ) {
-					mw.kartographer.addDataLayer( map, mapData[ group ] );
-				} else {
-					mw.log( 'Layer not found "' + group + '"' );
-				}
+
+			getMapData( data ).done( function ( mapData ) {
+				$.each( data.overlays, function ( index, group ) {
+					if ( mapData.hasOwnProperty( group ) && mapData[ group ] ) {
+						mw.kartographer.addDataLayer( map, mapData[ group ] );
+					} else {
+						mw.log( 'Layer not found or contains no data: "' + group + '"' );
+					}
+				} );
 			} );
+
 		}
 
 		return map;
@@ -220,7 +223,19 @@
 		} );
 	};
 
-	function getMapData( $el ) {
+	/**
+	 * Gets the map properties attached to the element.
+	 *
+	 * @param {jQuery} $el
+	 *
+	 * @return {Object} Map properties
+	 * @return {number} return.latitude
+	 * @return {number} return.longitude
+	 * @return {number} return.zoom
+	 * @return {string} return.style
+	 * @return {Array} return.overlays
+	 */
+	function getMapProps( $el ) {
 		// Prevent users from adding map divs directly via wikitext
 		if ( $el.attr( 'mw-data' ) !== 'interface' ) {
 			return;
@@ -235,17 +250,59 @@
 		};
 	}
 
-	mw.hook( 'wikipage.content' ).add( function ( $content ) {
-		$content.find( '.mw-kartographer-link' ).each( function () {
-			var $this = $( this ),
-				data = getMapData( $this );
+	/**
+	 * Returns the map data for the page.
+	 *
+	 * If the data is not already loaded (`wgKartographerLiveData`), an
+	 * asynchronous request will be made to fetch the missing groups.
+	 * The new data is then added to `wgKartographerLiveData`.
+	 *
+	 * @param {Object} props
+	 * @return {jQuery.Promise}
+	 */
+	function getMapData( props ) {
+		return $.Deferred( function ( deffered ) {
 
-			if ( data ) {
-				$this.on( 'click', function () {
-					mw.kartographer.openFullscreenMap( data );
-					return false;
-				} );
+			var groupsLoaded = mw.config.get( 'wgKartographerLiveData' ) || {},
+				groupsNeeded = props.overlays,
+				groupsToLoad = [];
+
+			$( groupsNeeded ).each( function ( key, value ) {
+				if ( !( value in groupsLoaded ) ) {
+					groupsToLoad.push( value );
+				}
+			} );
+
+			if ( !groupsToLoad.length ) {
+				return deffered.resolve( groupsLoaded );
 			}
+
+			new mw.Api().get( {
+				action: 'query',
+				formatversion: '2',
+				titles: mw.config.get( 'wgPageName' ),
+				prop: 'mapdata',
+				mpdgroups: groupsToLoad.join( '|' )
+			} ).done( function ( data ) {
+				var rawMapData = data.query.pages[ 0 ].mapdata,
+					mapData = JSON.parse( rawMapData );
+
+				$.extend( groupsLoaded, mapData );
+				mw.config.set( 'wgKartographerLiveData', groupsLoaded );
+
+				deffered.resolve( groupsLoaded );
+			} );
+
+		} ).promise();
+	}
+
+	mw.hook( 'wikipage.content' ).add( function ( $content ) {
+
+		$content.on( 'click', '.mw-kartographer-link', function ( ) {
+			var $this = $( this );
+
+			mw.kartographer.openFullscreenMap( getMapProps( $this ) );
+
 		} );
 
 		L.Map.mergeOptions( {
@@ -258,7 +315,7 @@
 		$content.find( '.mw-kartographer-interactive' ).each( function () {
 			var map,
 				$this = $( this ),
-				data = getMapData( $this );
+				data = getMapProps( $this );
 
 			if ( data ) {
 				data.enableFullScreenButton = true;

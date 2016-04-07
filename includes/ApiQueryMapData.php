@@ -46,17 +46,22 @@ class ApiQueryMapData extends ApiQueryBase {
 				continue;
 			}
 			$data = $status->getValue();
+
 			$result = [];
 			if ( $groups ) {
 				foreach ( $groups as $group ) {
 					if ( property_exists( $data, $group ) ) {
 						$result[$group] = $data->$group;
+					} else {
+						// Let the client know there is no data found for this group
+						$result[$group] = null;
 					}
 				}
 			} else {
 				$result = $data;
 			}
 			$result = FormatJson::encode( $result, false, FormatJson::ALL_OK );
+
 			$fit = $this->addPageSubItem( $pageId, $result );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue', $pageId );
