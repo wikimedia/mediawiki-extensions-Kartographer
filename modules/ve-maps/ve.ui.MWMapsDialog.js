@@ -50,9 +50,6 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	this.mapPromise = null;
 	this.scalable = null;
 	this.updatingGeoJson = false;
-	this.startDimensions = null;
-	this.initialGeoJson = null;
-	this.positionModified = false;
 
 	this.dimensions = new ve.ui.DimensionsWidget();
 
@@ -144,12 +141,10 @@ ve.ui.MWMapsDialog.prototype.resetMapPosition = function () {
 	if ( this.map ) {
 		position = this.getInitialMapPosition();
 		this.map.setView( [ position.latitude, position.longitude ], position.zoom );
-		this.positionModified = false;
 		this.updateActions();
 		this.resetMapButton.setDisabled( true );
 
-		this.map.once( 'movestart', function () {
-			dialog.positionModified = true;
+		this.map.on( 'moveend', function () {
 			dialog.updateActions();
 			dialog.resetMapButton.setDisabled( false );
 		} );
@@ -160,10 +155,16 @@ ve.ui.MWMapsDialog.prototype.resetMapPosition = function () {
  * Update action states
  */
 ve.ui.MWMapsDialog.prototype.updateActions = function () {
-	var modified = this.positionModified ||
-		!ve.compare( this.dimensions.getDimensions(), this.startDimensions ) ||
-		this.input.getValue() !== this.initialGeoJson;
+	var newMwData, modified,
+		mwData = this.selectedNode && this.selectedNode.getAttribute( 'mw' );
 
+	if ( mwData ) {
+		newMwData = ve.copy( mwData );
+		this.updateMwData( newMwData );
+		modified = !ve.compare( mwData, newMwData );
+	} else {
+		modified = true;
+	}
 	this.actions.setAbilities( { done: modified } );
 };
 
@@ -213,7 +214,6 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 	return ve.ui.MWMapsDialog.super.prototype.getSetupProcess.call( this, data )
 		.next( function () {
 			this.input.clearUndoStack();
-			this.positionModified = false;
 
 			this.actions.setMode( this.selectedNode ? 'edit' : 'insert' );
 
@@ -228,8 +228,6 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 			this.$resetMapButtonContainer.toggle( !!this.selectedNode );
 
 			this.dimensions.setDimensions( this.scalable.getCurrentDimensions() );
-			this.startDimensions = ve.copy( this.dimensions.getDimensions() );
-			this.initialGeoJson = this.input.getValue();
 
 			this.updateActions();
 		}, this );
