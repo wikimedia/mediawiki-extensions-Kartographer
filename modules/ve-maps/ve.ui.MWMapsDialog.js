@@ -60,6 +60,10 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 
 	this.dimensions = new ve.ui.DimensionsWidget();
 
+	this.align = new ve.ui.AlignWidget( {
+		dir: this.getDir()
+	} );
+
 	this.input = new ve.ui.MWAceEditorWidget( {
 		multiline: true,
 		autosize: true,
@@ -84,6 +88,11 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		label: ve.msg( 'visualeditor-mwmapsdialog-size' )
 	} );
 
+	this.alignField = new OO.ui.FieldLayout( this.align, {
+		align: 'right',
+		label: ve.msg( 'visualeditor-mwmapsdialog-align' )
+	} );
+
 	this.$resetMapButtonContainer = $( '<div>' ).addClass( 've-ui-mwMapsDialog-resetMapButton' );
 
 	this.geoJsonField = new OO.ui.FieldLayout( this.input, {
@@ -93,6 +102,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 
 	panel.$element.append(
 		this.dimensionsField.$element,
+		this.alignField.$element,
 		this.$mapContainer,
 		this.$resetMapButtonContainer.append( this.resetMapButton.$element ),
 		this.geoJsonField.$element
@@ -212,6 +222,7 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 	if ( !( this.selectedNode instanceof ve.dm.MWInlineMapsNode ) ) {
 		mwData.attrs.width = dimensions.width.toString();
 		mwData.attrs.height = dimensions.height.toString();
+		mwData.attrs.align = this.align.getSelectedItem().getData();
 	}
 };
 
@@ -232,7 +243,8 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 	data = data || {};
 	return ve.ui.MWMapsDialog.super.prototype.getSetupProcess.call( this, data )
 		.next( function () {
-			var inline = this.selectedNode instanceof ve.dm.MWInlineMapsNode;
+			var inline = this.selectedNode instanceof ve.dm.MWInlineMapsNode,
+				mwAttrs = this.selectedNode && this.selectedNode.getAttribute( 'mw' ).attrs || {};
 
 			this.input.clearUndoStack();
 
@@ -257,11 +269,15 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 				widthChange: 'onDimensionsChange',
 				heightChange: 'onDimensionsChange'
 			} );
+			this.align.connect( this, { choose: 'updateActions' } );
 			this.resetMapButton.connect( this, { click: 'resetMapPosition' } );
 
 			this.dimensionsField.toggle( !inline );
 
+			this.alignField.toggle( !inline );
+
 			// TODO: Support block/inline conversion
+			this.align.selectItemByData( mwAttrs.align || 'right' );
 
 			this.$resetMapButtonContainer.toggle( !!this.selectedNode );
 

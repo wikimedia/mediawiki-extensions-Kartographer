@@ -255,6 +255,7 @@
 				"modules/ve-maps/ve.ui.MWMaps.css"
 			],
 			"messages": [
+				"visualeditor-mwmapsdialog-align",
 				"visualeditor-mwmapsdialog-geojson",
 				"visualeditor-mwmapsdialog-reset-map",
 				"visualeditor-mwmapsdialog-size",
