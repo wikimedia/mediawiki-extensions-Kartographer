@@ -215,7 +215,8 @@
 		"KartographerMapServer": "https://maps.wikimedia.org",
 		"KartographerIconServer": "https://maps.wikimedia.org",
 		"KartographerFrameMode": "interactive",
-		"KartographerUseMarkerStyle": true
+		"KartographerUseMarkerStyle": true,
+		"KartographerEnableMapFrame": true
 	},
 	"TrackingCategories": [
 		"kartographer-tracking-category",
