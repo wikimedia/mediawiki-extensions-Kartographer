@@ -17,7 +17,7 @@
 	"apihelp-query+mapdata-example-2": "Demande les données cartographiques dans les groupes <kbd>group1</kbd> et <kbd>group2</kbd> de la page <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-param-continue": "Utiliser ce paramètre pour continuer l’énumération des résultats",
 	"apihelp-query+mapdata-param-groups": "Groupes pour lesquels renvoyer les données, séparés par des barres verticales",
-	"apihelp-query+mapdata-param-limit": "Données concernant le nombre de pages à retourner",
+	"apihelp-query+mapdata-param-limit": "Nombre de pages pour lesquelles renvoyer des données",
 	"kartographer-attribution": "Bêta des cartes de Wikimédia | Données de carte © [http://openstreetmap.org/copyright contributeurs de OpenStreetMap]",
 	"kartographer-broken-category": "Pages avec des cartes contenant des erreurs",
 	"kartographer-broken-category-desc": "La page contient une carte avec des erreurs de syntaxe.",
