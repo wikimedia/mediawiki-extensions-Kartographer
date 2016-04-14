@@ -135,7 +135,8 @@
 				"ext.kartographer",
 				"ext.kartographer.site",
 				"mediawiki.jqueryMsg",
-				"oojs-ui.styles.icons-media"
+				"oojs-ui.styles.icons-media",
+				"mediawiki.router"
 			],
 			"scripts": [
 				"lib/leaflet.sleep.js",
