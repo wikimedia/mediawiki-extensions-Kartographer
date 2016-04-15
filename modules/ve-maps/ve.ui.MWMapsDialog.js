@@ -17,6 +17,8 @@
 ve.ui.MWMapsDialog = function VeUiMWMapsDialog() {
 	// Parent constructor
 	ve.ui.MWMapsDialog.super.apply( this, arguments );
+
+	this.updateGeoJson = $.debounce( 300, $.proxy( this.updateGeoJson, this ) );
 };
 
 /* Inheritance */
@@ -321,15 +323,17 @@ ve.ui.MWMapsDialog.prototype.getInitialMapPosition = function () {
  * Update the GeoJSON layer from the current input state
  */
 ve.ui.MWMapsDialog.prototype.updateGeoJson = function () {
-	var isValid;
+	var self = this;
 
 	if ( !this.map || this.updatingGeoJson ) {
 		return;
 	}
 
-	isValid = mw.kartographer.updateKartographerLayer( this.map, this.input.getValue() );
-	this.input.setValidityFlag( isValid );
-	this.updateActions();
+	mw.kartographer.updateKartographerLayer( this.map, this.input.getValue() )
+		.done( function ( isValid ) {
+			self.input.setValidityFlag( isValid );
+			self.updateActions();
+		} );
 };
 
 /**
