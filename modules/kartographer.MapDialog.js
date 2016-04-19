@@ -1,30 +1,43 @@
+/**
+ * Dialog for full screen maps
+ *
+ * @class
+ * @extends OO.ui.Dialog
+ *
+ * @constructor
+ * @param {Object} [config] Configuration options
+ */
 mw.kartographer.MapDialog = function MwKartographerMapDialog() {
 	// Parent method
 	mw.kartographer.MapDialog.super.apply( this, arguments );
 };
 
-OO.inheritClass( mw.kartographer.MapDialog, OO.ui.ProcessDialog );
+/* Inheritance */
+
+OO.inheritClass( mw.kartographer.MapDialog, OO.ui.Dialog );
+
+/* Static Properties */
 
 mw.kartographer.MapDialog.static.size = 'full';
 
-mw.kartographer.MapDialog.static.title = OO.ui.deferMsg( 'visualeditor-mwmapsdialog-title' );
-
-mw.kartographer.MapDialog.static.actions = [
-	{
-		label: OO.ui.deferMsg( 'kartographer-fullscreen-close' ),
-		flags: [ 'safe', 'back' ],
-		modes: [ 'edit', 'insert' ]
-	}
-];
+/* Methods */
 
 mw.kartographer.MapDialog.prototype.initialize = function () {
+	var closeButton;
+
 	// Parent method
 	mw.kartographer.MapDialog.super.prototype.initialize.apply( this, arguments );
 
 	this.$map = $( '<div>' ).addClass( 'mw-kartographer-mapDialog-map' );
 	this.map = null;
 
-	this.$body.append( this.$map );
+	closeButton = new OO.ui.ButtonWidget( {
+		icon: 'close',
+		title: mw.msg( 'kartographer-fullscreen-close' ),
+		classes: [ 'mw-kartographer-mapDialog-closeButton' ]
+	} ).connect( this, { click: this.executeAction.bind( this, '' ) } );
+
+	this.$body.append( closeButton.$element, this.$map );
 };
 
 mw.kartographer.MapDialog.prototype.getSetupProcess = function ( data ) {

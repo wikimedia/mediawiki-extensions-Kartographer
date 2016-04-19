@@ -37,6 +37,8 @@ ve.ui.MWMapsDialog.static.allowedEmpty = true;
 
 ve.ui.MWMapsDialog.static.modelClasses = [ ve.dm.MWMapsNode, ve.dm.MWInlineMapsNode ];
 
+/* Methods */
+
 /**
  * @inheritdoc
  */
