@@ -27,6 +27,8 @@ ve.ce.MWMapsNode = function VeCeMWMaps( model, config ) {
 	this.$imageLoader = null;
 	this.geoJson = null;
 
+	this.updateGeoJson = $.debounce( 300, $.proxy( this.updateGeoJson, this ) );
+
 	// Events
 	this.model.connect( this, { attributeChange: 'onAttributeChange' } );
 	this.connect( this, { focus: 'onMapFocus' } );
