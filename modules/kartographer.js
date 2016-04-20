@@ -167,41 +167,40 @@
 	 *
 	 * @param {L.mapbox.Map} map Map to set the GeoJSON for
 	 * @param {string} geoJsonString GeoJSON data, empty string to clear
-	 * @return {jQuery.Promise}
+	 * @return {jQuery.Promise} Promise which resolves when the GeoJSON is updated, and rejects if there was an error
 	 */
 	mw.kartographer.updateKartographerLayer = function ( map, geoJsonString ) {
-		return $.Deferred( function ( deferred ) {
-			var isValid = true;
+		var deferred = $.Deferred();
 
-			if ( geoJsonString === '' ) {
-				deferred.resolve( isValid );
-			}
+		if ( geoJsonString === '' ) {
+			return deferred.resolve().promise();
+		}
 
-			new mw.Api().post( {
-				action: 'sanitize-mapdata',
-				text: geoJsonString,
-				title: mw.config.get( 'wgPageName' )
-			} ).done( function ( resp ) {
-				var data = resp[ 'sanitize-mapdata' ],
-					geoJson,
-					layer;
+		new mw.Api().post( {
+			action: 'sanitize-mapdata',
+			text: geoJsonString,
+			title: mw.config.get( 'wgPageName' )
+		} ).done( function ( resp ) {
+			var geoJson, layer,
+				data = resp[ 'sanitize-mapdata' ];
 
-				geoJsonString = data.sanitized;
-				isValid = !!( geoJsonString && !data.error );
+			geoJsonString = data && data.sanitized;
 
-				if ( isValid ) {
-					try {
-						geoJson = JSON.parse( geoJsonString );
-						layer = mw.kartographer.getKartographerLayer( map );
-						layer.setGeoJSON( geoJson );
-					} catch ( e ) {
-						isValid = false;
-					}
+			if ( geoJsonString && !data.error ) {
+				try {
+					geoJson = JSON.parse( geoJsonString );
+					layer = mw.kartographer.getKartographerLayer( map );
+					layer.setGeoJSON( geoJson );
+					deferred.resolve();
+				} catch ( e ) {
+					deferred.reject( e );
 				}
-				deferred.resolve( isValid );
-			} );
+			} else {
+				deferred.reject();
+			}
+		} );
 
-		} ).promise();
+		return deferred.promise();
 	};
 
 	function getWindowManager() {

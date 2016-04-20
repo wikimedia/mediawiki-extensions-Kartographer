@@ -330,8 +330,13 @@ ve.ui.MWMapsDialog.prototype.updateGeoJson = function () {
 	}
 
 	mw.kartographer.updateKartographerLayer( this.map, this.input.getValue() )
-		.done( function ( isValid ) {
-			self.input.setValidityFlag( isValid );
+		.done( function () {
+			self.input.setValidityFlag( true );
+		} )
+		.fail( function () {
+			self.input.setValidityFlag( false );
+		} )
+		.always( function () {
 			self.updateActions();
 		} );
 };
