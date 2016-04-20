@@ -103,7 +103,7 @@
 
 		if ( data.overlays ) {
 
-			getMapData( data ).done( function ( mapData ) {
+			getMapGroupData( data.overlays ).done( function ( mapData ) {
 				$.each( data.overlays, function ( index, group ) {
 					if ( mapData.hasOwnProperty( group ) && mapData[ group ] ) {
 						mw.kartographer.addDataLayer( map, mapData[ group ] );
@@ -244,21 +244,21 @@
 	};
 
 	/**
-	 * Gets the map properties attached to the element.
+	 * Gets the map data attached to an element.
 	 *
-	 * @param {jQuery} $el
-	 *
-	 * @return {Object} Map properties
-	 * @return {number} return.latitude
-	 * @return {number} return.longitude
-	 * @return {number} return.zoom
-	 * @return {string} return.style
-	 * @return {Array} return.overlays
+	 * @param {HTMLElement} element Element
+	 * @return {Object|null} Map properties
+	 * @return {number} return.latitude Latitude
+	 * @return {number} return.longitude Longitude
+	 * @return {number} return.zoom Zoom level
+	 * @return {string} return.style Map style
+	 * @return {string[]} return.overlays Overlay groups
 	 */
-	function getMapProps( $el ) {
+	function getMapData( element ) {
+		var $el = $( element );
 		// Prevent users from adding map divs directly via wikitext
 		if ( $el.attr( 'mw-data' ) !== 'interface' ) {
-			return;
+			return null;
 		}
 
 		return {
@@ -277,52 +277,50 @@
 	 * asynchronous request will be made to fetch the missing groups.
 	 * The new data is then added to `wgKartographerLiveData`.
 	 *
-	 * @param {Object} props
-	 * @return {jQuery.Promise}
+	 * @param {string[]} overlays Overlay group names
+	 * @return {jQuery.Promise} Promise which resolves with the group data, an object keyed by group name
 	 */
-	function getMapData( props ) {
-		return $.Deferred( function ( deffered ) {
+	function getMapGroupData( overlays ) {
+		var deferred = $.Deferred(),
+			groupsLoaded = mw.config.get( 'wgKartographerLiveData' ) || {},
+			groupsToLoad = [];
 
-			var groupsLoaded = mw.config.get( 'wgKartographerLiveData' ) || {},
-				groupsNeeded = props.overlays,
-				groupsToLoad = [];
-
-			$( groupsNeeded ).each( function ( key, value ) {
-				if ( !( value in groupsLoaded ) ) {
-					groupsToLoad.push( value );
-				}
-			} );
-
-			if ( !groupsToLoad.length ) {
-				return deffered.resolve( groupsLoaded );
+		$( overlays ).each( function ( key, value ) {
+			if ( !( value in groupsLoaded ) ) {
+				groupsToLoad.push( value );
 			}
+		} );
 
-			new mw.Api().get( {
-				action: 'query',
-				formatversion: '2',
-				titles: mw.config.get( 'wgPageName' ),
-				prop: 'mapdata',
-				mpdgroups: groupsToLoad.join( '|' )
-			} ).done( function ( data ) {
-				var rawMapData = data.query.pages[ 0 ].mapdata,
-					mapData = JSON.parse( rawMapData );
+		if ( !groupsToLoad.length ) {
+			return deferred.resolve( groupsLoaded ).promise();
+		}
 
-				$.extend( groupsLoaded, mapData );
-				mw.config.set( 'wgKartographerLiveData', groupsLoaded );
+		new mw.Api().get( {
+			action: 'query',
+			formatversion: '2',
+			titles: mw.config.get( 'wgPageName' ),
+			prop: 'mapdata',
+			mpdgroups: groupsToLoad.join( '|' )
+		} ).done( function ( data ) {
+			var rawMapData = data.query.pages[ 0 ].mapdata,
+				mapData = JSON.parse( rawMapData );
 
-				deffered.resolve( groupsLoaded );
-			} );
+			$.extend( groupsLoaded, mapData );
+			mw.config.set( 'wgKartographerLiveData', groupsLoaded );
 
-		} ).promise();
+			deferred.resolve( groupsLoaded );
+		} );
+
+		return deferred.promise();
 	}
 
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
-
 		$content.on( 'click', '.mw-kartographer-link', function ( ) {
-			var $this = $( this );
+			var data = getMapData( this );
 
-			mw.kartographer.openFullscreenMap( getMapProps( $this ) );
-
+			if ( data ) {
+				mw.kartographer.openFullscreenMap( data );
+			}
 		} );
 
 		L.Map.mergeOptions( {
@@ -334,8 +332,7 @@
 
 		$content.find( '.mw-kartographer-interactive' ).each( function () {
 			var map,
-				$this = $( this ),
-				data = getMapProps( $this );
+				data = getMapData( this );
 
 			if ( data ) {
 				data.enableFullScreenButton = true;
@@ -344,10 +341,11 @@
 
 				mw.hook( 'wikipage.maps' ).fire( map, false /* isFullScreen */ );
 
-				$this.on( 'dblclick', function () {
+				$( this ).on( 'dblclick', function () {
 					mw.kartographer.openFullscreenMap( data, map );
 				} );
 			}
 		} );
 	} );
+
 }( jQuery, mediaWiki ) );
