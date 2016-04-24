@@ -1,0 +1,11 @@
+Principal Authors (major contributors, historically)
+
+Yuri Astrakhan <yurik@wikimedia.org>
+Max Semenik <maxsem.wiki@gmail.com>
+Ed Sanders <esanders@wikimedia.org>
+Julien Girault <jgirault@wikimedia.org>
+
+
+Patch Contributors (minor contributors, historically)
+
+James D. Forrester <jforrester@wikimedia.org>
