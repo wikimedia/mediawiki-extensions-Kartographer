@@ -128,10 +128,10 @@ ve.ui.MWMapsDialog.prototype.onDimensionsChange = function () {
 	this.$map.css( dimensions );
 	this.updateSize();
 
-	this.map.invalidateSize();
 	if ( center ) {
 		this.map.setView( center );
 	}
+	this.map.invalidateSize();
 	this.updateActions();
 };
 
