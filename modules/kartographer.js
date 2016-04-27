@@ -75,17 +75,26 @@
 	 */
 	mw.kartographer.createMap = function ( container, data ) {
 		var map,
-			style = data.style || mw.config.get( 'wgKartographerDfltStyle' );
+			$container = $( container ),
+			style = data.style || mw.config.get( 'wgKartographerDfltStyle' ),
+			width, height;
+
+		$container.addClass( 'mw-kartographer-map' );
 
 		map = L.map( container );
+
 		if ( !container.clientWidth ) {
+			// Get `max` properties in case the container was wrapped
+			// with {@link #responsiveContainerWrap}.
+			width = $container.css( 'max-width' );
+			height = $container.css( 'max-height' );
+			width = ( !width || width === 'none' ) ? $container.width() : width;
+			height = ( !height || height === 'none' ) ? $container.height() : height;
+
 			// HACK: If the container is not naturally measurable, try jQuery
 			// which will pick up CSS dimensions. T125263
 			/*jscs:disable disallowDanglingUnderscores */
-			map._size = new L.Point(
-				$( container ).width(),
-				$( container ).height()
-			);
+			map._size = new L.Point( width, height );
 			/*jscs:enable disallowDanglingUnderscores */
 		}
 		map.setView( [ data.latitude, data.longitude ], data.zoom );
@@ -320,8 +329,82 @@
 		return deferred.promise();
 	}
 
+	/**
+	 * Wraps a map container to make it (and its map) responsive on
+	 * mobile (MobileFrontend).
+	 *
+	 * The initial `mapContainer`:
+	 *
+	 *     <div class="mw-kartographer mw-kartographer-interactive" style="height: Y; width: X;">
+	 *         <!-- this is the component carrying Leaflet.Map -->
+	 *     </div>
+	 *
+	 * Becomes :
+	 *
+	 *     <div class="mw-kartographer mw-kartographer-interactive mw-kartographer-responsive" style="max-height: Y; max-width: X;">
+	 *         <div class="mw-kartographer-responder" style="padding-bottom: (100*Y/X)%">
+	 *             <div>
+	 *                 <!-- this is the component carrying Leaflet.Map -->
+	 *             </div>
+	 *         </div>
+	 *     </div>
+	 *
+	 * **Note:** the container that carries the map data remains the initial
+	 * `mapContainer` passed in arguments. Its selector remains `.mw-kartographer-interactive`.
+	 * However it is now a sub-child that carries the map.
+	 *
+	 * **Note 2:** the CSS applied to these elements vary whether the map width
+	 * is absolute (px) or relative (%). The example above describes the absolute
+	 * width case.
+	 *
+	 * @param {HTMLElement} mapContainer Initial component to carry the map.
+	 * @return {HTMLElement} New map container to carry the map.
+	 */
+	function responsiveContainerWrap( mapContainer ) {
+		var $container = $( mapContainer ),
+			$responder, $map,
+			width = mapContainer.style.width,
+			isRelativeWidth = width.slice( -1 ) === '%',
+			height = +( mapContainer.style.height.slice( 0, -2 ) ),
+			containerCss, responderCss;
+
+		// Convert the value to a string.
+		width = isRelativeWidth ? width : +( width.slice( 0, -2 ) );
+
+		if ( isRelativeWidth ) {
+			containerCss = {};
+			responderCss = {
+				// The inner container must occupy the full height
+				height: height
+			};
+		} else {
+			containerCss = {
+				// Remove explicitly set dimensions
+				width: '',
+				height: '',
+				// Prevent over-sizing
+				'max-width': width,
+				'max-height': height
+			};
+			responderCss = {
+				// Use padding-bottom trick to maintain original aspect ratio
+				'padding-bottom': ( 100 * height / width ) + '%'
+			};
+		}
+		$container.addClass( 'mw-kartographer-responsive' ).css( containerCss );
+		$responder = $( '<div>' ).addClass( 'mw-kartographer-responder' ).css( responderCss );
+
+		$map = $( '<div>' );
+		$container.append( $responder.append( $map ) );
+		return $map[ 0 ];
+	}
+
+	/**
+	 * This code will be executed once the article is rendered and ready.
+	 */
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
-		var mapsInArticle = [];
+		var mapsInArticle = [],
+			isMobile = mw.config.get( 'skin' ) === 'minerva';
 
 		$content.on( 'click', '.mw-kartographer-link', function ( ) {
 			var data = getMapData( this );
@@ -339,11 +422,17 @@
 		} );
 		$content.find( '.mw-kartographer-interactive' ).each( function () {
 			var map,
-				data = getMapData( this );
+				data = getMapData( this ),
+				container = this;
 
 			if ( data ) {
 				data.enableFullScreenButton = true;
-				map = mw.kartographer.createMap( this, data );
+
+				if ( isMobile ) {
+					container = responsiveContainerWrap( container );
+				}
+
+				map = mw.kartographer.createMap( container, data );
 				map.doubleClickZoom.disable();
 
 				mapsInArticle.push( map );
