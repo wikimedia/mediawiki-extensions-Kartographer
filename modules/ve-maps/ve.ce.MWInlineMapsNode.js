@@ -35,7 +35,7 @@ OO.inheritClass( ve.ce.MWInlineMapsNode, ve.ce.MWInlineExtensionNode );
 
 ve.ce.MWInlineMapsNode.static.name = 'mwInlineMaps';
 
-ve.ce.MWInlineMapsNode.static.tagName = 'span';
+ve.ce.MWInlineMapsNode.static.tagName = 'a';
 
 ve.ce.MWInlineMapsNode.static.primaryCommandName = 'mwMaps';
 

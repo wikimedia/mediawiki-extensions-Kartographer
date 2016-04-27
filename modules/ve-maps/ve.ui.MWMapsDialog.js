@@ -196,8 +196,10 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 	mwData.attrs.latitude = latitude.toString();
 	mwData.attrs.longitude = longitude.toString();
 	mwData.attrs.zoom = zoom.toString();
-	mwData.attrs.width = dimensions.width.toString();
-	mwData.attrs.height = dimensions.height.toString();
+	if ( !( this.selectedNode instanceof ve.dm.MWInlineMapsNode ) ) {
+		mwData.attrs.width = dimensions.width.toString();
+		mwData.attrs.height = dimensions.height.toString();
+	}
 };
 
 /**
@@ -217,15 +219,23 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 	data = data || {};
 	return ve.ui.MWMapsDialog.super.prototype.getSetupProcess.call( this, data )
 		.next( function () {
+			var inline = this.selectedNode instanceof ve.dm.MWInlineMapsNode;
+
 			this.input.clearUndoStack();
 
 			this.actions.setMode( this.selectedNode ? 'edit' : 'insert' );
 
-			if ( this.selectedNode instanceof ve.dm.MWMapsNode ) {
+			if ( this.selectedNode && !inline ) {
 				this.scalable = this.selectedNode.getScalable();
 			} else {
-				this.scalable = ve.dm.MWMapsNode.static.createScalable( { width: 400, height: 300 } );
+				this.scalable = ve.dm.MWMapsNode.static.createScalable(
+					inline ?
+					{ width: 850, height: 400 } :
+					{ width: 400, height: 300 }
+				);
 			}
+
+			this.dimensionsField.toggle( !inline );
 
 			// TODO: Support block/inline conversion
 
