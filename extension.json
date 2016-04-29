@@ -45,6 +45,19 @@
 				"desktop"
 			]
 		},
+		"ext.kartographer.site": {
+			"class": "ResourceLoaderWikiModule",
+			"scripts": [
+				"MediaWiki:Kartographer.js"
+			],
+			"styles": [
+				"MediaWiki:Kartographer.css"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
 		"mapbox": {
 			"scripts": [
 				"lib/mapbox/mapbox-lib.js",
@@ -120,6 +133,7 @@
 			"dependencies": [
 				"mapbox",
 				"ext.kartographer",
+				"ext.kartographer.site",
 				"mediawiki.jqueryMsg",
 				"oojs-ui.styles.icons-media"
 			],
@@ -137,6 +151,7 @@
 		},
 		"ext.kartographer.fullscreen": {
 			"dependencies": [
+				"ext.kartographer.site",
 				"oojs-ui-windows"
 			],
 			"scripts": [
