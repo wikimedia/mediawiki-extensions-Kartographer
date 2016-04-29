@@ -27,18 +27,7 @@ OO.inheritClass( ve.dm.MWInlineMapsNode, ve.dm.MWInlineExtensionNode );
 
 ve.dm.MWInlineMapsNode.static.name = 'mwInlineMaps';
 
-ve.dm.MWInlineMapsNode.static.extensionName = 'mapframe';
-
-/* Static methods */
-
-ve.dm.MWInlineMapsNode.static.toDataElement = function () {
-	var dataElement = ve.dm.MWInlineMapsNode.super.static.toDataElement.apply( this, arguments );
-
-	dataElement.attributes.width = +dataElement.attributes.mw.attrs.width;
-	dataElement.attributes.height = +dataElement.attributes.mw.attrs.height;
-
-	return dataElement;
-};
+ve.dm.MWInlineMapsNode.static.extensionName = 'maplink';
 
 /* Registration */
 
