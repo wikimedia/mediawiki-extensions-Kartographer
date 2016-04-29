@@ -42,8 +42,8 @@
 		},
 
 		onAdd: function ( map ) {
-			var container = L.DomUtil.create( 'div', 'leaflet-control-mapbox-share leaflet-bar' ),
-				link = L.DomUtil.create( 'a', 'mapbox-share mapbox-icon mapbox-icon-share', container );
+			var container = L.DomUtil.create( 'div', 'leaflet-bar' ),
+				link = L.DomUtil.create( 'a', 'oo-ui-icon-fullScreen', container );
 
 			link.href = '#';
 			link.title = mw.msg( 'kartographer-fullscreen-text' );

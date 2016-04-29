@@ -120,7 +120,8 @@
 			"dependencies": [
 				"mapbox",
 				"ext.kartographer",
-				"mediawiki.jqueryMsg"
+				"mediawiki.jqueryMsg",
+				"oojs-ui.styles.icons-media"
 			],
 			"scripts": [
 				"lib/leaflet.sleep.js",
