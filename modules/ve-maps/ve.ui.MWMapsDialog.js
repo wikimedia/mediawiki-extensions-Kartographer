@@ -71,17 +71,6 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		label: ve.msg( 'visualeditor-mwmapsdialog-reset-map' )
 	} );
 
-	// Events
-	this.input.connect( this, {
-		change: 'updateGeoJson',
-		resize: 'updateSize'
-	} );
-	this.dimensions.connect( this, {
-		widthChange: 'onDimensionsChange',
-		heightChange: 'onDimensionsChange'
-	} );
-	this.resetMapButton.connect( this, { click: 'resetMapPosition' } );
-
 	panel = new OO.ui.PanelLayout( {
 		padded: true,
 		expanded: false
@@ -227,6 +216,17 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 				this.scalable = ve.dm.MWMapsNode.static.createScalable( { width: 400, height: 300 } );
 			}
 
+			// Events
+			this.input.connect( this, {
+				change: 'updateGeoJson',
+				resize: 'updateSize'
+			} );
+			this.dimensions.connect( this, {
+				widthChange: 'onDimensionsChange',
+				heightChange: 'onDimensionsChange'
+			} );
+			this.resetMapButton.connect( this, { click: 'resetMapPosition' } );
+
 			// TODO: Support block/inline conversion
 
 			this.$resetMapButtonContainer.toggle( !!this.selectedNode );
@@ -349,6 +349,11 @@ ve.ui.MWMapsDialog.prototype.updateGeoJson = function () {
 ve.ui.MWMapsDialog.prototype.getTeardownProcess = function ( data ) {
 	return ve.ui.MWMapsDialog.super.prototype.getTeardownProcess.call( this, data )
 		.first( function () {
+			// Events
+			this.input.disconnect( this );
+			this.dimensions.disconnect( this );
+			this.resetMapButton.disconnect( this );
+
 			this.dimensions.clear();
 			if ( this.map ) {
 				this.map.remove();
