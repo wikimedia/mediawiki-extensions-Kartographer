@@ -109,7 +109,9 @@ ve.ui.MWMapsDialog.prototype.onDimensionsChange = function () {
 		return;
 	}
 
-	dimensions = this.dimensions.getDimensions();
+	dimensions = this.scalable.getBoundedDimensions(
+		this.dimensions.getDimensions()
+	);
 	center = this.map && this.map.getCenter();
 
 	// Set container width for centering
@@ -159,6 +161,21 @@ ve.ui.MWMapsDialog.prototype.updateActions = function () {
 		modified = true;
 	}
 	this.actions.setAbilities( { done: modified } );
+};
+
+/**
+ * @inheritdoc ve.ui.MWExtensionWindow
+ */
+ve.ui.MWMapsDialog.prototype.insertOrUpdateNode = function () {
+	// Parent method
+	ve.ui.MWMapsDialog.super.prototype.insertOrUpdateNode.apply( this, arguments );
+
+	// Update scalable
+	this.scalable.setCurrentDimensions(
+		this.scalable.getBoundedDimensions(
+			this.dimensions.getDimensions()
+		)
+	);
 };
 
 /**
