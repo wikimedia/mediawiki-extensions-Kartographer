@@ -1,7 +1,6 @@
 ( function ( $, mw ) {
 
 	// Load this script after lib/mapbox-lib.js
-
 	var scale, urlFormat, windowManager, mapDialog,
 		mapServer = mw.config.get( 'wgKartographerMapServer' ),
 		forceHttps = mapServer[ 4 ] === 's',
@@ -96,17 +95,26 @@
 			map.addControl( new mw.kartographer.FullScreenControl( { mapPositionData: data } ) );
 		}
 
-		L.tileLayer( mapServer + '/' + style + urlFormat, {
+		/**
+		 * @property {L.TileLayer} Reference to `Wikimedia` tile layer.
+		 */
+		map.wikimediaLayer = L.tileLayer( mapServer + '/' + style + urlFormat, {
 			maxZoom: 18,
 			attribution: mw.message( 'kartographer-attribution' ).parse()
 		} ).addTo( map );
+
+		/**
+		 * @property {Object} Hash map of data groups and their corresponding
+		 *   {@link L.mapbox.FeatureLayer layers}.
+		 */
+		map.dataLayers = {};
 
 		if ( data.overlays ) {
 
 			getMapGroupData( data.overlays ).done( function ( mapData ) {
 				$.each( data.overlays, function ( index, group ) {
 					if ( mapData.hasOwnProperty( group ) && mapData[ group ] ) {
-						mw.kartographer.addDataLayer( map, mapData[ group ] );
+						map.dataLayers[ group ] = mw.kartographer.addDataLayer( map, mapData[ group ] );
 					} else {
 						mw.log( 'Layer not found or contains no data: "' + group + '"' );
 					}
@@ -114,7 +122,6 @@
 			} );
 
 		}
-
 		return map;
 	};
 
@@ -314,6 +321,8 @@
 	}
 
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
+		var mapsInArticle = [];
+
 		$content.on( 'click', '.mw-kartographer-link', function ( ) {
 			var data = getMapData( this );
 
@@ -328,7 +337,6 @@
 			sleepNote: false,
 			sleepOpacity: 1
 		} );
-
 		$content.find( '.mw-kartographer-interactive' ).each( function () {
 			var map,
 				data = getMapData( this );
@@ -338,13 +346,16 @@
 				map = mw.kartographer.createMap( this, data );
 				map.doubleClickZoom.disable();
 
-				mw.hook( 'wikipage.maps' ).fire( map, false /* isFullScreen */ );
+				mapsInArticle.push( map );
 
 				$( this ).on( 'dblclick', function () {
 					mw.kartographer.openFullscreenMap( data, map );
 				} );
 			}
 		} );
+
+		// Allow customizations of interactive maps in article.
+		mw.hook( 'wikipage.maps' ).fire( mapsInArticle, false /* isFullScreen */ );
 	} );
 
 }( jQuery, mediaWiki ) );
