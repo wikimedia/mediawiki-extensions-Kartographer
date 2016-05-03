@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robin van der Vliet"
+			"Robin van der Vliet",
+			"Yekrats"
 		]
 	},
 	"kartographer-error-context-multi": "&lt;$1&gt; problemoj:\n$2",
@@ -9,5 +10,6 @@
 	"leafletdraw-edit-toolbar-actions-cancel-text": "Nuligi",
 	"leafletdraw-edit-toolbar-actions-save-text": "Konservi",
 	"leafletdraw-edit-toolbar-actions-save-title": "Konservi ŝanĝojn",
-	"kartographer-fullscreen-close": "Fermi"
+	"kartographer-fullscreen-close": "Fermi",
+	"visualeditor-mwmapsdialog-title": "Mapo"
 }
