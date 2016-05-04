@@ -34,6 +34,8 @@
 	"kartographer-coord-lat-negative": "{{optional}}\nSouth latitude suffix for geographical coordinates. $1 is value in degrees/minutes/seconds, see {{msg-mw|kartographer-coord-dms}}",
 	"kartographer-coord-lon-positive": "{{optional}}\nEast longitude suffix for geographical coordinates. $1 is value in degrees/minutes/seconds, see {{msg-mw|kartographer-coord-dms}}",
 	"kartographer-coord-lon-negative": "{{optional}}\nWest longitude suffix for geographical coordinates. $1 is value in degrees/minutes/seconds, see {{msg-mw|kartographer-coord-dms}}",
+	"kartographer.css": "{{optional}}",
+	"kartographer.js": "{{optional}}",
 	"leafletdraw-draw-handlers-circle-radius": "Label for circle radius\n{{Identical|Radius}}",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "Tooltip for how to start drawing a circle",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Tooltip for how to place a marker",

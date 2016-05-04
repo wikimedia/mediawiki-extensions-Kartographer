@@ -31,6 +31,8 @@
 	"kartographer-coord-lat-negative": "$1S",
 	"kartographer-coord-lon-positive": "$1E",
 	"kartographer-coord-lon-negative": "$1W",
+	"kartographer.css": "/* CSS placed here will be applied to all pages with maps */",
+	"kartographer.js": "/* Any JavaScript here will be loaded for all users on load of the map-containing pages */",
 	"leafletdraw-draw-handlers-circle-radius": "Radius",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "Click and drag to draw a circle",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Click map to place a marker",
