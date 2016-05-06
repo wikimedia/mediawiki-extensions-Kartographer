@@ -196,6 +196,7 @@
 			],
 			"dependencies": [
 				"ext.visualEditor.mwcore",
+				"jquery.throttle-debounce",
 				"oojs-ui.styles.icons-location",
 				"ext.kartographer"
 			],
