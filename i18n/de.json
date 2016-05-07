@@ -26,6 +26,7 @@
 	"kartographer-tracking-category": "Seiten mit Karten",
 	"kartographer-tracking-category-desc": "Die Seite enthält eine Karte",
 	"kartographer.css": "/* CSS an dieser Stelle wirkt sich auf alle Seiten mit Karten aus */",
+	"kartographer.js": "/* Jedes JavaScript an dieser Stelle wird für alle Benutzer auf Seiten geladen, die Karten enthalten */",
 	"leafletdraw-draw-handlers-circle-radius": "Radius",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "Klicken und ziehen, um einen Kreis zu zeichnen.",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Karte anklicken, um eine Markierung zu platzieren.",

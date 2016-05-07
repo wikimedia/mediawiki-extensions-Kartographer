@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Minh Nguyen"
+			"Minh Nguyen",
+			"Dinhxuanduyet"
 		]
 	},
+	"apihelp-query+mapdata-param-limit": "Dữ liệu cho bao nhiêu trang trả về",
 	"kartographer-attribution": "Bản đồ Wikimedia beta | Dữ liệu bản đồ © [http://openstreetmap.org/copyright/vi những người đóng góp vào OpenStreetMap]",
 	"kartographer-broken-category": "Trang có bản đồ hỏng",
 	"kartographer-broken-category-desc": "Trang này nhúng một bản đồ một cách không hợp lệ",
