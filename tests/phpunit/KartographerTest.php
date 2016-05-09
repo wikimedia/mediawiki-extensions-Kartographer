@@ -67,8 +67,37 @@ class KartographerTest extends MediaWikiTestCase {
       "marker-size": "medium",
       "marker-color": "0050d0"
     }
-  }';
+ }';
 		/** @noinspection HtmlUnknownTarget */
+		$xssJson = '[
+  {
+	"__proto__": { "some": "bad stuff" },
+	"type": "Feature",
+	"geometry": {
+		"type": "Point",
+		"coordinates": [-122.3988, 37.8013]
+	},
+	"properties": {
+		"__proto__": { "foo": "bar" },
+		"title": "Foo bar"
+	}
+  },
+  {
+	"type": "GeometryCollection",
+	"geometries": [
+		{
+			"__proto__": "recurse me",
+			"type": "Point",
+			"coordinates": [ 0, 0 ],
+			"properties": { "__proto__": "is evil" }
+		}
+	]
+  }
+]';
+		$xssJsonSanitized = '{"_a4d5387a1b7974bf854321421a36d913101f5724":[
+			{"type":"Feature","geometry":{"type":"Point","coordinates":[-122.3988,37.8013]},"properties":{"title":"Foo bar"}},
+			{"type":"GeometryCollection","geometries":[{"type":"Point","coordinates":[0,0],"properties":{}}]}
+		]}';
 		$wikitextJsonParsed = '{"_be34df99c99d1efd9eaa8eabc87a43f2541a67e5":[
 				{"type":"Feature","geometry":{"type":"Point","coordinates":[-122.3988,37.8013]},
 				"properties":{"title":"&lt;script&gt;alert(document.cookie);&lt;\/script&gt;",
@@ -98,8 +127,10 @@ class KartographerTest extends MediaWikiTestCase {
   }</mapframe>', 'Invalid JSON 6' ],
 			[ $wikitextJsonParsed, "<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>[{$this->wikitextJson}]</mapframe>", '<mapframe> with parsable text and description' ],
 			[ $wikitextJsonParsed, "<maplink zoom=13 longitude=-122.3988 latitude=37.8013>[{$this->wikitextJson}]</maplink>", '<maplink> with parsable text and description' ],
+
 			// Bugs
 			[ 'null', "<maplink zoom=13 longitude=-122.3988 latitude=37.8013>\t\r\n </maplink>", 'T127345: whitespace-only tag content, <maplink>' ],
+			[ $xssJsonSanitized, "<maplink zoom=13 longitude=10 latitude=20>$xssJson</maplink>", 'T134719: XSS via __proto__' ],
 		];
 	}
 

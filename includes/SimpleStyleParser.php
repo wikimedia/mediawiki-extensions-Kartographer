@@ -17,8 +17,6 @@ use stdClass;
 class SimpleStyleParser {
 	private static $parsedProps = [ 'title', 'description' ];
 
-	private static $recursedProps = [ 'geometry', 'geometries', 'features' ];
-
 	/** @var Parser */
 	private $parser;
 
@@ -153,14 +151,17 @@ class SimpleStyleParser {
 			return;
 		}
 
-		if ( property_exists( $json, 'properties' ) && is_object( $json->properties ) ) {
-			$this->sanitizeProperties( $json->properties );
-		}
-
-		foreach ( self::$recursedProps as $prop ) {
-			if ( property_exists( $json, $prop ) ) {
+		foreach ( array_keys( get_object_vars( $json ) ) as $prop ) {
+			// https://phabricator.wikimedia.org/T134719
+			if ( $prop[0] === '_' ) {
+				unset( $json->$prop );
+			} else {
 				$this->sanitize( $json->$prop );
 			}
+		}
+
+		if ( property_exists( $json, 'properties' ) && is_object( $json->properties ) ) {
+			$this->sanitizeProperties( $json->properties );
 		}
 	}
 
