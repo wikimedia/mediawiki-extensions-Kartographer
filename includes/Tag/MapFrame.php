@@ -78,7 +78,7 @@ class MapFrame extends TagHandler {
 			*/
 
 			case 'interactive':
-				$this->parser->getOutput()->addModules( 'ext.kartographer.live' );
+				$output->addModules( 'ext.kartographer.live' );
 
 
 				$attrs = $this->getDefaultAttributes();
