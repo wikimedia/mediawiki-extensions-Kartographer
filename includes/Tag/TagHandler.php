@@ -20,7 +20,6 @@ use PPFrame;
 use Sanitizer;
 use Status;
 use stdClass;
-use Title;
 
 /**
  * Base class for all <map...> tags

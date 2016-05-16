@@ -1,0 +1,9 @@
+{
+	"type": "GeometryCollection",
+	"geometries": [
+		{
+			"type": "FeatureCollection",
+			"features": []
+		}
+	]
+}

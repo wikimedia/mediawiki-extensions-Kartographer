@@ -112,6 +112,21 @@ Error messages
 <mapframe latitude=10 longitude=20 zoom=13 width=0% height=480/>
 <mapframe latitude=10 longitude=20 zoom=13 width=05% height=480/>
 <mapframe latitude=10 longitude=20 zoom=13 width=300% height=480/>
+<mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=crap mapstyle=derp>
+{
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.3988, 37.8013]
+    },
+    "properties": {
+      "title": "Foo bar",
+      "marker-symbol": "museum",
+      "marker-size": "medium",
+      "marker-color": "fail"
+    }
+  }
+</mapframe>
 !! result
 <div class="mw-kartographer mw-kartographer-error"><p>&lt;maplink&gt; problems:
 </p>
@@ -128,6 +143,12 @@ Error messages
 <div class="mw-kartographer mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
 <div class="mw-kartographer mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
 <div class="mw-kartographer mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
+<div class="mw-kartographer mw-kartographer-error"><p>&lt;mapframe&gt; problems:
+</p>
+<ul><li> The JSON content is not valid GeoJSON+simplestyle</li>
+<li> Attribute "mapstyle" has an invalid value</li>
+<li> Attribute "align" has an invalid value</li></ul>
+</div>
 
 !! end
 
@@ -190,23 +211,8 @@ Marker styles
 	}
 }
 </maplink>
-
-<maplink latitude=10 longitude=20 zoom=13>
-{
-"type": "Feature",
-	"geometry": {
-		"type": "Point",
-		"coordinates": [-122.3988, 37.8013]
-	},
-	"properties": {
-		"marker-symbol": "-number",
-		"marker-color": "something bad"
-	}
-}
-</maplink>
 !! result
 <p><a class="mw-kartographer mw-kartographer-link mw-kartographer-autostyled" mw-data="interface" style="background: #abc;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_19a72be79a2653cf0eeccdba3776a568873e8865&quot;]">A</a>
 </p><p><a class="mw-kartographer mw-kartographer-link mw-kartographer-autostyled" mw-data="interface" style="background: #fff; border: yellow;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_348b58ab5ba1db004b387561db7d945cdf90cea0&quot;]">2</a>
-</p><p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_737b28c57ddefefdb1da5a25bc09425dd124b6b6&quot;]">3</a>
 </p>
 !! end

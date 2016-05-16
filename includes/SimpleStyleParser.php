@@ -3,6 +3,9 @@
 namespace Kartographer;
 
 use FormatJson;
+use JsonSchema\RefResolver;
+use JsonSchema\Uri\UriRetriever;
+use JsonSchema\Validator;
 use Parser;
 use PPFrame;
 use Status;
@@ -120,8 +123,11 @@ class SimpleStyleParser {
 	 * @return Status
 	 */
 	private function validateContent( $json ) {
-		// The content must be a non-associative array of values or an object
-		if ( !is_array( $json ) ) {
+		$schema = self::loadSchema();
+		$validator = new Validator();
+		$validator->check( $json, $schema );
+
+		if ( !$validator->isValid() ) {
 			return Status::newFatal( 'kartographer-error-bad_data' );
 		}
 
@@ -172,5 +178,19 @@ class SimpleStyleParser {
 				}
 			}
 		}
+	}
+
+	private static function loadSchema() {
+		static $schema;
+
+		if ( !$schema ) {
+			$basePath = 'file://' . dirname( __DIR__ ) . '/schemas';
+			$retriever = new UriRetriever();
+			$resolver = new RefResolver( $retriever );
+			RefResolver::$maxDepth = 20;
+			$schema = $retriever->retrieve( "$basePath/geojson.json", $basePath );
+			$resolver->resolve( $schema, $basePath );
+		}
+		return $schema;
 	}
 }

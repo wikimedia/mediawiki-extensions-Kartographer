@@ -73,10 +73,25 @@ class KartographerTest extends MediaWikiTestCase {
 		return [
 			[ 'null', '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013/>', '<mapframe> without JSON' ],
 			[ 'null', '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013></mapframe>', '<mapframe> without JSON 2' ],
-			//[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013 mode=interactive>123</mapframe>', 'Invalid JSON' ],
-			//[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013 mode=interactive>{{"":""}}</maps>', 'Invalid JSON 3' ],
 			[ "{\"_4622d19afa2e6480c327846395ed932ba6fa56d4\":[$validJson]}", "<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>$validJson</mapframe>", '<mapframe> with GeoJSON' ],
 			[ "{\"_4622d19afa2e6480c327846395ed932ba6fa56d4\":[$validJson]}", "<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>[$validJson]</mapframe>", '<mapframe> with GeoJSON array' ],
+			[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>123</mapframe>', 'Invalid JSON' ],
+			[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>{{"":""}}</mapframe>', 'Invalid JSON 2' ],
+			[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>[[]]</mapframe>', 'Invalid JSON 3' ],
+			[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>{"type":"fail"}</mapframe>', 'Invalid JSON 4' ],
+			[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>null</mapframe>', 'Invalid JSON 5' ],
+			[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>{
+    "type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.3988, 37.8013]
+    },
+    "properties": {
+      "title": "Foo bar",
+      "marker-symbol": "Cthulhu fhtagn!",
+      "marker-size": "medium"
+    }
+  }</mapframe>', 'Invalid JSON 6' ],
 			[ $wikitextJsonParsed, "<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>[{$this->wikitextJson}]</mapframe>", '<mapframe> with parsable text and description' ],
 			[ $wikitextJsonParsed, "<maplink zoom=13 longitude=-122.3988 latitude=37.8013>[{$this->wikitextJson}]</maplink>", '<maplink> with parsable text and description' ],
 			// Bugs

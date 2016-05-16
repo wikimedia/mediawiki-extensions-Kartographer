@@ -1,0 +1,92 @@
+[
+	{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-122.3988, 37.8013]
+		},
+		"properties": {
+			"title": "foo bar",
+			"marker-symbol": "museum",
+			"marker-size": "medium",
+			"marker-color": "0050d0"
+		}
+	},
+
+	{
+		"type": "Feature",
+		"properties": {
+			"marker-color": "#f00",
+			"marker-size": "large",
+			"marker-symbol": "rocket",
+			"video": "<iframe width='560' height='315' src='https://www.youtube.com/embed/tntOCGkgt98' frameborder='0' allowfullscreen></iframe>"
+		},
+		"geometry": {
+			"type": "Point",
+			"coordinates": [-122.3998, 37.8123]
+		}
+	},
+
+	{
+		"type": "Feature",
+		"properties": {
+			"title": "Fun Zone",
+			"stroke": "#555555",
+			"stroke-width": 2,
+			"stroke-opacity": 1,
+			"fill": "#00ff00",
+			"fill-opacity": 0.2
+		},
+		"geometry": {
+			"type": "Polygon",
+			"coordinates": [
+				[
+					[
+						-122.3964500427246,
+						37.79622059466506
+					],
+					[
+						-122.40310192108153,
+						37.80432500079042
+					],
+					[
+						-122.41086959838866,
+						37.80761398306056
+					],
+					[
+						-122.4203109741211,
+						37.806969760955965
+					],
+					[
+						-122.41996765136719,
+						37.81114015184754
+					],
+					[
+						-122.40898132324217,
+						37.81198776347079
+					],
+					[
+						-122.39825248718262,
+						37.8066985078621
+					],
+					[
+						-122.39121437072752,
+						37.79832307832353
+					],
+					[
+						-122.38203048706053,
+						37.78669084598557
+					],
+					[
+						-122.38773822784424,
+						37.78370618798191
+					],
+					[
+						-122.3964500427246,
+						37.79622059466506
+					]
+				]
+			]
+		}
+	}
+]
