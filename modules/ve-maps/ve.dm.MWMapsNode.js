@@ -68,8 +68,8 @@ ve.dm.MWMapsNode.static.createScalable = function ( dimensions ) {
 			height: dimensions.height
 		},
 		minDimensions: {
-			width: 10,
-			height: 10
+			width: 200,
+			height: 100
 		},
 		maxDimensions: {
 			width: 1000,
