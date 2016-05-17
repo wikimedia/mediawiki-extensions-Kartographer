@@ -12,7 +12,7 @@
 	"kartographer-error-context-multi": "Problémy u &lt;$1&gt;:\n$2",
 	"kartographer-error-missing-attr": "Chybí atribut „$1“",
 	"kartographer-error-bad_attr": "Atribut „$1“ má neplatnou hodnotu",
-	"kartographer-error-bad_data": "JSON obsah není správný",
+	"kartographer-error-bad_data": "JSON obsah není platný GeoJSON+simplestyle",
 	"kartographer-tracking-category": "Stránky s mapou",
 	"kartographer-tracking-category-desc": "Tato stránka obsahuje mapu",
 	"leafletdraw-draw-handlers-circle-radius": "Poloměr",

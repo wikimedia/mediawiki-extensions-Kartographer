@@ -21,7 +21,7 @@
 	"kartographer-error-context-multi": "&lt;$1&gt; בעיות:\n$2",
 	"kartographer-error-missing-attr": "המאפיין \"$1\" חסר",
 	"kartographer-error-bad_attr": "למאפיין \"$1\" יש ערך בלתי־תקין",
-	"kartographer-error-bad_data": "תוכן ה־JSON אינו נכון",
+	"kartographer-error-bad_data": "תוכן ה־JSON אינו GeoJSON+simplestyle תקין",
 	"kartographer-tracking-category": "דפים עם מפות",
 	"kartographer-tracking-category-desc": "הדף הזה מכיל מפה",
 	"kartographer-coord-lat-positive": "$1צפ",

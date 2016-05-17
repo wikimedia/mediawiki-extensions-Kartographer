@@ -15,7 +15,7 @@
 	"kartographer-error-context-multi": "Problemi &lt;$1&gt;:\n$2",
 	"kartographer-error-missing-attr": "L'attributo \"$1\" non è presente",
 	"kartographer-error-bad_attr": "L'attributo '$1' ha un valore non valido",
-	"kartographer-error-bad_data": "Il contenuto JSON non è corretto",
+	"kartographer-error-bad_data": "Il contenuto JSON non è un valido GeoJSON+simplestyle",
 	"kartographer-tracking-category": "Pagine con mappe",
 	"kartographer-tracking-category-desc": "La pagina include una mappa",
 	"leafletdraw-draw-handlers-circle-radius": "Raggio",

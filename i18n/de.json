@@ -22,7 +22,7 @@
 	"kartographer-error-context-multi": "&lt;$1&gt;-Probleme:\n$2",
 	"kartographer-error-missing-attr": "Das Attribut „$1“ fehlt",
 	"kartographer-error-bad_attr": "Das Attribut „$1“ hat einen ungültigen Wert",
-	"kartographer-error-bad_data": "Der JSON-Inhalt ist nicht korrekt",
+	"kartographer-error-bad_data": "Der JSON-Inhalt ist kein gültiges GeoJSON+simplestyle",
 	"kartographer-tracking-category": "Seiten mit Karten",
 	"kartographer-tracking-category-desc": "Die Seite enthält eine Karte",
 	"kartographer.css": "/* CSS an dieser Stelle wirkt sich auf alle Seiten mit Karten aus */",
