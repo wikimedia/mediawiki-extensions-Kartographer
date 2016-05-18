@@ -13,6 +13,10 @@ use Kartographer\Tag\TagHandler;
 use Parser;
 
 class Hooks {
+	static $tags = [
+		'mapframe' => 'Kartographer\Tag\MapFrame::entryPoint',
+		'maplink' => 'Kartographer\Tag\MapLink::entryPoint',
+	];
 
 	/**
 	 * ParserFirstCallInit hook handler
@@ -21,12 +25,14 @@ class Hooks {
 	 * @return bool
 	 */
 	public static function onParserFirstCallInit( Parser $parser ) {
-		global $wgKartographerEnableMapFrame;
+		global $wgKartographerEnableTags;
 
-		if ( $wgKartographerEnableMapFrame ) {
-			$parser->setHook( 'mapframe', 'Kartographer\Tag\MapFrame::entryPoint' );
+		foreach ( $wgKartographerEnableTags as $tag ) {
+			if ( isset( self::$tags[$tag] ) ) {
+				$parser->setHook( $tag, self::$tags[$tag] );
+			}
 		}
-		$parser->setHook( 'maplink', 'Kartographer\Tag\MapLink::entryPoint' );
+
 		return true;
 	}
 
