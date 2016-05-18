@@ -22,7 +22,7 @@
 	"kartographer-error-context-multi": "&lt;$1&gt;问题：$2",
 	"kartographer-error-missing-attr": "属性“$1”丢失",
 	"kartographer-error-bad_attr": "属性“$1”有无效的值",
-	"kartographer-error-bad_data": "JSON内容不正确",
+	"kartographer-error-bad_data": "JSON内容不是有效的GeoJSON+simplestyle",
 	"kartographer-tracking-category": "有地图的页面",
 	"kartographer-tracking-category-desc": "页面包含地图",
 	"leafletdraw-draw-handlers-circle-radius": "半径",

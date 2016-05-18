@@ -26,7 +26,7 @@
 	"kartographer-error-context-multi": "problèmes de &lt;$1&gt; :\n$2",
 	"kartographer-error-missing-attr": "L’attribut « $1 » est absent",
 	"kartographer-error-bad_attr": "L’attribut « $1 » a une valeur invalide",
-	"kartographer-error-bad_data": "Le contenu JSON n’est pas valide",
+	"kartographer-error-bad_data": "Le contenu JSON n'est pas compatible GeoJSON+simplestyle",
 	"kartographer-tracking-category": "Pages avec carte",
 	"kartographer-tracking-category-desc": "La page contient une carte",
 	"leafletdraw-draw-handlers-circle-radius": "Rayon",
