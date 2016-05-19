@@ -256,6 +256,10 @@ abstract class TagHandler {
 
 
 	protected function saveData( ParserOutput $output ) {
+		$requestedGroups = $output->getExtensionData( 'kartographer_requested' ) ?: [];
+		$requestedGroups = array_merge( $requestedGroups, $this->showGroups );
+		$output->setExtensionData( 'kartographer_requested', $requestedGroups );
+
 		if ( !$this->geometries ) {
 			return;
 		}
@@ -309,10 +313,18 @@ abstract class TagHandler {
 			$output->addTrackingCategory( 'kartographer-tracking-category', $parser->getTitle() );
 		}
 
-		$interact = $output->getExtensionData( 'kartographer_interact' );
-		if ( $interact ) {
-			$interact = array_flip( array_unique( $interact ) );
+		$interact = $output->getExtensionData( 'kartographer_interact' ) ?: [];
+		$requested = $output->getExtensionData( 'kartographer_requested' ) ?: [];
+		if ( $interact || $requested ) {
+			$interact = array_flip( $interact );
 			$liveData = array_intersect_key( (array)$data, $interact );
+			$requested = array_unique( $requested );
+			// Prevent pointless API requests for missing groups
+			foreach ( $requested as $group ) {
+				if ( !isset( $data->$group ) ) {
+					$liveData[$group] = [];
+				}
+			}
 			$output->addJsConfigVars( 'wgKartographerLiveData', $liveData );
 		}
 	}
