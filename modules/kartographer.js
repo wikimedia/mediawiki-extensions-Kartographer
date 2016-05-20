@@ -125,7 +125,7 @@
 					if ( mapData.hasOwnProperty( group ) && mapData[ group ] ) {
 						map.dataLayers[ group ] = mw.kartographer.addDataLayer( map, mapData[ group ] );
 					} else {
-						mw.log( 'Layer not found or contains no data: "' + group + '"' );
+						mw.log.warn( 'Layer not found or contains no data: "' + group + '"' );
 					}
 				} );
 			} );
@@ -318,7 +318,7 @@
 			mpdgroups: groupsToLoad.join( '|' )
 		} ).done( function ( data ) {
 			var rawMapData = data.query.pages[ 0 ].mapdata,
-				mapData = JSON.parse( rawMapData );
+				mapData = rawMapData && JSON.parse( rawMapData ) || {};
 
 			$.extend( groupsLoaded, mapData );
 			mw.config.set( 'wgKartographerLiveData', groupsLoaded );
