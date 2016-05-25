@@ -4,7 +4,8 @@
 	var scale, urlFormat, windowManager, mapDialog,
 		mapServer = mw.config.get( 'wgKartographerMapServer' ),
 		forceHttps = mapServer[ 4 ] === 's',
-		config = L.mapbox.config;
+		config = L.mapbox.config,
+		router = mw.loader.require( 'mediawiki.router' );
 
 	config.REQUIRE_ACCESS_TOKEN = false;
 	config.FORCE_HTTPS = forceHttps;
@@ -34,6 +35,13 @@
 
 	mw.kartographer = {};
 
+	/**
+	 * References the map containers of the page.
+	 *
+	 * @type {HTMLElement[]}
+	 */
+	mw.kartographer.maps = [];
+
 	mw.kartographer.FullScreenControl = L.Control.extend( {
 		options: {
 			// Do not switch for RTL because zoom also stays in place
@@ -44,7 +52,7 @@
 			var container = L.DomUtil.create( 'div', 'leaflet-bar' ),
 				link = L.DomUtil.create( 'a', 'oo-ui-icon-fullScreen', container );
 
-			link.href = '#';
+			this.href = link.href = '#' + mw.kartographer.getMapHash( this.options.mapData, this.map );
 			link.title = mw.msg( 'kartographer-fullscreen-text' );
 			this.map = map;
 
@@ -55,8 +63,16 @@
 		},
 
 		onShowFullScreen: function ( e ) {
+			var hash = mw.kartographer.getMapHash( this.options.mapData, this.map );
 			L.DomEvent.stop( e );
-			mw.kartographer.openFullscreenMap( this.options.mapPositionData, this.map );
+
+			this.href = '#' + hash;
+
+			if ( router.isSupported() ) {
+				router.navigate( hash );
+			} else {
+				mw.kartographer.openFullscreenMap( this.map, getMapPosition( this.map ) );
+			}
 		}
 	} );
 
@@ -97,11 +113,13 @@
 			map._size = new L.Point( width, height );
 			/*jscs:enable disallowDanglingUnderscores */
 		}
-		map.setView( [ data.latitude, data.longitude ], data.zoom );
+		map.setView( [ data.latitude, data.longitude ], data.zoom, true );
 		map.attributionControl.setPrefix( '' );
 
 		if ( data.enableFullScreenButton ) {
-			map.addControl( new mw.kartographer.FullScreenControl( { mapPositionData: data } ) );
+			map.addControl( new mw.kartographer.FullScreenControl( {
+				mapData: data
+			} ) );
 		}
 
 		/**
@@ -230,33 +248,131 @@
 	}
 
 	/**
-	 * Open a full screen map
+	 * Opens a full screen map.
 	 *
-	 * @param {Object} data Map data
-	 * @param {L.mapbox.Map} [map] Optional map to get current state from
+	 * This method loads dependencies asynchronously. While these scripts are
+	 * loading, more calls to this method can be made. We only need to resolve
+	 * the last one. To make sure we only load the last map requested, we keep
+	 * an increment of the calls being made.
+	 *
+	 * @param {L.Map|Object} mapData Map object to get data from, or raw map data.
+	 * @param {Object} [fullScreenState] Optional full screen position in which to
+	 *   open the map.
+	 * @param {number} [fullScreenState.zoom]
+	 * @param {number} [fullScreenState.latitude]
+	 * @param {number} [fullScreenState.longitude]
 	 */
-	mw.kartographer.openFullscreenMap = function ( data, map ) {
-		mw.loader.using( 'ext.kartographer.fullscreen' ).done( function () {
-			var center;
-			if ( map ) {
-				center = map.getCenter();
-				data.latitude = center.lat;
-				data.longitude = center.lng;
-				data.zoom = map.getZoom();
-			}
-			// full screen map should never show "full screen" button
-			data.enableFullScreenButton = false;
-			getWindowManager()
-				.openWindow( mapDialog, data )
-				.then( function ( opened ) { return opened; } )
-				.then( function ( closing ) {
-					if ( map ) {
-						map.setView( mapDialog.map.getCenter(), mapDialog.map.getZoom() );
-					}
-					return closing;
+	mw.kartographer.openFullscreenMap = ( function () {
+
+		var counter = -1;
+
+		return function ( mapData, fullScreenState ) {
+			var id = ++counter;
+
+			mw.loader.using( 'ext.kartographer.fullscreen' ).done( function () {
+
+				var map, dialogData = {};
+
+				if ( counter > id ) {
+					return;
+				}
+
+				if ( mapData instanceof L.Map ) {
+					map = mapData;
+					mapData = getMapData( map.getContainer() );
+				} else if ( $.type( mapData.articleMapId ) === 'number' ) {
+					map = mw.kartographer.maps[ mapData.articleMapId ];
+				}
+
+				$.extend( dialogData, mapData, {
+					fullScreenState: fullScreenState,
+					enableFullScreenButton: false
 				} );
-		} );
+
+				if ( mapDialog ) {
+					mapDialog.changeMap( dialogData );
+					return;
+				}
+				getWindowManager()
+					.openWindow( mapDialog, dialogData )
+					.then( function ( opened ) { return opened; } )
+					.then( function ( closing ) {
+						if ( map ) {
+							map.setView(
+								mapDialog.map.getCenter(),
+								mapDialog.map.getZoom()
+							);
+						}
+						windowManager = mapDialog = null;
+						return closing;
+					} );
+			} );
+		};
+	} )();
+
+	/**
+	 * Formats the full screen route of the map, such as:
+	 *   `/map/:articleMapId(/:zoom/:longitude/:latitude)`
+	 *
+	 * The hash will contain the portion between parenthesis if and only if
+	 * one of these 3 values differs from the initial setting.
+	 *
+	 * @param {Object} data Map data.
+	 * @param {L.mapbox.Map} [map] When a map object is passed, the method will
+	 *   read the current zoom and center from the map object.
+	 * @return {string} The route to open the map in full screen mode.
+	 */
+	mw.kartographer.getMapHash = function ( data, map ) {
+		var hash = '/map/' + data.articleMapId,
+			mapPosition,
+			newHash,
+			initialHash = getScaleCoords( data.zoom, data.latitude, data.longitude ).join( '/' );
+
+		if ( map ) {
+			mapPosition = getMapPosition( map );
+			newHash = getScaleCoords( mapPosition.zoom, mapPosition.latitude, mapPosition.longitude ).join( '/' );
+
+			if ( newHash !== initialHash ) {
+				hash += '/' + newHash;
+			}
+		}
+
+		return hash;
 	};
+
+	/**
+	 * Convenient method that gets the current position of the map.
+	 *
+	 * @return {Object} Object with the zoom, the latitude and the longitude.
+	 * @return {number} return.zoom
+	 * @return {number} return.latitude
+	 * @return {number} return.longitude
+	 * @private
+	 */
+	function getMapPosition( map ) {
+		var center = map.getCenter();
+		return { zoom: map.getZoom(), latitude: center.lat, longitude: center.lng };
+	}
+
+	/**
+	 * Convenient method that formats the coordinates based on the zoom level.
+	 *
+	 * @param {number} zoom
+	 * @param {number} lat
+	 * @param {number} lng
+	 * @return {Array} Array with the zoom (number), the latitude (string) and
+	 *   the longitude (string).
+	 * @private
+	 */
+	function getScaleCoords( zoom, lat, lng ) {
+		var precisionPerZoom = [ 0, 0, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5 ];
+
+		return [
+			zoom,
+			lat.toFixed( precisionPerZoom[ zoom ] ),
+			lng.toFixed( precisionPerZoom[ zoom ] )
+		];
+	}
 
 	/**
 	 * Gets the map data attached to an element.
@@ -268,15 +384,22 @@
 	 * @return {number} return.zoom Zoom level
 	 * @return {string} return.style Map style
 	 * @return {string[]} return.overlays Overlay groups
+	 * @private
 	 */
 	function getMapData( element ) {
-		var $el = $( element );
+		var $el = $( element ),
+			articleMapId = null;
 		// Prevent users from adding map divs directly via wikitext
 		if ( $el.attr( 'mw-data' ) !== 'interface' ) {
 			return null;
 		}
 
+		if ( $.type( $el.data( 'article-map-id' ) ) !== 'undefined' ) {
+			articleMapId = +$el.data( 'article-map-id' );
+		}
+
 		return {
+			articleMapId: articleMapId,
 			latitude: +$el.data( 'lat' ),
 			longitude: +$el.data( 'lon' ),
 			zoom: +$el.data( 'zoom' ),
@@ -294,6 +417,7 @@
 	 *
 	 * @param {string[]} overlays Overlay group names
 	 * @return {jQuery.Promise} Promise which resolves with the group data, an object keyed by group name
+	 * @private
 	 */
 	function getMapGroupData( overlays ) {
 		var deferred = $.Deferred(),
@@ -406,7 +530,7 @@
 		var mapsInArticle = [],
 			isMobile = mw.config.get( 'skin' ) === 'minerva';
 
-		$content.on( 'click', '.mw-kartographer-link', function ( ) {
+		$content.on( 'click', '.mw-kartographer-link', function () {
 			var data = getMapData( this );
 
 			if ( data ) {
@@ -420,10 +544,14 @@
 			sleepNote: false,
 			sleepOpacity: 1
 		} );
-		$content.find( '.mw-kartographer-interactive' ).each( function () {
-			var map,
-				data = getMapData( this ),
-				container = this;
+
+		$content.find( '.mw-kartographer-interactive' ).each( function ( index ) {
+			var map, data,
+				container = this,
+				$container = $( this );
+
+			$container.data( 'article-map-id', index );
+			data = getMapData( container );
 
 			if ( data ) {
 				data.enableFullScreenButton = true;
@@ -436,15 +564,48 @@
 				map.doubleClickZoom.disable();
 
 				mapsInArticle.push( map );
+				mw.kartographer.maps[ index ] = map;
 
-				$( this ).on( 'dblclick', function () {
-					mw.kartographer.openFullscreenMap( data, map );
+				$container.on( 'dblclick', function () {
+					if ( router.isSupported() ) {
+						router.navigate( mw.kartographer.getMapHash( data, map ) );
+					} else {
+						mw.kartographer.openFullscreenMap( map, getMapPosition( map ) );
+					}
 				} );
 			}
 		} );
 
 		// Allow customizations of interactive maps in article.
 		mw.hook( 'wikipage.maps' ).fire( mapsInArticle, false /* isFullScreen */ );
-	} );
 
+		// Opens map in full screen. #/map(/:zoom)(/:latitude)(/:longitude)
+		// Examples:
+		//     #/map/0
+		//     #/map/0/5
+		//     #/map/0/16/-122.4006/37.7873
+		router.route( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([\-\+]?\d+\.?\d{0,5})?\/([\-\+]?\d+\.?\d{0,5})?)?/, function ( mapId, zoom, latitude, longitude ) {
+			var map = mw.kartographer.maps[ mapId ],
+				fullScreenState = {};
+
+			if ( zoom !== undefined && zoom >= 0 && zoom <= 18 ) {
+				fullScreenState.zoom = +zoom;
+			}
+			if ( longitude !== undefined ) {
+				fullScreenState.latitude = +latitude;
+				fullScreenState.longitude = +longitude;
+			}
+			mw.kartographer.openFullscreenMap( map, fullScreenState );
+		} );
+
+		// Check if we need to open a map in full screen.
+		router.checkRoute();
+
+		// Add index route.
+		router.route( '', function () {
+			if ( mapDialog ) {
+				mapDialog.close();
+			}
+		} );
+	} );
 }( jQuery, mediaWiki ) );
