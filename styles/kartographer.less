@@ -1,5 +1,3 @@
-@leafletControlMargin: 10px;
-
 .mw-kartographer {
 	display: inline-block;
 }
@@ -32,9 +30,9 @@
 .mw-kartographer-mapDialog-closeButton {
 	position: absolute;
 	z-index: 1000;
-	top: @leafletControlMargin;
+	top: 10px;
 	/* @noflip */
-	right: @leafletControlMargin;
+	right: 10px;
 
 	&.oo-ui-buttonElement-framed.oo-ui-iconElement > .oo-ui-buttonElement-button {
 		padding: 0;
@@ -59,30 +57,4 @@ a.mw-kartographer-link {
 
 .leaflet-bar a {
 	background-position: center center;
-}
-
-/* @noflip */
-.mw-content-rtl {
-	.leaflet-left {
-		right: 0;
-		left: auto;
-
-		.leaflet-control {
-			margin-right: @leafletControlMargin;
-			margin-left: 0;
-		}
-	}
-
-	.leaflet-right {
-		left: 0;
-		right: auto;
-
-		.leaflet-control {
-			margin-left: @leafletControlMargin;
-			margin-right: 0;
-		}
-		.leaflet-control-attribution {
-			margin-left: 0;
-		}
-	}
 }
