@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Piramidion"
+			"Piramidion",
+			"Base"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Виконує перевірку даних для розширення Kartographer",
@@ -21,7 +22,7 @@
 	"kartographer-error-context-multi": "&lt;$1&gt; проблеми:\n$2",
 	"kartographer-error-missing-attr": "Відсутній атрибут «$1»",
 	"kartographer-error-bad_attr": "Атрибут '$1' має недійсне значення",
-	"kartographer-error-bad_data": "JSON-вміст неправильний",
+	"kartographer-error-bad_data": "JSON-вміст не є правильним GeoJSON+simplestyle",
 	"kartographer-tracking-category": "Сторінки з картами",
 	"kartographer-tracking-category-desc": "Ця сторінка містить карту",
 	"leafletdraw-draw-handlers-circle-radius": "Радіус",
