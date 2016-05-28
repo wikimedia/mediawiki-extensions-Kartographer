@@ -34,21 +34,24 @@ class KartographerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideTagData
+	 * @param string|false $expected
+	 * @param string $input
+	 * @param string $message
 	 */
 	public function testTagData( $expected, $input, $message ) {
 		$output = $this->parse( $input );
 
 		if ( $expected === false ) {
-			$this->assertTrue( $output->getExtensionData( 'kartographer_broken' ), 'Parse is expected to fail' );
-			$this->assertTrue( $this->hasTrackingCategory( $output, 'kartographer-broken-category' ), 'Category for failed maps should be added' );
+			$this->assertTrue( $output->getExtensionData( 'kartographer_broken' ), $message . ' Parse is expected to fail' );
+			$this->assertTrue( $this->hasTrackingCategory( $output, 'kartographer-broken-category' ), $message . ' Category for failed maps should be added' );
 			return;
 		}
-		$this->assertFalse( !!$output->getExtensionData( 'kartographer_broken' ), 'Parse is expected to succeeed' );
-		$this->assertFalse( $this->hasTrackingCategory( $output, 'kartographer-broken-category' ), 'No tracking category for ' );
+		$this->assertFalse( !!$output->getExtensionData( 'kartographer_broken' ), $message . ' Parse is expected to succeed' );
+		$this->assertFalse( $this->hasTrackingCategory( $output, 'kartographer-broken-category' ), $message . ' No tracking category' );
 
 		$expected = json_encode( json_decode( $expected ) ); // Normalize JSON
 
-		$this->assertEquals( $expected, json_encode( $output->getExtensionData( 'kartographer_data' ) ) );
+		$this->assertEquals( $expected, json_encode( $output->getExtensionData( 'kartographer_data' ) ), $message );
 	}
 
 	public function provideTagData() {
@@ -65,6 +68,7 @@ class KartographerTest extends MediaWikiTestCase {
       "marker-color": "0050d0"
     }
   }';
+		/** @noinspection HtmlUnknownTarget */
 		$wikitextJsonParsed = '{"_be34df99c99d1efd9eaa8eabc87a43f2541a67e5":[
 				{"type":"Feature","geometry":{"type":"Point","coordinates":[-122.3988,37.8013]},
 				"properties":{"title":"&lt;script&gt;alert(document.cookie);&lt;\/script&gt;",
@@ -96,6 +100,40 @@ class KartographerTest extends MediaWikiTestCase {
 			[ $wikitextJsonParsed, "<maplink zoom=13 longitude=-122.3988 latitude=37.8013>[{$this->wikitextJson}]</maplink>", '<maplink> with parsable text and description' ],
 			// Bugs
 			[ 'null', "<maplink zoom=13 longitude=-122.3988 latitude=37.8013>\t\r\n </maplink>", 'T127345: whitespace-only tag content, <maplink>' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideResourceModulesData
+	 * @param string $input
+	 * @param array $expectedModules
+	 * @param array $expectedStyles
+	 */
+	public function testResourceModules( $input, array $expectedModules, array $expectedStyles ) {
+		$output = $this->parse( $input );
+
+		$this->assertArrayEquals( array_keys( $expectedModules ), array_unique( $output->getModules() ) );
+		$this->assertArrayEquals( array_keys( $expectedStyles ), array_unique( $output->getModuleStyles() ) );
+		$this->assertArrayEquals( [], array_unique( $output->getModuleScripts() ) );
+	}
+
+	public function provideResourceModulesData() {
+		$mapframe = '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013/>';
+		$maplink = '<maplink width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013/>';
+
+		// @todo @fixme These are incorrect, but match existing code
+		// When the code is fixed, they should be changed
+		$frameMod = [ 'ext.kartographer.live' => ''];
+		$frameStyle = [ 'ext.kartographer.style' => ''];
+
+		$linkMod = [ 'ext.kartographer.live' => ''];
+		$linkStyle = [ 'ext.kartographer.style' => ''];
+
+		return [
+			[ '', [], [] ],
+			[ $mapframe, $frameMod, $frameStyle ],
+			[ $maplink, $linkMod, $linkStyle ],
+			[ $mapframe . $maplink, $frameMod + $linkMod, $frameStyle + $linkStyle ],
 		];
 	}
 
