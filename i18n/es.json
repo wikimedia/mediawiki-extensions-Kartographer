@@ -25,7 +25,7 @@
 	"kartographer-error-context-multi": "Problemas de &lt;$1&gt;:\n$2",
 	"kartographer-error-missing-attr": "Falta el atributo \"$1\"",
 	"kartographer-error-bad_attr": "El atributo '$1' tiene un valor no válido",
-	"kartographer-error-bad_data": "El contenido JSON no es válido GeoJSON+simplestyle",
+	"kartographer-error-bad_data": "El contenido JSON no es GeoJSON+simplestyle válido",
 	"kartographer-tracking-category": "Páginas con mapas",
 	"kartographer-tracking-category-desc": "La página incluye un mapa",
 	"leafletdraw-draw-handlers-circle-radius": "Radio",

@@ -13,7 +13,7 @@
 	"kartographer-error-context-multi": "Vấn đề &lt;$1&gt;:\n$2",
 	"kartographer-error-missing-attr": "Đặc tính “$1” bị thiếu",
 	"kartographer-error-bad_attr": "Đặc tính “$1” có giá trị không hợp lệ",
-	"kartographer-error-bad_data": "Nội dung JSON bị sai",
+	"kartographer-error-bad_data": "Nội dung JSON không phải là GeoJSON+simplestyle hợp lệ",
 	"kartographer-tracking-category": "Trang có bản đồ",
 	"kartographer-tracking-category-desc": "Trang này có nhúng bản đồ",
 	"kartographer-coord-combined": "$1, $2",
