@@ -29,12 +29,6 @@ mw.kartographer.MapDialog.prototype.initialize = function () {
 	this.map = null;
 	this.mapData = null;
 	this.$map = null;
-
-	this.closeButton = new OO.ui.ButtonWidget( {
-		icon: 'close',
-		title: mw.msg( 'kartographer-fullscreen-close' ),
-		classes: [ 'mw-kartographer-mapDialog-closeButton' ]
-	} ).connect( this, { click: this.executeAction.bind( this, '' ) } );
 };
 
 /**
@@ -139,10 +133,13 @@ mw.kartographer.MapDialog.prototype.getSetupProcess = function ( mapData ) {
 				this.$map.remove();
 			}
 
-			this.$map = $( '<div>' ).addClass( 'mw-kartographer-mapDialog-map' );
-			this.$body.append( this.closeButton.$element, this.$map );
+			this.$map = $( '<div>' )
+				.addClass( 'mw-kartographer-mapDialog-map' )
+				.appendTo( this.$body );
 
 			this.map = mw.kartographer.createMap( this.$map[ 0 ], mapData );
+			this.map.addControl( new mw.kartographer.MapDialogCloseControl( { dialog: this } ) );
+
 			// copy of the initial settings
 			this.mapData = mapData;
 
@@ -177,3 +174,31 @@ mw.kartographer.MapDialog.prototype.getTeardownProcess = function ( data ) {
 			this.$map = null;
 		}, this );
 };
+
+/**
+ * Close control on full screen mode.
+ */
+mw.kartographer.MapDialogCloseControl = L.Control.extend( {
+	options: {
+		position: 'topright'
+	},
+
+	onAdd: function () {
+		var container = L.DomUtil.create( 'div', 'leaflet-bar' ),
+			link = L.DomUtil.create( 'a', 'oo-ui-icon-close', container );
+
+		this.href = '#';
+		link.title = mw.msg( 'kartographer-fullscreen-close' );
+
+		L.DomEvent.addListener( link, 'click', this.onClick, this );
+		L.DomEvent.disableClickPropagation( container );
+
+		return container;
+	},
+
+	onClick: function ( e ) {
+		L.DomEvent.stop( e );
+
+		this.options.dialog.executeAction( '' );
+	}
+} );
