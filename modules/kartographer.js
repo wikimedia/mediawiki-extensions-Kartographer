@@ -279,7 +279,7 @@
 
 				if ( mapData instanceof L.Map ) {
 					map = mapData;
-					mapData = getMapData( map.getContainer() );
+					mapData = getMapData( $( map.getContainer() ).closest( '.mw-kartographer-interactive' ) );
 				} else if ( $.type( mapData.articleMapId ) === 'number' ) {
 					map = mw.kartographer.maps[ mapData.articleMapId ];
 				}
