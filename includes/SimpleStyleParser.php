@@ -59,6 +59,8 @@ class SimpleStyleParser {
 					$this->sanitize( $json );
 					$status = Status::newGood( $json );
 				}
+			} else {
+				$status = Status::newFatal( 'kartographer-error-json', $status->getMessage() );
 			}
 		}
 
