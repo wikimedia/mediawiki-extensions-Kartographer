@@ -61,7 +61,7 @@ class MapLink extends TagHandler {
 			// if the color is invalid
 			preg_match( '/^#?(([0-9a-fA-F]{3}){1,2})$/', $this->markerProperties->{'marker-color'}, $m );
 			if ( $m && $m[2] ) {
-				return "background: #{$m[2]};";
+				return "background: #{$m[1]};";
 			}
 		}
 

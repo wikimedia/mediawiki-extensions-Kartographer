@@ -182,7 +182,7 @@ Marker styles
 	},
 	"properties": {
 		"marker-symbol": "-letter",
-		"marker-color": "#abc"
+		"marker-color": "#abcdef"
 	}
 },
 {
@@ -207,12 +207,12 @@ Marker styles
 	},
 	"properties": {
 		"marker-symbol": "-number",
-		"marker-color": "fff"
+		"marker-color": "FFF"
 	}
 }
 </maplink>
 !! result
-<p><a class="mw-kartographer mw-kartographer-link mw-kartographer-autostyled" mw-data="interface" style="background: #abc;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_19a72be79a2653cf0eeccdba3776a568873e8865&quot;]">A</a>
-</p><p><a class="mw-kartographer mw-kartographer-link mw-kartographer-autostyled" mw-data="interface" style="background: #fff; border: yellow;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_348b58ab5ba1db004b387561db7d945cdf90cea0&quot;]">2</a>
+<p><a class="mw-kartographer mw-kartographer-link mw-kartographer-autostyled" mw-data="interface" style="background: #abcdef;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_0d28e3b8954f29b4a6af62bd43a9cacc70ce0261&quot;]">A</a>
+</p><p><a class="mw-kartographer mw-kartographer-link mw-kartographer-autostyled" mw-data="interface" style="background: #FFF; border: yellow;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_665bb76cf5c33a0a86108f17819b1c68d26a7ba7&quot;]">2</a>
 </p>
 !! end
