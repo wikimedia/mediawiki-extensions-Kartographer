@@ -12,6 +12,13 @@ use Kartographer\CoordFormatter;
 class MapLink extends TagHandler {
 	protected $tag = 'maplink';
 
+	protected $cssClass;
+
+	protected function parseArgs() {
+		parent::parseArgs();
+		$this->cssClass = $this->getText( 'class', '', '/^(|[a-zA-Z][-_a-zA-Z0-9]*)$/' );
+	}
+
 	protected function render() {
 		$output = $this->parser->getOutput();
 		$output->addModules( 'ext.kartographer.live' );
@@ -33,6 +40,9 @@ class MapLink extends TagHandler {
 		$attrs['class'] .= ' mw-kartographer-link';
 		if ( $style ) {
 			$attrs['class'] .= ' mw-kartographer-autostyled';
+		}
+		if ( $this->cssClass !== '' ) {
+			$attrs['class'] .= ' ' . $this->cssClass;
 		}
 		$attrs['data-style'] = $this->mapStyle;
 		$attrs['data-zoom'] = $this->zoom;

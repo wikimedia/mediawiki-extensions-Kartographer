@@ -89,6 +89,24 @@
 
 
 !! test
+<maplink> - class parameter
+!! input
+<maplink zoom=0 latitude=0 longitude=0 class="" text="Empty class - do nothing"/>
+<maplink zoom=0 latitude=0 longitude=0 class="   " text="Whitespace only class - do nothing"/>
+<maplink zoom=0 latitude=0 longitude=0 class="Valid-link_class_123" text="Valid class"/>
+<maplink zoom=0 latitude=0 longitude=0 class="class1 class2" text="Multiple classes aren't allowed for now"/>
+<maplink zoom=0 latitude=0 longitude=0 class="-Invalid-cl@ss-symbols"/>
+!! result
+<p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="0" data-lat="0" data-lon="0">Empty class - do nothing</a>
+<a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="0" data-lat="0" data-lon="0">Whitespace only class - do nothing</a>
+<a class="mw-kartographer mw-kartographer-link Valid-link_class_123" mw-data="interface" data-style="osm-intl" data-zoom="0" data-lat="0" data-lon="0">Valid class</a>
+</p>
+<div class="mw-kartographer mw-kartographer-error">&lt;maplink&gt;: Attribute "class" has an invalid value</div>
+<div class="mw-kartographer mw-kartographer-error">&lt;maplink&gt;: Attribute "class" has an invalid value</div>
+
+!! end
+
+!! test
 <mapframe>
 !! input
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480/>
