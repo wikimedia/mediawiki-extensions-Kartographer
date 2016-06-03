@@ -34,10 +34,16 @@ class MapLink extends TagHandler {
 				?: CoordFormatter::format( $this->lat, $this->lon, $this->getLanguage() );
 		}
 		$text = $this->parser->recursiveTagParse( $text, $this->frame );
-		$style = $this->extractMarkerCss();
-		$attrs = $this->getDefaultAttributes();
 
-		$attrs['class'] .= ' mw-kartographer-link';
+		$attrs = [
+			'class' => 'mw-kartographer-link',
+			'mw-data' => 'interface',
+			'data-style' => $this->mapStyle,
+			'data-zoom' => $this->zoom,
+			'data-lat' => $this->lat,
+			'data-lon' => $this->lon,
+		];
+		$style = $this->extractMarkerCss();
 		if ( $style ) {
 			$attrs['class'] .= ' mw-kartographer-autostyled';
 			$attrs['style'] = $style;
@@ -45,10 +51,6 @@ class MapLink extends TagHandler {
 		if ( $this->cssClass !== '' ) {
 			$attrs['class'] .= ' ' . $this->cssClass;
 		}
-		$attrs['data-style'] = $this->mapStyle;
-		$attrs['data-zoom'] = $this->zoom;
-		$attrs['data-lat'] = $this->lat;
-		$attrs['data-lon'] = $this->lon;
 		if ( $this->showGroups ) {
 			$attrs['data-overlays'] = FormatJson::encode( $this->showGroups, false,
 				FormatJson::ALL_OK );

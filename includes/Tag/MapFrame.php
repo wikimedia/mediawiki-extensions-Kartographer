@@ -80,18 +80,19 @@ class MapFrame extends TagHandler {
 			case 'interactive':
 				$output->addModules( 'ext.kartographer.live' );
 
-
-				$attrs = $this->getDefaultAttributes();
-				$attrs['class'] .= ' mw-kartographer-interactive';
+				$width = is_numeric( $this->width ) ? "{$this->width}px" : $this->width;
+				$attrs = [
+					'class' => 'mw-kartographer-interactive',
+					'mw-data' => 'interface',
+					'style' => "width:{$width}; height:{$this->height}px;",
+					'data-style' => $this->mapStyle,
+					'data-zoom' => $this->zoom,
+					'data-lat' => $this->lat,
+					'data-lon' => $this->lon,
+				];
 				if ( isset( $alignClasses[$this->align] ) ) {
 					$attrs['class'] .= ' ' . $alignClasses[$this->align];
 				}
-				$width = is_numeric( $this->width ) ? "{$this->width}px" : $this->width;
-				$attrs['style'] = "width:{$width}; height:{$this->height}px;";
-				$attrs['data-style'] = $this->mapStyle;
-				$attrs['data-zoom'] = $this->zoom;
-				$attrs['data-lat'] = $this->lat;
-				$attrs['data-lon'] = $this->lon;
 				if ( $this->showGroups ) {
 					$attrs['data-overlays'] = FormatJson::encode( $this->showGroups, false,
 						FormatJson::ALL_OK );
