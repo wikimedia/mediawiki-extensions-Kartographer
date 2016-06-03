@@ -56,9 +56,9 @@ class ApiSanitizeMapDataTest extends MediaWikiTestCase {
 
 	public function provideTest() {
 		return [
-			[ 'Foo', '{', false, '<p>Syntax error
+			[ 'Foo', '{', false, '<p>Couldn\'t parse JSON: Syntax error
 </p>' ],
-			[ null, '{', false, '<p>Syntax error
+			[ null, '{', false, '<p>Couldn\'t parse JSON: Syntax error
 </p>' ],
 			[ null, '[{
     "type": "Feature",

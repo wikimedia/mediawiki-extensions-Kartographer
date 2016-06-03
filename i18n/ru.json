@@ -11,6 +11,7 @@
 	"kartographer-broken-category-desc": "Эта страница содержит недопустимое использование карты",
 	"kartographer-desc": "Позволяет добавлять на вики-страницы карты.",
 	"kartographer-error-context-multi": "Проблемы с &lt;$1&gt;:\n$2",
+	"kartographer-error-json": "Ошибка JSON: $1",
 	"kartographer-error-missing-attr": "Отсутствует атрибут «$1»",
 	"kartographer-error-bad_attr": "Атрибут «$1» имеет недопустимое значение",
 	"kartographer-error-bad_data": "JSON содержит ошибки",

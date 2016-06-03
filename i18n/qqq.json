@@ -23,6 +23,7 @@
 	"kartographer-desc": "{{desc|name=Kartographer|url=https://www.mediawiki.org/wiki/Extension:Kartographer}}",
 	"kartographer-error-context": "{{Optional}}\nGeneral message shown before a single specific error\n\nParameters:\n* $1 - tag name, 'mapframe' or 'maplink'\n* $2 - error message",
 	"kartographer-error-context-multi": "General message shown before multiple errors\n\nParameters:\n* $1 - tag name, 'mapframe', 'maplink' or 'mapdata'\n* $2 - list of errors combined into a bullet list",
+	"kartographer-error-json": "Error message preceding JSON errors\nParameters: $1 - underlying message from JSON parser",
 	"kartographer-error-missing-attr": "Error shown instead of a map when required parameter(s) is missing.\n\nParameters:\n* $1 - non-localized attribute name, such as 'height', 'latitude', etc",
 	"kartographer-error-bad_attr": "Error shown instead of a map in case of a problem with parameters.\n\nParameters:\n* $1 - non-localized attribute name, such as 'height', 'latitude', etc",
 	"kartographer-error-bad_data": "This error is shown if the content of the tag is syntactically valid JSON however it does not adhere to GeoJSON and simplestyle specifications",
