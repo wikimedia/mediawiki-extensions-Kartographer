@@ -238,7 +238,7 @@
 		"KartographerMapServer": "https://maps.wikimedia.org",
 		"KartographerIconServer": "https://maps.wikimedia.org",
 		"KartographerFrameMode": "interactive",
-		"KartographerUseMarkerStyle": true,
+		"KartographerUseMarkerStyle": false,
 		"KartographerEnableTags": [ "mapframe", "maplink" ]
 	},
 	"TrackingCategories": [

@@ -193,7 +193,9 @@ CSS sanitization
 !! end
 
 !! test
-Marker styles
+<maplink> - marker styles
+!! config
+wgKartographerUseMarkerStyle=true
 !! input
 <maplink latitude=10 longitude=20 zoom=13>[
 {
@@ -243,5 +245,28 @@ Marker styles
 !! result
 <p><a class="mw-kartographer mw-kartographer-link mw-kartographer-autostyled" mw-data="interface" style="background: #abcdef;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_0d28e3b8954f29b4a6af62bd43a9cacc70ce0261&quot;]">A</a>
 </p><p><a class="mw-kartographer mw-kartographer-link mw-kartographer-autostyled" mw-data="interface" style="background: #FFF; border: yellow;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_665bb76cf5c33a0a86108f17819b1c68d26a7ba7&quot;]">2</a>
+</p>
+!! end
+
+!! test
+<maplink> - marker styles disabled
+!! config
+wgKartographerUseMarkerStyle=false
+!! input
+<maplink latitude=10 longitude=20 zoom=13>
+{
+"type": "Feature",
+	"geometry": {
+		"type": "Point",
+		"coordinates": [-122.3988, 37.8013]
+	},
+	"properties": {
+		"marker-symbol": "-letter",
+		"marker-color": "#abcdef"
+	}
+}
+</maplink>
+!! result
+<p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_a724df91b09b20c8c7ea0dc28127eaed1727511b&quot;]">A</a>
 </p>
 !! end
