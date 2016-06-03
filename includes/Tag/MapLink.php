@@ -35,11 +35,12 @@ class MapLink extends TagHandler {
 		}
 		$text = $this->parser->recursiveTagParse( $text, $this->frame );
 		$style = $this->extractMarkerCss();
+		$attrs = $this->getDefaultAttributes();
 
-		$attrs = $this->getDefaultAttributes( $style );
 		$attrs['class'] .= ' mw-kartographer-link';
 		if ( $style ) {
 			$attrs['class'] .= ' mw-kartographer-autostyled';
+			$attrs['style'] = $style;
 		}
 		if ( $this->cssClass !== '' ) {
 			$attrs['class'] .= ' ' . $this->cssClass;

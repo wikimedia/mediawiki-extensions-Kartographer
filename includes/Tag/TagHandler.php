@@ -17,7 +17,6 @@ use Language;
 use Parser;
 use ParserOutput;
 use PPFrame;
-use Sanitizer;
 use Status;
 use stdClass;
 
@@ -48,9 +47,6 @@ abstract class TagHandler {
 
 	/** @var string */
 	protected $mapStyle;
-
-	/** @var string */
-	protected $style = '';
 
 	/** @var string name of the group, or null for private */
 	protected $groupName;
@@ -158,21 +154,14 @@ abstract class TagHandler {
 		$this->zoom = $this->getInt( 'zoom' );
 		$regexp = '/^(' . implode( '|', $wgKartographerStyles ) . ')$/';
 		$this->mapStyle = $this->getText( 'mapstyle', $wgKartographerDfltStyle, $regexp );
-		$this->style = Sanitizer::checkCss( trim( $this->getText( 'style', '' ) ) );
 	}
 
 	/**
 	 * Returns default HTML attributes of the outermost tag of the output
-	 * @param string $extraStyle
 	 * @return string[]
 	 */
-	protected function getDefaultAttributes( $extraStyle = '' ) {
-		$attrs = [ 'class' => 'mw-kartographer', 'mw-data' => 'interface' ];
-		$style = trim( "{$extraStyle} {$this->style}" );
-		if ( $style ) {
-			$attrs['style'] = $style;
-		}
-		return $attrs;
+	protected function getDefaultAttributes() {
+		return [ 'class' => 'mw-kartographer', 'mw-data' => 'interface' ];
 	}
 
 	/**
