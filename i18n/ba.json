@@ -4,7 +4,8 @@
 			"Айсар",
 			"Янмурза Баки",
 			"Азат Хәлилов",
-			"Лилиә"
+			"Лилиә",
+			"Ләйсән"
 		]
 	},
 	"kartographer-attribution": "Бета карталары Викимедиаһы - | картографик мәғлүмәттәр © [http://openstreetmap.org/copyright ҡатнашыусылар OpenStreetMap]",
@@ -12,6 +13,7 @@
 	"kartographer-broken-category-desc": "Был биттә файҙаланырға яраҡһыҙ графиктар",
 	"kartographer-desc": "Картаның вики-битенә өҫтәргә рөхсәт бирә.",
 	"kartographer-error-context-multi": " проблемы:\n$2-нең проблемалары &LT;$1&ГТ;",
+	"kartographer-error-json": "JSON хатаһы: $1",
 	"kartographer-error-missing-attr": "Атрибут \"$1\" юҡ",
 	"kartographer-error-bad_attr": "\"$1\" атрибытының мәғәнәһе дәүмәле ярарлыҡ түгел",
 	"kartographer-error-bad_data": "JSON-да хаталар бар",

@@ -10,6 +10,7 @@
 	"kartographer-broken-category": "Sigge met kapodde Kaate",
 	"kartographer-broken-category-desc": "En heh dä Sigg es ene „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">&lt;maps&gt;</code>“ Befähl wi hä nit jebruch wähde kann.",
 	"kartographer-desc": "Löht met „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">&lt;maps&gt;</code>“ Befähle Kaate en Sigge em Wikki ennföhje.",
+	"kartographer-error-json": "Mer kunnte dat <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"JavaScript Object Notation\">JSON</i> nit verschtonn:",
 	"kartographer-tracking-category": "Sigge met Kaate",
 	"kartographer-tracking-category-desc": "En heh dä Sigg es ene „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">&lt;maps&gt;</code>“ Befähl.",
 	"leafletdraw-draw-handlers-circle-radius": "Der Hallefmäßer",

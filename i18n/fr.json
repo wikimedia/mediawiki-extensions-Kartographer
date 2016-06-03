@@ -5,7 +5,8 @@
 			"Gomoko",
 			"Orlodrim",
 			"Wladek92",
-			"Jean-Frédéric"
+			"Jean-Frédéric",
+			"Trial"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Effectue la validation des données pour l’extension Kartographer",
@@ -24,6 +25,7 @@
 	"kartographer-desc": "Permet l’ajout de cartes géographiques aux pages wiki",
 	"kartographer-error-context": "&lt;$1&gt; : $2",
 	"kartographer-error-context-multi": "problèmes de &lt;$1&gt; :\n$2",
+	"kartographer-error-json": "Impossible d'analyser JSON : $1",
 	"kartographer-error-missing-attr": "L’attribut « $1 » est absent",
 	"kartographer-error-bad_attr": "L’attribut « $1 » a une valeur invalide",
 	"kartographer-error-bad_data": "Le contenu JSON n'est pas compatible GeoJSON+simplestyle",
