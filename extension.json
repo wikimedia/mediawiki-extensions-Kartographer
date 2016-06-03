@@ -228,10 +228,8 @@
 	"ParserTestFiles": [
 		"tests/parserTests.txt"
 	],
-
-	"@comment-config": "TODO: KartographerWikivoyageMode should be false by default",
 	"config": {
-		"KartographerWikivoyageMode": true,
+		"KartographerWikivoyageMode": false,
 		"KartographerDfltStyle": "osm-intl",
 		"KartographerStyles": ["osm-intl", "osm"],
 		"KartographerSrcsetScales": [1.3, 1.5, 2, 2.6, 3],

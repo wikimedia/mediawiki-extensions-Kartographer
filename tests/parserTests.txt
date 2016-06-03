@@ -253,3 +253,55 @@ wgKartographerUseMarkerStyle=false
 <p><a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_a724df91b09b20c8c7ea0dc28127eaed1727511b&quot;]">A</a>
 </p>
 !! end
+
+!! test
+Wikivoyage mode enabled
+!! config
+wgKartographerWikivoyageMode=true
+!! input
+<maplink zoom=0 latitude=0 longitude=0 group=ponies/>
+<mapframe zoom=0 latitude=0 longitude=0 width=300 height=300 group=ponies>
+{
+"type": "Feature",
+	"geometry": {
+		"type": "Point",
+		"coordinates": [-122.3988, 37.8013]
+	},
+	"properties": {
+		"marker-symbol": "-letter",
+		"marker-color": "#abcdef"
+	}
+}
+</mapframe>
+!! result
+<p><a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;ponies&quot;]">0°0′0″N 0°0′0″E</a>
+</p>
+<div class="mw-kartographer-interactive floatright" mw-data="interface" style="width:300px; height:300px;" data-style="osm-intl" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;ponies&quot;]"></div>
+
+!! end
+
+!! test
+Wikivoyage mode disabled
+!! config
+wgKartographerWikivoyageMode=false
+!! input
+<maplink zoom=0 latitude=0 longitude=0 group=ponies/>
+<mapframe zoom=0 latitude=0 longitude=0 width=300 height=300 group=ponies>
+{
+"type": "Feature",
+	"geometry": {
+		"type": "Point",
+		"coordinates": [-122.3988, 37.8013]
+	},
+	"properties": {
+		"marker-symbol": "-letter",
+		"marker-color": "#abcdef"
+	}
+}
+</mapframe>
+!! result
+<p><a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="0" data-lat="0" data-lon="0">0°0′0″N 0°0′0″E</a>
+</p>
+<div class="mw-kartographer-interactive floatright" mw-data="interface" style="width:300px; height:300px;" data-style="osm-intl" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;_a724df91b09b20c8c7ea0dc28127eaed1727511b&quot;]"></div>
+
+!! end
