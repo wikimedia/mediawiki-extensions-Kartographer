@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Beta16",
-			"Marsitown"
+			"Marsitown",
+			"Matteocng"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Esegue la convalida dei dati per l'estensione Kartographer",
@@ -13,6 +14,7 @@
 	"kartographer-broken-category-desc": "La pagina include una mappa con utilizzo non valido",
 	"kartographer-desc": "Permette di aggiungere mappe nelle pagine wiki",
 	"kartographer-error-context-multi": "Problemi &lt;$1&gt;:\n$2",
+	"kartographer-error-json": "Il JSON non può essere analizzato: $1",
 	"kartographer-error-missing-attr": "L'attributo \"$1\" non è presente",
 	"kartographer-error-bad_attr": "L'attributo '$1' ha un valore non valido",
 	"kartographer-error-bad_data": "Il contenuto JSON non è un valido GeoJSON+simplestyle",
