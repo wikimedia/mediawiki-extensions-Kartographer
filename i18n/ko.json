@@ -6,13 +6,15 @@
 			"SeoJeongHo",
 			"HDNua",
 			"아라",
-			"Kwj2772"
+			"Kwj2772",
+			"Ykhwong"
 		]
 	},
 	"kartographer-attribution": "위키미디어 지도 베타 | 지도 데이터 © [http://openstreetmap.org/copyright OpenStreetMap 기여자]",
 	"kartographer-broken-category": "깨진 지도가 있는 문서",
 	"kartographer-broken-category-desc": "이 문서는 <code><nowiki><map</nowiki></code> 태그를 잘못 사용한 문서를 포함합니다.",
 	"kartographer-desc": "&lt;maps&gt; 태그를 사용해 지도를 위키 문서에 삽입할 수 있도록 허용",
+	"kartographer-error-json": "JSON 구문 분석을 할 수 없습니다: $1",
 	"kartographer-error-missing-attr": "\"$1\" 속성을 찾을 수 없습니다.",
 	"kartographer-error-bad_attr": "\"$1\" 속성의 값이 잘못되었습니다.",
 	"kartographer-tracking-category": "지도가 있는 문서",
