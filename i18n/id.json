@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rachmat.Wahidi"
+		]
+	},
+	"kartographer-error-json": "Tidak dapat memilah JSON: $1"
+}
