@@ -3,7 +3,7 @@
 !! input
 <maplink latitude=10 longitude=20 zoom=13 text='Foo &amp; bar'/>
 !! result
-<p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20">Foo &amp; bar</a>
+<p><a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20">Foo &amp; bar</a>
 </p>
 !! end
 
@@ -12,7 +12,7 @@
 !! input
 <maplink latitude=10 longitude=20 zoom=13 text='<&'/>
 !! result
-<p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20">&lt;&amp;</a>
+<p><a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20">&lt;&amp;</a>
 </p>
 !! end
 
@@ -71,10 +71,10 @@
 }
 </maplink>
 !! result
-<p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_b34053f88dea58fe70a7da09c558f792394f6e11&quot;]">Foo</a>
-</p><p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_2e4133dc429eb3c3abf4e45916c073e841f9d193&quot;]">2</a>
-</p><p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_dd3c7bae539f7c3747c64d043c97e1a8834fbc8f&quot;]">A</a>
-</p><p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_8ce73f7395e427bd6f462824717c0a214b3ca564&quot;]">B</a>
+<p><a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_b34053f88dea58fe70a7da09c558f792394f6e11&quot;]">Foo</a>
+</p><p><a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_2e4133dc429eb3c3abf4e45916c073e841f9d193&quot;]">2</a>
+</p><p><a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_dd3c7bae539f7c3747c64d043c97e1a8834fbc8f&quot;]">A</a>
+</p><p><a class="mw-kartographer-link" mw-data="interface" data-style="osm" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_8ce73f7395e427bd6f462824717c0a214b3ca564&quot;]">B</a>
 </p>
 !! end
 
@@ -83,7 +83,7 @@
 !! input
 <maplink latitude=10 longitude=20 zoom=13 />
 !! result
-<p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20">10°0′0″N 20°0′0″E</a>
+<p><a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20">10°0′0″N 20°0′0″E</a>
 </p>
 !! end
 
@@ -97,12 +97,12 @@
 <maplink zoom=0 latitude=0 longitude=0 class="class1 class2" text="Multiple classes aren't allowed for now"/>
 <maplink zoom=0 latitude=0 longitude=0 class="-Invalid-cl@ss-symbols"/>
 !! result
-<p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="0" data-lat="0" data-lon="0">Empty class - do nothing</a>
-<a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="0" data-lat="0" data-lon="0">Whitespace only class - do nothing</a>
-<a class="mw-kartographer mw-kartographer-link Valid-link_class_123" mw-data="interface" data-style="osm-intl" data-zoom="0" data-lat="0" data-lon="0">Valid class</a>
+<p><a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="0" data-lat="0" data-lon="0">Empty class - do nothing</a>
+<a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="0" data-lat="0" data-lon="0">Whitespace only class - do nothing</a>
+<a class="mw-kartographer-link Valid-link_class_123" mw-data="interface" data-style="osm-intl" data-zoom="0" data-lat="0" data-lon="0">Valid class</a>
 </p>
-<div class="mw-kartographer mw-kartographer-error">&lt;maplink&gt;: Attribute "class" has an invalid value</div>
-<div class="mw-kartographer mw-kartographer-error">&lt;maplink&gt;: Attribute "class" has an invalid value</div>
+<div class="mw-kartographer-error">&lt;maplink&gt;: Attribute "class" has an invalid value</div>
+<div class="mw-kartographer-error">&lt;maplink&gt;: Attribute "class" has an invalid value</div>
 
 !! end
 
@@ -114,10 +114,10 @@
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=center/>
 <mapframe latitude=10 longitude=20 zoom=13 width=50% height=480 align=right/>
 !! result
-<div class="mw-kartographer mw-kartographer-interactive floatright" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20"></div>
-<div class="mw-kartographer mw-kartographer-interactive floatleft" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20"></div>
-<div class="mw-kartographer mw-kartographer-interactive center" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20"></div>
-<div class="mw-kartographer mw-kartographer-interactive floatright" mw-data="interface" style="width:50%; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20"></div>
+<div class="mw-kartographer-interactive floatright" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20"></div>
+<div class="mw-kartographer-interactive floatleft" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20"></div>
+<div class="mw-kartographer-interactive center" mw-data="interface" style="width:640px; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20"></div>
+<div class="mw-kartographer-interactive floatright" mw-data="interface" style="width:50%; height:480px;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20"></div>
 
 !! end
 
@@ -146,22 +146,22 @@ Error messages
   }
 </mapframe>
 !! result
-<div class="mw-kartographer mw-kartographer-error"><p>&lt;maplink&gt; problems:
+<div class="mw-kartographer-error"><p>&lt;maplink&gt; problems:
 </p>
 <ul><li> Couldn't parse JSON: Syntax error</li>
 <li> Attribute "longitude" has an invalid value</li>
 <li> Attribute "zoom" is missing</li></ul>
 </div>
-<div class="mw-kartographer mw-kartographer-error"><p>&lt;mapframe&gt; problems:
+<div class="mw-kartographer-error"><p>&lt;mapframe&gt; problems:
 </p>
 <ul><li> Attribute "mapstyle" has an invalid value</li>
 <li> Attribute "align" has an invalid value</li></ul>
 </div>
-<div class="mw-kartographer mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
-<div class="mw-kartographer mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
-<div class="mw-kartographer mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
-<div class="mw-kartographer mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
-<div class="mw-kartographer mw-kartographer-error"><p>&lt;mapframe&gt; problems:
+<div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
+<div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
+<div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
+<div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
+<div class="mw-kartographer-error"><p>&lt;mapframe&gt; problems:
 </p>
 <ul><li> The JSON content is not valid GeoJSON+simplestyle</li>
 <li> Attribute "mapstyle" has an invalid value</li>
@@ -177,7 +177,7 @@ language=ru
 !! input
 <maplink zoom=0 latitude=0 longitude=0>fail</maplink>
 !! result
-<div class="mw-kartographer mw-kartographer-error">&lt;maplink&gt;: Ошибка JSON: Синтаксическая ошибка</div>
+<div class="mw-kartographer-error">&lt;maplink&gt;: Ошибка JSON: Синтаксическая ошибка</div>
 
 !! end
 
@@ -186,7 +186,7 @@ CSS sanitization
 !! input
 <maplink latitude=10 longitude=20 zoom=10 style="color: red;" text="<span style='foo: bar; background-image: url(https://example.com);'&gt;foo</span&gt;"/><!-- style=... was removed -->
 !! result
-<p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="10" data-lat="10" data-lon="20"><span style="/* insecure input */">foo</span></a>
+<p><a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="10" data-lat="10" data-lon="20"><span style="/* insecure input */">foo</span></a>
 </p>
 !! end
 
@@ -227,7 +227,7 @@ wgKartographerUseMarkerStyle=true
 }
 ]</maplink>
 !! result
-<p><a class="mw-kartographer mw-kartographer-link mw-kartographer-autostyled" mw-data="interface" style="background: #abcdef;" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_0d28e3b8954f29b4a6af62bd43a9cacc70ce0261&quot;]">A</a>
+<p><a class="mw-kartographer-link mw-kartographer-autostyled" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" style="background: #abcdef;" data-overlays="[&quot;_0d28e3b8954f29b4a6af62bd43a9cacc70ce0261&quot;]">A</a>
 </p>
 !! end
 
@@ -250,6 +250,6 @@ wgKartographerUseMarkerStyle=false
 }
 </maplink>
 !! result
-<p><a class="mw-kartographer mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_a724df91b09b20c8c7ea0dc28127eaed1727511b&quot;]">A</a>
+<p><a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_a724df91b09b20c8c7ea0dc28127eaed1727511b&quot;]">A</a>
 </p>
 !! end

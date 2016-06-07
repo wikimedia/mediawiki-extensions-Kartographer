@@ -459,13 +459,13 @@
 	 *
 	 * The initial `mapContainer`:
 	 *
-	 *     <div class="mw-kartographer mw-kartographer-interactive" style="height: Y; width: X;">
+	 *     <div class="mw-kartographer-interactive" style="height: Y; width: X;">
 	 *         <!-- this is the component carrying Leaflet.Map -->
 	 *     </div>
 	 *
 	 * Becomes :
 	 *
-	 *     <div class="mw-kartographer mw-kartographer-interactive mw-kartographer-responsive" style="max-height: Y; max-width: X;">
+	 *     <div class="mw-kartographer-interactive mw-kartographer-responsive" style="max-height: Y; max-width: X;">
 	 *         <div class="mw-kartographer-responder" style="padding-bottom: (100*Y/X)%">
 	 *             <div>
 	 *                 <!-- this is the component carrying Leaflet.Map -->

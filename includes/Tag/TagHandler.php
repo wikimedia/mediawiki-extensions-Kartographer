@@ -157,14 +157,6 @@ abstract class TagHandler {
 	}
 
 	/**
-	 * Returns default HTML attributes of the outermost tag of the output
-	 * @return string[]
-	 */
-	protected function getDefaultAttributes() {
-		return [ 'class' => 'mw-kartographer', 'mw-data' => 'interface' ];
-	}
-
-	/**
 	 * When overridden in a descendant class, returns tag HTML
 	 * @return string
 	 */
@@ -342,7 +334,7 @@ abstract class TagHandler {
 		if ( count( $errors ) > 1 ) {
 			$errorText = '* ' . $errorText;
 		}
-		return Html::rawElement( 'div', array( 'class' => 'mw-kartographer mw-kartographer-error' ),
+		return Html::rawElement( 'div', array( 'class' => 'mw-kartographer-error' ),
 			wfMessage( $message, $this->tag, $errorText )->inLanguage( $this->getLanguage() )->parse() );
 	}
 
