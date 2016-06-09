@@ -305,3 +305,25 @@ wgKartographerWikivoyageMode=false
 <div class="mw-kartographer-interactive floatright" mw-data="interface" style="width:300px; height:300px;" data-style="osm-intl" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;_a724df91b09b20c8c7ea0dc28127eaed1727511b&quot;]"></div>
 
 !! end
+
+!! test
+show=...
+!! config
+wgKartographerWikivoyageMode=true
+!! input
+<maplink zoom=0 latitude=0 longitude=0 show="foo"/>
+<maplink zoom=0 latitude=0 longitude=0 show="foo	, bar"/>
+<maplink zoom=0 latitude=0 longitude=0 show="foo"/>
+<maplink zoom=0 latitude=0 longitude=0 show= />
+<maplink zoom=0 latitude=0 longitude=0 show=""/>
+<maplink zoom=0 latitude=0 longitude=0 show='йа криветко'/>
+!! result
+<p><a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;foo&quot;]">0°0′0″N 0°0′0″E</a>
+<a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;foo&quot;,&quot;bar&quot;]">0°0′0″N 0°0′0″E</a>
+<a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;foo&quot;]">0°0′0″N 0°0′0″E</a>
+<a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="0" data-lat="0" data-lon="0">0°0′0″N 0°0′0″E</a>
+<a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="0" data-lat="0" data-lon="0">0°0′0″N 0°0′0″E</a>
+</p>
+<div class="mw-kartographer-error">&lt;maplink&gt;: Attribute "show" has an invalid value</div>
+
+!! end
