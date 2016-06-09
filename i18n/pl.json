@@ -10,7 +10,7 @@
 	"kartographer-error-json": "Nie udało się przeanalizować JSON: $1",
 	"kartographer-error-missing-attr": "Brak atrybutu „$1”",
 	"kartographer-error-bad_attr": "Atrybut '$1' ma niepoprawną wartość",
-	"kartographer-error-bad_data": "Zawartość JSON jest niepoprawna",
+	"kartographer-error-bad_data": "Zawartość JSON nie jest poprawnym GeoJSON+simplestyle",
 	"kartographer-tracking-category": "Strony z mapami",
 	"kartographer-tracking-category-desc": "Strona zawiera mapę",
 	"leafletdraw-draw-handlers-circle-radius": "Promień",
