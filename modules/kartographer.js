@@ -5,7 +5,8 @@
 		mapServer = mw.config.get( 'wgKartographerMapServer' ),
 		forceHttps = mapServer[ 4 ] === 's',
 		config = L.mapbox.config,
-		router = mw.loader.require( 'mediawiki.router' );
+		router = mw.loader.require( 'mediawiki.router' ),
+		worldLatLng = new L.LatLngBounds( [ -90, -180 ], [ 90, 180 ] );
 
 	config.REQUIRE_ACCESS_TOKEN = false;
 	config.FORCE_HTTPS = forceHttps;
@@ -84,6 +85,46 @@
 	} );
 
 	/**
+	 * Gets the valid bounds of a map/layer.
+	 *
+	 * @param {L.Map|L.Layer} layer
+	 * @return {L.LatLngBounds} Extended bounds
+	 * @private
+	 */
+	function getValidBounds( layer ) {
+		var layerBounds = new L.LatLngBounds();
+		if ( typeof layer.eachLayer === 'function' ) {
+			layer.eachLayer( function ( child ) {
+				layerBounds.extend( getValidBounds( child ) );
+			} );
+		} else {
+			layerBounds.extend( validateBounds( layer ) );
+		}
+		return layerBounds;
+	}
+
+	/**
+	 * Validate that the bounds contain no outlier.
+	 *
+	 * An outlier is a layer whom bounds do not fit into the world,
+	 * i.e. `-180 <= longitude <= 180  &&  -90 <= latitude <= 90`
+	 *
+	 * @param {L.Layer} layer Layer to get and validate the bounds.
+	 * @return {L.LatLng|boolean} Bounds if valid.
+	 * @private
+	 */
+	function validateBounds( layer ) {
+		var bounds = ( typeof layer.getBounds === 'function' ) && layer.getBounds();
+
+		bounds = bounds || ( typeof layer.getLatLng === 'function' ) && layer.getLatLng();
+
+		if ( bounds && worldLatLng.contains( bounds ) ) {
+			return bounds;
+		}
+		return false;
+	}
+
+	/**
 	 * Create a new interactive map
 	 *
 	 * @param {HTMLElement} container Map container
@@ -100,7 +141,8 @@
 		var map,
 			$container = $( container ),
 			style = data.style || mw.config.get( 'wgKartographerDfltStyle' ),
-			width, height;
+			width, height,
+			maxBounds;
 
 		$container.addClass( 'mw-kartographer-map' );
 
@@ -119,14 +161,6 @@
 			/*jscs:disable disallowDanglingUnderscores */
 			map._size = new L.Point( width, height );
 			/*jscs:enable disallowDanglingUnderscores */
-		}
-		map.setView( [ data.latitude, data.longitude ], data.zoom, true );
-		map.attributionControl.setPrefix( '' );
-
-		if ( data.enableFullScreenButton ) {
-			map.addControl( new mw.kartographer.FullScreenControl( {
-				mapData: data
-			} ) );
 		}
 
 		/**
@@ -156,6 +190,42 @@
 			} );
 
 		}
+
+		// Position the map
+		if ( isNaN( data.longitude ) && isNaN( data.latitude ) ) {
+			// Determines best center of the map
+			maxBounds = getValidBounds( map );
+			if ( maxBounds.isValid() ) {
+				map.fitBounds( maxBounds );
+			} else {
+				map.fitWorld();
+			}
+			// (Re-)Applies expected zoom
+			if ( !isNaN( data.zoom ) ) {
+				map.setZoom( data.zoom );
+			}
+			// Updates map data.
+			data.zoom = map.getZoom();
+			data.longitude = map.getCenter().lng;
+			data.latitude = map.getCenter().lat;
+			// Updates container's data attributes to avoid `NaN` errors
+			$( map.getContainer() ).closest( '.mw-kartographer-interactive' ).data( {
+				zoom: data.zoom,
+				lon: data.longitude,
+				lat: data.latitude
+			} );
+		} else {
+			map.setView( [ data.latitude, data.longitude ], data.zoom, true );
+		}
+
+		map.attributionControl.setPrefix( '' );
+
+		if ( data.enableFullScreenButton ) {
+			map.addControl( new mw.kartographer.FullScreenControl( {
+				mapData: data
+			} ) );
+		}
+
 		return map;
 	};
 

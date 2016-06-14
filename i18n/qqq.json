@@ -27,6 +27,7 @@
 	"kartographer-error-missing-attr": "Error shown instead of a map when required parameter(s) is missing.\n\nParameters:\n* $1 - non-localized attribute name, such as 'height', 'latitude', etc",
 	"kartographer-error-bad_attr": "Error shown instead of a map in case of a problem with parameters.\n\nParameters:\n* $1 - non-localized attribute name, such as 'height', 'latitude', etc",
 	"kartographer-error-bad_data": "This error is shown if the content of the tag is syntactically valid JSON however it does not adhere to GeoJSON and simplestyle specifications",
+	"kartographer-error-latlon": "Error shown by &lt;maplink&gt; or &lt;mapframe&gt; when certain parameters are incorrect",
 	"kartographer-tracking-category": "Name of the tracking category",
 	"kartographer-tracking-category-desc": "Description on [[Special:TrackingCategories]] for the {{msg-mw|kartographer-tracking-category}} tracking category.",
 	"kartographer-coord-combined": "{{optional}}\nJoins two parts of geogrpahical coordinates. $1 and $2 are latitude and longitude, respectively.",

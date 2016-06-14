@@ -1,9 +1,11 @@
 !! test
-<maplink> - custom link text
+<maplink>
 !! input
+<maplink />
 <maplink latitude=10 longitude=20 zoom=13 text='Foo &amp; bar'/>
 !! result
-<p><a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20">Foo &amp; bar</a>
+<p><a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl">0°0′0″N 0°0′0″E</a>
+<a class="mw-kartographer-link" mw-data="interface" data-style="osm-intl" data-zoom="13" data-lat="10" data-lon="20">Foo &amp; bar</a>
 </p>
 !! end
 
@@ -145,12 +147,13 @@ Error messages
     }
   }
 </mapframe>
+<mapframe width=200 height=200 latitude=100/>
+<mapframe width=200 height=200 longitude=100/>
 !! result
 <div class="mw-kartographer-error"><p>&lt;maplink&gt; problems:
 </p>
 <ul><li> Couldn't parse JSON: Syntax error</li>
-<li> Attribute "longitude" has an invalid value</li>
-<li> Attribute "zoom" is missing</li></ul>
+<li> Attribute "longitude" has an invalid value</li></ul>
 </div>
 <div class="mw-kartographer-error"><p>&lt;mapframe&gt; problems:
 </p>
@@ -167,6 +170,8 @@ Error messages
 <li> Attribute "mapstyle" has an invalid value</li>
 <li> Attribute "align" has an invalid value</li></ul>
 </div>
+<div class="mw-kartographer-error">&lt;mapframe&gt;: Either both "latitude" and "longitude" parameters should be supplied or neither of them</div>
+<div class="mw-kartographer-error">&lt;mapframe&gt;: Either both "latitude" and "longitude" parameters should be supplied or neither of them</div>
 
 !! end
 

@@ -39,10 +39,15 @@ class MapLink extends TagHandler {
 			'class' => 'mw-kartographer-link',
 			'mw-data' => 'interface',
 			'data-style' => $this->mapStyle,
-			'data-zoom' => $this->zoom,
-			'data-lat' => $this->lat,
-			'data-lon' => $this->lon,
 		];
+		if ( $this->zoom !== null ) {
+			$attrs['data-zoom'] = $this->zoom;
+		}
+		if ( $this->lat !== null && $this->lon !== null ) {
+			$attrs['data-lat'] = $this->lat;
+			$attrs['data-lon'] = $this->lon;
+
+		}
 		$style = $this->extractMarkerCss();
 		if ( $style ) {
 			$attrs['class'] .= ' mw-kartographer-autostyled';

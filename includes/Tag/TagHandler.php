@@ -149,9 +149,13 @@ abstract class TagHandler {
 	protected function parseArgs() {
 		global $wgKartographerStyles, $wgKartographerDfltStyle;
 
-		$this->lat = $this->getFloat( 'latitude' );
-		$this->lon = $this->getFloat( 'longitude' );
-		$this->zoom = $this->getInt( 'zoom' );
+		$this->lat = $this->getFloat( 'latitude', null );
+		$this->lon = $this->getFloat( 'longitude', null );
+		if ( ( $this->lat === null ) ^ ( $this->lon === null ) ) {
+			$this->status->fatal( 'kartographer-error-latlon' );
+		}
+
+		$this->zoom = $this->getInt( 'zoom', null );
 		$regexp = '/^(' . implode( '|', $wgKartographerStyles ) . ')$/';
 		$this->mapStyle = $this->getText( 'mapstyle', $wgKartographerDfltStyle, $regexp );
 	}
@@ -190,7 +194,7 @@ abstract class TagHandler {
 
 	protected function getInt( $name, $default = false ) {
 		$value = $this->getText( $name, $default, '/^-?[0-9]+$/' );
-		if ( $value !== false ) {
+		if ( $value !== false && $value !== null ) {
 			$value = intval( $value );
 		}
 
@@ -204,7 +208,7 @@ abstract class TagHandler {
 	 */
 	protected function getFloat( $name, $default = false ) {
 		$value = $this->getText( $name, $default, '/^-?[0-9]*\.?[0-9]+$/' );
-		if ( $value !== false ) {
+		if ( $value !== false && $value !== null ) {
 			$value = floatval( $value );
 		}
 

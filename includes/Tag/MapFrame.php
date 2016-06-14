@@ -86,10 +86,15 @@ class MapFrame extends TagHandler {
 					'mw-data' => 'interface',
 					'style' => "width:{$width}; height:{$this->height}px;",
 					'data-style' => $this->mapStyle,
-					'data-zoom' => $this->zoom,
-					'data-lat' => $this->lat,
-					'data-lon' => $this->lon,
 				];
+				if ( $this->zoom !== null ) {
+					$attrs['data-zoom'] = $this->zoom;
+				}
+				if ( $this->lat !== null && $this->lon !== null ) {
+					$attrs['data-lat'] = $this->lat;
+					$attrs['data-lon'] = $this->lon;
+
+				}
 				if ( isset( $alignClasses[$this->align] ) ) {
 					$attrs['class'] .= ' ' . $alignClasses[$this->align];
 				}
