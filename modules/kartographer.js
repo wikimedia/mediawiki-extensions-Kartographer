@@ -140,7 +140,7 @@
 
 			getMapGroupData( data.overlays ).done( function ( mapData ) {
 				$.each( data.overlays, function ( index, group ) {
-					if ( $.isEmptyObject( mapData[ group ] ) ) {
+					if ( !$.isEmptyObject( mapData[ group ] ) ) {
 						map.dataLayers[ group ] = mw.kartographer.addDataLayer( map, mapData[ group ] );
 					} else {
 						mw.log.warn( 'Layer not found or contains no data: "' + group + '"' );
