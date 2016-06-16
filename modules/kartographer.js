@@ -576,6 +576,17 @@
 						mw.kartographer.openFullscreenMap( map, getMapPosition( map ) );
 					}
 				} );
+
+				// Special case for collapsible maps.
+				// When the container is hidden Leaflet is not able to
+				// calculate the expected size when visible. We need to force
+				// updating the map to the new container size on `expand`.
+				if ( !$container.is( ':visible' ) ) {
+					$container.closest( '.mw-collapsible' )
+						.on( 'afterExpand.mw-collapsible', function () {
+							map.invalidateSize();
+						} );
+				}
 			}
 		} );
 
