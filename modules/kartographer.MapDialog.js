@@ -53,8 +53,8 @@ mw.kartographer.MapDialog.prototype.changeMap = function ( mapData ) {
 
 	// Check whether it is the same map.
 	if ( existing &&
-		typeof existing.articleMapId === 'number' &&
-		existing.articleMapId === mapData.articleMapId ) {
+		typeof existing.maptagId === 'number' &&
+		existing.maptagId === mapData.maptagId ) {
 
 		fullScreenState = mapData.fullScreenState;
 		extendedData = {};
@@ -149,7 +149,7 @@ mw.kartographer.MapDialog.prototype.getSetupProcess = function ( mapData ) {
 				this.map.setView( new L.LatLng( extendedData.latitude, extendedData.longitude ), extendedData.zoom, true );
 			}
 
-			if ( typeof mapData.articleMapId === 'number' ) {
+			if ( typeof mapData.maptagId === 'number' ) {
 				this.map.on( 'moveend', this.onMapMove, this );
 			}
 

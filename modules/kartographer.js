@@ -42,6 +42,13 @@
 	 */
 	mw.kartographer.maps = [];
 
+	/**
+	 * References the maplinks of the page.
+	 *
+	 * @type {HTMLElement[]}
+	 */
+	mw.kartographer.maplinks = [];
+
 	mw.kartographer.FullScreenControl = L.Control.extend( {
 		options: {
 			// Do not switch for RTL because zoom also stays in place
@@ -280,8 +287,8 @@
 				if ( mapData instanceof L.Map ) {
 					map = mapData;
 					mapData = getMapData( $( map.getContainer() ).closest( '.mw-kartographer-interactive' ) );
-				} else if ( $.type( mapData.articleMapId ) === 'number' ) {
-					map = mw.kartographer.maps[ mapData.articleMapId ];
+				} else if ( mapData && mapData.isMapframe ) {
+					map = mw.kartographer.maps[ mapData.maptagId ];
 				}
 
 				$.extend( dialogData, mapData, {
@@ -312,7 +319,7 @@
 
 	/**
 	 * Formats the full screen route of the map, such as:
-	 *   `/map/:articleMapId(/:zoom/:longitude/:latitude)`
+	 *   `/map/:maptagId(/:zoom/:longitude/:latitude)`
 	 *
 	 * The hash will contain the portion between parenthesis if and only if
 	 * one of these 3 values differs from the initial setting.
@@ -323,10 +330,13 @@
 	 * @return {string} The route to open the map in full screen mode.
 	 */
 	mw.kartographer.getMapHash = function ( data, map ) {
-		var hash = '/map/' + data.articleMapId,
+
+		var hash = '/' + ( data.isMapframe ? 'map' : 'maplink' ),
 			mapPosition,
 			newHash,
 			initialHash = getScaleCoords( data.zoom, data.latitude, data.longitude ).join( '/' );
+
+		hash += '/' + data.maptagId;
 
 		if ( map ) {
 			mapPosition = getMapPosition( map );
@@ -388,24 +398,49 @@
 	 */
 	function getMapData( element ) {
 		var $el = $( element ),
-			articleMapId = null;
+			maptagId = null;
 		// Prevent users from adding map divs directly via wikitext
 		if ( $el.attr( 'mw-data' ) !== 'interface' ) {
 			return null;
 		}
 
-		if ( $.type( $el.data( 'article-map-id' ) ) !== 'undefined' ) {
-			articleMapId = +$el.data( 'article-map-id' );
+		if ( $.type( $el.data( 'maptag-id' ) ) !== 'undefined' ) {
+			maptagId = +$el.data( 'maptag-id' );
 		}
 
 		return {
-			articleMapId: articleMapId,
+			isMapframe: $el.hasClass( 'mw-kartographer-interactive' ),
+			maptagId: maptagId,
 			latitude: +$el.data( 'lat' ),
 			longitude: +$el.data( 'lon' ),
 			zoom: +$el.data( 'zoom' ),
 			style: $el.data( 'style' ),
 			overlays: $el.data( 'overlays' )
 		};
+	}
+
+	/**
+	 * Formats the fullscreen state object based on route attributes.
+	 *
+	 * @param {string|number} [zoom]
+	 * @param {string|number} [latitude]
+	 * @param {string|number} [longitude]
+	 * @return {Object} Full screen state
+	 * @return {number} [return.zoom] Zoom if between 0 and 18.
+	 * @return {number} [return.latitude]
+	 * @return {number} [return.longitude]
+	 * @private
+	 */
+	function getFullScreenState( zoom, latitude, longitude ) {
+		var obj = {};
+		if ( zoom !== undefined && zoom >= 0 && zoom <= 18 ) {
+			obj.zoom = +zoom;
+		}
+		if ( longitude !== undefined ) {
+			obj.latitude = +latitude;
+			obj.longitude = +longitude;
+		}
+		return obj;
 	}
 
 	/**
@@ -533,12 +568,11 @@
 		// Some links might be displayed outside of $content, so we need to
 		// search outside. This is an anti-pattern and should be improved...
 		// Meanwhile #content is better than searching the full document.
-		$( '#content' ).on( 'click', '.mw-kartographer-link', function () {
-			var data = getMapData( this );
+		$( '.mw-kartographer-link', '#content' ).each( function ( index ) {
+			mw.kartographer.maplinks[ index ] = this;
 
-			if ( data ) {
-				mw.kartographer.openFullscreenMap( data );
-			}
+			$( this ).data( 'maptag-id', index );
+			this.href = '#' + '/maplink/' + index;
 		} );
 
 		L.Map.mergeOptions( {
@@ -553,7 +587,7 @@
 				container = this,
 				$container = $( this );
 
-			$container.data( 'article-map-id', index );
+			$container.data( 'maptag-id', index );
 			data = getMapData( container );
 
 			if ( data ) {
@@ -593,23 +627,35 @@
 		// Allow customizations of interactive maps in article.
 		mw.hook( 'wikipage.maps' ).fire( mapsInArticle, false /* isFullScreen */ );
 
-		// Opens map in full screen. #/map(/:zoom)(/:latitude)(/:longitude)
+		// Opens a map in full screen. #/map(/:zoom)(/:latitude)(/:longitude)
 		// Examples:
 		//     #/map/0
 		//     #/map/0/5
 		//     #/map/0/16/-122.4006/37.7873
-		router.route( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([\-\+]?\d+\.?\d{0,5})?\/([\-\+]?\d+\.?\d{0,5})?)?/, function ( mapId, zoom, latitude, longitude ) {
-			var map = mw.kartographer.maps[ mapId ],
-				fullScreenState = {};
+		router.route( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([\-\+]?\d+\.?\d{0,5})?\/([\-\+]?\d+\.?\d{0,5})?)?/, function ( maptagId, zoom, latitude, longitude ) {
+			var map = mw.kartographer.maps[ maptagId ];
+			if ( !map ) {
+				router.navigate( '' );
+				return;
+			}
+			mw.kartographer.openFullscreenMap( map, getFullScreenState( zoom, latitude, longitude ) );
+		} );
 
-			if ( zoom !== undefined && zoom >= 0 && zoom <= 18 ) {
-				fullScreenState.zoom = +zoom;
+		// Opens a maplink in full screen. #/maplink(/:zoom)(/:latitude)(/:longitude)
+		// Examples:
+		//     #/maplink/0
+		//     #/maplink/0/5
+		//     #/maplink/0/16/-122.4006/37.7873
+		router.route( /maplink\/([0-9]+)(?:\/([0-9]+))?(?:\/([\-\+]?\d+\.?\d{0,5})?\/([\-\+]?\d+\.?\d{0,5})?)?/, function ( maptagId, zoom, latitude, longitude ) {
+			var link = mw.kartographer.maplinks[ maptagId ],
+				data;
+
+			if ( !link ) {
+				router.navigate( '' );
+				return;
 			}
-			if ( longitude !== undefined ) {
-				fullScreenState.latitude = +latitude;
-				fullScreenState.longitude = +longitude;
-			}
-			mw.kartographer.openFullscreenMap( map, fullScreenState );
+			data = getMapData( link );
+			mw.kartographer.openFullscreenMap( data, getFullScreenState( zoom, latitude, longitude ) );
 		} );
 
 		// Check if we need to open a map in full screen.
