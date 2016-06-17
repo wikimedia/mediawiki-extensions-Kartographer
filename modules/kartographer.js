@@ -56,33 +56,41 @@
 		},
 
 		onAdd: function ( map ) {
-			var container = L.DomUtil.create( 'div', 'leaflet-bar' ),
-				link = L.DomUtil.create( 'a', 'oo-ui-icon-fullScreen', container );
+			var container = L.DomUtil.create( 'div', 'leaflet-bar' );
 
-			this.href = link.href = '#' + mw.kartographer.getMapHash( this.options.mapData, this.map );
-			link.title = mw.msg( 'kartographer-fullscreen-text' );
+			this.link = L.DomUtil.create( 'a', 'oo-ui-icon-fullScreen', container );
+			this.link.title = mw.msg( 'kartographer-fullscreen-text' );
 			this.map = map;
 
-			L.DomEvent.addListener( link, 'click', this.onShowFullScreen, this );
+			this.map.on( 'moveend', this.onMapMove, this );
+			if ( !router.isSupported() ) {
+				L.DomEvent.addListener( this.link, 'click', this.onShowFullScreen, this );
+			}
 			L.DomEvent.disableClickPropagation( container );
+			this.updateHash();
 
 			return container;
 		},
 
-		onShowFullScreen: function ( e ) {
-			var hash = mw.kartographer.getMapHash( this.options.mapData, this.map );
-			L.DomEvent.stop( e );
-
-			this.href = '#' + hash;
-
-			if ( router.isSupported() ) {
-				router.navigate( hash );
-			} else {
-				mw.kartographer.openFullscreenMap( this.map, getMapPosition( this.map ) );
+		onMapMove: function () {
+			/*jscs:disable disallowDanglingUnderscores */
+			if ( !this.map._loaded ) {
+				return false;
 			}
+			/*jscs:enable disallowDanglingUnderscores */
+			this.updateHash();
+		},
+
+		updateHash: function () {
+			var hash = mw.kartographer.getMapHash( this.options.mapData, this.map );
+			this.link.href = '#' + hash;
+		},
+
+		onShowFullScreen: function ( e ) {
+			L.DomEvent.stop( e );
+			mw.kartographer.openFullscreenMap( this.map, getMapPosition( this.map ) );
 		}
 	} );
-
 	/**
 	 * Create a new interactive map
 	 *
