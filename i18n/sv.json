@@ -7,7 +7,7 @@
 	},
 	"apihelp-query+mapdata-description": "Begär all kartdata från sidan <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-param-continue": "Använd denna parameter för att fortsätta gå igenom resultaten.",
-	"kartographer-attribution": "Wikimedia maps beta | Kartdata © [http://openstreetmap.org/copyright OpenStreetMaps bidragsgivare]",
+	"kartographer-attribution": "Wikimedia maps | Kartdata © [https://www.openstreetmap.org/copyright OpenStreetMaps bidragsgivare]",
 	"kartographer-broken-category": "Sidor med trasiga kartor",
 	"kartographer-broken-category-desc": "Sidan inkluderar taggen <code><nowiki><maps></nowiki></code> med felaktig användning.",
 	"kartographer-error-context-multi": "&lt;$1&gt; problem:\n$2",

@@ -14,7 +14,7 @@
 	"apihelp-query+mapdata-param-continue": "Aùsa stu parammetro pe' puté cuntinuà a ffà iterazione pe' mmiez' 'e risultate",
 	"apihelp-query+mapdata-param-groups": "Gruppe spartut'a-tubbe d' 'e quale 'e date s'avesser'a turnà",
 	"apihelp-query+mapdata-param-limit": "Date 'e quante paggene s'avesser'a turnà",
-	"kartographer-attribution": "Wikimedia maps beta | Dati mappa © [http://openstreetmap.org/copyright cuntribbute a OpenStreetMap]",
+	"kartographer-attribution": "Wikimedia maps | Dati mappa © [https://www.openstreetmap.org/copyright cuntribbute a OpenStreetMap]",
 	"kartographer-broken-category": "Paggene ch'errure dint' 'e mappe",
 	"kartographer-broken-category-desc": "'A paggena azzeccasse na mappa 'e uso invalido",
 	"kartographer-desc": "Premmettesse 'azzeccà mappe ncopp' 'e paggene wiki",
