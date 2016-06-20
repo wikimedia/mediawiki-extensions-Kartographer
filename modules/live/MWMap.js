@@ -147,6 +147,8 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts ) {
 		 */
 		map.dataLayers = {};
 
+		data.overlays = data.overlays || [];
+
 		getMapGroupData( data.overlays ).then( function ( mapData ) {
 			$.each( data.overlays, function ( index, group ) {
 				if ( !$.isEmptyObject( mapData[ group ] ) ) {

@@ -12,7 +12,8 @@
 	"type": "other",
 	"MessagesDirs": {
 		"Kartographer": [
-			"i18n"
+			"i18n",
+			"modules/wikivoyage/i18n"
 		]
 	},
 	"AutoloadClasses": {
@@ -303,6 +304,54 @@
 			],
 			"styles": [
 				"lib/prunecluster/LeafletStyleSheet.css"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"ext.kartographer.wv": {
+			"dependencies": [
+				"mapbox",
+				"ext.kartographer.lib.prunecluster",
+				"oojs-ui.styles.icons-editing-core"
+			],
+			"scripts": [
+				"modules/wikivoyage/wikivoyage.js",
+				"modules/wikivoyage/NearbyArticles.js",
+				"modules/wikivoyage/ControlLayers.js",
+				"modules/wikivoyage/ControlNearby.js",
+				"modules/wikivoyage/ControlScale.js",
+				"modules/wikivoyage/WVMapLayers.js",
+				"modules/wikivoyage/WVMap.js",
+				"modules/wikivoyage/index.js"
+			],
+			"styles": [
+				"modules/wikivoyage/styles/wv-leaflet.less",
+				"modules/wikivoyage/styles/control-attribution.less",
+				"modules/wikivoyage/styles/control-layers.less",
+				"modules/wikivoyage/styles/control-nearby.less",
+				"modules/wikivoyage/styles/control-scale.less"
+			],
+			"messages": [
+				"kartographer-wv-group",
+				"kartographer-wv-layer-boundaries",
+				"kartographer-wv-layer-cycling",
+				"kartographer-wv-layer-hiking",
+				"kartographer-wv-layer-hill-shading",
+				"kartographer-wv-layer-landscape",
+				"kartographer-wv-layer-mapnik",
+				"kartographer-wv-layer-mapquest",
+				"kartographer-wv-layer-mapquest-open",
+				"kartographer-wv-layer-mapquest-labels",
+				"kartographer-wv-layer-nearby-articles",
+				"kartographer-wv-layer-traffic-line-network",
+				"kartographer-wv-layer-wikimedia",
+				"kartographer-wv-nearby-articles-control",
+				"kartographer-wv-warning-external-source-title",
+				"kartographer-wv-warning-external-source-message",
+				"kartographer-wv-warning-external-source-agree",
+				"kartographer-wv-warning-external-source-disagree"
 			],
 			"targets": [
 				"mobile",

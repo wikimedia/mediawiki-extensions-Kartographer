@@ -1,0 +1,52 @@
+@kartographer-wv-oo-ui-iconSize: 1em;
+
+.leaflet-control-layers {
+	.leaflet-control-layers-selector {
+		position: static;
+		margin: 0 0.5em 0 0.25em;
+	}
+}
+
+.oo-ui-iconElement.oo-ui-iconElement-icon.leaflet-control-layers-oo-ui-icon {
+	height: @kartographer-wv-oo-ui-iconSize;
+	min-height: @kartographer-wv-oo-ui-iconSize;
+	width: @kartographer-wv-oo-ui-iconSize;
+	min-width: @kartographer-wv-oo-ui-iconSize;
+}
+
+.leaflet-control-layers-wm-icon {
+	position: relative;
+	top: 1 - @kartographer-wv-oo-ui-iconSize;
+}
+
+/* Expand the dropdown as wide as possible */
+.leaflet-control-layers-expanded {
+	max-height: ~'calc( 100% - 50px )';
+	max-width: ~'calc( 100% - 10px )';
+	text-align: left;
+	overflow: scroll;
+	padding: 0.5em 0.5em 0.5em 0.5em;
+
+	/* Add ellipsis to long layer labels */
+	label {
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow-x: hidden;
+	}
+}
+
+.leaflet-control-layers-list,
+.leaflet-control-layers-list * {
+	line-height: normal;
+	vertical-align: middle;
+}
+
+.leaflet-control-layers-list {
+	label {
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		margin: 0 0 0.375em 0;
+	}
+}

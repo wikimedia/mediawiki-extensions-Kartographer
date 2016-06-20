@@ -1,0 +1,15 @@
+/* == Nearby articles icon == */
+
+@import 'mediawiki.mixins';
+
+.mapbox-icon-nearby-active,
+.mapbox-icon-nearby-active:hover {
+	background-color: #999;
+	border-color: #999;
+}
+
+.leaflet-control-container .leaflet-control .mw-kartographer-icon-nearby {
+	/* @embed */
+	.background-image-svg( '../images/icon-nearby.svg', '../images/icon-nearby.png' );
+	background-size: 20px;
+}

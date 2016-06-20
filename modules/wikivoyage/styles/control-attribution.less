@@ -1,0 +1,23 @@
+/* == Attribution control == */
+
+/** Override initial properties */
+.leaflet-right.leaflet-bottom {
+	.leaflet-control.leaflet-control-attribution {
+		float: none;
+		clear: none;
+		font-size: 10px;
+		font-family: sans-serif;
+		line-height: 1.6;
+
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	/* Removes ellipsis on hover */
+	.leaflet-control.leaflet-control-attribution:hover {
+		white-space: normal;
+		overflow: hidden;
+		text-overflow: clip;
+	}
+}

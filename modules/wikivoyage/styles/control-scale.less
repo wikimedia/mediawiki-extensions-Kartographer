@@ -1,0 +1,37 @@
+/* == Scale control == */
+
+/* Scale Line style */
+.leaflet-control-scale.leaflet-control .leaflet-control-scale-line {
+	background-color: transparent;
+	padding: 0 5px;
+	font-size: 10px;
+	font-family: sans-serif;
+}
+
+.leaflet-right.leaflet-bottom {
+
+	/** Override initial properties */
+	.leaflet-control.leaflet-control-scale {
+		float: left;
+		clear: none;
+		margin: 1px 5px;
+		line-height: initial;
+
+		.leaflet-control-scale-line {
+
+			/* Scale Line style on hover */
+			&:hover {
+				border-color: #000;
+				cursor: pointer;
+			}
+
+			/** Override initial properties */
+			&:not(:first-child) {
+				border: 1px solid #999;
+				border-color: #000;
+				border-top: 0;
+				margin-top: 0;
+			}
+		}
+	}
+}
