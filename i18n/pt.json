@@ -15,6 +15,7 @@
 	"kartographer-error-missing-attr": "Atributo \"$1\" em falta",
 	"kartographer-error-bad_attr": "O atributo \"$1\" tem um valor inválido",
 	"kartographer-error-bad_data": "O conteúdo JSON está incorreto",
+	"kartographer-error-latlon": "Ambos os parâmetros \"latitude\" e \"longitude\" deverão ser fornecidos ou omitidos",
 	"kartographer-tracking-category": "Páginas com mapas",
 	"kartographer-tracking-category-desc": "A página inclui um mapa",
 	"leafletdraw-draw-handlers-circle-radius": "Raio",
