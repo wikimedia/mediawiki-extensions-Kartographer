@@ -3,6 +3,9 @@
  *
  * @copyright 2011-2015 VisualEditor Team and others; see http://ve.mit-license.org
  */
+/* globals require */
+var kartoLive = require( 'ext.kartographer.live' ),
+	kartoEditing = require( 'ext.kartographer.editing' );
 
 /**
  * ContentEditable paragraph node.
@@ -138,12 +141,13 @@ ve.ce.MWMapsNode.prototype.setupMap = function () {
 		longitude = +mwAttrs.longitude,
 		zoom = +mwAttrs.zoom;
 
-	this.map = mw.kartographer.createMap( this.$element[ 0 ], {
+	this.MWMap = kartoLive.MWMap( this.$element[ 0 ], {
 		latitude: latitude,
 		longitude: longitude,
 		zoom: zoom
 		// TODO: Support style editing
 	} );
+	this.map = this.MWMap.map;
 
 	this.updateGeoJson();
 
@@ -163,7 +167,7 @@ ve.ce.MWMapsNode.prototype.updateGeoJson = function () {
 		geoJson = mwData && mwData.body.extsrc;
 
 	if ( geoJson !== this.geoJson ) {
-		mw.kartographer.updateKartographerLayer( this.map, mwData && mwData.body.extsrc );
+		kartoEditing.updateKartographerLayer( this.map, mwData && mwData.body.extsrc );
 		this.geoJson = geoJson;
 	}
 };

@@ -4,6 +4,9 @@
  * @copyright 2011-2015 VisualEditor Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
+/* globals require */
+var kartoLive = require( 'ext.kartographer.live' ),
+	kartoEditing = require( 'ext.kartographer.editing' );
 
 /**
  * Dialog for editing MW maps.
@@ -280,13 +283,14 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 			mapPosition = dialog.getInitialMapPosition();
 
 		// TODO: Support 'style' editing
-		dialog.map = mw.kartographer.createMap( dialog.$map[ 0 ], mapPosition );
+		dialog.MWMap = kartoLive.MWMap( dialog.$map[ 0 ], mapPosition );
+		dialog.map = dialog.MWMap.map;
 
 		dialog.updateGeoJson();
 		dialog.onDimensionsChange();
 		dialog.resetMapPosition();
 
-		geoJsonLayer = mw.kartographer.getKartographerLayer( dialog.map );
+		geoJsonLayer = kartoEditing.getKartographerLayer( dialog.map );
 		drawControl = new L.Control.Draw( {
 			edit: { featureGroup: geoJsonLayer },
 			draw: {
@@ -358,7 +362,7 @@ ve.ui.MWMapsDialog.prototype.updateGeoJson = function () {
 		return;
 	}
 
-	mw.kartographer.updateKartographerLayer( this.map, this.input.getValue() )
+	kartoEditing.updateKartographerLayer( this.map, this.input.getValue() )
 		.done( function () {
 			self.input.setValidityFlag( true );
 		} )

@@ -129,18 +129,73 @@
 				"desktop"
 			]
 		},
-		"ext.kartographer.live": {
+		"ext.kartographer.init": {
 			"dependencies": [
-				"mapbox",
 				"ext.kartographer",
-				"ext.kartographer.site",
-				"mediawiki.jqueryMsg",
-				"oojs-ui.styles.icons-media",
+				"mediawiki.jqueryMsg"
+			],
+			"scripts": [
+				"modules/kartographer.js"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"ext.kartographer.link": {
+			"dependencies": [
+				"ext.kartographer.init",
 				"mediawiki.router"
 			],
 			"scripts": [
+				"modules/maplink/maplink.js"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"ext.kartographer.settings": {
+			"dependencies": [
+				"mapbox"
+			],
+			"scripts": [
+				"modules/settings/settings.js"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"ext.kartographer.frame": {
+			"dependencies": [
+				"mapbox",
+				"ext.kartographer.init",
+				"mediawiki.router",
+				"ext.kartographer.live"
+			],
+			"scripts": [
+				"modules/mapframe/mapframe.js"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"ext.kartographer.live": {
+			"dependencies": [
+				"mapbox",
+				"ext.kartographer.settings",
+				"mediawiki.router",
+				"oojs-ui.styles.icons-media",
+				"ext.kartographer.init"
+			],
+			"scripts": [
 				"lib/leaflet.sleep.js",
-				"modules/kartographer.js"
+				"modules/live/FullScreenControl.js",
+				"modules/live/dataLayerOpts.js",
+				"modules/live/MWMap.js",
+				"modules/live/index.js"
 			],
 			"messages": [
 				"kartographer-attribution"
@@ -152,15 +207,30 @@
 		},
 		"ext.kartographer.fullscreen": {
 			"dependencies": [
+				"ext.kartographer.init",
 				"ext.kartographer.site",
+				"ext.kartographer.live",
+				"mediawiki.router",
 				"oojs-ui-windows"
 			],
 			"scripts": [
-				"modules/kartographer.MapDialog.js"
+				"modules/fullscreen/CloseControl.js",
+				"modules/fullscreen/MapDialog.js",
+				"modules/fullscreen/indexRoute.js",
+				"modules/fullscreen/index.js"
 			],
 			"messages": [
 				"kartographer-fullscreen-close",
 				"visualeditor-mwmapsdialog-title"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"ext.kartographer.editing": {
+			"scripts": [
+				"modules/editing/editing.js"
 			],
 			"targets": [
 				"mobile",
@@ -199,7 +269,10 @@
 				"ext.visualEditor.mwcore",
 				"jquery.throttle-debounce",
 				"oojs-ui.styles.icons-location",
-				"ext.kartographer"
+				"ext.kartographer",
+				"ext.kartographer.init",
+				"ext.kartographer.live",
+				"ext.kartographer.editing"
 			],
 			"targets": [
 				"mobile",
@@ -223,6 +296,7 @@
 		]
 	},
 	"VisualEditorPluginModules": [
+		"ext.kartographer.editing",
 		"ext.kartographer.visualEditor"
 	],
 	"ParserTestFiles": [

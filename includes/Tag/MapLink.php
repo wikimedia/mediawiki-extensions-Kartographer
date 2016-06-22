@@ -21,7 +21,7 @@ class MapLink extends TagHandler {
 
 	protected function render() {
 		$output = $this->parser->getOutput();
-		$output->addModules( 'ext.kartographer.live' );
+		$output->addModules( 'ext.kartographer.link' );
 		$interact = $output->getExtensionData( 'kartographer_interact' );
 		if ( $interact === null ) {
 			$output->setExtensionData( 'kartographer_interact', [] );

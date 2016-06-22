@@ -78,7 +78,7 @@ class MapFrame extends TagHandler {
 			*/
 
 			case 'interactive':
-				$output->addModules( 'ext.kartographer.live' );
+				$output->addModules( 'ext.kartographer.frame' );
 
 				$width = is_numeric( $this->width ) ? "{$this->width}px" : $this->width;
 				$attrs = [
