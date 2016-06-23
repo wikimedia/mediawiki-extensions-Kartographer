@@ -223,7 +223,8 @@
 		getMapData: getMapData,
 		getMapPosition: getMapPosition,
 		getFullScreenState: getFullScreenState,
-		getMapDialog: getMapDialog
+		getMapDialog: getMapDialog,
+		getScaleCoords: getScaleCoords
 	};
 
 }( jQuery, mediaWiki ) );

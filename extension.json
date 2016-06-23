@@ -196,10 +196,23 @@
 				"modules/live/FullScreenControl.js",
 				"modules/live/dataLayerOpts.js",
 				"modules/live/MWMap.js",
+				"modules/live/enablePreview.js",
 				"modules/live/index.js"
 			],
 			"messages": [
 				"kartographer-attribution"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"ext.kartographer.preview": {
+			"dependencies": [
+				"ext.kartographer.init"
+			],
+			"scripts": [
+				"modules/preview/preview.js"
 			],
 			"targets": [
 				"mobile",
