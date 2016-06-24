@@ -27,6 +27,7 @@
 	"kartographer-error-missing-attr": "Falta el atributo \"$1\"",
 	"kartographer-error-bad_attr": "El atributo '$1' tiene un valor no válido",
 	"kartographer-error-bad_data": "El contenido JSON no es GeoJSON+simplestyle válido",
+	"kartographer-error-latlon": "Se deben proporcionar o bien ambos parámetros de \"latitud\" y \"longitud\" o bien ninguno de ellos",
 	"kartographer-tracking-category": "Páginas con mapas",
 	"kartographer-tracking-category-desc": "La página incluye un mapa",
 	"leafletdraw-draw-handlers-circle-radius": "Radio",
