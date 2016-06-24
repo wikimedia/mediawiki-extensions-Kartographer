@@ -120,6 +120,8 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts, ControlScale ) {
 		this.ready = $.when( this.loaded )
 			.then( this._initMapPosition.bind( this ) )
 			.then( this._initControls )
+			.then( this._fixCollapsibleMaps )
+			.then( this._invalidateInterative )
 			.then( promise )
 			.then;
 		return this.ready;
@@ -183,6 +185,7 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts, ControlScale ) {
 	 * - Adds the "full screen" button control when `enableFullScreenButton` is
 	 *   truthy.
 	 *
+	 * @return {jQuery.Promise}
 	 * @private
 	 */
 	MWMap.prototype._initControls = function () {
@@ -197,6 +200,67 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts, ControlScale ) {
 		this.map.addControl( new ControlScale( { position: 'bottomright' } ) );
 
 		return $.Deferred().resolveWith( this, [ this.map, this._data ] ).promise();
+	};
+
+	/**
+	 * Special case for collapsible maps.
+	 * When the container is hidden Leaflet is not able to
+	 * calculate the expected size when visible. We need to force
+	 * updating the map to the new container size on `expand`.
+
+	 * @return {jQuery.Promise}
+	 * @private
+	 */
+	MWMap.prototype._fixCollapsibleMaps = function () {
+		var map = this.map;
+
+		if ( !this.$container.is( ':visible' ) ) {
+			this.$container.closest( '.mw-collapsible' )
+				.on( 'afterExpand.mw-collapsible', function () {
+					map.invalidateSize();
+				} );
+		}
+		return $.Deferred().resolveWith( this, [ this.map, this._data ] ).promise();
+	};
+
+	/**
+	 * Adds Leaflet.Sleep handler and overrides `invalidateSize` when the map
+	 * is not in full screen mode.
+	 *
+	 * The new `invalidateSize` method calls {@link #toggleStaticState} to
+	 * determine the new state and make the map either static or interactive.
+	 *
+	 * @return {jQuery.Promise}
+	 * @private
+	 */
+	MWMap.prototype._invalidateInterative = function () {
+		var deferred = $.Deferred().resolveWith( this, [ this.map, this._data ] ),
+			map = this.map,
+			toggleStaticMap;
+
+		if ( !this._data.enableFullScreenButton ) {
+			// skip if the map is full screen
+			return deferred.promise();
+		}
+		// add Leaflet.Sleep when the map isn't full screen.
+		map.addHandler( 'sleep', L.Map.Sleep );
+
+		// `toggleStaticMap` should be debounced for performance.
+		toggleStaticMap = L.bind( toggleStaticState, null, map );
+
+		// `invalidateSize` is triggered on window `resize` events.
+		map.invalidateSize = function ( options ) {
+			L.Map.prototype.invalidateSize.call( map, options );
+			// Local debounce because oojs is not yet available.
+			if ( map._staticTimer ) {
+				clearTimeout( map._staticTimer );
+			}
+			map._staticTimer = setTimeout( toggleStaticMap, 200 );
+		};
+		// Initialize static state.
+		toggleStaticMap();
+
+		return deferred.promise();
 	};
 
 	/**
@@ -380,6 +444,45 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts, ControlScale ) {
 			return bounds;
 		}
 		return false;
+	}
+
+	/**
+	 * Makes the map interactive IIF :
+	 *
+	 * - the `device width > 480px`,
+	 * - there is at least a 200px horizontal margin.
+	 *
+	 * Otherwise makes it static.
+	 *
+	 * @param {L.mapbox.Map} map
+	 * @private
+	 */
+	function toggleStaticState( map ) {
+		var deviceWidth = window.innerWidth,
+		// All maps static if deviceWitdh < 480px
+			isSmallWindow = deviceWidth <= 480,
+			staticMap;
+
+		// If the window is wide enough, make sure there is at least
+		// a 200px margin to scroll, otherwise make the map static.
+		staticMap = isSmallWindow || ( map.getSize().x + 200 ) > deviceWidth;
+
+		// Skip if the map is already static
+		if ( map._static === staticMap ) {
+			return;
+		}
+
+		// Toggle static/interactive state of the map
+		map._static = staticMap;
+
+		if ( staticMap ) {
+			map.sleep._sleepMap();
+			map.sleep.disable();
+			map.scrollWheelZoom.disable();
+		} else {
+			map.sleep.enable();
+		}
+		$( map.getContainer() ).toggleClass( 'mw-kartographer-static', staticMap );
 	}
 
 	return function ( container, data ) {

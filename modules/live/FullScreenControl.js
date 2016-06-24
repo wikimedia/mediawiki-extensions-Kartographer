@@ -8,7 +8,7 @@ module.FullScreenControl = ( function ( kartographer, router ) {
 		},
 
 		onAdd: function ( map ) {
-			var container = L.DomUtil.create( 'div', 'leaflet-bar' );
+			var container = L.DomUtil.create( 'div', 'leaflet-bar leaflet-control-static' );
 
 			this.link = L.DomUtil.create( 'a', 'oo-ui-icon-fullScreen', container );
 			this.link.title = mw.msg( 'kartographer-fullscreen-text' );

@@ -60,3 +60,20 @@ a.mw-kartographer-autostyled:visited {
 .leaflet-bar a {
 	background-position: center center;
 }
+
+.mw-kartographer-static {
+	.leaflet-control-container {
+		.leaflet-top .leaflet-control {
+			display: none;
+		}
+		.leaflet-top .leaflet-control-static {
+			display: block;
+		}
+	}
+	.leaflet-clickable {
+		pointer-events: none;
+	}
+	&.leaflet-container {
+		cursor: default;
+	}
+}
