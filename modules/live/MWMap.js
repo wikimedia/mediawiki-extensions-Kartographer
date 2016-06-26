@@ -188,16 +188,32 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts ) {
 	 */
 	function getMapGroupData( overlays ) {
 		var deferred = $.Deferred(),
-			groupsLoaded = mw.config.get( 'wgKartographerLiveData' ) || {},
-			groupsToLoad = [];
+			groupsLoaded = mw.config.get( 'wgKartographerLiveData' ),
+			groupsToLoad = [],
+			promises = [];
 
+		if ( !groupsLoaded ) {
+			// Keep the reference to groupsLoaded, as it shouldn't change again
+			groupsLoaded = {};
+			mw.config.set( 'wgKartographerLiveData', groupsLoaded );
+		}
+
+		// For each requested layer, make sure it is loaded or is promised to be loaded
 		$( overlays ).each( function ( key, value ) {
-			if ( !( value in groupsLoaded ) ) {
+			var data = groupsLoaded[ value ];
+			if ( data === undefined ) {
 				groupsToLoad.push( value );
+				// Once loaded, this value will be replaced with the received data
+				groupsLoaded[ value ] = deferred.promise();
+			} else if ( data !== null && $.isFunction( data.then ) ) {
+				promises.push( data );
 			}
 		} );
 
-		if ( !groupsToLoad.length ) {
+		if ( groupsToLoad.length ) {
+			promises.push( deferred.promise() );
+		}
+		if ( !promises.length ) {
 			return deferred.resolve( groupsLoaded ).promise();
 		}
 
@@ -210,14 +226,14 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts ) {
 		} ).done( function ( data ) {
 			var rawMapData = data.query.pages[ 0 ].mapdata,
 				mapData = rawMapData && JSON.parse( rawMapData ) || {};
-
 			$.extend( groupsLoaded, mapData );
-			mw.config.set( 'wgKartographerLiveData', groupsLoaded );
-
 			deferred.resolve( groupsLoaded );
 		} );
 
-		return deferred.promise();
+		return $.when.apply( $, promises ).then( function () {
+			// All pending promises are done
+			return groupsLoaded;
+		} ).promise();
 	}
 
 	/**
