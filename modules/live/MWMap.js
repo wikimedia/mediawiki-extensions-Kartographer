@@ -31,7 +31,10 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts ) {
 		sleepTime: 250,
 		wakeTime: 1000,
 		sleepNote: false,
-		sleepOpacity: 1
+		sleepOpacity: 1,
+		// the default zoom applied when `longitude` and `latitude` were
+		// specified, but zoom was not.
+		fallbackZoom: 13
 	} );
 
 	/*jscs:disable disallowDanglingUnderscores */
@@ -142,10 +145,11 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts ) {
 			map = this.map,
 			data = this._data;
 
-		center = L.latLng( center );
-
-		// Position the map
-		if ( !center ) {
+		try {
+			center = L.latLng( center );
+			zoom = isNaN( zoom ) ? this.map.options.fallbackZoom : zoom;
+			map.setView( center, zoom, true );
+		} catch ( e ) {
 			// Determines best center of the map
 			maxBounds = getValidBounds( map );
 
@@ -170,8 +174,6 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts ) {
 					lat: data.latitude
 				} );
 			}
-		} else {
-			map.setView( center, zoom, true );
 		}
 	};
 
