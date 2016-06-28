@@ -180,7 +180,7 @@
 			longitude: +$el.data( 'lon' ),
 			zoom: +$el.data( 'zoom' ),
 			style: $el.data( 'style' ),
-			overlays: $el.data( 'overlays' )
+			overlays: $el.data( 'overlays' ) || []
 		};
 	}
 

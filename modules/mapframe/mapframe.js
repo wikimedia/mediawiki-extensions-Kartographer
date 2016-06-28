@@ -83,10 +83,11 @@
 	 */
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		var mapsInArticle = [],
-			isMobile = mw.config.get( 'skin' ) === 'minerva';
+			isMobile = mw.config.get( 'skin' ) === 'minerva',
+			promises = [];
 
 		$content.find( '.mw-kartographer-interactive' ).each( function ( index ) {
-			var MWMap, map, data,
+			var MWMap, data,
 				container = this,
 				$container = $( this );
 
@@ -101,53 +102,58 @@
 				}
 
 				MWMap = kartoLive.MWMap( container, data );
-				map = MWMap.map;
-				map.doubleClickZoom.disable();
+				MWMap.ready( function ( map, mapData ) {
 
-				mapsInArticle.push( map );
-				mw.kartographer.maps[ index ] = map;
+					map.doubleClickZoom.disable();
 
-				$container.on( 'dblclick', function () {
-					if ( router.isSupported() ) {
-						router.navigate( kartographer.getMapHash( data, map ) );
-					} else {
-						kartographer.openFullscreenMap( map, kartographer.getMapPosition( map ) );
+					mapsInArticle.push( map );
+					mw.kartographer.maps[ index ] = map;
+
+					$container.on( 'dblclick', function () {
+						if ( router.isSupported() ) {
+							router.navigate( kartographer.getMapHash( mapData, map ) );
+						} else {
+							kartographer.openFullscreenMap( map, kartographer.getMapPosition( map ) );
+						}
+					} );
+
+					// Special case for collapsible maps.
+					// When the container is hidden Leaflet is not able to
+					// calculate the expected size when visible. We need to force
+					// updating the map to the new container size on `expand`.
+					if ( !$container.is( ':visible' ) ) {
+						$container.closest( '.mw-collapsible' )
+							.on( 'afterExpand.mw-collapsible', function () {
+								map.invalidateSize();
+							} );
 					}
 				} );
-
-				// Special case for collapsible maps.
-				// When the container is hidden Leaflet is not able to
-				// calculate the expected size when visible. We need to force
-				// updating the map to the new container size on `expand`.
-				if ( !$container.is( ':visible' ) ) {
-					$container.closest( '.mw-collapsible' )
-						.on( 'afterExpand.mw-collapsible', function () {
-							map.invalidateSize();
-						} );
-				}
+				promises.push( MWMap.ready );
 			}
 		} );
 
 		// Allow customizations of interactive maps in article.
-		mw.hook( 'wikipage.maps' ).fire( mapsInArticle, false /* isFullScreen */ );
+		$.when( promises ).then( function () {
+			mw.hook( 'wikipage.maps' ).fire( mapsInArticle, false /* isFullScreen */ );
 
-		// Opens a map in full screen. #/map(/:zoom)(/:latitude)(/:longitude)
-		// Examples:
-		//     #/map/0
-		//     #/map/0/5
-		//     #/map/0/16/-122.4006/37.7873
-		router.route( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([\-\+]?\d+\.?\d{0,5})?\/([\-\+]?\d+\.?\d{0,5})?)?/, function ( maptagId, zoom, latitude, longitude ) {
-			var map = mw.kartographer.maps[ maptagId ];
-			if ( !map ) {
-				router.navigate( '' );
-				return;
-			}
+			// Opens a map in full screen. #/map(/:zoom)(/:latitude)(/:longitude)
+			// Examples:
+			//     #/map/0
+			//     #/map/0/5
+			//     #/map/0/16/-122.4006/37.7873
+			router.route( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([\-\+]?\d+\.?\d{0,5})?\/([\-\+]?\d+\.?\d{0,5})?)?/, function ( maptagId, zoom, latitude, longitude ) {
+				var map = mw.kartographer.maps[ maptagId ];
+				if ( !map ) {
+					router.navigate( '' );
+					return;
+				}
 
-			mw.kartographer.openFullscreenMap( map, kartographer.getFullScreenState( zoom, latitude, longitude ) );
+				mw.kartographer.openFullscreenMap( map, kartographer.getFullScreenState( zoom, latitude, longitude ) );
+			} );
+
+			// Check if we need to open a map in full screen.
+			router.checkRoute();
 		} );
-
-		// Check if we need to open a map in full screen.
-		router.checkRoute();
 	} );
 } )(
 	jQuery,

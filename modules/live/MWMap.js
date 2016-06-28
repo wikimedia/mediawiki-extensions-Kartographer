@@ -62,22 +62,84 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts ) {
 			this._fixMapSize();
 		}
 
-		this._initMap();
+		this.loaded = this._initMap();
 	};
 
+	/**
+	 * Initializes the map:
+	 *
+	 * - Adds the base tile layer
+	 * - Fetches groups data
+	 * - Adds data layers
+	 *
+	 * @return {jQuery.Promise} Promise which resolves once the map is
+	 *   initialized.
+	 * @private
+	 */
 	MWMap.prototype._initMap = function () {
-		var data = this._data,
-			style = data.style || mw.config.get( 'wgKartographerDfltStyle' ),
-			map = this.map,
-			self = this;
+		var style = this._data.style || mw.config.get( 'wgKartographerDfltStyle' );
 
 		/**
 		 * @property {L.TileLayer} Reference to `Wikimedia` tile layer.
 		 */
-		map.wikimediaLayer = L.tileLayer( mapServer + '/' + style + urlFormat, {
+		this.map.wikimediaLayer = L.tileLayer( mapServer + '/' + style + urlFormat, {
 			maxZoom: 18,
 			attribution: mw.message( 'kartographer-attribution' ).parse()
-		} ).addTo( map );
+		} ).addTo( this.map );
+
+		return this._initGroupData();
+	};
+
+	/**
+	 * Primary function to use right after you instantiated a `MWMap`
+	 * to get the map ready and be able to extend the {@link #map} object.
+	 *
+	 * Use it to add handlers to be called, once the map is ready, with
+	 * the {@link #map map object} and updated {@link #_data map data}.
+	 *
+	 * *Notes on updated map data:*
+	 * - During the "init" phase, the map downloads its data asynchronously.
+	 * - During the "ready" phase, the map positions its center and sets its
+	 * zoom according to the initial map data. The map is able to position
+	 * itself and calculate its best zoom in case longitude/latitude/zoom were
+	 * not explicitly defined. See with the code below how you can retrieve
+	 * the `map` and `mapData` objects:
+	 *
+	 *     var MWMap = new MWMap( this.$map[ 0 ], initialMapData );
+	 *     MWMap.ready(function(map, mapData) {
+		 *         // `map` is the map object
+		 *         // `mapData` is the updated mapData object.
+		 *     });
+	 *
+	 * @param {jQuery.Promise} promise Promise which resolves with the map object and
+	 *   the updated map data once the map is ready.
+	 * @return {jQuery.Promise.then} Function to add handlers to be
+	 *   called once the map is ready.
+	 */
+	MWMap.prototype.ready = function ( promise ) {
+		this.ready = $.when( this.loaded )
+			.then( this._initMapPosition.bind( this ) )
+			.then( this._initControls )
+			.then( promise )
+			.then;
+		return this.ready;
+	};
+
+	/**
+	 * Initializes map data:
+	 *
+	 * - Fetches groups data
+	 * - Adds data layers
+	 *
+	 * @return {jQuery.Promise} Promise which resolves once the data is loaded
+	 *   and the data layers added to the map.
+	 * @private
+	 */
+	MWMap.prototype._initGroupData = function () {
+		var deferred = $.Deferred(),
+			self = this,
+			map = this.map,
+			data = this._data;
 
 		/**
 		 * @property {Object} Hash map of data groups and their corresponding
@@ -85,31 +147,52 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts ) {
 		 */
 		map.dataLayers = {};
 
-		if ( data.overlays ) {
-
-			getMapGroupData( data.overlays ).done( function ( mapData ) {
-				$.each( data.overlays, function ( index, group ) {
-					if ( !$.isEmptyObject( mapData[ group ] ) ) {
-						map.dataLayers[ group ] = self.addDataLayer( map, mapData[ group ] );
-					} else {
-						mw.log.warn( 'Layer not found or contains no data: "' + group + '"' );
-					}
-				} );
+		getMapGroupData( data.overlays ).then( function ( mapData ) {
+			$.each( data.overlays, function ( index, group ) {
+				if ( !$.isEmptyObject( mapData[ group ] ) ) {
+					map.dataLayers[ group ] = self.addDataLayer( map, mapData[ group ] );
+				} else {
+					mw.log.warn( 'Layer not found or contains no data: "' + group + '"' );
+				}
 			} );
+			deferred.resolve().promise();
+		} );
+		return deferred.promise();
+	};
 
-		}
+	/**
+	 * Init map position with {@link #setView}.
+	 *
+	 * @return {jQuery.Promise} Promise which resolves with the updated map
+	 *   data.
+	 * @private
+	 */
+	MWMap.prototype._initMapPosition = function () {
+		var data = this._data;
 
-		// Position the map
 		this.setView( [ data.latitude, data.longitude ], data.zoom, true, true );
+		return $.Deferred().resolveWith( this, [ this.map, this._data ] ).promise();
+	};
 
-		// Init controls
-		map.attributionControl.setPrefix( '' );
+	/**
+	 * Init map controls.
+	 *
+	 * - Adds the "attribution" control.
+	 * - Adds the "full screen" button control when `enableFullScreenButton` is
+	 *   truthy.
+	 *
+	 * @private
+	 */
+	MWMap.prototype._initControls = function () {
+		this.map.attributionControl.setPrefix( '' );
 
-		if ( data.enableFullScreenButton ) {
-			map.addControl( new FullScreenControl( {
-				mapData: data
+		if ( this._data.enableFullScreenButton ) {
+			this.map.addControl( new FullScreenControl( {
+				mapData: this._data
 			} ) );
 		}
+
+		return $.Deferred().resolveWith( this, [ this.map, this._data ] ).promise();
 	};
 
 	/**
@@ -126,8 +209,21 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts ) {
 		}
 	};
 
+	/**
+	 * Fixes map size when the container is not visible yet, thus has no
+	 * physical size.
+	 *
+	 * The hack is to try jQuery which will pick up CSS dimensions. T125263
+	 *
+	 * However in full screen, the container size is actually [0,0] at that
+	 * time. Let's default to 300px temporarily, so that the map has a default
+	 * size to initialize itself (with an acceptable fullscreen minimum value).
+	 *
+	 * @private
+	 */
 	MWMap.prototype._fixMapSize = function () {
 		var width, height, $container = this.$container;
+
 		// Get `max` properties in case the container was wrapped
 		// with {@link #responsiveContainerWrap}.
 		width = $container.css( 'max-width' );
@@ -135,9 +231,7 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts ) {
 		width = ( !width || width === 'none' ) ? $container.width() : width;
 		height = ( !height || height === 'none' ) ? $container.height() : height;
 
-		// HACK: If the container is not naturally measurable, try jQuery
-		// which will pick up CSS dimensions. T125263
-		this.map._size = new L.Point( width, height );
+		this.map._size = new L.Point( width || 300, height || 300 );
 	};
 
 	MWMap.prototype.setView = function ( center, zoom, options, save ) {

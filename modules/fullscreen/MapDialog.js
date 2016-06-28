@@ -68,13 +68,13 @@ module.MapDialog = ( function ( $, mw, kartoLive, router, CloseControl ) {
 			// Use this boolean to stop listening to `moveend` event while we're
 			// manually moving the map.
 			this.movingMap = true;
-			this.map.setView( new L.LatLng( extendedData.latitude, extendedData.longitude ), extendedData.zoom );
-			this.map.mapData = mapData;
+			this.MWMap.setView( [ extendedData.latitude, extendedData.longitude ], extendedData.zoom );
 			this.movingMap = false;
 			return;
 		}
 
 		this.setup.call( this, mapData );
+		this.ready.call( this, mapData );
 	};
 
 	mw.kartographer.MapDialog.prototype.getActionProcess = function ( action ) {
@@ -126,8 +126,6 @@ module.MapDialog = ( function ( $, mw, kartoLive, router, CloseControl ) {
 	mw.kartographer.MapDialog.prototype.getSetupProcess = function ( mapData ) {
 		return mw.kartographer.MapDialog.super.prototype.getSetupProcess.call( this, mapData )
 			.next( function () {
-				var fullScreenState = mapData.fullScreenState,
-					extendedData = {};
 
 				if ( this.map ) {
 					this.map.remove();
@@ -139,30 +137,37 @@ module.MapDialog = ( function ( $, mw, kartoLive, router, CloseControl ) {
 					.appendTo( this.$body );
 
 				this.MWMap = kartoLive.MWMap( this.$map[ 0 ], mapData );
-				this.map = this.MWMap.map;
-				this.map.addControl( new CloseControl( { dialog: this } ) );
-
-				// copy of the initial settings
-				this.mapData = mapData;
-
-				if ( fullScreenState ) {
-					// override with full screen state
-					$.extend( extendedData, mapData, fullScreenState );
-					this.map.setView( new L.LatLng( extendedData.latitude, extendedData.longitude ), extendedData.zoom, true );
-				}
-
-				if ( typeof mapData.maptagId === 'number' ) {
-					this.map.on( 'moveend', this.onMapMove, this );
-				}
-
-				mw.hook( 'wikipage.maps' ).fire( this.map, true /* isFullScreen */ );
 			}, this );
 	};
 
 	mw.kartographer.MapDialog.prototype.getReadyProcess = function ( data ) {
 		return mw.kartographer.MapDialog.super.prototype.getReadyProcess.call( this, data )
 			.next( function () {
-				this.map.invalidateSize();
+				var self = this;
+				this.MWMap.ready( function ( map, mapData ) {
+					var fullScreenState = mapData.fullScreenState,
+						extendedData = {};
+
+					self.map = map;
+					self.map.addControl( new CloseControl( { dialog: self } ) );
+
+					// copy of the initial settings
+					self.mapData = mapData;
+
+					if ( fullScreenState ) {
+						// override with full screen state
+						$.extend( extendedData, mapData, fullScreenState );
+						self.map.setView( new L.LatLng( extendedData.latitude, extendedData.longitude ), extendedData.zoom, true );
+					}
+
+					if ( typeof mapData.maptagId === 'number' ) {
+						self.map.on( 'moveend', self.onMapMove, self );
+					}
+
+					mw.hook( 'wikipage.maps' ).fire( self.map, true /* isFullScreen */ );
+
+					this.map.invalidateSize();
+				} );
 			}, this );
 	};
 
