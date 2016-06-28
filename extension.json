@@ -188,7 +188,8 @@
 				"ext.kartographer.settings",
 				"mediawiki.router",
 				"oojs-ui.styles.icons-media",
-				"ext.kartographer.init"
+				"ext.kartographer.init",
+				"ext.kartographer.site"
 			],
 			"scripts": [
 				"lib/leaflet.sleep.js",
