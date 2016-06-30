@@ -292,6 +292,22 @@
 				"mobile",
 				"desktop"
 			]
+		},
+		"ext.kartographer.lib.prunecluster": {
+			"dependencies": [
+				"mapbox"
+			],
+			"scripts": [
+				"lib/prunecluster/PruneCluster.js",
+				"modules/prunecluster/prunecluster.js"
+			],
+			"styles": [
+				"lib/prunecluster/LeafletStyleSheet.css"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
 		}
 	},
 	"ResourceFileModulePaths": {

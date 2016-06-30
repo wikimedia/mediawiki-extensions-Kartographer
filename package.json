@@ -2,10 +2,10 @@
   "name": "Kartographer",
   "version": "0.0.0",
   "private": true,
-  "description": "Build tools for the Kartographer-MediaWiki extension.",
+  "description": "Build tools for the Kartographer MediaWiki extension.",
   "scripts": {
     "test": "grunt test",
-    "build-lib": "node_modules/.bin/browserify lib/mapbox/mapbox-main.js -o lib/mapbox/mapbox-lib.js && cp -rv node_modules/mapbox.js/theme/* lib/mapbox/ && rm lib/mapbox/images/render.sh && cp -v node_modules/leaflet-sleep/Leaflet.Sleep.js lib/leaflet.sleep.js"
+    "build-lib": ". ./bin/build.sh"
   },
   "devDependencies": {
     "browserify": "^13.0.0",
@@ -17,6 +17,7 @@
     "grunt-jsonlint": "1.0.7",
     "grunt-stylelint": "0.3.0",
     "mapbox.js": "^2.3.0",
+    "prunecluster": "^2.0.0-beta.3",
     "stylelint-config-wikimedia": "0.2.0"
   },
   "dependencies": {
