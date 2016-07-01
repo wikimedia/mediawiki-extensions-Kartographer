@@ -103,10 +103,7 @@ class MapFrame extends TagHandler {
 						FormatJson::ALL_OK );
 				}
 
-				$groups = $output->getExtensionData( 'kartographer_interact' );
-				$groups = $groups ?: [];
-				$groups = array_merge( $groups, $this->showGroups );
-				$output->setExtensionData( 'kartographer_interact', $groups );
+				$this->state->addInteractiveGroups( $this->showGroups );
 
 				return Html::rawElement( 'div', $attrs );
 				break;

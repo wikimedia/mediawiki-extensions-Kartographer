@@ -13,6 +13,7 @@ use Exception;
 use FormatJson;
 use Html;
 use Kartographer\SimpleStyleParser;
+use Kartographer\State;
 use Language;
 use Parser;
 use ParserOutput;
@@ -63,6 +64,9 @@ abstract class TagHandler {
 	/** @var PPFrame */
 	protected $frame;
 
+	/** @var State */
+	protected $state;
+
 	/** @var stdClass */
 	protected $markerProperties;
 
@@ -107,6 +111,7 @@ abstract class TagHandler {
 		$this->frame = $frame;
 		$output = $parser->getOutput();
 		$output->addModuleStyles( 'ext.kartographer.style' );
+		$this->state = State::getOrCreate( $output );
 
 		$this->status = Status::newGood();
 		$this->args = $args;
@@ -121,7 +126,7 @@ abstract class TagHandler {
 
 		$this->saveData( $output );
 
-		$output->setExtensionData( 'kartographer_valid', true );
+		$this->state->setValidTags();
 
 		return $this->render();
 	}
@@ -241,9 +246,7 @@ abstract class TagHandler {
 
 
 	protected function saveData( ParserOutput $output ) {
-		$requestedGroups = $output->getExtensionData( 'kartographer_requested' ) ?: [];
-		$requestedGroups = array_merge( $requestedGroups, $this->showGroups );
-		$output->setExtensionData( 'kartographer_requested', $requestedGroups );
+		$this->state->addRequestedGroups( $this->showGroups );
 
 		if ( !$this->geometries ) {
 			return;
@@ -253,12 +256,12 @@ abstract class TagHandler {
 
 		// For all GeoJSON items whose marker-symbol value begins with '-counter' and '-letter',
 		// recursively replace them with an automatically incremented marker icon.
-		$counters = $output->getExtensionData( 'kartographer_counters' ) ?: new stdClass();
+		$counters = $this->state->getCounters();
 		$marker = SimpleStyleParser::doCountersRecursive( $this->geometries, $counters );
 		if ( $marker ) {
 			list( $this->counter, $this->markerProperties ) = $marker;
 		}
-		$output->setExtensionData( 'kartographer_counters', $counters );
+		$this->state->setCounters( $counters );
 
 		if ( $this->groupName === null ) {
 			$group = '_' . sha1( FormatJson::encode( $this->geometries, false, FormatJson::ALL_OK ) );
@@ -269,13 +272,7 @@ abstract class TagHandler {
 			$group = $this->groupName;
 		}
 
-		$data = $output->getExtensionData( 'kartographer_data' ) ?: new stdClass();
-		if ( isset( $data->$group ) ) {
-			$data->$group = array_merge( $data->$group, $this->geometries );
-		} else {
-			$data->$group = $this->geometries;
-		}
-		$output->setExtensionData( 'kartographer_data', $data );
+		$this->state->addData( $group, $this->geometries );
 	}
 
 	/**
@@ -284,22 +281,27 @@ abstract class TagHandler {
 	 */
 	public static function finalParseStep( Parser $parser ) {
 		$output = $parser->getOutput();
+		$state = State::getState( $output );
 
-		$data = $output->getExtensionData( 'kartographer_data' );
+		if ( !$state ) {
+			return;
+		}
+
+		$data = $state->getData();
 		if ( $data ) {
 			$json = FormatJson::encode( $data, false, FormatJson::ALL_OK );
 			$output->setProperty( 'kartographer', gzencode( $json ) );
 		}
 
-		if ( $output->getExtensionData( 'kartographer_broken' ) ) {
+		if ( $state->hasBrokenTags() ) {
 			$output->addTrackingCategory( 'kartographer-broken-category', $parser->getTitle() );
 		}
-		if ( $output->getExtensionData( 'kartographer_valid' ) ) {
+		if ( $state->hasValidTags() ) {
 			$output->addTrackingCategory( 'kartographer-tracking-category', $parser->getTitle() );
 		}
 
-		$interact = $output->getExtensionData( 'kartographer_interact' ) ?: [];
-		$requested = $output->getExtensionData( 'kartographer_requested' ) ?: [];
+		$interact = $state->getInteractiveGroups();
+		$requested = $state->getRequestedGroups();
 		if ( $interact || $requested ) {
 			$interact = array_flip( $interact );
 			$liveData = array_intersect_key( (array)$data, $interact );
@@ -319,7 +321,7 @@ abstract class TagHandler {
 	 * @throws Exception
 	 */
 	private function reportError() {
-		$this->parser->getOutput()->setExtensionData( 'kartographer_broken', true );
+		$this->state->setBrokenTags();
 		$errors = array_merge( $this->status->getErrorsByType( 'error' ),
 			$this->status->getErrorsByType( 'warning' )
 		);
