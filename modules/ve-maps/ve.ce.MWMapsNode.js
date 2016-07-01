@@ -139,7 +139,8 @@ ve.ce.MWMapsNode.prototype.setupMap = function () {
 		mwAttrs = mwData && mwData.attrs,
 		latitude = +mwAttrs.latitude,
 		longitude = +mwAttrs.longitude,
-		zoom = +mwAttrs.zoom;
+		zoom = +mwAttrs.zoom,
+		node = this;
 
 	this.MWMap = kartoLive.MWMap( this.$element[ 0 ], {
 		latitude: latitude,
@@ -147,16 +148,18 @@ ve.ce.MWMapsNode.prototype.setupMap = function () {
 		zoom: zoom
 		// TODO: Support style editing
 	} );
-	this.map = this.MWMap.map;
+	this.MWMap.ready( function ( map ) {
+		node.map = map;
 
-	this.updateGeoJson();
+		node.updateGeoJson();
 
-	// Disable interaction
-	this.map.dragging.disable();
-	this.map.touchZoom.disable();
-	this.map.doubleClickZoom.disable();
-	this.map.scrollWheelZoom.disable();
-	this.map.keyboard.disable();
+		// Disable interaction
+		map.dragging.disable();
+		map.touchZoom.disable();
+		map.doubleClickZoom.disable();
+		map.scrollWheelZoom.disable();
+		map.keyboard.disable();
+	} );
 };
 
 /**

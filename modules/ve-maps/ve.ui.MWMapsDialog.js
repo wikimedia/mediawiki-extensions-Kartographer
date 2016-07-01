@@ -54,7 +54,6 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	this.$mapContainer = $( '<div>' ).addClass( 've-ui-mwMapsDialog-mapWidget' );
 	this.$map = $( '<div>' ).appendTo( this.$mapContainer );
 	this.map = null;
-	this.mapPromise = null;
 	this.scalable = null;
 	this.updatingGeoJson = false;
 
@@ -273,56 +272,60 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 ve.ui.MWMapsDialog.prototype.setupMap = function () {
 	var dialog = this;
 
-	if ( this.mapPromise ) {
+	if ( this.map ) {
 		return;
 	}
 
-	this.mapPromise = mw.loader.using( 'ext.kartographer.editor' ).then( function () {
+	mw.loader.using( 'ext.kartographer.editor' ).then( function () {
 		var geoJsonLayer, drawControl,
 			defaultShapeOptions = { shapeOptions: L.mapbox.simplestyle.style( {} ) },
 			mapPosition = dialog.getInitialMapPosition();
 
 		// TODO: Support 'style' editing
 		dialog.MWMap = kartoLive.MWMap( dialog.$map[ 0 ], mapPosition );
-		dialog.map = dialog.MWMap.map;
+		dialog.MWMap.ready( function ( map ) {
 
-		dialog.updateGeoJson();
-		dialog.onDimensionsChange();
-		dialog.resetMapPosition();
+			dialog.map = map;
 
-		geoJsonLayer = kartoEditing.getKartographerLayer( dialog.map );
-		drawControl = new L.Control.Draw( {
-			edit: { featureGroup: geoJsonLayer },
-			draw: {
-				circle: false,
-				// TODO: Determine metric preference from locale information
-				polyline: defaultShapeOptions,
-				polygon: defaultShapeOptions,
-				rectangle: defaultShapeOptions,
-				marker: { icon: L.mapbox.marker.icon( {} ) }
+			dialog.updateGeoJson();
+			dialog.onDimensionsChange();
+			dialog.resetMapPosition();
+
+			geoJsonLayer = kartoEditing.getKartographerLayer( map );
+			drawControl = new L.Control.Draw( {
+				edit: { featureGroup: geoJsonLayer },
+				draw: {
+					circle: false,
+					// TODO: Determine metric preference from locale information
+					polyline: defaultShapeOptions,
+					polygon: defaultShapeOptions,
+					rectangle: defaultShapeOptions,
+					marker: { icon: L.mapbox.marker.icon( {} ) }
+				}
+			} ).addTo( map );
+
+			function update() {
+				// Prevent circular update of map
+				dialog.updatingGeoJson = true;
+				try {
+					dialog.input.setValue( JSON.stringify( geoJsonLayer.toGeoJSON(), null, '  ' ) );
+				} finally {
+					dialog.updatingGeoJson = false;
+				}
+				dialog.updateActions();
 			}
-		} ).addTo( dialog.map );
 
-		function update() {
-			// Prevent circular update of map
-			dialog.updatingGeoJson = true;
-			try {
-				dialog.input.setValue( JSON.stringify( geoJsonLayer.toGeoJSON(), null, '  ' ) );
-			} finally {
-				dialog.updatingGeoJson = false;
+			function created( e ) {
+				e.layer.addTo( geoJsonLayer );
+				update();
 			}
-			dialog.updateActions();
-		}
 
-		function created( e ) {
-			e.layer.addTo( geoJsonLayer );
-			update();
-		}
+			map
+				.on( 'draw:edited', update )
+				.on( 'draw:deleted', update )
+				.on( 'draw:created', created );
 
-		dialog.map
-			.on( 'draw:edited', update )
-			.on( 'draw:deleted', update )
-			.on( 'draw:created', created );
+		} );
 	} );
 };
 
@@ -389,7 +392,6 @@ ve.ui.MWMapsDialog.prototype.getTeardownProcess = function ( data ) {
 			if ( this.map ) {
 				this.map.remove();
 				this.map = null;
-				this.mapPromise = null;
 			}
 		}, this );
 };
