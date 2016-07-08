@@ -29,7 +29,9 @@ ve.ce.MWMapsNode = function VeCeMWMaps( model, config ) {
 
 	this.$imageLoader = null;
 	this.geoJson = null;
+	this.mapData = {};
 
+	this.updateMapPosition = $.debounce( 300, $.proxy( this.updateMapPosition, this ) );
 	this.updateGeoJson = $.debounce( 300, $.proxy( this.updateGeoJson, this ) );
 
 	// Events
@@ -114,7 +116,7 @@ ve.ce.MWMapsNode.prototype.update = function () {
 		if ( !this.map && this.getRoot() ) {
 			mw.loader.using( 'ext.kartographer.live' ).then( this.setupMap.bind( this ) );
 		} else if ( this.map ) {
-			this.map.invalidateSize();
+			this.updateMapPosition();
 			this.updateGeoJson();
 		}
 	} else {
@@ -128,7 +130,8 @@ ve.ce.MWMapsNode.prototype.update = function () {
 	}
 	this.$element
 		.removeClass( 'floatleft center floatright' )
-		.addClass( alignClasses[ align ] );
+		.addClass( alignClasses[ align ] )
+		.css( this.model.getCurrentDimensions() );
 };
 
 /**
@@ -172,6 +175,28 @@ ve.ce.MWMapsNode.prototype.updateGeoJson = function () {
 	if ( geoJson !== this.geoJson ) {
 		kartoEditing.updateKartographerLayer( this.map, mwData && mwData.body.extsrc );
 		this.geoJson = geoJson;
+	}
+};
+
+/**
+ * Updates the map position (center and zoom) from the current model state.
+ */
+ve.ce.MWMapsNode.prototype.updateMapPosition = function () {
+	var mwData = this.model.getAttribute( 'mw' ),
+		mapData = this.mapData,
+		updatedData = mwData && mwData.attrs;
+
+	if (
+		mapData.latitude !== updatedData.latitude ||
+		mapData.longitude !== updatedData.longitude ||
+		mapData.zoom !== updatedData.zoom
+	) {
+		this.map.setView( [ updatedData.latitude, updatedData.longitude ], updatedData.zoom );
+		mapData.latitude = updatedData.latitude;
+		mapData.longitude = updatedData.longitude;
+		mapData.zoom = updatedData.zoom;
+	} else {
+		this.map.invalidateSize();
 	}
 };
 
