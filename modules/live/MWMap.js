@@ -218,22 +218,28 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts ) {
 	 * The hack is to try jQuery which will pick up CSS dimensions. T125263
 	 *
 	 * However in full screen, the container size is actually [0,0] at that
-	 * time. Let's default to 300px temporarily, so that the map has a default
-	 * size to initialize itself (with an acceptable fullscreen minimum value).
+	 * time. In that case, the script looks for the first visible parent and
+	 * takes its `height` and `width` to initialize the map.
 	 *
 	 * @private
 	 */
 	MWMap.prototype._fixMapSize = function () {
-		var width, height, $container = this.$container;
+		var width, height, $visibleParent = this.$container.closest( ':visible' );
 
 		// Get `max` properties in case the container was wrapped
 		// with {@link #responsiveContainerWrap}.
-		width = $container.css( 'max-width' );
-		height = $container.css( 'max-height' );
-		width = ( !width || width === 'none' ) ? $container.width() : width;
-		height = ( !height || height === 'none' ) ? $container.height() : height;
+		width = $visibleParent.css( 'max-width' );
+		height = $visibleParent.css( 'max-height' );
+		width = ( !width || width === 'none' ) ? $visibleParent.width() : width;
+		height = ( !height || height === 'none' ) ? $visibleParent.height() : height;
 
-		this.map._size = new L.Point( width || 300, height || 300 );
+		while ( ( !height && $visibleParent.parent().length ) ) {
+			$visibleParent = $visibleParent.parent();
+			width = $visibleParent.outerWidth( true );
+			height = $visibleParent.outerHeight( true );
+		}
+
+		this.map._size = new L.Point( width, height );
 	};
 
 	MWMap.prototype.setView = function ( center, zoom, options, save ) {
@@ -244,7 +250,7 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts ) {
 		try {
 			center = L.latLng( center );
 			zoom = isNaN( zoom ) ? this.map.options.fallbackZoom : zoom;
-			map.setView( center, zoom, true );
+			map.setView( center, zoom, options );
 		} catch ( e ) {
 			// Determines best center of the map
 			maxBounds = getValidBounds( map );

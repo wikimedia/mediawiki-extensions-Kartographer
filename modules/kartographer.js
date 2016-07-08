@@ -64,6 +64,14 @@
 				getWindowManager()
 					.openWindow( getMapDialog(), dialogData )
 					.then( function ( opened ) {
+						// It takes 250ms for the dialog to open,
+						// we'd better invalidate the size once it opened.
+						setTimeout( function () {
+							var map = getMapDialog().map;
+							if ( map ) {
+								map.invalidateSize();
+							}
+						}, 300 );
 						return opened;
 					} )
 					.then( function ( closing ) {
