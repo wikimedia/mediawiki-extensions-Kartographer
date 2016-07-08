@@ -149,24 +149,21 @@ module.MapDialog = ( function ( $, mw, kartoLive, router, CloseControl ) {
 						extendedData = {};
 
 					self.map = map;
-					self.map.addControl( new CloseControl( { dialog: self } ) );
-
-					// copy of the initial settings
 					self.mapData = mapData;
+
+					map.addControl( new CloseControl( { dialog: self } ) );
 
 					if ( fullScreenState ) {
 						// override with full screen state
 						$.extend( extendedData, mapData, fullScreenState );
-						self.map.setView( new L.LatLng( extendedData.latitude, extendedData.longitude ), extendedData.zoom, true );
+						map.setView( new L.LatLng( extendedData.latitude, extendedData.longitude ), extendedData.zoom );
 					}
 
 					if ( typeof mapData.maptagId === 'number' ) {
-						self.map.on( 'moveend', self.onMapMove, self );
+						map.on( 'moveend', self.onMapMove, self );
 					}
 
-					mw.hook( 'wikipage.maps' ).fire( self.map, true /* isFullScreen */ );
-
-					this.map.invalidateSize();
+					mw.hook( 'wikipage.maps' ).fire( map, true /* isFullScreen */ );
 				} );
 			}, this );
 	};
