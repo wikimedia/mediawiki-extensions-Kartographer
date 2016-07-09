@@ -1,0 +1,7 @@
+{
+	"type": "ExternalData",
+	"href": "osmshapes:///?ids=whatever",
+	"properties": {
+		"marker-color": [ "fail here" ]
+	}
+}

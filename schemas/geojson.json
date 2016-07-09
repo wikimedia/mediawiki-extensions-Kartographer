@@ -18,7 +18,8 @@
 				{ "$ref": "#/definitions/geometry" },
 				{ "$ref": "#/definitions/geometryCollection" },
 				{ "$ref": "#/definitions/feature" },
-				{ "$ref": "#/definitions/featureCollection" }
+				{ "$ref": "#/definitions/featureCollection" },
+				{ "$ref": "#/definitions/externalData" }
 			]
 		},
 
@@ -140,6 +141,19 @@
 					"type": "array",
 					"items": { "$ref": "#/definitions/feature" }
 				}
+			}
+		},
+		"externalData": {
+			"title": "ExternalData",
+			"description": "WMF extension - reference to external geometries",
+			"required": [ "href" ],
+			"properties": {
+				"type": { "enum": [ "ExternalData" ] },
+				"href": {
+					"type": "string",
+					"pattern": "^[a-z0-9-]+://[a-z0-9\\.-]*/([^\\s/\\?]+?(/[^\\s/\\?]+)*/?)?(\\?[^\\s]*)?$"
+				},
+				"properties": { "$ref": "#/definitions/simplestyle" }
 			}
 		},
 
