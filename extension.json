@@ -23,6 +23,7 @@
 		"Kartographer\\DataModule": "includes/DataModule.php",
 		"Kartographer\\Hooks": "includes/Hooks.php",
 		"Kartographer\\SimpleStyleParser": "includes/SimpleStyleParser.php",
+		"Kartographer\\State": "includes/State.php",
 		"Kartographer\\Tag\\MapFrame": "includes/Tag/MapFrame.php",
 		"Kartographer\\Tag\\MapLink": "includes/Tag/MapLink.php",
 		"Kartographer\\Tag\\TagHandler": "includes/Tag/TagHandler.php"

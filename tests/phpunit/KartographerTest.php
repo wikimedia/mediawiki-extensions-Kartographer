@@ -1,6 +1,7 @@
 <?php
 namespace Kartographer\Tests;
 
+use Kartographer\State;
 use MediaWikiTestCase;
 use Parser;
 use ParserOptions;
@@ -40,18 +41,20 @@ class KartographerTest extends MediaWikiTestCase {
 	 */
 	public function testTagData( $expected, $input, $message ) {
 		$output = $this->parse( $input );
+		$state = State::getState( $output );
 
 		if ( $expected === false ) {
-			$this->assertTrue( $output->getExtensionData( 'kartographer_broken' ), $message . ' Parse is expected to fail' );
+			$this->assertTrue( $state->hasBrokenTags(), $message . ' Parse is expected to fail' );
 			$this->assertTrue( $this->hasTrackingCategory( $output, 'kartographer-broken-category' ), $message . ' Category for failed maps should be added' );
 			return;
 		}
-		$this->assertFalse( !!$output->getExtensionData( 'kartographer_broken' ), $message . ' Parse is expected to succeed' );
+		$this->assertFalse( $state->hasBrokenTags(), $message . ' Parse is expected to succeed' );
+		$this->assertTrue( $state->hasValidTags(), $message . ' State is expected to have valid tags' );
 		$this->assertFalse( $this->hasTrackingCategory( $output, 'kartographer-broken-category' ), $message . ' No tracking category' );
 
 		$expected = json_encode( json_decode( $expected ) ); // Normalize JSON
 
-		$this->assertEquals( $expected, json_encode( $output->getExtensionData( 'kartographer_data' ) ), $message );
+		$this->assertEquals( $expected, json_encode( $state->getData() ), $message );
 	}
 
 	public function provideTagData() {
@@ -104,8 +107,8 @@ class KartographerTest extends MediaWikiTestCase {
 				"description":"<a href=\"\/w\/index.php?title=Link_to_nowhere&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Link to nowhere (page does not exist)\">Link to nowhere<\/a>","marker-symbol":"1"}}
 			]}';
 		return [
-			[ 'null', '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013/>', '<mapframe> without JSON' ],
-			[ 'null', '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013></mapframe>', '<mapframe> without JSON 2' ],
+			[ '[]', '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013/>', '<mapframe> without JSON' ],
+			[ '[]', '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013></mapframe>', '<mapframe> without JSON 2' ],
 			[ "{\"_4622d19afa2e6480c327846395ed932ba6fa56d4\":[$validJson]}", "<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>$validJson</mapframe>", '<mapframe> with GeoJSON' ],
 			[ "{\"_4622d19afa2e6480c327846395ed932ba6fa56d4\":[$validJson]}", "<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>[$validJson]</mapframe>", '<mapframe> with GeoJSON array' ],
 			[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>123</mapframe>', 'Invalid JSON' ],
@@ -129,7 +132,7 @@ class KartographerTest extends MediaWikiTestCase {
 			[ $wikitextJsonParsed, "<maplink zoom=13 longitude=-122.3988 latitude=37.8013>[{$this->wikitextJson}]</maplink>", '<maplink> with parsable text and description' ],
 
 			// Bugs
-			[ 'null', "<maplink zoom=13 longitude=-122.3988 latitude=37.8013>\t\r\n </maplink>", 'T127345: whitespace-only tag content, <maplink>' ],
+			[ '[]', "<maplink zoom=13 longitude=-122.3988 latitude=37.8013>\t\r\n </maplink>", 'T127345: whitespace-only tag content, <maplink>' ],
 			[ $xssJsonSanitized, "<maplink zoom=13 longitude=10 latitude=20>$xssJson</maplink>", 'T134719: XSS via __proto__' ],
 		];
 	}
