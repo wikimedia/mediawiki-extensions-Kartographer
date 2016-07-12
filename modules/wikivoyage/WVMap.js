@@ -6,7 +6,7 @@
  * @class Kartographer.Wikivoyage.WVMap
  * @private
  */
-module.WVMap = ( function ( $, mw, wikivoyage, WVMapLayers, ControlNearby, ControlScale, undefined ) {
+module.WVMap = ( function ( $, mw, wikivoyage, WVMapLayers, ControlNearby, undefined ) {
 
 	/*jscs:disable disallowDanglingUnderscores, requireVarDeclFirst */
 	var Map = function ( map ) {
@@ -48,12 +48,9 @@ module.WVMap = ( function ( $, mw, wikivoyage, WVMapLayers, ControlNearby, Contr
 
 	/**
 	 * Adds the scale control to the map.
-	 *
-	 * @return {ControlScale}
 	 */
 	Map.prototype.scale = function () {
-		this._controlScale = this._controlScale || new ControlScale( { position: 'bottomright' } ).addTo( this.map );
-		return this._controlScale;
+		mw.log( 'Map scale is now added by default on all maps. Please remove the call to `.scale()`.' );
 	};
 
 	return Map;
@@ -63,6 +60,5 @@ module.WVMap = ( function ( $, mw, wikivoyage, WVMapLayers, ControlNearby, Contr
 	mediaWiki,
 	module.wikivoyage,
 	module.WVMapLayers,
-	module.ControlNearby,
-	module.ControlScale
+	module.ControlNearby
 );

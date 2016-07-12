@@ -40,7 +40,9 @@
 		},
 		"ext.kartographer.style": {
 			"styles": [
-				"styles/kartographer.less"
+				"styles/kartographer.less",
+				"styles/control-attribution.less",
+				"styles/control-scale.less"
 			],
 			"targets": [
 				"mobile",
@@ -195,6 +197,7 @@
 			],
 			"scripts": [
 				"lib/leaflet.sleep.js",
+				"modules/live/ControlScale.js",
 				"modules/live/FullScreenControl.js",
 				"modules/live/dataLayerOpts.js",
 				"modules/live/MWMap.js",
@@ -322,17 +325,14 @@
 				"modules/wikivoyage/NearbyArticles.js",
 				"modules/wikivoyage/ControlLayers.js",
 				"modules/wikivoyage/ControlNearby.js",
-				"modules/wikivoyage/ControlScale.js",
 				"modules/wikivoyage/WVMapLayers.js",
 				"modules/wikivoyage/WVMap.js",
 				"modules/wikivoyage/index.js"
 			],
 			"styles": [
 				"modules/wikivoyage/styles/wv-leaflet.less",
-				"modules/wikivoyage/styles/control-attribution.less",
 				"modules/wikivoyage/styles/control-layers.less",
-				"modules/wikivoyage/styles/control-nearby.less",
-				"modules/wikivoyage/styles/control-scale.less"
+				"modules/wikivoyage/styles/control-nearby.less"
 			],
 			"messages": [
 				"kartographer-wv-group",

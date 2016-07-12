@@ -4,7 +4,7 @@
  * Control to display the scale.
  *
  * @alias ControlScale
- * @class Kartographer.Wikivoyage.ControlScale
+ * @class Kartographer.Live.ControlScale
  * @extends L.Control.Scale
  * @private
  */

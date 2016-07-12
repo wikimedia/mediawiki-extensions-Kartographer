@@ -1,5 +1,5 @@
 /* globals module */
-module.MWMap = ( function ( FullScreenControl, dataLayerOpts ) {
+module.MWMap = ( function ( FullScreenControl, dataLayerOpts, ControlScale ) {
 
 	var scale, urlFormat,
 		mapServer = mw.config.get( 'wgKartographerMapServer' ),
@@ -194,6 +194,8 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts ) {
 			} ) );
 		}
 
+		this.map.addControl( new ControlScale( { position: 'bottomright' } ) );
+
 		return $.Deferred().resolveWith( this, [ this.map, this._data ] ).promise();
 	};
 
@@ -385,5 +387,6 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts ) {
 	};
 } )(
 	module.FullScreenControl,
-	module.dataLayerOpts
+	module.dataLayerOpts,
+	module.ControlScale
 );
