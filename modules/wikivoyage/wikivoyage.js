@@ -88,7 +88,7 @@ module.wikivoyage = ( function ( $, mw, undefined ) {
 			} else if ( options.wvIsWMF ) {
 				icon = mw.html.element( 'img', {
 					src: pathToKartographerImages + 'Wikimedia-logo.png',
-					srcset: pathToKartographerImages + 'Wikimedia-logo@1.5.png 1.5x, ' +
+					srcset: pathToKartographerImages + 'Wikimedia-logo@1.5x.png 1.5x, ' +
 					pathToKartographerImages + 'Wikimedia-logo@2x.png 2x',
 					'class': 'leaflet-control-layers-wm-icon'
 				} );
