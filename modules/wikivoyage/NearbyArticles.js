@@ -5,7 +5,6 @@
  * @alias NearbyArticles
  * @class Kartographer.Wikivoyage.NearbyArticles
  * @singleton
- * @private
  */
 module.NearbyArticles = ( function ( $ ) {
 
@@ -14,6 +13,13 @@ module.NearbyArticles = ( function ( $ ) {
 		config = {};
 
 	return {
+		/**
+		 * Configure the module.
+		 *
+		 * @param {Object} obj
+		 * @param {Object} obj.url The API (script file) containing the nearby
+		 *   articles.
+		 */
 		setConfig: function ( obj ) {
 			var key;
 			for ( key in obj ) {
@@ -21,10 +27,22 @@ module.NearbyArticles = ( function ( $ ) {
 			}
 		},
 
+		/**
+		 * Gets a configuration parameter.
+		 *
+		 * @param {string} configParam
+		 * @return {*}
+		 */
 		getConfig: function ( configParam ) {
 			return config[ configParam ];
 		},
 
+		/**
+		 * Fetches nearby articles.
+		 *
+		 * @return {jQuery.Promise} Promise which resolves with the data array
+		 *   once the map is initialized.
+		 */
 		fetch: function () {
 			if ( fetchArticlesDeferred ) {
 				return fetchArticlesDeferred;

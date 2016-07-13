@@ -3,17 +3,20 @@
 /**
  * Control to display the scale.
  *
+ * See [L.Control.Scale](https://www.mapbox.com/mapbox.js/api/v2.3.0/l-control-scale/)
+ * documentation for more details.
+ *
  * @alias ControlScale
  * @class Kartographer.Live.ControlScale
  * @extends L.Control.Scale
- * @private
  */
 module.ControlScale = L.Control.Scale.extend( {
 
 	isMetric: true,
 
 	/**
-	 * @inheritdoc
+	 * @override
+	 * @private
 	 */
 	_updateScales: function ( options, maxMeters ) {
 
@@ -23,7 +26,8 @@ module.ControlScale = L.Control.Scale.extend( {
 	},
 
 	/**
-	 * @inheritdoc
+	 * @override
+	 * @private
 	 */
 	_addScales: function ( options, className, container ) {
 		L.Control.Scale.prototype._addScales.call( this, options, className, container );
@@ -36,7 +40,7 @@ module.ControlScale = L.Control.Scale.extend( {
 	},
 
 	/**
-	 * @private
+	 * @protected
 	 */
 	_toggleScale: function () {
 		if ( this.options.metric && this.options.imperial ) {
@@ -46,7 +50,7 @@ module.ControlScale = L.Control.Scale.extend( {
 	},
 
 	/**
-	 * @private
+	 * @protected
 	 */
 	_onToggleScale: function () {
 		this.isMetric = !this.isMetric;

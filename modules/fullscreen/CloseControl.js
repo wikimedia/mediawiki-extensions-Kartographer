@@ -1,6 +1,13 @@
 /* globals module */
 /**
- * Close control on full screen mode.
+ * Control to close the full screen dialog.
+ *
+ * See [L.Control](https://www.mapbox.com/mapbox.js/api/v2.3.0/l-control/)
+ * documentation for more details.
+ *
+ * @alias FullScreenCloseControl
+ * @class Kartographer.Fullscreen.CloseControl
+ * @extends L.Control
  */
 module.FullScreenCloseControl = L.Control.extend( {
 	options: {

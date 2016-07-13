@@ -1,33 +1,38 @@
 /* globals module, require */
+/**
+ * Dialog for displaying maps in full screen mode.
+ *
+ * See [OO.ui.Dialog](https://doc.wikimedia.org/oojs-ui/master/js/#!/api/OO.ui.Dialog)
+ * documentation for more details.
+ *
+ * @alias MapDialog
+ * @class Kartographer.Fullscreen.MapDialog
+ * @extends OO.ui.Dialog
+ */
 module.MapDialog = ( function ( $, mw, kartoLive, router, CloseControl ) {
 
 	/**
-	 * Dialog for full screen maps
-	 *
-	 * @class
-	 * @extends OO.ui.Dialog
-	 *
 	 * @constructor
-	 * @param {Object} [config] Configuration options
+	 * @type {Kartographer.Fullscreen.MapDialog}
 	 */
-	var MwKartographerMapDialog = mw.kartographer.MapDialog = function () {
+	var MapDialog = function () {
 		// Parent method
-		mw.kartographer.MapDialog.super.apply( this, arguments );
+		MapDialog.super.apply( this, arguments );
 	};
 
 	/* Inheritance */
 
-	OO.inheritClass( mw.kartographer.MapDialog, OO.ui.Dialog );
+	OO.inheritClass( MapDialog, OO.ui.Dialog );
 
 	/* Static Properties */
 
-	mw.kartographer.MapDialog.static.size = 'full';
+	MapDialog.static.size = 'full';
 
 	/* Methods */
 
-	mw.kartographer.MapDialog.prototype.initialize = function () {
+	MapDialog.prototype.initialize = function () {
 		// Parent method
-		mw.kartographer.MapDialog.super.prototype.initialize.apply( this, arguments );
+		MapDialog.super.prototype.initialize.apply( this, arguments );
 
 		this.map = null;
 		this.mapData = null;
@@ -50,7 +55,7 @@ module.MapDialog = ( function ( $, mw, kartoLive, router, CloseControl ) {
 	 * @param {number} [mapData.fullScreenState.latitude]
 	 * @param {number} [mapData.fullScreenState.longitude]
 	 */
-	mw.kartographer.MapDialog.prototype.changeMap = function ( mapData ) {
+	MapDialog.prototype.changeMap = function ( mapData ) {
 		var fullScreenState, extendedData,
 			existing = this.mapData;
 
@@ -77,7 +82,7 @@ module.MapDialog = ( function ( $, mw, kartoLive, router, CloseControl ) {
 		this.ready.call( this, mapData );
 	};
 
-	mw.kartographer.MapDialog.prototype.getActionProcess = function ( action ) {
+	MapDialog.prototype.getActionProcess = function ( action ) {
 		var dialog = this;
 		if ( !action ) {
 			return new OO.ui.Process( function () {
@@ -89,13 +94,13 @@ module.MapDialog = ( function ( $, mw, kartoLive, router, CloseControl ) {
 				}
 			} );
 		}
-		return mw.kartographer.MapDialog.super.prototype.getActionProcess.call( this, action );
+		return MapDialog.super.prototype.getActionProcess.call( this, action );
 	};
 
 	/**
 	 * Tells the router to navigate to the current full screen map route.
 	 */
-	mw.kartographer.MapDialog.prototype.updateHash = function () {
+	MapDialog.prototype.updateHash = function () {
 		var hash = mw.kartographer.getMapHash( this.mapData, this.map );
 
 		// Avoid extra operations
@@ -111,7 +116,7 @@ module.MapDialog = ( function ( $, mw, kartoLive, router, CloseControl ) {
 	 * This method is throttled, meaning the method will be called at most once per
 	 * every 100 milliseconds.
 	 */
-	mw.kartographer.MapDialog.prototype.onMapMove = OO.ui.throttle( function () {
+	MapDialog.prototype.onMapMove = OO.ui.throttle( function () {
 		// Stop listening to `moveend` event while we're
 		// manually moving the map (updating from a hash),
 		// or if the map is not yet loaded.
@@ -123,8 +128,8 @@ module.MapDialog = ( function ( $, mw, kartoLive, router, CloseControl ) {
 		this.updateHash();
 	}, 100 );
 
-	mw.kartographer.MapDialog.prototype.getSetupProcess = function ( mapData ) {
-		return mw.kartographer.MapDialog.super.prototype.getSetupProcess.call( this, mapData )
+	MapDialog.prototype.getSetupProcess = function ( mapData ) {
+		return MapDialog.super.prototype.getSetupProcess.call( this, mapData )
 			.next( function () {
 
 				if ( this.map ) {
@@ -140,8 +145,8 @@ module.MapDialog = ( function ( $, mw, kartoLive, router, CloseControl ) {
 			}, this );
 	};
 
-	mw.kartographer.MapDialog.prototype.getReadyProcess = function ( data ) {
-		return mw.kartographer.MapDialog.super.prototype.getReadyProcess.call( this, data )
+	MapDialog.prototype.getReadyProcess = function ( data ) {
+		return MapDialog.super.prototype.getReadyProcess.call( this, data )
 			.next( function () {
 				var self = this;
 				this.MWMap.ready( function ( map, mapData ) {
@@ -168,8 +173,8 @@ module.MapDialog = ( function ( $, mw, kartoLive, router, CloseControl ) {
 			}, this );
 	};
 
-	mw.kartographer.MapDialog.prototype.getTeardownProcess = function ( data ) {
-		return mw.kartographer.MapDialog.super.prototype.getTeardownProcess.call( this, data )
+	MapDialog.prototype.getTeardownProcess = function ( data ) {
+		return MapDialog.super.prototype.getTeardownProcess.call( this, data )
 			.next( function () {
 				this.map.remove();
 				this.$map.remove();
@@ -180,7 +185,7 @@ module.MapDialog = ( function ( $, mw, kartoLive, router, CloseControl ) {
 	};
 
 	return function () {
-		return new MwKartographerMapDialog();
+		return new MapDialog();
 	};
 
 } )(

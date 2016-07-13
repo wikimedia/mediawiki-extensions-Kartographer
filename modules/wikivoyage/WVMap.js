@@ -4,7 +4,6 @@
  *
  * @alias WVMap
  * @class Kartographer.Wikivoyage.WVMap
- * @private
  */
 module.WVMap = ( function ( $, mw, wikivoyage, WVMapLayers, ControlNearby, undefined ) {
 
@@ -16,7 +15,7 @@ module.WVMap = ( function ( $, mw, wikivoyage, WVMapLayers, ControlNearby, undef
 	/**
 	 * Adds the nearby articles control to the map.
 	 *
-	 * @return {ControlNearby}
+	 * @return {Kartographer.Wikivoyage.ControlNearby}
 	 */
 	Map.prototype.nearby = function () {
 		var control = this._controlNearby;
@@ -39,7 +38,7 @@ module.WVMap = ( function ( $, mw, wikivoyage, WVMapLayers, ControlNearby, undef
 	/**
 	 * Adds the layer switcher control to the map.
 	 *
-	 * @return {WVMapLayers}
+	 * @return {Kartographer.Wikivoyage.WVMapLayers}
 	 */
 	Map.prototype.controlLayers = function () {
 		this._controlLayers = this._controlLayers || new WVMapLayers( this.map );

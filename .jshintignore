@@ -3,3 +3,6 @@ lib/
 
 /* Tooling */
 node_modules/
+
+/* Documentation */
+docs/

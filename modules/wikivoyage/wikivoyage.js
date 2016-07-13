@@ -102,8 +102,8 @@ module.wikivoyage = ( function ( $, mw, undefined ) {
 		 * Some layers may load content hosted externally, enabling them shares
 		 * the user's data with other sites. This method checks whether the
 		 * layer is external and warns the user with a confirmation dialog.
-		 * Once the user agrees, a setting with {@link mw.storage} so the user
-		 * won't be prompted with a confirmation dialog anymore.
+		 * Once the user agrees, a setting with [mw.storage](https://doc.wikimedia.org/mediawiki-core/master/js/#!/api/mw.storage)
+		 * so the user won't be prompted with a confirmation dialog anymore.
 		 *
 		 * @param {L.GeoJSON} layer
 		 * @return {jQuery.Promise}

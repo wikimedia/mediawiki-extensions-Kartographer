@@ -1,15 +1,29 @@
 /* globals require */
+/**
+ * Link module.
+ *
+ * Once the page is loaded and ready, turn all `<maplink/>` tags into a link
+ * that opens the map in full screen mode.
+ *
+ * @alias Link
+ * @alias ext.kartographer.link
+ * @class Kartographer.Link
+ * @singleton
+ */
 ( function ( $, mw, kartographer, router ) {
 
 	/**
 	 * References the maplinks of the page.
 	 *
 	 * @type {HTMLElement[]}
+	 * @member mw.kartographer
 	 */
 	mw.kartographer.maplinks = [];
 
 	/**
 	 * This code will be executed once the article is rendered and ready.
+	 *
+	 * @ignore
 	 */
 	mw.hook( 'wikipage.content' ).add( function ( ) {
 

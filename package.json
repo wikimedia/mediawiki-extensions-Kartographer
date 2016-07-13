@@ -4,6 +4,7 @@
   "private": true,
   "description": "Build tools for the Kartographer MediaWiki extension.",
   "scripts": {
+    "doc": "jsduck",
     "test": "grunt test",
     "build-lib": ". ./bin/build.sh"
   },
