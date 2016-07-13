@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Guycn2"
+		]
+	},
+	"kartographer-wv-group": "קבוצה:",
+	"kartographer-wv-layer-nearby-articles": "ערכים בסביבה",
+	"kartographer-wv-nearby-articles-control": "לחקור יעדים קרובים",
+	"kartographer-wv-warning-external-source-title": "מקור נתונים חיצוני",
+	"kartographer-wv-warning-external-source-message": "התוכן הזה מאוחסן במקור חיצוני, ולכן הפעלתו תגרום לשיתוף הנתונים שלך עם אתרים אחרים.",
+	"kartographer-wv-warning-external-source-agree": "זה בסדר",
+	"kartographer-wv-warning-external-source-disagree": "ביטול"
+}

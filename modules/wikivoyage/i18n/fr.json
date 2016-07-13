@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wladek92"
+		]
+	},
+	"kartographer-wv-group": "Groupe :",
+	"kartographer-wv-layer-nearby-articles": "Articles voisins",
+	"kartographer-wv-nearby-articles-control": "Explorer des destinations proches",
+	"kartographer-wv-warning-external-source-title": "Source de données externe",
+	"kartographer-wv-warning-external-source-message": "Ce contenu est hébergé à l'extérieur, donc si vous l'autorisez, vos données seront partagées avec d'autres sites.",
+	"kartographer-wv-warning-external-source-agree": "C'est bon",
+	"kartographer-wv-warning-external-source-disagree": "Annuler"
+}

@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Metalhead64"
+		]
+	},
+	"kartographer-wv-group": "Gruppe:",
+	"kartographer-wv-layer-nearby-articles": "Artikel in der Nähe",
+	"kartographer-wv-nearby-articles-control": "Ziele in der Nähe entdecken",
+	"kartographer-wv-warning-external-source-title": "Externe Datenquelle",
+	"kartographer-wv-warning-external-source-message": "Dieser Inhalt wird extern gehostet, so dass die Aktivierung zur Teilung deiner Daten mit anderen Websites führt.",
+	"kartographer-wv-warning-external-source-agree": "Es ist in Ordnung",
+	"kartographer-wv-warning-external-source-disagree": "Abbrechen"
+}
