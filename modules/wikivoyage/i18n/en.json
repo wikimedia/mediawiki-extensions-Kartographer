@@ -1,5 +1,8 @@
 {
-	"kartographer-wv-group": "Group: ",
+	"@metadata": {
+		"authors": []
+	},
+	"kartographer-wv-group": "Group:",
 	"kartographer-wv-layer-nearby-articles": "Nearby articles",
 	"kartographer-wv-layer-wikimedia": "Wikimedia",
 	"kartographer-wv-nearby-articles-control": "Explore nearby destinations",
