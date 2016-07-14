@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Macofe"
+		]
+	},
+	"kartographer-wv-group": "Grupo:",
+	"kartographer-wv-layer-nearby-articles": "Artículos cercanos",
+	"kartographer-wv-nearby-articles-control": "Explorar destinos cercanos",
+	"kartographer-wv-warning-external-source-title": "Fuente de datos externa",
+	"kartographer-wv-warning-external-source-message": "Este contenido está alojado externamente. Por lo tanto, si lo activas se compartirán tus datos con otros sitios.",
+	"kartographer-wv-warning-external-source-agree": "Está bien",
+	"kartographer-wv-warning-external-source-disagree": "Cancelar"
+}

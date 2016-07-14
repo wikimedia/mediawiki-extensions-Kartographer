@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bjankuloski06"
+		]
+	},
+	"kartographer-wv-group": "Група:",
+	"kartographer-wv-layer-nearby-articles": "Статии во близина",
+	"kartographer-wv-layer-wikimedia": "Викимедија",
+	"kartographer-wv-nearby-articles-control": "Истражете ги околните одредишта",
+	"kartographer-wv-warning-external-source-title": "Надворешен извор на податоци",
+	"kartographer-wv-warning-external-source-message": "Оваа содржина е вдомена на надворешно место. Тоа значи дека со овозможувањето на надворешните извори програмот ќе ги споделува вашите податоци со други мрежни места.",
+	"kartographer-wv-warning-external-source-agree": "Во ред е",
+	"kartographer-wv-warning-external-source-disagree": "Откажи"
+}

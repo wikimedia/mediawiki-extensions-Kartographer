@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Beta16"
+		]
+	},
+	"kartographer-wv-group": "Gruppo:",
+	"kartographer-wv-layer-nearby-articles": "Voci nelle vicinanze",
+	"kartographer-wv-nearby-articles-control": "Esplora destinazioni vicine",
+	"kartographer-wv-warning-external-source-title": "Origine dati esterna",
+	"kartographer-wv-warning-external-source-message": "Questo contenuto è ospitato esternamente, in modo che puoi condivide i tuoi dati con altri siti.",
+	"kartographer-wv-warning-external-source-agree": "Va bene",
+	"kartographer-wv-warning-external-source-disagree": "Annulla"
+}

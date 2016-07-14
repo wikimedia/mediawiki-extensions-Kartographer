@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Peter Fernando"
+		]
+	},
+	"kartographer-wv-group": "Grupo:",
+	"kartographer-wv-layer-nearby-articles": "Artigos próximos",
+	"kartographer-wv-warning-external-source-title": "Fonte externa de dados",
+	"kartographer-wv-warning-external-source-disagree": "Cancelar"
+}

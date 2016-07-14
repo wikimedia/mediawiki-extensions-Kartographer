@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Liuxinyu970226"
+		]
+	},
+	"kartographer-wv-group": "组：",
+	"kartographer-wv-layer-nearby-articles": "附近条目",
+	"kartographer-wv-nearby-articles-control": "探索附近的目的地",
+	"kartographer-wv-warning-external-source-title": "外部数据来源",
+	"kartographer-wv-warning-external-source-message": "此内容由外部托管，所以启用它会与其他网站分享您的数据。",
+	"kartographer-wv-warning-external-source-agree": "没关系",
+	"kartographer-wv-warning-external-source-disagree": "取消"
+}
