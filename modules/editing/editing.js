@@ -1,4 +1,12 @@
 /* globals module */
+/**
+ * Module containing useful methods when editing a map.
+ *
+ * @alias Editing
+ * @alias ext.kartographer.editing
+ * @class Kartographer.Editing
+ * @singleton
+ */
 module.exports = ( function ( $, mw ) {
 
 	/**
@@ -6,7 +14,7 @@ module.exports = ( function ( $, mw ) {
 	 *
 	 * If a layer doesn't exist, create and attach one.
 	 *
-	 * @param {L.mapbox.Map} map Map to get layers from
+	 * @param {L.Map} map Map to get layers from
 	 * @param {L.mapbox.FeatureLayer} map.kartographerLayer show tag-specific info in this layer
 	 * @return {L.mapbox.FeatureLayer|null} GeoJSON layer, if present
 	 */
@@ -26,7 +34,7 @@ module.exports = ( function ( $, mw ) {
 	 * The deferred object will be resolved with a `boolean` flag
 	 * indicating whether the GeoJSON was valid and was applied.
 	 *
-	 * @param {L.mapbox.Map} map Map to set the GeoJSON for
+	 * @param {L.Map} map Map to set the GeoJSON for
 	 * @param {string} geoJsonString GeoJSON data, empty string to clear
 	 * @return {jQuery.Promise} Promise which resolves when the GeoJSON is updated, and rejects if there was an error
 	 */

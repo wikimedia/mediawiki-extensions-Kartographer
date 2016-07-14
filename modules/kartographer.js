@@ -1,4 +1,12 @@
 /* globals module */
+/**
+ * The base module creates the `mw.kartographer` namespace and defines common
+ * utility methods.
+ *
+ * @alias ext.kartographer.init
+ * @class Kartographer
+ * @singleton
+ */
 ( function ( $, mw ) {
 
 	var windowManager, mapDialog;
@@ -98,7 +106,7 @@
 	 * one of these 3 values differs from the initial setting.
 	 *
 	 * @param {Object} data Map data.
-	 * @param {L.mapbox.Map} [map] When a map object is passed, the method will
+	 * @param {L.Map} [map] When a map object is passed, the method will
 	 *   read the current zoom and center from the map object.
 	 * @return {string} The route to open the map in full screen mode.
 	 */
@@ -130,7 +138,6 @@
 	 * @return {number} return.zoom
 	 * @return {number} return.latitude
 	 * @return {number} return.longitude
-	 * @private
 	 */
 	function getMapPosition( map ) {
 		var center = map.getCenter();
@@ -145,7 +152,6 @@
 	 * @param {number} lng
 	 * @return {Array} Array with the zoom (number), the latitude (string) and
 	 *   the longitude (string).
-	 * @private
 	 */
 	function getScaleCoords( zoom, lat, lng ) {
 		var precisionPerZoom = [ 0, 0, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5 ];
@@ -162,12 +168,11 @@
 	 *
 	 * @param {HTMLElement} element Element
 	 * @return {Object|null} Map properties
-	 * @return {number} return.latitude Latitude
-	 * @return {number} return.longitude Longitude
-	 * @return {number} return.zoom Zoom level
+	 * @return {number} return.latitude
+	 * @return {number} return.longitude
+	 * @return {number} return.zoom
 	 * @return {string} return.style Map style
 	 * @return {string[]} return.overlays Overlay groups
-	 * @private
 	 */
 	function getMapData( element ) {
 		var $el = $( element ),
@@ -202,7 +207,6 @@
 	 * @return {number} [return.zoom] Zoom if between 0 and 18.
 	 * @return {number} [return.latitude]
 	 * @return {number} [return.longitude]
-	 * @private
 	 */
 	function getFullScreenState( zoom, latitude, longitude ) {
 		var obj = {};

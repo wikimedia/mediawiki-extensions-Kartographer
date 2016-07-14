@@ -1,11 +1,18 @@
 /* globals require */
+/**
+ * Module listening to `wikipage.maps` hook and adding a right-click handler to
+ * the map to show the corresponding coordinates.
+ *
+ * This module may be loaded and executed by
+ * {@link Kartographer.Live.enablePreview ext.kartographer.live}.
+ *
+ * @alias Preview
+ * @alias ext.kartographer.preview
+ * @class Kartographer.Preview
+ * @singleton
+ */
 ( function ( mw, L, kartographer ) {
 
-	/**
-	 * This module adds a `contextmenu` event to the map. When a user right
-	 * clicks on the map, he gets a little popup with the coordinates of
-	 * where he clicked.
-	 */
 	mw.hook( 'wikipage.maps' ).add( function ( maps ) {
 		maps = $.isArray( maps ) ? maps : [ maps ];
 
@@ -26,6 +33,7 @@
 					.openOn( map );
 			}
 
+			// on right click, add a little popup with the coordinates.
 			map.on( 'contextmenu', onMapMenu );
 		} );
 	} );

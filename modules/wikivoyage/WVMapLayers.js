@@ -1,7 +1,7 @@
 /* globals module */
 /**
- * Module to add {@link ControlLayers} control to the map and add the tile
- * layers and overlays.
+ * Module to add {@link Kartographer.Wikivoyage.ControlLayers} control to the
+ * map and add the tile layers and overlays.
  *
  * @alias WVMapLayers
  * @class Kartographer.Wikivoyage.WVMapLayers

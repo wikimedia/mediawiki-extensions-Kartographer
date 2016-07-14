@@ -15,7 +15,8 @@ module.exports = function ( grunt ) {
 			all: [
 				'**/*.js',
 				'!node_modules/**',
-				'!lib/**'
+				'!lib/**',
+				'!docs/**'
 			]
 		},
 		jscs: {
@@ -53,7 +54,8 @@ module.exports = function ( grunt ) {
 					'**/*.less',
 					'!modules/ve-maps/**',
 					'!node_modules/**',
-					'!lib/**'
+					'!lib/**',
+					'!docs/**'
 				]
 			},
 			've-maps': {

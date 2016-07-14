@@ -2,6 +2,9 @@
 /**
  * Control to switch to displaying nearby articles.
  *
+ * See [L.Control](https://www.mapbox.com/mapbox.js/api/v2.3.0/l-control/)
+ * documentation for more details.
+ *
  * @alias ControlNearby
  * @class Kartographer.Wikivoyage.ControlNearby
  * @extends L.Control
@@ -47,7 +50,7 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 		},
 
 		/**
-		 * @inheritdoc
+		 * @override
 		 */
 		onAdd: function ( map ) {
 			var container = L.DomUtil.create( 'div', 'leaflet-bar' ),
@@ -76,7 +79,7 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 		},
 
 		/**
-		 * @private
+		 * @protected
 		 */
 		_onOverlayAdd: function ( obj ) {
 			var control = this,
@@ -110,7 +113,7 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 		},
 
 		/**
-		 * @private
+		 * @protected
 		 */
 		_onOverlayRemove: function ( obj ) {
 			if ( this.pruneCluster !== obj.layer ) {
@@ -120,7 +123,7 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 		},
 
 		/**
-		 * @private
+		 * @protected
 		 */
 		_toggleActiveClass: function ( enabled ) {
 			enabled = ( enabled !== undefined ) ? enabled : this.isEnabled();
@@ -129,15 +132,13 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 
 		/**
 		 * Checks whether the map has the layer.
-		 *
-		 * @private
 		 */
 		isEnabled: function () {
 			return this.map.hasLayer( this.pruneCluster );
 		},
 
 		/**
-		 * @private
+		 * @protected
 		 */
 		_onToggleNearbyLayer: function ( e ) {
 			L.DomEvent.stop( e );
@@ -145,7 +146,7 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 		},
 
 		/**
-		 * @private
+		 * @protected
 		 */
 		_toggleLayer: function ( enabled ) {
 			var control = this;

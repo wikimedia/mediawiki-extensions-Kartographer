@@ -1,4 +1,14 @@
 /* globals module, require */
+/**
+ * Control to display the map in full screen mode.
+ *
+ * See [L.Control](https://www.mapbox.com/mapbox.js/api/v2.3.0/l-control/)
+ * documentation for more details.
+ *
+ * @alias FullScreenControl
+ * @class Kartographer.Live.FullScreenControl
+ * @extends L.Control
+ */
 module.FullScreenControl = ( function ( kartographer, router ) {
 
 	return L.Control.extend( {

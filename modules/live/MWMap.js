@@ -1,4 +1,10 @@
 /* globals module */
+/**
+ * Mediawiki Map class.
+ *
+ * @alias MWMap
+ * @class Kartographer.Live.MWMap
+ */
 module.MWMap = ( function ( FullScreenControl, dataLayerOpts, ControlScale ) {
 
 	var scale, urlFormat,
@@ -39,23 +45,53 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts, ControlScale ) {
 
 	/*jscs:disable disallowDanglingUnderscores */
 	/**
-	 * Interactive map object
-	 *
+	 * @constructor
 	 * @param {HTMLElement} container Map container
 	 * @param {Object} data Map data
-	 * @param {number} data.latitude Latitude
-	 * @param {number} data.longitude Longitude
-	 * @param {number} data.zoom Zoom
+	 * @param {number} data.latitude
+	 * @param {number} data.longitude
+	 * @param {number} data.zoom
 	 * @param {string} [data.style] Map style
 	 * @param {string[]} [data.overlays] Names of overlay groups to show
 	 * @param {boolean} [data.enableFullScreenButton] add zoom
+	 * @type Kartographer.Live.MWMap
 	 */
 	MWMap = function ( container, data ) {
+		/**
+		 * Reference to the map container.
+		 *
+		 * @type {HTMLElement}
+		 */
 		this.container = container;
-		this.$container = $( container );
 
+		/**
+		 * Reference to the map container as a jQuery element.
+		 *
+		 * @type {jQuery}
+		 */
+		this.$container = $( container );
 		this.$container.addClass( 'mw-kartographer-map' );
+
+		/**
+		 * The map data that configured this map.
+		 *
+		 * Please do not access this property directly.
+		 * Prefer {@link #ready} to access the object.
+		 *
+		 * @type {jQuery}
+		 * @protected
+		 */
 		this._data = data;
+
+		/**
+		 * Reference to the Leaflet/Mapbox map object.
+		 *
+		 * Please do not access this property directly.
+		 * Prefer {@link #ready} to access the object.
+		 *
+		 * @type {L.Map}
+		 * @protected
+		 */
 		this.map = L.map( this.container );
 
 		if ( !this.container.clientWidth ) {
@@ -81,6 +117,7 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts, ControlScale ) {
 
 		/**
 		 * @property {L.TileLayer} Reference to `Wikimedia` tile layer.
+		 * @ignore
 		 */
 		this.map.wikimediaLayer = L.tileLayer( mapServer + '/' + style + urlFormat, {
 			maxZoom: 18,
@@ -107,9 +144,9 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts, ControlScale ) {
 	 *
 	 *     var MWMap = new MWMap( this.$map[ 0 ], initialMapData );
 	 *     MWMap.ready(function(map, mapData) {
-		 *         // `map` is the map object
-		 *         // `mapData` is the updated mapData object.
-		 *     });
+	 *         // `map` is the map object
+	 *         // `mapData` is the updated mapData object.
+	 *     });
 	 *
 	 * @param {jQuery.Promise} promise Promise which resolves with the map object and
 	 *   the updated map data once the map is ready.
@@ -144,8 +181,9 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts, ControlScale ) {
 			data = this._data;
 
 		/**
-		 * @property {Object} Hash map of data groups and their corresponding
+		 * @property {Object} dataLayers Hash map of data groups and their corresponding
 		 *   {@link L.mapbox.FeatureLayer layers}.
+		 * @ignore
 		 */
 		map.dataLayers = {};
 
@@ -266,7 +304,7 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts, ControlScale ) {
 	/**
 	 * Create a new GeoJSON layer and add it to map.
 	 *
-	 * @param {L.mapbox.Map} map Map to get layers from
+	 * @param {L.Map} map Map to get layers from
 	 * @param {Object} geoJson
 	 */
 	MWMap.prototype.addDataLayer = function ( map, geoJson ) {
@@ -308,6 +346,26 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts, ControlScale ) {
 		this.map._size = new L.Point( width, height );
 	};
 
+	/**
+	 * Sets the map at a certain zoom and position.
+	 *
+	 * When the zoom and map center are provided, it falls back to the
+	 * original `L.Map#setView`.
+	 *
+	 * If the zoom or map center are not provided, this method will
+	 * calculate some values so that all the point of interests fit within the
+	 * map.
+	 *
+	 * **Note:** Unlike the original `L.Map#setView`, it accepts an optional
+	 * fourth parameter to decide whether to update the container's data
+	 * attribute with the calculated values (for performance).
+	 *
+	 * @param {L.LatLng|Array|null} [center] Map center.
+	 * @param {number} [zoom]
+	 * @param {Object} [options] See [L.Map#setView](https://www.mapbox.com/mapbox.js/api/v2.3.0/l-map-class/)
+	 *   documentation for the full list of options.
+	 * @param {boolean} [save=false] Whether to update the data attributes.
+	 */
 	MWMap.prototype.setView = function ( center, zoom, options, save ) {
 		var maxBounds,
 			map = this.map,
@@ -454,7 +512,7 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts, ControlScale ) {
 	 *
 	 * Otherwise makes it static.
 	 *
-	 * @param {L.mapbox.Map} map
+	 * @param {L.Map} map
 	 * @private
 	 */
 	function toggleStaticState( map ) {

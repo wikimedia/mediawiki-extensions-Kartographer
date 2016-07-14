@@ -1,10 +1,22 @@
 /* globals require */
+/**
+ * Frame module.
+ *
+ * Once the page is loaded and ready, turn all `<mapframe/>` tags into
+ * interactive maps.
+ *
+ * @alias Frame
+ * @alias ext.kartographer.frame
+ * @class Kartographer.Frame
+ * @singleton
+ */
 ( function ( $, mw, kartographer, kartoLive, router ) {
 
 	/**
 	 * References the map containers of the page.
 	 *
 	 * @type {HTMLElement[]}
+	 * @member mw.kartographer
 	 */
 	mw.kartographer.maps = [];
 
@@ -38,6 +50,7 @@
 	 *
 	 * @param {HTMLElement} mapContainer Initial component to carry the map.
 	 * @return {HTMLElement} New map container to carry the map.
+	 * @private
 	 */
 	function responsiveContainerWrap( mapContainer ) {
 		var $container = $( mapContainer ),
@@ -80,6 +93,8 @@
 
 	/**
 	 * This code will be executed once the article is rendered and ready.
+	 *
+	 * @ignore
 	 */
 	mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		var mapsInArticle = [],
