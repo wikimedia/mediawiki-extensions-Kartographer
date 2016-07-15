@@ -192,7 +192,7 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts, ControlScale ) {
 		getMapGroupData( data.overlays ).then( function ( mapData ) {
 			$.each( data.overlays, function ( index, group ) {
 				if ( !$.isEmptyObject( mapData[ group ] ) ) {
-					map.dataLayers[ group ] = self.addDataLayer( map, mapData[ group ] );
+					map.dataLayers[ group ] = self.addDataLayer( mapData[ group ] );
 				} else {
 					mw.log.warn( 'Layer not found or contains no data: "' + group + '"' );
 				}
@@ -302,12 +302,11 @@ module.MWMap = ( function ( FullScreenControl, dataLayerOpts, ControlScale ) {
 	};
 
 	/**
-	 * Create a new GeoJSON layer and add it to map.
+	 * Creates a new GeoJSON layer and adds it to the map.
 	 *
-	 * @param {L.Map} map Map to get layers from
 	 * @param {Object} geoJson
 	 */
-	MWMap.prototype.addDataLayer = function ( map, geoJson ) {
+	MWMap.prototype.addDataLayer = function ( geoJson ) {
 		try {
 			return L.mapbox.featureLayer( geoJson, dataLayerOpts ).addTo( this.map );
 		} catch ( e ) {
