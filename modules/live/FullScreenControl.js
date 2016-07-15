@@ -44,13 +44,13 @@ module.FullScreenControl = ( function ( kartographer, router ) {
 		},
 
 		updateHash: function () {
-			var hash = mw.kartographer.getMapHash( this.options.mapData, this.map );
+			var hash = kartographer.getMapHash( this.options.mapData, this.map );
 			this.link.href = '#' + hash;
 		},
 
 		onShowFullScreen: function ( e ) {
 			L.DomEvent.stop( e );
-			mw.kartographer.openFullscreenMap( this.map, kartographer.getMapPosition( this.map ) );
+			kartographer.openFullscreenMap( this.map, kartographer.getMapPosition( this.map ) );
 		}
 	} );
 } )( require( 'ext.kartographer.init' ), require( 'mediawiki.router' ) );

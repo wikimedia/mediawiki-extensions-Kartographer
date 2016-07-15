@@ -1,4 +1,4 @@
-/* globals require */
+/* globals module, require */
 /**
  * Frame module.
  *
@@ -10,15 +10,14 @@
  * @class Kartographer.Frame
  * @singleton
  */
-( function ( $, mw, kartographer, kartoLive, router ) {
+module.exports = ( function ( $, mw, kartographer, kartoLive, router ) {
 
 	/**
-	 * References the map containers of the page.
+	 * References the mapframe containers of the page.
 	 *
 	 * @type {HTMLElement[]}
-	 * @member mw.kartographer
 	 */
-	mw.kartographer.maps = [];
+	var maps = [];
 
 	/**
 	 * Wraps a map container to make it (and its map) responsive on
@@ -122,7 +121,7 @@
 					map.doubleClickZoom.disable();
 
 					mapsInArticle.push( map );
-					mw.kartographer.maps[ index ] = map;
+					maps[ index ] = map;
 
 					map.on( 'dblclick', function () {
 						if ( router.isSupported() ) {
@@ -146,19 +145,21 @@
 			//     #/map/0/5
 			//     #/map/0/16/-122.4006/37.7873
 			router.route( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([\-\+]?\d+\.?\d{0,5})?\/([\-\+]?\d+\.?\d{0,5})?)?/, function ( maptagId, zoom, latitude, longitude ) {
-				var map = mw.kartographer.maps[ maptagId ];
+				var map = maps[ maptagId ];
 				if ( !map ) {
 					router.navigate( '' );
 					return;
 				}
 
-				mw.kartographer.openFullscreenMap( map, kartographer.getFullScreenState( zoom, latitude, longitude ) );
+				kartographer.openFullscreenMap( map, kartographer.getFullScreenState( zoom, latitude, longitude ) );
 			} );
 
 			// Check if we need to open a map in full screen.
 			router.checkRoute();
 		} );
 	} );
+
+	return maps;
 } )(
 	jQuery,
 	mediaWiki,

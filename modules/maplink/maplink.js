@@ -1,4 +1,4 @@
-/* globals require */
+/* globals module, require */
 /**
  * Link module.
  *
@@ -10,15 +10,14 @@
  * @class Kartographer.Link
  * @singleton
  */
-( function ( $, mw, kartographer, router ) {
+module.exports = ( function ( $, mw, kartographer, router ) {
 
 	/**
 	 * References the maplinks of the page.
 	 *
 	 * @type {HTMLElement[]}
-	 * @member mw.kartographer
 	 */
-	mw.kartographer.maplinks = [];
+	var maplinks = [];
 
 	/**
 	 * This code will be executed once the article is rendered and ready.
@@ -31,7 +30,7 @@
 		// search outside. This is an anti-pattern and should be improved...
 		// Meanwhile #content is better than searching the full document.
 		$( '.mw-kartographer-link', '#content' ).each( function ( index ) {
-			mw.kartographer.maplinks[ index ] = this;
+			maplinks[ index ] = this;
 
 			$( this ).data( 'maptag-id', index );
 			this.href = '#' + '/maplink/' + index;
@@ -43,7 +42,7 @@
 		//     #/maplink/0/5
 		//     #/maplink/0/16/-122.4006/37.7873
 		router.route( /maplink\/([0-9]+)(?:\/([0-9]+))?(?:\/([\-\+]?\d+\.?\d{0,5})?\/([\-\+]?\d+\.?\d{0,5})?)?/, function ( maptagId, zoom, latitude, longitude ) {
-			var link = mw.kartographer.maplinks[ maptagId ],
+			var link = maplinks[ maptagId ],
 				data;
 
 			if ( !link ) {
@@ -51,12 +50,14 @@
 				return;
 			}
 			data = kartographer.getMapData( link );
-			mw.kartographer.openFullscreenMap( data, kartographer.getFullScreenState( zoom, latitude, longitude ) );
+			kartographer.openFullscreenMap( data, kartographer.getFullScreenState( zoom, latitude, longitude ) );
 		} );
 
 		// Check if we need to open a map in full screen.
 		router.checkRoute();
 	} );
+
+	return maplinks;
 } )(
 	jQuery,
 	mediaWiki,

@@ -1,7 +1,7 @@
 /* globals module */
 /**
- * The base module creates the `mw.kartographer` namespace and defines common
- * utility methods.
+ * This module contains utility methods that may be useful to all other
+ * modules.
  *
  * @alias ext.kartographer.init
  * @class Kartographer
@@ -9,9 +9,7 @@
  */
 ( function ( $, mw ) {
 
-	var windowManager, mapDialog;
-
-	mw.kartographer = mw.kartographer || {};
+	var windowManager, mapDialog, openFullscreenMap;
 
 	function getWindowManager() {
 		if ( !windowManager ) {
@@ -38,7 +36,7 @@
 	 * @param {number} [fullScreenState.latitude]
 	 * @param {number} [fullScreenState.longitude]
 	 */
-	mw.kartographer.openFullscreenMap = ( function () {
+	openFullscreenMap = ( function () {
 
 		var counter = -1;
 
@@ -56,8 +54,6 @@
 				if ( mapData instanceof L.Map ) {
 					map = mapData;
 					mapData = getMapData( $( map.getContainer() ).closest( '.mw-kartographer-interactive' ) );
-				} else if ( mapData && mapData.isMapframe ) {
-					map = mw.kartographer.maps[ mapData.maptagId ];
 				}
 
 				$.extend( dialogData, mapData, {
@@ -110,7 +106,7 @@
 	 *   read the current zoom and center from the map object.
 	 * @return {string} The route to open the map in full screen mode.
 	 */
-	mw.kartographer.getMapHash = function ( data, map ) {
+	function getMapHash( data, map ) {
 
 		var hash = '/' + ( data.isMapframe ? 'map' : 'maplink' ),
 			mapPosition,
@@ -129,7 +125,7 @@
 		}
 
 		return hash;
-	};
+	}
 
 	/**
 	 * Convenient method that gets the current position of the map.
@@ -230,8 +226,8 @@
 	}
 
 	module.exports = {
-		getMapHash: mw.kartographer.getMapHash,
-		openFullscreenMap: mw.kartographer.openFullscreenMap,
+		getMapHash: getMapHash,
+		openFullscreenMap: openFullscreenMap,
 		getMapData: getMapData,
 		getMapPosition: getMapPosition,
 		getFullScreenState: getFullScreenState,

@@ -9,7 +9,7 @@
  * @class Kartographer.Fullscreen.MapDialog
  * @extends OO.ui.Dialog
  */
-module.MapDialog = ( function ( $, mw, kartoLive, router, CloseControl ) {
+module.MapDialog = ( function ( $, mw, kartographer, kartoLive, router, CloseControl ) {
 
 	/**
 	 * @constructor
@@ -101,7 +101,7 @@ module.MapDialog = ( function ( $, mw, kartoLive, router, CloseControl ) {
 	 * Tells the router to navigate to the current full screen map route.
 	 */
 	MapDialog.prototype.updateHash = function () {
-		var hash = mw.kartographer.getMapHash( this.mapData, this.map );
+		var hash = kartographer.getMapHash( this.mapData, this.map );
 
 		// Avoid extra operations
 		if ( this.lastHash !== hash ) {
@@ -191,6 +191,7 @@ module.MapDialog = ( function ( $, mw, kartoLive, router, CloseControl ) {
 } )(
 	jQuery,
 	mediaWiki,
+	require( 'ext.kartographer.init' ),
 	require( 'ext.kartographer.live' ),
 	require( 'mediawiki.router' ),
 	module.FullScreenCloseControl
