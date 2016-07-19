@@ -5,7 +5,6 @@ namespace Kartographer\Tag;
 
 use FormatJson;
 use Html;
-use ParserOutput;
 use UnexpectedValueException;
 
 /**

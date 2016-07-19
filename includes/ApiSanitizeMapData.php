@@ -12,7 +12,6 @@ namespace Kartographer;
 
 use ApiBase;
 use FormatJson;
-use Html;
 use Parser;
 use ParserOptions;
 use stdClass;
