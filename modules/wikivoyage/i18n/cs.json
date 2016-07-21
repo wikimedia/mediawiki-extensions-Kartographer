@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dvorapa"
+		]
+	},
+	"kartographer-wv-group": "Skupina:",
+	"kartographer-wv-layer-nearby-articles": "Články poblíž",
+	"kartographer-wv-warning-external-source-title": "Externí zdroj dat",
+	"kartographer-wv-warning-external-source-agree": "V pořádku",
+	"kartographer-wv-warning-external-source-disagree": "Storno"
+}

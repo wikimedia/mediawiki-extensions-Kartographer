@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Base",
+			"Ата"
+		]
+	},
+	"kartographer-wv-group": "Група:",
+	"kartographer-wv-layer-nearby-articles": "Статті про місця неподалік",
+	"kartographer-wv-nearby-articles-control": "Оглянути місця неподалік",
+	"kartographer-wv-warning-external-source-title": "Зовнішнє джерело даних",
+	"kartographer-wv-warning-external-source-message": "Цей вміст зберігається на зовнішньму ресурсі, тож його увімкнення призведе до того, що Ваші дані будуть доступні іншим сайтам.",
+	"kartographer-wv-warning-external-source-agree": "Все добре",
+	"kartographer-wv-warning-external-source-disagree": "Скасувати"
+}
