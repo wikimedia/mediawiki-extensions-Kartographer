@@ -1,12 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Banjo"
+			"Banjo",
+			"Elisardojm"
 		]
 	},
 	"kartographer-wv-group": "Grupo:",
 	"kartographer-wv-layer-nearby-articles": "Artigos próximos",
 	"kartographer-wv-nearby-articles-control": "Explorar destinos próximos",
 	"kartographer-wv-warning-external-source-title": "Fonte de datos externa",
+	"kartographer-wv-warning-external-source-agree": "Está ben",
 	"kartographer-wv-warning-external-source-disagree": "Cancelar"
 }
