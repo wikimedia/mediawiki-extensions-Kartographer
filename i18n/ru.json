@@ -23,6 +23,7 @@
 	"leafletdraw-draw-toolbar-buttons-circle": "Нарисовать круг",
 	"leafletdraw-draw-toolbar-buttons-polygon": "Нарисовать многоугольник",
 	"leafletdraw-draw-toolbar-undo-text": "Удалить последнюю точку",
+	"leafletdraw-draw-toolbar-undo-title": "Удалить последнюю нарисованную точку",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "Отмена",
 	"leafletdraw-edit-toolbar-actions-save-text": "Сохранить",
 	"leafletdraw-edit-toolbar-actions-save-title": "Сохранить изменения",
