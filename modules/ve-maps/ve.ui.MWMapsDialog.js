@@ -123,7 +123,7 @@ ve.ui.MWMapsDialog.prototype.onDimensionsChange = function () {
 	this.updateSize();
 
 	if ( center ) {
-		this.map.setView( center );
+		this.map.setView( center, this.map.getZoom() );
 	}
 	this.map.invalidateSize();
 	this.updateActions();
@@ -304,19 +304,13 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 
 			// if geojson and no center, we need the map to automatically
 			// position itself when the feature layer is added.
-			if ( dialog.input.getValue() && !mapPosition.center ) {
+			if (
+				dialog.input.getValue() &&
+				( !mapPosition.center || isNaN( mapPosition.center[ 0 ] ) || isNaN( mapPosition.center[ 1 ] ) )
+			) {
 				dialog.map.on( 'layeradd', function () {
-					var mwData = dialog.selectedNode && dialog.selectedNode.getAttribute( 'mw' ),
-						mwAttrs = mwData && mwData.attrs || {},
-						position;
-
 					dialog.map.setView( null, mapPosition.zoom );
-					position = dialog.map.getMapPosition();
-
-					// update attributes with current position
-					mwAttrs.latitude = position.center.lat;
-					mwAttrs.longitude = position.center.lng;
-					mwAttrs.zoom = position.zoom;
+					dialog.updateActions();
 				} );
 			}
 
@@ -357,37 +351,6 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 		} );
 	} );
 };
-/**
- * Formats center if valid.
- *
- * @param {string|number} latitude
- * @param {string|number} longitude
- * @return {Array|undefined}
- * @private
- */
-function validCenter( latitude, longitude ) {
-	latitude = +latitude;
-	longitude = +longitude;
-
-	if ( !isNaN( latitude ) && !isNaN( longitude ) ) {
-		return [ latitude, longitude ];
-	}
-}
-
-/**
- * Formats zoom if valid.
- *
- * @param {string|number} zoom
- * @return {number|undefined}
- * @private
- */
-function validZoom( zoom ) {
-	zoom = +zoom;
-
-	if ( !isNaN( zoom ) ) {
-		return zoom;
-	}
-}
 
 /**
  * Get the initial map position (coordinates and zoom level)
@@ -395,13 +358,28 @@ function validZoom( zoom ) {
  * @return {Object} Object containing latitude, longitude and zoom
  */
 ve.ui.MWMapsDialog.prototype.getInitialMapPosition = function () {
-	var mwData = this.selectedNode && this.selectedNode.getAttribute( 'mw' ),
-		mwAttrs = mwData && mwData.attrs || {},
-		center = validCenter( mwAttrs.latitude, mwAttrs.longitude ),
-		zoom = validZoom( mwAttrs.zoom );
+	var latitude, longitude, zoom,
+		pageCoords = mw.config.get( 'wgCoordinates' ),
+		mwData = this.selectedNode && this.selectedNode.getAttribute( 'mw' ),
+		mwAttrs = mwData && mwData.attrs;
+
+	if ( mwAttrs && mwAttrs.zoom ) {
+		latitude = +mwAttrs.latitude;
+		longitude = +mwAttrs.longitude;
+		zoom = +mwAttrs.zoom;
+	} else if ( pageCoords ) {
+		// Use page coordinates if Extension:GeoData is available
+		latitude = pageCoords.lat;
+		longitude = pageCoords.lon;
+		zoom = 5;
+	} else if ( !mwAttrs || !mwAttrs.extsrc ) {
+		latitude = 30;
+		longitude = 0;
+		zoom = 2;
+	}
 
 	return {
-		center: center,
+		center: [ latitude, longitude ],
 		zoom: zoom
 	};
 };

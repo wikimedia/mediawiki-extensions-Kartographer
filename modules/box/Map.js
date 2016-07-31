@@ -350,7 +350,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 		 * Sets the initial center and zoom of the map, and optionally calls
 		 * {@link #setView} to reposition the map.
 		 *
-		 * @param {L.LatLng|Array} [center]
+		 * @param {L.LatLng|number[]} [center]
 		 * @param {number} [zoom]
 		 * @param {boolean} [setView=false]
 		 * @chainable
@@ -358,9 +358,15 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 		initView: function ( center, zoom, setView ) {
 			setView = setView === false ? false : true;
 
-			if ( center ) {
-				center = L.latLng( center );
+			if ( Array.isArray( center ) ) {
+				if ( !isNaN( center[ 0 ] ) && !isNaN( center[ 1 ] ) ) {
+					center = L.latLng( center );
+				} else {
+					center = undefined;
+				}
 			}
+
+			zoom = isNaN( zoom ) ? this.options.fallbackZoom : zoom;
 			this._initialPosition = {
 				center: center,
 				zoom: zoom
@@ -559,7 +565,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 		 * fourth parameter to decide whether to update the container's data
 		 * attribute with the calculated values (for performance).
 		 *
-		 * @param {L.LatLng|Array|string} [center] Map center.
+		 * @param {L.LatLng|number[]|string} [center] Map center.
 		 * @param {number} [zoom]
 		 * @param {Object} [options] See [L.Map#setView](https://www.mapbox.com/mapbox.js/api/v2.3.0/l-map-class/)
 		 *   documentation for the full list of options.
@@ -570,8 +576,14 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 			var maxBounds,
 				initial = this.getInitialMapPosition();
 
+			if ( Array.isArray( center ) ) {
+				if ( !isNaN( center[ 0 ] ) && !isNaN( center[ 1 ] ) ) {
+					center = L.latLng( center );
+				} else {
+					center = undefined;
+				}
+			}
 			if ( center ) {
-				center = L.latLng( center );
 				zoom = isNaN( zoom ) ? this.options.fallbackZoom : zoom;
 				L.Map.prototype.setView.call( this, center, zoom, options );
 			} else {

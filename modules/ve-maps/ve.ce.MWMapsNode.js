@@ -74,7 +74,7 @@ ve.ce.MWMapsNode.static.primaryCommandName = 'mwMaps';
 ve.ce.MWMapsNode.prototype.requiresInteractive = function () {
 	var mwData = this.model.getAttribute( 'mw' );
 
-	return mwData.body.extsrc;
+	return mwData.body.extsrc || isNaN( mwData.attrs.latitude ) || isNaN( mwData.attrs.zoom );
 };
 
 /**
@@ -133,37 +133,6 @@ ve.ce.MWMapsNode.prototype.update = function () {
 		.addClass( alignClasses[ align ] )
 		.css( this.model.getCurrentDimensions() );
 };
-/**
- * Formats center if valid.
- *
- * @param {string|number} latitude
- * @param {string|number} longitude
- * @return {Array|undefined}
- * @private
- */
-function validCenter( latitude, longitude ) {
-	latitude = +latitude;
-	longitude = +longitude;
-
-	if ( !isNaN( latitude ) && !isNaN( longitude ) ) {
-		return [ latitude, longitude ];
-	}
-}
-
-/**
- * Formats zoom if valid.
- *
- * @param {string|number} zoom
- * @return {number|undefined}
- * @private
- */
-function validZoom( zoom ) {
-	zoom = +zoom;
-
-	if ( !isNaN( zoom ) ) {
-		return zoom;
-	}
-}
 
 /**
  * Setup an interactive map
@@ -171,18 +140,16 @@ function validZoom( zoom ) {
 ve.ce.MWMapsNode.prototype.setupMap = function () {
 	var mwData = this.model.getAttribute( 'mw' ),
 		mwAttrs = mwData && mwData.attrs,
-		zoom = validZoom( +mwAttrs.zoom ),
-		center = validCenter( mwAttrs.latitude, mwAttrs.longitude ),
 		node = this;
 
-	node.map = kartobox.map( {
-		container: node.$element[ 0 ],
-		center: center,
-		zoom: zoom
+	this.map = kartobox.map( {
+		container: this.$element[ 0 ],
+		center: [ +mwAttrs.latitude, +mwAttrs.longitude ],
+		zoom: +mwAttrs.zoom
 		// TODO: Support style editing
 	} );
-	node.map.on( 'layeradd', node.updateMapPosition, node );
-	node.map.doWhenReady( function ( ) {
+	this.map.on( 'layeradd', this.updateMapPosition, this );
+	this.map.doWhenReady( function ( ) {
 		node.updateGeoJson();
 
 		// Disable interaction
@@ -202,7 +169,7 @@ ve.ce.MWMapsNode.prototype.updateGeoJson = function () {
 		geoJson = mwData && mwData.body.extsrc;
 
 	if ( geoJson !== this.geoJson ) {
-		kartoEditing.updateKartographerLayer( this.map, mwData && mwData.body.extsrc );
+		kartoEditing.updateKartographerLayer( this.map, mwData && mwData.body.extsrc ).then( this.updateMapPosition.bind( this ) );
 		this.geoJson = geoJson;
 	}
 };
@@ -216,7 +183,7 @@ ve.ce.MWMapsNode.prototype.updateMapPosition = function () {
 		updatedData = mwData && mwData.attrs,
 		current;
 
-	if ( !validCenter( mapData.latitude, mapData.longitude ) || !updatedData ) {
+	if ( !updatedData ) {
 		// auto calculate the position
 		this.map.setView( null, mapData.zoom );
 		current = this.map.getMapPosition();
@@ -225,6 +192,7 @@ ve.ce.MWMapsNode.prototype.updateMapPosition = function () {
 		mwData.attrs.longitude = mapData.longitude = current.center.lng.toString();
 		mwData.attrs.zoom = mapData.zoom = current.zoom.toString();
 	} else if (
+		isNaN( updatedData.latitude ) || isNaN( updatedData.longitude ) || isNaN( updatedData.zoom ) ||
 		mapData.latitude !== updatedData.latitude ||
 		mapData.longitude !== updatedData.longitude ||
 		mapData.zoom !== updatedData.zoom
@@ -290,7 +258,10 @@ ve.ce.MWMapsNode.prototype.getAttributeChanges = function ( width, height ) {
  * Handle focus events
  */
 ve.ce.MWMapsNode.prototype.onMapFocus = function () {
-	$( '<img>' ).attr( 'src', this.model.getUrl( 1000, 1000 ) );
+	if ( !this.requiresInteractive() ) {
+		// Preload larger static map for resizing
+		$( '<img>' ).attr( 'src', this.model.getUrl( 1000, 1000 ) );
+	}
 };
 
 /* Registration */

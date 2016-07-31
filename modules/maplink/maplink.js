@@ -52,38 +52,6 @@ module.exports = ( function ( $, mw, router, kartobox ) {
 	}
 
 	/**
-	 * Formats center if valid.
-	 *
-	 * @param {string|number} latitude
-	 * @param {string|number} longitude
-	 * @return {Array|undefined}
-	 * @private
-	 */
-	function validCenter( latitude, longitude ) {
-		latitude = +latitude;
-		longitude = +longitude;
-
-		if ( !isNaN( latitude ) && !isNaN( longitude ) ) {
-			return [ latitude, longitude ];
-		}
-	}
-
-	/**
-	 * Formats zoom if valid.
-	 *
-	 * @param {string|number} zoom
-	 * @return {number|undefined}
-	 * @private
-	 */
-	function validZoom( zoom ) {
-		zoom = +zoom;
-
-		if ( !isNaN( zoom ) ) {
-			return zoom;
-		}
-	}
-
-	/**
 	 * This code will be executed once the article is rendered and ready.
 	 *
 	 * @ignore
@@ -103,8 +71,8 @@ module.exports = ( function ( $, mw, router, kartobox ) {
 
 			maplinks[ index ] = kartobox.link( {
 				container: this,
-				center: data.latitude && data.latitude ? [ data.latitude, data.longitude ] : 'auto',
-				zoom: data.zoom || 'auto',
+				center: [ data.latitude, data.longitude ],
+				zoom: data.zoom,
 				dataGroups: data.overlays,
 				fullScreenRoute: '/maplink/' + index
 			} );
@@ -130,8 +98,8 @@ module.exports = ( function ( $, mw, router, kartobox ) {
 			}
 
 			link.openFullScreen( {
-				center: validCenter( latitude, longitude ),
-				zoom: validZoom( zoom )
+				center: [ +latitude, +longitude ],
+				zoom: +zoom
 			} );
 		} );
 
