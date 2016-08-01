@@ -1,10 +1,12 @@
 /* globals module */
 /**
+ * # Preview mode
+ *
  * Module executing code to load {@link Kartographer.Preview ext.kartographer.preview}
  * when it detects preview edit mode.
  *
- * @alias enablePreview
- * @class Kartographer.Live.enablePreview
+ * @class Kartographer.Box.enablePreview
+ * @singleton
  * @private
  */
 module.enablePreview = ( function ( $, mw ) {

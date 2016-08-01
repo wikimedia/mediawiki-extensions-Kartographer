@@ -4,7 +4,7 @@
  * @copyright 2011-2015 VisualEditor Team and others; see http://ve.mit-license.org
  */
 /* globals require */
-var kartoLive = require( 'ext.kartographer.live' ),
+var kartobox = require( 'ext.kartographer.box' ),
 	kartoEditing = require( 'ext.kartographer.editing' );
 
 /**
@@ -114,10 +114,10 @@ ve.ce.MWMapsNode.prototype.update = function () {
 
 	if ( requiresInteractive ) {
 		if ( !this.map && this.getRoot() ) {
-			mw.loader.using( 'ext.kartographer.live' ).then( this.setupMap.bind( this ) );
+			mw.loader.using( 'ext.kartographer.box' ).then( this.setupMap.bind( this ) );
 		} else if ( this.map ) {
-			this.updateMapPosition();
 			this.updateGeoJson();
+			this.updateMapPosition();
 		}
 	} else {
 		if ( this.map ) {
@@ -133,6 +133,37 @@ ve.ce.MWMapsNode.prototype.update = function () {
 		.addClass( alignClasses[ align ] )
 		.css( this.model.getCurrentDimensions() );
 };
+/**
+ * Formats center if valid.
+ *
+ * @param {string|number} latitude
+ * @param {string|number} longitude
+ * @return {Array|undefined}
+ * @private
+ */
+function validCenter( latitude, longitude ) {
+	latitude = +latitude;
+	longitude = +longitude;
+
+	if ( !isNaN( latitude ) && !isNaN( longitude ) ) {
+		return [ latitude, longitude ];
+	}
+}
+
+/**
+ * Formats zoom if valid.
+ *
+ * @param {string|number} zoom
+ * @return {number|undefined}
+ * @private
+ */
+function validZoom( zoom ) {
+	zoom = +zoom;
+
+	if ( !isNaN( zoom ) ) {
+		return zoom;
+	}
+}
 
 /**
  * Setup an interactive map
@@ -140,28 +171,26 @@ ve.ce.MWMapsNode.prototype.update = function () {
 ve.ce.MWMapsNode.prototype.setupMap = function () {
 	var mwData = this.model.getAttribute( 'mw' ),
 		mwAttrs = mwData && mwData.attrs,
-		latitude = +mwAttrs.latitude,
-		longitude = +mwAttrs.longitude,
-		zoom = +mwAttrs.zoom,
+		zoom = validZoom( +mwAttrs.zoom ),
+		center = validCenter( mwAttrs.latitude, mwAttrs.longitude ),
 		node = this;
 
-	this.MWMap = kartoLive.MWMap( this.$element[ 0 ], {
-		latitude: latitude,
-		longitude: longitude,
+	node.map = kartobox.map( {
+		container: node.$element[ 0 ],
+		center: center,
 		zoom: zoom
 		// TODO: Support style editing
 	} );
-	this.MWMap.ready( function ( map ) {
-		node.map = map;
-
+	node.map.on( 'layeradd', node.updateMapPosition, node );
+	node.map.doWhenReady( function ( ) {
 		node.updateGeoJson();
 
 		// Disable interaction
-		map.dragging.disable();
-		map.touchZoom.disable();
-		map.doubleClickZoom.disable();
-		map.scrollWheelZoom.disable();
-		map.keyboard.disable();
+		node.map.dragging.disable();
+		node.map.touchZoom.disable();
+		node.map.doubleClickZoom.disable();
+		node.map.scrollWheelZoom.disable();
+		node.map.keyboard.disable();
 	} );
 };
 
@@ -184,9 +213,18 @@ ve.ce.MWMapsNode.prototype.updateGeoJson = function () {
 ve.ce.MWMapsNode.prototype.updateMapPosition = function () {
 	var mwData = this.model.getAttribute( 'mw' ),
 		mapData = this.mapData,
-		updatedData = mwData && mwData.attrs;
+		updatedData = mwData && mwData.attrs,
+		current;
 
-	if (
+	if ( !validCenter( mapData.latitude, mapData.longitude ) || !updatedData ) {
+		// auto calculate the position
+		this.map.setView( null, mapData.zoom );
+		current = this.map.getMapPosition();
+		// update missing attributes with current position.
+		mwData.attrs.latitude = mapData.latitude = current.center.lat.toString();
+		mwData.attrs.longitude = mapData.longitude = current.center.lng.toString();
+		mwData.attrs.zoom = mapData.zoom = current.zoom.toString();
+	} else if (
 		mapData.latitude !== updatedData.latitude ||
 		mapData.longitude !== updatedData.longitude ||
 		mapData.zoom !== updatedData.zoom

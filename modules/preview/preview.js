@@ -1,17 +1,16 @@
-/* globals require */
 /**
  * Module listening to `wikipage.maps` hook and adding a right-click handler to
  * the map to show the corresponding coordinates.
  *
  * This module may be loaded and executed by
- * {@link Kartographer.Live.enablePreview ext.kartographer.live}.
+ * {@link Kartographer.Box.enablePreview ext.kartographer.box}.
  *
  * @alias Preview
  * @alias ext.kartographer.preview
  * @class Kartographer.Preview
  * @singleton
  */
-( function ( mw, L, kartographer ) {
+( function ( mw, L ) {
 
 	mw.hook( 'wikipage.maps' ).add( function ( maps ) {
 		maps = $.isArray( maps ) ? maps : [ maps ];
@@ -20,8 +19,7 @@
 			var popup = L.popup();
 
 			function onMapMenu( e ) {
-				var coords = kartographer.getScaleCoords(
-					map.getZoom(),
+				var coords = map.getScaleLatLng(
 					e.latlng.lat,
 					e.latlng.lng
 				);
@@ -29,7 +27,7 @@
 				popup
 					.setLatLng( e.latlng )
 					// These are non-localized wiki tag attributes, so no need for i18n
-					.setContent( 'latitude=' + coords[ 1 ] + ' longitude=' + coords[ 2 ] )
+					.setContent( 'latitude=' + coords[ 0 ] + ' longitude=' + coords[ 1 ] )
 					.openOn( map );
 			}
 
@@ -38,4 +36,4 @@
 		} );
 	} );
 
-}( mediaWiki, L, require( 'ext.kartographer.init' ) ) );
+}( mediaWiki, L ) );

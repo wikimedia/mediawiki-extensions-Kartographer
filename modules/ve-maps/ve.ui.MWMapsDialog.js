@@ -5,7 +5,7 @@
  * @license The MIT License (MIT); see LICENSE.txt
  */
 /* globals require */
-var kartoLive = require( 'ext.kartographer.live' ),
+var kartobox = require( 'ext.kartographer.box' ),
 	kartoEditing = require( 'ext.kartographer.editing' );
 
 /**
@@ -22,6 +22,7 @@ ve.ui.MWMapsDialog = function VeUiMWMapsDialog() {
 	ve.ui.MWMapsDialog.super.apply( this, arguments );
 
 	this.updateGeoJson = $.debounce( 300, $.proxy( this.updateGeoJson, this ) );
+	this.resetMapPosition = $.debounce( 300, $.proxy( this.resetMapPosition, this ) );
 };
 
 /* Inheritance */
@@ -135,17 +136,20 @@ ve.ui.MWMapsDialog.prototype.resetMapPosition = function () {
 	var position,
 		dialog = this;
 
-	if ( this.map ) {
-		position = this.getInitialMapPosition();
-		this.map.setView( [ position.latitude, position.longitude ], position.zoom );
-		this.updateActions();
-		this.resetMapButton.setDisabled( true );
-
-		this.map.on( 'moveend', function () {
-			dialog.updateActions();
-			dialog.resetMapButton.setDisabled( false );
-		} );
+	if ( !this.map ) {
+		return;
 	}
+
+	position = this.getInitialMapPosition();
+	this.map.setView( position.center, position.zoom );
+
+	this.updateActions();
+	this.resetMapButton.setDisabled( true );
+
+	this.map.once( 'moveend', function () {
+		dialog.updateActions();
+		dialog.resetMapButton.setDisabled( false );
+	} );
 };
 
 /**
@@ -282,16 +286,37 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 			mapPosition = dialog.getInitialMapPosition();
 
 		// TODO: Support 'style' editing
-		dialog.MWMap = kartoLive.MWMap( dialog.$map[ 0 ], mapPosition );
-		dialog.MWMap.ready( function ( map ) {
+		dialog.map = kartobox.map( {
+			container: dialog.$map[ 0 ],
+			center: mapPosition.center,
+			zoom: mapPosition.zoom
+		} );
 
-			dialog.map = map;
+		dialog.map.doWhenReady( function ()  {
 
 			dialog.updateGeoJson();
 			dialog.onDimensionsChange();
 			dialog.resetMapPosition();
 
-			geoJsonLayer = kartoEditing.getKartographerLayer( map );
+			// if geojson and no center, we need the map to automatically
+			// position itself when the feature layer is added.
+			if ( dialog.input.getValue() && !mapPosition.center ) {
+				dialog.map.on( 'layeradd', function () {
+					var mwData = dialog.selectedNode && dialog.selectedNode.getAttribute( 'mw' ),
+						mwAttrs = mwData && mwData.attrs || {},
+						position;
+
+					dialog.map.setView( null, mapPosition.zoom );
+					position = dialog.map.getMapPosition();
+
+					// update attributes with current position
+					mwAttrs.latitude = position.center.lat;
+					mwAttrs.longitude = position.center.lng;
+					mwAttrs.zoom = position.zoom;
+				} );
+			}
+
+			geoJsonLayer = kartoEditing.getKartographerLayer( dialog.map );
 			drawControl = new L.Control.Draw( {
 				edit: { featureGroup: geoJsonLayer },
 				draw: {
@@ -302,7 +327,7 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 					rectangle: defaultShapeOptions,
 					marker: { icon: L.mapbox.marker.icon( {} ) }
 				}
-			} ).addTo( map );
+			} ).addTo( dialog.map );
 
 			function update() {
 				// Prevent circular update of map
@@ -320,7 +345,7 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 				update();
 			}
 
-			map
+			dialog.map
 				.on( 'draw:edited', update )
 				.on( 'draw:deleted', update )
 				.on( 'draw:created', created );
@@ -328,6 +353,37 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 		} );
 	} );
 };
+/**
+ * Formats center if valid.
+ *
+ * @param {string|number} latitude
+ * @param {string|number} longitude
+ * @return {Array|undefined}
+ * @private
+ */
+function validCenter( latitude, longitude ) {
+	latitude = +latitude;
+	longitude = +longitude;
+
+	if ( !isNaN( latitude ) && !isNaN( longitude ) ) {
+		return [ latitude, longitude ];
+	}
+}
+
+/**
+ * Formats zoom if valid.
+ *
+ * @param {string|number} zoom
+ * @return {number|undefined}
+ * @private
+ */
+function validZoom( zoom ) {
+	zoom = +zoom;
+
+	if ( !isNaN( zoom ) ) {
+		return zoom;
+	}
+}
 
 /**
  * Get the initial map position (coordinates and zoom level)
@@ -335,22 +391,13 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
  * @return {Object} Object containing latitude, longitude and zoom
  */
 ve.ui.MWMapsDialog.prototype.getInitialMapPosition = function () {
-	var latitude, longitude, zoom,
-		mwData = this.selectedNode && this.selectedNode.getAttribute( 'mw' ),
-		mwAttrs = mwData && mwData.attrs;
+	var mwData = this.selectedNode && this.selectedNode.getAttribute( 'mw' ),
+		mwAttrs = mwData && mwData.attrs || {},
+		center = validCenter( mwAttrs.latitude, mwAttrs.longitude ),
+		zoom = validZoom( mwAttrs.zoom );
 
-	if ( mwAttrs && mwAttrs.zoom ) {
-		latitude = +mwAttrs.latitude;
-		longitude = +mwAttrs.longitude;
-		zoom = +mwAttrs.zoom;
-	} else {
-		latitude = 30;
-		longitude = 0;
-		zoom = 2;
-	}
 	return {
-		latitude: latitude,
-		longitude: longitude,
+		center: center,
 		zoom: zoom
 	};
 };

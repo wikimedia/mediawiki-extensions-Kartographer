@@ -32,7 +32,7 @@ class MapLink extends TagHandler {
 		$text = $this->parser->recursiveTagParse( $text, $this->frame );
 
 		$attrs = [
-			'class' => 'mw-kartographer-link',
+			'class' => 'mw-kartographer-maplink',
 			'mw-data' => 'interface',
 			'data-style' => $this->mapStyle,
 		];

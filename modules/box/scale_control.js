@@ -1,16 +1,15 @@
 /* globals module */
 /*jscs:disable disallowDanglingUnderscores, requireVarDeclFirst */
 /**
- * Control to display the scale.
+ * # Control to display the scale.
  *
- * See [L.Control.Scale](https://www.mapbox.com/mapbox.js/api/v2.3.0/l-control-scale/)
+ * See [L.Control](https://www.mapbox.com/mapbox.js/api/v2.3.0/l-control/)
  * documentation for more details.
  *
- * @alias ControlScale
- * @class Kartographer.Live.ControlScale
- * @extends L.Control.Scale
+ * @class Kartographer.Box.ScaleControl
+ * @extends L.Control
  */
-module.ControlScale = L.Control.Scale.extend( {
+module.ScaleControl = L.Control.Scale.extend( {
 
 	isMetric: true,
 
