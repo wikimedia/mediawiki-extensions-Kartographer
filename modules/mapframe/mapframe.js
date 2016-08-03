@@ -97,7 +97,8 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 			maps.pop().remove();
 		} );
 
-		$content.find( '.mw-kartographer-interactive' ).each( function ( index ) {
+		// need to find .mw-kartographer-interactive:not(.mw-kartographer-map) for backward compatibility
+		$content.find( '.mw-kartographer-map, .mw-kartographer-interactive:not(.mw-kartographer-map)' ).each( function ( index ) {
 			var map, data,
 				container = this,
 				$container = $( this ),

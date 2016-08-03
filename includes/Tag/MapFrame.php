@@ -2,7 +2,6 @@
 
 namespace Kartographer\Tag;
 
-
 use FormatJson;
 use Html;
 use UnexpectedValueException;
@@ -37,6 +36,15 @@ class MapFrame extends TagHandler {
 			'center' => 'center',
 			'right' => 'floatright',
 		];
+
+		$thumbAlignClasses = [
+			'left' => 'tleft',
+			'center' => 'center',
+			'right' => 'tright',
+		];
+
+		$caption = $this->getText( 'text', null );
+		$framed = $caption !== null || $this->getText( 'frameless', null ) === null;
 
 		$output = $this->parser->getOutput();
 
@@ -79,18 +87,29 @@ class MapFrame extends TagHandler {
 			case 'interactive':
 				$output->addModules( 'ext.kartographer.frame' );
 
+				$fullWidth = false;
+
 				$width = is_numeric( $this->width ) ? "{$this->width}px" : $this->width;
-				if ( preg_match( '/^\d+%$/', $width ) && $width != '100%' ) {
-					$width = '300px'; // @todo: deprecate old syntax completely
-				}
-				if ( $width == 'full' ) {
+
+				if ( preg_match( '/^\d+%$/', $width ) ) {
+					if ( $width === '100%' ) {
+						$fullWidth = true;
+					} else {
+						$width = '300px'; // @todo: deprecate old syntax completely
+					}
+				} else if ( $width === 'full' ) {
 					$width = '100%';
+					$fullWidth = true;
 				}
+
+				$height = "{$this->height}px";
+
 				$attrs = [
-					'class' => 'mw-kartographer-interactive',
+					'class' => 'mw-kartographer-map',
 					'mw-data' => 'interface',
-					'style' => "width:{$width}; height:{$this->height}px;",
 					'data-style' => $this->mapStyle,
+					'data-width' => $this->width,
+					'data-height' => $this->height,
 				];
 				if ( $this->zoom !== null ) {
 					$attrs['data-zoom'] = $this->zoom;
@@ -98,10 +117,6 @@ class MapFrame extends TagHandler {
 				if ( $this->lat !== null && $this->lon !== null ) {
 					$attrs['data-lat'] = $this->lat;
 					$attrs['data-lon'] = $this->lon;
-
-				}
-				if ( isset( $alignClasses[$this->align] ) ) {
-					$attrs['class'] .= ' ' . $alignClasses[$this->align];
 				}
 				if ( $this->showGroups ) {
 					$attrs['data-overlays'] = FormatJson::encode( $this->showGroups, false,
@@ -109,12 +124,36 @@ class MapFrame extends TagHandler {
 				}
 
 				$this->state->addInteractiveGroups( $this->showGroups );
-
-				return Html::rawElement( 'div', $attrs );
 				break;
 			default:
 				throw new UnexpectedValueException(
 					"Unexpected frame mode '$wgKartographerFrameMode'" );
 		}
+
+		$containerClass = 'mw-kartographer-container';
+		if ( $fullWidth ) {
+			$containerClass .= ' mw-kartographer-full';
+		}
+
+		if ( !$framed ) {
+			$attrs['style'] = "width: {$width}; height: {$height};";
+			$attrs['class'] .= " {$containerClass} {$alignClasses[$this->align]}";
+
+			return Html::rawElement( 'div', $attrs );
+		}
+
+		$attrs['style'] = "height: {$height};";
+		$containerClass .= " thumb {$thumbAlignClasses[$this->align]}";
+
+		$captionFrame = Html::rawElement( 'div', [ 'class' => 'thumbcaption' ],
+			$this->parser->recursiveTagParse( $caption ) );
+
+		$mapDiv = Html::rawElement( 'div', $attrs );
+
+		return Html::rawElement( 'div', [ 'class' => $containerClass ],
+			Html::rawElement( 'div', [
+					'class' => 'thumbinner',
+					'style' => "width: {$width};",
+				], $mapDiv . $captionFrame ) );
 	}
 }

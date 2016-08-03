@@ -14,7 +14,6 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 		mapServer = mw.config.get( 'wgKartographerMapServer' ),
 		worldLatLng = new L.LatLngBounds( [ -90, -180 ], [ 90, 180 ] ),
 		Map,
-		isMobile = mw.config.get( 'skin' ) === 'minerva',
 		precisionPerZoom = [ 0, 0, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5 ];
 
 	function bracketDevicePixelRatio() {
@@ -198,11 +197,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 				options.zoom = undefined;
 			}
 
-			if ( isMobile && !options.fullscreen ) {
-				options.container = this._responsiveContainerWrap( options.container );
-			}
-
-			$( options.container ).addClass( 'mw-kartographer-map' );
+			$( options.container ).addClass( 'mw-kartographer-interactive' );
 
 			args = L.extend( {}, L.Map.prototype.options, options, {
 				// `center` and `zoom` are to undefined to avoid calling
@@ -673,8 +668,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 
 			$visibleParent = this.$container.closest( ':visible' );
 
-			// Get `max` properties in case the container was wrapped
-			// with {@link #responsiveContainerWrap}.
+			// Try `max` properties.
 			width = $visibleParent.css( 'max-width' );
 			height = $visibleParent.css( 'max-height' );
 			width = ( !width || width === 'none' ) ? $visibleParent.width() : width;
@@ -762,77 +756,6 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 			}
 			this.$container.toggleClass( 'mw-kartographer-static', staticMap );
 			return this;
-		},
-
-		/**
-		 * Wraps a map container to make it (and its map) responsive on
-		 * mobile (MobileFrontend).
-		 *
-		 * The initial `mapContainer`:
-		 *
-		 *     <div class="mw-kartographer-interactive" style="height: Y; width: X;">
-		 *         <!-- this is the component carrying Leaflet.Map -->
-		 *     </div>
-		 *
-		 * Becomes :
-		 *
-		 *     <div class="mw-kartographer-interactive mw-kartographer-responsive" style="max-height: Y; max-width: X;">
-		 *         <div class="mw-kartographer-responder" style="padding-bottom: (100*Y/X)%">
-		 *             <div>
-		 *                 <!-- this is the component carrying Leaflet.Map -->
-		 *             </div>
-		 *         </div>
-		 *     </div>
-		 *
-		 * **Note:** the container that carries the map data remains the initial
-		 * `mapContainer` passed in arguments. Its selector remains `.mw-kartographer-interactive`.
-		 * However it is now a sub-child that carries the map.
-		 *
-		 * **Note 2:** the CSS applied to these elements vary whether the map width
-		 * is absolute (px) or relative (%). The example above describes the absolute
-		 * width case.
-		 *
-		 * @param {HTMLElement} mapContainer Initial component to carry the map.
-		 * @return {HTMLElement} New map container to carry the map.
-		 * @protected
-		 */
-		_responsiveContainerWrap: function ( mapContainer ) {
-			var $container = $( mapContainer ),
-				$responder, map,
-				width = mapContainer.style.width,
-				isRelativeWidth = width.slice( -1 ) === '%',
-				height = +( mapContainer.style.height.slice( 0, -2 ) ),
-				containerCss, responderCss;
-
-			// Convert the value to a string.
-			width = isRelativeWidth ? width : +( width.slice( 0, -2 ) );
-
-			if ( isRelativeWidth ) {
-				containerCss = {};
-				responderCss = {
-					// The inner container must occupy the full height
-					height: height
-				};
-			} else {
-				containerCss = {
-					// Remove explicitly set dimensions
-					width: '',
-					height: '',
-					// Prevent over-sizing
-					'max-width': width,
-					'max-height': height
-				};
-				responderCss = {
-					// Use padding-bottom trick to maintain original aspect ratio
-					'padding-bottom': ( 100 * height / width ) + '%'
-				};
-			}
-			$container.addClass( 'mw-kartographer-responsive' ).css( containerCss );
-			$responder = $( '<div>' ).addClass( 'mw-kartographer-responder' ).css( responderCss );
-
-			map = document.createElement( 'div' );
-			this.$outerContainer = $container.append( $responder.append( map ) );
-			return map;
 		}
 	} );
 

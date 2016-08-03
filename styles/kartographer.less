@@ -1,31 +1,9 @@
-.mw-kartographer-responsive {
-	width: 100%;
-	min-width: 200px;
-
-	.mw-kartographer-responder {
-		position: relative;
-	}
-
-	.mw-kartographer-map {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		z-index: 0;
-	}
-}
-
 .mw-kartographer-mapDialog-map {
 	position: absolute;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
-}
-
-.mw-kartographer-interactive {
-	display: inline-block;
 }
 
 .mw-kartographer-error {
@@ -76,4 +54,29 @@ a.mw-kartographer-autostyled:visited {
 	&.leaflet-container {
 		cursor: default;
 	}
+}
+
+.mw-kartographer-container:not(.mw-kartographer-full) {
+	max-width: 100%;
+
+	/* Fixes `align=center` use case */
+	&.center {
+		margin-left: auto;
+		margin-right: auto;
+		display: block;
+	}
+
+	&.thumb {
+		.thumbinner {
+			max-width: 100%;
+
+			> .mw-kartographer-map {
+				width: 100%;
+			}
+		}
+	}
+}
+
+.mw-kartographer-container.mw-kartographer-full {
+	width: 100%;
 }
