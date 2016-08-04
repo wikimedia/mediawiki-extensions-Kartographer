@@ -1,9 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
-			"Сербијана"
+			"Сербијана",
+			"Milicevic01"
 		]
 	},
+	"kartographer-broken-category": "Странице са поквареним мапама",
 	"kartographer-tracking-category": "Странице са мапама",
-	"kartographer-broken-category": "Странице са поквареним мапама"
+	"leafletdraw-draw-toolbar-actions-text": "Откажи",
+	"leafletdraw-edit-toolbar-actions-cancel-text": "Откажи",
+	"mapbox-control-zoomin-title": "Увећај",
+	"mapbox-control-zoomout-title": "Умањи",
+	"kartographer-fullscreen-close": "Затвори",
+	"kartographer-fullscreen-text": "Прикажи преко целог екрана",
+	"visualeditor-mwmapsdialog-size": "Величина",
+	"visualeditor-mwmapsdialog-title": "Карта"
 }
