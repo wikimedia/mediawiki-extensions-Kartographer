@@ -38,19 +38,6 @@ class Hooks {
 	}
 
 	/**
-	 * Register our unit tests
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/UnitTestsList
-	 * @param string[] $files
-	 * @return bool
-	 */
-	public static function onUnitTestsList( array &$files ) {
-		global $IP;
-
-		$files[] = "$IP/extensions/Kartographer/tests/phpunit";
-		return true;
-	}
-
-	/**
 	 * ParserAfterParse hook handler
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ParserAfterParse
 	 * @param Parser $parser

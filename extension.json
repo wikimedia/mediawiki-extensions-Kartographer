@@ -370,9 +370,6 @@
 		],
 		"ParserAfterParse": [
 			"Kartographer\\Hooks::onParserAfterParse"
-		],
-		"UnitTestsList": [
-			"Kartographer\\Hooks::onUnitTestsList"
 		]
 	},
 	"VisualEditorPluginModules": [
