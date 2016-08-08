@@ -17,7 +17,12 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 	 *
 	 * @type {HTMLElement[]}
 	 */
-	var maps = [];
+	var maps = [],
+		/**
+		 * @private
+		 * @ignore
+		 */
+		routerInited = false;
 
 	/**
 	 * Gets the map data attached to an element.
@@ -87,6 +92,11 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 		var mapsInArticle = [],
 			promises = [];
 
+		// `wikipage.content` may be fired more than once.
+		$.each( maps, function () {
+			maps.pop().remove();
+		} );
+
 		$content.find( '.mw-kartographer-interactive' ).each( function ( index ) {
 			var map, data,
 				container = this,
@@ -116,6 +126,12 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 		// Allow customizations of interactive maps in article.
 		$.when( promises ).then( function () {
 			mw.hook( 'wikipage.maps' ).fire( mapsInArticle, false /* isFullScreen */ );
+
+			if ( routerInited ) {
+				return;
+			}
+			// execute this piece of code only once
+			routerInited = true;
 
 			// Opens a map in full screen. #/map(/:zoom)(/:latitude)(/:longitude)
 			// Examples:

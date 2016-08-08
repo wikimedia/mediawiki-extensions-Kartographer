@@ -63,7 +63,7 @@ module.Link = ( function ( $ ) {
 		if ( this.useRouter && this.container.tagName === 'A' ) {
 			this.container.href = '#' + this.fullScreenRoute;
 		} else {
-			this.$container.on( 'click', L.Util.bind( function () {
+			this.$container.on( 'click.kartographer', L.Util.bind( function () {
 				this.openFullScreen();
 			}, this ) );
 		}

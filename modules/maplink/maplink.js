@@ -17,7 +17,12 @@ module.exports = ( function ( $, mw, router, kartobox ) {
 	 *
 	 * @type {HTMLElement[]}
 	 */
-	var maplinks = [];
+	var maplinks = [],
+		/**
+		 * @private
+		 * @ignore
+		 */
+		routerInited = false;
 
 	/**
 	 * Gets the map data attached to an element.
@@ -85,6 +90,11 @@ module.exports = ( function ( $, mw, router, kartobox ) {
 	 */
 	mw.hook( 'wikipage.content' ).add( function ( ) {
 
+		// `wikipage.content` may be fired more than once.
+		$.each( maplinks, function () {
+			maplinks.pop().$container.off( 'click.kartographer' );
+		} );
+
 		// Some links might be displayed outside of $content, so we need to
 		// search outside. This is an anti-pattern and should be improved...
 		// Meanwhile #content is better than searching the full document.
@@ -99,6 +109,12 @@ module.exports = ( function ( $, mw, router, kartobox ) {
 				fullScreenRoute: '/maplink/' + index
 			} );
 		} );
+
+		if ( routerInited ) {
+			return;
+		}
+		// execute this piece of code only once
+		routerInited = true;
 
 		// Opens a maplink in full screen. #/maplink(/:zoom)(/:latitude)(/:longitude)
 		// Examples:
