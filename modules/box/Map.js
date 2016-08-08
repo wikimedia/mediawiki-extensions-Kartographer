@@ -67,11 +67,16 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 		return layerBounds;
 	}
 
+	/*jscs:disable disallowDanglingUnderscores */
 	/**
 	 * Validate that the bounds contain no outlier.
 	 *
 	 * An outlier is a layer whom bounds do not fit into the world,
 	 * i.e. `-180 <= longitude <= 180  &&  -90 <= latitude <= 90`
+	 *
+	 * There is a special case for **masks** (polygons that cover the entire
+	 * globe with a hole to highlight a specific area). In this case the
+	 * algorithm tries to validate the hole bounds.
 	 *
 	 * @param {L.Layer} layer Layer to get and validate the bounds.
 	 * @return {L.LatLng|boolean} Bounds if valid.
@@ -84,9 +89,15 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 
 		if ( bounds && worldLatLng.contains( bounds ) ) {
 			return bounds;
+		} else if ( layer instanceof L.Polygon && layer._holes && layer._holes[ 0 ] ) {
+			bounds = new L.LatLngBounds( layer._convertLatLngs( layer._holes[ 0 ] ) );
+			if ( worldLatLng.contains( bounds ) ) {
+				return bounds;
+			}
 		}
 		return false;
 	}
+	/*jscs:enable disallowDanglingUnderscores */
 
 	/**
 	 * Returns the data for the list of groups.
