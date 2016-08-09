@@ -80,6 +80,9 @@ class MapFrame extends TagHandler {
 				$output->addModules( 'ext.kartographer.frame' );
 
 				$width = is_numeric( $this->width ) ? "{$this->width}px" : $this->width;
+				if ( preg_match( '/^\d+%$/', $width ) && $width != '100%' ) {
+					$width = '300px'; // @todo: deprecate old syntax completely
+				}
 				$attrs = [
 					'class' => 'mw-kartographer-interactive',
 					'mw-data' => 'interface',
