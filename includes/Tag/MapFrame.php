@@ -20,7 +20,7 @@ class MapFrame extends TagHandler {
 	protected function parseArgs() {
 		parent::parseArgs();
 		// @todo: should these have defaults?
-		$this->width = $this->getText( 'width', false, '/^(\d+|([1-9]\d?|100)%)$/' );
+		$this->width = $this->getText( 'width', false, '/^(\d+|([1-9]\d?|100)%|full)$/' );
 		$this->height = $this->getInt( 'height' );
 		$defaultAlign = $this->getLanguage()->isRTL() ? 'left' : 'right';
 		$this->align = $this->getText( 'align', $defaultAlign, '/^(left|center|right)$/' );
@@ -82,6 +82,9 @@ class MapFrame extends TagHandler {
 				$width = is_numeric( $this->width ) ? "{$this->width}px" : $this->width;
 				if ( preg_match( '/^\d+%$/', $width ) && $width != '100%' ) {
 					$width = '300px'; // @todo: deprecate old syntax completely
+				}
+				if ( $width == 'full' ) {
+					$width = '100%';
 				}
 				$attrs = [
 					'class' => 'mw-kartographer-interactive',
