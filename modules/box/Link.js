@@ -81,7 +81,9 @@ module.Link = ( function ( $ ) {
 
 		var map = this.map;
 
-		position = position || { center: this.center, zoom: this.zoom };
+		position = position || {};
+		position.center = position.center || this.center;
+		position.zoom = typeof position.zoom === 'number' ? position.zoom : this.zoom;
 
 		if ( this.fullScreenMap && this.fullScreenMap._container._leaflet ) {
 			map = this.fullScreenMap;
