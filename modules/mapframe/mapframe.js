@@ -100,6 +100,7 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 		$content.find( '.mw-kartographer-interactive' ).each( function ( index ) {
 			var map, data,
 				container = this,
+				$container = $( this ),
 				deferred = $.Deferred();
 
 			data = getMapData( container );
@@ -118,6 +119,17 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 
 				mapsInArticle.push( map );
 				maps[ index ] = map;
+
+				// Special case for collapsible maps.
+				// When the container is hidden Leaflet is not able to
+				// calculate the expected size when visible. We need to force
+				// updating the map to the new container size on `expand`.
+				if ( !$container.is( ':visible' ) ) {
+					$container.closest( '.mw-collapsible' )
+						.on( 'afterExpand.mw-collapsible', function () {
+							map.invalidateSize();
+						} );
+				}
 
 				promises.push( deferred.promise() );
 			}
