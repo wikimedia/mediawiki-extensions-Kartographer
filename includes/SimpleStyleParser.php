@@ -3,8 +3,6 @@
 namespace Kartographer;
 
 use FormatJson;
-use JsonSchema\RefResolver;
-use JsonSchema\Uri\UriRetriever;
 use JsonSchema\Validator;
 use Parser;
 use PPFrame;
@@ -188,11 +186,7 @@ class SimpleStyleParser {
 
 		if ( !$schema ) {
 			$basePath = 'file://' . dirname( __DIR__ ) . '/schemas';
-			$retriever = new UriRetriever();
-			$resolver = new RefResolver( $retriever );
-			RefResolver::$maxDepth = 20;
-			$schema = $retriever->retrieve( "$basePath/geojson.json", $basePath );
-			$resolver->resolve( $schema, $basePath );
+			$schema = (object)[ '$ref' => "$basePath/geojson.json" ];
 		}
 		return $schema;
 	}
