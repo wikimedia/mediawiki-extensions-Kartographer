@@ -3,7 +3,8 @@
 		"authors": [
 			"Otokoume",
 			"Sujiniku",
-			"Ridmevo"
+			"Ridmevo",
+			"Suchichi02"
 		]
 	},
 	"kartographer-broken-category": "破損した地図があるページ",
@@ -18,6 +19,7 @@
 	"leafletdraw-draw-toolbar-actions-text": "キャンセル",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "中止",
 	"leafletdraw-edit-toolbar-actions-save-text": "保存",
+	"leafletdraw-edit-toolbar-actions-save-title": "変更を保存",
 	"leafletdraw-edit-toolbar-buttons-edit": "レイヤーを編集",
 	"mapbox-control-zoomin-title": "拡大",
 	"mapbox-control-zoomout-title": "縮小",
