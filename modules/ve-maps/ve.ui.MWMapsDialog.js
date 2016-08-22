@@ -188,7 +188,7 @@ ve.ui.MWMapsDialog.prototype.insertOrUpdateNode = function () {
  * @inheritdoc ve.ui.MWExtensionWindow
  */
 ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
-	var center, latitude, longitude, zoom,
+	var center, scaled, latitude, longitude, zoom,
 		dimensions = this.scalable.getBoundedDimensions(
 			this.dimensions.getDimensions()
 		);
@@ -198,9 +198,10 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 
 	if ( this.map ) {
 		center = this.map.getCenter();
-		latitude = center.lat;
-		longitude = center.lng;
 		zoom = this.map.getZoom();
+		scaled = this.map.getScaleLatLng( center.lat, center.lng, zoom );
+		latitude = scaled[ 0 ];
+		longitude = scaled[ 1 ];
 	} else {
 		// Map not loaded in insert, can't insert
 		return;
