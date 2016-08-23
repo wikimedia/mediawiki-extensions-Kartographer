@@ -152,7 +152,8 @@
 				"mapbox",
 				"ext.kartographer",
 				"ext.kartographer.style",
-				"ext.kartographer.settings"
+				"ext.kartographer.settings",
+				"ext.kartographer.site"
 			],
 			"scripts": [
 				"lib/leaflet.sleep.js",
