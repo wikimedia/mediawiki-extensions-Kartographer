@@ -297,7 +297,10 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 
 			dialog.updateGeoJson();
 			dialog.onDimensionsChange();
-			dialog.resetMapPosition();
+			// Wait for dialog to resize as this triggers map move events
+			setTimeout( function () {
+				dialog.resetMapPosition();
+			}, OO.ui.theme.getDialogTransitionDuration() );
 
 			// if geojson and no center, we need the map to automatically
 			// position itself when the feature layer is added.
