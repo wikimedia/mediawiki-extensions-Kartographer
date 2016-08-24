@@ -1,0 +1,92 @@
+@mapWidth: 256px;
+@mapHeight: 256px;
+@markerColor: #7b4e10;
+@markerSize: 10px;
+
+/* stylelint-disable selector-no-id */
+
+div#mw-specialMap-container {
+
+	position: relative;
+
+	.thumbinner {
+		display: inline-block;
+		position: relative;
+		width: @mapWidth;
+	}
+}
+
+div#mw-specialMap-inner {
+	height: @mapHeight;
+	position: relative;
+}
+
+div#mw-specialMap-map {
+	position: absolute;
+	width: @mapWidth;
+	height: @mapHeight;
+	/* stylelint-disable function-parentheses-space-inside */
+	background-image: url(//maps.wikimedia.org/osm-intl/0/0/0.png);
+	/* stylelint-enable function-parentheses-space-inside */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: @mapWidth @mapHeight;
+}
+
+/* stylelint-disable media-feature-name-no-vendor-prefix */
+@media ( -webkit-min-device-pixel-ratio: 1.5 ),
+	( min--moz-device-pixel-ratio: 1.5 ),
+	( min-resolution: 1.5dppx ),
+	( min-resolution: 144dpi ) {
+	div#mw-specialMap-map {
+		/* stylelint-disable function-parentheses-space-inside */
+		background-image: url(//maps.wikimedia.org/osm-intl/0/0/0@1.5x.png);
+		/* stylelint-enable function-parentheses-space-inside */
+	}
+}
+
+@media ( -webkit-min-device-pixel-ratio: 2 ),
+	( min--moz-device-pixel-ratio: 2 ),
+	( min-resolution: 2dppx ),
+	( min-resolution: 192dpi ) {
+	div#mw-specialMap-map {
+		/* stylelint-disable function-parentheses-space-inside */
+		background-image: url(//maps.wikimedia.org/osm-intl/0/0/0@2x.png);
+		/* stylelint-enable function-parentheses-space-inside */
+	}
+}
+/* stylelint-enable media-feature-name-no-vendor-prefix */
+
+div#mw-specialMap-marker {
+	position: absolute;
+	background-color: @markerColor;
+	height: @markerSize;
+	width: @markerSize;
+	margin-top: -1 * (@markerSize/2);
+	margin-left: -1 * (@markerSize/2);
+	border-radius: @markerSize/2;
+}
+
+div#mw-specialMap-caption {
+	display: block;
+	padding-top: 0.5em;
+}
+
+span#mw-specialMap-icon {
+	display: inline-block;
+	margin: 0 12px 0 0;
+	background-color: @markerColor;
+	height: @markerSize;
+	width: @markerSize;
+	margin-top: -1 * (@markerSize/2);
+	margin-left: 0.5em;
+	border-radius: @markerSize/2;
+}
+
+div#mw-specialMap-attributions {
+	position: absolute;
+	bottom: 0;
+	font-size: 9px;
+	right: 0;
+	text-align: right;
+}
