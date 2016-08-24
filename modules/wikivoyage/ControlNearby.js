@@ -14,8 +14,11 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 
 	var articlePath = mw.config.get( 'wgArticlePath' );
 
-	function mousepopup( marker, data ) {
-		marker.bindPopup( data.title, { minWidth: 140, maxWidth: 140, closeButton: false } );
+	function prepareMarker( marker, data ) {
+		marker.setIcon( L.mapbox.marker.icon( {
+			'marker-color': 'a2a9b1'
+		} ) );
+		marker.bindPopup( data.title, { closeButton: false } );
 		marker.on( 'click', function () {
 			this.openPopup();
 		} );
@@ -28,8 +31,14 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 			link = mw.html.element( 'a', {
 				href: mw.format( articlePath, wgPageName ),
 				target: '_blank'
-			}, wgPageName );
-		return img + link;
+			}, wgPageName ),
+			title = mw.html.element( 'div', {
+				'class': 'marker-title'
+			}, new mw.html.Raw( link ) ),
+			description = mw.html.element( 'div', {
+				'class': 'marker-description'
+			}, new mw.html.Raw( img ) );
+		return title + description;
 	}
 
 	function createMarker( latitude, longitude, wgArticle, thumbnail ) {
@@ -106,7 +115,7 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 					pruneCluster.RegisterMarker(
 						createMarker.apply( null, addressPoints[ i ] )
 					);
-					pruneCluster.PrepareLeafletMarker = mousepopup;
+					pruneCluster.PrepareLeafletMarker = prepareMarker;
 				}
 				pruneCluster.ProcessView();
 			} ).fail( function () {

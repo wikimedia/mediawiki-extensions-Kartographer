@@ -47,6 +47,12 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 		fallbackZoom: 13
 	} );
 
+	L.Popup.mergeOptions( {
+		minWidth: 160,
+		maxWidth: 300,
+		autoPanPadding: [ 12, 12 ]
+	} );
+
 	/**
 	 * Gets the valid bounds of a map/layer.
 	 *
