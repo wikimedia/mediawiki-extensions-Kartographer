@@ -1,0 +1,28 @@
+{
+	"@metadata": {
+		"authors": [
+			"Papuass"
+		]
+	},
+	"kartographer-broken-category": "Lapas ar bojātām kartēm",
+	"kartographer-error-context-multi": "&lt;$1&gt; problēmas:\n$2",
+	"kartographer-error-missing-attr": "Trūkst atribūts \"$1\"",
+	"kartographer-error-bad_attr": "Atribūts \"$1\" vērtība ir nederīga",
+	"kartographer-error-bad_data": "JSON saturs nav derīgs GeoJSON+simplestyle",
+	"kartographer-tracking-category": "Lapas ar kartēm",
+	"kartographer-tracking-category-desc": "Lapā ir karte",
+	"leafletdraw-draw-handlers-circle-radius": "Rādiuss",
+	"leafletdraw-draw-toolbar-actions-text": "Atcelt",
+	"leafletdraw-draw-toolbar-actions-title": "Atcelt zīmēšanu",
+	"leafletdraw-edit-toolbar-actions-cancel-text": "Atcelt",
+	"leafletdraw-edit-toolbar-actions-save-text": "Saglabāt",
+	"leafletdraw-edit-toolbar-actions-save-title": "Saglabāt izmaiņas",
+	"leafletdraw-edit-toolbar-buttons-edit": "Labot slāņus",
+	"leafletdraw-edit-toolbar-buttons-remove": "Dzēst slāņus",
+	"leafletdraw-edit-toolbar-buttons-removedisabled": "Nav dzēšamu slāņu",
+	"kartographer-fullscreen-close": "Aizvērt",
+	"kartographer-fullscreen-text": "Parādīt pilnekrāna režīmā",
+	"visualeditor-mwmapsdialog-reset-map": "Atiestatit kartes pozīciju",
+	"visualeditor-mwmapsdialog-size": "Izmērs",
+	"visualeditor-mwmapsdialog-title": "Karte"
+}
