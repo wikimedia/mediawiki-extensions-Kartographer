@@ -249,10 +249,10 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 			this.fullScreenRoute = options.fullScreenRoute || null;
 
 			/**
-			 * @property {Array} dataLayers References to the data layers.
+			 * @property {Object} dataLayers References to the data layers.
 			 * @protected
 			 */
-			this.dataLayers = [];
+			this.dataLayers = {};
 
 			/* Add base layer */
 

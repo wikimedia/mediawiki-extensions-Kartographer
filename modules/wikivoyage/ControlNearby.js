@@ -89,10 +89,12 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 				return;
 			}
 			// Zoom out to get a better picture of the markers nearby.
-			if ( this.map.getZoom() >= 12 ) {
+			control._previousZoom = this.map.getZoom();
+			if ( control._previousZoom >= 12 ) {
 				this.map.setZoom( 10 );
 			}
 			this._toggleActiveClass( true );
+			control._toggleDataLayers( false );
 			if ( pruneCluster._objectsOnMap.length > 0 ) {
 				return;
 			}
@@ -119,6 +121,8 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 			if ( this.pruneCluster !== obj.layer ) {
 				return;
 			}
+			this._toggleDataLayers( true );
+			this.map.setZoom( this._previousZoom );
 			this._toggleActiveClass( false );
 		},
 
@@ -161,6 +165,17 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 			} else {
 				this.map[ enabled ? 'removeLayer' : 'addLayer' ]( this.pruneCluster );
 			}
+		},
+
+		/**
+		 * @protected
+		 */
+		_toggleDataLayers: function ( enable ) {
+			var control = this;
+
+			$.each( control.map.dataLayers, function ( group, layer ) {
+				control.map[ enable ? 'addLayer' : 'removeLayer' ]( layer );
+			} );
 		}
 	} );
 } )(
