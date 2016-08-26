@@ -290,7 +290,8 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 		dialog.map = kartobox.map( {
 			container: dialog.$map[ 0 ],
 			center: mapPosition.center,
-			zoom: mapPosition.zoom
+			zoom: mapPosition.zoom,
+			alwaysInteractive: true
 		} );
 
 		dialog.map.doWhenReady( function ()  {
