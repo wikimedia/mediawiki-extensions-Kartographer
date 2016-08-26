@@ -172,6 +172,8 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 		 *   fetchable from the server, to add as overlays onto the map.**
 		 * @param {Object|Array} [options.data] **Inline GeoJSON features to
 		 *   add to the map.**
+		 * @param {boolean} [options.alwaysInteractive=false] Prevents the map
+		 *   from becoming static when the screen is too small.
 		 * @param {Array|L.LatLng} [options.center] **Initial map center.**
 		 * @param {number} [options.zoom] **Initial map zoom.**
 		 * @param {string} [options.style] Map style. _Defaults to
@@ -307,7 +309,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 			}
 			this.doubleClickZoom.disable();
 
-			if ( !this.options.fullscreen ) {
+			if ( !this.options.fullscreen && !options.alwaysInteractive ) {
 				this._invalidateInterative();
 			}
 
