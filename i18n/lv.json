@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Papuass"
+			"Papuass",
+			"Silraks"
 		]
 	},
 	"kartographer-broken-category": "Lapas ar bojātām kartēm",
@@ -22,7 +23,7 @@
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Nav dzēšamu slāņu",
 	"kartographer-fullscreen-close": "Aizvērt",
 	"kartographer-fullscreen-text": "Parādīt pilnekrāna režīmā",
-	"visualeditor-mwmapsdialog-reset-map": "Atiestatit kartes pozīciju",
+	"visualeditor-mwmapsdialog-reset-map": "Atiestatīt kartes pozīciju",
 	"visualeditor-mwmapsdialog-size": "Izmērs",
 	"visualeditor-mwmapsdialog-title": "Karte"
 }

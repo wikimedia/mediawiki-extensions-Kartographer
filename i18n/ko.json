@@ -23,6 +23,7 @@
 	"kartographer-error-latlon": "\"latitude\"와 \"longitude\" 변수는 둘 다 있거나 둘 다 없어야 합니다",
 	"kartographer-tracking-category": "지도가 있는 문서",
 	"kartographer-tracking-category-desc": "이 문서는 지도를 포함합니다",
+	"kartographer-specialmap-invalid-coordinates": "유효하지 않은 좌표가 지정되었습니다",
 	"leafletdraw-draw-handlers-circle-radius": "반경",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "클릭하고 드래그해서 원을 그립니다",
 	"leafletdraw-draw-handlers-simpleshape-tooltip-end": "그리기를 마치려면 마우스를 놓으세요",
@@ -32,8 +33,10 @@
 	"leafletdraw-draw-toolbar-buttons-marker": "표식 그리기",
 	"leafletdraw-draw-toolbar-buttons-polygon": "다각형 그리기",
 	"leafletdraw-draw-toolbar-buttons-rectangle": "사각형 그리기",
+	"map": "좌표 정보",
 	"kartographer-fullscreen-close": "닫기",
 	"kartographer-fullscreen-text": "전체 화면으로 보기",
+	"visualeditor-mwmapsdialog-align": "배치",
 	"visualeditor-mwmapsdialog-reset-map": "map 위치 초기화",
 	"visualeditor-mwmapsdialog-size": "크기",
 	"visualeditor-mwmapsdialog-title": "지도"
