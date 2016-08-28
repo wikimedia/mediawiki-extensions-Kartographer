@@ -12,6 +12,7 @@
 	"kartographer-error-bad_data": "Den JSON-Inhalt ass kee valabelen GeoJSON+simplestyle",
 	"kartographer-tracking-category": "Säite mat Kaarten",
 	"kartographer-tracking-category-desc": "An der Säit ass eng Kaart dran",
+	"kartographer-specialmap-invalid-coordinates": "Net valabel Koordinaten uginn",
 	"leafletdraw-draw-handlers-circle-radius": "Radius",
 	"leafletdraw-draw-handlers-rectangle-tooltip-start": "Klicken an zéie fir e Rechteck ze zeechnen",
 	"leafletdraw-draw-toolbar-actions-text": "Ofbriechen",
@@ -22,8 +23,10 @@
 	"leafletdraw-edit-toolbar-actions-cancel-title": "Ännerung ofbriechen, all Ännerungen ignoréieren",
 	"leafletdraw-edit-toolbar-actions-save-text": "Späicheren",
 	"leafletdraw-edit-toolbar-actions-save-title": "Ännerunge späicheren",
+	"map": "Informatioun iwwer d'Koordinaten",
 	"kartographer-fullscreen-close": "Zoumaachen",
 	"kartographer-fullscreen-text": "Am Vollbildmodus weisen",
+	"visualeditor-mwmapsdialog-align": "Alignement",
 	"visualeditor-mwmapsdialog-size": "Gréisst",
 	"visualeditor-mwmapsdialog-title": "Kaart"
 }
