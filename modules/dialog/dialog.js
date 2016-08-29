@@ -42,6 +42,8 @@ module.Dialog = ( function ( $, mw, kartobox, router ) {
 		if ( !action ) {
 			return new OO.ui.Process( function () {
 				dialog.map.closeFullScreen();
+				dialog.map.remove();
+				dialog.map = null;
 			} );
 		}
 		return MapDialog.super.prototype.getActionProcess.call( this, action );
@@ -117,8 +119,10 @@ module.Dialog = ( function ( $, mw, kartobox, router ) {
 	MapDialog.prototype.getTeardownProcess = function ( data ) {
 		return MapDialog.super.prototype.getTeardownProcess.call( this, data )
 			.next( function () {
-				this.map.remove();
-				this.map = null;
+				if ( this.map ) {
+					this.map.remove();
+					this.map = null;
+				}
 			}, this );
 	};
 
