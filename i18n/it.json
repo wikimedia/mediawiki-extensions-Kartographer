@@ -20,6 +20,7 @@
 	"kartographer-error-bad_data": "Il contenuto JSON non è un valido GeoJSON+simplestyle",
 	"kartographer-tracking-category": "Pagine con mappe",
 	"kartographer-tracking-category-desc": "La pagina include una mappa",
+	"kartographer-specialmap-invalid-coordinates": "Indicate coordinate non valide",
 	"leafletdraw-draw-handlers-circle-radius": "Raggio",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "Clicca e trascina per disegnare un cerchio",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Clicca sulla mappa per posizionare un marcatore",
@@ -56,6 +57,7 @@
 	"mapbox-control-zoomout-title": "Zoom indietro",
 	"kartographer-fullscreen-close": "Chiudi",
 	"kartographer-fullscreen-text": "Visualizza a schermo intero",
+	"visualeditor-mwmapsdialog-align": "Allineamento",
 	"visualeditor-mwmapsdialog-reset-map": "Resetta la posizione della mappa",
 	"visualeditor-mwmapsdialog-size": "Dimensione",
 	"visualeditor-mwmapsdialog-title": "Mappa"
