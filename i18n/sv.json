@@ -47,6 +47,7 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Inga lager att redigera",
 	"leafletdraw-edit-toolbar-buttons-remove": "Radera lager",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Inga lager att ta bort",
+	"map": "Koordinatinformation",
 	"mapbox-control-zoomin-title": "Zooma in",
 	"mapbox-control-zoomout-title": "Zooma ut",
 	"kartographer-fullscreen-close": "Stäng",

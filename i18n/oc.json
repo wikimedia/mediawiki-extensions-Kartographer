@@ -4,6 +4,7 @@
 			"Cedric31"
 		]
 	},
+	"apihelp-sanitize-mapdata-param-title": "Títol de la pagina sus la quala aqueste GeoJSON es censat se trobar. Se cap de títol es pas provesit, un pseudòtítol serà utilizat.",
 	"mapbox-control-zoomin-title": "Zoom avant",
 	"mapbox-control-zoomout-title": "Zoom arrièr"
 }
