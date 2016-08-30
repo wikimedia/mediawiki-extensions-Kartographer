@@ -1,0 +1,101 @@
+/**
+ * WikimediaUI base v0.5.0
+ * Wikimedia Foundation user interface base variables
+ */
+
+/* Colors */
+// WMUI color palette
+@wmui-color-base0:           #000;
+@wmui-color-base10:          #222;
+@wmui-color-base20:          #555a5f;
+@wmui-color-base30:          #7d8389;
+@wmui-color-base50:          #a2a9b1;
+@wmui-color-base60:          #c8ccd1;
+@wmui-color-base80:          #eaecf0;
+@wmui-color-base100:         #fff;
+
+@wmui-color-acct50:          #36c;
+
+@wmui-color-alrt50:          #c33;
+
+// Background Colors
+@background-color-base:      @wmui-color-base100;
+@background-color-code:      #f9f9f9;
+// Foreground Colors
+@color-base:                 @wmui-color-base10;
+@color-contrast:             @wmui-color-base100;
+// @color-link:              #222;
+@color-base-disabled:        @wmui-color-base30;
+// Primary Color and states
+@color-primary:              @wmui-color-acct50;
+@color-primary-hover:        #447ff5; // equals HSB 220°/72%/96%
+@color-primary-active:       #2a4b8d; // equals HSB 220°/70%/55%
+@color-primary-focus:        @color-primary;
+// Secondary Color and states (links only)
+@color-secondary:            #195a59;
+@color-secondary-hover:      #1c6665;
+@color-secondary-active:     #134645;
+@color-secondary-focus:      @color-secondary;
+// Destructive Color and states
+@color-destructive:          @wmui-color-alrt50;
+@color-destructive-hover:    #e53939; // equals HSB 0°/75%/90%
+@color-destructive-active:   #873636;
+@color-destructive-focus:    @color-destructive;
+// Colors RGBA including hex fallback on `#fff` for IE 6/7/8
+@color-highlighted:          rgba( 255, 182, 13, 0.4 );
+@color-highlighted-fallback: #ffe29e;
+// Opacity
+@opacity-base:               1;
+@opacity-base-disabled:      0.2;
+
+
+/* Positioning */
+// Z-Index
+@z-index-base:               0;
+
+
+/* Box Model properties */
+/* Max Widths */
+@max-width-button:           28.75em; // equivalent to `460px` at `16px` base, see T95367
+@max-width-input-inline:     100%;
+// Border
+@border-base:                1px solid @border-color-base;
+// Border Colors
+@border-color-base:          #222;
+@border-color-base-hover:    @color-primary;
+@border-color-base-disabled: @color-base-disabled;
+@border-color-heading:       #ccc;
+// Border Radius
+@border-radius-base:         2px;
+// Box Shadows
+@box-shadow-dialog:          0 0.15em 0 0 rgba( 0, 0, 0, 0.15 );
+@box-shadow-menu:            @box-shadow-dialog;
+
+
+/* Typography incl. print properties */
+// Font Families
+@font-family-base:           @font-family-sans;
+@font-family-heading-main:   @font-family-serif;
+@font-family-sans:           "Lato", "Helvetica Neue", "Helvetica", "Nimbus Sans L", "Arial", "Liberation Sans", sans-serif;
+@font-family-serif:          "Charter", "Linux Libertine", "Georgia", "Times", serif;
+// Line Heights
+@line-height-base:           1.6;
+@line-height-heading:        1.25;
+@text-decoration-link-hover: none;
+// Text Shadows
+@text-shadow-base:           0 1px 1px @color-contrast; // "coined" effect
+@text-shadow-base-disabled:  @text-shadow-base;
+
+
+/* Other Properties */
+// Cursors
+@cursor-base-disabled:       default;
+
+
+/* Animation & Transition */
+// Transitions
+@transition-base:            @transition-duration-base;
+@transition-long:            @transition-duration-long;
+// Transitions > Durations
+@transition-duration-base:   100ms;
+@transition-duration-long:   250ms;

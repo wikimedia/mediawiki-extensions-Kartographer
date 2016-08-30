@@ -7,6 +7,7 @@ cp -rv node_modules/mapbox.js/theme/* lib/mapbox/
 rm lib/mapbox/images/render.sh
 
 cp -v node_modules/leaflet-sleep/Leaflet.Sleep.js lib/leaflet.sleep.js
+cp -v node_modules/wmui-base/wmui-base.less lib/wmui-base.less
 
 cp -v node_modules/prunecluster/dist/PruneCluster.js \
     node_modules/prunecluster/dist/LeafletStyleSheet.css \
