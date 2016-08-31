@@ -21,6 +21,7 @@
 
 /* Fixes align=center */
 .ve-ce-mwMapsNode.center {
+	position: relative;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
