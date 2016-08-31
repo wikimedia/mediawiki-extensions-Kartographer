@@ -10,7 +10,7 @@
  * @class Kartographer.Link
  * @singleton
  */
-module.exports = ( function ( $, mw, router, kartobox ) {
+module.exports = ( function ( $, mw, router, kartobox, undefined ) {
 
 	/**
 	 * References the maplinks of the page.
@@ -90,17 +90,22 @@ module.exports = ( function ( $, mw, router, kartobox ) {
 		//     #/maplink/0/5
 		//     #/maplink/0/16/-122.4006/37.7873
 		router.route( /maplink\/([0-9]+)(?:\/([0-9]+))?(?:\/([\-\+]?\d+\.?\d{0,5})?\/([\-\+]?\d+\.?\d{0,5})?)?/, function ( maptagId, zoom, latitude, longitude ) {
-			var link = maplinks[ maptagId ];
+			var link = maplinks[ maptagId ],
+				position;
 
 			if ( !link ) {
 				router.navigate( '' );
 				return;
 			}
 
-			link.openFullScreen( {
-				center: [ +latitude, +longitude ],
-				zoom: +zoom
-			} );
+			if ( zoom !== undefined && latitude !== undefined && longitude !== undefined ) {
+				position = {
+					center: [ +latitude, +longitude ],
+					zoom: +zoom
+				};
+			}
+
+			link.openFullScreen( position );
 		} );
 
 		// Check if we need to open a map in full screen.

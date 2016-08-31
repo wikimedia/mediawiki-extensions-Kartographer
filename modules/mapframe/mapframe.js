@@ -120,17 +120,22 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 			//     #/map/0/5
 			//     #/map/0/16/-122.4006/37.7873
 			router.route( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([\-\+]?\d+\.?\d{0,5})?\/([\-\+]?\d+\.?\d{0,5})?)?/, function ( maptagId, zoom, latitude, longitude ) {
-				var map = maps[ maptagId ];
+				var map = maps[ maptagId ],
+					position;
 
 				if ( !map ) {
 					router.navigate( '' );
 					return;
 				}
 
-				map.openFullScreen( {
-					center: [ +latitude, +longitude ],
-					zoom: +zoom
-				} );
+				if ( zoom !== undefined && latitude !== undefined && longitude !== undefined ) {
+					position = {
+						center: [ +latitude, +longitude ],
+						zoom: +zoom
+					};
+				}
+
+				map.openFullScreen( position );
 			} );
 
 			// Check if we need to open a map in full screen.
