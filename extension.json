@@ -374,7 +374,7 @@
 		"KartographerIconServer": "https://maps.wikimedia.org",
 		"KartographerFrameMode": "interactive",
 		"KartographerUseMarkerStyle": false,
-		"KartographerEnableTags": [ "mapframe", "maplink" ]
+		"KartographerEnableMapFrame": true
 	},
 	"TrackingCategories": [
 		"kartographer-tracking-category",

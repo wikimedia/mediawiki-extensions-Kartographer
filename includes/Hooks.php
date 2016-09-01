@@ -26,12 +26,11 @@ class Hooks {
 	 * @return bool
 	 */
 	public static function onParserFirstCallInit( Parser $parser ) {
-		global $wgKartographerEnableTags;
+		global $wgKartographerEnableMapFrame;
 
-		foreach ( $wgKartographerEnableTags as $tag ) {
-			if ( isset( self::$tags[$tag] ) ) {
-				$parser->setHook( $tag, self::$tags[$tag] );
-			}
+		$parser->setHook( 'maplink', 'Kartographer\Tag\MapLink::entryPoint' );
+		if ( $wgKartographerEnableMapFrame ) {
+			$parser->setHook( 'mapframe', 'Kartographer\Tag\MapFrame::entryPoint' );
 		}
 
 		return true;
