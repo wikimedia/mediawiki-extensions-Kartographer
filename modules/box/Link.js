@@ -94,7 +94,7 @@ module.Link = ( function ( $ ) {
 			);
 		} else {
 			map = this.fullScreenMap = L.kartographer.map( {
-				container: document.createElement( 'div' ),
+				container: L.DomUtil.create( 'div', 'mw-kartographer-mapDialog-map' ),
 				fullscreen: true,
 				link: true,
 				center: position.center,
