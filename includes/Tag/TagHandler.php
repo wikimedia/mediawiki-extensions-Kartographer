@@ -124,7 +124,7 @@ abstract class TagHandler {
 			return $this->reportError();
 		}
 
-		$this->saveData( $output );
+		$this->saveData();
 
 		$this->state->setValidTags();
 
@@ -245,7 +245,7 @@ abstract class TagHandler {
 	}
 
 
-	protected function saveData( ParserOutput $output ) {
+	protected function saveData() {
 		$this->state->addRequestedGroups( $this->showGroups );
 
 		if ( !$this->geometries ) {
