@@ -25,6 +25,7 @@ class DataModule extends ResourceLoaderModule {
 			'wgKartographerSrcsetScales' => $config->get( 'KartographerSrcsetScales' ),
 			'wgKartographerStyles' => $config->get( 'KartographerStyles' ),
 			'wgKartographerDfltStyle' => $config->get( 'KartographerDfltStyle' ),
+			'wgKartographerEnableMapFrame' => $config->get( 'KartographerEnableMapFrame' ),
 		) );
 	}
 
