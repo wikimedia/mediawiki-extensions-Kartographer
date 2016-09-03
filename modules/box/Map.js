@@ -117,7 +117,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 	 * @private
 	 */
 	function getMapGroupData( dataGroups ) {
-		var deferred = $.Deferred(),
+		var apiPromise = $.Deferred(),
 			groupsLoaded = mw.config.get( 'wgKartographerLiveData' ),
 			groupsToLoad = [],
 			promises = [];
@@ -134,31 +134,30 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 			if ( data === undefined ) {
 				groupsToLoad.push( value );
 				// Once loaded, this value will be replaced with the received data
-				groupsLoaded[ value ] = deferred.promise();
+				groupsLoaded[ value ] = apiPromise.promise();
 			} else if ( data !== null && $.isFunction( data.then ) ) {
 				promises.push( data );
 			}
 		} );
 
 		if ( groupsToLoad.length ) {
-			promises.push( deferred.promise() );
+			new mw.Api().get( {
+				action: 'query',
+				formatversion: '2',
+				titles: mw.config.get( 'wgPageName' ),
+				prop: 'mapdata',
+				mpdgroups: groupsToLoad.join( '|' )
+			} ).done( function ( data ) {
+				var rawMapData = data.query.pages[ 0 ].mapdata,
+					mapData = rawMapData && JSON.parse( rawMapData ) || {};
+				$.extend( groupsLoaded, mapData );
+				apiPromise.resolve( groupsLoaded );
+			} );
+			promises.push( apiPromise.promise() );
 		}
 		if ( !promises.length ) {
-			return deferred.resolve( groupsLoaded ).promise();
+			return apiPromise.resolve( groupsLoaded ).promise();
 		}
-
-		new mw.Api().get( {
-			action: 'query',
-			formatversion: '2',
-			titles: mw.config.get( 'wgPageName' ),
-			prop: 'mapdata',
-			mpdgroups: groupsToLoad.join( '|' )
-		} ).done( function ( data ) {
-			var rawMapData = data.query.pages[ 0 ].mapdata,
-				mapData = rawMapData && JSON.parse( rawMapData ) || {};
-			$.extend( groupsLoaded, mapData );
-			deferred.resolve( groupsLoaded );
-		} );
 
 		return $.when.apply( $, promises ).then( function () {
 			// All pending promises are done
