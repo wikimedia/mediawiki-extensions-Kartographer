@@ -161,6 +161,7 @@
 			"dependencies": [
 				"oojs-ui.styles.icons-media",
 				"mapbox",
+				"ext.kartographer.lib.topojson",
 				"ext.kartographer",
 				"ext.kartographer.style",
 				"ext.kartographer.settings",
@@ -295,6 +296,19 @@
 			],
 			"styles": [
 				"lib/prunecluster/LeafletStyleSheet.css"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"ext.kartographer.lib.topojson": {
+			"dependencies": [
+				"mapbox"
+			],
+			"scripts": [
+				"lib/topojson/topojson.js",
+				"lib/topojson/loader.js"
 			],
 			"targets": [
 				"mobile",

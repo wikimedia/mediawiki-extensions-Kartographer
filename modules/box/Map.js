@@ -1,4 +1,4 @@
-/* globals module */
+/* globals module, require */
 /**
  * # Kartographer Map class.
  *
@@ -8,13 +8,15 @@
  * @class Kartographer.Box.MapClass
  * @extends L.Map
  */
-module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dataLayerOpts, ScaleControl, document, undefined ) {
+module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dataLayerOpts, ScaleControl, topojson, document, undefined ) {
 
 	var scale, urlFormat,
 		mapServer = mw.config.get( 'wgKartographerMapServer' ),
 		worldLatLng = new L.LatLngBounds( [ -90, -180 ], [ 90, 180 ] ),
 		Map,
-		precisionPerZoom = [ 0, 0, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5 ];
+		precisionPerZoom = [ 0, 0, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5 ],
+		liveDataPromise = false,
+		groupsLoaded = {};
 
 	function bracketDevicePixelRatio() {
 		var i, scale,
@@ -118,23 +120,32 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 	 */
 	function getMapGroupData( dataGroups ) {
 		var apiPromise = $.Deferred(),
-			groupsLoaded = mw.config.get( 'wgKartographerLiveData' ),
+			// LiveData is provided by the server on initial page load
+			// But it may contain external data that we have to load here
+			liveData = mw.config.get( 'wgKartographerLiveData' ) || {},
 			groupsToLoad = [],
 			promises = [];
 
-		if ( !groupsLoaded ) {
-			// Keep the reference to groupsLoaded, as it shouldn't change again
-			groupsLoaded = {};
-			mw.config.set( 'wgKartographerLiveData', groupsLoaded );
+		// On initial page load, server provided some live data
+		// Here we process all externalData refs in the live data, ensuring that we only do it once
+		if ( liveDataPromise === false ) {
+			liveDataPromise = loadGeoJsonAsync( liveData ).then( function () {
+				liveDataPromise = true;
+			} );
+		}
+		if ( liveDataPromise !== true ) {
+			promises.push( liveDataPromise );
 		}
 
 		// For each requested layer, make sure it is loaded or is promised to be loaded
-		$( dataGroups ).each( function ( key, value ) {
-			var data = groupsLoaded[ value ];
+		$.each( dataGroups, function ( key, group ) {
+			var data = groupsLoaded[ group ];
 			if ( data === undefined ) {
-				groupsToLoad.push( value );
-				// Once loaded, this value will be replaced with the received data
-				groupsLoaded[ value ] = apiPromise.promise();
+				if ( liveData[ group ] === undefined ) {
+					groupsToLoad.push( group );
+					// Once loaded, this value will be replaced with the received data
+					groupsLoaded[ group ] = apiPromise.promise();
+				}
 			} else if ( data !== null && $.isFunction( data.then ) ) {
 				promises.push( data );
 			}
@@ -150,19 +161,100 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 			} ).done( function ( data ) {
 				var rawMapData = data.query.pages[ 0 ].mapdata,
 					mapData = rawMapData && JSON.parse( rawMapData ) || {};
-				$.extend( groupsLoaded, mapData );
-				apiPromise.resolve( groupsLoaded );
+				return loadGeoJsonAsync( mapData ).then( function () {
+					apiPromise.resolve( groupsLoaded );
+				} );
 			} );
 			promises.push( apiPromise.promise() );
-		}
-		if ( !promises.length ) {
-			return apiPromise.resolve( groupsLoaded ).promise();
 		}
 
 		return $.when.apply( $, promises ).then( function () {
 			// All pending promises are done
 			return groupsLoaded;
 		} ).promise();
+	}
+
+	/**
+	 * Traverse data, load all external data, and expand it in place. Returns a promise.
+	 *
+	 * @param {Object} data groupId->GeoJson, where geojson may contain ExternalData hrefs
+	 * @return {Promise} resolved when all external data objects are expanded in place
+	 */
+	function loadGeoJsonAsync( data ) {
+		var promises = [];
+		$.each( data, function ( key, value ) {
+			loadGeoJsonRec( value, promises );
+		} );
+		return $.when.apply( $, promises ).then( function () {
+			$.extend( groupsLoaded, data );
+		} );
+	}
+
+	/**
+	 * Recursive function to traverse data and expand external data
+	 *
+	 * @param {Object|Array|*} data to traverse
+	 * @param {Promise[]} pendingPromises list of promises, one for each external data XHR
+	 */
+	function loadGeoJsonRec( data, pendingPromises ) {
+		if ( $.isArray( data ) ) {
+			$.each( data, function ( key, value ) {
+				loadGeoJsonRec( value, pendingPromises );
+			} );
+		} else if ( $.isPlainObject( data ) && data.type ) {
+			if ( data.type === 'GeometryCollection' && data.geometries ) {
+				loadGeoJsonRec( data.geometries, pendingPromises );
+			} else if ( data.type === 'FeatureCollection' && data.features ) {
+				loadGeoJsonRec( data.features, pendingPromises );
+			} else if ( data.type === 'ExternalData' ) {
+				pendingPromises.push( loadExternalDataAsync( data ) );
+			}
+		}
+	}
+
+	/**
+	 * For a given ExternalData object, gets it via XHR and expands it in place
+	 *
+	 * @param {Object} data
+	 * @param {string} data.href URL to external data
+	 * @return {Promise} resolved when done with geojson expansion
+	 */
+	function loadExternalDataAsync( data ) {
+		var uri = new mw.Uri( data.href );
+		// If url begins with   protocol:///...  mark it as having relative host
+		if ( /^[a-z]+:\/\/\//.test( data.href ) ) {
+			uri.isRelativeHost = true;
+		}
+		switch ( uri.protocol ) {
+			case 'geoshape':
+				// geoshape:///?ids=Q16,Q30
+				// geoshape:///?query=SELECT...
+				// Get geo shapes data from OSM database by supplying Wikidata IDs or query
+				// https://maps.wikimedia.org/shape?ids=Q16,Q30
+				if ( !uri.query || ( !uri.query.ids && !uri.query.query ) ) {
+					throw new Error( 'geoshape: missing ids or query parameter in: ' + data.href );
+				}
+				if ( !uri.isRelativeHost && uri.host !== 'maps.wikimedia.org' ) {
+					throw new Error( 'geoshape: hostname must be missing or "maps.wikimedia.org": ' + data.href );
+				}
+				uri.protocol = 'https';
+				uri.host = 'maps.wikimedia.org';
+				uri.port = undefined;
+				uri.path = '/geoshape';
+				uri.query.origin = location.protocol + '//' + location.host;
+
+				return $.getJSON( uri.toString() ).then( function ( geoshape ) {
+					delete data.href;
+					data.type = 'FeatureCollection';
+					data.features = [];
+					$.each( geoshape.objects, function ( key ) {
+						data.features.push( topojson.feature( geoshape, geoshape.objects[ key ] ) );
+					} );
+				} );
+
+			default:
+				throw new Error( 'Unknown protocol ' + data.href );
+		}
 	}
 
 	/*jscs:disable disallowDanglingUnderscores */
@@ -785,6 +877,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 	module.CloseFullScreenControl,
 	module.dataLayerOpts,
 	module.ScaleControl,
+	require( 'ext.kartographer.lib.topojson' ),
 	document
 );
 
