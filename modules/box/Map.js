@@ -465,7 +465,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 				}
 			}
 
-			zoom = isNaN( zoom ) ? this.options.fallbackZoom : zoom;
+			zoom = isNaN( zoom ) ? undefined : zoom;
 			this._initialPosition = {
 				center: center,
 				zoom: zoom
@@ -696,8 +696,10 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 				}
 				// (Re-)Applies expected zoom
 
-				if ( initial && initial.zoom ) {
+				if ( initial && !isNaN( initial.zoom ) ) {
 					this.setZoom( initial.zoom );
+				} else if ( this.getZoom() > this.options.fallbackZoom ) {
+					this.setZoom( this.options.fallbackZoom );
 				}
 
 				if ( save ) {
