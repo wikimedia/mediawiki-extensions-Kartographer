@@ -40,7 +40,7 @@ class SpecialMap extends SpecialPage {
 		}
 
 		$attributions = Html::rawElement( 'div', [ 'id' => 'mw-specialMap-attributions' ],
-			wfMessage( 'kartographer-attribution' )->parse() );
+			wfMessage( 'kartographer-attribution' )->title( $this->getTitle() )->parse() );
 
 		$this->getOutput()->addHTML(
 			Html::openElement( 'div', [ 'id' => 'mw-specialMap-container', 'class' => 'thumb' ] )
