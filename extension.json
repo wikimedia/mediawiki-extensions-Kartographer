@@ -52,8 +52,7 @@
 			"styles": [
 				"styles/kartographer.less",
 				"styles/control-attribution.less",
-				"styles/control-scale.less",
-				"styles/leaflet-overrides.less"
+				"styles/control-scale.less"
 			],
 			"targets": [
 				"mobile",
