@@ -412,7 +412,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 
 			this.addDataGroups( options.dataGroups ).then( L.Util.bind( function () {
 				if ( typeof options.data === 'object' ) {
-					this.addDataLayer( options.data );
+					this.addDataLayer( 'kartographer-inline-data-layer', options.data );
 				}
 
 				this.initView( options.center, options.zoom );
