@@ -16,7 +16,6 @@ use Kartographer\SimpleStyleParser;
 use Kartographer\State;
 use Language;
 use Parser;
-use ParserOutput;
 use PPFrame;
 use Status;
 use stdClass;

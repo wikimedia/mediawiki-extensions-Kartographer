@@ -37,6 +37,7 @@ class ApiSanitizeMapData extends ApiBase {
 	}
 
 	private function sanitizeJson( Title $title, $text ) {
+		/** @var Parser $wgParser */
 		global $wgParser;
 
 		$parser = $wgParser->getFreshParser();

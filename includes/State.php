@@ -13,7 +13,7 @@ class State {
 	const VERSION = 1;
 
 	/** @var int Version of this class, for checking after deserialization */
-	private $version = self::VERSION;
+	private /** @noinspection PhpUnusedPrivateFieldInspection */ $version = self::VERSION;
 
 	private $valid = false;
 	private $broken = false;
@@ -23,7 +23,7 @@ class State {
 	private $data = [];
 
 	/**
-	 * Retrieves an instance of self from ParserOutout, if present
+	 * Retrieves an instance of self from ParserOutput, if present
 	 *
 	 * @param ParserOutput $output
 	 * @return self|null
