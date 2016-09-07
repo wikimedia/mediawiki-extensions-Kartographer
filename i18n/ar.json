@@ -4,9 +4,11 @@
 			"محمد أحمد عبد الفتاح",
 			"Maroen1990",
 			"Meno25",
-			"Moud hosny"
+			"Moud hosny",
+			"بدارين"
 		]
 	},
+	"kartographer-broken-category": "صفحات مع خرائط معطوبة",
 	"kartographer-tracking-category": "صفحات مع الخرائط",
 	"kartographer-tracking-category-desc": "تحتوي هذه الصفحة على خارطة",
 	"kartographer-specialmap-invalid-coordinates": "إدخال إحداثيات غير صالحة",
@@ -15,6 +17,7 @@
 	"leafletdraw-draw-handlers-marker-tooltip-start": "انقر على الخريطة لوضع العلامة",
 	"leafletdraw-draw-handlers-polygon-tooltip-cont": "انقر لتقوم بمتابعة رسم هذا الشكل",
 	"leafletdraw-draw-handlers-polygon-tooltip-start": "اضغط لبدء رسم شكل",
+	"leafletdraw-draw-handlers-polyline-tooltip-cont": "انقر لمتابعة رسم هذا الخط",
 	"leafletdraw-draw-handlers-polyline-tooltip-start": "اضغط لبدء رسم خط",
 	"leafletdraw-draw-toolbar-actions-text": "إلغاء",
 	"leafletdraw-draw-toolbar-actions-title": "إلغاء الرسم",
@@ -23,6 +26,7 @@
 	"leafletdraw-draw-toolbar-buttons-polyline": "ارسم مضلعا",
 	"leafletdraw-draw-toolbar-buttons-rectangle": "ارسم مستطيلا",
 	"leafletdraw-draw-toolbar-undo-text": " احذف اخر نقطة",
+	"leafletdraw-draw-toolbar-undo-title": "حذف آخر نقطة مرسومة",
 	"leafletdraw-edit-handlers-edit-tooltip-subtext": "انقر \"إلغاء الأمر\" للعودة إلى التغييرات",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "إلغاء",
 	"leafletdraw-edit-toolbar-actions-save-text": "احفظ",
