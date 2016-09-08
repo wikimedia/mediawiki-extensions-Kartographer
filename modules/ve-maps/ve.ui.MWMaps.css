@@ -14,9 +14,18 @@
 	max-width: none;
 }
 
-.ve-ui-mwMapsDialog-resetMapButton {
+.ve-ui-mwMapsDialog-position {
 	margin-bottom: 1em;
 	text-align: center;
+}
+
+.ve-ui-mwMapsDialog-position .oo-ui-buttonWidget {
+	margin-right: 2em;
+}
+
+/* Fixes overlap with ace editor */
+.ve-ui-mwMapsDialog-position .oo-ui-popupWidget-popup {
+	z-index: 3;
 }
 
 /* Fixes align=center */
@@ -25,4 +34,13 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.ve-ui-mwMapsDialog-position-table {
+	margin: 1em;
+	text-align: left;
+}
+
+.ve-ui-mwMapsDialog-position-table th {
+	padding: 0.5em 1em 0.5em 0;
 }

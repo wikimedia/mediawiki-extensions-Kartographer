@@ -47,7 +47,9 @@ ve.ui.MWMapsDialog.static.modelClasses = [ ve.dm.MWMapsNode, ve.dm.MWInlineMapsN
  * @inheritdoc
  */
 ve.ui.MWMapsDialog.prototype.initialize = function () {
-	var panel;
+	var panel,
+		positionPopupButton,
+		$currentPositionTable;
 
 	// Parent method
 	ve.ui.MWMapsDialog.super.prototype.initialize.call( this );
@@ -93,7 +95,26 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		label: ve.msg( 'visualeditor-mwmapsdialog-align' )
 	} );
 
-	this.$resetMapButtonContainer = $( '<div>' ).addClass( 've-ui-mwMapsDialog-resetMapButton' );
+	this.$currentPositionLatField = $( '<td></td>' );
+	this.$currentPositionLonField = $( '<td></td>' );
+	this.$currentPositionZoomField = $( '<td></td>' );
+	$currentPositionTable = $( '<table>' ).addClass( 've-ui-mwMapsDialog-position-table' )
+		.append( $( '<tr>' ).append( '<th>' + ve.msg( 'visualeditor-mwmapsdialog-position-lat' ) + '</th>' ).append( this.$currentPositionLatField ) )
+		.append( $( '<tr>' ).append( '<th>' + ve.msg( 'visualeditor-mwmapsdialog-position-lon' ) + '</th>' ).append( this.$currentPositionLonField ) )
+		.append( $( '<tr>' ).append( '<th>' + ve.msg( 'visualeditor-mwmapsdialog-position-zoom' ) + '</th>' ).append( this.$currentPositionZoomField ) );
+
+	positionPopupButton = new OO.ui.PopupButtonWidget( {
+		label: ve.msg( 'visualeditor-mwmapsdialog-position-button' ),
+		icon: 'info',
+		framed: false,
+		popup: {
+			$content: $currentPositionTable,
+			padded: true,
+			align: 'forwards'
+		}
+	} );
+
+	this.$mapPositionContainer = $( '<div>' ).addClass( 've-ui-mwMapsDialog-position' );
 
 	this.geoJsonField = new OO.ui.FieldLayout( this.input, {
 		align: 'top',
@@ -104,7 +125,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		this.dimensionsField.$element,
 		this.alignField.$element,
 		this.$mapContainer,
-		this.$resetMapButtonContainer.append( this.resetMapButton.$element ),
+		this.$mapPositionContainer.append( positionPopupButton.$element, this.resetMapButton.$element ),
 		this.geoJsonField.$element
 	);
 	this.$body.append( panel.$element );
@@ -278,7 +299,7 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 			// TODO: Support block/inline conversion
 			this.align.selectItemByData( mwAttrs.align || 'right' );
 
-			this.$resetMapButtonContainer.toggle( !!this.selectedNode );
+			this.resetMapButton.$element.toggle( !!this.selectedNode );
 
 			this.dimensions.setDimensions( this.scalable.getCurrentDimensions() );
 
@@ -359,13 +380,24 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 				update();
 			}
 
+			function updatePositionContainer() {
+				var position = dialog.map.getMapPosition(),
+					scaled = dialog.map.getScaleLatLng( position.center.lat, position.center.lng, position.zoom );
+				dialog.$currentPositionLatField.text( scaled[ 0 ] );
+				dialog.$currentPositionLonField.text( scaled[ 1 ] );
+				dialog.$currentPositionZoomField.text( position.zoom );
+			}
+
+			function onMapMove() {
+				dialog.updateActions();
+				updatePositionContainer();
+			}
+
 			dialog.map
 				.on( 'draw:edited', update )
 				.on( 'draw:deleted', update )
 				.on( 'draw:created', created )
-				.on( 'moveend', function () {
-					dialog.updateActions();
-				} );
+				.on( 'moveend', onMapMove );
 
 		} );
 	} );

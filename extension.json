@@ -230,6 +230,11 @@
 			"scripts": [
 				"modules/preview/preview.js"
 			],
+			"messages": [
+				"visualeditor-mwmapsdialog-position-lat",
+				"visualeditor-mwmapsdialog-position-lon",
+				"visualeditor-mwmapsdialog-position-zoom"
+			],
 			"targets": [
 				"mobile",
 				"desktop"
@@ -269,6 +274,10 @@
 			"messages": [
 				"visualeditor-mwmapsdialog-align",
 				"visualeditor-mwmapsdialog-geojson",
+				"visualeditor-mwmapsdialog-position-button",
+				"visualeditor-mwmapsdialog-position-lat",
+				"visualeditor-mwmapsdialog-position-lon",
+				"visualeditor-mwmapsdialog-position-zoom",
 				"visualeditor-mwmapsdialog-reset-map",
 				"visualeditor-mwmapsdialog-size",
 				"visualeditor-mwmapsdialog-title"

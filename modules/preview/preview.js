@@ -19,15 +19,23 @@
 			var popup = L.popup();
 
 			function onMapMenu( e ) {
-				var coords = map.getScaleLatLng(
+				var content = '',
+					zoom = map.getZoom(),
+					coords = map.getScaleLatLng(
 					e.latlng.lat,
 					e.latlng.lng
 				);
 
+				content += '<table>';
+				content += '<tr><th>' + mw.msg( 'visualeditor-mwmapsdialog-position-lat' ) + '</th><td>' + coords[ 0 ] + '</td></tr>';
+				content += '<tr><th>' + mw.msg( 'visualeditor-mwmapsdialog-position-lon' ) + '</th><td>' + coords[ 1 ] + '</td></tr>';
+				content += '<tr><th>' + mw.msg( 'visualeditor-mwmapsdialog-position-zoom' ) + '</th><td>' + zoom + '</td></tr>';
+				content += '</table>';
+
 				popup
 					.setLatLng( e.latlng )
 					// These are non-localized wiki tag attributes, so no need for i18n
-					.setContent( 'latitude=' + coords[ 0 ] + ' longitude=' + coords[ 1 ] )
+					.setContent( content )
 					.openOn( map );
 			}
 
