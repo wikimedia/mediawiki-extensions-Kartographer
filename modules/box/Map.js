@@ -242,14 +242,20 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 				uri.port = undefined;
 				uri.path = '/geoshape';
 				uri.query.origin = location.protocol + '//' + location.host;
+				// HACK: workaround for T144777
+				uri.query.getgeojson = 1;
 
 				return $.getJSON( uri.toString() ).then( function ( geoshape ) {
 					delete data.href;
-					data.type = 'FeatureCollection';
-					data.features = [];
-					$.each( geoshape.objects, function ( key ) {
-						data.features.push( topojson.feature( geoshape, geoshape.objects[ key ] ) );
-					} );
+
+					// HACK: workaround for T144777 - we should be using topojson instead
+					$.extend( data, geoshape );
+
+					// data.type = 'FeatureCollection';
+					// data.features = [];
+					// $.each( geoshape.objects, function ( key ) {
+					// 	data.features.push( topojson.feature( geoshape, geoshape.objects[ key ] ) );
+					// } );
 				} );
 
 			default:
