@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jeblad"
+		]
+	},
+	"leafletdraw-draw-toolbar-actions-text": "Bryt av",
+	"leafletdraw-draw-toolbar-buttons-circle": "Teikn ein sirkel",
+	"leafletdraw-draw-toolbar-buttons-marker": "Teikn ein markør",
+	"leafletdraw-draw-toolbar-buttons-polygon": "Teikn ein mangekant",
+	"leafletdraw-draw-toolbar-buttons-rectangle": "Teikn eit rektangel",
+	"leafletdraw-draw-toolbar-undo-text": "Slett siste punkt",
+	"leafletdraw-draw-toolbar-undo-title": "Slett siste punkt som vart teikna",
+	"leafletdraw-edit-toolbar-actions-cancel-text": "Bryt av",
+	"leafletdraw-edit-toolbar-actions-save-text": "Lagra",
+	"leafletdraw-edit-toolbar-actions-save-title": "Lagre endringar",
+	"leafletdraw-edit-toolbar-buttons-edit": "Rediger lag",
+	"leafletdraw-edit-toolbar-buttons-remove": "Slett lagane",
+	"leafletdraw-edit-toolbar-buttons-removedisabled": "Ingen lag å sletta",
+	"mapbox-control-zoomin-title": "Vis større",
+	"mapbox-control-zoomout-title": "Vis mindre",
+	"kartographer-fullscreen-close": "Steng",
+	"kartographer-fullscreen-text": "Vis som fullskjerm",
+	"visualeditor-mwmapsdialog-align": "Justering",
+	"visualeditor-mwmapsdialog-size": "Storleik",
+	"visualeditor-mwmapsdialog-title": "Kart"
+}
