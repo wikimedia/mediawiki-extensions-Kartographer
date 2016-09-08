@@ -1,6 +1,6 @@
 # Configuration file for Doxygen
 
-PROJECT_NAME           = Kartogrpaher
+PROJECT_NAME           = Kartographer
 PROJECT_BRIEF          = Extension that adds maps to wiki pages
 
 OUTPUT_DIRECTORY       = docs
