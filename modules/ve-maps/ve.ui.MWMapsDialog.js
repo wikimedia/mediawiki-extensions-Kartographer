@@ -157,7 +157,6 @@ ve.ui.MWMapsDialog.prototype.resetMapPosition = function () {
 	this.resetMapButton.setDisabled( true );
 
 	this.map.once( 'moveend', function () {
-		dialog.updateActions();
 		dialog.resetMapButton.setDisabled( false );
 	} );
 };
@@ -363,7 +362,10 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 			dialog.map
 				.on( 'draw:edited', update )
 				.on( 'draw:deleted', update )
-				.on( 'draw:created', created );
+				.on( 'draw:created', created )
+				.on( 'moveend', function () {
+					dialog.updateActions();
+				} );
 
 		} );
 	} );
