@@ -158,6 +158,7 @@
 		},
 		"ext.kartographer.box": {
 			"dependencies": [
+				"mediawiki.Uri",
 				"oojs-ui.styles.icons-media",
 				"mapbox",
 				"ext.kartographer.lib.topojson",
