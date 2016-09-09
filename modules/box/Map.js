@@ -41,7 +41,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 
 	L.Map.mergeOptions( {
 		sleepTime: 250,
-		wakeTime: 1000,
+		wakeTime: 500,
 		sleepNote: false,
 		sleepOpacity: 1,
 		// the default zoom applied when `longitude` and `latitude` were
