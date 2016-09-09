@@ -14,11 +14,6 @@ use Parser;
 use ParserOutput;
 
 class Hooks {
-	private static $tags = [
-		'mapframe' => 'Kartographer\Tag\MapFrame::entryPoint',
-		'maplink' => 'Kartographer\Tag\MapLink::entryPoint',
-	];
-
 	/**
 	 * ParserFirstCallInit hook handler
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ParserFirstCallInit
@@ -55,7 +50,7 @@ class Hooks {
 	 * @return bool
 	 */
 	/*public static function onRejectParserCacheValue( ParserOutput $po ) {
-		// One of these should be prsent in any output with old version of data
+		// One of these should be present in any output with old version of data
 		if ( $po->getExtensionData( 'kartographer_valid' )
 			 || $po->getExtensionData( 'kartographer_broken' )
 		) {
