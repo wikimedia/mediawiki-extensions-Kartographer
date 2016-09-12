@@ -4,7 +4,8 @@
 			"Vitorvicentevalente",
 			"Önni",
 			"Fúlvio",
-			"Diniscoelho"
+			"Diniscoelho",
+			"Mansil"
 		]
 	},
 	"kartographer-attribution": "Mapas da Wikimedia | Dados do mapa © [https://www.openstreetmap.org/copyright Contribuidores do OpenStreetMap]",
@@ -52,7 +53,7 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Sem camadas para editar",
 	"leafletdraw-edit-toolbar-buttons-remove": "Eliminar camadas",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Sem camadas para eliminar",
-	"map": "Informações de coordenadas",
+	"map": "Informação das coordenadas",
 	"mapbox-control-zoomin-title": "Aumentar o zoom",
 	"mapbox-control-zoomout-title": "Diminuir o zoom",
 	"kartographer-fullscreen-close": "Fechar",
