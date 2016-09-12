@@ -1,4 +1,39 @@
-@import 'mediawiki.ui/variables';
+/**
+ * CSS Classes Definitions
+ *
+ * .mw-kartographer-maplink:
+ *     Represents a <maplink> element as output by the Parser.
+ *     May or may not be an interactive link yet (meanwhile JS gets loaded).
+ *
+ * .mw-kartographer-map
+ *    Represents a <mapframe> element as output by the Parser.
+ *    May or may not be an interactive map yet (meanwhile JS gets loaded)
+ *
+ * .mw-kartographer-link
+ *     Represents an interactive map link.
+ *     The class is added when the element becomes an interactive link.
+ *     May or may not be a <maplink> or <mapframe> (if created via Developer API)
+ *
+ * .mw-kartographer-interactive
+ *    Represents an interactive map.
+ *    The class is added when the element becomes an interactive map.
+ *
+ * .mw-kartographer-mapDialog-map
+ *    Represents an interactive map within a full screen map dialog.
+ *
+ * .mw-kartographer-static
+ *    Represents an interactive map that was made static afterward because the
+ *    viewport is too small.
+ *
+ * In practice:
+ *
+ * - <maplink> will have .mw-kartographer-maplink first,
+ *                       .mw-kartographer-link then.
+ *
+ * - <mapframe> will have .mw-kartographer-map first,
+ *                        .mw-kartographer-link then, if displaying static snapshot.
+ *                        .mw-kartographer-interactive then, if directly interactive.
+ */
 
 .mw-kartographer-mapDialog-map {
 	position: absolute;
@@ -12,34 +47,6 @@
 .mw-kartographer-error {
 	display: inline-block;
 	background: #ffc0cb;
-}
-
-a.mw-kartographer-link {
-	display: inline;
-	cursor: pointer;
-}
-
-a.mw-kartographer-autostyled {
-	display: inline-block;
-	vertical-align: middle;
-	position: relative;
-	top: -0.08em;
-	box-sizing: content-box;
-	height: 0.85em;
-	padding: 0.24em 0.42em;
-	border-radius: 1px;
-	color: #fff;
-	font-weight: bold;
-	font-size: 0.85em;
-	line-height: 1;
-	text-align: center;
-}
-a.mw-kartographer-autostyled:visited {
-	color: #fff;
-}
-
-.leaflet-bar a {
-	background-position: center center;
 }
 
 .mw-kartographer-static {
@@ -81,24 +88,6 @@ a.mw-kartographer-autostyled:visited {
 	top: 10px;
 	right: 10px;
 	margin-right: 0;
-}
-
-.client-js .mw-kartographer-map {
-	cursor: pointer;
-}
-
-.client-js .mw-kartographer-map:hover {
-	.mw-kartographer-fullScreen {
-		background-color: #fff;
-	}
-	.oo-ui-buttonElement-button {
-		background-color: #fff;
-	}
-}
-
-.client-js .mw-kartographer-maplink:not(.mw-kartographer-link) {
-	pointer-events: none;
-	cursor: default;
 }
 
 .mw-kartographer-container:not(.mw-kartographer-full) {

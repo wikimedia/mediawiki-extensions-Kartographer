@@ -1,0 +1,111 @@
+@import 'mediawiki.ui/variables';
+@import 'mediawiki.mixins';
+
+/* stylelint-disable no-descending-specificity */
+.mw-kartographer-link,
+.mw-kartographer-maplink {
+	&::not(.mw-kartographer-map) {
+		display: inline;
+	}
+	cursor: pointer;
+}
+
+// The icon only applies to <a> types of `.mw-kartographer-link`
+.mw-kartographer-maplink,
+a.mw-kartographer-link {
+
+	&:not(.mw-kartographer-autostyled):not(.mw-kartographer-map):not(.no-icon) {
+		/**
+		 * These two files were copied from OOjs UI repository after the build process
+		 * generated the progressive icons.
+		 *
+		 * See ./images/COPYING
+		 *
+		 * The master version of the icon is at:
+		 *   https://github.com/wikimedia/oojs-ui/blob/master/src/themes/mediawiki/images/icons/mapPin.svg
+		 */
+		.background-image-svg('images/mapPin-progressive.svg', 'images/mapPin-progressive.png');
+		background-position: left -3px;
+		background-repeat: no-repeat;
+		background-size: 18px 18px;
+		padding-left: 19px;
+		margin-left: 2px;
+	}
+
+	// One can display an iconless link by adding `class="no-icon"`
+	&.no-icon {
+		background: none;
+		padding-left: 0;
+		margin-left: 0;
+	}
+}
+
+.skin-minerva {
+	a.mw-kartographer-link,
+	.mw-kartographer-maplink {
+
+		&:not(.mw-kartographer-autostyled):not(.mw-kartographer-map):not(.no-icon) {
+			padding-left: 20px;
+			background-size: 20px 20px;
+		}
+
+		// One can display an iconless link by adding `class="no-icon"`
+		&.no-icon {
+			background: none;
+			padding-left: 0;
+			margin-left: 0;
+		}
+	}
+}
+
+.mw-kartographer-map:hover {
+	.mw-kartographer-fullScreen {
+		background-color: @colorWhite;
+	}
+	.oo-ui-buttonElement-button {
+		background-color: @colorWhite;
+	}
+}
+
+/**
+ * Applied only when JS is enabled.
+ */
+.client-js {
+	.mw-kartographer-map {
+		cursor: pointer;
+	}
+
+	.mw-kartographer-maplink:not(.mw-kartographer-link),
+		.mw-kartographer-map:not(.mw-kartographer-link) {
+		pointer-events: none;
+		cursor: default;
+	}
+}
+
+/**
+ * If `$wgKartographerUseMarkerStyle = true`.
+ */
+a.mw-kartographer-autostyled {
+	display: inline-block;
+
+	position: relative;
+	top: -0.08em;
+
+	box-sizing: content-box;
+	height: 0.85em;
+	border-radius: 1px;
+
+	margin-left: 0;
+	padding: 0.24em 0.42em;
+
+	color: @colorWhite;
+	font-size: 0.85em;
+	font-weight: bold;
+	line-height: 1;
+	text-align: center;
+	vertical-align: middle;
+}
+
+a.mw-kartographer-autostyled:visited {
+	color: @colorWhite;
+}
