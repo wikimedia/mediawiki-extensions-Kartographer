@@ -1,3 +1,5 @@
+@import 'mediawiki.mixins';
+
 .mw-kartographer-mapDialog-map {
 	position: absolute;
 	top: 0;
@@ -15,6 +17,19 @@
 a.mw-kartographer-link {
 	display: inline;
 	cursor: pointer;
+
+	background-position: center right;
+	background-repeat: no-repeat;
+	.background-image-svg('images/ios-world-outline.svg', 'images/ios-world-outline.png');
+	padding-right: 17px;
+	margin-right: 2px;
+	background-size: 16px 16px;
+
+	&.no-icon:not(.mw-kartographer-autostyled) {
+		background: none;
+		padding-right: 0;
+		margin-right: 0;
+	}
 }
 
 a.mw-kartographer-autostyled {
@@ -32,6 +47,7 @@ a.mw-kartographer-autostyled {
 	line-height: 1;
 	text-align: center;
 }
+
 a.mw-kartographer-autostyled:visited {
 	color: #fff;
 }
