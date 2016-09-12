@@ -29,7 +29,7 @@ class MapFrame extends TagHandler {
 	 * @return string
 	 */
 	protected function render() {
-		global $wgKartographerFrameMode;
+		global $wgKartographerFrameMode, $wgKartographerMapServer;
 
 		$alignClasses = [
 			'left' => 'floatleft',
@@ -94,12 +94,17 @@ class MapFrame extends TagHandler {
 				if ( preg_match( '/^\d+%$/', $width ) ) {
 					if ( $width === '100%' ) {
 						$fullWidth = true;
+						$staticWidth = 800;
 					} else {
 						$width = '300px'; // @todo: deprecate old syntax completely
+						$staticWidth = 300;
 					}
 				} else if ( $width === 'full' ) {
 					$width = '100%';
 					$fullWidth = true;
+					$staticWidth = 800;
+				} else {
+					$staticWidth = $this->width;
 				}
 
 				$height = "{$this->height}px";
@@ -112,11 +117,20 @@ class MapFrame extends TagHandler {
 					'data-height' => $this->height,
 				];
 				if ( $this->zoom !== null ) {
+					$staticZoom = $this->zoom;
 					$attrs['data-zoom'] = $this->zoom;
+				} else {
+					$staticZoom = 2;
 				}
+
 				if ( $this->lat !== null && $this->lon !== null ) {
 					$attrs['data-lat'] = $this->lat;
 					$attrs['data-lon'] = $this->lon;
+					$staticLat = $this->lat;
+					$staticLon = $this->lon;
+				} else {
+					$staticLat = 30;
+					$staticLon = 0;
 				}
 				if ( $this->showGroups ) {
 					$attrs['data-overlays'] = FormatJson::encode( $this->showGroups, false,
@@ -135,14 +149,16 @@ class MapFrame extends TagHandler {
 			$containerClass .= ' mw-kartographer-full';
 		}
 
+		$attrs['style'] = "background-image: url({$wgKartographerMapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat},{$staticLon},{$staticWidth}x{$this->height}.png);";
+
 		if ( !$framed ) {
-			$attrs['style'] = "width: {$width}; height: {$height};";
+			$attrs['style'] .= " width: {$width}; height: {$height};";
 			$attrs['class'] .= " {$containerClass} {$alignClasses[$this->align]}";
 
 			return Html::rawElement( 'div', $attrs );
 		}
 
-		$attrs['style'] = "height: {$height};";
+		$attrs['style'] .= " height: {$height};";
 		$containerClass .= " thumb {$thumbAlignClasses[$this->align]}";
 
 		$captionFrame = Html::rawElement( 'div', [ 'class' => 'thumbcaption' ],
