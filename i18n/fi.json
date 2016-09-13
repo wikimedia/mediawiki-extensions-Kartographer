@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Susannaanas",
-			"McSalama"
+			"McSalama",
+			"Nike"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Validoi datan Kartographer-laajennokselle",
@@ -63,6 +64,8 @@
 	"mapbox-control-zoomout-title": "Loitonna",
 	"kartographer-fullscreen-close": "Sulje",
 	"kartographer-fullscreen-text": "Näytä koko näytössä",
+	"visualeditor-mwmapsdialog-position-lat": "Leveyspiiri",
+	"visualeditor-mwmapsdialog-position-lon": "Pituuspiiri",
 	"visualeditor-mwmapsdialog-reset-map": "Palauta kartan sijainti",
 	"visualeditor-mwmapsdialog-size": "Koko",
 	"visualeditor-mwmapsdialog-title": "Kartta"

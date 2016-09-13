@@ -46,6 +46,10 @@
 	"mapbox-control-zoomout-title": "আরও ছোট",
 	"kartographer-fullscreen-close": "বন্ধ করুন",
 	"kartographer-fullscreen-text": "পূর্ণ স্ক্রিনে দেখান",
+	"visualeditor-mwmapsdialog-position-button": "বর্তমান অবস্থান",
+	"visualeditor-mwmapsdialog-position-lat": "অক্ষাংশ",
+	"visualeditor-mwmapsdialog-position-lon": "দ্রাঘিমাংশ",
+	"visualeditor-mwmapsdialog-position-zoom": "বড় করো",
 	"visualeditor-mwmapsdialog-reset-map": "মানচিত্রের অবস্থান পুনঃস্থাপন করুন",
 	"visualeditor-mwmapsdialog-size": "আকার",
 	"visualeditor-mwmapsdialog-title": "মানচিত্র"

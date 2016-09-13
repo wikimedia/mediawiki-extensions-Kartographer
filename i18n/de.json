@@ -69,6 +69,10 @@
 	"kartographer-fullscreen-text": "Im Vollbild anzeigen",
 	"visualeditor-mwmapsdialog-align": "Ausrichtung",
 	"visualeditor-mwmapsdialog-geojson": "GeoJSON",
+	"visualeditor-mwmapsdialog-position-button": "Aktuelle Position",
+	"visualeditor-mwmapsdialog-position-lat": "Breitengrad",
+	"visualeditor-mwmapsdialog-position-lon": "Längengrad",
+	"visualeditor-mwmapsdialog-position-zoom": "Vergrößerung",
 	"visualeditor-mwmapsdialog-reset-map": "Kartenposition zurücksetzen",
 	"visualeditor-mwmapsdialog-size": "Größe",
 	"visualeditor-mwmapsdialog-title": "Karte"

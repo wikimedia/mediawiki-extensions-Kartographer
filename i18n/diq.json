@@ -1,9 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mirzali"
+			"Mirzali",
+			"Asmen",
+			"Kumkumuk"
 		]
 	},
 	"leafletdraw-draw-toolbar-actions-text": "Bıtexelne",
-	"leafletdraw-edit-toolbar-actions-cancel-text": "Bıtexelne"
+	"leafletdraw-edit-toolbar-actions-cancel-text": "Bıtexelne",
+	"visualeditor-mwmapsdialog-position-button": "Pozisyono peyên",
+	"visualeditor-mwmapsdialog-position-lat": "Verıniye",
+	"visualeditor-mwmapsdialog-position-lon": "Derganiye",
+	"visualeditor-mwmapsdialog-position-zoom": "Gırdkerdış"
 }

@@ -27,6 +27,10 @@
 	"kartographer-fullscreen-close": "Zoumaachen",
 	"kartographer-fullscreen-text": "Am Vollbildmodus weisen",
 	"visualeditor-mwmapsdialog-align": "Alignement",
+	"visualeditor-mwmapsdialog-position-button": "Aktuell Positioun",
+	"visualeditor-mwmapsdialog-position-lat": "Geografesch Breet",
+	"visualeditor-mwmapsdialog-position-lon": "Geografesch Längt",
+	"visualeditor-mwmapsdialog-position-zoom": "Zoom",
 	"visualeditor-mwmapsdialog-size": "Gréisst",
 	"visualeditor-mwmapsdialog-title": "Kaart"
 }

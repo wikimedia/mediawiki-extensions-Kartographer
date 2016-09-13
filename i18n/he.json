@@ -72,6 +72,10 @@
 	"kartographer-fullscreen-close": "סגירה",
 	"kartographer-fullscreen-text": "הצגה במסך מלא",
 	"visualeditor-mwmapsdialog-align": "יישור",
+	"visualeditor-mwmapsdialog-position-button": "מיקום נוכחי",
+	"visualeditor-mwmapsdialog-position-lat": "קו רוחב",
+	"visualeditor-mwmapsdialog-position-lon": "קו אורך",
+	"visualeditor-mwmapsdialog-position-zoom": "מרחק מתצוגה",
 	"visualeditor-mwmapsdialog-reset-map": "אתחול מיקום מפה",
 	"visualeditor-mwmapsdialog-size": "גודל",
 	"visualeditor-mwmapsdialog-title": "מפה"

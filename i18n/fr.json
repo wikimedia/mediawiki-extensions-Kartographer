@@ -71,6 +71,10 @@
 	"kartographer-fullscreen-close": "Fermer",
 	"kartographer-fullscreen-text": "Afficher en plein écran",
 	"visualeditor-mwmapsdialog-align": "Alignement",
+	"visualeditor-mwmapsdialog-position-button": "Position actuelle",
+	"visualeditor-mwmapsdialog-position-lat": "Latitude",
+	"visualeditor-mwmapsdialog-position-lon": "Longitude",
+	"visualeditor-mwmapsdialog-position-zoom": "Agrandissement",
 	"visualeditor-mwmapsdialog-reset-map": "Réinitialiser la position de la carte",
 	"visualeditor-mwmapsdialog-size": "Taille",
 	"visualeditor-mwmapsdialog-title": "Carte"

@@ -28,6 +28,8 @@
 	"kartographer-fullscreen-close": "Aizvērt",
 	"kartographer-fullscreen-text": "Parādīt pilnekrāna režīmā",
 	"visualeditor-mwmapsdialog-align": "Izlīdzinājums",
+	"visualeditor-mwmapsdialog-position-lat": "Ģeogrāfiskais platums",
+	"visualeditor-mwmapsdialog-position-lon": "Ģeogrāfiskais garums",
 	"visualeditor-mwmapsdialog-reset-map": "Atiestatīt kartes pozīciju",
 	"visualeditor-mwmapsdialog-size": "Izmērs",
 	"visualeditor-mwmapsdialog-title": "Karte"
