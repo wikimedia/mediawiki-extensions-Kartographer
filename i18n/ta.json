@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rakeshonwiki"
+		]
+	},
+	"visualeditor-mwmapsdialog-position-button": "தற்போதைய நிலை",
+	"visualeditor-mwmapsdialog-position-lat": "அட்சரேகை:",
+	"visualeditor-mwmapsdialog-position-lon": "தீர்க்க ரேகை:",
+	"visualeditor-mwmapsdialog-position-zoom": "பெரிதாக்கு"
+}

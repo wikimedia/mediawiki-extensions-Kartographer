@@ -66,6 +66,10 @@
 	"kartographer-fullscreen-close": "关闭",
 	"kartographer-fullscreen-text": "全屏显示",
 	"visualeditor-mwmapsdialog-align": "对齐",
+	"visualeditor-mwmapsdialog-position-button": "目前位置",
+	"visualeditor-mwmapsdialog-position-lat": "纬度",
+	"visualeditor-mwmapsdialog-position-lon": "经度",
+	"visualeditor-mwmapsdialog-position-zoom": "缩放",
 	"visualeditor-mwmapsdialog-reset-map": "重置地图位置",
 	"visualeditor-mwmapsdialog-size": "大小",
 	"visualeditor-mwmapsdialog-title": "地图"

@@ -37,6 +37,8 @@
 	"kartographer-fullscreen-close": "닫기",
 	"kartographer-fullscreen-text": "전체 화면으로 보기",
 	"visualeditor-mwmapsdialog-align": "배치",
+	"visualeditor-mwmapsdialog-position-button": "현재 위치",
+	"visualeditor-mwmapsdialog-position-zoom": "확대/축소",
 	"visualeditor-mwmapsdialog-reset-map": "map 위치 초기화",
 	"visualeditor-mwmapsdialog-size": "크기",
 	"visualeditor-mwmapsdialog-title": "지도"

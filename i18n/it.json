@@ -3,7 +3,8 @@
 		"authors": [
 			"Beta16",
 			"Marsitown",
-			"Matteocng"
+			"Matteocng",
+			"Anto"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Esegue la convalida dei dati per l'estensione Kartographer",
@@ -61,6 +62,7 @@
 	"visualeditor-mwmapsdialog-position-button": "Posizione attuale",
 	"visualeditor-mwmapsdialog-position-lat": "Latitudine",
 	"visualeditor-mwmapsdialog-position-lon": "Longitudine",
+	"visualeditor-mwmapsdialog-position-zoom": "Zoom",
 	"visualeditor-mwmapsdialog-reset-map": "Resetta la posizione della mappa",
 	"visualeditor-mwmapsdialog-size": "Dimensione",
 	"visualeditor-mwmapsdialog-title": "Mappa"

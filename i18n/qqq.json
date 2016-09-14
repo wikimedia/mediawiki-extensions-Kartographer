@@ -79,9 +79,9 @@
 	"visualeditor-mwmapsdialog-align": "Label for setting the map's alignment\n{{Identical|Alignment}}",
 	"visualeditor-mwmapsdialog-geojson": "{{optional}}\nLabel for map GeoJSON data",
 	"visualeditor-mwmapsdialog-position-button": "Label for current position button",
-	"visualeditor-mwmapsdialog-position-lat": "Label for latitude within current position popup",
-	"visualeditor-mwmapsdialog-position-lon": "Label for longitude within current position popup",
-	"visualeditor-mwmapsdialog-position-zoom": "Label for zoom within current position popup",
+	"visualeditor-mwmapsdialog-position-lat": "Label for latitude within current position popup\n{{Identical|Latitude}}",
+	"visualeditor-mwmapsdialog-position-lon": "Label for longitude within current position popup\n{{Identical|Longitude}}",
+	"visualeditor-mwmapsdialog-position-zoom": "Label for zoom within current position popup\n{{Identical|Zoom}}",
 	"visualeditor-mwmapsdialog-reset-map": "Label for resetting the map's position",
 	"visualeditor-mwmapsdialog-size": "Label for map size\n{{Identical|Size}}",
 	"visualeditor-mwmapsdialog-title": "Title of the map dialog\n{{Identical|Map}}"
