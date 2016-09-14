@@ -299,19 +299,25 @@ abstract class TagHandler {
 			$output->addTrackingCategory( 'kartographer-tracking-category', $parser->getTitle() );
 		}
 
-		$interact = $state->getInteractiveGroups();
-		$requested = $state->getRequestedGroups();
-		if ( $interact || $requested ) {
-			$interact = array_flip( $interact );
-			$liveData = array_intersect_key( (array)$data, $interact );
-			$requested = array_unique( $requested );
-			// Prevent pointless API requests for missing groups
-			foreach ( $requested as $group ) {
-				if ( !isset( $data->$group ) ) {
-					$liveData[$group] = [];
+		// https://phabricator.wikimedia.org/T145615 - include all data in previews
+		$options = $parser->getOptions();
+		if ( $data && ( $options->getIsPreview() || $options->getIsSectionPreview() ) ) {
+			$output->addJsConfigVars( 'wgKartographerLiveData', $data );
+		} else {
+			$interact = $state->getInteractiveGroups();
+			$requested = $state->getRequestedGroups();
+			if ( $interact || $requested ) {
+				$interact = array_flip( $interact );
+				$liveData = array_intersect_key( (array)$data, $interact );
+				$requested = array_unique( $requested );
+				// Prevent pointless API requests for missing groups
+				foreach ( $requested as $group ) {
+					if ( !isset( $data->$group ) ) {
+						$liveData[$group] = [];
+					}
 				}
+				$output->addJsConfigVars( 'wgKartographerLiveData', $liveData );
 			}
-			$output->addJsConfigVars( 'wgKartographerLiveData', $liveData );
 		}
 	}
 

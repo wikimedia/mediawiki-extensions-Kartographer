@@ -171,7 +171,13 @@ class KartographerTest extends MediaWikiTestCase {
 		];
 	}
 
-	public function testLiveData() {
+	/**
+	 * @dataProvider provideLiveData
+	 * @param string[] $expected
+	 * @param bool $preview
+	 * @param bool $sectionPreview
+	 */
+	public function testLiveData( array $expected, $preview, $sectionPreview ) {
 		$text =
 <<<WIKITEXT
 <maplink latitude=10 longitude=20 zoom=13>
@@ -193,20 +199,38 @@ class KartographerTest extends MediaWikiTestCase {
 }
 </mapframe>
 WIKITEXT;
-		$output = $this->parse( $text );
+		$output = $this->parse( $text,
+			function( ParserOptions $options ) use ( $preview, $sectionPreview ) {
+				$options->setIsPreview( $preview );
+				$options->setIsSectionPreview( $sectionPreview );
+			}
+		);
 		$vars = $output->getJsConfigVars();
 		$this->assertArrayHasKey( 'wgKartographerLiveData', $vars );
-		$this->assertArrayEquals( [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2' ], array_keys( $vars['wgKartographerLiveData'] ) );
+		$this->assertArrayEquals( $expected, array_keys( (array)$vars['wgKartographerLiveData'] ) );
+	}
+
+	public function provideLiveData() {
+		return [
+			[ [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2' ], false, false ],
+			[ [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2', '_2251fa240a210d2861cc9f44c48d7e3ba116ff2f' ], true, false ],
+			[ [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2', '_2251fa240a210d2861cc9f44c48d7e3ba116ff2f' ], false, true ],
+			[ [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2', '_2251fa240a210d2861cc9f44c48d7e3ba116ff2f' ], true, true ],
+		];
 	}
 
 	/**
 	 * Parses wikitext
 	 * @param string $text
+	 * @param callable $optionsCallback
 	 * @return ParserOutput
 	 */
-	private function parse( $text ) {
+	private function parse( $text, callable $optionsCallback = null ) {
 		$parser = new Parser();
 		$options = new ParserOptions();
+		if ( $optionsCallback ) {
+			$optionsCallback( $options );
+		}
 		$title = Title::newFromText( 'Test' );
 
 		return $parser->parse( $text, $title, $options );
