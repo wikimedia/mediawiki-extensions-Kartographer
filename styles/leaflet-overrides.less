@@ -1,0 +1,37 @@
+.mw-kartographer-interactive {
+	z-index: 0;
+
+	&.leaflet-container {
+
+		.marker-description img {
+			width: 100%;
+			height: auto;
+			margin-bottom: 0;
+			margin-top: 0.5em;
+		}
+	}
+
+	/* Leaflet Popups */
+
+	.leaflet-popup-content {
+		padding: 1em;
+	}
+
+	.leaflet-popup-content .marker-title {
+		text-align: center;
+
+		& > a {
+			font-weight: bold;
+		}
+	}
+
+	.leaflet-popup-content .marker-description {
+		text-align: center;
+	}
+
+	.leaflet-popup-content-wrapper,
+	.map-legends,
+	.map-tooltip {
+		border-radius: 2px;
+	}
+}
