@@ -61,10 +61,16 @@ a.mw-kartographer-autostyled:visited {
 	background-position: center;
 	background-repeat: no-repeat;
 }
+
 .client-js .mw-kartographer-map {
 	/* stylelint-disable declaration-no-important */
 	background: none !important;
 	/* stylelint-enable declaration-no-important */
+}
+
+.client-js .mw-kartographer-maplink:not(.mw-kartographer-link) {
+	pointer-events: none;
+	cursor: default;
 }
 
 .mw-kartographer-container:not(.mw-kartographer-full) {
