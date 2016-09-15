@@ -11,5 +11,8 @@
 	"leafletdraw-edit-toolbar-actions-save-text": "Konservi",
 	"leafletdraw-edit-toolbar-actions-save-title": "Konservi ŝanĝojn",
 	"kartographer-fullscreen-close": "Fermi",
+	"visualeditor-mwmapsdialog-position-button": "Nuna pozicio",
+	"visualeditor-mwmapsdialog-position-lat": "Latitudo",
+	"visualeditor-mwmapsdialog-position-lon": "Longitudo",
 	"visualeditor-mwmapsdialog-title": "Mapo"
 }
