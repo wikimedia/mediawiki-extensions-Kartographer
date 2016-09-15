@@ -180,7 +180,8 @@
 				"modules/box/index.js"
 			],
 			"messages": [
-				"kartographer-attribution"
+				"kartographer-attribution",
+				"kartographer-fullscreen-close"
 			],
 			"targets": [
 				"mobile",
