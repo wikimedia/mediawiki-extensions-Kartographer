@@ -30,10 +30,61 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, kartobox, router ) {
 	/* Methods */
 
 	MapDialog.prototype.initialize = function () {
+		var dialog = this;
+
 		// Parent method
 		MapDialog.super.prototype.initialize.apply( this, arguments );
 
+		mw.loader.using( 'oojs-ui-widgets' ).done( function () {
+			$( function () {
+
+				// Create footer toggle button
+				var button = dialog.$mapDetailsButton = new OO.ui.ToggleButtonWidget( {
+						label: mw.msg( 'kartographer-sidebar-togglebutton' ),
+						icon: 'info',
+						iconTitle: mw.msg( 'kartographer-sidebar-togglebutton' )
+					} ),
+					$captionContainer = dialog.$captionContainer = $( '<div class="mw-kartographer-captionfoot">' ),
+					$buttonContainer = $( '<div class="mw-kartographer-buttonfoot">' ),
+					$inlineContainer = $( '<div class="mw-kartographer-inlinefoot">' )
+						.append( $buttonContainer, $captionContainer );
+
+				if ( dialog.map ) {
+					$captionContainer
+						.attr( 'title', dialog.map.captionText )
+						.text( dialog.map.captionText );
+				}
+
+				$buttonContainer.append( button.$element );
+
+				// Add the button to the footer
+				dialog.$foot
+					.addClass( 'mw-kartographer-mapDialog-foot' )
+					.append( $inlineContainer );
+
+				button.on( 'change', dialog.toggleSideBar, null, dialog );
+			} );
+		} );
 		this.map = null;
+	};
+
+	MapDialog.prototype.toggleSideBar = function ( open ) {
+		var dialog = this;
+		mw.loader.using( 'ext.kartographer.dialog.sidebar' ).done( function () {
+			var SideBar;
+			if ( !dialog.sideBar ) {
+				SideBar = mw.loader.require( 'ext.kartographer.dialog.sidebar' );
+				dialog.sideBar = new SideBar( { dialog: dialog } );
+			}
+
+			open = ( typeof open === 'undefined' ) ? !dialog.$mapDetailsButton.value : open;
+
+			if ( dialog.$mapDetailsButton.value !== open ) {
+				dialog.$mapDetailsButton.setValue( open );
+			}
+
+			dialog.sideBar.toggle( open );
+		} );
 	};
 
 	MapDialog.prototype.getActionProcess = function ( action ) {
@@ -101,6 +152,12 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, kartobox, router ) {
 					this.$body.empty().append(
 						this.map.$container.css( 'position', '' )
 					);
+
+					if ( this.$captionContainer ) {
+						this.$captionContainer
+							.attr( 'title', this.map.captionText )
+							.text( this.map.captionText );
+					}
 				}
 			}, this );
 	};
@@ -127,6 +184,7 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, kartobox, router ) {
 					this.map.remove();
 					this.map = null;
 				}
+				this.$body.empty();
 			}, this );
 	};
 

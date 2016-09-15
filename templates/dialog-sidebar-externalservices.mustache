@@ -1,0 +1,21 @@
+<h2>{{LBL_EXTERNAL_SERVICES}}</h2>
+
+<table>
+    <thead>
+    <tr>
+        <th>{{LBL_SERVICE}}</th>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    {{#services}}
+    <tr{{#featured}} class="featured"{{/featured}}>
+        <th>{{name}}
+        </th>
+        <td>
+            <a rel="nofollow" class="external free" href="{{link}}">{{linkLabel}}</a>
+        </td>
+    </tr>
+    {{/services}}
+    </tbody>
+</table>

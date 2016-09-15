@@ -406,6 +406,12 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 			this.fullScreenRoute = options.fullScreenRoute || null;
 
 			/**
+			 * @property {string} [captionText=''] Caption associated to the map.
+			 * @protected
+			 */
+			this.captionText = options.captionText || '';
+
+			/**
 			 * @property {Object} dataLayers References to the data layers.
 			 * @protected
 			 */
@@ -605,6 +611,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 						center: position.center,
 						zoom: position.zoom,
 						fullscreen: true,
+						captionText: this.captionText,
 						data: this.options.data,
 						dataGroups: this.options.dataGroups,
 						fullScreenRoute: this.fullScreenRoute,
@@ -650,15 +657,25 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 		/**
 		 * Gets current map center and zoom.
 		 *
+		 * @param {Object} [options]
+		 * @param {boolean} [options.scaled=false] Whether you want the
+		 *   coordinates to be scaled to the current zoom.
 		 * @return {Object}
 		 * @return {L.LatLng} return.center
 		 * @return {number} return.zoom
 		 */
-		getMapPosition: function () {
-			var center = this.getCenter();
+		getMapPosition: function ( options ) {
+			var center = this.getCenter(),
+				zoom = this.getZoom();
+
+			options = options || {};
+
+			if ( options.scaled ) {
+				center = L.latLng( this.getScaleLatLng( center.lat, center.lng, zoom ) );
+			}
 			return {
 				center: center,
-				zoom: this.getZoom()
+				zoom: zoom
 			};
 		},
 
