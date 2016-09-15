@@ -560,6 +560,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 						center: position.center,
 						zoom: position.zoom,
 						fullscreen: true,
+						data: this.options.data,
 						dataGroups: this.options.dataGroups,
 						fullScreenRoute: this.fullScreenRoute,
 						parentMap: this
