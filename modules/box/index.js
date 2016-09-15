@@ -14,12 +14,6 @@ L.kartographer = module.exports = {
 	OpenFullScreenControl: module.OpenFullScreenControl,
 
 	/**
-	 * @type {Kartographer.Box.CloseFullScreenControl}
-	 * @ignore
-	 */
-	CloseFullScreenControl: module.CloseFullScreenControl,
-
-	/**
 	 * @type {Kartographer.Box.ScaleControl}
 	 * @ignore
 	 */

@@ -6,7 +6,7 @@
  * See [L.Control](https://www.mapbox.com/mapbox.js/api/v2.3.0/l-control/)
  * documentation for more details.
  *
- * @class Kartographer.Box.CloseFullScreenControl
+ * @class Kartographer.Dialog.CloseFullScreenControl
  * @extends L.Control
  */
 module.CloseFullScreenControl = L.Control.extend( {

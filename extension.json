@@ -170,7 +170,6 @@
 			],
 			"scripts": [
 				"lib/leaflet.sleep.js",
-				"modules/box/closefullscreen_control.js",
 				"modules/box/openfullscreen_control.js",
 				"modules/box/scale_control.js",
 				"modules/box/dataLayerOpts.js",
@@ -180,8 +179,7 @@
 				"modules/box/index.js"
 			],
 			"messages": [
-				"kartographer-attribution",
-				"kartographer-fullscreen-close"
+				"kartographer-attribution"
 			],
 			"targets": [
 				"mobile",
@@ -195,8 +193,12 @@
 				"ext.kartographer.box"
 			],
 			"scripts": [
+				"modules/dialog/closefullscreen_control.js",
 				"modules/dialog/dialog.js",
 				"modules/dialog/index.js"
+			],
+			"messages": [
+				"kartographer-fullscreen-close"
 			],
 			"targets": [
 				"mobile",

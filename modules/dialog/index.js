@@ -6,7 +6,7 @@
  * @class Kartographer.Dialog
  * @singleton
  */
-module.exports = ( function ( Dialog, router ) {
+module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 
 	var windowManager, mapDialog, routerEnabled;
 
@@ -82,6 +82,12 @@ module.exports = ( function ( Dialog, router ) {
 			} else {
 				close();
 			}
-		}
+		},
+
+		/**
+		 * @type {Kartographer.Dialog.CloseFullScreenControl}
+		 * @ignore
+		 */
+		CloseFullScreenControl: CloseFullScreenControl
 	};
-} )( module.Dialog, require( 'mediawiki.router' ) );
+} )( module.CloseFullScreenControl, module.Dialog, require( 'mediawiki.router' ) );

@@ -8,7 +8,7 @@
  * @class Kartographer.Box.MapClass
  * @extends L.Map
  */
-module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dataLayerOpts, ScaleControl, topojson, window, undefined ) {
+module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl, topojson, window, undefined ) {
 
 	var scale, urlFormat,
 		mapServer = mw.config.get( 'wgKartographerMapServer' ),
@@ -396,13 +396,6 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 				 * Reference to open full screen control.
 				 */
 				this.openFullScreenControl = new OpenFullScreenControl( { position: 'topright' } ).addTo( this );
-			} else if ( options.fullscreen ) {
-				// full screen maps
-				/**
-				 * @property {Kartographer.Box.CloseFullScreenControl|undefined} [closeFullScreenControl=undefined]
-				 * Reference to close full screen control.
-				 */
-				this.closeFullScreenControl = new CloseFullScreenControl( { position: 'topright' } ).addTo( this );
 			}
 
 			/* Initialize map */
@@ -883,7 +876,6 @@ module.Map = ( function ( mw, OpenFullScreenControl, CloseFullScreenControl, dat
 } )(
 	mediaWiki,
 	module.OpenFullScreenControl,
-	module.CloseFullScreenControl,
 	module.dataLayerOpts,
 	module.ScaleControl,
 	require( 'ext.kartographer.lib.topojson' ),

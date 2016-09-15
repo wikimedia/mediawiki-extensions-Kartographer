@@ -8,7 +8,7 @@
  * @class Kartographer.Dialog.DialogClass
  * @extends OO.ui.Dialog
  */
-module.Dialog = ( function ( $, mw, kartobox, router ) {
+module.Dialog = ( function ( $, mw, CloseFullScreenControl, kartobox, router ) {
 
 	/**
 	 * @constructor
@@ -94,6 +94,10 @@ module.Dialog = ( function ( $, mw, kartobox, router ) {
 					}
 
 					this.map = options.map;
+
+					this.map.closeFullScreenControl = new CloseFullScreenControl( { position: 'topright' } )
+						.addTo( this.map );
+
 					this.$body.empty().append(
 						this.map.$container.css( 'position', '' )
 					);
@@ -133,6 +137,7 @@ module.Dialog = ( function ( $, mw, kartobox, router ) {
 } )(
 	jQuery,
 	mediaWiki,
+	module.CloseFullScreenControl,
 	require( 'ext.kartographer.box' ),
 	require( 'mediawiki.router' )
 );
