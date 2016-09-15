@@ -25,7 +25,7 @@ class SpecialMap extends SpecialPage {
 
 		$coord = self::parseSubpage( $par );
 		if ( !$coord ) {
-			$coordText = wfMessage( 'kartographer-specialmap-invalid-coordinates' )->text();
+			$coordText = $this->msg( 'kartographer-specialmap-invalid-coordinates' )->text();
 			$markerHtml = '';
 		} else {
 			list( , $lat, $lon ) = $coord;
@@ -40,7 +40,7 @@ class SpecialMap extends SpecialPage {
 		}
 
 		$attributions = Html::rawElement( 'div', [ 'id' => 'mw-specialMap-attributions' ],
-			wfMessage( 'kartographer-attribution' )->title( $this->getPageTitle() )->parse() );
+			$this->msg( 'kartographer-attribution' )->title( $this->getPageTitle() )->parse() );
 
 		$this->getOutput()->addHTML(
 			Html::openElement( 'div', [ 'id' => 'mw-specialMap-container', 'class' => 'thumb' ] )
