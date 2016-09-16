@@ -216,15 +216,54 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 	 * For a given ExternalData object, gets it via XHR and expands it in place
 	 *
 	 * @param {Object} data
-	 * @param {string} data.href URL to external data
+	 * @param {string} [data.href] optional URL to external data
+	 * @param {string} [data.service] optional name of the service (same as protocol without the ':')
+	 * @param {string} [data.host] optional host of the service
+	 * @param {string|string[]} [data.query] optional geoshape query
+	 * @param {string} [data.ids] optional geoshape ids
 	 * @return {Promise} resolved when done with geojson expansion
 	 */
 	function loadExternalDataAsync( data ) {
-		var uri = new mw.Uri( data.href );
-		// If url begins with   protocol:///...  mark it as having relative host
-		if ( /^[a-z]+:\/\/\//.test( data.href ) ) {
-			uri.isRelativeHost = true;
+		var uri;
+		if ( data.href ) {
+			uri = new mw.Uri( data.href );
+			// If url begins with   protocol:///...  mark it as having relative host
+			if ( /^[a-z]+:\/\/\//.test( data.href ) ) {
+				uri.isRelativeHost = true;
+			}
+		} else if ( data.service ) {
+			// Construct URI out of the parameters in the externalData object
+			uri = new mw.Uri( {
+				protocol: data.service,
+				host: data.host,
+				path: '/'
+			} );
+			uri.isRelativeHost = !data.host;
+			uri.query = {};
+			switch ( data.service ) {
+				case 'geoshape':
+					if ( data.query ) {
+						if ( typeof data.query === 'string' ) {
+							uri.query.query = data.query;
+						} else {
+							throw new Error( 'Invalid "query" parameter in ExternalData' );
+						}
+					}
+					if ( data.ids ) {
+						if ( $.isArray( data.ids ) ) {
+							uri.query.ids = data.ids.join( ',' );
+						} else if ( typeof data.ids === 'string' ) {
+							uri.query.ids = data.ids.replace( /\s*,\s*/, ',' );
+						} else {
+							throw new Error( 'Invalid "ids" parameter in ExternalData' );
+						}
+					}
+					break;
+				default:
+					throw new Error( 'Unknown externalData protocol ' + data.service );
+			}
 		}
+
 		switch ( uri.protocol ) {
 			case 'geoshape':
 				// geoshape:///?ids=Q16,Q30
@@ -232,10 +271,10 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 				// Get geo shapes data from OSM database by supplying Wikidata IDs or query
 				// https://maps.wikimedia.org/shape?ids=Q16,Q30
 				if ( !uri.query || ( !uri.query.ids && !uri.query.query ) ) {
-					throw new Error( 'geoshape: missing ids or query parameter in: ' + data.href );
+					throw new Error( 'geoshape: missing ids or query parameter in externalData' );
 				}
 				if ( !uri.isRelativeHost && uri.host !== 'maps.wikimedia.org' ) {
-					throw new Error( 'geoshape: hostname must be missing or "maps.wikimedia.org": ' + data.href );
+					throw new Error( 'geoshape: hostname must be missing or "maps.wikimedia.org"' );
 				}
 				uri.protocol = 'https';
 				uri.host = 'maps.wikimedia.org';
@@ -272,7 +311,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 				} );
 
 			default:
-				throw new Error( 'Unknown protocol ' + data.href );
+				throw new Error( 'Unknown externalData protocol ' + uri.protocol );
 		}
 	}
 
