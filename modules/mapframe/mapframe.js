@@ -133,6 +133,8 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 						center: [ +latitude, +longitude ],
 						zoom: +zoom
 					};
+				} else {
+					position = map.getInitialMapPosition();
 				}
 
 				map.openFullScreen( position );

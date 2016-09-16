@@ -545,7 +545,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 			this.doWhenReady( function () {
 
 				var map = this.options.link ? this : this.fullScreenMap;
-				position = position || this._initialPosition;
+				position = position || this.getMapPosition();
 
 				if ( map && map._updatingHash ) {
 					// Skip - there is nothing to do.
