@@ -246,6 +246,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 				uri.query.getgeojson = 1;
 
 				return $.getJSON( uri.toString() ).then( function ( geoshape ) {
+					var baseProps = data.properties;
 					delete data.href;
 
 					// HACK: workaround for T144777 - we should be using topojson instead
@@ -256,6 +257,18 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 					// $.each( geoshape.objects, function ( key ) {
 					// 	data.features.push( topojson.feature( geoshape, geoshape.objects[ key ] ) );
 					// } );
+
+					// Each feature returned from geoshape service may contain "properties"
+					// If externalData element has properties, merge it with properties in the feature
+					if ( baseProps ) {
+						$.each( data.features, function ( index, feature ) {
+							if ( $.isEmptyObject( feature.properties ) ) {
+								feature.properties = baseProps;
+							} else {
+								feature.properties = $.extend( {}, baseProps, feature.properties );
+							}
+						} );
+					}
 				} );
 
 			default:
