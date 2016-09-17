@@ -69,6 +69,9 @@
 	"kartographer-fullscreen-close": "Cerrar",
 	"kartographer-fullscreen-text": "Mostrar en pantalla completa",
 	"visualeditor-mwmapsdialog-align": "Alineación",
+	"visualeditor-mwmapsdialog-position-button": "Posición actual",
+	"visualeditor-mwmapsdialog-position-lat": "Latitud",
+	"visualeditor-mwmapsdialog-position-lon": "Longitud",
 	"visualeditor-mwmapsdialog-reset-map": "Restablecer la posición en el mapa",
 	"visualeditor-mwmapsdialog-size": "Tamaño",
 	"visualeditor-mwmapsdialog-title": "Mapa"

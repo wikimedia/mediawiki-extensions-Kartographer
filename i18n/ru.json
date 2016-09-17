@@ -47,6 +47,9 @@
 	"mapbox-control-zoomout-title": "Отдалить",
 	"kartographer-fullscreen-close": "Закрыть",
 	"kartographer-fullscreen-text": "Показать в полноэкранном режиме",
+	"visualeditor-mwmapsdialog-position-lat": "Широта",
+	"visualeditor-mwmapsdialog-position-lon": "Долгота",
+	"visualeditor-mwmapsdialog-position-zoom": "Масштаб",
 	"visualeditor-mwmapsdialog-reset-map": "Сбросить положение карты",
 	"visualeditor-mwmapsdialog-size": "Размер",
 	"visualeditor-mwmapsdialog-title": "Карта"
