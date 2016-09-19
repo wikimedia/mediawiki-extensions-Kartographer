@@ -12,10 +12,7 @@
 	"kartographer-tracking-category-desc": "De pagina bevat een kaart",
 	"mapbox-control-zoomin-title": "Inzoomen",
 	"mapbox-control-zoomout-title": "Uitzoomen",
-	"visualeditor-mwmapsdialog-mode-data": "Gegevens",
-	"visualeditor-mwmapsdialog-mode-interactive": "Interactief",
-	"visualeditor-mwmapsdialog-mode-link": "Koppeling",
-	"visualeditor-mwmapsdialog-mode-static": "Statisch",
+	"visualeditor-mwmapsdialog-position-zoom": "Zoomen",
 	"visualeditor-mwmapsdialog-size": "Grootte",
 	"visualeditor-mwmapsdialog-title": "Kaart"
 }

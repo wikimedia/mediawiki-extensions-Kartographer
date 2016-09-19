@@ -44,6 +44,10 @@
 	"kartographer-fullscreen-close": "Uždaryti",
 	"kartographer-fullscreen-text": "Rodyti per visą ekraną",
 	"visualeditor-mwmapsdialog-align": "Lygiuotė",
+	"visualeditor-mwmapsdialog-position-button": "Dabartinė pozicija",
+	"visualeditor-mwmapsdialog-position-lat": "Platuma",
+	"visualeditor-mwmapsdialog-position-lon": "Ilguma",
+	"visualeditor-mwmapsdialog-position-zoom": "Padidinti",
 	"visualeditor-mwmapsdialog-reset-map": "Nustatyti žemėlapio poziciją iš naujo",
 	"visualeditor-mwmapsdialog-size": "Dydis",
 	"visualeditor-mwmapsdialog-title": "Žemėlapis"

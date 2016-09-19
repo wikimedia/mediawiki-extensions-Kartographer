@@ -53,6 +53,10 @@
 	"kartographer-fullscreen-close": "Stäng",
 	"kartographer-fullscreen-text": "Visa i fullskärm",
 	"visualeditor-mwmapsdialog-align": "Justering",
+	"visualeditor-mwmapsdialog-position-button": "Aktuell position",
+	"visualeditor-mwmapsdialog-position-lat": "Latitud",
+	"visualeditor-mwmapsdialog-position-lon": "Longitud",
+	"visualeditor-mwmapsdialog-position-zoom": "Zooma",
 	"visualeditor-mwmapsdialog-reset-map": "Återställ kartposition",
 	"visualeditor-mwmapsdialog-size": "Storlek",
 	"visualeditor-mwmapsdialog-title": "Karta"

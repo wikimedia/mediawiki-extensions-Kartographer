@@ -13,6 +13,9 @@
 	"mapbox-control-zoomout-title": "Умањи",
 	"kartographer-fullscreen-close": "Затвори",
 	"kartographer-fullscreen-text": "Прикажи преко целог екрана",
+	"visualeditor-mwmapsdialog-position-lat": "Ширина",
+	"visualeditor-mwmapsdialog-position-lon": "Дужина",
+	"visualeditor-mwmapsdialog-position-zoom": "Увећај",
 	"visualeditor-mwmapsdialog-size": "Величина",
 	"visualeditor-mwmapsdialog-title": "Карта"
 }
