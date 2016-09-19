@@ -27,6 +27,7 @@
 		"Kartographer\\ApiSanitizeMapData": "includes/ApiSanitizeMapData.php",
 		"Kartographer\\CoordFormatter": "includes/CoordFormatter.php",
 		"Kartographer\\DataModule": "includes/DataModule.php",
+		"Kartographer\\DataModuleLinks": "includes/DataModuleLinks.php",
 		"Kartographer\\Hooks": "includes/Hooks.php",
 		"Kartographer\\SimpleStyleParser": "includes/SimpleStyleParser.php",
 		"Kartographer\\SpecialMap": "includes/SpecialMap.php",
@@ -47,6 +48,9 @@
 	"ResourceModules": {
 		"ext.kartographer": {
 			"class": "Kartographer\\DataModule"
+		},
+		"ext.kartographer.extlinks": {
+			"class": "Kartographer\\DataModuleLinks"
 		},
 		"ext.kartographer.style": {
 			"styles": [
