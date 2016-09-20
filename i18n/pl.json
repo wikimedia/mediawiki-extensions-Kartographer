@@ -18,6 +18,8 @@
 	"kartographer-tracking-category": "Strony z mapami",
 	"kartographer-tracking-category-desc": "Strona zawiera mapę",
 	"kartographer-specialmap-invalid-coordinates": "Podano nieprawidłowe współrzędne",
+	"kartographer-linktype-map": "Mapa",
+	"kartographer-linktype-birds-eye": "Widok z lotu ptaka",
 	"leafletdraw-draw-handlers-circle-radius": "Promień",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "Kliknij i przeciągnij, aby narysować okrąg",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Kliknij na mapie, aby umieścić znacznik",

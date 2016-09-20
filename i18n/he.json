@@ -34,6 +34,8 @@
 	"kartographer-specialmap-invalid-coordinates": "הקואורדינטות שסופקו אינן תקינות",
 	"kartographer.css": "/* הסגנונות הנכתבים כאן ישפיעו על כל הדפים שמכילים מפות */",
 	"kartographer.js": "/* כל הסקריפטים הנכתבים כאן ייטענו בכל הדפים שמכילים מפות */",
+	"kartographer-linktype-map": "מפה",
+	"kartographer-linktype-satellite": "לוויין",
 	"leafletdraw-draw-handlers-circle-radius": "רדיוס",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "{{GENDER:|לחץ וגרור|לחצי וגררי}} כדי לצייר מעגל",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "{{GENDER:|לחץ|לחצי}} על המפה כדי למקם סמן",

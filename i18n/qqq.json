@@ -4,7 +4,8 @@
 			"Yuri Astrakhan",
 			"Liuxinyu970226",
 			"Raymond",
-			"Amire80"
+			"Amire80",
+			"Robby"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "{{doc-apihelp-description|sanitize-mapdata}}",
@@ -39,7 +40,7 @@
 	"kartographer-specialmap-invalid-coordinates": "Displayed by Special:Map when no valid coordinates are supplied",
 	"kartographer.css": "{{optional}}",
 	"kartographer.js": "{{optional}}",
-	"kartographer-linktype-map": "Full screen map info sidebar - type of external link - map",
+	"kartographer-linktype-map": "Full screen map info sidebar - type of external link - map\n{{Identical|Map}}",
 	"kartographer-linktype-satellite": "Full screen map info sidebar - type of external link - satellite",
 	"kartographer-linktype-terrain": "Full screen map info sidebar - type of external link - terrain",
 	"kartographer-linktype-topo": "Full screen map info sidebar - type of external link - topo",

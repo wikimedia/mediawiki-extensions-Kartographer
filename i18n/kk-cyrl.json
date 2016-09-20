@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mirgulkali"
+		]
+	},
+	"kartographer-linktype-satellite": "Серік",
+	"kartographer-linktype-topo": "Топологиялық",
+	"kartographer-linktype-birds-eye": "Ұшар биіктен көрініс"
+}
