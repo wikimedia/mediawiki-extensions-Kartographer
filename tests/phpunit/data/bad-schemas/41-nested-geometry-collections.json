@@ -1,0 +1,18 @@
+{
+	"type": "GeometryCollection",
+	"geometries": [
+		{
+			"type": "GeometryCollection",
+			"geometries": [
+				{
+					"type": "Point",
+					"coordinates": [
+						10,
+						20,
+						"fail"
+					]
+				}
+			]
+		}
+	]
+}
