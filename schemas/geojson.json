@@ -16,7 +16,6 @@
 			},
 			"oneOf": [
 				{ "$ref": "#/definitions/geometry" },
-				{ "$ref": "#/definitions/geometryCollection" },
 				{ "$ref": "#/definitions/feature" },
 				{ "$ref": "#/definitions/featureCollection" },
 				{ "$ref": "#/definitions/externalData" }
@@ -50,7 +49,17 @@
 			"title": "geometry",
 			"description": "One geometry as defined by GeoJSON",
 			"type": "object",
-			"required": [ "type", "coordinates" ],
+			"required": [ "type" ],
+			"oneOf": [
+				{ "$ref": "#/definitions/primitiveGeometry" },
+				{ "$ref": "#/definitions/geometryCollection" }
+			]
+		},
+		"primitiveGeometry": {
+			"title": "primitiveGeometry",
+			"description": "All the non-collection Geometry types",
+			"type": "object",
+			"required": [ "coordinates" ],
 			"oneOf": [
 				{
 					"title": "Point",
