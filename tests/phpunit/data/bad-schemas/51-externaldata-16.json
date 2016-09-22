@@ -1,0 +1,17 @@
+[
+	{
+		"type": "ExternalData",
+		"service": "geoshape",
+		"query": "foo"
+	},
+	{
+		"type": "FeatureCollection",
+		"features": [
+			{
+				"type": "ExternalData",
+				"service": "geoshape",
+				"query": "foo"
+			}
+		]
+	}
+]
