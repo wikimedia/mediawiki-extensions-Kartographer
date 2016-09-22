@@ -1,9 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Мария Олесова"
+			"Мария Олесова",
+			"Туллук"
 		]
 	},
+	"kartographer-linktype-map": "карта",
+	"kartographer-linktype-topo": "топологическай",
+	"kartographer-linktype-birds-eye": "Үөһээттэн",
+	"kartographer-linktype-other": "Атын",
 	"mapbox-control-zoomin-title": "Чугаһатыы",
 	"mapbox-control-zoomout-title": "Улаатыннарыы"
 }

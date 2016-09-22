@@ -5,7 +5,8 @@
 			"Metastasis",
 			"Лилиә",
 			"Adam-Yourist",
-			"Kaganer"
+			"Kaganer",
+			"Туллук"
 		]
 	},
 	"kartographer-broken-category": "Страницы с некорректными картами",
@@ -18,6 +19,13 @@
 	"kartographer-error-bad_data": "JSON содержит ошибки",
 	"kartographer-tracking-category": "Страницы с картами",
 	"kartographer-tracking-category-desc": "Страница, содержащая карту",
+	"kartographer-linktype-map": "Карта",
+	"kartographer-linktype-satellite": "Спутниковое",
+	"kartographer-linktype-terrain": "Местность",
+	"kartographer-linktype-topo": "Топологические",
+	"kartographer-linktype-aerial": "Воздушная",
+	"kartographer-linktype-birds-eye": "С высоты птичьего полета",
+	"kartographer-linktype-other": "Другое",
 	"leafletdraw-draw-handlers-circle-radius": "Радиус",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "Нажмите и потяните, чтобы нарисовать круг",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Нажмите на карте, чтобы поставить маркер",
@@ -47,6 +55,7 @@
 	"mapbox-control-zoomout-title": "Отдалить",
 	"kartographer-fullscreen-close": "Закрыть",
 	"kartographer-fullscreen-text": "Показать в полноэкранном режиме",
+	"visualeditor-mwmapsdialog-position-button": "Текущая должность",
 	"visualeditor-mwmapsdialog-position-lat": "Широта",
 	"visualeditor-mwmapsdialog-position-lon": "Долгота",
 	"visualeditor-mwmapsdialog-position-zoom": "Масштаб",
