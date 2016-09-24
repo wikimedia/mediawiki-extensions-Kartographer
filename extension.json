@@ -55,6 +55,7 @@
 		"ext.kartographer.style": {
 			"styles": [
 				"styles/kartographer.less",
+				"styles/dialog.less",
 				"styles/control-attribution.less",
 				"styles/control-scale.less",
 				"styles/leaflet-overrides.less"
@@ -203,8 +204,36 @@
 				"modules/dialog/index.js"
 			],
 			"messages": [
-				"kartographer-fullscreen-close"
+				"kartographer-fullscreen-close",
+				"kartographer-sidebar-togglebutton"
 			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"ext.kartographer.dialog.sidebar": {
+			"dependencies": [
+				"ext.kartographer.extlinks"
+			],
+			"scripts": [
+				"modules/dialog-sidebar/sidebar.js"
+			],
+			"messages": [
+				"kartographer-fullscreen-close",
+				"kartographer-sidebar-coordinates",
+				"kartographer-sidebar-description",
+				"kartographer-sidebar-filterdropdown",
+				"kartographer-sidebar-externalservices",
+				"kartographer-sidebar-latitude",
+				"kartographer-sidebar-longitude",
+				"kartographer-sidebar-mapdetails",
+				"kartographer-sidebar-service"
+			],
+			"templates": {
+				"dialog-sidebar-mapdetails.mustache": "templates/dialog-sidebar-mapdetails.mustache",
+				"dialog-sidebar-externalservices.mustache": "templates/dialog-sidebar-externalservices.mustache"
+			},
 			"targets": [
 				"mobile",
 				"desktop"

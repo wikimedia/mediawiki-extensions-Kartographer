@@ -36,10 +36,17 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 	 * @return {string[]} return.overlays Overlay groups
 	 */
 	function getMapData( element ) {
-		var $el = $( element );
+		var $el = $( element ),
+			$caption = $el.parent().find( '.thumbcaption' ),
+			captionText = '';
+
 		// Prevent users from adding map divs directly via wikitext
 		if ( $el.attr( 'mw-data' ) !== 'interface' ) {
 			return null;
+		}
+
+		if ( $caption[ 0 ] ) {
+			captionText = $caption.text();
 		}
 
 		return {
@@ -47,7 +54,8 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 			longitude: +$el.data( 'lon' ),
 			zoom: +$el.data( 'zoom' ),
 			style: $el.data( 'style' ),
-			overlays: $el.data( 'overlays' ) || []
+			overlays: $el.data( 'overlays' ) || [],
+			captionText: captionText
 		};
 	}
 
@@ -83,7 +91,8 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 					zoom: data.zoom,
 					fullScreenRoute: '/map/' + index,
 					allowFullScreen: true,
-					dataGroups: data.overlays
+					dataGroups: data.overlays,
+					captionText: data.captionText
 				} );
 
 				mapsInArticle.push( map );

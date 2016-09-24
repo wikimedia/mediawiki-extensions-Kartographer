@@ -1,0 +1,122 @@
+/* Temporary import from wmui-base.less */
+/* https://phabricator.wikimedia.org/diffusion/WMUI/ */
+
+@wmui-color-base60:          #c8ccd1;
+@wmui-color-base80:          #eaecf0;
+@wmui-color-base100:         #fff;
+@background-color-base:      @wmui-color-base100;
+@border-color-base:          #222;
+@border-base:                1px solid @border-color-base;
+
+/* Dialog footer */
+.mw-kartographer-mapDialog-foot {
+	padding: 1em;
+	height: 4.5em;
+	background-color: @background-color-base;
+	border-top: @border-base;
+}
+
+.mw-kartographer-captionfoot {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 20px;
+	line-height: 31px;
+}
+
+.mw-kartographer-buttonfoot {
+	float: right;
+	margin-left: 1em;
+}
+
+/* Dialog Sidebar */
+.mw-kartographer-mapDialog-sidebar {
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 4.5em;
+	z-index: 2;
+	width: 320px;
+	box-sizing: border-box;
+	background-color: @background-color-base;
+	padding: 3em 2em 1em;
+	overflow-y: scroll;
+
+	table {
+		width: 100%;
+		border-collapse: collapse;
+
+		tr {
+			background-color: @wmui-color-base80;
+			text-align: center;
+		}
+
+		th {
+			text-align: left;
+		}
+
+		th,
+		td {
+			padding: 0.5em 1em;
+			font-size: 90%;
+		}
+
+		thead {
+			tr {
+				background-color: @wmui-color-base60;
+
+				th {
+					font-weight: bold;
+				}
+			}
+		}
+
+		tbody {
+			tr th:first-child {
+				width: 70%;
+				text-align: left;
+			}
+
+			tr:nth-child(even) {
+				background-color: @wmui-color-base100;
+			}
+		}
+	}
+
+	.mw-kartographer-mapDialog-closeButton {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		margin-right: 0;
+
+		.oo-ui-buttonElement-button {
+			border: 0;
+		}
+	}
+}
+
+.mw-kartographer-description,
+.mw-kartographer-mapdetails {
+	margin-bottom: 1.5em;
+}
+
+.mw-kartographer-filterservices {
+	margin-bottom: 1em;
+}
+
+.mw-kartographer-mapDialog-sidebar .mw-kartographer-externalservices {
+	tr.featured {
+		background-color: #fef6e7;
+		border-bottom: 1px solid #fc3;
+	}
+	/* stylelint-disable no-descending-specificity */
+	tbody th {
+		font-weight: normal;
+	}
+	/* stylelint-enable no-descending-specificity */
+}
+
+/* For MobileFrontend */
+.skin-minerva .mw-kartographer-mapDialog-sidebar h2 {
+	margin-bottom: 0.6em;
+}

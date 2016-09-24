@@ -47,6 +47,7 @@ module.exports = ( function ( $, mw, router, kartobox, undefined ) {
 			longitude: +$el.data( 'lon' ),
 			zoom: +$el.data( 'zoom' ),
 			style: $el.data( 'style' ),
+			captionText: $el.text(),
 			overlays: $el.data( 'overlays' ) || []
 		};
 	}
@@ -74,6 +75,7 @@ module.exports = ( function ( $, mw, router, kartobox, undefined ) {
 				center: [ data.latitude, data.longitude ],
 				zoom: data.zoom,
 				dataGroups: data.overlays,
+				captionText: data.captionText,
 				fullScreenRoute: '/maplink/' + index
 			} );
 		} );

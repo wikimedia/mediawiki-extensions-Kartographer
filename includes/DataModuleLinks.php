@@ -42,12 +42,22 @@ class DataModuleLinks extends ResourceLoaderModule {
 		}
 
 		$data = $st->getValue();
+		$allTypes = [];
+
 		foreach ( $data->services as &$service ) {
-			$service->name = $context->msg( 'kartographer-link-' . $service->name )->plain();
+			$service->name = $context->msg( 'kartographer-link-' . $service->id )->plain();
 
 			foreach ( $service->links as &$link ) {
-				$link->type = $context->msg( 'kartographer-linktype-' . $link->type )->plain();
+				$allTypes[ $link->type ] = true;
 			}
+		}
+
+		$allTypes = array_keys( $allTypes );
+		$data->types = array_unique( array_merge( $data->types, $allTypes ) );
+
+		$data->localization = [];
+		foreach( $allTypes as $type ) {
+			$data->localization[$type] = $context->msg( 'kartographer-linktype-' . $type )->plain();
 		}
 
 		return $data;

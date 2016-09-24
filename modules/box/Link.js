@@ -11,8 +11,6 @@
  */
 module.Link = ( function ( $ ) {
 
-	var Link;
-
 	/*jscs:disable disallowDanglingUnderscores */
 	/**
 	 * @constructor
@@ -27,8 +25,10 @@ module.Link = ( function ( $ ) {
 	 * @param {string} [options.fullScreenRoute] Route associated to this map
 	 *   _(internal, used by "`<maplink>`")_.
 	 * @member Kartographer.Box.LinkClass
+	 * @type {Kartographer.Box.LinkClass}
+	 * @method
 	 */
-	Link = function ( options ) {
+	var Link = function ( options ) {
 		/**
 		 * Reference to the link container.
 		 *
@@ -51,8 +51,10 @@ module.Link = ( function ( $ ) {
 
 		this.useRouter = !!options.fullScreenRoute;
 		this.fullScreenRoute = options.fullScreenRoute || null;
+		this.captionText = options.captionText || '';
 		this.dataGroups = options.dataGroups;
 		this.data = options.data;
+
 		/**
 		 * @property {Kartographer.Box.MapClass} [fullScreenMap=null] Reference
 		 *   to the associated full screen map.
@@ -99,6 +101,7 @@ module.Link = ( function ( $ ) {
 				link: true,
 				center: position.center,
 				zoom: position.zoom,
+				captionText: this.captionText,
 				dataGroups: this.dataGroups,
 				data: this.data,
 				fullScreenRoute: this.fullScreenRoute
