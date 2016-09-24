@@ -4,11 +4,8 @@
 			"Mirgulkali"
 		]
 	},
+	"kartographer-linktype-other": "Басқа",
 	"kartographer-linktype-satellite": "Серік",
 	"kartographer-linktype-terrain": "Бедер",
-	"kartographer-linktype-topo": "Топологиялық",
-	"kartographer-linktype-aeronautical": "Аэронавтикалы",
-	"kartographer-linktype-birds-eye": "Ұшар биіктен көрініс",
-	"kartographer-linktype-night-lights": "Түнгі шамдар",
-	"kartographer-linktype-other": "Басқа"
+	"kartographer-linktype-topo": "Топологиялық"
 }
