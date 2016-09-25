@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"امین اکبر"
+		]
+	},
+	"kartographer-sidebar-coordinates": "محددات",
+	"kartographer-sidebar-description": "ذیل میں درج خدمات میں سے ایک کے اس مقام کو دیکھیں۔ آپ نقشے کی قسم سے بھی فہرست چھان سکتے ہیں۔",
+	"kartographer-sidebar-filterdropdown": "نقشے کی قسم منتخب کریں",
+	"kartographer-sidebar-externalservices": "بیرونی خدمات",
+	"kartographer-sidebar-latitude": "عرض البلد",
+	"kartographer-sidebar-longitude": "طول البلد",
+	"kartographer-sidebar-mapdetails": "نقشے کی تفصیلات",
+	"kartographer-sidebar-service": "خدمات",
+	"kartographer-sidebar-togglebutton": "مزید تفصیلات"
+}
