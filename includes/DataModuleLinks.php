@@ -9,14 +9,9 @@
 namespace Kartographer;
 
 use FormatJson;
-use Language;
-use Parser;
-use ParserOptions;
 use ResourceLoader;
 use ResourceLoaderContext;
 use ResourceLoaderModule;
-use stdClass;
-use Title;
 
 class DataModuleLinks extends ResourceLoaderModule {
 
