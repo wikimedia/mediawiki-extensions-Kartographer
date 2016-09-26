@@ -6,7 +6,8 @@
 			"Лилиә",
 			"Adam-Yourist",
 			"Kaganer",
-			"Туллук"
+			"Туллук",
+			"Amire80"
 		]
 	},
 	"kartographer-broken-category": "Страницы с некорректными картами",
@@ -25,6 +26,7 @@
 	"kartographer-linktype-satellite": "Спутниковое",
 	"kartographer-linktype-terrain": "Местность",
 	"kartographer-linktype-topo": "Топологические",
+	"kartographer-link-yandex-maps": "Яндекс.Карты",
 	"leafletdraw-draw-handlers-circle-radius": "Радиус",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "Нажмите и потяните, чтобы нарисовать круг",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Нажмите на карте, чтобы поставить маркер",
