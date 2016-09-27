@@ -1,0 +1,17 @@
+[
+	{
+		"type": "ExternalData",
+		"service": "geoline",
+		"query": "foo"
+	},
+	{
+		"type": "FeatureCollection",
+		"features": [
+			{
+				"type": "ExternalData",
+				"service": "geoline",
+				"query": "foo"
+			}
+		]
+	}
+]
