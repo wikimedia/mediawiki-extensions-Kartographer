@@ -12,5 +12,19 @@
 	"kartographer-tracking-category": "नकाशे असलेली पाने",
 	"kartographer-tracking-category-desc": "या पानात नकाशाचा अंतर्भाव आहे",
 	"kartographer-specialmap-invalid-coordinates": "अवैध सह-अंश(कोऑर्डिनेटस्) पुरविलेत",
-	"map": "सह-अंशांची(कोऑर्डिनेटस्) माहिती"
+	"kartographer-linktype-map": "नकाशा",
+	"kartographer-linktype-other": "इतर",
+	"kartographer-linktype-satellite": "उपग्रह",
+	"kartographer-sidebar-coordinates": "अंशिके",
+	"kartographer-sidebar-filterdropdown": "नकाशा प्रकार निवडा",
+	"kartographer-sidebar-externalservices": "बाह्य सेवा",
+	"kartographer-sidebar-latitude": "अक्षांश",
+	"kartographer-sidebar-longitude": "रेखांश",
+	"kartographer-sidebar-mapdetails": "नकाशा तपशिल",
+	"kartographer-sidebar-service": "सेवा",
+	"kartographer-sidebar-togglebutton": "अधिक तपशिल",
+	"map": "सह-अंशांची(कोऑर्डिनेटस्) माहिती",
+	"visualeditor-mwmapsdialog-position-button": "सद्याचे स्थान",
+	"visualeditor-mwmapsdialog-position-lat": "अक्षांश",
+	"visualeditor-mwmapsdialog-position-lon": "रेखांश"
 }
