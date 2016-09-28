@@ -242,6 +242,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 			uri.query = {};
 			switch ( data.service ) {
 				case 'geoshape':
+				case 'geoline':
 					if ( data.query ) {
 						if ( typeof data.query === 'string' ) {
 							uri.query.query = data.query;
@@ -266,35 +267,36 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 
 		switch ( uri.protocol ) {
 			case 'geoshape':
+			case 'geoline':
 				// geoshape:///?ids=Q16,Q30
 				// geoshape:///?query=SELECT...
 				// Get geo shapes data from OSM database by supplying Wikidata IDs or query
-				// https://maps.wikimedia.org/shape?ids=Q16,Q30
+				// https://maps.wikimedia.org/geoshape?ids=Q16,Q30
 				if ( !uri.query || ( !uri.query.ids && !uri.query.query ) ) {
-					throw new Error( 'geoshape: missing ids or query parameter in externalData' );
+					throw new Error( uri.protocol + ': missing ids or query parameter in externalData' );
 				}
 				if ( !uri.isRelativeHost && uri.host !== 'maps.wikimedia.org' ) {
-					throw new Error( 'geoshape: hostname must be missing or "maps.wikimedia.org"' );
+					throw new Error( uri.protocol + ': hostname must be missing or "maps.wikimedia.org"' );
 				}
-				uri.protocol = 'https';
 				uri.host = 'maps.wikimedia.org';
 				uri.port = undefined;
-				uri.path = '/geoshape';
+				uri.path = '/' + uri.protocol;
+				uri.protocol = 'https';
 				uri.query.origin = location.protocol + '//' + location.host;
 				// HACK: workaround for T144777
 				uri.query.getgeojson = 1;
 
-				return $.getJSON( uri.toString() ).then( function ( geoshape ) {
+				return $.getJSON( uri.toString() ).then( function ( geodata ) {
 					var baseProps = data.properties;
 					delete data.href;
 
 					// HACK: workaround for T144777 - we should be using topojson instead
-					$.extend( data, geoshape );
+					$.extend( data, geodata );
 
 					// data.type = 'FeatureCollection';
 					// data.features = [];
-					// $.each( geoshape.objects, function ( key ) {
-					// 	data.features.push( topojson.feature( geoshape, geoshape.objects[ key ] ) );
+					// $.each( geodata.objects, function ( key ) {
+					// 	data.features.push( topojson.feature( geodata, geodata.objects[ key ] ) );
 					// } );
 
 					// Each feature returned from geoshape service may contain "properties"

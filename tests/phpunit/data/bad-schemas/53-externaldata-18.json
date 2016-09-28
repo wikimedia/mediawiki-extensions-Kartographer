@@ -1,0 +1,6 @@
+{
+	"type": "ExternalData",
+	"service": "geoline",
+	"query": "FOO BAR",
+	"ids": [ "Q1", "Q2", "3" ]
+}

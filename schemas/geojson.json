@@ -169,7 +169,7 @@
 				{
 					"required": [ "service" ],
 					"properties": {
-						"service": { "enum": [ "geoshape" ] },
+						"service": { "enum": [ "geoshape", "geoline" ] },
 						"query": { "type": "string" },
 						"ids": {
 							"oneOf": [
