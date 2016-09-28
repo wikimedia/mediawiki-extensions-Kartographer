@@ -3,7 +3,8 @@
 		"authors": [
 			"WikiPhoenix",
 			"Rockyfelle",
-			"Jopparn"
+			"Jopparn",
+			"Josve05a"
 		]
 	},
 	"apihelp-query+mapdata-description": "Begär all kartdata från sidan <kbd>Metallica</kbd>",
@@ -19,6 +20,8 @@
 	"kartographer-linktype-other": "Övrigt",
 	"kartographer-linktype-satellite": "Satellit",
 	"kartographer-linktype-terrain": "Terräng",
+	"kartographer-sidebar-coordinates": "Koordinater",
+	"kartographer-sidebar-latitude": "Latitud",
 	"leafletdraw-draw-handlers-circle-radius": "Radie",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "Klicka och dra för att rita en cirkel",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Klicka på kartan för att placera en markör",

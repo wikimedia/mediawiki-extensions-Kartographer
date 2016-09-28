@@ -3,7 +3,8 @@
 		"authors": [
 			"Susannaanas",
 			"McSalama",
-			"Nike"
+			"Nike",
+			"Pyscowicz"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Validoi datan Kartographer-laajennokselle",
@@ -28,6 +29,12 @@
 	"kartographer-error-latlon": "On annettava joko sekä \"leveysaste\" että \"pituusaste\" -arvot tai ei kumpaakaan niistä",
 	"kartographer-tracking-category": "Sivut, joilla on karttoja",
 	"kartographer-tracking-category-desc": "Sivu sisältää kartan",
+	"kartographer-linktype-map": "Kartta",
+	"kartographer-linktype-satellite": "Satelliitti",
+	"kartographer-linktype-topo": "Topologinen",
+	"kartographer-sidebar-coordinates": "Koordinaatit",
+	"kartographer-sidebar-latitude": "Leveyspiiri",
+	"kartographer-sidebar-mapdetails": "Kartan tiedot",
 	"leafletdraw-draw-handlers-circle-radius": "Säde",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "Piirrä ympyrä napsauttamalla ja vetämällä",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Sijoita merkki napsauttamalla karttaa",
