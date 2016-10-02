@@ -29,7 +29,7 @@
 	"kartographer-linktype-terrain": "Terreno",
 	"kartographer-linktype-topo": "Topologico",
 	"kartographer-sidebar-coordinates": "Coordinate",
-	"kartographer-sidebar-description": "Visualizza questa posizione in uno dei servizi elecati di seguito. È possibile filtrare l'elenco per tipo di mappa:",
+	"kartographer-sidebar-description": "Visualizza questa posizione in uno dei servizi elencati di seguito. Puoi filtrare l'elenco per tipo di mappa:",
 	"kartographer-sidebar-filterdropdown": "Seleziona un tipo di mappa",
 	"kartographer-sidebar-externalservices": "Servizi esterni",
 	"kartographer-sidebar-latitude": "Latitudine",

@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pickle12"
+		]
+	},
+	"kartographer-sidebar-coordinates": "Koordinate",
+	"kartographer-sidebar-externalservices": "Zunanje storitve",
+	"kartographer-sidebar-latitude": "Zemljepisna širina",
+	"kartographer-sidebar-longitude": "Zemljepisna dolžina",
+	"kartographer-sidebar-mapdetails": "Podrobnosti zemljevida",
+	"kartographer-sidebar-service": "Storitev",
+	"kartographer-sidebar-togglebutton": "Več podrobnosti"
+}

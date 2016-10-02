@@ -27,6 +27,7 @@
 	"kartographer-linktype-terrain": "Местность",
 	"kartographer-linktype-topo": "Топологические",
 	"kartographer-link-yandex-maps": "Яндекс.Карты",
+	"kartographer-sidebar-coordinates": "Координаты",
 	"kartographer-sidebar-filterdropdown": "Выберите тип карты",
 	"kartographer-sidebar-externalservices": "Внешние службы",
 	"kartographer-sidebar-latitude": "Широта",

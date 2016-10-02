@@ -12,6 +12,7 @@
 	"kartographer-tracking-category": "नकाशे असलेली पाने",
 	"kartographer-tracking-category-desc": "या पानात नकाशाचा अंतर्भाव आहे",
 	"kartographer-specialmap-invalid-coordinates": "अवैध सह-अंश(कोऑर्डिनेटस्) पुरविलेत",
+	"kartographer-linktype-aerial": "हवाई",
 	"kartographer-linktype-map": "नकाशा",
 	"kartographer-linktype-other": "इतर",
 	"kartographer-linktype-satellite": "उपग्रह",
