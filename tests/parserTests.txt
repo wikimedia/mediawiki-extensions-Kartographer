@@ -369,3 +369,29 @@ wgKartographerWikivoyageMode=true
 <div class="mw-kartographer-error">&lt;maplink&gt;: Attribute "show" has an invalid value</div>
 
 !! end
+
+!! test
+ExternalData errors
+!! input
+<maplink>
+[
+	{
+		"type": "ExternalData",
+		"service": "fail",
+		"ids": [ "Q1", "Q2" ]
+	},
+	{
+		"type": "ExternalData",
+		"service": "lulzifier",
+		"query": "test"
+	}
+]
+</maplink>
+!! result
+<div class="mw-kartographer-error"><p>&lt;maplink&gt; problems:
+</p>
+<ul><li> Invalid cartographic service "fail"</li>
+<li> Invalid cartographic service "lulzifier"</li></ul>
+</div>
+
+!! end
