@@ -8,15 +8,15 @@
  * @class Kartographer.Box.MapClass
  * @extends L.Map
  */
-module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl, topojson, window, undefined ) {
+module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl, DataManager, topojson, window, undefined ) {
 
 	var scale, urlFormat,
 		mapServer = mw.config.get( 'wgKartographerMapServer' ),
 		worldLatLng = new L.LatLngBounds( [ -90, -180 ], [ 90, 180 ] ),
 		Map,
 		precisionPerZoom = [ 0, 0, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5 ],
-		liveDataPromise = false,
-		groupsLoaded = {};
+		inlineDataLayerKey = 'kartographer-inline-data-layer',
+		inlineDataLayerId = 0;
 
 	function bracketDevicePixelRatio() {
 		var i, scale,
@@ -104,220 +104,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 		}
 		return false;
 	}
-	/*jscs:enable disallowDanglingUnderscores */
 
-	/**
-	 * Returns the data for the list of groups.
-	 *
-	 * If the data is not already loaded (`wgKartographerLiveData`), an
-	 * asynchronous request will be made to fetch the missing groups.
-	 * The new data is then added to `wgKartographerLiveData`.
-	 *
-	 * @param {string[]} dataGroups Data group names.
-	 * @return {jQuery.Promise} Promise which resolves with the group data,
-	 *   an object keyed by group name
-	 * @private
-	 */
-	function getMapGroupData( dataGroups ) {
-		var apiPromise = $.Deferred(),
-			// LiveData is provided by the server on initial page load
-			// But it may contain external data that we have to load here
-			liveData = mw.config.get( 'wgKartographerLiveData' ) || {},
-			groupsToLoad = [],
-			promises = [];
-
-		// On initial page load, server provided some live data
-		// Here we process all externalData refs in the live data, ensuring that we only do it once
-		if ( liveDataPromise === false ) {
-			liveDataPromise = loadGeoJsonAsync( liveData ).then( function () {
-				liveDataPromise = true;
-			} );
-		}
-		if ( liveDataPromise !== true ) {
-			promises.push( liveDataPromise );
-		}
-
-		// For each requested layer, make sure it is loaded or is promised to be loaded
-		$.each( dataGroups, function ( key, group ) {
-			var data = groupsLoaded[ group ];
-			if ( data === undefined ) {
-				if ( liveData[ group ] === undefined ) {
-					groupsToLoad.push( group );
-					// Once loaded, this value will be replaced with the received data
-					groupsLoaded[ group ] = apiPromise.promise();
-				}
-			} else if ( data !== null && $.isFunction( data.then ) ) {
-				promises.push( data );
-			}
-		} );
-
-		if ( groupsToLoad.length ) {
-			new mw.Api().get( {
-				action: 'query',
-				formatversion: '2',
-				titles: mw.config.get( 'wgPageName' ),
-				prop: 'mapdata',
-				mpdgroups: groupsToLoad.join( '|' )
-			} ).done( function ( data ) {
-				var rawMapData = data.query.pages[ 0 ].mapdata,
-					mapData = rawMapData && JSON.parse( rawMapData ) || {};
-				return loadGeoJsonAsync( mapData ).then( function () {
-					apiPromise.resolve( groupsLoaded );
-				} );
-			} );
-			promises.push( apiPromise.promise() );
-		}
-
-		return $.when.apply( $, promises ).then( function () {
-			// All pending promises are done
-			return groupsLoaded;
-		} ).promise();
-	}
-
-	/**
-	 * Traverse data, load all external data, and expand it in place. Returns a promise.
-	 *
-	 * @param {Object} data groupId->GeoJson, where geojson may contain ExternalData hrefs
-	 * @return {Promise} resolved when all external data objects are expanded in place
-	 */
-	function loadGeoJsonAsync( data ) {
-		var promises = [];
-		$.each( data, function ( key, value ) {
-			loadGeoJsonRec( value, promises );
-		} );
-		return $.when.apply( $, promises ).then( function () {
-			$.extend( groupsLoaded, data );
-		} );
-	}
-
-	/**
-	 * Recursive function to traverse data and expand external data
-	 *
-	 * @param {Object|Array|*} data to traverse
-	 * @param {Promise[]} pendingPromises list of promises, one for each external data XHR
-	 */
-	function loadGeoJsonRec( data, pendingPromises ) {
-		if ( $.isArray( data ) ) {
-			$.each( data, function ( key, value ) {
-				loadGeoJsonRec( value, pendingPromises );
-			} );
-		} else if ( $.isPlainObject( data ) && data.type ) {
-			if ( data.type === 'GeometryCollection' && data.geometries ) {
-				loadGeoJsonRec( data.geometries, pendingPromises );
-			} else if ( data.type === 'FeatureCollection' && data.features ) {
-				loadGeoJsonRec( data.features, pendingPromises );
-			} else if ( data.type === 'ExternalData' ) {
-				pendingPromises.push( loadExternalDataAsync( data ) );
-			}
-		}
-	}
-
-	/**
-	 * For a given ExternalData object, gets it via XHR and expands it in place
-	 *
-	 * @param {Object} data
-	 * @param {string} [data.href] optional URL to external data
-	 * @param {string} [data.service] optional name of the service (same as protocol without the ':')
-	 * @param {string} [data.host] optional host of the service
-	 * @param {string|string[]} [data.query] optional geoshape query
-	 * @param {string} [data.ids] optional geoshape ids
-	 * @return {Promise} resolved when done with geojson expansion
-	 */
-	function loadExternalDataAsync( data ) {
-		var uri;
-		if ( data.href ) {
-			uri = new mw.Uri( data.href );
-			// If url begins with   protocol:///...  mark it as having relative host
-			if ( /^[a-z]+:\/\/\//.test( data.href ) ) {
-				uri.isRelativeHost = true;
-			}
-		} else if ( data.service ) {
-			// Construct URI out of the parameters in the externalData object
-			uri = new mw.Uri( {
-				protocol: data.service,
-				host: data.host,
-				path: '/'
-			} );
-			uri.isRelativeHost = !data.host;
-			uri.query = {};
-			switch ( data.service ) {
-				case 'geoshape':
-				case 'geoline':
-					if ( data.query ) {
-						if ( typeof data.query === 'string' ) {
-							uri.query.query = data.query;
-						} else {
-							throw new Error( 'Invalid "query" parameter in ExternalData' );
-						}
-					}
-					if ( data.ids ) {
-						if ( $.isArray( data.ids ) ) {
-							uri.query.ids = data.ids.join( ',' );
-						} else if ( typeof data.ids === 'string' ) {
-							uri.query.ids = data.ids.replace( /\s*,\s*/, ',' );
-						} else {
-							throw new Error( 'Invalid "ids" parameter in ExternalData' );
-						}
-					}
-					break;
-				default:
-					throw new Error( 'Unknown externalData protocol ' + data.service );
-			}
-		}
-
-		switch ( uri.protocol ) {
-			case 'geoshape':
-			case 'geoline':
-				// geoshape:///?ids=Q16,Q30
-				// geoshape:///?query=SELECT...
-				// Get geo shapes data from OSM database by supplying Wikidata IDs or query
-				// https://maps.wikimedia.org/geoshape?ids=Q16,Q30
-				if ( !uri.query || ( !uri.query.ids && !uri.query.query ) ) {
-					throw new Error( uri.protocol + ': missing ids or query parameter in externalData' );
-				}
-				if ( !uri.isRelativeHost && uri.host !== 'maps.wikimedia.org' ) {
-					throw new Error( uri.protocol + ': hostname must be missing or "maps.wikimedia.org"' );
-				}
-				uri.host = 'maps.wikimedia.org';
-				uri.port = undefined;
-				uri.path = '/' + uri.protocol;
-				uri.protocol = 'https';
-				uri.query.origin = location.protocol + '//' + location.host;
-				// HACK: workaround for T144777
-				uri.query.getgeojson = 1;
-
-				return $.getJSON( uri.toString() ).then( function ( geodata ) {
-					var baseProps = data.properties;
-					delete data.href;
-
-					// HACK: workaround for T144777 - we should be using topojson instead
-					$.extend( data, geodata );
-
-					// data.type = 'FeatureCollection';
-					// data.features = [];
-					// $.each( geodata.objects, function ( key ) {
-					// 	data.features.push( topojson.feature( geodata, geodata.objects[ key ] ) );
-					// } );
-
-					// Each feature returned from geoshape service may contain "properties"
-					// If externalData element has properties, merge it with properties in the feature
-					if ( baseProps ) {
-						$.each( data.features, function ( index, feature ) {
-							if ( $.isEmptyObject( feature.properties ) ) {
-								feature.properties = baseProps;
-							} else {
-								feature.properties = $.extend( {}, baseProps, feature.properties );
-							}
-						} );
-					}
-				} );
-
-			default:
-				throw new Error( 'Unknown externalData protocol ' + uri.protocol );
-		}
-	}
-
-	/*jscs:disable disallowDanglingUnderscores */
 	Map = L.Map.extend( {
 		/**
 		 * @constructor
@@ -347,7 +134,8 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 		initialize: function ( options ) {
 
 			var args,
-				style = options.style || mw.config.get( 'wgKartographerDfltStyle' ) || 'osm-intl';
+				style = options.style || mw.config.get( 'wgKartographerDfltStyle' ) || 'osm-intl',
+				map = this;
 
 			if ( options.center === 'auto' ) {
 				options.center = undefined;
@@ -377,9 +165,9 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 
 			this.on( 'kartographerisready', function () {
 				/*jscs:disable requireCamelCaseOrUpperCaseIdentifiers*/
-				this._kartographer_ready = true;
+				map._kartographer_ready = true;
 				/*jscs:enable requireCamelCaseOrUpperCaseIdentifiers*/
-			}, this );
+			} );
 
 			/**
 			 * @property {Kartographer.Box.MapClass} [parentMap=null] Reference
@@ -448,8 +236,8 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 			if ( options.allowFullScreen ) {
 				// embed maps, and full screen is allowed
 				this.on( 'dblclick', function () {
-					this.openFullScreen();
-				}, this );
+					map.openFullScreen();
+				} );
 
 				/**
 				 * @property {Kartographer.Box.OpenFullScreenControl|undefined} [openFullScreenControl=undefined]
@@ -469,19 +257,33 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 				this._invalidateInterative();
 			}
 
-			this.addDataGroups( options.dataGroups ).then( L.Util.bind( function () {
-				if ( typeof options.data === 'object' ) {
-					this.addDataLayer( 'kartographer-inline-data-layer', options.data );
-				}
-
-				this.initView( options.center, options.zoom );
-				this.fire(
+			function ready() {
+				map.initView( options.center, options.zoom );
+				map.fire(
 					/**
 					 * @event
 					 * Fired when the Kartographer Map object is ready.
 					 */
 					'kartographerisready' );
-			}, this ) );
+			}
+
+			if ( this.parentMap ) {
+				$.each( this.parentMap.dataLayers, function ( groupId, layer ) {
+					map.addGeoJSONLayer( groupId, layer.getGeoJSON(), layer.options );
+					ready();
+				} );
+				return;
+			}
+
+			this.addDataGroups( options.dataGroups ).then( function () {
+				if ( typeof options.data === 'object' ) {
+					map.addDataLayer( options.data ).then( function () {
+						ready();
+					} );
+				} else {
+					ready();
+				}
+			} );
 		},
 
 		/**
@@ -546,18 +348,47 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 		addDataGroups: function ( dataGroups ) {
 			var map = this,
 				deferred = $.Deferred();
-			if ( !dataGroups ) {
+
+			if ( !dataGroups || !dataGroups.length ) {
 				return deferred.resolveWith().promise();
 			}
-			getMapGroupData( dataGroups ).then( function ( mapData ) {
-				$.each( dataGroups, function ( index, group ) {
-					if ( !$.isEmptyObject( mapData[ group ] ) ) {
-						map.addDataLayer( group, mapData[ group ] );
+
+			DataManager.loadGroups( dataGroups ).then( function ( dataGroups ) {
+
+				$.each( dataGroups, function ( key, group ) {
+					if ( !$.isEmptyObject( group.getGeoJSON() ) ) {
+						map.addGeoJSONLayer( group.id, group.getGeoJSON(), { attribution: group.attribution } );
 					} else {
-						mw.log.warn( 'Layer not found or contains no data: "' + group + '"' );
+						mw.log.warn( 'Layer not found or contains no data: "' + group.id + '"' );
 					}
 				} );
-				deferred.resolveWith().promise();
+				deferred.resolve();
+			} );
+			return deferred.promise();
+		},
+
+		/**
+		 * Creates a new GeoJSON layer and adds it to the map.
+		 *
+		 * @param {Object} groupData Features
+		 * @param {Object} [options] Layer options
+		 */
+		addDataLayer: function ( groupData, options ) {
+			var map = this,
+				deferred = $.Deferred();
+
+			options = options || {};
+
+			DataManager.load( groupData ).then( function ( dataGroups ) {
+				$.each( dataGroups, function ( key, group ) {
+					var groupId = inlineDataLayerKey + inlineDataLayerId++;
+					if ( !$.isEmptyObject( group.getGeoJSON() ) ) {
+						map.addGeoJSONLayer( groupId, group.getGeoJSON(), { attribution: group.attribution || options.attribution } );
+					} else {
+						mw.log.warn( 'Layer not found or contains no data: "' + groupId + '"' );
+					}
+				} );
+				deferred.resolve();
 			} );
 			return deferred.promise();
 		},
@@ -568,11 +399,16 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 		 * @param {string} groupName The layer name (id without special
 		 *   characters or spaces).
 		 * @param {Object} geoJson Features
+		 * @param {Object} [options] Layer options
 		 */
-		addDataLayer: function ( groupName, geoJson ) {
+		addGeoJSONLayer: function ( groupName, geoJson, options ) {
 			var layer;
 			try {
-				layer = L.mapbox.featureLayer( geoJson, dataLayerOpts ).addTo( this );
+				layer = L.mapbox.featureLayer( geoJson, $.extend( {}, dataLayerOpts, options ) ).addTo( this );
+				layer.getAttribution = function () {
+					return this.options.attribution;
+				};
+				this.attributionControl.addAttribution( layer.getAttribution() );
 				this.dataLayers[ groupName ] = layer;
 				return layer;
 			} catch ( e ) {
@@ -614,8 +450,6 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 						zoom: position.zoom,
 						fullscreen: true,
 						captionText: this.captionText,
-						data: this.options.data,
-						dataGroups: this.options.dataGroups,
 						fullScreenRoute: this.fullScreenRoute,
 						parentMap: this
 					} );
@@ -949,6 +783,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 	module.OpenFullScreenControl,
 	module.dataLayerOpts,
 	module.ScaleControl,
+	module.Data,
 	require( 'ext.kartographer.lib.topojson' ),
 	window
 );

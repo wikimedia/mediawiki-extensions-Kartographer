@@ -172,13 +172,15 @@
 				"ext.kartographer",
 				"ext.kartographer.style",
 				"ext.kartographer.settings",
-				"ext.kartographer.site"
+				"ext.kartographer.site",
+				"ext.kartographer.data"
 			],
 			"scripts": [
 				"lib/leaflet.sleep.js",
 				"modules/box/openfullscreen_control.js",
 				"modules/box/scale_control.js",
 				"modules/box/dataLayerOpts.js",
+				"modules/box/data.js",
 				"modules/box/Map.js",
 				"modules/box/Link.js",
 				"modules/box/enablePreview.js",
@@ -186,6 +188,20 @@
 			],
 			"messages": [
 				"kartographer-attribution"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"ext.kartographer.data": {
+			"scripts": [
+				"lib/wikimedia-mapdata.js"
+			],
+			"messages": [
+				"kartographer-attribution-externaldata",
+				"kartographer-attribution-externaldata-query",
+				"project-localized-name-wikidatawiki"
 			],
 			"targets": [
 				"mobile",

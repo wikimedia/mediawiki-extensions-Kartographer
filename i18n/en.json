@@ -15,6 +15,8 @@
 	"apihelp-query+mapdata-param-groups": "Pipe-separated groups to return data for",
 	"apihelp-query+mapdata-param-limit": "Data for how many pages to return",
 	"kartographer-attribution": "Wikimedia maps | Map data © [https://www.openstreetmap.org/copyright OpenStreetMap contributors]",
+	"kartographer-attribution-externaldata": "$1: $2",
+	"kartographer-attribution-externaldata-query": "query",
 	"kartographer-broken-category": "Pages with broken maps",
 	"kartographer-broken-category-desc": "The page includes an invalid map usage",
 	"kartographer-desc": "Allows maps to be added to the wiki pages",
