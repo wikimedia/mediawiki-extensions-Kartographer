@@ -16,6 +16,7 @@
 	"apihelp-query+mapdata-param-groups": "Mit | getrennte Gruppen, für die die Daten zurückgegeben werden sollen.",
 	"apihelp-query+mapdata-param-limit": "Für wie viele Seiten Daten zurückgegeben werden sollen",
 	"kartographer-attribution": "Wikimedia Karten | Kartendaten © [https://www.openstreetmap.org/copyright OpenStreetMap-Autoren]",
+	"kartographer-attribution-externaldata-query": "Abfrage",
 	"kartographer-broken-category": "Seiten mit defekten Karten",
 	"kartographer-broken-category-desc": "Die Seite enthält eine ungültige Kartenverwendung",
 	"kartographer-desc": "Erlaubt das Einfügen von Karten in Wikiseiten",

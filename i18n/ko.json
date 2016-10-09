@@ -33,6 +33,7 @@
 	"kartographer-sidebar-externalservices": "외부 서비스",
 	"kartographer-sidebar-latitude": "위도",
 	"kartographer-sidebar-longitude": "경도",
+	"kartographer-sidebar-mapdetails": "지도 상세 정보",
 	"kartographer-sidebar-service": "서비스",
 	"kartographer-sidebar-togglebutton": "자세한 내용",
 	"leafletdraw-draw-handlers-circle-radius": "반경",
