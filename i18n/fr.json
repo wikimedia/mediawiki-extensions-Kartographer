@@ -20,6 +20,7 @@
 	"apihelp-query+mapdata-param-groups": "Groupes pour lesquels renvoyer les données, séparés par des barres verticales",
 	"apihelp-query+mapdata-param-limit": "Nombre de pages pour lesquelles renvoyer des données",
 	"kartographer-attribution": "Cartes de Wikimédia | Données de carte © [https://www.openstreetmap.org/copyright contributeurs de OpenStreetMap]",
+	"kartographer-attribution-externaldata-query": "requête",
 	"kartographer-broken-category": "Pages avec des cartes contenant des erreurs",
 	"kartographer-broken-category-desc": "La page contient une carte avec des erreurs de syntaxe.",
 	"kartographer-desc": "Permet l’ajout de cartes géographiques aux pages wiki",

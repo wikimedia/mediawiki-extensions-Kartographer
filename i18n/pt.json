@@ -9,6 +9,7 @@
 		]
 	},
 	"kartographer-attribution": "Mapas da Wikimedia | Dados do mapa © [https://www.openstreetmap.org/copyright Contribuidores do OpenStreetMap]",
+	"kartographer-attribution-externaldata-query": "consulta",
 	"kartographer-broken-category": "Páginas com mapas inválidos",
 	"kartographer-broken-category-desc": "A página inclui uma utilização inválida de mapas",
 	"kartographer-desc": "Permite a inserção de mapas nas páginas wiki",
