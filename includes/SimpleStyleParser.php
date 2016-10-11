@@ -4,6 +4,7 @@ namespace Kartographer;
 
 use FormatJson;
 use JsonSchema\Validator;
+use MediaWiki\MediaWikiServices;
 use Parser;
 use PPFrame;
 use Status;
@@ -15,13 +16,16 @@ use stdClass;
 class SimpleStyleParser {
 	private static $parsedProps = [ 'title', 'description' ];
 
+	private static $services = [ 'geoshape', 'geoline' ];
+
 	/** @var Parser */
 	private $parser;
 
-	/**
-	 * @var PPFrame
-	 */
+	/** @var PPFrame */
 	private $frame;
+
+	/** @var string */
+	private $mapService;
 
 	/**
 	 * Constructor
@@ -32,6 +36,10 @@ class SimpleStyleParser {
 	public function __construct( Parser $parser, PPFrame $frame = null ) {
 		$this->parser = $parser;
 		$this->frame = $frame;
+		// @fixme: More precise config?
+		$this->mapService = MediaWikiServices::getInstance()
+			->getMainConfig()
+			->get( 'KartographerMapServer' );
 	}
 
 	/**
@@ -53,7 +61,7 @@ class SimpleStyleParser {
 				$status = $this->validateContent( $json );
 				if ( $status->isOK() ) {
 					$this->sanitize( $json );
-					$status = Status::newGood( $json );
+					$status = $this->normalize( $json );
 				}
 			} else {
 				$status = Status::newFatal( 'kartographer-error-json', $status->getMessage() );
@@ -161,6 +169,63 @@ class SimpleStyleParser {
 		if ( property_exists( $json, 'properties' ) && is_object( $json->properties ) ) {
 			$this->sanitizeProperties( $json->properties );
 		}
+	}
+
+	/**
+	 * Normalizes JSON
+	 *
+	 * @param array $json
+	 * @return Status
+	 */
+	private function normalize( array &$json ) {
+		$status = Status::newGood();
+		foreach ( $json as &$object ) {
+			if ( $object->type === 'ExternalData' ) {
+				$status->merge( $this->normalizeExternalData( $object ) );
+			}
+		}
+		$status->value = $json;
+
+		return $status;
+	}
+
+	/**
+	 * Canonicalizes an ExternalData object
+	 *
+	 * @param object &$object
+	 * @return Status
+	 */
+	private function normalizeExternalData( &$object ) {
+		if ( !in_array( $object->service, self::$services ) ) {
+			return Status::newFatal( 'kartographer-error-service-name', $object->service );
+		}
+
+		$ret = (object)[
+			'type' => 'ExternalData',
+			'service' => $object->service,
+		];
+
+		$query = [
+			'getgeojson' => 1
+		];
+
+		if ( property_exists( $object, 'ids' ) ) {
+			$query['ids'] = is_array( $object->ids )
+				? join( ',', $object->ids )
+				: preg_replace( '/\s*,\s*/', ',', $object->ids );
+		}
+		if ( property_exists( $object, 'query' ) ) {
+			$query['query'] = $object->query;
+		}
+
+		$ret->url = "{$this->mapService}/{$object->service}?" . wfArrayToCgi( $query );
+		if ( property_exists( $object, 'properties' ) ) {
+			$ret->properties = $object->properties;
+		}
+
+		$object = $ret;
+
+		return Status::newGood();
 	}
 
 	/**

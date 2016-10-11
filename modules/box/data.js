@@ -1,8 +1,14 @@
 /* globals module, require */
 module.Data = ( function ( $, mw, DataManager ) {
 	return DataManager( {
-		createPromise: function () {
-			return $.Deferred();
+		createPromise: function ( callback ) {
+			var promise = $.Deferred();
+			try {
+				callback( promise.resolve.bind( promise ), promise.reject.bind( promise ) );
+			} catch ( err ) {
+				promise.reject( err );
+			}
+			return promise;
 		},
 		whenAllPromises: function ( promises ) {
 			return $.when.apply( $, promises );

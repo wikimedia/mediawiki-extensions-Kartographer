@@ -283,6 +283,9 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 				} else {
 					ready();
 				}
+			} ).then( undefined, function ( err ) {
+				// console will catch this
+				throw err;
 			} );
 		},
 
@@ -363,6 +366,8 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 					}
 				} );
 				deferred.resolve();
+			} ).then( undefined, function ( err ) {
+				deferred.reject( err );
 			} );
 			return deferred.promise();
 		},
@@ -389,6 +394,8 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 					}
 				} );
 				deferred.resolve();
+			} ).then( undefined, function ( err ) {
+				deferred.reject( err );
 			} );
 			return deferred.promise();
 		},

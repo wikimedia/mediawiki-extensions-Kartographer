@@ -21,7 +21,8 @@
     "prunecluster": "^2.0.0-beta.3",
     "rollup": "^0.36.1",
     "rollup-plugin-commonjs": "^5.0.4",
-    "stylelint-config-wikimedia": "0.3.0"
+    "stylelint-config-wikimedia": "0.3.0",
+    "stylelint": "^7.0.2"
   },
   "dependencies": {
     "leaflet": "^0.7.7",

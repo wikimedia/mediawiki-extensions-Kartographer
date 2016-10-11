@@ -5,26 +5,6 @@
 	},
 	{
 		"type": "ExternalData",
-		"href": "osmshapes:///?ids=Q4430739,Q1190634"
-	},
-	{
-		"type": "ExternalData",
-		"href": "https://example.org/some/service?foo=bar%20блямба#anchor",
-		"properties": {}
-	},
-	{
-		"type": "ExternalData",
-		"href": "validate-me-in-js://host/path?",
-		"properties": {
-			"title": "text here",
-			"marker-color": "fff",
-			"custom-property": 123
-		},
-		"custom fields": "are allowed",
-		"sadly": true
-	},
-	{
-		"type": "ExternalData",
 		"service": "geoshape",
 		"query": "SELECT ?foo\nbar"
 	},
