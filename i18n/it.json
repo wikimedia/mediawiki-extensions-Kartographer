@@ -20,6 +20,7 @@
 	"kartographer-error-missing-attr": "L'attributo \"$1\" non è presente",
 	"kartographer-error-bad_attr": "L'attributo '$1' ha un valore non valido",
 	"kartographer-error-bad_data": "Il contenuto JSON non è un valido GeoJSON+simplestyle",
+	"kartographer-error-service-name": "Servizio cartografico non valido \"$1\"",
 	"kartographer-tracking-category": "Pagine con mappe",
 	"kartographer-tracking-category-desc": "La pagina include una mappa",
 	"kartographer-specialmap-invalid-coordinates": "Indicate coordinate non valide",

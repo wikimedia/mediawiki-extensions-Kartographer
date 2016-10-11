@@ -12,6 +12,7 @@
 		]
 	},
 	"kartographer-attribution": "위키미디어 지도 | 지도 데이터 © [https://www.openstreetmap.org/copyright OpenStreetMap 기여자]",
+	"kartographer-attribution-externaldata-query": "쿼리",
 	"kartographer-broken-category": "깨진 지도가 있는 문서",
 	"kartographer-broken-category-desc": "이 문서는 잘못 사용된 지도를 포함합니다.",
 	"kartographer-desc": "&lt;maps&gt; 태그를 사용해 지도를 위키 문서에 삽입할 수 있도록 허용",
