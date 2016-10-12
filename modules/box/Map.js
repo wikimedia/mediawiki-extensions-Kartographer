@@ -270,8 +270,8 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 			if ( this.parentMap ) {
 				$.each( this.parentMap.dataLayers, function ( groupId, layer ) {
 					map.addGeoJSONLayer( groupId, layer.getGeoJSON(), layer.options );
-					ready();
 				} );
+				ready();
 				return;
 			}
 
