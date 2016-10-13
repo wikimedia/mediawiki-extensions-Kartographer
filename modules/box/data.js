@@ -34,8 +34,8 @@ module.Data = ( function ( $, mw, DataManager ) {
 		bind: function () {
 			return $.proxy.apply( $, arguments );
 		},
-		mwApi: function ( method, data ) {
-			return new mw.Api()[ method ]( data );
+		mwApi: function ( data ) {
+			return ( new mw.Api() ).get( data );
 		},
 		mwMsg: function () {
 			return mw.msg.apply( mw.msg, arguments );
