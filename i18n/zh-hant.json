@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Liuxinyu970226",
-			"Cwlin0416"
+			"Cwlin0416",
+			"1233thehongkonger"
 		]
 	},
 	"kartographer-attribution": "維基媒體地圖 | 地圖資料 © [https://www.openstreetmap.org/copyright OpenStreetMap 貢獻者]",
@@ -15,6 +16,10 @@
 	"kartographer-error-bad_data": "JSON 內容不正確",
 	"kartographer-tracking-category": "有地圖的頁面",
 	"kartographer-tracking-category-desc": "含有地圖的頁面",
+	"kartographer-linktype-map": "地圖",
+	"kartographer-linktype-other": "其他",
+	"kartographer-linktype-terrain": "地形",
+	"kartographer-linktype-topo": "拓撲",
 	"leafletdraw-draw-handlers-circle-radius": "半徑",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "點選並拖曳來繪製一個圈",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "點選地圖來放置標記",

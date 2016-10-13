@@ -2,11 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Upendradutt93",
-			"Sfic"
+			"Sfic",
+			"Ziyaurr"
 		]
 	},
+	"kartographer-attribution-externaldata-query": "अनुसंधान",
 	"kartographer-error-context-multi": "&lt;$1&gt; परेशानी:\n$2",
 	"kartographer-error-bad_data": "जेसन सामग्री लोड नहीं हुई।",
+	"kartographer-error-service-name": "\"$1\" सेवा मैपिंग अमान्य",
 	"kartographer-tracking-category": "नक्शों के साथ पन्ने",
 	"kartographer-tracking-category-desc": "पृष्ठ में नक्शा भी है।",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "वृत बनाने हेतु क्लिक करें",

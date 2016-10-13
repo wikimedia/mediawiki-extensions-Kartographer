@@ -26,6 +26,7 @@
 	"kartographer-error-bad_attr": "属性“$1”有无效的值",
 	"kartographer-error-bad_data": "JSON内容不是有效的GeoJSON+simplestyle",
 	"kartographer-error-latlon": "“latitude”和“longitude”参数都应被提供，或都不提供",
+	"kartographer-error-service-name": "无效地图服务“$1”。",
 	"kartographer-tracking-category": "有地图的页面",
 	"kartographer-tracking-category-desc": "页面包含地图",
 	"kartographer-specialmap-invalid-coordinates": "提供了无效的坐标",
