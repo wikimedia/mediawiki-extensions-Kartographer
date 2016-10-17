@@ -5,7 +5,8 @@
 			"YoViajo",
 			"Mgpena",
 			"AlvaroMolina",
-			"Rubentl134"
+			"Rubentl134",
+			"Fitoschido"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Realiza la validación de datos para la extensión Kartographer",
@@ -29,7 +30,7 @@
 	"kartographer-error-bad_attr": "El atributo '$1' tiene un valor no válido",
 	"kartographer-error-bad_data": "El contenido JSON no es GeoJSON+simplestyle válido",
 	"kartographer-error-latlon": "Se deben proporcionar o bien ambos parámetros de \"latitud\" y \"longitud\" o bien ninguno de ellos",
-	"kartographer-error-service-name": "Servicio cartográfico no válido \"$1\"",
+	"kartographer-error-service-name": "El servicio cartográfico «$1» no es válido",
 	"kartographer-tracking-category": "Páginas con mapas",
 	"kartographer-tracking-category-desc": "La página incluye un mapa",
 	"kartographer-specialmap-invalid-coordinates": "Las coordenadas suministradas no son válidas",
