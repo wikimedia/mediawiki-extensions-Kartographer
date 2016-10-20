@@ -343,9 +343,7 @@
 				"jquery.throttle-debounce",
 				"oojs-ui.styles.icons-location",
 				"ext.visualEditor.mwcore",
-				"ext.kartographer",
-				"ext.kartographer.box",
-				"ext.kartographer.editing"
+				"ext.kartographer"
 			],
 			"targets": [
 				"mobile",
