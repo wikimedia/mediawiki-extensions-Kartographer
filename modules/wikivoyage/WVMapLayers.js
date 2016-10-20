@@ -84,9 +84,10 @@ module.WVMapLayers = ( function ( $, mw, wikivoyage, ControlLayers, undefined ) 
 			} );
 			return this;
 		}
+
 		this.addLayer(
 			layer,
-			wikivoyage.formatLayerName( mw.msg( 'kartographer-wv-group' ) + id ),
+			layer.options.name || wikivoyage.formatLayerName( mw.msg( 'kartographer-wv-group' ) + ' ' + id ),
 			true
 		);
 		return this;
