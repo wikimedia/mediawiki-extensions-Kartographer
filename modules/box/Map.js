@@ -251,7 +251,9 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 			if ( !this._container.clientWidth || !this._container.clientHeight ) {
 				this._fixMapSize();
 			}
-			this.doubleClickZoom.disable();
+			if ( !this.options.fullscreen ) {
+				this.doubleClickZoom.disable();
+			}
 
 			if ( !this.options.fullscreen && !options.alwaysInteractive ) {
 				this._invalidateInterative();
