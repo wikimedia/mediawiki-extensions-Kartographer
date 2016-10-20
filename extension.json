@@ -152,7 +152,7 @@
 		"ext.kartographer.link": {
 			"dependencies": [
 				"mediawiki.router",
-				"ext.kartographer.box"
+				"ext.kartographer.linkbox"
 			],
 			"scripts": [
 				"modules/maplink/maplink.js"
@@ -182,12 +182,21 @@
 				"modules/box/dataLayerOpts.js",
 				"modules/box/data.js",
 				"modules/box/Map.js",
-				"modules/box/Link.js",
 				"modules/box/enablePreview.js",
 				"modules/box/index.js"
 			],
 			"messages": [
 				"kartographer-attribution"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"ext.kartographer.linkbox": {
+			"scripts": [
+				"modules/linkbox/Link.js",
+				"modules/linkbox/index.js"
 			],
 			"targets": [
 				"mobile",
@@ -211,8 +220,7 @@
 		"ext.kartographer.dialog": {
 			"dependencies": [
 				"oojs-ui-windows",
-				"mediawiki.router",
-				"ext.kartographer.box"
+				"mediawiki.router"
 			],
 			"scripts": [
 				"modules/dialog/closefullscreen_control.js",
@@ -274,6 +282,23 @@
 			],
 			"scripts": [
 				"modules/mapframe/mapframe.js"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
+		"ext.kartographer.staticframe": {
+			"dependencies": [
+				"mediawiki.router",
+				"oojs-ui.styles.icons-media",
+				"ext.kartographer.linkbox"
+			],
+			"scripts": [
+				"modules/staticframe/staticframe.js"
+			],
+			"messages": [
+				"kartographer-fullscreen-text"
 			],
 			"targets": [
 				"mobile",

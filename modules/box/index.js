@@ -37,24 +37,5 @@ L.kartographer = module.exports = {
 	map: function ( options ) {
 		var Map = this.Map;
 		return new Map( options );
-	},
-
-	/**
-	 * @type {Kartographer.Box.LinkClass}
-	 * @ignore
-	 */
-	Link: module.Link,
-
-	/**
-	 * Use this method to create a {@link Kartographer.Box.LinkClass Link}
-	 * object.
-	 *
-	 * See {@link Kartographer.Box.LinkClass#constructor} for the list of options.
-	 *
-	 * @return {Kartographer.Box.LinkClass}
-	 */
-	link: function ( options ) {
-		var Link = this.Link;
-		return new Link( options );
 	}
 };

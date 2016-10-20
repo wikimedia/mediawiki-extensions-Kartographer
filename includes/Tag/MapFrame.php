@@ -29,7 +29,10 @@ class MapFrame extends TagHandler {
 	 * @return string
 	 */
 	protected function render() {
-		global $wgKartographerFrameMode, $wgKartographerMapServer;
+		global $wgKartographerFrameMode,
+		       $wgKartographerMapServer,
+		       $wgServerName,
+		       $wgKartographerStaticMapframe;
 
 		$alignClasses = [
 			'left' => 'floatleft',
@@ -85,7 +88,11 @@ class MapFrame extends TagHandler {
 			*/
 
 			case 'interactive':
-				$output->addModules( 'ext.kartographer.frame' );
+				if ( $wgKartographerStaticMapframe ) {
+					$output->addModules( 'ext.kartographer.staticframe' );
+				} else {
+					$output->addModules( 'ext.kartographer.frame' );
+				}
 
 				$fullWidth = false;
 
@@ -149,13 +156,18 @@ class MapFrame extends TagHandler {
 			$containerClass .= ' mw-kartographer-full';
 		}
 
-		$attrs['style'] = "background-image: url({$wgKartographerMapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat},{$staticLon},{$staticWidth}x{$this->height}.png);";
+		$title = urlencode( $this->parser->getTitle()->getPrefixedText() );
+		$groupList = implode( ',', $this->showGroups );
+
+		$bgUrl = "{$wgKartographerMapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat},{$staticLon},{$staticWidth}x{$this->height}.png";
+		$bgUrl .= "?domain={$wgServerName}&title={$title}&groups={$groupList}";
+		$attrs['style'] = "background-image: url({$bgUrl});";
 
 		if ( !$framed ) {
 			$attrs['style'] .= " width: {$width}; height: {$height};";
 			$attrs['class'] .= " {$containerClass} {$alignClasses[$this->align]}";
 
-			return Html::rawElement( 'div', $attrs );
+			return Html::rawElement( $wgKartographerStaticMapframe ? 'a' : 'div', $attrs );
 		}
 
 		$attrs['style'] .= " height: {$height};";
@@ -164,7 +176,7 @@ class MapFrame extends TagHandler {
 		$captionFrame = Html::rawElement( 'div', [ 'class' => 'thumbcaption' ],
 			$this->parser->recursiveTagParse( $caption ) );
 
-		$mapDiv = Html::rawElement( 'div', $attrs );
+		$mapDiv = Html::rawElement( $wgKartographerStaticMapframe ? 'a' : 'div', $attrs );
 
 		return Html::rawElement( 'div', [ 'class' => $containerClass ],
 			Html::rawElement( 'div', [
