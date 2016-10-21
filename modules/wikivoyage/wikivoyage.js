@@ -111,26 +111,29 @@ module.wikivoyage = ( function ( $, mw, undefined ) {
 		isAllowed: function ( layer ) {
 			var deferred = $.Deferred();
 
-			if ( areExternalAllowed === undefined ) {
-				areExternalAllowed = mw.storage.get( STORAGE_KEY ) === '1';
-			}
+			mw.loader.using( 'mediawiki.storage' ).then( function () {
 
-			if ( !layer.options.wvIsExternal || areExternalAllowed ) {
-				deferred.resolve();
-			} else {
-				alertExternalData()
-					.then( function ( opened ) {
-						opened.then( function ( closing, data ) {
-							if ( data && data.action && data.action === 'good' ) {
-								areExternalAllowed = true;
-								mw.storage.set( STORAGE_KEY, '1' );
-								deferred.resolve();
-							} else {
-								deferred.reject();
-							}
+				if ( areExternalAllowed === undefined ) {
+					areExternalAllowed = mw.storage.get( STORAGE_KEY ) === '1';
+				}
+
+				if ( !layer.options.wvIsExternal || areExternalAllowed ) {
+					deferred.resolve();
+				} else {
+					alertExternalData()
+						.then( function ( opened ) {
+							opened.then( function ( closing, data ) {
+								if ( data && data.action && data.action === 'good' ) {
+									areExternalAllowed = true;
+									mw.storage.set( STORAGE_KEY, '1' );
+									deferred.resolve();
+								} else {
+									deferred.reject();
+								}
+							} );
 						} );
-					} );
-			}
+				}
+			} );
 
 			return deferred.promise();
 		}
