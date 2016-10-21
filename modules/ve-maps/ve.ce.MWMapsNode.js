@@ -3,10 +3,6 @@
  *
  * @copyright 2011-2015 VisualEditor Team and others; see http://ve.mit-license.org
  */
-/* globals require */
-var kartobox = require( 'ext.kartographer.box' ),
-	kartoEditing = require( 'ext.kartographer.editing' );
-
 /**
  * ContentEditable paragraph node.
  *
@@ -114,7 +110,10 @@ ve.ce.MWMapsNode.prototype.update = function () {
 
 	if ( requiresInteractive ) {
 		if ( !this.map && this.getRoot() ) {
-			mw.loader.using( 'ext.kartographer.box' ).then( this.setupMap.bind( this ) );
+			mw.loader.using( [
+				'ext.kartographer.box',
+				'ext.kartographer.editing'
+			] ).then( this.setupMap.bind( this ) );
 		} else if ( this.map ) {
 			this.updateGeoJson();
 			this.updateMapPosition();
@@ -142,7 +141,7 @@ ve.ce.MWMapsNode.prototype.setupMap = function () {
 		mwAttrs = mwData && mwData.attrs,
 		node = this;
 
-	this.map = kartobox.map( {
+	this.map = mw.loader.require( 'ext.kartographer.box' ).map( {
 		container: this.$element[ 0 ],
 		center: [ +mwAttrs.latitude, +mwAttrs.longitude ],
 		zoom: +mwAttrs.zoom
@@ -169,7 +168,7 @@ ve.ce.MWMapsNode.prototype.updateGeoJson = function () {
 		geoJson = mwData && mwData.body.extsrc;
 
 	if ( geoJson !== this.geoJson ) {
-		kartoEditing.updateKartographerLayer( this.map, mwData && mwData.body.extsrc ).then( this.updateMapPosition.bind( this ) );
+		mw.loader.require( 'ext.kartographer.editing' ).updateKartographerLayer( this.map, mwData && mwData.body.extsrc ).then( this.updateMapPosition.bind( this ) );
 		this.geoJson = geoJson;
 	}
 };
