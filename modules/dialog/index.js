@@ -74,6 +74,54 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 		},
 
 		/**
+		 * Opens the map dialog, creates the map and renders it.
+		 *
+		 * @param {Object} mapObject
+		 * @param {Function} mapCb
+		 */
+		renderNewMap: function ( mapObject, mapCb ) {
+
+			var window = getWindowManager(),
+				dialog = getMapDialog(),
+				map;
+
+			if ( !window.opened ) {
+				getWindowManager()
+					.openWindow( dialog, {} )
+					.then( function ( opened ) {
+						return opened;
+					} )
+					.then( function ( closing ) {
+						if ( map.parentMap ) {
+							map.parentMap.setView(
+								map.getCenter(),
+								map.getZoom()
+							);
+						}
+						dialog.close();
+						mapDialog = null;
+						windowManager = null;
+						return closing;
+					} );
+			}
+
+			mw.loader.using( 'ext.kartographer.box' ).then( function () {
+				map = mw.loader.require( 'ext.kartographer.box' ).map( mapObject );
+
+				if ( map.useRouter && !routerEnabled ) {
+					router.route( '', function () {
+						close();
+					} );
+				}
+
+				dialog.setup.call( dialog, { map: map } );
+				dialog.ready.call( dialog, { map: map } );
+
+				mapCb( map );
+			} );
+		},
+
+		/**
 		 * Closes the map dialog.
 		 */
 		close: function () {

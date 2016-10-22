@@ -8,7 +8,7 @@
  * @class Kartographer.Dialog.DialogClass
  * @extends OO.ui.Dialog
  */
-module.Dialog = ( function ( $, mw, CloseFullScreenControl, kartobox, router ) {
+module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 
 	/**
 	 * @constructor
@@ -34,6 +34,9 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, kartobox, router ) {
 
 		// Parent method
 		MapDialog.super.prototype.initialize.apply( this, arguments );
+
+		dialog.$body
+			.append( '<div class="kartographer-mapDialog-loading"></div>' );
 
 		mw.loader.using( 'oojs-ui-widgets' ).done( function () {
 			$( function () {
@@ -92,9 +95,11 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, kartobox, router ) {
 
 		if ( !action ) {
 			return new OO.ui.Process( function () {
-				dialog.map.closeFullScreen();
-				dialog.map.remove();
-				dialog.map = null;
+				if ( dialog.map ) {
+					dialog.map.closeFullScreen();
+					dialog.map.remove();
+					dialog.map = null;
+				}
 			} );
 		}
 		return MapDialog.super.prototype.getActionProcess.call( this, action );
@@ -138,7 +143,7 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, kartobox, router ) {
 		return MapDialog.super.prototype.getSetupProcess.call( this, options )
 			.next( function () {
 
-				if ( options.map !== this.map ) {
+				if ( options.map && options.map !== this.map ) {
 
 					if ( this.map ) {
 						this.map.remove();
@@ -166,12 +171,14 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, kartobox, router ) {
 		return MapDialog.super.prototype.getReadyProcess.call( this, data )
 			.next( function () {
 
+				if ( !this.map ) {
+					return;
+				}
 				this.map.doWhenReady( function ( ) {
 
 					if ( this.map.useRouter ) {
 						this.map.on( 'moveend', this.onMapMove, this );
 					}
-
 					mw.hook( 'wikipage.maps' ).fire( this.map, true /* isFullScreen */ );
 				}, this );
 			}, this );
@@ -196,6 +203,5 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, kartobox, router ) {
 	jQuery,
 	mediaWiki,
 	module.CloseFullScreenControl,
-	require( 'ext.kartographer.box' ),
 	require( 'mediawiki.router' )
 );

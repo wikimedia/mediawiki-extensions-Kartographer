@@ -9,38 +9,57 @@
  * @class Kartographer.Dialog.CloseFullScreenControl
  * @extends L.Control
  */
-module.CloseFullScreenControl = L.Control.extend( {
-	options: {
-		position: 'topright'
-	},
+module.CloseFullScreenControl = ( function () {
 
-	/**
-	 * Creates the control element.
-	 *
-	 * @override
-	 * @protected
-	 */
-	onAdd: function () {
-		var container = L.DomUtil.create( 'div', 'leaflet-bar' ),
-			link = L.DomUtil.create( 'a', 'oo-ui-icon-close', container );
+	var ControlClass,
+		createControl = function ( options ) {
+		var control = this;
 
-		link.href = '';
-		link.title = mw.msg( 'kartographer-fullscreen-close' );
+		// Since the control is added to an existing map, by the time we get here,
+		// `ext.kartographer.box` was loaded, so this will be synchronous.
+		// We need this hack because `L` is undefined until a map was created.
+		mw.loader.using( 'ext.kartographer.box' ).then( function () {
+			ControlClass = ControlClass || L.Control.extend( {
+					options: {
+						position: 'topright'
+					},
 
-		L.DomEvent.addListener( link, 'click', this.closeFullScreen, this );
-		L.DomEvent.disableClickPropagation( container );
+					/**
+					 * Creates the control element.
+					 *
+					 * @override
+					 * @protected
+					 */
+					onAdd: function () {
+						var container = L.DomUtil.create( 'div', 'leaflet-bar' ),
+							link = L.DomUtil.create( 'a', 'oo-ui-icon-close', container );
 
-		return container;
-	},
+						link.href = '';
+						link.title = mw.msg( 'kartographer-fullscreen-close' );
 
-	/**
-	 * Closes the full screen dialog on `click`.
-	 *
-	 * @param {Event} e
-	 * @protected
-	 */
-	closeFullScreen: function ( e ) {
-		L.DomEvent.stop( e );
-		this._map.closeFullScreen();
-	}
-} );
+						L.DomEvent.addListener( link, 'click', this.closeFullScreen, this );
+						L.DomEvent.disableClickPropagation( container );
+
+						return container;
+					},
+
+					/**
+					 * Closes the full screen dialog on `click`.
+					 *
+					 * @param {Event} e
+					 * @protected
+					 */
+					closeFullScreen: function ( e ) {
+						L.DomEvent.stop( e );
+						this._map.closeFullScreen();
+					}
+				} );
+
+			control = new ControlClass( options );
+		} );
+		return control;
+	};
+
+	return createControl;
+
+} )( );
