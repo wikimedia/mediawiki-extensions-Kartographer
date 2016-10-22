@@ -30,14 +30,21 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 	/* Methods */
 
 	MapDialog.prototype.initialize = function () {
-		var dialog = this;
+		this.$mapDetailsButton = null;
 
 		// Parent method
 		MapDialog.super.prototype.initialize.apply( this, arguments );
 
-		dialog.$body
+		this.$body
 			.append( '<div class="kartographer-mapDialog-loading"></div>' );
+		this.$foot
+			.addClass( 'mw-kartographer-mapDialog-foot' );
 
+		this.map = null;
+	};
+
+	MapDialog.prototype.addFooterButton = function () {
+		var dialog = this;
 		mw.loader.using( 'oojs-ui-widgets' ).done( function () {
 			$( function () {
 
@@ -61,14 +68,11 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 				$buttonContainer.append( button.$element );
 
 				// Add the button to the footer
-				dialog.$foot
-					.addClass( 'mw-kartographer-mapDialog-foot' )
-					.append( $inlineContainer );
+				dialog.$foot.append( $inlineContainer );
 
 				button.on( 'change', dialog.toggleSideBar, null, dialog );
 			} );
 		} );
-		this.map = null;
 	};
 
 	MapDialog.prototype.toggleSideBar = function ( open ) {
@@ -162,6 +166,12 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 						this.$captionContainer
 							.attr( 'title', this.map.captionText )
 							.text( this.map.captionText );
+					}
+
+					if ( !this.$mapDetailsButton ) {
+						this.addFooterButton();
+					} else {
+						this.$mapDetailsButton.setValue( false );
 					}
 				}
 			}, this );
