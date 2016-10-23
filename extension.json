@@ -17,7 +17,7 @@
 		]
 	},
 	"ExtensionMessagesFiles": {
-		"KartogrpaherAliases": "Kartographer.alias.php"
+		"KartographerAliases": "Kartographer.alias.php"
 	},
 	"SpecialPages": {
 		"Map": "Kartographer\\SpecialMap"
