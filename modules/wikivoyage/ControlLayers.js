@@ -29,8 +29,8 @@ module.ControlLayers = ( function ( $, mw, L, wikivoyage ) {
 		 */
 		_addItem: function ( obj ) {
 			var label = L.Control.Layers.prototype._addItem.call( this, obj );
-			if ( !obj.overlay && label.childNodes[ 0 ].checked ) {
-				this._previousSelected = label.childNodes[ 0 ];
+			if ( !obj.overlay && label.childNodes[ 0 ].childNodes[ 0 ].checked ) {
+				this._previousSelected = label.childNodes[ 0 ].childNodes[ 0 ];
 			}
 			if ( obj.layer.dataGroup ) {
 				label.childNodes[ 0 ].className += ' leaflet-control-layers-data-layer';
@@ -52,7 +52,7 @@ module.ControlLayers = ( function ( $, mw, L, wikivoyage ) {
 				event.type === 'click' &&
 				/leaflet-control-layers-selector/.test( input.className )
 			) {
-				obj = this._layers[ input.layerId ];
+				obj = this._getLayer( input.layerId );
 				if ( this._map.hasLayer( obj.layer ) ) {
 					proto.call( self );
 				} else {

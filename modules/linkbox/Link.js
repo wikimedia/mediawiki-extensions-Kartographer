@@ -96,7 +96,7 @@ module.Link = ( function ( $ ) {
 			return;
 		}
 
-		if ( map && map._container._leaflet ) {
+		if ( map && map._container._leaflet_id ) {
 			map.setView(
 				position.center,
 				position.zoom
