@@ -82,7 +82,7 @@ module.Link = ( function ( $ ) {
 	Link.prototype.openFullScreen = function ( position ) {
 
 		var link = this,
-			map = link.map,
+			map = link.fullScreenMap,
 			mapObject,
 			el;
 
@@ -90,9 +90,13 @@ module.Link = ( function ( $ ) {
 		position.center = position.center || link.center;
 		position.zoom = typeof position.zoom === 'number' ? position.zoom : link.zoom;
 
-		if ( link.fullScreenMap && link.fullScreenMap._container._leaflet ) {
-			map = link.fullScreenMap;
+		if ( map && map._updatingHash ) {
+			// Skip - there is nothing to do.
+			map._updatingHash = false;
+			return;
+		}
 
+		if ( map && map._container._leaflet ) {
 			map.setView(
 				position.center,
 				position.zoom

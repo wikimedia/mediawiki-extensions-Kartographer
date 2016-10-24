@@ -85,10 +85,30 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 				dialog = getMapDialog(),
 				map;
 
-			if ( !window.opened ) {
+			function createAndRenderMap() {
+				mw.loader.using( 'ext.kartographer.box' ).then( function () {
+					map = mw.loader.require( 'ext.kartographer.box' ).map( mapObject );
+
+					if ( map.useRouter && !routerEnabled ) {
+						router.route( '', function () {
+							close();
+						} );
+					}
+
+					dialog.setup.call( dialog, { map: map } );
+					dialog.ready.call( dialog, { map: map } );
+
+					mapCb( map );
+				} );
+			}
+
+			if ( window.opened ) {
+				createAndRenderMap();
+			} else {
 				getWindowManager()
 					.openWindow( dialog, {} )
 					.then( function ( opened ) {
+						createAndRenderMap();
 						return opened;
 					} )
 					.then( function ( closing ) {
@@ -105,20 +125,6 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 					} );
 			}
 
-			mw.loader.using( 'ext.kartographer.box' ).then( function () {
-				map = mw.loader.require( 'ext.kartographer.box' ).map( mapObject );
-
-				if ( map.useRouter && !routerEnabled ) {
-					router.route( '', function () {
-						close();
-					} );
-				}
-
-				dialog.setup.call( dialog, { map: map } );
-				dialog.ready.call( dialog, { map: map } );
-
-				mapCb( map );
-			} );
 		},
 
 		/**
