@@ -16,7 +16,7 @@ use stdClass;
 class SimpleStyleParser {
 	private static $parsedProps = [ 'title', 'description' ];
 
-	private static $services = [ 'geoshape', 'geoline' ];
+	private static $services = [ 'geoshape', 'geoline', 'geomask' ];
 
 	/** @var Parser */
 	private $parser;
@@ -218,7 +218,10 @@ class SimpleStyleParser {
 			$query['query'] = $object->query;
 		}
 
-		$ret->url = "{$this->mapService}/{$object->service}?" . wfArrayToCgi( $query );
+		// 'geomask' service is the same as inverted geoshape service
+		// Kartotherian does not support it, request it as geoshape
+		$service = $object->service === 'geomask' ? 'geoshape' : $object->service;
+		$ret->url = "{$this->mapService}/{$service}?" . wfArrayToCgi( $query );
 		if ( property_exists( $object, 'properties' ) ) {
 			$ret->properties = $object->properties;
 		}
