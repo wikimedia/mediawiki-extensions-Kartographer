@@ -50,6 +50,11 @@ class MapFrame extends TagHandler {
 		$framed = $caption !== null || $this->getText( 'frameless', null ) === null;
 
 		$output = $this->parser->getOutput();
+		$options = $this->parser->getOptions();
+
+		$useSnapshot =
+			$wgKartographerStaticMapframe && !$options->getIsPreview() &&
+			!$options->getIsSectionPreview();
 
 		switch ( $wgKartographerFrameMode ) {
 			/* Not implemented in Kartotherian yet
@@ -88,11 +93,9 @@ class MapFrame extends TagHandler {
 			*/
 
 			case 'interactive':
-				if ( $wgKartographerStaticMapframe ) {
-					$output->addModules( 'ext.kartographer.staticframe' );
-				} else {
-					$output->addModules( 'ext.kartographer.frame' );
-				}
+				$output->addModules( $useSnapshot
+					? 'ext.kartographer.staticframe'
+					: 'ext.kartographer.frame' );
 
 				$fullWidth = false;
 
@@ -167,7 +170,7 @@ class MapFrame extends TagHandler {
 			$attrs['style'] .= " width: {$width}; height: {$height};";
 			$attrs['class'] .= " {$containerClass} {$alignClasses[$this->align]}";
 
-			return Html::rawElement( $wgKartographerStaticMapframe ? 'a' : 'div', $attrs );
+			return Html::rawElement( $useSnapshot ? 'a' : 'div', $attrs );
 		}
 
 		$attrs['style'] .= " height: {$height};";
@@ -176,7 +179,7 @@ class MapFrame extends TagHandler {
 		$captionFrame = Html::rawElement( 'div', [ 'class' => 'thumbcaption' ],
 			$this->parser->recursiveTagParse( $caption ) );
 
-		$mapDiv = Html::rawElement( $wgKartographerStaticMapframe ? 'a' : 'div', $attrs );
+		$mapDiv = Html::rawElement( $useSnapshot ? 'a' : 'div', $attrs );
 
 		return Html::rawElement( 'div', [ 'class' => $containerClass ],
 			Html::rawElement( 'div', [

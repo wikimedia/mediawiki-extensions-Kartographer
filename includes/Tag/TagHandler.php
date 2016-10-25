@@ -279,6 +279,8 @@ abstract class TagHandler {
 	 * @param Parser $parser
 	 */
 	public static function finalParseStep( Parser $parser ) {
+		global $wgKartographerStaticMapframe;
+
 		$output = $parser->getOutput();
 		$state = State::getState( $output );
 
@@ -303,6 +305,10 @@ abstract class TagHandler {
 		$options = $parser->getOptions();
 		if ( $data && ( $options->getIsPreview() || $options->getIsSectionPreview() ) ) {
 			$output->addJsConfigVars( 'wgKartographerLiveData', $data );
+			if ( $wgKartographerStaticMapframe ) {
+				// Preview generates HTML that is different from normal
+				$output->updateCacheExpiry( 0 );
+			}
 		} else {
 			$interact = $state->getInteractiveGroups();
 			$requested = $state->getRequestedGroups();
