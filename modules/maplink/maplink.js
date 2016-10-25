@@ -68,15 +68,32 @@ module.exports = ( function ( $, mw, router, kartolink, undefined ) {
 		// search outside. This is an anti-pattern and should be improved...
 		// Meanwhile #content is better than searching the full document.
 		$( '.mw-kartographer-maplink', '#content' ).each( function ( index ) {
-			var data = getMapData( this );
+			var data = getMapData( this ),
+				link;
 
-			maplinks[ index ] = kartolink.link( {
+			link = maplinks[ index ] = kartolink.link( {
+				featureType: 'maplink',
 				container: this,
 				center: [ data.latitude, data.longitude ],
 				zoom: data.zoom,
 				dataGroups: data.overlays,
 				captionText: data.captionText,
 				fullScreenRoute: '/maplink/' + index
+			} );
+			mw.track( 'mediawiki.kartographer', {
+				action: 'view',
+				isFullScreen: false,
+				feature: link
+			} );
+			link.$container.click( function () {
+				// We need this hack to differentiate these events from `hashopen` events.
+				link.clicked = true;
+
+				mw.track( 'mediawiki.kartographer', {
+					action: 'open',
+					isFullScreen: true,
+					feature: link
+				} );
 			} );
 		} );
 
@@ -107,6 +124,15 @@ module.exports = ( function ( $, mw, router, kartolink, undefined ) {
 				};
 			}
 
+			// We need this hack to differentiate these events from `open` events.
+			if ( !link.fullScreenMap && !link.clicked ) {
+				mw.track( 'mediawiki.kartographer', {
+					action: 'hashopen',
+					isFullScreen: true,
+					feature: link
+				} );
+				link.clicked = false;
+			}
 			link.openFullScreen( position );
 		} );
 

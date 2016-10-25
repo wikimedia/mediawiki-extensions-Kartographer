@@ -45,6 +45,7 @@ module.exports = ( function ( $, mw ) {
 	 * Toggles the sidebar
 	 *
 	 * @param {boolean} open Whether to open the sidebar or close it.
+	 * @chainable
 	 */
 	SideBar.prototype.toggle = function ( open ) {
 
@@ -56,52 +57,71 @@ module.exports = ( function ( $, mw ) {
 		}
 
 		this.render();
+		return this;
 	};
 
 	/**
-	 * Renders the sidebar
+	 * Renders the sidebar.
+	 *
+	 * @chainable
 	 */
 	SideBar.prototype.render = function () {
+		var sidebar = this,
+			map = sidebar.dialog.map,
+			$container;
+
 		/**
 		 * @property {jQuery}
 		 */
-		this.$el = $( '<div class="mw-kartographer-mapDialog-sidebar">' );
+		$container = sidebar.$el = $( '<div class="mw-kartographer-mapDialog-sidebar">' );
 
 		/**
 		 * @property {Object}
 		 */
-		this.mapPosition = this.dialog.map.getMapPosition( { scaled: true } );
+		sidebar.mapPosition = map.getMapPosition( { scaled: true } );
 
-		this.createCloseButton().$element.appendTo( this.$el );
-
-		/**
-		 * @property {jQuery}
-		 */
-		this.$mapDetailsContainer = $( '<div>' ).addClass( 'mw-kartographer-mapdetails' ).appendTo( this.$el );
+		sidebar.createCloseButton().$element.appendTo( $container );
 
 		/**
 		 * @property {jQuery}
 		 */
-		this.$descriptionContainer = $( '<div>' ).addClass( 'mw-kartographer-description' ).appendTo( this.$el );
+		sidebar.$mapDetailsContainer = $( '<div>' ).addClass( 'mw-kartographer-mapdetails' ).appendTo( $container );
 
 		/**
 		 * @property {jQuery}
 		 */
-		this.$filterContainer = $( '<div>' ).addClass( 'mw-kartographer-filterservices' ).appendTo( this.$el );
+		sidebar.$descriptionContainer = $( '<div>' ).addClass( 'mw-kartographer-description' ).appendTo( $container );
 
 		/**
 		 * @property {jQuery}
 		 */
-		this.$servicesContainer = $( '<div>' ).addClass( 'mw-kartographer-externalservices' ).appendTo( this.$el );
+		sidebar.$filterContainer = $( '<div>' ).addClass( 'mw-kartographer-filterservices' ).appendTo( $container );
 
-		this.renderMapDetails();
-		this.renderDescription();
-		this.renderTypeFilter();
-		this.renderExternalServices();
+		/**
+		 * @property {jQuery}
+		 */
+		sidebar.$servicesContainer = $( '<div>' ).addClass( 'mw-kartographer-externalservices' ).appendTo( $container );
 
-		this.$el.appendTo( this.dialog.$body );
+		sidebar.renderMapDetails();
+		sidebar.renderDescription();
+		sidebar.renderTypeFilter();
+		sidebar.renderExternalServices();
 
-		this.dialog.map.on( 'move', this.onMapMove, this );
+		$container.appendTo( sidebar.dialog.$body );
+
+		map.on( 'move', sidebar.onMapMove, sidebar );
+
+		sidebar.$servicesContainer.on( 'click', 'a', function () {
+			mw.track( 'mediawiki.kartographer', {
+				action: 'sidebar-click',
+				isFullScreen: true,
+				service: $( this ).data( 'service' ),
+				type: selectedType,
+				feature: map.parentMap || map.parentLink
+			} );
+		} );
+
+		return sidebar;
 	};
 
 	/**
@@ -146,11 +166,23 @@ module.exports = ( function ( $, mw ) {
 	SideBar.prototype.renderTypeFilter = function () {
 		var sidebar = this,
 			dropdown = sidebar.createFilterDropdown(),
-			defaultType = sidebar.metadata.types[ 0 ] ;
+			defaultType = sidebar.metadata.types[ 0 ],
+			first = true;
 
 		dropdown.getMenu().on( 'select', function ( item ) {
 			selectedType = item.getData();
 			sidebar.renderExternalServices();
+
+			// First selection is the default, skip it.
+			if ( !first ) {
+				mw.track( 'mediawiki.kartographer', {
+					action: 'sidebar-type',
+					isFullScreen: true,
+					type: selectedType,
+					feature: sidebar.dialog.map.parentMap || sidebar.dialog.map.parentLink
+				} );
+			}
+			first = false;
 		} );
 		dropdown.getMenu().selectItemByData( selectedType || defaultType );
 
@@ -280,12 +312,15 @@ module.exports = ( function ( $, mw ) {
 
 	/**
 	 * Detaches events and removes the element.
+	 *
+	 * @chainable
 	 */
 	SideBar.prototype.tearDown = function () {
 		this.dialog.map.off( 'move', this.onMapMove, this );
 
 		this.$el.remove();
 		this.$el = null;
+		return this;
 	};
 
 	return SideBar;

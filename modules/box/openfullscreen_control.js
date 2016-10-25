@@ -30,6 +30,7 @@ module.OpenFullScreenControl = L.Control.extend( {
 		if ( this._map.useRouter ) {
 			this.updateHash();
 			this._map.on( 'moveend', this.onMapMove, this );
+			L.DomEvent.addListener( this.link, 'click', this.logOpenEvent, this );
 		} else {
 			// the router will handle it otherwise
 			L.DomEvent.addListener( this.link, 'click', this.openFullScreen, this );
@@ -60,6 +61,21 @@ module.OpenFullScreenControl = L.Control.extend( {
 	},
 
 	/**
+	 * Ability to log an `open` event on click.
+	 *
+	 * @protected
+	 */
+	logOpenEvent: function () {
+		// We need this hack to differentiate these events from `hashopen` events.
+		this._map.clicked = true;
+		mw.track( 'mediawiki.kartographer', {
+			action: 'open',
+			isFullScreen: true,
+			feature: this._map
+		} );
+	},
+
+	/**
 	 * Opens the full screen dialog on `click`.
 	 *
 	 * @param {Event} e
@@ -67,6 +83,7 @@ module.OpenFullScreenControl = L.Control.extend( {
 	 */
 	openFullScreen: function ( e ) {
 		L.DomEvent.stop( e );
+		this.logOpenEvent();
 		this._map.openFullScreen();
 	}
 } );

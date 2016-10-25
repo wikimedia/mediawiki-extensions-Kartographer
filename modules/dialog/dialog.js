@@ -88,8 +88,15 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 
 			if ( dialog.$mapDetailsButton.value !== open ) {
 				dialog.$mapDetailsButton.setValue( open );
+				// This `change` event callback is fired again, so skip here.
+				return;
 			}
 
+			mw.track( 'mediawiki.kartographer', {
+				action: open ? 'sidebar-show' : 'sidebar-hide',
+				isFullScreen: true,
+				feature: dialog.map.parentMap || dialog.map.parentLink
+			} );
 			dialog.sideBar.toggle( open );
 		} );
 	};
@@ -146,32 +153,36 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 	MapDialog.prototype.getSetupProcess = function ( options ) {
 		return MapDialog.super.prototype.getSetupProcess.call( this, options )
 			.next( function () {
+				var dialog = this;
 
-				if ( options.map && options.map !== this.map ) {
+				if ( options.map && options.map !== dialog.map ) {
 
-					if ( this.map ) {
-						this.map.remove();
+					if ( dialog.map ) {
+						dialog.map.remove();
 					}
 
-					this.map = options.map;
+					dialog.map = options.map;
 
-					this.map.closeFullScreenControl = new CloseFullScreenControl( { position: 'topright' } )
-						.addTo( this.map );
+					dialog.map.closeFullScreenControl = new CloseFullScreenControl( { position: 'topright' } )
+						.addTo( dialog.map );
 
-					this.$body.empty().append(
-						this.map.$container.css( 'position', '' )
+					dialog.$body.append(
+						dialog.map.$container.css( 'position', '' )
 					);
 
-					if ( this.$captionContainer ) {
-						this.$captionContainer
-							.attr( 'title', this.map.captionText )
-							.text( this.map.captionText );
+					if ( dialog.$captionContainer ) {
+						dialog.$captionContainer
+							.attr( 'title', dialog.map.captionText )
+							.text( dialog.map.captionText );
 					}
 
-					if ( !this.$mapDetailsButton ) {
-						this.addFooterButton();
-					} else {
-						this.$mapDetailsButton.setValue( false );
+					if ( !dialog.$mapDetailsButton ) {
+						dialog.addFooterButton();
+					} else if ( dialog.sideBar ) {
+						dialog.sideBar.tearDown();
+						dialog.map.doWhenReady( function () {
+							dialog.sideBar.render();
+						} );
 					}
 				}
 			}, this );

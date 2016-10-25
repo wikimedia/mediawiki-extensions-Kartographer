@@ -177,6 +177,19 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 			this.parentMap = options.parentMap || null;
 
 			/**
+			 * @property {Kartographer.Box.MapClass} [parentLink=null] Reference
+			 *   to the parent link.
+			 * @protected
+			 */
+			this.parentLink = options.parentLink || null;
+
+			/**
+			 * @property {string} The feature type identifier.
+			 * @protected
+			 */
+			this.featureType = options.featureType;
+
+			/**
 			 * @property {Kartographer.Box.MapClass} [fullScreenMap=null] Reference
 			 *   to the child full screen map.
 			 * @protected
@@ -236,6 +249,13 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 			if ( options.allowFullScreen ) {
 				// embed maps, and full screen is allowed
 				this.on( 'dblclick', function () {
+					// We need this hack to differentiate these events from `hashopen` events.
+					map.clicked = true;
+					mw.track( 'mediawiki.kartographer', {
+						action: 'open',
+						isFullScreen: true,
+						feature: map
+					} );
 					map.openFullScreen();
 				} );
 
@@ -469,6 +489,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 						container: L.DomUtil.create( 'div', 'mw-kartographer-mapDialog-map' ),
 						center: position.center,
 						zoom: position.zoom,
+						featureType: this.featureType,
 						fullscreen: true,
 						captionText: this.captionText,
 						fullScreenRoute: this.fullScreenRoute,
@@ -670,12 +691,20 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 		 * @chainable
 		 */
 		remove: function () {
+			var parent = this.parentMap || this.parentLink;
+
 			if ( this.fullScreenMap ) {
 				L.Map.prototype.remove.call( this.fullScreenMap );
 				this.fullScreenMap = null;
 			}
-			if ( this.parentMap ) {
-				this.parentMap.fullScreenMap = null;
+			if ( parent ) {
+				parent.fullScreenMap = null;
+				mw.track( 'mediawiki.kartographer', {
+					action: 'close',
+					isFullScreen: true,
+					feature: parent
+				} );
+				parent.clicked = false;
 			}
 
 			return L.Map.prototype.remove.call( this );

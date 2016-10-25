@@ -86,6 +86,7 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 				data.enableFullScreenButton = true;
 
 				map = kartobox.map( {
+					featureType: 'mapframe',
 					container: container,
 					center: [ data.latitude, data.longitude ],
 					zoom: data.zoom,
@@ -93,6 +94,11 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 					allowFullScreen: true,
 					dataGroups: data.overlays,
 					captionText: data.captionText
+				} );
+				mw.track( 'mediawiki.kartographer', {
+					action: 'view',
+					isFullScreen: false,
+					feature: map
 				} );
 				map.doWhenReady( function () {
 					map.$container.css( 'backgroundImage', '' );
@@ -149,6 +155,15 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 					position = map.getInitialMapPosition();
 				}
 
+				// We need this hack to differentiate these events from `open` events.
+				if ( !map.fullScreenMap && !map.clicked ) {
+					mw.track( 'mediawiki.kartographer', {
+						action: 'hashopen',
+						isFullScreen: true,
+						feature: map
+					} );
+					map.clicked = false;
+				}
 				map.openFullScreen( position );
 			} );
 

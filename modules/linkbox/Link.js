@@ -54,6 +54,7 @@ module.Link = ( function ( $ ) {
 		link.captionText = options.captionText || '';
 		link.dataGroups = options.dataGroups;
 		link.data = options.data;
+		link.featureType = options.featureType;
 
 		/**
 		 * @property {Kartographer.Box.MapClass} [fullScreenMap=null] Reference
@@ -110,8 +111,10 @@ module.Link = ( function ( $ ) {
 			el.className = 'mw-kartographer-mapDialog-map';
 			mapObject = {
 				container: el,
+				featureType: link.featureType,
 				fullscreen: true,
 				link: true,
+				parentLink: this,
 				center: position.center,
 				zoom: position.zoom,
 				captionText: link.captionText,
