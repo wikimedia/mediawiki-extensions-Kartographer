@@ -469,6 +469,7 @@
 		"tests/parserTests.txt"
 	],
 	"config": {
+		"KartographerStaticMapframe": false,
 		"KartographerWikivoyageMode": false,
 		"KartographerDfltStyle": "osm-intl",
 		"KartographerStyles": ["osm-intl", "osm"],
