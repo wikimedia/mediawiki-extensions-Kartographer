@@ -68,5 +68,11 @@
 		"service": "geoline",
 		"query": "lalala",
 		"ids": "Q1,Q2 , Q3"
+	},
+	{
+		"type": "ExternalData",
+		"service": "geomask",
+		"query": "lalala",
+		"ids": "Q1"
 	}
 ]
