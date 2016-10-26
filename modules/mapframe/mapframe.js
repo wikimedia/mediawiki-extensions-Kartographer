@@ -94,6 +94,9 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 					dataGroups: data.overlays,
 					captionText: data.captionText
 				} );
+				map.doWhenReady( function () {
+					map.$container.css( 'backgroundImage', '' );
+				} );
 
 				mapsInArticle.push( map );
 				maps[ index ] = map;
