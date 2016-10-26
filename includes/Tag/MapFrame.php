@@ -142,12 +142,12 @@ class MapFrame extends TagHandler {
 					$staticLat = 30;
 					$staticLon = 0;
 				}
+
 				if ( $this->showGroups ) {
 					$attrs['data-overlays'] = FormatJson::encode( $this->showGroups, false,
 						FormatJson::ALL_OK );
+					$this->state->addInteractiveGroups( $this->showGroups );
 				}
-
-				$this->state->addInteractiveGroups( $this->showGroups );
 				break;
 			default:
 				throw new UnexpectedValueException(
@@ -159,11 +159,13 @@ class MapFrame extends TagHandler {
 			$containerClass .= ' mw-kartographer-full';
 		}
 
-		$title = urlencode( $this->parser->getTitle()->getPrefixedText() );
-		$groupList = implode( ',', $this->showGroups );
-
 		$bgUrl = "{$wgKartographerMapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat},{$staticLon},{$staticWidth}x{$this->height}.png";
-		$bgUrl .= "?domain={$wgServerName}&title={$title}&groups={$groupList}";
+		if ( $this->showGroups ) {
+			$title = urlencode( $this->parser->getTitle()->getPrefixedText() );
+			$groupList = urlencode( implode( ',', $this->showGroups ) );
+			$bgUrl .= "?domain={$wgServerName}&title={$title}&groups={$groupList}";
+		}
+
 		$attrs['style'] = "background-image: url({$bgUrl});";
 
 		if ( !$framed ) {
