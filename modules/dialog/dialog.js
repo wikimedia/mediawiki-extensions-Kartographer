@@ -196,10 +196,6 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 					return;
 				}
 				this.map.doWhenReady( function ( ) {
-
-					if ( this.map.useRouter ) {
-						this.map.on( 'moveend', this.onMapMove, this );
-					}
 					mw.hook( 'wikipage.maps' ).fire( this.map, true /* isFullScreen */ );
 				}, this );
 			}, this );
