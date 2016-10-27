@@ -317,12 +317,12 @@ abstract class TagHandler {
 				$liveData = array_intersect_key( (array)$data, $interact );
 				$requested = array_unique( $requested );
 				// Prevent pointless API requests for missing groups
-				foreach ( $requested as $group ) {
+				foreach ( array_keys( $requested ) as $group ) {
 					if ( !isset( $data->$group ) ) {
 						$liveData[$group] = [];
 					}
 				}
-				$output->addJsConfigVars( 'wgKartographerLiveData', $liveData );
+				$output->addJsConfigVars( 'wgKartographerLiveData', (object)$liveData );
 			}
 		}
 	}

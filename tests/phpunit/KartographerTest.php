@@ -39,7 +39,8 @@ class KartographerTest extends MediaWikiTestCase {
 	 * @param string $input
 	 * @param string $message
 	 */
-	public function testTagData( $expected, $input, $message ) {
+	public function testTagData( $expected, $input, $message, $wikivoyageMode = false ) {
+		$this->setMwGlobals( 'wgKartographerWikivoyageMode', $wikivoyageMode );
 		$output = $this->parse( $input );
 		$state = State::getState( $output );
 
@@ -134,6 +135,7 @@ class KartographerTest extends MediaWikiTestCase {
 			// Bugs
 			[ '[]', "<maplink zoom=13 longitude=-122.3988 latitude=37.8013>\t\r\n </maplink>", 'T127345: whitespace-only tag content, <maplink>' ],
 			[ $xssJsonSanitized, "<maplink zoom=13 longitude=10 latitude=20>$xssJson</maplink>", 'T134719: XSS via __proto__' ],
+			[ '[]', '<mapframe show="foo, bar, baz" zoom=12 latitude=10 longitude=20 width=100 height=100 />', 'T148971 - weird LiveData', true ],
 		];
 	}
 
@@ -173,14 +175,28 @@ class KartographerTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideLiveData
+	 * @param string $text
 	 * @param string[] $expected
 	 * @param bool $preview
 	 * @param bool $sectionPreview
 	 */
-	public function testLiveData( array $expected, $preview, $sectionPreview ) {
-		$text =
-<<<WIKITEXT
-<maplink latitude=10 longitude=20 zoom=13>
+	public function testLiveData( $text, array $expected, $preview, $sectionPreview, $wikivoyageMode ) {
+		$this->setMwGlobals( 'wgKartographerWikivoyageMode', $wikivoyageMode );
+		$output = $this->parse( $text,
+			function( ParserOptions $options ) use ( $preview, $sectionPreview ) {
+				$options->setIsPreview( $preview );
+				$options->setIsSectionPreview( $sectionPreview );
+			}
+		);
+		$vars = $output->getJsConfigVars();
+		$this->assertArrayHasKey( 'wgKartographerLiveData', $vars );
+		$this->assertArrayEquals( $expected, array_keys( (array)$vars['wgKartographerLiveData'] ) );
+	}
+
+	public function provideLiveData() {
+		$frameAndLink =
+			<<<WIKITEXT
+			<maplink latitude=10 longitude=20 zoom=13>
 {
     "type": "Feature",
     "geometry": {
@@ -199,23 +215,14 @@ class KartographerTest extends MediaWikiTestCase {
 }
 </mapframe>
 WIKITEXT;
-		$output = $this->parse( $text,
-			function( ParserOptions $options ) use ( $preview, $sectionPreview ) {
-				$options->setIsPreview( $preview );
-				$options->setIsSectionPreview( $sectionPreview );
-			}
-		);
-		$vars = $output->getJsConfigVars();
-		$this->assertArrayHasKey( 'wgKartographerLiveData', $vars );
-		$this->assertArrayEquals( $expected, array_keys( (array)$vars['wgKartographerLiveData'] ) );
-	}
-
-	public function provideLiveData() {
+		$wikivoyageMaps = '<mapframe show="foo, bar, baz" zoom=12 latitude=10 longitude=20 width=100 height=100 />';
 		return [
-			[ [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2' ], false, false ],
-			[ [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2', '_2251fa240a210d2861cc9f44c48d7e3ba116ff2f' ], true, false ],
-			[ [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2', '_2251fa240a210d2861cc9f44c48d7e3ba116ff2f' ], false, true ],
-			[ [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2', '_2251fa240a210d2861cc9f44c48d7e3ba116ff2f' ], true, true ],
+			// text          expected                                        preview sectionPreview wikivoyageMode
+			[ $frameAndLink, [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2' ], false, false, false ],
+			[ $frameAndLink, [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2', '_2251fa240a210d2861cc9f44c48d7e3ba116ff2f' ], true, false, false ],
+			[ $frameAndLink, [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2', '_2251fa240a210d2861cc9f44c48d7e3ba116ff2f' ], false, true, false ],
+			[ $frameAndLink, [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2', '_2251fa240a210d2861cc9f44c48d7e3ba116ff2f' ], true, true, false ],
+			[ $wikivoyageMaps, [ 'foo', 'bar', 'baz' ], false, false, true ],
 		];
 	}
 
