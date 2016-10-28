@@ -172,7 +172,7 @@ class MapFrame extends TagHandler {
 			$attrs['style'] .= " width: {$width}; height: {$height};";
 			$attrs['class'] .= " {$containerClass} {$alignClasses[$this->align]}";
 
-			return Html::rawElement( $useSnapshot ? 'a' : 'div', $attrs );
+			return Html::rawElement( 'a', $attrs );
 		}
 
 		$attrs['style'] .= " height: {$height};";
@@ -181,7 +181,7 @@ class MapFrame extends TagHandler {
 		$captionFrame = Html::rawElement( 'div', [ 'class' => 'thumbcaption' ],
 			$this->parser->recursiveTagParse( $caption ) );
 
-		$mapDiv = Html::rawElement( $useSnapshot ? 'a' : 'div', $attrs );
+		$mapDiv = Html::rawElement( 'a', $attrs );
 
 		return Html::rawElement( 'div', [ 'class' => $containerClass ],
 			Html::rawElement( 'div', [
