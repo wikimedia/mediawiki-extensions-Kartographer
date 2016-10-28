@@ -1,6 +1,5 @@
 /* globals module */
 /* eslint-disable no-underscore-dangle */
-/* jscs:disable requireVarDeclFirst */
 /**
  * # Control to display the scale.
  *

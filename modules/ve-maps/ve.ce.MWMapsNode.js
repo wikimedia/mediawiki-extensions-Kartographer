@@ -148,7 +148,7 @@ ve.ce.MWMapsNode.prototype.setupMap = function () {
 		// TODO: Support style editing
 	} );
 	this.map.on( 'layeradd', this.updateMapPosition, this );
-	this.map.doWhenReady( function ( ) {
+	this.map.doWhenReady( function () {
 		node.updateGeoJson();
 
 		// Disable interaction

@@ -164,9 +164,8 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 			this.$container = $( this._container );
 
 			this.on( 'kartographerisready', function () {
-				/* jscs:disable requireCamelCaseOrUpperCaseIdentifiers*/
+				// eslint-disable-next-line camelcase
 				map._kartographer_ready = true;
-				/* jscs:enable requireCamelCaseOrUpperCaseIdentifiers*/
 			} );
 
 			/**
@@ -322,13 +321,11 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 		 * @chainable
 		 */
 		doWhenReady: function ( callback, context ) {
-			/* jscs:disable requireCamelCaseOrUpperCaseIdentifiers*/
 			if ( this._kartographer_ready ) {
 				callback.call( context || this, this );
 			} else {
 				this.on( 'kartographerisready', callback, context );
 			}
-			/* jscs:enable requireCamelCaseOrUpperCaseIdentifiers*/
 			return this;
 		},
 
@@ -598,7 +595,6 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 				hash += '/' + newHash;
 			}
 
-			/* jscs:enable requireVarDeclFirst*/
 			return hash;
 		},
 

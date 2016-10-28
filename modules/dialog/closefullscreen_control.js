@@ -62,4 +62,4 @@ module.CloseFullScreenControl = ( function () {
 
 	return createControl;
 
-} )( );
+} )();

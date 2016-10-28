@@ -195,7 +195,7 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 				if ( !this.map ) {
 					return;
 				}
-				this.map.doWhenReady( function ( ) {
+				this.map.doWhenReady( function () {
 					mw.hook( 'wikipage.maps' ).fire( this.map, true /* isFullScreen */ );
 				}, this );
 			}, this );

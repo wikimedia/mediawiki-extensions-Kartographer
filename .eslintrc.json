@@ -14,9 +14,6 @@
 	},
 	"rules": {
 		"dot-notation": 0,
-		"wrap-iife": 0,
-		"no-console": "error",
-		"spaced-comment": ["error", "always", { "exceptions": ["*", "!"] }],
-		"vars-on-top": "error"
+		"wrap-iife": 0
 	}
 }

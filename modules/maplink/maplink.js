@@ -57,7 +57,7 @@ module.exports = ( function ( $, mw, router, kartolink, undefined ) {
 	 *
 	 * @ignore
 	 */
-	mw.hook( 'wikipage.content' ).add( function ( ) {
+	mw.hook( 'wikipage.content' ).add( function () {
 
 		// `wikipage.content` may be fired more than once.
 		$.each( maplinks, function () {

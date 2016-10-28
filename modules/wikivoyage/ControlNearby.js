@@ -51,7 +51,6 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 		);
 	}
 
-	/* jscs:disable requireVarDeclFirst */
 	/* eslint-disable no-underscore-dangle */
 	return L.Control.extend( {
 		options: {

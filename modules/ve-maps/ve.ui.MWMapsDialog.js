@@ -326,7 +326,7 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 			alwaysInteractive: true
 		} );
 
-		dialog.map.doWhenReady( function ()  {
+		dialog.map.doWhenReady( function () {
 
 			dialog.updateGeoJson();
 			dialog.onDimensionsChange();
