@@ -1,8 +1,0 @@
-/* Third party components */
-lib/
-
-/* Tooling */
-node_modules/
-
-/* Documentation */
-docs/

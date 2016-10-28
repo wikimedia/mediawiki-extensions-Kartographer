@@ -7,8 +7,6 @@
  * @singleton
  */
 module.wikivoyage = ( function ( $, mw, undefined ) {
-
-	/*jscs:disable requireVarDeclFirst */
 	var tileLayerDefs = {},
 		areExternalAllowed,
 		windowManager,
@@ -43,6 +41,7 @@ module.wikivoyage = ( function ( $, mw, undefined ) {
 	}
 
 	return {
+		// eslint-disable-next-line valid-jsdoc
 		/**
 		 * Adds a tile layer definition to the internal store.
 		 *

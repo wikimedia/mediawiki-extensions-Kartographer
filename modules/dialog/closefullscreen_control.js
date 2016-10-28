@@ -1,5 +1,5 @@
 /* globals module */
-/*jscs:disable disallowDanglingUnderscores */
+/* eslint-disable no-underscore-dangle */
 /**
  * # Control to close the full screen dialog.
  *
@@ -13,13 +13,13 @@ module.CloseFullScreenControl = ( function () {
 
 	var ControlClass,
 		createControl = function ( options ) {
-		var control = this;
+			var control = this;
 
-		// Since the control is added to an existing map, by the time we get here,
-		// `ext.kartographer.box` was loaded, so this will be synchronous.
-		// We need this hack because `L` is undefined until a map was created.
-		mw.loader.using( 'ext.kartographer.box' ).then( function () {
-			ControlClass = ControlClass || L.Control.extend( {
+			// Since the control is added to an existing map, by the time we get here,
+			// `ext.kartographer.box` was loaded, so this will be synchronous.
+			// We need this hack because `L` is undefined until a map was created.
+			mw.loader.using( 'ext.kartographer.box' ).then( function () {
+				ControlClass = ControlClass || L.Control.extend( {
 					options: {
 						position: 'topright'
 					},
@@ -55,10 +55,10 @@ module.CloseFullScreenControl = ( function () {
 					}
 				} );
 
-			control = new ControlClass( options );
-		} );
-		return control;
-	};
+				control = new ControlClass( options );
+			} );
+			return control;
+		};
 
 	return createControl;
 

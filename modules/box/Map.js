@@ -55,26 +55,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 		autoPanPadding: [ 12, 12 ]
 	} );
 
-	/**
-	 * Gets the valid bounds of a map/layer.
-	 *
-	 * @param {L.Map|L.Layer} layer
-	 * @return {L.LatLngBounds} Extended bounds
-	 * @private
-	 */
-	function getValidBounds( layer ) {
-		var layerBounds = new L.LatLngBounds();
-		if ( typeof layer.eachLayer === 'function' ) {
-			layer.eachLayer( function ( child ) {
-				layerBounds.extend( getValidBounds( child ) );
-			} );
-		} else {
-			layerBounds.extend( validateBounds( layer ) );
-		}
-		return layerBounds;
-	}
-
-	/*jscs:disable disallowDanglingUnderscores */
+	/* eslint-disable no-underscore-dangle */
 	/**
 	 * Validate that the bounds contain no outlier.
 	 *
@@ -103,6 +84,25 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Gets the valid bounds of a map/layer.
+	 *
+	 * @param {L.Map|L.Layer} layer
+	 * @return {L.LatLngBounds} Extended bounds
+	 * @private
+	 */
+	function getValidBounds( layer ) {
+		var layerBounds = new L.LatLngBounds();
+		if ( typeof layer.eachLayer === 'function' ) {
+			layer.eachLayer( function ( child ) {
+				layerBounds.extend( getValidBounds( child ) );
+			} );
+		} else {
+			layerBounds.extend( validateBounds( layer ) );
+		}
+		return layerBounds;
 	}
 
 	Map = L.Map.extend( {
@@ -164,9 +164,9 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 			this.$container = $( this._container );
 
 			this.on( 'kartographerisready', function () {
-				/*jscs:disable requireCamelCaseOrUpperCaseIdentifiers*/
+				/* jscs:disable requireCamelCaseOrUpperCaseIdentifiers*/
 				map._kartographer_ready = true;
-				/*jscs:enable requireCamelCaseOrUpperCaseIdentifiers*/
+				/* jscs:enable requireCamelCaseOrUpperCaseIdentifiers*/
 			} );
 
 			/**
@@ -311,6 +311,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 			} );
 		},
 
+		// eslint-disable-next-line valid-jsdoc
 		/**
 		 * Runs the given callback **when the Kartographer map has finished
 		 * loading the data layers and positioning** the map with a center and
@@ -321,16 +322,17 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 		 * @chainable
 		 */
 		doWhenReady: function ( callback, context ) {
-			/*jscs:disable requireCamelCaseOrUpperCaseIdentifiers*/
+			/* jscs:disable requireCamelCaseOrUpperCaseIdentifiers*/
 			if ( this._kartographer_ready ) {
 				callback.call( context || this, this );
 			} else {
 				this.on( 'kartographerisready', callback, context );
 			}
-			/*jscs:enable requireCamelCaseOrUpperCaseIdentifiers*/
+			/* jscs:enable requireCamelCaseOrUpperCaseIdentifiers*/
 			return this;
 		},
 
+		// eslint-disable-next-line valid-jsdoc
 		/**
 		 * Sets the initial center and zoom of the map, and optionally calls
 		 * {@link #setView} to reposition the map.
@@ -405,6 +407,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 		 *
 		 * @param {Object} groupData Features
 		 * @param {Object} [options] Layer options
+		 * @return {jQuery.Promise} Promise which resolves when the layer has been added
 		 */
 		addDataLayer: function ( groupData, options ) {
 			var map = this,
@@ -441,6 +444,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 		 *   characters or spaces).
 		 * @param {Object} geoJson Features
 		 * @param {Object} [options] Layer options
+		 * @return {L.mapbox.FeatureLayer} Added layer
 		 */
 		addGeoJSONLayer: function ( groupName, geoJson, options ) {
 			var layer;
@@ -511,6 +515,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 			}, this );
 		},
 
+		// eslint-disable-next-line
 		/**
 		 * Closes full screen dialog.
 		 *
@@ -567,11 +572,11 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 		 * @return {string} The route to open the map in full screen mode.
 		 */
 		getHash: function () {
-			/*jscs:disable requireVarDeclFirst*/
 			if ( !this._initialPosition ) {
 				return this.fullScreenRoute;
 			}
 
+			// eslint-disable-next-line vars-on-top
 			var hash = this.fullScreenRoute,
 				currentPosition = this.getMapPosition(),
 				initialPosition = this._initialPosition,
@@ -593,10 +598,11 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 				hash += '/' + newHash;
 			}
 
-			/*jscs:enable requireVarDeclFirst*/
+			/* jscs:enable requireVarDeclFirst*/
 			return hash;
 		},
 
+		// eslint-disable-next-line valid-jsdoc
 		/**
 		 * Sets the map at a certain zoom and position.
 		 *
@@ -751,6 +757,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 			this._size = new L.Point( width, height );
 		},
 
+		// eslint-disable-next-line valid-jsdoc
 		/**
 		 * Adds Leaflet.Sleep handler and overrides `invalidateSize` when the map
 		 * is not in full screen mode.
@@ -787,6 +794,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 			return this;
 		},
 
+		// eslint-disable-next-line valid-jsdoc
 		/**
 		 * Makes the map interactive IIF :
 		 *

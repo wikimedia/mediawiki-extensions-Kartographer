@@ -5,9 +5,9 @@
  * @alias WVMap
  * @class Kartographer.Wikivoyage.WVMap
  */
-module.WVMap = ( function ( $, mw, wikivoyage, WVMapLayers, ControlNearby, undefined ) {
+module.WVMap = ( function ( $, mw, wikivoyage, WVMapLayers, ControlNearby ) {
 
-	/*jscs:disable disallowDanglingUnderscores, requireVarDeclFirst */
+	/* eslint-disable no-underscore-dangle */
 	var Map = function ( map ) {
 		this.map = map;
 	};

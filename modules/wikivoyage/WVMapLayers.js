@@ -7,9 +7,9 @@
  * @class Kartographer.Wikivoyage.WVMapLayers
  * @private
  */
-module.WVMapLayers = ( function ( $, mw, wikivoyage, ControlLayers, undefined ) {
+module.WVMapLayers = ( function ( $, mw, wikivoyage, ControlLayers ) {
 
-	/*jscs:disable disallowDanglingUnderscores, requireVarDeclFirst */
+	/* eslint-disable no-underscore-dangle */
 	var WVMapLayers = function ( map ) {
 		this.map = map;
 		this.control = new ControlLayers();
@@ -22,6 +22,7 @@ module.WVMapLayers = ( function ( $, mw, wikivoyage, ControlLayers, undefined ) 
 		);
 	};
 
+	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Adds a layer.
 	 *
@@ -35,6 +36,7 @@ module.WVMapLayers = ( function ( $, mw, wikivoyage, ControlLayers, undefined ) 
 		return this;
 	};
 
+	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Refreshes the list of layers displayed in the control dropdown.
 	 *
@@ -45,6 +47,7 @@ module.WVMapLayers = ( function ( $, mw, wikivoyage, ControlLayers, undefined ) 
 		return this;
 	};
 
+	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Adds a base map.
 	 *
@@ -57,6 +60,7 @@ module.WVMapLayers = ( function ( $, mw, wikivoyage, ControlLayers, undefined ) 
 		return this;
 	};
 
+	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Adds an overlay.
 	 *
@@ -69,6 +73,7 @@ module.WVMapLayers = ( function ( $, mw, wikivoyage, ControlLayers, undefined ) 
 		return this;
 	};
 
+	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Adds a data layer.
 	 *
@@ -77,8 +82,8 @@ module.WVMapLayers = ( function ( $, mw, wikivoyage, ControlLayers, undefined ) 
 	 * @chainable
 	 */
 	WVMapLayers.prototype.datalayer = function ( id, layer ) {
+		var self = this;
 		if ( typeof id === 'object' ) {
-			var self = this;
 			$.each( id, function ( group, groupLayer ) {
 				self.datalayer( group, groupLayer );
 			} );

@@ -124,9 +124,9 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 
 		// Avoid extra operations
 		if ( this.lastHash !== hash ) {
-			/*jscs:disable disallowDanglingUnderscores */
+			/* eslint-disable no-underscore-dangle */
 			this.map._updatingHash = true;
-			/*jscs:enable disallowDanglingUnderscores */
+			/* eslint-enable no-underscore-dangle */
 			router.navigate( hash );
 			this.lastHash = hash;
 		}
@@ -142,11 +142,11 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 		// Stop listening to `moveend` event while we're
 		// manually moving the map (updating from a hash),
 		// or if the map is not yet loaded.
-		/*jscs:disable disallowDanglingUnderscores */
+		/* eslint-disable no-underscore-dangle */
 		if ( this.movingMap || !this.map || !this.map._loaded ) {
 			return false;
 		}
-		/*jscs:enable disallowDanglingUnderscores */
+		/* eslint-enable no-underscore-dangle */
 		this.updateHash();
 	}, 250 );
 

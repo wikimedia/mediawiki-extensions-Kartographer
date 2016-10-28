@@ -314,7 +314,7 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 	}
 
 	mw.loader.using( 'ext.kartographer.editor' ).then( function () {
-		var geoJsonLayer, drawControl,
+		var geoJsonLayer,
 			defaultShapeOptions = { shapeOptions: L.mapbox.simplestyle.style( {} ) },
 			mapPosition = dialog.getInitialMapPosition();
 
@@ -349,7 +349,7 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 
 			geoJsonLayer = mw.loader.require( 'ext.kartographer.editing' )
 				.getKartographerLayer( dialog.map );
-			drawControl = new L.Control.Draw( {
+			new L.Control.Draw( {
 				edit: { featureGroup: geoJsonLayer },
 				draw: {
 					circle: false,

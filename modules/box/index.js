@@ -31,6 +31,7 @@ L.kartographer = module.exports = {
 	 *
 	 * See {@link Kartographer.Box.MapClass#constructor} for the list of options.
 	 *
+	 * @param {Object} options
 	 * @return {Kartographer.Box.MapClass}
 	 * @member Kartographer.Box
 	 */

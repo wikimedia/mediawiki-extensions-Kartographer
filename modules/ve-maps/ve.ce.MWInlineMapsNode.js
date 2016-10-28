@@ -14,9 +14,7 @@
  * @param {ve.dm.MWInlineMapsNode} model Model to observe
  * @param {Object} [config] Configuration options
  */
-ve.ce.MWInlineMapsNode = function VeCeMWInlineMaps( model, config ) {
-	config = config || {};
-
+ve.ce.MWInlineMapsNode = function VeCeMWInlineMaps() {
 	// Parent constructor
 	ve.ce.MWInlineMapsNode.super.apply( this, arguments );
 

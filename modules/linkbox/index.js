@@ -20,6 +20,7 @@ module.exports = {
 	 *
 	 * See {@link Kartographer.Linkbox.LinkClass#constructor} for the list of options.
 	 *
+	 * @param {Object} options
 	 * @return {Kartographer.Linkbox.LinkClass}
 	 */
 	link: function ( options ) {

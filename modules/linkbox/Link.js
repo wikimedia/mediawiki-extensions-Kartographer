@@ -9,7 +9,7 @@
  */
 module.Link = ( function ( $ ) {
 
-	/*jscs:disable disallowDanglingUnderscores */
+	/* eslint-disable no-underscore-dangle */
 	/**
 	 * @constructor
 	 * @param {Object} options **Configuration and options:**

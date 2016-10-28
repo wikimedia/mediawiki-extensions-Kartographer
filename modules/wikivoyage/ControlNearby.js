@@ -51,7 +51,8 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 		);
 	}
 
-	/*jscs:disable disallowDanglingUnderscores, requireVarDeclFirst */
+	/* jscs:disable requireVarDeclFirst */
+	/* eslint-disable no-underscore-dangle */
 	return L.Control.extend( {
 		options: {
 			// Do not switch for RTL because zoom also stays in place
@@ -89,6 +90,7 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 
 		/**
 		 * @protected
+		 * @param {Object} obj
 		 */
 		_onOverlayAdd: function ( obj ) {
 			var control = this,
@@ -125,6 +127,7 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 
 		/**
 		 * @protected
+		 * @param {Object} obj
 		 */
 		_onOverlayRemove: function ( obj ) {
 			if ( this.pruneCluster !== obj.layer ) {
@@ -137,6 +140,7 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 
 		/**
 		 * @protected
+		 * @param {boolean} [enabled]
 		 */
 		_toggleActiveClass: function ( enabled ) {
 			enabled = ( enabled !== undefined ) ? enabled : this.isEnabled();
@@ -145,6 +149,7 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 
 		/**
 		 * Checks whether the map has the layer.
+		 * @return {boolean}
 		 */
 		isEnabled: function () {
 			return this.map.hasLayer( this.pruneCluster );
@@ -152,6 +157,7 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 
 		/**
 		 * @protected
+		 * @param {Event} e
 		 */
 		_onToggleNearbyLayer: function ( e ) {
 			L.DomEvent.stop( e );
@@ -160,6 +166,7 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 
 		/**
 		 * @protected
+		 * @param {boolean} [enabled]
 		 */
 		_toggleLayer: function ( enabled ) {
 			var control = this;
@@ -178,12 +185,13 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 
 		/**
 		 * @protected
+		 * @param {boolean} [enabled]
 		 */
-		_toggleDataLayers: function ( enable ) {
+		_toggleDataLayers: function ( enabled ) {
 			var control = this;
 
 			$.each( control.map.dataLayers, function ( group, layer ) {
-				control.map[ enable ? 'addLayer' : 'removeLayer' ]( layer );
+				control.map[ enabled ? 'addLayer' : 'removeLayer' ]( layer );
 			} );
 		}
 	} );

@@ -23,6 +23,7 @@ module.dataLayerOpts = {
 	 * sanitization).
 	 *
 	 * @param {Object} geojson
+	 * @return {Object}
 	 */
 	sanitizer: function ( geojson ) {
 		return geojson;

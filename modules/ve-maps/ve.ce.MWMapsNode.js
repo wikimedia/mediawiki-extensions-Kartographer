@@ -207,6 +207,9 @@ ve.ce.MWMapsNode.prototype.updateMapPosition = function () {
 
 /**
  * Update the static rendering
+ *
+ * @param {number} width Width
+ * @param {number} height Height
  */
 ve.ce.MWMapsNode.prototype.updateStatic = function ( width, height ) {
 	var url, node = this;

@@ -8,7 +8,7 @@ module.exports = ( function ( $, mw ) {
 
 	/**
 	 * @constructor
-	 * @type {Kartographer.DialogSideBar}
+	 * @param {Object} options
 	 */
 	var SideBar = function ( options ) {
 			/**
@@ -41,6 +41,7 @@ module.exports = ( function ( $, mw ) {
 		return link;
 	};
 
+	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Toggles the sidebar
 	 *
@@ -60,6 +61,7 @@ module.exports = ( function ( $, mw ) {
 		return this;
 	};
 
+	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Renders the sidebar.
 	 *
@@ -275,11 +277,11 @@ module.exports = ( function ( $, mw ) {
 		// Add close button to the sidebar
 		var sidebar = this,
 			button = new OO.ui.ButtonWidget( {
-			icon: 'close',
-			title: mw.msg( 'kartographer-fullscreen-close' ),
-			framed: false,
-			classes: [ 'mw-kartographer-mapDialog-closeButton' ]
-		} ).connect( this, { click: sidebar.dialog.toggleSideBar.bind( sidebar.dialog, false ) } );
+				icon: 'close',
+				title: mw.msg( 'kartographer-fullscreen-close' ),
+				framed: false,
+				classes: [ 'mw-kartographer-mapDialog-closeButton' ]
+			} ).connect( this, { click: sidebar.dialog.toggleSideBar.bind( sidebar.dialog, false ) } );
 		return button;
 	};
 
@@ -310,6 +312,7 @@ module.exports = ( function ( $, mw ) {
 		} );
 	};
 
+	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Detaches events and removes the element.
 	 *

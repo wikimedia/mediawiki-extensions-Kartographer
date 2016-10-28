@@ -1,5 +1,5 @@
 /* globals module */
-/*jscs:disable disallowDanglingUnderscores */
+/* eslint-disable no-underscore-dangle */
 /**
  * # Control to open the map in a full screen dialog.
  *
