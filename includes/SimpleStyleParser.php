@@ -54,20 +54,31 @@ class SimpleStyleParser {
 		if ( $input !== '' && $input !== null ) {
 			$status = FormatJson::parse( $input, FormatJson::TRY_FIXING | FormatJson::STRIP_COMMENTS );
 			if ( $status->isOK() ) {
-				$json = $status->getValue();
-				if ( !is_array( $json ) ) {
-					$json = [ $json ];
-				}
-				$status = $this->validateContent( $json );
-				if ( $status->isOK() ) {
-					$this->sanitize( $json );
-					$status = $this->normalize( $json );
-				}
+				$status = $this->parseObject( $status->getValue() );
 			} else {
 				$status = Status::newFatal( 'kartographer-error-json', $status->getMessage() );
 			}
 		}
 
+		return $status;
+	}
+
+	/**
+	 * Validate parsed GeoJSON data object
+	 *
+	 * @param array|object $data
+	 * @return Status
+	 */
+	public function parseObject( $data ) {
+		if ( !is_array( $data ) ) {
+			$data = [ $data ];
+		}
+		$status = $this->validateContent( $data );
+		if ( $status->isOK() ) {
+			$this->sanitize( $data );
+			$status = $this->normalize( $data );
+			return $status;
+		}
 		return $status;
 	}
 
@@ -152,22 +163,19 @@ class SimpleStyleParser {
 			foreach ( $json as &$element ) {
 				$this->sanitize( $element );
 			}
-			return;
-		} elseif ( !is_object( $json ) ) {
-			return;
-		}
-
-		foreach ( array_keys( get_object_vars( $json ) ) as $prop ) {
-			// https://phabricator.wikimedia.org/T134719
-			if ( $prop[0] === '_' ) {
-				unset( $json->$prop );
-			} else {
-				$this->sanitize( $json->$prop );
+		} elseif ( is_object( $json ) ) {
+			foreach ( array_keys( get_object_vars( $json ) ) as $prop ) {
+				// https://phabricator.wikimedia.org/T134719
+				if ( $prop[0] === '_' ) {
+					unset( $json->$prop );
+				} else {
+					$this->sanitize( $json->$prop );
+				}
 			}
-		}
 
-		if ( property_exists( $json, 'properties' ) && is_object( $json->properties ) ) {
-			$this->sanitizeProperties( $json->properties );
+			if ( property_exists( $json, 'properties' ) && is_object( $json->properties ) ) {
+				$this->sanitizeProperties( $json->properties );
+			}
 		}
 	}
 
