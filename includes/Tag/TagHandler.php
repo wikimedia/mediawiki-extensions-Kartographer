@@ -10,6 +10,7 @@
 namespace Kartographer\Tag;
 
 use Exception;
+use ExtensionRegistry;
 use FormatJson;
 use Html;
 use Kartographer\SimpleStyleParser;
@@ -295,10 +296,10 @@ abstract class TagHandler {
 		}
 
 		if ( $state->hasBrokenTags() ) {
-			$output->addTrackingCategory( 'kartographer-broken-category', $parser->getTitle() );
+			self::addTrackingCategory( $parser, 'kartographer-broken-category' );
 		}
 		if ( $state->hasValidTags() ) {
-			$output->addTrackingCategory( 'kartographer-tracking-category', $parser->getTitle() );
+			self::addTrackingCategory( $parser, 'kartographer-tracking-category' );
 		}
 
 		// https://phabricator.wikimedia.org/T145615 - include all data in previews
@@ -324,6 +325,26 @@ abstract class TagHandler {
 				}
 				$output->addJsConfigVars( 'wgKartographerLiveData', (object)$liveData );
 			}
+		}
+	}
+
+	/**
+	 * Adds tracking category with extra checks
+	 *
+	 * @param Parser $parser
+	 * @param string $categoryMsg
+	 */
+	private static function addTrackingCategory( Parser $parser, $categoryMsg ) {
+		static $hasParserFunctions;
+
+		// Our tracking categories rely on ParserFunctions to differentiate per namespace,
+		// avoid log noise if it's not installed
+		if ( $hasParserFunctions === null ) {
+			$hasParserFunctions = ExtensionRegistry::getInstance()->isLoaded( 'ParserFunctions' );
+		}
+
+		if ( $hasParserFunctions ) {
+			$parser->getOutput()->addTrackingCategory( $categoryMsg, $parser->getTitle() );
 		}
 	}
 
