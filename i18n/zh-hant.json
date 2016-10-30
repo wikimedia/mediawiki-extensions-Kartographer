@@ -7,6 +7,7 @@
 		]
 	},
 	"kartographer-attribution": "維基媒體地圖 | 地圖資料 © [https://www.openstreetmap.org/copyright OpenStreetMap 貢獻者]",
+	"kartographer-attribution-externaldata-query": "查詢",
 	"kartographer-broken-category": "有損壞地圖的頁面",
 	"kartographer-broken-category-desc": "有包含無效地圖用法的頁面",
 	"kartographer-desc": "允許將地圖新增至 wiki 頁面",
