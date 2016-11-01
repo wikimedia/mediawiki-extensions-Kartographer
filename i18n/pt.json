@@ -5,12 +5,13 @@
 			"Önni",
 			"Fúlvio",
 			"Diniscoelho",
-			"Mansil"
+			"Mansil",
+			"Hamilton Abreu"
 		]
 	},
 	"kartographer-attribution": "Mapas da Wikimedia | Dados do mapa © [https://www.openstreetmap.org/copyright Contribuidores do OpenStreetMap]",
 	"kartographer-attribution-externaldata-query": "consulta",
-	"kartographer-broken-category": "Páginas com mapas inválidos",
+	"kartographer-broken-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Files|#default=Páginas}} com mapas inválidos",
 	"kartographer-broken-category-desc": "A página inclui uma utilização inválida de mapas",
 	"kartographer-desc": "Permite a inserção de mapas nas páginas wiki",
 	"kartographer-error-context-multi": "Problemas de &lt;$1&gt;:\n$2",
@@ -20,7 +21,7 @@
 	"kartographer-error-bad_data": "O conteúdo JSON não é válido GeoJSON+simplestyle",
 	"kartographer-error-latlon": "Ambos os parâmetros \"latitude\" e \"longitude\" deverão ser fornecidos ou omitidos",
 	"kartographer-error-service-name": "Serviço cartográfico \"$1\" inválido",
-	"kartographer-tracking-category": "Páginas com mapas",
+	"kartographer-tracking-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Files|#default=Páginas}} com mapas",
 	"kartographer-tracking-category-desc": "A página inclui um mapa",
 	"kartographer-specialmap-invalid-coordinates": "As coordenadas fornecidas são inválidas",
 	"kartographer-linktype-aerial": "Aéreo",

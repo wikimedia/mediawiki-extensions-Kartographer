@@ -5,10 +5,10 @@
 			"Siebrand"
 		]
 	},
-	"kartographer-broken-category": "Pagina's met niet-werkende kaarten",
+	"kartographer-broken-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Bestanden|#default=Pagina's}} met niet-werkende kaarten",
 	"kartographer-broken-category-desc": "De pagina bevat een ongeldig gebruik van een kaart",
 	"kartographer-desc": "Maakt het mogelijk kaarten toe te voegen aan wikipagina's",
-	"kartographer-tracking-category": "Pagina's met kaarten",
+	"kartographer-tracking-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Bestanden|#default=Pagina's}} met kaarten",
 	"kartographer-tracking-category-desc": "De pagina bevat een kaart",
 	"mapbox-control-zoomin-title": "Inzoomen",
 	"mapbox-control-zoomout-title": "Uitzoomen",
