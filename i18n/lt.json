@@ -6,9 +6,9 @@
 			"Eitvys200"
 		]
 	},
-	"kartographer-broken-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Files|#default=Pages}} su neveikiančiais žemėlapiais",
+	"kartographer-broken-category": "Puslapiai su neveikiančiais žemėlapiais",
 	"kartographer-error-bad_attr": "Atributas „$1“ turi neleistiną reikšmę",
-	"kartographer-tracking-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Files|#default=Pages}} su žemėlapiais",
+	"kartographer-tracking-category": "Puslapiai su žemėlapiais",
 	"kartographer-tracking-category-desc": "Puslapyje yra žemėlapis",
 	"kartographer-linktype-map": "Žemėlapis",
 	"kartographer-linktype-other": "Kita",
