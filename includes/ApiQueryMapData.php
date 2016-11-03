@@ -42,10 +42,10 @@ class ApiQueryMapData extends ApiQueryBase {
 				break;
 			}
 			$status = FormatJson::parse( gzdecode( $row->pp_value ) );
-			if ( !$status->isOK() ) {
+			$data = $status->getValue();
+			if ( !$status->isOK() || !is_object( $data ) ) {
 				continue;
 			}
-			$data = $status->getValue();
 
 			$result = [];
 			if ( $groups ) {
