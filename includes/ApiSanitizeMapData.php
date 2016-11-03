@@ -29,8 +29,20 @@ class ApiSanitizeMapData extends ApiBase {
 
 		$title = Title::newFromText( $params['title'] );
 
-		if ( !$title || !$title->userCan( 'read', $this->getUser() ) ) {
-			$this->dieUsage( 'Invalid title given', 'invalidtitle' );
+		if ( !$title ) {
+			if ( is_callable( [ $this, 'dieWithError' ] ) ) {
+				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['title'] ) ] );
+			} else {
+				$this->dieUsage( 'Invalid title given', 'invalidtitle' );
+			}
+		}
+
+		if ( is_callable( [ $this, 'checkTitleUserPermissions' ] ) ) {
+			$this->checkTitleUserPermissions( $title, 'read' );
+		} else {
+			if ( !$title->userCan( 'read', $this->getUser() ) ) {
+				$this->dieUsage( "You don't have permission to view this page", 'permissiondenied' );
+			}
 		}
 
 		$this->sanitizeJson( $title, $params['text'] );
