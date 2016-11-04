@@ -125,3 +125,19 @@ a.mw-kartographer-autostyled:visited {
 .mw-kartographer-container.mw-kartographer-full {
 	width: 100%;
 }
+
+// Define `.floatright` and `.floatleft` for `a` elements.
+// FIXME: we should not have to define this here.
+/* @noflip */
+a.floatright {
+	float: right;
+	clear: right;
+	margin: 0 0 1em 1em;
+}
+
+/* @noflip */
+a.floatleft {
+	float: left;
+	clear: left;
+	margin: 0.3em 0.5em 0.5em 0;
+}
