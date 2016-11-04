@@ -17,6 +17,15 @@ module.ControlLayers = ( function ( $, mw, L, wikivoyage ) {
 
 		/**
 		 * @override
+		 */
+		onAdd: function ( map ) {
+			var container = L.Control.Layers.prototype.onAdd.call( this, map );
+			container.className += ' leaflet-bar';
+			return container;
+		},
+
+		/**
+		 * @override
 		 * @private
 		 */
 		_addItem: function ( obj ) {

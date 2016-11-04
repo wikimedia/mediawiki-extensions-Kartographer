@@ -1,18 +1,37 @@
-.leaflet-bar a {
-	background-position: center center;
-}
+@import '../lib/wmui-base.less';
 
+/* stylelint-disable no-descending-specificity */
 .mw-kartographer-interactive {
 	z-index: 0;
 
 	&.leaflet-container {
-		font-size: 14px;
+		font: 14px @font-family-base;
+		color: @color-base;
 
 		.marker-description img {
 			width: 100%;
 			height: auto;
 			margin-bottom: 0;
 			margin-top: 0.5em;
+		}
+
+		a {
+			color: @color-primary;
+
+			&:hover {
+				color: @color-primary--hover;
+				text-decoration: underline;
+			}
+			&:active {
+				color: @color-primary--active;
+			}
+			&:focus {
+				color: @color-primary--focus;
+			}
+		}
+
+		&:hover .leaflet-control-attribution a {
+			color: @color-primary;
 		}
 	}
 
@@ -37,6 +56,71 @@
 	.leaflet-popup-content-wrapper,
 	.map-legends,
 	.map-tooltip {
-		border-radius: 2px;
+		border-radius: @border-radius-base;
+	}
+
+	/* Leaflet Controls */
+	.leaflet-control-layers,
+	.leaflet-bar {
+		background-color: @background-color-framed;
+		border: 0;
+		box-shadow: none;
+	}
+	.leaflet-bar > a,
+	.leaflet-bar > a:hover {
+		color: #000;
+		border: @border-base;
+		border-radius: @border-radius-base;
+		border-bottom: 0;
+		box-sizing: content-box;
+	}
+	.leaflet-bar > a:hover {
+		border-color: @border-color-base--hover;
+		background-color: @background-color-framed--hover;
+	}
+	.leaflet-bar > a:active {
+		border-color: @border-color-base--active;
+		background-color: @background-color-framed--active;
+	}
+	.leaflet-bar > a:only-of-type {
+		border-bottom: @border-base;
+		border-radius: @border-radius-base;
+	}
+	.leaflet-bar > a:first-child {
+		&:not(:only-of-type) {
+			border-radius: @border-radius-base @border-radius-base 0 0;
+		}
+	}
+	.leaflet-bar > a:last-child {
+		border-bottom: @border-base;
+		&:hover {
+			border-bottom: @border-base;
+			border-color: @border-color-base--hover;
+		}
+		&:active {
+			border-bottom: @border-base;
+			border-color: @border-color-base--active;
+		}
+		&:not(:only-of-type) {
+			border-radius: 0 0 @border-radius-base @border-radius-base;
+		}
+	}
+	.leaflet-bar > a:hover:only-of-type {
+		border-radius: @border-radius-base;
+	}
+	.leaflet-bar > .oo-ui-icon-close,
+	.leaflet-bar > .oo-ui-icon-fullScreen {
+		background-position: center center;
+	}
+
+	.leaflet-control-attribution:after,
+	.leaflet-control-zoom-in,
+	.leaflet-control-zoom-out,
+	.leaflet-popup-close-button,
+	.leaflet-control-layers-toggle,
+	.map-tooltip .close,
+	.leaflet-container.dark .map-tooltip .close,
+	.mapbox-icon {
+		opacity: @opacity-base;
 	}
 }

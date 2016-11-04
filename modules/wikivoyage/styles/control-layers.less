@@ -1,3 +1,5 @@
+@import '../../../lib/wmui-base';
+
 @kartographer-wv-oo-ui-iconSize: 1em;
 
 .leaflet-control-layers {
@@ -25,7 +27,11 @@
 	max-width: ~'calc( 100% - 10px )';
 	text-align: left;
 	overflow: scroll;
-	padding: 0.5em 0.5em 0.5em 0.5em;
+	padding: 0.5em;
+
+	a {
+		display: inline;
+	}
 
 	/* Add ellipsis to long layer labels */
 	label {
@@ -53,4 +59,9 @@
 
 		margin: 0 0 0.375em 0;
 	}
+}
+
+.mw-kartographer-interactive .leaflet-bar.leaflet-control-layers-expanded {
+	border: @border-base;
+	background-color: @background-color-framed--hover;
 }

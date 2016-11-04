@@ -1,29 +1,3 @@
-/* Apply a few colour fixes from MW theme */
-
-.leaflet-control-layers, .leaflet-bar {
-	border-color: #ccc;
-}
-
-.leaflet-bar a {
-	-webkit-transition: background-color 100ms, border-color 100ms;
-	   -moz-transition: background-color 100ms, border-color 100ms;
-	        transition: background-color 100ms, border-color 100ms;
-	border-bottom-color: #ccc;
-}
-
-.leaflet-bar a:last-child {
-	border-bottom: 0;
-}
-
-.leaflet-bar a:hover {
-	background-color: #ebebeb;
-}
-
-.leaflet-bar a:active {
-	background-color: #d9d9d9;
-	border-color: #d9d9d9;
-}
-
 /**
  * Fix unwanted flipping of styles by CSS Janus (T127137)
  */
