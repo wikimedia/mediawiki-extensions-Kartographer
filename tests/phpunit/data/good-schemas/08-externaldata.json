@@ -74,5 +74,10 @@
 		"service": "geomask",
 		"query": "lalala",
 		"ids": "Q1"
+	},
+	{
+		"type": "ExternalData",
+		"service": "page",
+		"title": "lalala"
 	}
 ]

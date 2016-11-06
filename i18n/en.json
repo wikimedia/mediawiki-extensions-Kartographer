@@ -27,7 +27,7 @@
 	"kartographer-error-bad_attr": "Attribute \"$1\" has an invalid value",
 	"kartographer-error-bad_data": "The JSON content is not valid GeoJSON+simplestyle",
 	"kartographer-error-latlon": "Either both \"latitude\" and \"longitude\" parameters should be supplied or neither of them",
-	"kartographer-error-service-name": "Invalid cartographic service \"$1\"",
+	"kartographer-error-title": "Title \"$1\" is not a valid map data page",
 	"kartographer-tracking-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Files|#default=Pages}} with maps",
 	"kartographer-tracking-category-desc": "The page includes a map",
 	"kartographer-coord-combined": "$1 $2",

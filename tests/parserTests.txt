@@ -392,10 +392,6 @@ ExternalData errors
 ]
 </maplink>
 !! result
-<div class="mw-kartographer-error"><p>&lt;maplink&gt; problems:
-</p>
-<ul><li> Invalid cartographic service "fail"</li>
-<li> Invalid cartographic service "lulzifier"</li></ul>
-</div>
+<div class="mw-kartographer-error">&lt;maplink&gt;: The JSON content is not valid GeoJSON+simplestyle</div>
 
 !! end
