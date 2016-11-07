@@ -66,8 +66,8 @@ module.exports = ( function ( $, mw, router, kartolink, undefined ) {
 
 		// Some links might be displayed outside of $content, so we need to
 		// search outside. This is an anti-pattern and should be improved...
-		// Meanwhile #content is better than searching the full document.
-		$( '.mw-kartographer-maplink', '#content' ).each( function ( index ) {
+		// Meanwhile .mw-body is better than searching the full document.
+		$( '.mw-kartographer-maplink', '.mw-body' ).each( function ( index ) {
 			var data = getMapData( this ),
 				link;
 
