@@ -258,7 +258,7 @@
 			"properties": {
 				"title": { "type": "string" },
 				"description": { "type": "string" },
-				"marker-size": { "type": { "enum": ["small", "medium", "large"] } },
+				"marker-size": { "enum": ["small", "medium", "large"] },
 				"marker-symbol": { "type": "string", "pattern": "^(|[0-9]|[a-z-]+)$" },
 				"marker-color": { "$ref": "#/definitions/color" },
 				"stroke": { "$ref": "#/definitions/color" },
