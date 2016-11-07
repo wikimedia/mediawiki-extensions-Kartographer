@@ -167,6 +167,7 @@
 				"mediawiki.api",
 				"mediawiki.Uri",
 				"oojs-ui.styles.icons-media",
+				"jquery.throttle-debounce",
 				"mapbox",
 				"ext.kartographer.lib.topojson",
 				"ext.kartographer",
