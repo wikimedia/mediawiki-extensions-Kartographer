@@ -26,7 +26,7 @@
 	"kartographer-error-bad_attr": "למאפיין \"$1\" יש ערך בלתי־תקין",
 	"kartographer-error-bad_data": "תוכן ה־JSON אינו GeoJSON+simplestyle תקין",
 	"kartographer-error-latlon": "יש לספק את שני הפרמטרים \"קו רוחב\" ו\"קו אורך\", או לא לספק אף אחד מהם",
-	"kartographer-error-service-name": "שירות מיפוי לא תקין: \"$1\"",
+	"kartographer-error-title": "הכותרת \"$1\" אינה דף נתוני מפה תקין",
 	"kartographer-tracking-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=קבצים|#default=דפים}} עם מפות",
 	"kartographer-tracking-category-desc": "הדף הזה מכיל מפה",
 	"kartographer-coord-lat-positive": "$1צפ",

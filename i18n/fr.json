@@ -31,7 +31,7 @@
 	"kartographer-error-bad_attr": "L’attribut « $1 » a une valeur invalide",
 	"kartographer-error-bad_data": "Le contenu JSON n'est pas compatible GeoJSON+simplestyle",
 	"kartographer-error-latlon": "Soit les deux paramètres « latitude » et « longitude » doivent être fournis, soit aucun d’entre eux",
-	"kartographer-error-service-name": "Service cartographique « $1 » non valide",
+	"kartographer-error-title": "Le titre « $1 » n’est pas une page de données de carte valide",
 	"kartographer-tracking-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Files|#default=Pages}} avec carte",
 	"kartographer-tracking-category-desc": "La page contient une carte",
 	"kartographer-specialmap-invalid-coordinates": "Coordonnées soumises invalides",

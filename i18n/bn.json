@@ -18,7 +18,6 @@
 	"kartographer-error-bad_attr": "অ্যাট্রিবিউট \"$1\"-এ একটি অবৈধ মান আছে",
 	"kartographer-error-bad_data": "JSON সামগ্রী সঠিক বৈধ GeoJSON+simplestyle নয়",
 	"kartographer-error-latlon": "হয় উভয় \"অক্ষাংশ\" এবং \"দ্রাঘিমাংশ\" পরামিতি সরবরাহ করা উচিত অথবা দুটির একটিও নয়",
-	"kartographer-error-service-name": "অবৈধ মানচিত্রাঙ্কন পরিষেবা \"$1\"",
 	"kartographer-tracking-category": "মানচিত্রসহ {{#switch:{{NAMESPACE}}|{{ns:File}}=ফাইল|#default=পাতা}}",
 	"kartographer-tracking-category-desc": "পাতাটি একটি মানচিত্র অন্তর্ভুক্ত করে",
 	"kartographer-coord-lat-positive": "$1উ",

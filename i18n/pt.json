@@ -21,7 +21,6 @@
 	"kartographer-error-bad_attr": "O atributo \"$1\" tem um valor inválido",
 	"kartographer-error-bad_data": "O conteúdo JSON não é válido GeoJSON+simplestyle",
 	"kartographer-error-latlon": "Ambos os parâmetros \"latitude\" e \"longitude\" deverão ser fornecidos ou omitidos",
-	"kartographer-error-service-name": "Serviço cartográfico \"$1\" inválido",
 	"kartographer-tracking-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Ficheiros|#default=Páginas}} com mapas",
 	"kartographer-tracking-category-desc": "A página inclui um mapa",
 	"kartographer-specialmap-invalid-coordinates": "As coordenadas fornecidas são inválidas",

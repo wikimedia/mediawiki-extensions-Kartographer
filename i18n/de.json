@@ -26,7 +26,7 @@
 	"kartographer-error-bad_attr": "Das Attribut „$1“ hat einen ungültigen Wert",
 	"kartographer-error-bad_data": "Der JSON-Inhalt ist kein gültiges GeoJSON+simplestyle",
 	"kartographer-error-latlon": "Entweder sollten die Parameter „latitude“ und „longitude“ oder keiner der beiden angegeben werden.",
-	"kartographer-error-service-name": "Ungültiger Kartographiedienst „$1“",
+	"kartographer-error-title": "Der Titel „$1“ ist keine gültige Kartendatenseite",
 	"kartographer-tracking-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Dateien|#default=Seiten}} mit Karten",
 	"kartographer-tracking-category-desc": "Die Seite enthält eine Karte",
 	"kartographer-specialmap-invalid-coordinates": "Ungültige Koordinaten angegeben",

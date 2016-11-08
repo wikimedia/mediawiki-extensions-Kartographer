@@ -29,7 +29,6 @@
 	"kartographer-error-bad_attr": "السمة \"$1\" لها قيمة غير صحيحة",
 	"kartographer-error-bad_data": "محتوى JSON ليس GeoJSON+simplestyle صحيحا",
 	"kartographer-error-latlon": "إما أن يتم توفير معاملي \"latitude\" و \"longitude\" أو ولا واحد منهما",
-	"kartographer-error-service-name": "خدمة خرائط غير صحيحة \"$1\"",
 	"kartographer-tracking-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Files|#default=صفحات}} مع الخرائط",
 	"kartographer-tracking-category-desc": "تحتوي هذه الصفحة على خارطة",
 	"kartographer-specialmap-invalid-coordinates": "إدخال إحداثيات غير صالحة",

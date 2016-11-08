@@ -26,7 +26,7 @@
 	"kartographer-error-bad_attr": "O atributo '$1' ten un valor non válido",
 	"kartographer-error-bad_data": "O contido JSON non é compatible con GeoJSON+simplestyle",
 	"kartographer-error-latlon": "Deben proporcionarse ou ben ambos parámetros de \"latitude\" e \"lonxitude\" ou ben ningún deles",
-	"kartographer-error-service-name": "Servizo cartográfico \"$1\" non válido",
+	"kartographer-error-title": "O título \"$1\" non é unha páxina válida de datos de mapa",
 	"kartographer-tracking-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Files|#default=Pages}} con mapas",
 	"kartographer-tracking-category-desc": "A páxina inclúe un mapa",
 	"kartographer-specialmap-invalid-coordinates": "As coordenadas indicadas non son válidas",
