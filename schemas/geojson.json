@@ -157,30 +157,44 @@
 			"description": "WMF extension - reference to external geometries",
 			"required": [ "type", "service" ],
 
-			"anyOf": [
-				{ "required": [ "query" ] },
-				{ "required": [ "ids" ] }
+			"oneOf": [
+				{
+					"required": [ "title" ],
+					"properties": {
+						"service": { "enum": [ "page" ] },
+						"title": { "type": "string" }
+					}
+				},
+				{
+					"anyOf": [
+						{ "required": [ "query" ] },
+						{ "required": [ "ids" ] }
+					],
+					"properties": {
+						"service": { "enum": [ "geoshape", "geoline", "geomask" ] },
+						"query": { "type": "string" },
+						"ids": {
+							"oneOf": [
+								{
+									"type": "array",
+									"items": {
+										"type": "string",
+										"pattern": "^Q[1-9]\\d{0,19}$"
+									}
+								},
+								{
+									"type": "string",
+									"pattern": "^Q[1-9]\\d{0,19}(\\s*,\\s*Q[1-9]\\d{0,19})*$"
+								}
+							]
+						}
+					}
+				}
 			],
 
 			"properties": {
 				"type": { "enum": [ "ExternalData" ] },
 				"service": { "type": "string" },
-				"query": { "type": "string" },
-				"ids": {
-					"oneOf": [
-						{
-							"type": "array",
-							"items": {
-								"type": "string",
-								"pattern": "^Q[1-9]\\d{0,19}$"
-							}
-						},
-						{
-							"type": "string",
-							"pattern": "^Q[1-9]\\d{0,19}(\\s*,\\s*Q[1-9]\\d{0,19})*$"
-						}
-					]
-				},
 				"properties": { "$ref": "#/definitions/simplestyle" }
 			}
 		},

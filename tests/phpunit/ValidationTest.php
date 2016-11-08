@@ -6,6 +6,7 @@ use Kartographer\SimpleStyleParser;
 use MediaWikiTestCase;
 use Parser;
 use ParserOptions;
+use Status;
 use Title;
 
 /**
@@ -27,7 +28,7 @@ class ValidationTest extends MediaWikiTestCase {
 		$options = new ParserOptions();
 		$title = Title::newMainPage();
 		$parser->startExternalParse( $title, $options, Parser::OT_HTML );
-		$validator = new SimpleStyleParser( $parser );
+		$validator = new MockSimpleStyleParser( $parser );
 
 		$file = $this->basePath . '/' . $fileName;
 		$content = file_get_contents( $file );
@@ -57,5 +58,14 @@ class ValidationTest extends MediaWikiTestCase {
 		}
 
 		return $result;
+	}
+}
+
+class MockSimpleStyleParser extends SimpleStyleParser {
+	protected function sanitize( &$json ) {
+	}
+
+	protected function normalize( array &$json ) {
+		return Status::newGood( $json );
 	}
 }

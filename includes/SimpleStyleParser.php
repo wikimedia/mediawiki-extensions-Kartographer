@@ -3,7 +3,10 @@
 namespace Kartographer;
 
 use FormatJson;
+use JsonConfig\JCMapDataContent;
+use JsonConfig\JCSingleton;
 use JsonSchema\Validator;
+use LogicException;
 use MediaWiki\MediaWikiServices;
 use Parser;
 use PPFrame;
@@ -15,8 +18,6 @@ use stdClass;
  */
 class SimpleStyleParser {
 	private static $parsedProps = [ 'title', 'description' ];
-
-	private static $services = [ 'geoshape', 'geoline', 'geomask' ];
 
 	/** @var Parser */
 	private $parser;
@@ -139,7 +140,7 @@ class SimpleStyleParser {
 	 * @param mixed $json
 	 * @return Status
 	 */
-	private function validateContent( $json ) {
+	protected function validateContent( $json ) {
 		$schema = self::loadSchema();
 		$validator = new Validator();
 		$validator->check( $json, $schema );
@@ -158,7 +159,7 @@ class SimpleStyleParser {
 	 *
 	 * @param object|array $json
 	 */
-	private function sanitize( &$json ) {
+	protected function sanitize( &$json ) {
 		if ( is_array( $json ) ) {
 			foreach ( $json as &$element ) {
 				$this->sanitize( $element );
@@ -185,7 +186,7 @@ class SimpleStyleParser {
 	 * @param array $json
 	 * @return Status
 	 */
-	private function normalize( array &$json ) {
+	protected function normalize( array &$json ) {
 		$status = Status::newGood();
 		foreach ( $json as &$object ) {
 			if ( $object->type === 'ExternalData' ) {
@@ -204,38 +205,59 @@ class SimpleStyleParser {
 	 * @return Status
 	 */
 	private function normalizeExternalData( &$object ) {
-		if ( !in_array( $object->service, self::$services ) ) {
-			return Status::newFatal( 'kartographer-error-service-name', $object->service );
-		}
 
 		$ret = (object)[
 			'type' => 'ExternalData',
 			'service' => $object->service,
 		];
 
-		$query = [
-			'getgeojson' => 1
-		];
+		switch ( $object->service ) {
+			case 'geoshape':
+			case 'geoline':
+			case 'geomask':
+				$query = [ 'getgeojson' => 1 ];
+				if ( property_exists( $object, 'ids' ) ) {
+					$query['ids'] =
+						is_array( $object->ids ) ? join( ',', $object->ids )
+							: preg_replace( '/\s*,\s*/', ',', $object->ids );
+				}
+				if ( property_exists( $object, 'query' ) ) {
+					$query['query'] = $object->query;
+				}
+				// 'geomask' service is the same as inverted geoshape service
+				// Kartotherian does not support it, request it as geoshape
+				$service = $object->service === 'geomask' ? 'geoshape' : $object->service;
 
-		if ( property_exists( $object, 'ids' ) ) {
-			$query['ids'] = is_array( $object->ids )
-				? join( ',', $object->ids )
-				: preg_replace( '/\s*,\s*/', ',', $object->ids );
-		}
-		if ( property_exists( $object, 'query' ) ) {
-			$query['query'] = $object->query;
-		}
+				$ret->url = "{$this->mapService}/{$service}?" . wfArrayToCgi( $query );
+				if ( property_exists( $object, 'properties' ) ) {
+					$ret->properties = $object->properties;
+				}
+				break;
 
-		// 'geomask' service is the same as inverted geoshape service
-		// Kartotherian does not support it, request it as geoshape
-		$service = $object->service === 'geomask' ? 'geoshape' : $object->service;
-		$ret->url = "{$this->mapService}/{$service}?" . wfArrayToCgi( $query );
-		if ( property_exists( $object, 'properties' ) ) {
-			$ret->properties = $object->properties;
+			case 'page':
+				if ( !class_exists( 'JsonConfig\\JCSingleton' ) ) {
+					return Status::newFatal( 'kartographer-error-service-name', $object->service );
+				}
+				$jct = JCSingleton::parseTitle( $object->title, NS_DATA );
+				if ( !$jct || JCSingleton::getContentClass( $jct->getConfig()->model ) !==
+							  JCMapDataContent::class
+				) {
+					return Status::newFatal( 'kartographer-error-title', $object->title );
+				}
+				$query = [
+					'format' => 'json',
+					'formatversion' => '2',
+					'action' => 'jsondata',
+					'title' => $jct->getText(),
+				];
+				$ret->url = wfScript( 'api' ) . '?' . wfArrayToCgi( $query );
+				break;
+
+			default:
+				throw new LogicException( "Unexpected service name '{$object->service}'" );
 		}
 
 		$object = $ret;
-
 		return Status::newGood();
 	}
 
