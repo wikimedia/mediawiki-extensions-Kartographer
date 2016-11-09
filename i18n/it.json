@@ -4,7 +4,8 @@
 			"Beta16",
 			"Marsitown",
 			"Matteocng",
-			"Anto"
+			"Anto",
+			"Nicole Scalinci"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Esegue la convalida dei dati per l'estensione Kartographer",
@@ -20,7 +21,7 @@
 	"kartographer-error-missing-attr": "L'attributo \"$1\" non è presente",
 	"kartographer-error-bad_attr": "L'attributo '$1' ha un valore non valido",
 	"kartographer-error-bad_data": "Il contenuto JSON non è un valido GeoJSON+simplestyle",
-	"kartographer-error-service-name": "Servizio cartografico non valido \"$1\"",
+	"kartographer-error-title": "Il titolo \"$1\" non è una valida pagina di dati di mappa",
 	"kartographer-tracking-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=File|#default=Pagine}} con mappe",
 	"kartographer-tracking-category-desc": "La pagina include una mappa",
 	"kartographer-specialmap-invalid-coordinates": "Indicate coordinate non valide",
