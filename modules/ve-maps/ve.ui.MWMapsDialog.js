@@ -70,7 +70,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	} )
 		.setLanguage( 'json' )
 		.toggleLineNumbers( false )
-		.setRTL( false );
+		.setDir( 'ltr' );
 
 	this.resetMapButton = new OO.ui.ButtonWidget( {
 		label: ve.msg( 'visualeditor-mwmapsdialog-reset-map' )
