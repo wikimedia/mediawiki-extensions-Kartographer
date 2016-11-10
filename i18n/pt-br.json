@@ -5,8 +5,8 @@
 			"Opraco"
 		]
 	},
-	"kartographer-broken-category": "Páginas com mapas inválidos",
-	"kartographer-tracking-category": "Páginas com mapas",
+	"kartographer-broken-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Arquivos|#default=Páginas}} com mapas inválidos",
+	"kartographer-tracking-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Arquivos|#default=Páginas}} com mapas",
 	"leafletdraw-draw-handlers-circle-radius": "Raio",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "Segure e arraste para desenhar um círculo",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Clique no mapa para colocar um marcador",
