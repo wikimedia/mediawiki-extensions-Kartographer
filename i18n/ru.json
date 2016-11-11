@@ -7,7 +7,8 @@
 			"Adam-Yourist",
 			"Kaganer",
 			"Туллук",
-			"Amire80"
+			"Amire80",
+			"MaxBioHazard"
 		]
 	},
 	"kartographer-broken-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Файлы|#default=Страницы}} с некорректными картами",
