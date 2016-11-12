@@ -5,6 +5,7 @@
 		]
 	},
 	"kartographer-attribution-externaldata-query": "дехар",
+	"kartographer-broken-category": "Болх ца беш карташ долу {{#switch:{{NAMESPACE}}|{{ns:File}}=файлаш|#default=агӀонаш}}",
 	"kartographer-sidebar-coordinates": "Координаташ",
 	"kartographer-sidebar-latitude": "Шоралла",
 	"kartographer-sidebar-longitude": "Дохалла",
