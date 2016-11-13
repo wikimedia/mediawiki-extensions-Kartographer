@@ -27,7 +27,7 @@
 	"kartographer-error-bad_attr": "Attributtet «$1» har en ugyldig verdi",
 	"kartographer-error-bad_data": "JSON-innholdet er ikke gyldig GeoJSON+simplestyle",
 	"kartographer-error-latlon": "Enten må både «latitude» og «longitude»-parameterne oppgis, eller ingen av dem",
-	"kartographer-error-service-name": "Ugyldig kartografitjeneste «$1»",
+	"kartographer-error-title": "Tittelen «$1» er ikke en gyldig kartdataside",
 	"kartographer-tracking-category": "Sider med kart",
 	"kartographer-tracking-category-desc": "Denne siden inneholder et kart",
 	"kartographer-specialmap-invalid-coordinates": "Ugyldige koordinater er angitt",
