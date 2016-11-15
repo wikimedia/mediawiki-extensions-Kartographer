@@ -216,9 +216,9 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 		return new MapDialog();
 	};
 
-} )(
+}(
 	jQuery,
 	mediaWiki,
 	module.CloseFullScreenControl,
 	require( 'mediawiki.router' )
-);
+) );

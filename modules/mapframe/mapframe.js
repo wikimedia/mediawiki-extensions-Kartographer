@@ -173,9 +173,9 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 	} );
 
 	return maps;
-} )(
+}(
 	jQuery,
 	mediaWiki,
 	require( 'ext.kartographer.box' ),
 	require( 'mediawiki.router' )
-);
+) );

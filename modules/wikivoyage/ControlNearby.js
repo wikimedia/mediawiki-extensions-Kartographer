@@ -194,11 +194,11 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 			} );
 		}
 	} );
-} )(
+}(
 	jQuery,
 	mediaWiki,
 	L,
 	module.wikivoyage,
 	module.NearbyArticles,
 	require( 'ext.kartographer.lib.prunecluster' )
-);
+) );

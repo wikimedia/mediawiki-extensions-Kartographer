@@ -327,7 +327,4 @@ module.exports = ( function ( $, mw ) {
 	};
 
 	return SideBar;
-} )(
-	jQuery,
-	mediaWiki
-);
+}( jQuery, mediaWiki ) );

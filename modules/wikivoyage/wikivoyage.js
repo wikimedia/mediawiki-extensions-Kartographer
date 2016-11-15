@@ -138,4 +138,4 @@ module.wikivoyage = ( function ( $, mw, undefined ) {
 		}
 	};
 
-} )( jQuery, mediaWiki, module.WVMap );
+}( jQuery, mediaWiki, module.WVMap ) );

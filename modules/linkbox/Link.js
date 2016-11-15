@@ -132,4 +132,4 @@ module.Link = ( function ( $ ) {
 	};
 
 	return Link;
-} )( jQuery );
+}( jQuery ) );

@@ -46,8 +46,8 @@ module.Data = ( function ( $, mw, DataManager ) {
 		clientStore: mw.config.get( 'wgKartographerLiveData' ),
 		title: mw.config.get( 'wgPageName' )
 	} );
-} )(
+}(
 	jQuery,
 	mediaWiki,
 	require( 'ext.kartographer.data' )
-);
+) );

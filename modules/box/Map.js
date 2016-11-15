@@ -832,7 +832,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 	} );
 
 	return Map;
-} )(
+}(
 	mediaWiki,
 	module.OpenFullScreenControl,
 	module.dataLayerOpts,
@@ -840,10 +840,10 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 	module.Data,
 	require( 'ext.kartographer.lib.topojson' ),
 	window
-);
+) );
 
 module.map = ( function ( Map ) {
 	return function ( options ) {
 		return new Map( options );
 	};
-} )( module.Map );
+}( module.Map ) );

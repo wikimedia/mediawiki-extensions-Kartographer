@@ -61,9 +61,9 @@ module.ControlLayers = ( function ( $, mw, L, wikivoyage ) {
 			}
 		}
 	} );
-} )(
+}(
 	jQuery,
 	mediaWiki,
 	L,
 	module.wikivoyage
-);
+) );

@@ -99,10 +99,10 @@ module.WVMapLayers = ( function ( $, mw, wikivoyage, ControlLayers ) {
 	};
 
 	return WVMapLayers;
-} )(
+}(
 	jQuery,
 	mediaWiki,
 	module.wikivoyage,
 	module.ControlLayers
-);
+) );
 

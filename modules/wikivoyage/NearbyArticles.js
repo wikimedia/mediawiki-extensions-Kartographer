@@ -68,4 +68,4 @@ module.NearbyArticles = ( function ( $ ) {
 		}
 	};
 
-} )( jQuery );
+}( jQuery ) );

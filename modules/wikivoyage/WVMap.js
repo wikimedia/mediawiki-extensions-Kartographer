@@ -54,10 +54,10 @@ module.WVMap = ( function ( $, mw, wikivoyage, WVMapLayers, ControlNearby ) {
 
 	return Map;
 
-} )(
+}(
 	jQuery,
 	mediaWiki,
 	module.wikivoyage,
 	module.WVMapLayers,
 	module.ControlNearby
-);
+) );

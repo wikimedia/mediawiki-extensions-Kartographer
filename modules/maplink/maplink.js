@@ -141,9 +141,9 @@ module.exports = ( function ( $, mw, router, kartolink, undefined ) {
 	} );
 
 	return maplinks;
-} )(
+}(
 	jQuery,
 	mediaWiki,
 	require( 'mediawiki.router' ),
 	require( 'ext.kartographer.linkbox' )
-);
+) );

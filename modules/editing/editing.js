@@ -77,4 +77,4 @@ module.exports = ( function ( $, mw ) {
 		updateKartographerLayer: updateKartographerLayer
 	};
 
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

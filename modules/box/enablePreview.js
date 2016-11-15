@@ -15,4 +15,4 @@ module.enablePreview = ( function ( $, mw ) {
 		mw.loader.using( 'ext.kartographer.preview' );
 	}
 
-} )( jQuery, mediaWiki );
+}( jQuery, mediaWiki ) );

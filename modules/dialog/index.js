@@ -144,4 +144,8 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 		 */
 		CloseFullScreenControl: CloseFullScreenControl
 	};
-} )( module.CloseFullScreenControl, module.Dialog, require( 'mediawiki.router' ) );
+}(
+	module.CloseFullScreenControl,
+	module.Dialog,
+	require( 'mediawiki.router' )
+) );
