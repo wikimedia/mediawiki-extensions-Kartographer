@@ -17,7 +17,7 @@
     "grunt-eslint": "19.0.0",
     "grunt-jsonlint": "1.1.0",
     "grunt-stylelint": "0.6.0",
-    "mapbox.js": "^2.3.0",
+    "mapbox.js": "2.3.0",
     "prunecluster": "^2.0.0-beta.3",
     "rollup": "^0.36.1",
     "rollup-plugin-commonjs": "^5.0.4",
@@ -28,6 +28,6 @@
     "leaflet": "^0.7.7",
     "leaflet-sleep": "juliengirault/Leaflet.Sleep",
     "maki": "^0.5.0",
-    "wikimedia-mapdata": "github:juliengirault/wikimedia-mapdata"
+    "wikimedia-mapdata": "git+https://gerrit.wikimedia.org/r/mapdata#497bccd38c9a440ab32d0d64ec90f44ca8ea8d32"
   }
 }
