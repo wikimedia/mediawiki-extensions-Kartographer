@@ -105,4 +105,3 @@ module.WVMapLayers = ( function ( $, mw, wikivoyage, ControlLayers ) {
 	module.wikivoyage,
 	module.ControlLayers
 ) );
-

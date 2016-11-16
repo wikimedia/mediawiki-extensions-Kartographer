@@ -336,11 +336,11 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 		 *
 		 * @param {L.LatLng|number[]} [center]
 		 * @param {number} [zoom]
-		 * @param {boolean} [setView=false]
+		 * @param {boolean} [setView=true]
 		 * @chainable
 		 */
 		initView: function ( center, zoom, setView ) {
-			setView = setView === false ? false : true;
+			setView = setView !== false;
 
 			if ( Array.isArray( center ) ) {
 				if ( !isNaN( center[ 0 ] ) && !isNaN( center[ 1 ] ) ) {
