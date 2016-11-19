@@ -3,7 +3,8 @@
 		"authors": [
 			"Mormegil",
 			"Kvetoslav47",
-			"Matěj Suchánek"
+			"Matěj Suchánek",
+			"Danny B."
 		]
 	},
 	"kartographer-attribution": "Wikimedia mapy | Mapová data © [https://www.openstreetmap.org/copyright přispěvatelé OpenStreetMap]",
@@ -16,7 +17,7 @@
 	"kartographer-error-bad_attr": "Atribut „$1“ má neplatnou hodnotu",
 	"kartographer-error-bad_data": "JSON obsah není platný GeoJSON+simplestyle",
 	"kartographer-error-latlon": "Zadány by měly být buď oba parametry „latitude“ a „longitude“, nebo ani jeden",
-	"kartographer-tracking-category": "Stránky s mapou",
+	"kartographer-tracking-category": "Stránky s mapami",
 	"kartographer-tracking-category-desc": "Tato stránka obsahuje mapu",
 	"kartographer-specialmap-invalid-coordinates": "Zadány neplatné souřadnice",
 	"leafletdraw-draw-handlers-circle-radius": "Poloměr",
