@@ -17,6 +17,8 @@ class State {
 
 	private $valid = false;
 	private $broken = false;
+	private $maplinks = 0;
+	private $mapframes = 0;
 	private $interactiveGroups = [];
 	private $requestedGroups = [];
 	private $counters;
@@ -62,6 +64,22 @@ class State {
 
 	public function setBrokenTags() {
 		$this->broken = true;
+	}
+
+	public function useMaplink() {
+		$this->maplinks++;
+	}
+
+	public function getMaplinks() {
+		return $this->maplinks;
+	}
+
+	public function useMapframe() {
+		$this->mapframes++;
+	}
+
+	public function getMapframes() {
+		return $this->mapframes;
 	}
 
 	public function addInteractiveGroups( array $groups ) {
