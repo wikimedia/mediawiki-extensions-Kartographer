@@ -16,6 +16,7 @@ class MapLink extends TagHandler {
 	protected $cssClass;
 
 	protected function parseArgs() {
+		$this->state->useMaplink();
 		parent::parseArgs();
 		$this->cssClass = $this->getText( 'class', '', '/^(|[a-zA-Z][-_a-zA-Z0-9]*)$/' );
 	}

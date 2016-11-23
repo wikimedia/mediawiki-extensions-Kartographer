@@ -294,6 +294,12 @@ abstract class TagHandler {
 			$json = FormatJson::encode( $data, false, FormatJson::ALL_OK );
 			$output->setProperty( 'kartographer', gzencode( $json ) );
 		}
+		if ( $state->getMaplinks() ) {
+			$output->setProperty( 'kartographer_links', $state->getMaplinks() );
+		}
+		if ( $state->getMapframes() ) {
+			$output->setProperty( 'kartographer_frames', $state->getMapframes() );
+		}
 
 		if ( $state->hasBrokenTags() ) {
 			self::addTrackingCategory( $parser, 'kartographer-broken-category' );

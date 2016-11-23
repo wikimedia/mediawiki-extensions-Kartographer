@@ -227,6 +227,28 @@ WIKITEXT;
 	}
 
 	/**
+	 * @dataProvider providePageProps
+	 * @param strin $text
+	 * @param int|null $frames
+	 * @param int|null $links
+	 */
+	public function testPageProps( $text, $frames, $links ) {
+		$po = $this->parse( $text );
+		$this->assertEquals( $frames, $po->getProperty( 'kartographer_frames' ) );
+		$this->assertEquals( $links, $po->getProperty( 'kartographer_links' ) );
+	}
+
+	public function providePageProps() {
+		return [
+			[ '', null, null ],
+			[ '<foo>', null, null ],
+			[ '<mapframe>broken but still track</mapframe>
+				<mapframe width=100 height=100 zoom=0 latitude=0 longitude=0 />', 2, null ],
+			[ '<mapframe/><maplink/><mapframe></mapframe><maplink></maplink>', 2, 2 ],
+		];
+	}
+
+	/**
 	 * Parses wikitext
 	 * @param string $text
 	 * @param callable $optionsCallback

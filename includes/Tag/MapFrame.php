@@ -18,6 +18,7 @@ class MapFrame extends TagHandler {
 
 	protected function parseArgs() {
 		parent::parseArgs();
+		$this->state->useMapframe();
 		// @todo: should these have defaults?
 		$this->width = $this->getText( 'width', false, '/^(\d+|([1-9]\d?|100)%|full)$/' );
 		$this->height = $this->getInt( 'height' );
