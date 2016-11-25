@@ -6,7 +6,8 @@
 			"Orlodrim",
 			"Wladek92",
 			"Jean-Frédéric",
-			"Trial"
+			"Trial",
+			"Derugon"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Effectue la validation des données pour l’extension Kartographer",
@@ -35,6 +36,8 @@
 	"kartographer-tracking-category": "Pages avec des cartes",
 	"kartographer-tracking-category-desc": "La page contient une carte",
 	"kartographer-specialmap-invalid-coordinates": "Coordonnées soumises invalides",
+	"kartographer.css": "/* Le CSS placé ici s'appliquera à toutes les pages contenant des cartes */",
+	"kartographer.js": "/* Tout JavaScript placé ici sera chargé pour tous les utilisateurs au chargement des pages contenant une carte */",
 	"kartographer-linktype-aerial": "Aérien",
 	"kartographer-linktype-map": "Carte",
 	"kartographer-linktype-other": "Autre",
