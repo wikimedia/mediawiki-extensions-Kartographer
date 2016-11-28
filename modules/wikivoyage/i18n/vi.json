@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Minh Nguyen"
+		]
+	},
+	"kartographer-wv-group": "Nhóm:",
+	"kartographer-wv-layer-nearby-articles": "Bài viết lân cận",
+	"kartographer-wv-nearby-articles-control": "Thám hiểm các nơi lân cận",
+	"kartographer-wv-warning-external-source-title": "Nguồn dữ liệu bên ngoài",
+	"kartographer-wv-warning-external-source-message": "Nội dung này được phục vụ từ máy bên ngoài, nên việc kích hoạt nó sẽ chia sẻ dữ liệu của bạn với trang khác.",
+	"kartographer-wv-warning-external-source-agree": "Được không sao",
+	"kartographer-wv-warning-external-source-disagree": "Hủy bỏ"
+}
