@@ -118,7 +118,7 @@ module.exports = ( function ( $, mw, kartolink, router ) {
 					link.clicked = true;
 
 					mw.track( 'mediawiki.kartographer', {
-						action: 'open',
+						action: 'activate',
 						isFullScreen: true,
 						feature: link
 					} );

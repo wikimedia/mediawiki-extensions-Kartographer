@@ -286,6 +286,12 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 					 * Fired when the Kartographer Map object is ready.
 					 */
 					'kartographerisready' );
+
+				mw.track( 'mediawiki.kartographer', {
+					action: 'initialize',
+					isFullScreen: !!map.options.fullscreen,
+					feature: map
+				} );
 			}
 
 			if ( this.parentMap ) {
