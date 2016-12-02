@@ -32,6 +32,13 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 		windowManager = null;
 	}
 
+	function closeIfNotMapRoute( routeEv ) {
+		var isMapRoute = routeEv && /^\/(map|maplink)\//.test( routeEv.path );
+		if ( !isMapRoute ) {
+			close();
+		}
+	}
+
 	return {
 		/**
 		 * Opens the map dialog and renders the map.
@@ -44,9 +51,9 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 				dialog = getMapDialog();
 
 			if ( map.useRouter && !routerEnabled ) {
-				router.route( '', function () {
-					close();
-				} );
+				router.on( 'route', closeIfNotMapRoute );
+				router.route( '', closeIfNotMapRoute );
+				routerEnabled = true;
 			}
 
 			if ( !window.opened ) {
@@ -90,9 +97,8 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 					map = mw.loader.require( 'ext.kartographer.box' ).map( mapObject );
 
 					if ( map.useRouter && !routerEnabled ) {
-						router.route( '', function () {
-							close();
-						} );
+						router.on( 'route', closeIfNotMapRoute );
+						routerEnabled = true;
 					}
 
 					dialog.setup.call( dialog, { map: map } );
