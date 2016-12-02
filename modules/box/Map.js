@@ -296,7 +296,8 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 
 			if ( this.parentMap ) {
 				$.each( this.parentMap.dataLayers, function ( groupId, layer ) {
-					map.addGeoJSONLayer( groupId, layer.getGeoJSON(), layer.options );
+					var newLayer = map.addGeoJSONLayer( groupId, layer.getGeoJSON(), layer.options );
+					newLayer.dataGroup = layer.group;
 				} );
 				ready();
 				return;
@@ -387,13 +388,15 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 
 				$.each( dataGroups, function ( key, group ) {
 					var layerOptions = {
-						attribution: group.attribution
-					};
+							attribution: group.attribution
+						},
+						layer;
 					if ( group.isExternal ) {
 						layerOptions.name = group.attribution;
 					}
 					if ( !$.isEmptyObject( group.getGeoJSON() ) ) {
-						map.addGeoJSONLayer( group.id, group.getGeoJSON(), layerOptions );
+						layer = map.addGeoJSONLayer( group.id, group.getGeoJSON(), layerOptions );
+						layer.dataGroup = group;
 					} else {
 						mw.log.warn( 'Layer not found or contains no data: "' + group.id + '"' );
 					}
@@ -423,12 +426,14 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 					var groupId = inlineDataLayerKey + inlineDataLayerId++,
 						layerOptions = {
 							attribution: group.attribution || options.attribution
-						};
+						},
+						layer;
 					if ( group.isExternal ) {
 						layerOptions.name = group.attribution;
 					}
 					if ( !$.isEmptyObject( group.getGeoJSON() ) ) {
-						map.addGeoJSONLayer( groupId, group.getGeoJSON(), layerOptions );
+						layer = map.addGeoJSONLayer( groupId, group.getGeoJSON(), layerOptions );
+						layer.dataGroup = layer;
 					} else {
 						mw.log.warn( 'Layer not found or contains no data: "' + groupId + '"' );
 					}

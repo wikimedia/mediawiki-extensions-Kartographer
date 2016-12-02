@@ -33,6 +33,9 @@ module.ControlLayers = ( function ( $, mw, L, wikivoyage ) {
 			if ( !obj.overlay && label.childNodes[ 0 ].checked ) {
 				this._previousSelected = label.childNodes[ 0 ];
 			}
+			if ( obj.layer.dataGroup ) {
+				label.childNodes[ 0 ].className += ' leaflet-control-layers-data-layer';
+			}
 		},
 
 		/**
@@ -41,6 +44,7 @@ module.ControlLayers = ( function ( $, mw, L, wikivoyage ) {
 		 */
 		_onInputClick: function ( event ) {
 			var self = this,
+				map = this._map,
 				proto = L.Control.Layers.prototype._onInputClick,
 				input = event && event.target,
 				obj;
@@ -59,7 +63,7 @@ module.ControlLayers = ( function ( $, mw, L, wikivoyage ) {
 					}
 					input.checked = false;
 					this._expand();
-					wikivoyage.isAllowed( obj.layer )
+					wikivoyage.isAllowed( obj.layer, map )
 						.done( function () {
 							input.checked = true;
 							proto.call( self );
