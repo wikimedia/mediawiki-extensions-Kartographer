@@ -6,6 +6,7 @@ use DerivativeContext;
 use FauxRequest;
 use MediaWikiTestCase;
 use RequestContext;
+use ApiUsageException;
 use UsageException;
 
 /**
@@ -44,9 +45,11 @@ class ApiSanitizeMapDataTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider provideErrors
-	 * @expectedException UsageException
 	 */
 	public function testErrors( $title, $json ) {
+		$this->setExpectedException(
+			class_exists( ApiUsageException::class ) ? ApiUsageException::class : UsageException::class
+		);
 		$this->makeRequest( $title, $json );
 	}
 
