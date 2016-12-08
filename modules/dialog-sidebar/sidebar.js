@@ -32,13 +32,15 @@ module.exports = ( function ( $, mw ) {
 	 * @return {string}
 	 */
 	SideBar.prototype.formatLink = function ( url ) {
-		var mapPosition = this.mapPosition,
-			link = url.replace( new RegExp( '{latitude}', 'g' ), mapPosition.center.lat );
-		link = link.replace( new RegExp( '{longitude}', 'g' ), mapPosition.center.lng );
-		link = link.replace( new RegExp( '{zoom}', 'g' ), mapPosition.zoom );
-		link = link.replace( new RegExp( '{title}', 'g' ), mw.config.get( 'wgTitle' ) );
-		link = link.replace( new RegExp( '{language}', 'g' ), mw.config.get( 'wgContentLanguage' ) || mw.config.get( 'wgUserLanguage' ) );
-		return link;
+		var scale = Math.round( Math.pow( 2, Math.min( 3, Math.max( 0, 18 - this.mapPosition.zoom ) ) ) * 1000 );
+		url = url.replace( new RegExp( '{latitude}', 'g' ), this.mapPosition.center.lat );
+		url = url.replace( new RegExp( '{longitude}', 'g' ), this.mapPosition.center.lng );
+		url = url.replace( new RegExp( '{zoom}', 'g' ), this.mapPosition.zoom );
+		url = url.replace( new RegExp( '{title}', 'g' ), mw.config.get( 'wgTitle' ) );
+		url = url.replace( new RegExp( '{language}', 'g' ), mw.config.get( 'wgContentLanguage' ) || mw.config.get( 'wgUserLanguage' ) );
+		url = url.replace( new RegExp( '{scale}', 'g' ), scale );
+
+		return url;
 	};
 
 	// eslint-disable-next-line valid-jsdoc

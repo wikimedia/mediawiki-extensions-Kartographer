@@ -81,6 +81,16 @@
 			]
 		},
 		{
+			"id": "geohack",
+			"featured": true,
+			"links": [
+				{
+					"type": "map",
+					"url": "https://tools.wmflabs.org/geohack/geohack.php?language={language}&pagename={title}&params={latitude}_N_{longitude}_E_scale:{scale}"
+				}
+			]
+		},
+		{
 			"id": "geonames",
 			"links": [
 				{

@@ -54,6 +54,7 @@
 	"kartographer-link-arctic-io": "{{optional}}Full screen map info sidebar - external service name",
 	"kartographer-link-bing-maps": "{{optional}}Full screen map info sidebar - external service name",
 	"kartographer-link-blue-marble-navigator": "{{optional}}Full screen map info sidebar - external service name",
+	"kartographer-link-geohack": "{{optional}}Full screen map info sidebar - external service name",
 	"kartographer-link-geonames": "{{optional}}Full screen map info sidebar - external service name",
 	"kartographer-link-google-maps": "{{optional}}Full screen map info sidebar - external service name",
 	"kartographer-link-here": "{{optional}}Full screen map info sidebar - external service name",
