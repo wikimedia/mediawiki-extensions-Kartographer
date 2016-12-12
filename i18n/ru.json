@@ -11,6 +11,7 @@
 			"MaxBioHazard"
 		]
 	},
+	"kartographer-attribution-externaldata-query": "запрос",
 	"kartographer-broken-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Файлы|#default=Страницы}} с некорректными картами",
 	"kartographer-broken-category-desc": "Эта страница содержит недопустимое использование карты",
 	"kartographer-desc": "Позволяет добавлять карты на вики-страницы.",
