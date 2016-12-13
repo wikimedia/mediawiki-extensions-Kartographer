@@ -98,6 +98,7 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 
 					if ( map.useRouter && !routerEnabled ) {
 						router.on( 'route', closeIfNotMapRoute );
+						router.route( '', closeIfNotMapRoute );
 						routerEnabled = true;
 					}
 
