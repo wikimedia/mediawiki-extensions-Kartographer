@@ -300,6 +300,7 @@
 				"modules/staticframe/staticframe.js"
 			],
 			"messages": [
+				"kartographer-attribution-short",
 				"kartographer-fullscreen-text"
 			],
 			"targets": [

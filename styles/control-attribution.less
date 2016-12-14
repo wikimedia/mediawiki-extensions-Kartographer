@@ -1,23 +1,40 @@
 /* == Attribution control == */
+@import '../lib/wmui-base.less';
+
+.mw-kartographer-attribution {
+	background-color: rgba( 255, 255, 255, 0.5 );
+	color: @color-base;
+
+	position: absolute;
+	right: 0;
+	bottom: 0;
+
+	margin: 0;
+	padding: 0 5px;
+	box-shadow: none;
+}
 
 /** Override initial properties */
 .leaflet-right.leaflet-bottom {
 	.leaflet-control.leaflet-control-attribution {
 		float: none;
 		clear: none;
-		font-size: 10px;
-		font-family: sans-serif;
-		line-height: 1.6;
-
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
 	}
+}
+
+.mw-kartographer-attribution,
+.leaflet-right.leaflet-bottom .leaflet-control.leaflet-control-attribution {
+	font-size: 10px;
+	font-family: sans-serif;
+	line-height: 1.6;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 
 	/* Removes ellipsis on hover */
-	.leaflet-control.leaflet-control-attribution:hover {
-		white-space: normal;
+	&:hover {
 		overflow: hidden;
 		text-overflow: clip;
+		white-space: normal;
 	}
 }

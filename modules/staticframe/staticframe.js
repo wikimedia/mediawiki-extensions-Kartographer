@@ -90,6 +90,11 @@ module.exports = ( function ( $, mw, kartolink, router ) {
 					$div = $( '<div class="mw-kartographer-fullScreen"></div>' ).append( button.$element );
 
 				$container.append( $div );
+				$container.append(
+					'<div class="mw-kartographer-attribution">' +
+					mw.message( 'kartographer-attribution-short' ).parse() +
+					'</div>'
+				);
 			} );
 
 			$container.attr( 'href', '#/map/' + index );
