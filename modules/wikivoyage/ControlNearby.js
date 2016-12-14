@@ -76,7 +76,7 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 
 			this.map = map;
 			this.link = link;
-			this.pruneCluster = pruneCluster;
+			this.map._pruneCluster = this.pruneCluster = pruneCluster;
 
 			L.DomEvent.addListener( link, 'click', this._onToggleNearbyLayer, this );
 			L.DomEvent.disableClickPropagation( container );
@@ -173,7 +173,7 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 			enabled = ( enabled !== undefined ) ? enabled : this.isEnabled();
 
 			if ( !enabled ) {
-				wikivoyage.isAllowed( this.pruneCluster )
+				wikivoyage.isAllowed( this.pruneCluster, this.map )
 					.done( function () {
 						control.map.addLayer( control.pruneCluster );
 					} );
@@ -189,9 +189,20 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 		_toggleDataLayers: function ( enabled ) {
 			var control = this;
 
+			// Toggling this layer toggles data layers. We do not want to trigger
+			// events like if the user manually toggled these layers. That's why this
+			// boolean is temporarily set.
+			control.map._preventTracking = true;
+
 			$.each( control.map.dataLayers, function ( group, layer ) {
 				control.map[ enabled ? 'addLayer' : 'removeLayer' ]( layer );
 			} );
+
+			control.map.$container.find( '.leaflet-control-layers-data-layer' ).each( function () {
+				$( this ).prop( 'checked', enabled );
+			} );
+
+			control.map._preventTracking = false;
 		}
 	} );
 }(

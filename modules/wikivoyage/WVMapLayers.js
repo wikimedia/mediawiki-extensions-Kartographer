@@ -20,6 +20,37 @@ module.WVMapLayers = ( function ( $, mw, wikivoyage, ControlLayers ) {
 			this.map.wikimediaLayer,
 			wikivoyage.formatLayerName( mw.msg( 'kartographer-wv-layer-wikimedia' ), { wvIsWMF: true } )
 		);
+
+		this.map.on( 'baselayerchange', function ( event ) {
+			mw.track( 'mediawiki.kartographer', {
+				action: ( event.layer === map.wikimediaLayer ) ? 'wv-select-wmflayer' : 'wv-select-exlayer',
+				isFullScreen: !!map.options.fullscreen,
+				feature: map
+			} );
+		} );
+
+		this.map.on( 'overlayadd overlayremove', function ( event ) {
+			var add = ( event.type === 'overlayadd' ),
+				eventName;
+
+			if ( event.layer.dataGroup ) {
+				eventName = add ? 'wv-show-layer' : 'wv-hide-layer';
+			} else if ( event.layer === map._pruneCluster ) {
+				eventName = add ? 'wv-show-nearby' : 'wv-hide-nearby';
+			} else {
+				eventName = add ? 'wv-show-exlayer' : 'wv-hide-exlayer';
+			}
+
+			if ( map._preventTracking ) {
+				return;
+			}
+
+			mw.track( 'mediawiki.kartographer', {
+				action: eventName,
+				isFullScreen: !!map.options.fullscreen,
+				feature: map
+			} );
+		} );
 	};
 
 	// eslint-disable-next-line valid-jsdoc
