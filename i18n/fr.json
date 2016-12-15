@@ -20,7 +20,7 @@
 	"apihelp-query+mapdata-param-continue": "Utiliser ce paramètre pour continuer l’énumération des résultats",
 	"apihelp-query+mapdata-param-groups": "Groupes pour lesquels renvoyer les données, séparés par des barres verticales",
 	"apihelp-query+mapdata-param-limit": "Nombre de pages pour lesquelles renvoyer des données",
-	"kartographer-attribution": "Cartes de Wikimédia | Données de carte © [https://www.openstreetmap.org/copyright contributeurs de OpenStreetMap]",
+	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Wikimedia maps] | Map data © [https://www.openstreetmap.org/copyright OpenStreetMap contributors]",
 	"kartographer-attribution-externaldata-query": "requête",
 	"kartographer-broken-category": "Pages avec des cartes contenant des erreurs",
 	"kartographer-broken-category-desc": "La page contient une carte avec des erreurs de syntaxe.",
