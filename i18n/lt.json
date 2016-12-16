@@ -6,6 +6,7 @@
 			"Eitvys200"
 		]
 	},
+	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Vikimedija žemėlapiai] | Žemėlapio duomenys © [https://www.openstreetmap.org/copyright OpenStreetMap autoriai]",
 	"kartographer-broken-category": "Puslapiai su neveikiančiais žemėlapiais",
 	"kartographer-error-bad_attr": "Atributas „$1“ turi neleistiną reikšmę",
 	"kartographer-tracking-category": "Puslapiai su žemėlapiais",

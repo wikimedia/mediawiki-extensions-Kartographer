@@ -18,7 +18,7 @@
 	"apihelp-query+mapdata-param-continue": "استخدم هذا المعامل للاستمرار في التكرار خلال النتائج",
 	"apihelp-query+mapdata-param-groups": "مجموعات مفصولة بPipe لإرجاع البيانات لها",
 	"apihelp-query+mapdata-param-limit": "البيانات لكم صفحة للإرجاع",
-	"kartographer-attribution": "Wikimedia maps | بيانات الخرائط © [https://www.openstreetmap.org/copyright مساهمو OpenStreetMap]",
+	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Wikimedia maps] | بيانات الخرائط © [https://www.openstreetmap.org/copyright مساهمو OpenStreetMap]",
 	"kartographer-attribution-externaldata-query": "استعلام",
 	"kartographer-broken-category": "صفحات مع خرائط معطوبة",
 	"kartographer-broken-category-desc": "هذه الصفحة تحتوي على استخدام خريطة غير صحيح",

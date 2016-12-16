@@ -15,7 +15,7 @@
 	"apihelp-query+mapdata-param-continue": "יש להשתמש בפרמטר הזה כדי להמשיך לעבור על התוצאות",
 	"apihelp-query+mapdata-param-groups": "קבוצות מופרדות בפסיק להחזרת נתונים",
 	"apihelp-query+mapdata-param-limit": "על כמה דפים להחזיר נתונים",
-	"kartographer-attribution": "מפות ויקיפדיה | נתוני מפה © [https://www.openstreetmap.org/copyright תורמי OpenStreetMap]",
+	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use מפות ויקימדיה] | נתוני מפה © [https://www.openstreetmap.org/copyright תורמי OpenStreetMap]",
 	"kartographer-attribution-externaldata-query": "שאילתה",
 	"kartographer-broken-category": "דפים עם מפות מקולקלות",
 	"kartographer-broken-category-desc": "הדף הזה מכיל שימוש בלתי־תקין במפה",
