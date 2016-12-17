@@ -30,6 +30,8 @@
 	"kartographer-tracking-category": "有地图的页面",
 	"kartographer-tracking-category-desc": "页面包含地图",
 	"kartographer-specialmap-invalid-coordinates": "提供了无效的坐标",
+	"kartographer.css": "/* 这里放置的CSS将应用到所有有地图的页面 */",
+	"kartographer.js": "/* 这里的任何JavaScript将为加载包含地图的页面的用户加载 */",
 	"kartographer-linktype-aerial": "天线",
 	"kartographer-linktype-map": "地图",
 	"kartographer-linktype-other": "其他",
