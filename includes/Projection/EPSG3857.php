@@ -21,7 +21,7 @@ class EPSG3857 {
 	public static function project( $latLon ) {
 		$projectedPoint = SphericalMercator::project( $latLon );
 
-		return [ $projectedPoint * self::EARTH_RADIUS, $projectedPoint * self::EARTH_RADIUS ];
+		return [ $projectedPoint[0] * self::EARTH_RADIUS, $projectedPoint[1] * self::EARTH_RADIUS ];
 	}
 
 	/**
