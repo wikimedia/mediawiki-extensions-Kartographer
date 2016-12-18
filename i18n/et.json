@@ -5,5 +5,12 @@
 		]
 	},
 	"kartographer-broken-category": "Katkiste kaartidega leheküljed",
-	"kartographer-tracking-category": "Kaartidega leheküljed"
+	"kartographer-tracking-category": "Kaartidega leheküljed",
+	"visualeditor-mwmapsdialog-align": "Joondus",
+	"visualeditor-mwmapsdialog-position-button": "Praegune asukoht",
+	"visualeditor-mwmapsdialog-position-lat": "Laius",
+	"visualeditor-mwmapsdialog-position-lon": "Pikkus",
+	"visualeditor-mwmapsdialog-position-zoom": "Suurendus",
+	"visualeditor-mwmapsdialog-size": "Suurus",
+	"visualeditor-mwmapsdialog-title": "Kaart"
 }

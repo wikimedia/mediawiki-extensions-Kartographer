@@ -2,16 +2,35 @@
 	"@metadata": {
 		"authors": [
 			"Sjoerddebruin",
-			"Siebrand"
+			"Siebrand",
+			"Mainframe98"
 		]
 	},
 	"kartographer-broken-category": "Pagina's met niet-werkende kaarten",
 	"kartographer-broken-category-desc": "De pagina bevat een ongeldig gebruik van een kaart",
 	"kartographer-desc": "Maakt het mogelijk kaarten toe te voegen aan wikipagina's",
+	"kartographer-error-missing-attr": "Attribuut \"$1\" ontbreekt",
+	"kartographer-error-bad_attr": "Attribuut \"$1\" bevat een ongeldige waarde",
 	"kartographer-tracking-category": "Pagina's met kaarten",
 	"kartographer-tracking-category-desc": "De pagina bevat een kaart",
+	"kartographer-specialmap-invalid-coordinates": "Ongeldige coördinaten opgegeven",
+	"kartographer-linktype-map": "Map",
+	"kartographer-linktype-other": "Anders",
+	"kartographer-linktype-satellite": "Satelliet",
+	"kartographer-linktype-terrain": "Terrein",
+	"leafletdraw-draw-toolbar-actions-title": "Tekening annuleren",
+	"leafletdraw-draw-toolbar-buttons-circle": "Teken een cirkel",
+	"leafletdraw-draw-toolbar-buttons-rectangle": "Teken een rechthoek",
+	"leafletdraw-draw-toolbar-undo-text": "Verwijder het laatste punt",
+	"leafletdraw-draw-toolbar-undo-title": "Verwijder het laatste punt getrokken",
+	"leafletdraw-edit-handlers-edit-tooltip-subtext": "Klik op annuleren om de wijzigingen ongedaan te maken",
+	"leafletdraw-edit-toolbar-actions-cancel-text": "Annuleren",
+	"leafletdraw-edit-toolbar-actions-cancel-title": "Annuleren bewerken, alle wijzigingen worden genegeerd",
+	"leafletdraw-edit-toolbar-actions-save-text": "Opslaan",
+	"leafletdraw-edit-toolbar-actions-save-title": "Wijzigingen opslaan",
 	"mapbox-control-zoomin-title": "Inzoomen",
 	"mapbox-control-zoomout-title": "Uitzoomen",
+	"kartographer-fullscreen-close": "Sluiten",
 	"visualeditor-mwmapsdialog-position-zoom": "Zoomen",
 	"visualeditor-mwmapsdialog-size": "Grootte",
 	"visualeditor-mwmapsdialog-title": "Kaart"
