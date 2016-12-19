@@ -7,7 +7,7 @@
 	},
 	"apihelp-sanitize-mapdata-description": "Kartographer এক্সটেনশনের জন্য উপাত্তের বৈধতা যাচাই সঞ্চালিত করে",
 	"apihelp-query+mapdata-param-continue": "ফলাফলের মাধ্যমে পুনরাবৃত্তি অব্যাহত করার জন্য এই পরামিতি ব্যবহার করে",
-	"kartographer-attribution": "উইকিমিডিয়া মানচিত্র | মানচিত্রের উপাত্ত © [https://www.openstreetmap.org/copyright ওপেনস্ট্রীটম্যাপের অবদানকারীগণ]",
+	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use উইকিমিডিয়া মানচিত্র] | মানচিত্রের উপাত্ত © [https://www.openstreetmap.org/copyright ওপেনস্ট্রীটম্যাপের অবদানকারীগণ]",
 	"kartographer-attribution-externaldata-query": "কোয়েরি",
 	"kartographer-broken-category": "ভাঙা মানচিত্রসহ পাতা",
 	"kartographer-broken-category-desc": "পাতা একটি অকার্যকর মানচিত্র অন্তর্ভুক্ত করে",
