@@ -16,7 +16,7 @@
 	"apihelp-query+mapdata-param-continue": "Використати цей параметр для продовження ітерації результатів",
 	"apihelp-query+mapdata-param-groups": "Відокремлені вертикальною рискою групи, дані для яких вивести",
 	"apihelp-query+mapdata-param-limit": "Для скількох сторінок треба вивести дані",
-	"kartographer-attribution": "Карти Вікімедіа | Картографічні дані © [https://www.openstreetmap.org/copyright Дописувачі OpenStreetMap]",
+	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Карти Вікімедіа] | Картографічні дані © [https://www.openstreetmap.org/copyright Дописувачі OpenStreetMap]",
 	"kartographer-attribution-externaldata-query": "запит",
 	"kartographer-broken-category": "Сторінки зі зламаними мапами",
 	"kartographer-broken-category-desc": "Сторінка містить неправильне використання карти",

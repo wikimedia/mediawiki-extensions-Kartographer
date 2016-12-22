@@ -62,6 +62,7 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Нет слоёв для редактирования",
 	"leafletdraw-edit-toolbar-buttons-remove": "Удалить слои",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Нет слоёв для удаления",
+	"map": "Информация о координатах",
 	"mapbox-control-zoomin-title": "Приблизить",
 	"mapbox-control-zoomout-title": "Отдалить",
 	"kartographer-fullscreen-close": "Закрыть",
