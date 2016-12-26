@@ -18,6 +18,8 @@
 	"kartographer-linktype-other": "Anders",
 	"kartographer-linktype-satellite": "Satelliet",
 	"kartographer-linktype-terrain": "Terrein",
+	"kartographer-sidebar-togglebutton": "Meer details",
+	"leafletdraw-draw-handlers-circle-radius": "Straal",
 	"leafletdraw-draw-toolbar-actions-text": "Annuleren",
 	"leafletdraw-draw-toolbar-actions-title": "Tekening annuleren",
 	"leafletdraw-draw-toolbar-buttons-circle": "Teken een cirkel",
@@ -32,6 +34,7 @@
 	"mapbox-control-zoomin-title": "Inzoomen",
 	"mapbox-control-zoomout-title": "Uitzoomen",
 	"kartographer-fullscreen-close": "Sluiten",
+	"visualeditor-mwmapsdialog-position-button": "Huidige positie",
 	"visualeditor-mwmapsdialog-position-zoom": "Zoomen",
 	"visualeditor-mwmapsdialog-size": "Grootte",
 	"visualeditor-mwmapsdialog-title": "Kaart"
