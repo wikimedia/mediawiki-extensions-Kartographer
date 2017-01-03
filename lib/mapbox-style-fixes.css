@@ -1,0 +1,21 @@
+/**
+ * Fix unwanted flipping of styles by CSS Janus (T127137)
+ */
+
+/* @noflip */
+body.rtl .leaflet-map-pane,
+body.rtl .leaflet-tile,
+body.rtl .leaflet-marker-icon,
+body.rtl .leaflet-marker-shadow,
+body.rtl .leaflet-tile-pane,
+body.rtl .leaflet-tile-container,
+body.rtl .leaflet-overlay-pane,
+body.rtl .leaflet-shadow-pane,
+body.rtl .leaflet-marker-pane,
+body.rtl .leaflet-popup-pane,
+body.rtl .leaflet-overlay-pane svg,
+body.rtl .leaflet-zoom-box,
+body.rtl .leaflet-image-layer,
+body.rtl .leaflet-layer {
+  left: 0; right: auto;
+}

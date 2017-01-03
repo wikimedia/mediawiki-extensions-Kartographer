@@ -86,7 +86,8 @@
 			],
 			"styles": [
 				"lib/mapbox/style.css",
-				"lib/mapbox/icons.css"
+				"lib/mapbox/icons.css",
+				"lib/mapbox-style-fixes.css"
 			],
 			"messages": [
 				"kartographer-fullscreen-text",
@@ -96,8 +97,7 @@
 			"targets": [
 				"mobile",
 				"desktop"
-			],
-			"noflip": true
+			]
 		},
 		"leaflet.draw": {
 			"dependencies": [
