@@ -212,6 +212,7 @@
 			"messages": [
 				"kartographer-attribution-externaldata",
 				"kartographer-attribution-externaldata-query",
+				"project-localized-name-commonswiki",
 				"project-localized-name-wikidatawiki"
 			],
 			"targets": [
