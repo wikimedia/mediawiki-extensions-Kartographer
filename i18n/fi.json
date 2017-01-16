@@ -6,7 +6,8 @@
 			"Nike",
 			"Pyscowicz",
 			"Pxos",
-			"Zache"
+			"Zache",
+			"Alluk."
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Validoi datan Kartographer-laajennokselle",
@@ -19,7 +20,7 @@
 	"apihelp-query+mapdata-param-continue": "Käytä tätä parametria jatkaaksesi tulosten iteroimista.",
 	"apihelp-query+mapdata-param-groups": "Ryhmät, joille data palautetaan pystyviivalla erotettuna",
 	"apihelp-query+mapdata-param-limit": "Kuinka monelle sivulle data palautetaan",
-	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Wikimedia kartat] | Karttadata © [https://www.openstreetmap.org/copyright OpenStreetMap avustajat]",
+	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Wikimedia-kartat] | Karttatiedot © [https://www.openstreetmap.org/copyright OpenStreetMapin tekijät]",
 	"kartographer-attribution-externaldata-query": "kysely",
 	"kartographer-broken-category": "Sivut, joissa on rikkinäisiä karttoja",
 	"kartographer-broken-category-desc": "Sivu sisältää virheellisesti käytetyn <code><nowiki><maps></nowiki></code> tagin.",
@@ -41,9 +42,9 @@
 	"kartographer-linktype-terrain": "Maanpinta",
 	"kartographer-linktype-topo": "Topologinen",
 	"kartographer-sidebar-coordinates": "Koordinaatit",
-	"kartographer-sidebar-description": "Katso tätä sijaintia alla luetellussa palvelussa. Voit suodattaa luetteloa kartan tyypillä:",
+	"kartographer-sidebar-description": "Tarkastele tätä sijaintia jossakin alla listatussa palvelussa. Voit hakea vain rajata tarjottavia karttapalveluja karttatyypin perusteella:",
 	"kartographer-sidebar-filterdropdown": "Valitse kartan tyyppi",
-	"kartographer-sidebar-externalservices": "Ulkoiset palvelut",
+	"kartographer-sidebar-externalservices": "Muut karttapalvelut",
 	"kartographer-sidebar-latitude": "Leveyspiiri",
 	"kartographer-sidebar-longitude": "Pituusaste",
 	"kartographer-sidebar-mapdetails": "Kartan tiedot",
