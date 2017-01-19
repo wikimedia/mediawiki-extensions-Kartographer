@@ -100,6 +100,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		.append( $( '<tr>' ).append( '<th>' + ve.msg( 'visualeditor-mwmapsdialog-position-zoom' ) + '</th>' ).append( this.$currentPositionZoomField ) );
 
 	positionPopupButton = new OO.ui.PopupButtonWidget( {
+		$overlay: this.$overlay,
 		label: ve.msg( 'visualeditor-mwmapsdialog-position-button' ),
 		icon: 'info',
 		framed: false,
