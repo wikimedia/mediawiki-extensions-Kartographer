@@ -6,7 +6,7 @@
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Realitza la validació de dades per l'extensió Kartographer",
-	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Mapes Wikimedia] | Dades del mapa © [https://www.openstreetmap.org/copyright Col·laboradors d'OpenStreetMap]",
+	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Mapes Wikimedia] | Mapatge © [https://www.openstreetmap.org/copyright OpenStreetMap - col·laboradors]",
 	"kartographer-attribution-externaldata-query": "consulta",
 	"kartographer-broken-category": "Pàgines amb errors en els mapes",
 	"kartographer-broken-category-desc": "La pàgina inclou un mapa amb utilització no vàlida",
@@ -28,7 +28,7 @@
 	"kartographer-linktype-terrain": "Terreny",
 	"kartographer-linktype-topo": "Topològic",
 	"kartographer-sidebar-coordinates": "Coordenades",
-	"kartographer-sidebar-description": "Mostra aquesta localització en un dels serveis enumerats a continuació. Podeu filtrar la llista per tipus de mapa:",
+	"kartographer-sidebar-description": "Vegeu aquesta localització en un dels serveis enumerats a continuació. Podeu filtrar la llista per tipus de mapa:",
 	"kartographer-sidebar-filterdropdown": "Seleccioneu un tipus de mapa",
 	"kartographer-sidebar-externalservices": "Serveis externs",
 	"kartographer-sidebar-latitude": "Latitud",
