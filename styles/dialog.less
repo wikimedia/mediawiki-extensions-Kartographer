@@ -34,47 +34,6 @@
 	padding: 3em 2em 1em;
 	overflow-y: scroll;
 
-	table {
-		width: 100%;
-		border-collapse: collapse;
-
-		tr {
-			background-color: @wmui-color-base80;
-			text-align: center;
-		}
-
-		th {
-			text-align: left;
-		}
-
-		th,
-		td {
-			padding: 0.5em 1em;
-			font-size: 90%;
-		}
-
-		thead {
-			tr {
-				background-color: @wmui-color-base70;
-
-				th {
-					font-weight: bold;
-				}
-			}
-		}
-
-		tbody {
-			tr th:first-child {
-				width: 70%;
-				text-align: left;
-			}
-
-			tr:nth-child(even) {
-				background-color: @wmui-color-base100;
-			}
-		}
-	}
-
 	.mw-kartographer-mapDialog-closeButton {
 		position: absolute;
 		top: 10px;
@@ -83,6 +42,64 @@
 
 		.oo-ui-buttonElement-button {
 			border: 0;
+		}
+	}
+
+	/* For MobileFrontend */
+	.skin-minerva & h2 {
+		margin-bottom: 0.6em;
+	}
+}
+
+.mw-kartographer-mapdetails-table {
+	width: 100%;
+	border-collapse: collapse;
+
+	tr {
+		background-color: @wmui-color-base80;
+		text-align: center;
+	}
+
+	th {
+		text-align: left;
+	}
+
+	th,
+	td {
+		padding: 0.5em 1em;
+		font-size: 90%;
+	}
+
+	thead {
+		tr {
+			background-color: @wmui-color-base70;
+
+			th {
+				font-weight: bold;
+			}
+		}
+	}
+
+	tbody {
+		tr th:first-child {
+			width: 70%;
+			text-align: left;
+		}
+
+		tr:nth-child(even) {
+			background-color: @wmui-color-base100;
+		}
+	}
+
+	.mw-kartographer-externalservices & {
+		tbody tr {
+			&.featured {
+				background-color: @wmui-color-yellow90;
+				border-bottom: 1px solid @wmui-color-yellow50;
+			}
+			th {
+				font-weight: normal;
+			}
 		}
 	}
 }
@@ -98,23 +115,6 @@
 
 .mw-kartographer-filterservices {
 	margin-bottom: 1em;
-}
-
-.mw-kartographer-mapDialog-sidebar .mw-kartographer-externalservices {
-	tr.featured {
-		background-color: #fef6e7;
-		border-bottom: 1px solid #fc3;
-	}
-	/* stylelint-disable no-descending-specificity */
-	tbody th {
-		font-weight: normal;
-	}
-	/* stylelint-enable no-descending-specificity */
-}
-
-/* For MobileFrontend */
-.skin-minerva .mw-kartographer-mapDialog-sidebar h2 {
-	margin-bottom: 0.6em;
 }
 
 .kartographer-mapDialog-loading {
