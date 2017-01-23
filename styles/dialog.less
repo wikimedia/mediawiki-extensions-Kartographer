@@ -1,12 +1,4 @@
-/* Temporary import from wmui-base.less */
-/* https://phabricator.wikimedia.org/diffusion/WMUI/ */
-
-@wmui-color-base60:          #c8ccd1;
-@wmui-color-base80:          #eaecf0;
-@wmui-color-base100:         #fff;
-@background-color-base:      @wmui-color-base100;
-@border-color-base:          #222;
-@border-base:                1px solid @border-color-base;
+@import '../lib/wmui-base.less';
 
 /* Dialog footer */
 .mw-kartographer-mapDialog-foot {
@@ -38,7 +30,7 @@
 	z-index: 2;
 	width: 320px;
 	box-sizing: border-box;
-	background-color: @background-color-base;
+	background-color: #fff;
 	padding: 3em 2em 1em;
 	overflow-y: scroll;
 
@@ -63,7 +55,7 @@
 
 		thead {
 			tr {
-				background-color: @wmui-color-base60;
+				background-color: @wmui-color-base70;
 
 				th {
 					font-weight: bold;
