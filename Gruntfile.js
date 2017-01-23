@@ -24,7 +24,8 @@ module.exports = function ( grunt ) {
 			]
 		},
 		banana: {
-			all: 'i18n/'
+			all: 'i18n/',
+			wikivoyage: 'modules/wikivoyage/i18n/'
 		},
 		watch: {
 			files: [
