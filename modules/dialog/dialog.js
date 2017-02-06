@@ -25,6 +25,7 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 
 	/* Static Properties */
 
+	MapDialog.static.name = 'mapDialog';
 	MapDialog.static.size = 'full';
 
 	/* Methods */
