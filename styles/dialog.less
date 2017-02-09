@@ -1,5 +1,11 @@
 @import '../lib/wmui-base.less';
 
+/*
+	Anyone who changes the width of the sidebar should
+	update Kartographer.Dialog.DialogClass `SIDEBAR_WIDTH` accordingly
+*/
+@sidebarWidth: 320px;
+
 /* Dialog footer */
 .mw-kartographer-mapDialog-foot {
 	/*
@@ -37,7 +43,7 @@
 		Anyone who changes the width of the sidebar should
 		update Kartographer.Dialog.DialogClass `SIDEBAR_WIDTH` accordingly
 	*/
-	width: 321px; /* 320+1 so border is hidden on common 320px wide mobile devices */
+	width: @sidebarWidth + 1px; /* 320+1 so border is hidden on common 320px wide mobile devices */
 	box-sizing: border-box;
 	background-color: #fff;
 	padding: 3em 2em 1em;
@@ -149,4 +155,10 @@
 	background-position: center center;
 	background-size: 32px;
 	background-repeat: no-repeat;
+}
+
+.mw-kartographer-mapDialog-sidebar-opened {
+	.leaflet-right.leaflet-bottom {
+		right: @sidebarWidth;
+	}
 }
