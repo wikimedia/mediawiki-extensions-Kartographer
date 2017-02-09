@@ -1,10 +1,8 @@
 /* == Attribution control == */
 @import '../lib/wmui-base.less';
 
+/* Static snapshot */
 .mw-kartographer-attribution {
-	background-color: rgba( 255, 255, 255, 0.5 );
-	color: @color-base;
-
 	position: absolute;
 	right: 0;
 	bottom: 0;
@@ -14,14 +12,22 @@
 	box-shadow: none;
 }
 
-/** Override initial properties */
+/* Static + Interactive */
+.mw-kartographer-attribution,
 .leaflet-right.leaflet-bottom {
-	.leaflet-control.leaflet-control-attribution {
-		float: none;
-		clear: none;
-	}
+	background-color: rgba( 255, 255, 255, 0.8 );
+	color: @color-base;
 }
 
+/* Interactive */
+.leaflet-right.leaflet-bottom .leaflet-control.leaflet-control-attribution {
+	/** Override initial properties */
+	background-color: transparent;
+	float: none;
+	clear: none;
+}
+
+/* Static + Interactive */
 .mw-kartographer-attribution,
 .leaflet-right.leaflet-bottom .leaflet-control.leaflet-control-attribution {
 	font-size: 10px;
@@ -36,5 +42,20 @@
 		overflow: hidden;
 		text-overflow: clip;
 		white-space: normal;
+
+	}
+
+	a {
+		color: @color-base;
+	}
+}
+
+/* Static + Interactive */
+.mw-kartographer-map:hover .mw-kartographer-attribution,
+.mw-kartographer-interactive:hover .leaflet-right.leaflet-bottom {
+	background-color: rgba( 255, 255, 255, 0.9 );
+
+	a { /* stylelint-disable-line no-descending-specificity */
+		color: @color-primary;
 	}
 }
