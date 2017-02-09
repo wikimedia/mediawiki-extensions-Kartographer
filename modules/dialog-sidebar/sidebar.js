@@ -85,6 +85,7 @@ module.exports = ( function ( $, mw ) {
 		sidebar.mapPosition = map.getMapPosition( { scaled: true } );
 
 		sidebar.createCloseButton().$element.appendTo( $container );
+		sidebar.createCollapseButton().$element.appendTo( $container );
 
 		/**
 		 * @property {jQuery}
@@ -286,6 +287,23 @@ module.exports = ( function ( $, mw ) {
 				title: mw.msg( 'kartographer-fullscreen-close' ),
 				framed: false,
 				classes: [ 'mw-kartographer-mapDialog-closeButton' ]
+			} ).connect( this, { click: sidebar.dialog.map.closeFullScreen.bind( sidebar.dialog.map ) } );
+		return button;
+	};
+
+	/**
+	 * Creates a collapse button instance.
+	 *
+	 * @return {OO.ui.ButtonWidget}
+	 */
+	SideBar.prototype.createCollapseButton = function () {
+		// Add close button to the sidebar
+		var sidebar = this,
+			button = new OO.ui.ButtonWidget( {
+				icon: 'expand',
+				title: mw.msg( 'kartographer-fullscreen-collapse' ),
+				framed: false,
+				classes: [ 'mw-kartographer-mapDialog-collapseButton' ]
 			} ).connect( this, { click: sidebar.dialog.toggleSideBar.bind( sidebar.dialog, false ) } );
 		return button;
 	};

@@ -111,6 +111,7 @@
 	"mapbox-control-zoomin-title": "Title for map zoom in button\n{{Identical|Zoom in}}",
 	"mapbox-control-zoomout-title": "Title for map zoom out button\n{{Identical|Zoom out}}",
 	"kartographer-fullscreen-close": "Title of the fullscreen close button\n{{Identical|Close}}",
+	"kartographer-fullscreen-collapse": "Title of the map details collapse button",
 	"kartographer-fullscreen-text": "Tooltip for a button that puts the map into full screen",
 	"visualeditor-mwmapsdialog-align": "Label for setting the map's alignment\n{{Identical|Alignment}}",
 	"visualeditor-mwmapsdialog-geojson": "{{optional}}\nLabel for map GeoJSON data",
