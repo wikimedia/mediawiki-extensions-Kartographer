@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"George Animal"
+			"George Animal",
+			"Ghybu"
 		]
 	},
-	"kartographer-tracking-category": "Rûpelên bê nexşeyan",
+	"kartographer-tracking-category": "Rûpelên bi nexşeyan",
 	"visualeditor-mwmapsdialog-size": "Mezinbûn",
 	"visualeditor-mwmapsdialog-title": "Nexşe"
 }
