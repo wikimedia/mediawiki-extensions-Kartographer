@@ -28,7 +28,7 @@
     "leaflet": "^0.7.7",
     "leaflet-sleep": "juliengirault/Leaflet.Sleep",
     "maki": "^0.5.0",
-    "wikimedia-mapdata": "git+https://gerrit.wikimedia.org/r/mapdata#ce7b0d38f0739de8456645b61ed967a4e0a9c341",
+    "wikimedia-mapdata": "git+https://gerrit.wikimedia.org/r/mapdata#e022430df29f848ff04b4a0b21bd217751fdce32",
     "wmui-base": "git+https://phabricator.wikimedia.org/diffusion/WMUI/wikimedia-ui-base.git#v0.7.1"
   }
 }
