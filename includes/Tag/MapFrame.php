@@ -5,6 +5,7 @@ namespace Kartographer\Tag;
 use FormatJson;
 use Html;
 use UnexpectedValueException;
+use Kartographer\SpecialMap;
 
 /**
  * The <mapframe> tag inserts a map into wiki page
@@ -168,6 +169,7 @@ class MapFrame extends TagHandler {
 		}
 
 		$attrs['style'] = "background-image: url({$bgUrl});";
+		$attrs['href'] = SpecialMap::link( $staticLat, $staticLon, $staticZoom )->getLocalURL();
 
 		if ( !$framed ) {
 			$attrs['style'] .= " width: {$width}; height: {$height};";
