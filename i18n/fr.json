@@ -103,6 +103,7 @@
 	"mapbox-control-zoomin-title": "Zoom avant",
 	"mapbox-control-zoomout-title": "Zoom arrière",
 	"kartographer-fullscreen-close": "Fermer",
+	"kartographer-fullscreen-collapse": "Masquer les détails de la carte",
 	"kartographer-fullscreen-text": "Afficher en plein écran",
 	"visualeditor-mwmapsdialog-align": "Alignement",
 	"visualeditor-mwmapsdialog-position-button": "Position actuelle",

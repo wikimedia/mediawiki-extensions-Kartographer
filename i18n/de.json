@@ -99,6 +99,7 @@
 	"mapbox-control-zoomin-title": "Vergrößern",
 	"mapbox-control-zoomout-title": "Verkleinern",
 	"kartographer-fullscreen-close": "Schließen",
+	"kartographer-fullscreen-collapse": "Kartendetails ausblenden",
 	"kartographer-fullscreen-text": "Im Vollbild anzeigen",
 	"visualeditor-mwmapsdialog-align": "Ausrichtung",
 	"visualeditor-mwmapsdialog-geojson": "GeoJSON",

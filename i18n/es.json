@@ -6,7 +6,8 @@
 			"Mgpena",
 			"AlvaroMolina",
 			"Rubentl134",
-			"Fitoschido"
+			"Fitoschido",
+			"Dgstranz"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Realiza la validación de datos para la extensión Kartographer",
@@ -85,6 +86,7 @@
 	"mapbox-control-zoomin-title": "Acercar",
 	"mapbox-control-zoomout-title": "Alejar",
 	"kartographer-fullscreen-close": "Cerrar",
+	"kartographer-fullscreen-collapse": "Ocultar los detalles del mapa",
 	"kartographer-fullscreen-text": "Mostrar en pantalla completa",
 	"visualeditor-mwmapsdialog-align": "Alineación",
 	"visualeditor-mwmapsdialog-position-button": "Posición actual",
