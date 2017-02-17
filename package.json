@@ -16,13 +16,13 @@
     "grunt-contrib-watch": "1.0.0",
     "grunt-eslint": "19.0.0",
     "grunt-jsonlint": "1.1.0",
-    "grunt-stylelint": "0.6.0",
+    "grunt-stylelint": "0.7.0",
     "mapbox.js": "2.3.0",
     "prunecluster": "^2.0.0-beta.3",
     "rollup": "^0.36.1",
     "rollup-plugin-commonjs": "^5.0.4",
-    "stylelint": "^7.0.2",
-    "stylelint-config-wikimedia": "^0.3.0"
+    "stylelint": "7.8.0",
+    "stylelint-config-wikimedia": "0.4.1"
   },
   "dependencies": {
     "leaflet": "^0.7.7",

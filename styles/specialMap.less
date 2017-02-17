@@ -26,21 +26,21 @@ div#mw-specialMap-map {
 	width: @mapWidth;
 	height: @mapHeight;
 	/* stylelint-disable function-parentheses-space-inside */
-	background-image: url(//maps.wikimedia.org/osm-intl/0/0/0.png);
+	background-image: url(https://maps.wikimedia.org/osm-intl/0/0/0.png);
 	/* stylelint-enable function-parentheses-space-inside */
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: @mapWidth @mapHeight;
 }
 
-/* stylelint-disable media-feature-name-no-vendor-prefix */
+/* stylelint-disable media-feature-name-no-vendor-prefix, media-feature-name-no-unknown */
 @media ( -webkit-min-device-pixel-ratio: 1.5 ),
 	( min--moz-device-pixel-ratio: 1.5 ),
 	( min-resolution: 1.5dppx ),
 	( min-resolution: 144dpi ) {
 	div#mw-specialMap-map {
 		/* stylelint-disable function-parentheses-space-inside */
-		background-image: url(//maps.wikimedia.org/osm-intl/0/0/0@1.5x.png);
+		background-image: url(https://maps.wikimedia.org/osm-intl/0/0/0@1.5x.png);
 		/* stylelint-enable function-parentheses-space-inside */
 	}
 }
@@ -51,11 +51,11 @@ div#mw-specialMap-map {
 	( min-resolution: 192dpi ) {
 	div#mw-specialMap-map {
 		/* stylelint-disable function-parentheses-space-inside */
-		background-image: url(//maps.wikimedia.org/osm-intl/0/0/0@2x.png);
+		background-image: url(https://maps.wikimedia.org/osm-intl/0/0/0@2x.png);
 		/* stylelint-enable function-parentheses-space-inside */
 	}
 }
-/* stylelint-enable media-feature-name-no-vendor-prefix */
+/* stylelint-enable media-feature-name-no-vendor-prefix, media-feature-name-no-unknown */
 
 div#mw-specialMap-marker {
 	position: absolute;
