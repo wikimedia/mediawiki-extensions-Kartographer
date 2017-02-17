@@ -133,6 +133,9 @@ module.exports = ( function ( $, mw ) {
 	 * re-renders the parts of the sidebar that depend on the map position.
 	 */
 	SideBar.prototype.onMapMove = OO.ui.throttle( function () {
+		if ( !this.dialog.map ) {
+			return;
+		}
 		this.mapPosition = this.dialog.map.getMapPosition( { scaled: true } );
 
 		this.renderMapDetails();
@@ -322,7 +325,7 @@ module.exports = ( function ( $, mw ) {
 	 */
 	SideBar.prototype.tearDown = function () {
 		this.dialog.map.off( 'move', this.onMapMove, this );
-
+		this.dialog.sideBar = null;
 		this.$el.remove();
 		this.$el = null;
 		return this;

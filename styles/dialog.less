@@ -2,6 +2,10 @@
 
 /* Dialog footer */
 .mw-kartographer-mapDialog-foot {
+	/*
+		Anyone who changes the height of the footer should
+		update Kartographer.Dialog.DialogClass `FOOTER_HEIGHT` accordingly
+	*/
 	padding: 1em;
 	height: 4.5em;
 	background-color: @background-color-base;
@@ -29,6 +33,10 @@
 	bottom: 4.5em;
 	z-index: 2;
 	border-left: @border-base;
+	/*
+		Anyone who changes the width of the sidebar should
+		update Kartographer.Dialog.DialogClass `SIDEBAR_WIDTH` accordingly
+	*/
 	width: 321px; /* 320+1 so border is hidden on common 320px wide mobile devices */
 	box-sizing: border-box;
 	background-color: #fff;

@@ -15,9 +15,13 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 	 * @type {Kartographer.Dialog.DialogClass}
 	 */
 	var MapDialog = function () {
-		// Parent method
-		MapDialog.super.apply( this, arguments );
-	};
+			// Parent method
+			MapDialog.super.apply( this, arguments );
+		},
+		// Opens the sidebar when the screen is wide enough (greater than 1024px)
+		isWideScreen = $( document ).width() > 1024,
+		FOOTER_HEIGHT = 58,
+		SIDEBAR_WIDTH = 320;
 
 	/* Inheritance */
 
@@ -72,6 +76,13 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 				dialog.$foot.append( $inlineContainer );
 
 				button.on( 'change', dialog.toggleSideBar, null, dialog );
+
+				if ( isWideScreen ) {
+					dialog.map.doWhenReady( function () {
+						dialog.offsetMap( true );
+						dialog.toggleSideBar( true );
+					} );
+				}
 			} );
 		} );
 	};
@@ -115,6 +126,20 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 			} );
 		}
 		return MapDialog.super.prototype.getActionProcess.call( this, action );
+	};
+
+	/**
+	 * Adds an offset to the center of the map.
+	 *
+	 * @param {boolean} isSidebarOpen Whether the sidebar is open.
+	 */
+	MapDialog.prototype.offsetMap = function ( isSidebarOpen ) {
+		var map = this.map,
+			offsetX = isSidebarOpen ? SIDEBAR_WIDTH / -2 : 0,
+			targetPoint = map.project( map.getCenter(), map.getZoom() ).subtract( [ offsetX, -1 * FOOTER_HEIGHT ] ),
+			targetLatLng = map.unproject( targetPoint, map.getZoom() );
+
+		map.setView( targetLatLng, map.getZoom() );
 	};
 
 	/**
@@ -178,11 +203,21 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 					}
 
 					if ( !dialog.$mapDetailsButton ) {
+						// The button does not exist yet, add it
 						dialog.addFooterButton();
+
 					} else if ( dialog.sideBar ) {
+						// The button exists, the sidebar was open, call `tearDown` and reopen it.
 						dialog.sideBar.tearDown();
 						dialog.map.doWhenReady( function () {
-							dialog.sideBar.render();
+							dialog.offsetMap( true );
+							dialog.toggleSideBar( true );
+						} );
+
+					} else {
+						// The button exists, the sidebar was not open, simply run `offsetMap`
+						dialog.map.doWhenReady( function () {
+							dialog.offsetMap( false );
 						} );
 					}
 				}
