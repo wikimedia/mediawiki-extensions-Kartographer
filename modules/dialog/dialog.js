@@ -138,7 +138,8 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 	MapDialog.prototype.offsetMap = function ( isSidebarOpen ) {
 		var map = this.map,
 			offsetX = isSidebarOpen ? SIDEBAR_WIDTH / -2 : 0,
-			targetPoint = map.project( map.getCenter(), map.getZoom() ).subtract( [ offsetX, -1 * FOOTER_HEIGHT ] ),
+			offsetY = FOOTER_HEIGHT / -2,
+			targetPoint = map.project( map.getCenter(), map.getZoom() ).subtract( [ offsetX, offsetY ] ),
 			targetLatLng = map.unproject( targetPoint, map.getZoom() );
 
 		map.setView( targetLatLng, map.getZoom() );
@@ -181,7 +182,9 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 	MapDialog.prototype.getSetupProcess = function ( options ) {
 		return MapDialog.super.prototype.getSetupProcess.call( this, options )
 			.next( function () {
-				var dialog = this;
+				var dialog = this,
+					isFirstTimeOpen = !dialog.$mapDetailsButton,
+					isSideBarVisible = dialog.sideBar;
 
 				if ( options.map && options.map !== dialog.map ) {
 
@@ -204,24 +207,22 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 							.text( dialog.map.captionText );
 					}
 
-					if ( !dialog.$mapDetailsButton ) {
+					if ( isFirstTimeOpen ) {
 						// The button does not exist yet, add it
 						dialog.addFooterButton();
-
-					} else if ( dialog.sideBar ) {
+					} else if ( isSideBarVisible ) {
 						// The button exists, the sidebar was open, call `tearDown` and reopen it.
 						dialog.sideBar.tearDown();
 						dialog.map.doWhenReady( function () {
 							dialog.offsetMap( true );
 							dialog.toggleSideBar( true );
 						} );
-
-					} else {
-						// The button exists, the sidebar was not open, simply run `offsetMap`
-						dialog.map.doWhenReady( function () {
-							dialog.offsetMap( false );
-						} );
+						return;
 					}
+					// The button exists, the sidebar was not open, simply run `offsetMap`
+					dialog.map.doWhenReady( function () {
+						dialog.offsetMap( false );
+					} );
 				}
 			}, this );
 	};
