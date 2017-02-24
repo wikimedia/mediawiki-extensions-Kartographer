@@ -95,6 +95,9 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 					dataGroups: data.overlays,
 					captionText: data.captionText
 				} );
+
+				$container.removeAttr( 'href' );
+
 				mw.track( 'mediawiki.kartographer', {
 					action: 'view',
 					isFullScreen: false,
