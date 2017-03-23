@@ -52,11 +52,19 @@ a.mw-kartographer-link {
 	}
 }
 
-.mw-kartographer-map:hover {
-	.mw-kartographer-fullScreen {
-		background-color: #fff;
+.mw-kartographer-map {
+	.mw-kartographer-fullScreen .oo-ui-iconElement > .oo-ui-buttonElement-button {
+		// Fix font size
+		font-size: ( 12.8em / 14 );
+		// Square button
+		min-width: 2.5em;
+		& > .oo-ui-iconElement-icon {
+			left: 0.25em;
+		}
 	}
-	.oo-ui-buttonElement-button {
+
+	// Fake hover on full screen button as clicking the maps launches fullscreen
+	&:hover .mw-kartographer-fullScreen .oo-ui-buttonElement-button {
 		background-color: #fff;
 	}
 }
