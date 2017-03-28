@@ -44,3 +44,9 @@
 .ve-ui-mwMapsDialog-position-table th {
 	padding: 0.5em 1em 0.5em 0;
 }
+
+.ve-ui-mwMapsContextItem-nosupport {
+	color: #777;
+	font-style: italic;
+	line-height: 1.6;
+}

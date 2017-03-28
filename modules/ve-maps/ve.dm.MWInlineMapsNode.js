@@ -29,6 +29,50 @@ ve.dm.MWInlineMapsNode.static.name = 'mwInlineMaps';
 
 ve.dm.MWInlineMapsNode.static.extensionName = 'maplink';
 
+/* Methods */
+
+/**
+ * Don't allow maps to be edited if they contain features that are not
+ * supported not supported by the editor.
+ *
+ * @inheritdoc
+ */
+ve.dm.MWInlineMapsNode.prototype.isEditable = function () {
+	var containsDynamicFeatures = this.usesAutoPositioning() || this.usesExternalData();
+	return !this.usesMapData() || !containsDynamicFeatures;
+};
+
+/**
+ * Checks whether the map uses auto-positioning.
+ *
+ * @return {boolean}
+ */
+ve.dm.MWInlineMapsNode.prototype.usesAutoPositioning = function () {
+	var mwAttrs = this.getAttribute( 'mw' ).attrs;
+	return !( mwAttrs.latitude && mwAttrs.longitude && mwAttrs.zoom );
+};
+
+/**
+ * Checks whether the map uses external data.
+ *
+ * @return {boolean}
+ */
+ve.dm.MWInlineMapsNode.prototype.usesExternalData = function () {
+	var mwData = this.getAttribute( 'mw' ),
+		geoJson = mwData.body.extsrc;
+	return /ExternalData/.test( geoJson );
+};
+
+/**
+ * Checks whether the map contains any map data.
+ *
+ * @return {boolean}
+ */
+ve.dm.MWInlineMapsNode.prototype.usesMapData = function () {
+	var mwData = this.getAttribute( 'mw' );
+	return !!mwData.body.extsrc;
+};
+
 /* Registration */
 
 ve.dm.modelRegistry.register( ve.dm.MWInlineMapsNode );

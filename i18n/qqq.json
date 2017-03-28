@@ -121,5 +121,7 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Label for zoom within current position popup\n{{Identical|Zoom}}",
 	"visualeditor-mwmapsdialog-reset-map": "Label for resetting the map's position",
 	"visualeditor-mwmapsdialog-size": "Label for map size\n{{Identical|Size}}",
-	"visualeditor-mwmapsdialog-title": "Title of the map dialog\n{{Identical|Map}}"
+	"visualeditor-mwmapsdialog-title": "Title of the map dialog\n{{Identical|Map}}",
+	"visualeditor-mwmapscontextitem-nosupport": "Description that visual editing is disabled because the map contains dynamic features not supported by the visual editor.",
+	"visualeditor-mwmapscontextitem-title": "Title of the map context item\n{{Identical|Map}}"
 }
