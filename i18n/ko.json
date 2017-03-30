@@ -16,7 +16,7 @@
 	"kartographer-attribution-externaldata-query": "쿼리",
 	"kartographer-broken-category": "깨진 지도가 있는 문서",
 	"kartographer-broken-category-desc": "이 문서는 잘못 사용된 지도를 포함합니다.",
-	"kartographer-desc": "&lt;maps&gt; 태그를 사용해 지도를 위키 문서에 삽입할 수 있도록 허용",
+	"kartographer-desc": "위키 문서에 지도를 추가할 수 있게 합니다",
 	"kartographer-error-context-multi": "&lt;$1&gt; 문제:\n$2",
 	"kartographer-error-json": "JSON 구문 분석을 할 수 없습니다: $1",
 	"kartographer-error-missing-attr": "\"$1\" 특성을 찾을 수 없습니다",

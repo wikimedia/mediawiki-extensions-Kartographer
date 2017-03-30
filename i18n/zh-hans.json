@@ -1,13 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Liuxinyu970226"
+			"Liuxinyu970226",
+			"Shizhao"
 		]
 	},
-	"apihelp-sanitize-mapdata-description": "为Kartographer扩展执行数据确认",
-	"apihelp-sanitize-mapdata-param-title": "此GeoJSON应该位于的页面标题。如果未提供标题，将使用一个假的标题。",
-	"apihelp-sanitize-mapdata-param-text": "要净化的GeoJSON",
-	"apihelp-sanitize-mapdata-example": "净化一个GeoJSON大对象",
+	"apihelp-sanitize-mapdata-description": "为Kartographer扩展执行数据验证",
+	"apihelp-sanitize-mapdata-param-title": "此GeoJSON应该位于页面标题。如果未提供标题，将使用一个假的标题。",
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON清洗",
+	"apihelp-sanitize-mapdata-example": "清洗一个GeoJSON大对象",
 	"apihelp-query+mapdata-description": "请求所有来自页面<kbd>Metallica</kbd>的地图数据",
 	"apihelp-query+mapdata-example-1": "请求所有来自页面<kbd>Metallica</kbd>的地图数据",
 	"apihelp-query+mapdata-example-2": "请求来自页面<kbd>Metallica</kbd>的组<kbd>group1</kbd>和<kbd>group2</kbd>中的地图数据",
@@ -32,7 +33,7 @@
 	"kartographer-specialmap-invalid-coordinates": "提供了无效的坐标",
 	"kartographer.css": "/* 这里放置的CSS将应用到所有有地图的页面 */",
 	"kartographer.js": "/* 这里的任何JavaScript将为加载包含地图的页面的用户加载 */",
-	"kartographer-linktype-aerial": "天线",
+	"kartographer-linktype-aerial": "航拍",
 	"kartographer-linktype-map": "地图",
 	"kartographer-linktype-other": "其他",
 	"kartographer-linktype-satellite": "卫星",
@@ -74,7 +75,7 @@
 	"leafletdraw-draw-toolbar-undo-text": "删除最后一点",
 	"leafletdraw-draw-toolbar-undo-title": "删除画出的最后一点",
 	"leafletdraw-edit-handlers-edit-tooltip-subtext": "点击取消以撤销更改",
-	"leafletdraw-edit-handlers-edit-tooltip-text": "拖动手柄，或标记以编辑特征",
+	"leafletdraw-edit-handlers-edit-tooltip-text": "拖动鼠标，或标记以编辑特征",
 	"leafletdraw-edit-handlers-remove-tooltip-text": "点击特征以移除",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "取消",
 	"leafletdraw-edit-toolbar-actions-cancel-title": "取消编辑，抛弃所有更改",
