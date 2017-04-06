@@ -1,5 +1,5 @@
 {
 	"require": {
-		"justinrainbow/json-schema": "~3.0"
+		"justinrainbow/json-schema": "~5.2"
 	}
 }
