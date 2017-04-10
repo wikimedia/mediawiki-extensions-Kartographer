@@ -41,18 +41,9 @@ module.exports = function ( grunt ) {
 				src: [
 					'**/*.css',
 					'**/*.less',
-					'!modules/ve-maps/**',
 					'!node_modules/**',
 					'!lib/**',
 					'!docs/**'
-				]
-			},
-			've-maps': {
-				options: {
-					configFile: 'modules/ve-maps/.stylelintrc'
-				},
-				src: [
-					'modules/ve-maps/**/*.css'
 				]
 			}
 		},
