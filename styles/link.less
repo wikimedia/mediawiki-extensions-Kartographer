@@ -69,8 +69,9 @@ a.mw-kartographer-link {
 		cursor: pointer;
 	}
 
-	.mw-kartographer-maplink:not( .mw-kartographer-link ),
-		.mw-kartographer-map:not( .mw-kartographer-link ):not( .mw-kartographer-interactive ) { // stylelint bug
+	/* stylelint-disable-next-line indentation */
+	.mw-kartographer-maplink:not( .mw-kartographer-link ):not( .ve-ce-focusableNode ), /* stylelint-disable-next-line indentation */
+	.mw-kartographer-map:not( .mw-kartographer-link ):not( .mw-kartographer-interactive ) {
 		pointer-events: none;
 		cursor: default;
 	}

@@ -117,5 +117,7 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Zoom",
 	"visualeditor-mwmapsdialog-reset-map": "Reset map position",
 	"visualeditor-mwmapsdialog-size": "Size",
-	"visualeditor-mwmapsdialog-title": "Map"
+	"visualeditor-mwmapsdialog-title": "Map",
+	"visualeditor-mwmapscontextitem-nosupport": "This map contains dynamic features, and for now can only be edited in source mode.",
+	"visualeditor-mwmapscontextitem-title": "Map"
 }

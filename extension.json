@@ -352,6 +352,7 @@
 				"modules/ve-maps/ve.ce.MWInlineMapsNode.js",
 				"modules/ve-maps/ve.dm.MWMapsNode.js",
 				"modules/ve-maps/ve.ce.MWMapsNode.js",
+				"modules/ve-maps/ve.ui.MWMapsContextItem.js",
 				"modules/ve-maps/ve.ui.MWMapsDialog.js",
 				"modules/ve-maps/ve.ui.MWMapsTool.js"
 			],
@@ -359,6 +360,8 @@
 				"modules/ve-maps/ve.ui.MWMaps.css"
 			],
 			"messages": [
+				"visualeditor-mwmapscontextitem-nosupport",
+				"visualeditor-mwmapscontextitem-title",
 				"visualeditor-mwmapsdialog-align",
 				"visualeditor-mwmapsdialog-geojson",
 				"visualeditor-mwmapsdialog-position-button",
