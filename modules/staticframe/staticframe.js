@@ -72,8 +72,7 @@ module.exports = ( function ( $, mw, kartolink, router ) {
 			maps.pop().remove();
 		} );
 
-		// need to find .mw-kartographer-interactive:not(.mw-kartographer-map) for backward compatibility
-		$content.find( '.mw-kartographer-map, .mw-kartographer-interactive:not(.mw-kartographer-map)' ).each( function ( index ) {
+		$content.find( '.mw-kartographer-map' ).each( function ( index ) {
 
 			var container = this,
 				$container = $( container ),
