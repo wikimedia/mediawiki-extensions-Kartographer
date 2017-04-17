@@ -100,5 +100,7 @@
 	"visualeditor-mwmapsdialog-position-zoom": "מרחק מתצוגה",
 	"visualeditor-mwmapsdialog-reset-map": "אתחול מיקום מפה",
 	"visualeditor-mwmapsdialog-size": "גודל",
-	"visualeditor-mwmapsdialog-title": "מפה"
+	"visualeditor-mwmapsdialog-title": "מפה",
+	"visualeditor-mwmapscontextitem-nosupport": "המפה הזאת מכילה מאפיינים דינמיים ואפשר לערוך אותה רק במצב קוד מקור.",
+	"visualeditor-mwmapscontextitem-title": "מפה"
 }

@@ -62,5 +62,6 @@
 	"kartographer-fullscreen-text": "全螢幕顯示",
 	"visualeditor-mwmapsdialog-reset-map": "重設地圖位置",
 	"visualeditor-mwmapsdialog-size": "大小",
-	"visualeditor-mwmapsdialog-title": "地圖"
+	"visualeditor-mwmapsdialog-title": "地圖",
+	"visualeditor-mwmapscontextitem-title": "地圖"
 }

@@ -99,5 +99,7 @@
 	"visualeditor-mwmapsdialog-position-zoom": "缩放",
 	"visualeditor-mwmapsdialog-reset-map": "重置地图位置",
 	"visualeditor-mwmapsdialog-size": "大小",
-	"visualeditor-mwmapsdialog-title": "地图"
+	"visualeditor-mwmapsdialog-title": "地图",
+	"visualeditor-mwmapscontextitem-nosupport": "此地图包含动态功能，目前只可以在源代码中编辑。",
+	"visualeditor-mwmapscontextitem-title": "地图"
 }

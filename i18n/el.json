@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Geraki"
+			"Geraki",
+			"Thodoris"
 		]
 	},
 	"kartographer-attribution": "Χάρτες Wikimedia | Δεδομένα χάρτη © [https://www.openstreetmap.org/copyright συνεισφέροντες OpenStreetMap]",
@@ -74,5 +75,7 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Εστίαση",
 	"visualeditor-mwmapsdialog-reset-map": "Επαναφορά θέσης χάρτη",
 	"visualeditor-mwmapsdialog-size": "Μέγεθος",
-	"visualeditor-mwmapsdialog-title": "Χάρτης"
+	"visualeditor-mwmapsdialog-title": "Χάρτης",
+	"visualeditor-mwmapscontextitem-nosupport": "Αυτός ο χάρτης περιέχει δυναμικά χαρακτηριστικά, και τώρα μπορούν να επεξεργαστούν μόνο στη πηγή λειτουργίας.",
+	"visualeditor-mwmapscontextitem-title": "Χάρτης"
 }

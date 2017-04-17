@@ -7,7 +7,10 @@
 		]
 	},
 	"kartographer-broken-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Arquivos|#default=Páginas}} com mapas inválidos",
+	"kartographer-error-title": "O título \"$1\" não é uma página de dados cartográficos válida",
 	"kartographer-tracking-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Arquivos|#default=Páginas}} com mapas",
+	"kartographer-specialmap-invalid-coordinates": "Coordenadas inválidas fornecidas",
+	"kartographer-linktype-aerial": "Aéreo",
 	"kartographer-linktype-map": "Mapa",
 	"kartographer-linktype-other": "Outro",
 	"kartographer-linktype-satellite": "Satélite",

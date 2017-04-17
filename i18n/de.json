@@ -109,5 +109,7 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Vergrößerung",
 	"visualeditor-mwmapsdialog-reset-map": "Kartenposition zurücksetzen",
 	"visualeditor-mwmapsdialog-size": "Größe",
-	"visualeditor-mwmapsdialog-title": "Karte"
+	"visualeditor-mwmapsdialog-title": "Karte",
+	"visualeditor-mwmapscontextitem-nosupport": "Diese Karte enthält dynamische Funktionen und kann derzeit nur im Quelltextmodus bearbeitet werden.",
+	"visualeditor-mwmapscontextitem-title": "Karte"
 }

@@ -8,5 +8,6 @@
 	"kartographer-broken-category": "Mga pahina ng mga sirang (hindi nadugtungang) mapa",
 	"kartographer-desc": "Payagang maragdagan ang mga mapa sa mga pahinang wiki",
 	"kartographer-error-bad_data": "Hindi wasto ang nilalamang JSON",
-	"kartographer-tracking-category-desc": "Kasama ng pahinang ito ang mapa"
+	"kartographer-tracking-category-desc": "Kasama ng pahinang ito ang mapa",
+	"visualeditor-mwmapscontextitem-title": "Ang Mapa"
 }
