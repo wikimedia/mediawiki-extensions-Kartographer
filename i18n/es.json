@@ -95,5 +95,7 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Ampliación",
 	"visualeditor-mwmapsdialog-reset-map": "Restablecer la posición en el mapa",
 	"visualeditor-mwmapsdialog-size": "Tamaño",
-	"visualeditor-mwmapsdialog-title": "Mapa"
+	"visualeditor-mwmapsdialog-title": "Mapa",
+	"visualeditor-mwmapscontextitem-nosupport": "Este mapa contiene funcionalidades dinámicas y, por ahora, solo puede editarse desde el código fuente.",
+	"visualeditor-mwmapscontextitem-title": "Mapa"
 }

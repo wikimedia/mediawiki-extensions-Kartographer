@@ -84,5 +84,6 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Zoom",
 	"visualeditor-mwmapsdialog-reset-map": "Resetta la posizione della mappa",
 	"visualeditor-mwmapsdialog-size": "Dimensione",
-	"visualeditor-mwmapsdialog-title": "Mappa"
+	"visualeditor-mwmapsdialog-title": "Mappa",
+	"visualeditor-mwmapscontextitem-title": "Mappa"
 }

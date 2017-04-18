@@ -59,5 +59,6 @@
 	"visualeditor-mwmapsdialog-position-zoom": "확대/축소",
 	"visualeditor-mwmapsdialog-reset-map": "map 위치 초기화",
 	"visualeditor-mwmapsdialog-size": "크기",
-	"visualeditor-mwmapsdialog-title": "지도"
+	"visualeditor-mwmapsdialog-title": "지도",
+	"visualeditor-mwmapscontextitem-title": "지도"
 }

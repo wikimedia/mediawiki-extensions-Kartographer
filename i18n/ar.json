@@ -109,5 +109,7 @@
 	"visualeditor-mwmapsdialog-position-zoom": "تكبير",
 	"visualeditor-mwmapsdialog-reset-map": "أعد تعيين موضع الخريطة",
 	"visualeditor-mwmapsdialog-size": "الحجم",
-	"visualeditor-mwmapsdialog-title": "خريطة"
+	"visualeditor-mwmapsdialog-title": "خريطة",
+	"visualeditor-mwmapscontextitem-nosupport": "هذه الخريطة تحتوي على خصائص ديناميكية، وحاليا يمكن تعديلها فقط باستخدام نمط المصدر.",
+	"visualeditor-mwmapscontextitem-title": "خريطة"
 }

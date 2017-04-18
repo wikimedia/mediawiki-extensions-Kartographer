@@ -19,7 +19,7 @@
 	"kartographer-broken-category": "Pampanid nga agraman kadagiti nadadael a mapa",
 	"kartographer-broken-category-desc": "Mangiraman ti panid iti maysa nga imbalido a panagusar iti mapa",
 	"kartographer-desc": "Mangipalubos a mainayon dagiti mapa kadagiti panid ti wiki",
-	"kartographer-error-context-multi": "&lt;$1&gt; probproblema:\n$2",
+	"kartographer-error-context-multi": "Dagiti problema ti &lt;$1&gt;:\n$2",
 	"kartographer-error-json": "Saan a mawaswas ti JSON: $1",
 	"kartographer-error-missing-attr": "Awan ti gupit ti \"$1\"",
 	"kartographer-error-bad_attr": "Ti gupit ti \"$1\" ket addaan iti maysa nga imbalido a pateg",
@@ -89,5 +89,7 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Padakkelen",
 	"visualeditor-mwmapsdialog-reset-map": "Isaad manen ti puesto ti mapa",
 	"visualeditor-mwmapsdialog-size": "Kadakkel",
-	"visualeditor-mwmapsdialog-title": "Mapa"
+	"visualeditor-mwmapsdialog-title": "Mapa",
+	"visualeditor-mwmapscontextitem-nosupport": "Daytoy a mapa ket aglaon kadagiti langa a dinamiko, ken mabalin laeng ita a maurnos iti moda a taudan.",
+	"visualeditor-mwmapscontextitem-title": "Mapa"
 }

@@ -112,5 +112,7 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Agrandissement",
 	"visualeditor-mwmapsdialog-reset-map": "Réinitialiser la position de la carte",
 	"visualeditor-mwmapsdialog-size": "Taille",
-	"visualeditor-mwmapsdialog-title": "Carte"
+	"visualeditor-mwmapsdialog-title": "Carte",
+	"visualeditor-mwmapscontextitem-nosupport": "Cette carte contient des fonctionnalités dynamiques, et pour le moment, elle ne peut être modifiée qu’en mode source.",
+	"visualeditor-mwmapscontextitem-title": "Carte"
 }
