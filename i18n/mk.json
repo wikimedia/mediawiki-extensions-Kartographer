@@ -103,5 +103,7 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Размер",
 	"visualeditor-mwmapsdialog-reset-map": "Одново положба",
 	"visualeditor-mwmapsdialog-size": "Големина",
-	"visualeditor-mwmapsdialog-title": "Карта"
+	"visualeditor-mwmapsdialog-title": "Карта",
+	"visualeditor-mwmapscontextitem-nosupport": "Картава содржи динамички функции, и засега може да се уредува само во изворен режим.",
+	"visualeditor-mwmapscontextitem-title": "Карта"
 }
