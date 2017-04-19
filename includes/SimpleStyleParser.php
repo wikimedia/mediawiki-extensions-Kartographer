@@ -55,7 +55,7 @@ class SimpleStyleParser {
 		if ( $input !== '' && $input !== null ) {
 			$status = FormatJson::parse( $input, FormatJson::TRY_FIXING | FormatJson::STRIP_COMMENTS );
 			if ( $status->isOK() ) {
-				$status = $this->parseObject( $status->getValue() );
+				$status = $this->parseObject( $status->value );
 			} else {
 				$status = Status::newFatal( 'kartographer-error-json', $status->getMessage() );
 			}
@@ -65,21 +65,31 @@ class SimpleStyleParser {
 	}
 
 	/**
-	 * Validate parsed GeoJSON data object
+	 * Validate and sanitize a parsed GeoJSON data object
 	 *
 	 * @param array|object $data
 	 * @return Status
 	 */
-	public function parseObject( $data ) {
+	public function parseObject( &$data ) {
 		if ( !is_array( $data ) ) {
 			$data = [ $data ];
 		}
 		$status = $this->validateContent( $data );
 		if ( $status->isOK() ) {
-			$this->sanitize( $data );
-			$status = $this->normalize( $data );
-			return $status;
+			$status = $this->normalizeAndSanitize( $data );
 		}
+		return $status;
+	}
+
+	/**
+	 * Normalize an object
+	 *
+	 * @param stdClass[] $data
+	 * @return Status
+	 */
+	public function normalizeAndSanitize( &$data ) {
+		$status = $this->normalize( $data );
+		$this->sanitize( $data );
 		return $status;
 	}
 
@@ -263,20 +273,47 @@ class SimpleStyleParser {
 
 	/**
 	 * Sanitizes properties
+	 *
+	 * HACK: this function supports JsonConfig-style localization that doesn't pass validation
+	 *
 	 * @param object $properties
 	 */
 	private function sanitizeProperties( &$properties ) {
 		foreach ( self::$parsedProps as $prop ) {
 			if ( property_exists( $properties, $prop ) ) {
-				if ( !is_string( $properties->$prop ) ) {
-					unset( $properties->$prop ); // Dunno what the hell it is, ditch
+				$property = &$properties->$prop;
+
+				if ( is_string( $property ) ) {
+					$property = $this->parseText( $property );
+				} elseif ( is_object( $property ) ) {
+					foreach ( $property as $language => &$text ) {
+						if ( !is_string( $text ) ) {
+							unset( $property->$language );
+						} else {
+							$text = $this->parseText( $text );
+						}
+					}
+
+					// Delete empty localizations
+					if ( !count( get_object_vars( $property ) ) ) {
+						unset( $properties->$prop );
+					}
 				} else {
-					$properties->$prop = trim( Parser::stripOuterParagraph(
-						$this->parser->recursiveTagParseFully( $properties->$prop, $this->frame )
-					) );
+					unset( $properties->$prop ); // Dunno what the hell it is, ditch
 				}
 			}
 		}
+	}
+
+	/**
+	 * Parses property wikitext into HTML
+	 *
+	 * @param string $text
+	 * @return string
+	 */
+	private function parseText( $text ) {
+		$text = $this->parser->recursiveTagParseFully( $text, $this->frame );
+		return trim( Parser::stripOuterParagraph( $text ) );
 	}
 
 	private static function loadSchema() {
