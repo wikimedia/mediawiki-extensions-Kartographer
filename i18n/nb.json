@@ -91,5 +91,7 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Zoom",
 	"visualeditor-mwmapsdialog-reset-map": "Tilbakestill kartposisjonen",
 	"visualeditor-mwmapsdialog-size": "Størrelse",
-	"visualeditor-mwmapsdialog-title": "Kart"
+	"visualeditor-mwmapsdialog-title": "Kart",
+	"visualeditor-mwmapscontextitem-nosupport": "Dette kartet inneholder dynamiske funksjoner, og kan foreløpig ikke redigeres i kildemodus.",
+	"visualeditor-mwmapscontextitem-title": "Kart"
 }

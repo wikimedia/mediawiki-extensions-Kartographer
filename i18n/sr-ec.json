@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Сербијана",
-			"Milicevic01"
+			"Milicevic01",
+			"Obsuser"
 		]
 	},
 	"kartographer-broken-category": "Странице са поквареним мапама",
@@ -17,5 +18,7 @@
 	"visualeditor-mwmapsdialog-position-lon": "Дужина",
 	"visualeditor-mwmapsdialog-position-zoom": "Увећај",
 	"visualeditor-mwmapsdialog-size": "Величина",
-	"visualeditor-mwmapsdialog-title": "Карта"
+	"visualeditor-mwmapsdialog-title": "Карта",
+	"visualeditor-mwmapscontextitem-nosupport": "Ова мапа садржи динамичке функције и за сада се може уређивати само у изворничком моду.",
+	"visualeditor-mwmapscontextitem-title": "Мапа"
 }
