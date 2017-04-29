@@ -60,5 +60,6 @@
 	"visualeditor-mwmapsdialog-reset-map": "map 위치 초기화",
 	"visualeditor-mwmapsdialog-size": "크기",
 	"visualeditor-mwmapsdialog-title": "지도",
+	"visualeditor-mwmapscontextitem-nosupport": "이 지도는 동적 기능이 포함되어 있으며 지금은 원본 모드에서만 편집할 수 있습니다.",
 	"visualeditor-mwmapscontextitem-title": "지도"
 }
