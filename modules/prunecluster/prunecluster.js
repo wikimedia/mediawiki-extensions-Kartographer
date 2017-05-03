@@ -1,4 +1,4 @@
-/* globals module, PruneCluster, PruneClusterForLeaflet */
+/* globals PruneCluster, PruneClusterForLeaflet */
 /**
  * Exports the PruneCluster library.
  *

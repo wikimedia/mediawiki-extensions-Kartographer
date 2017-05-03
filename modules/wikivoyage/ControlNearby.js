@@ -1,4 +1,4 @@
-/* globals module, require */
+/* globals require */
 /**
  * Control to switch to displaying nearby articles.
  *

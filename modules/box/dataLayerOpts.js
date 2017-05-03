@@ -1,4 +1,3 @@
-/* globals module */
 /**
  * # Options passed to Mapbox when adding a feature layer.
  *

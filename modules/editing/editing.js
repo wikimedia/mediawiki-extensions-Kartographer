@@ -1,4 +1,3 @@
-/* globals module */
 /**
  * Module containing useful methods when editing a map.
  *

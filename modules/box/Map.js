@@ -1,4 +1,3 @@
-/* globals module */
 /**
  * # Kartographer Map class.
  *

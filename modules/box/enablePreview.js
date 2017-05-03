@@ -1,4 +1,3 @@
-/* globals module */
 /**
  * # Preview mode
  *

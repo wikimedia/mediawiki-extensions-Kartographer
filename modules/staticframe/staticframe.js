@@ -1,4 +1,4 @@
-/* globals module, require */
+/* globals require */
 /**
  * Static Frame module.
  *

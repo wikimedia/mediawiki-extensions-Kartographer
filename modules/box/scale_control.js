@@ -1,4 +1,3 @@
-/* globals module */
 /* eslint-disable no-underscore-dangle */
 /**
  * # Control to display the scale.
