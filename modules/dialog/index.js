@@ -75,8 +75,8 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 						return closing;
 					} );
 			} else if ( dialog.map !== map ) {
-				dialog.setup.call( dialog, { map: map } );
-				dialog.ready.call( dialog, { map: map } );
+				dialog.setup( { map: map } );
+				dialog.ready( { map: map } );
 			}
 		},
 
@@ -102,8 +102,8 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 						routerEnabled = true;
 					}
 
-					dialog.setup.call( dialog, { map: map } );
-					dialog.ready.call( dialog, { map: map } );
+					dialog.setup( { map: map } );
+					dialog.ready( { map: map } );
 
 					mapCb( map );
 				} );
