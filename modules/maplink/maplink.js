@@ -10,7 +10,7 @@
  * @class Kartographer.Link
  * @singleton
  */
-module.exports = ( function ( $, mw, router, kartolink, undefined ) {
+module.exports = ( function ( $, mw, router, kartolink ) {
 
 	/**
 	 * References the maplinks of the page.

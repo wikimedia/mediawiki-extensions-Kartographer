@@ -1,4 +1,4 @@
-/* globals module, require */
+/* globals module */
 /**
  * # Kartographer Map class.
  *
@@ -10,7 +10,7 @@
  * @class Kartographer.Box.MapClass
  * @extends L.Map
  */
-module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl, DataManager, topojson, window, undefined ) {
+module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl, DataManager ) {
 
 	var scale, urlFormat,
 		mapServer = mw.config.get( 'wgKartographerMapServer' ),
@@ -850,9 +850,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 	module.OpenFullScreenControl,
 	module.dataLayerOpts,
 	module.ScaleControl,
-	module.Data,
-	require( 'ext.kartographer.lib.topojson' ),
-	window
+	module.Data
 ) );
 
 module.map = ( function ( KartographerMap ) {

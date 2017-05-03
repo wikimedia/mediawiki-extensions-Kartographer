@@ -6,7 +6,7 @@
  * @class Kartographer.Wikivoyage.wikivoyage
  * @singleton
  */
-module.wikivoyage = ( function ( $, mw, undefined ) {
+module.wikivoyage = ( function ( $, mw ) {
 	var tileLayerDefs = {},
 		areExternalAllowed,
 		windowManager,
@@ -154,4 +154,4 @@ module.wikivoyage = ( function ( $, mw, undefined ) {
 		}
 	};
 
-}( jQuery, mediaWiki, module.WVMap ) );
+}( jQuery, mediaWiki ) );

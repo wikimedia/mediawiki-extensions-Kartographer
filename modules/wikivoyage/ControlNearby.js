@@ -10,7 +10,7 @@
  * @extends L.Control
  * @private
  */
-module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneClusterLib, undefined ) {
+module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneClusterLib ) {
 
 	var articlePath = mw.config.get( 'wgArticlePath' );
 
