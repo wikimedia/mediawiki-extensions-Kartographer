@@ -4,6 +4,8 @@
  *
  * Creates a map with layers, markers, and interactivity.
  *
+ * Avoid creating a local variable "Map" as this is a native function in ES6.
+ *
  * @alias KartographerMap
  * @class Kartographer.Box.MapClass
  * @extends L.Map
@@ -13,7 +15,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 	var scale, urlFormat,
 		mapServer = mw.config.get( 'wgKartographerMapServer' ),
 		worldLatLng = new L.LatLngBounds( [ -90, -180 ], [ 90, 180 ] ),
-		Map,
+		KartographerMap,
 		precisionPerZoom = [ 0, 0, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5 ],
 		inlineDataLayerKey = 'kartographer-inline-data-layer',
 		inlineDataLayerId = 0;
@@ -105,7 +107,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 		return layerBounds;
 	}
 
-	Map = L.Map.extend( {
+	KartographerMap = L.Map.extend( {
 		/**
 		 * @constructor
 		 * @param {Object} options **Configuration and options:**
@@ -497,7 +499,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 						);
 					} );
 				} else {
-					map = this.fullScreenMap = new Map( {
+					map = this.fullScreenMap = new KartographerMap( {
 						container: L.DomUtil.create( 'div', 'mw-kartographer-mapDialog-map' ),
 						center: position.center,
 						zoom: position.zoom,
@@ -842,7 +844,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 		}
 	} );
 
-	return Map;
+	return KartographerMap;
 }(
 	mediaWiki,
 	module.OpenFullScreenControl,
@@ -853,8 +855,8 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 	window
 ) );
 
-module.map = ( function ( Map ) {
+module.map = ( function ( KartographerMap ) {
 	return function ( options ) {
-		return new Map( options );
+		return new KartographerMap( options );
 	};
 }( module.Map ) );

@@ -8,7 +8,7 @@
 module.WVMap = ( function ( $, mw, wikivoyage, WVMapLayers, ControlNearby ) {
 
 	/* eslint-disable no-underscore-dangle */
-	var Map = function ( map ) {
+	var WVMap = function ( map ) {
 		this.map = map;
 	};
 
@@ -17,7 +17,7 @@ module.WVMap = ( function ( $, mw, wikivoyage, WVMapLayers, ControlNearby ) {
 	 *
 	 * @return {Kartographer.Wikivoyage.ControlNearby}
 	 */
-	Map.prototype.nearby = function () {
+	WVMap.prototype.nearby = function () {
 		var control = this._controlNearby;
 		if ( control ) {
 			return control;
@@ -40,7 +40,7 @@ module.WVMap = ( function ( $, mw, wikivoyage, WVMapLayers, ControlNearby ) {
 	 *
 	 * @return {Kartographer.Wikivoyage.WVMapLayers}
 	 */
-	Map.prototype.controlLayers = function () {
+	WVMap.prototype.controlLayers = function () {
 		this._controlLayers = this._controlLayers || new WVMapLayers( this.map );
 		return this._controlLayers;
 	};
@@ -48,11 +48,11 @@ module.WVMap = ( function ( $, mw, wikivoyage, WVMapLayers, ControlNearby ) {
 	/**
 	 * Adds the scale control to the map.
 	 */
-	Map.prototype.scale = function () {
+	WVMap.prototype.scale = function () {
 		mw.log( 'Map scale is now added by default on all maps. Please remove the call to `.scale()`.' );
 	};
 
-	return Map;
+	return WVMap;
 
 }(
 	jQuery,
