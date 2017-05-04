@@ -37,7 +37,7 @@ module.Data = ( function ( $, mw, DataManager ) {
 		mwApi: function ( data ) {
 			return ( new mw.Api() ).get( data );
 		},
-		mwHtmlElement: function() {
+		mwHtmlElement: function () {
 			return mw.html.element.apply( mw.html, arguments );
 		},
 		mwMsg: function () {
