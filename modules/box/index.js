@@ -1,4 +1,3 @@
-/* globals module */
 /**
  * **Resource Loader module: {@link Kartographer.Box ext.kartographer.box}**
  *

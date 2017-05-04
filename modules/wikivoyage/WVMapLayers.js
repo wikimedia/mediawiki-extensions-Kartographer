@@ -1,4 +1,3 @@
-/* globals module */
 /**
  * Module to add {@link Kartographer.Wikivoyage.ControlLayers} control to the
  * map and add the tile layers and overlays.

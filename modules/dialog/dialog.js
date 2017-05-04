@@ -1,4 +1,4 @@
-/* globals module, require */
+/* globals require */
 /**
  * Dialog for displaying maps in full screen mode.
  *

@@ -1,4 +1,3 @@
-/* globals module */
 /**
  * Sidebar class for displaying map details and other services.
  *

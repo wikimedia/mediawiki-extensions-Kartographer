@@ -1,4 +1,4 @@
-/* globals module, require */
+/* globals require */
 module.Data = ( function ( $, mw, DataManager ) {
 	return DataManager( {
 		createPromise: function ( callback ) {

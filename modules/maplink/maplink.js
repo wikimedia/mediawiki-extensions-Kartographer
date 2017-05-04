@@ -1,4 +1,4 @@
-/* globals module, require */
+/* globals require */
 /**
  * Link module.
  *
