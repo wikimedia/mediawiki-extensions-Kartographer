@@ -4,6 +4,10 @@
 			"Srdjan m"
 		]
 	},
+	"visualeditor-mwmapsdialog-position-button": "Trenutna pozicija",
+	"visualeditor-mwmapsdialog-position-lat": "Širina",
+	"visualeditor-mwmapsdialog-position-lon": "Dužina",
+	"visualeditor-mwmapsdialog-reset-map": "Resetiraj poziciju karte",
 	"visualeditor-mwmapsdialog-size": "Veličina",
 	"visualeditor-mwmapsdialog-title": "Karta"
 }

@@ -5,5 +5,11 @@
 		]
 	},
 	"visualeditor-mwmapsdialog-align": "Poravnanje",
-	"visualeditor-mwmapsdialog-size": "Veličina"
+	"visualeditor-mwmapsdialog-position-button": "Trenutačna pozicija",
+	"visualeditor-mwmapsdialog-position-lat": "Širina",
+	"visualeditor-mwmapsdialog-position-lon": "Dužina",
+	"visualeditor-mwmapsdialog-position-zoom": "Povećanje",
+	"visualeditor-mwmapsdialog-reset-map": "Ponovno postavi poziciju na zemljovidu",
+	"visualeditor-mwmapsdialog-size": "Veličina",
+	"visualeditor-mwmapsdialog-title": "Zemljovid"
 }

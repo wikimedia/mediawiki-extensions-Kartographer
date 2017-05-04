@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Fulup"
+			"Fulup",
+			"Y-M D"
 		]
 	},
-	"kartographer-fullscreen-collapse": "Kuzhat munudoù ar gartenn"
+	"kartographer-fullscreen-collapse": "Kuzhat munudoù ar gartenn",
+	"visualeditor-mwmapscontextitem-title": "Kartenn"
 }
