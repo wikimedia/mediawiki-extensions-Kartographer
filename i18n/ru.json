@@ -96,5 +96,6 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Масштаб",
 	"visualeditor-mwmapsdialog-reset-map": "Сбросить положение карты",
 	"visualeditor-mwmapsdialog-size": "Размер",
-	"visualeditor-mwmapsdialog-title": "Карта"
+	"visualeditor-mwmapsdialog-title": "Карта",
+	"visualeditor-mwmapscontextitem-title": "Карта"
 }
