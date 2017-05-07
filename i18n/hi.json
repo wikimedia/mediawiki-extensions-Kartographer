@@ -14,9 +14,12 @@
 	"kartographer-linktype-map": "मानचित्र",
 	"kartographer-linktype-other": "अन्य",
 	"kartographer-linktype-satellite": "उपग्रह",
+	"kartographer-sidebar-latitude": "अक्षांश",
+	"kartographer-sidebar-longitude": "देशांतर",
 	"kartographer-sidebar-mapdetails": "नक्शे की जानकारी",
 	"kartographer-sidebar-service": "सेवा",
 	"kartographer-sidebar-togglebutton": "अन्य जानकारी",
+	"leafletdraw-draw-handlers-circle-radius": "त्रिज्या",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "वृत बनाने हेतु क्लिक करें",
 	"leafletdraw-draw-toolbar-actions-text": "रद्द करें",
 	"leafletdraw-draw-toolbar-actions-title": "चित्रकारी रद्द करें",
@@ -33,7 +36,10 @@
 	"mapbox-control-zoomin-title": "आकार बढ़ाएँ",
 	"mapbox-control-zoomout-title": "आकार घटाएँ",
 	"kartographer-fullscreen-close": "बंद करें",
+	"visualeditor-mwmapsdialog-position-lat": "अक्षांश",
+	"visualeditor-mwmapsdialog-position-lon": "देशांतर",
 	"visualeditor-mwmapsdialog-position-zoom": "आकार",
 	"visualeditor-mwmapsdialog-size": "आकार",
-	"visualeditor-mwmapsdialog-title": "मानचित्र"
+	"visualeditor-mwmapsdialog-title": "मानचित्र",
+	"visualeditor-mwmapscontextitem-title": "मानचित्र"
 }
