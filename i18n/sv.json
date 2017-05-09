@@ -74,5 +74,6 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Zooma",
 	"visualeditor-mwmapsdialog-reset-map": "Återställ kartposition",
 	"visualeditor-mwmapsdialog-size": "Storlek",
-	"visualeditor-mwmapsdialog-title": "Karta"
+	"visualeditor-mwmapsdialog-title": "Karta",
+	"visualeditor-mwmapscontextitem-title": "Karta"
 }
