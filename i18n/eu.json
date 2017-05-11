@@ -5,8 +5,11 @@
 			"Subi"
 		]
 	},
+	"kartographer-linktype-aerial": "Airetikoa",
 	"kartographer-linktype-map": "Mapa",
+	"kartographer-linktype-other": "Bestelakoa",
 	"kartographer-linktype-satellite": "Satelitea",
+	"kartographer-linktype-terrain": "Lurrekoa",
 	"kartographer-linktype-topo": "Topologikoa",
 	"kartographer-sidebar-coordinates": "Koordenatuak",
 	"kartographer-sidebar-filterdropdown": "Hautatu mapa-mota",
