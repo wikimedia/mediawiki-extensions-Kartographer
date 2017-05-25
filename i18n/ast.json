@@ -90,5 +90,7 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Zoom",
 	"visualeditor-mwmapsdialog-reset-map": "Reestablecer la posición del mapa",
 	"visualeditor-mwmapsdialog-size": "Tamañu",
-	"visualeditor-mwmapsdialog-title": "Mapa"
+	"visualeditor-mwmapsdialog-title": "Mapa",
+	"visualeditor-mwmapscontextitem-nosupport": "Este mapa contien carauterístiques dinámiques y, de momentu, solo puede editase nel mou de códigu fonte.",
+	"visualeditor-mwmapscontextitem-title": "Mapa"
 }
