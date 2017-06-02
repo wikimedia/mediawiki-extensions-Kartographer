@@ -74,7 +74,8 @@ class MapFrame extends TagHandler {
 				$showGroups = $this->showGroups;
 				if ( $showGroups ) {
 					array_unshift( $showGroups, $this->parser->getTitle()->getPrefixedDBkey() );
-					$dataParam = '?data=' . implode( '|', array_map( 'rawurlencode', $showGroups ) );
+					$dataParam = '?data=' .
+						implode( '|', array_map( 'rawurlencode', $showGroups ) );
 				}
 				$imgAttrs = array(
 					'src' => $statParams . '.jpeg' . $dataParam,
@@ -161,7 +162,8 @@ class MapFrame extends TagHandler {
 			$containerClass .= ' mw-kartographer-full';
 		}
 
-		$bgUrl = "{$wgKartographerMapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat},{$staticLon},{$staticWidth}x{$this->height}.png";
+		$bgUrl = "{$wgKartographerMapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat}," .
+			"{$staticLon},{$staticWidth}x{$this->height}.png";
 		if ( $this->showGroups ) {
 			$title = urlencode( $this->parser->getTitle()->getPrefixedText() );
 			$groupList = urlencode( implode( ',', $this->showGroups ) );

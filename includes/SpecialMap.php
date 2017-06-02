@@ -50,7 +50,9 @@ class SpecialMap extends SpecialPage {
 						. $markerHtml
 						. $attributions
 					. Html::closeElement( 'div' )
-					. Html::openElement( 'div', [ 'id' => 'mw-specialMap-caption', 'class' => 'thumbcaption' ] )
+					. Html::openElement( 'div',
+						[ 'id' => 'mw-specialMap-caption', 'class' => 'thumbcaption' ]
+					)
 						. Html::element( 'span', [ 'id' => 'mw-specialMap-icon' ] )
 						. Html::element( 'span', [ 'id' => 'mw-specialMap-coords' ], $coordText )
 					. Html::closeElement( 'div' )
@@ -66,7 +68,9 @@ class SpecialMap extends SpecialPage {
 	 * @return array|bool
 	 */
 	public static function parseSubpage( $par ) {
-		if ( !preg_match( '#^(?<zoom>\d+)/(?<lat>-?\d+(\.\d+)?)/(?<lon>-?\d+(\.\d+)?)$#', $par, $matches ) ) {
+		if ( !preg_match(
+			'#^(?<zoom>\d+)/(?<lat>-?\d+(\.\d+)?)/(?<lon>-?\d+(\.\d+)?)$#', $par, $matches )
+		) {
 			return false;
 		}
 

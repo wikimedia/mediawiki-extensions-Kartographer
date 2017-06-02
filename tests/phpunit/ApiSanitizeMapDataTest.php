@@ -58,6 +58,7 @@ class ApiSanitizeMapDataTest extends MediaWikiTestCase {
 	}
 
 	public function provideTest() {
+		// @codingStandardsIgnoreStart
 		return [
 			[ 'Foo', '{', false, '<p>Couldn\'t parse JSON: Syntax error
 </p>' ],
@@ -86,6 +87,7 @@ class ApiSanitizeMapDataTest extends MediaWikiTestCase {
 		}
 	}]' ],
 		];
+		// @codingStandardsIgnoreEnd
 	}
 
 	public function provideErrors() {

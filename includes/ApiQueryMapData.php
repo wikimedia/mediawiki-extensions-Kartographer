@@ -92,7 +92,8 @@ class ApiQueryMapData extends ApiQueryBase {
 	public function getExamplesMessages() {
 		return [
 			'action=query&prop=mapdata&titles=Metallica' => 'apihelp-query+mapdata-example-1',
-			'action=query&prop=mapdata&titles=Metallica&mpdgroups=group1|group2' => 'apihelp-query+mapdata-example-2',
+			'action=query&prop=mapdata&titles=Metallica&mpdgroups=group1|group2'
+				=> 'apihelp-query+mapdata-example-2',
 		];
 	}
 
