@@ -112,7 +112,7 @@ class MapFrame extends TagHandler {
 						$width = '300px'; // @todo: deprecate old syntax completely
 						$staticWidth = 300;
 					}
-				} else if ( $width === 'full' ) {
+				} elseif ( $width === 'full' ) {
 					$width = '100%';
 					$fullWidth = true;
 					$staticWidth = 800;

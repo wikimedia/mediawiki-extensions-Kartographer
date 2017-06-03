@@ -25,7 +25,7 @@ class Transformation {
 		$x = $point[0];
 		$y = $point[1];
 
-		$x = $scale * ( self::A * $x + 0.5);
+		$x = $scale * ( self::A * $x + 0.5 );
 		$y = $scale * ( self::C * $y + 0.5 );
 
 		return [ $x, $y ];

@@ -2,7 +2,6 @@
 
 namespace Kartographer;
 
-
 use ApiBase;
 use ApiQuery;
 use ApiQueryBase;
