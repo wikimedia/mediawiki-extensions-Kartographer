@@ -174,11 +174,11 @@ class KartographerTest extends MediaWikiTestCase {
 
 		// @todo @fixme These are incorrect, but match existing code
 		// When the code is fixed, they should be changed
-		$frameMod = [ 'ext.kartographer.frame' => ''];
-		$frameStyle = [ 'ext.kartographer.style' => ''];
+		$frameMod = [ 'ext.kartographer.frame' => '' ];
+		$frameStyle = [ 'ext.kartographer.style' => '' ];
 
-		$linkMod = [ 'ext.kartographer.link' => ''];
-		$linkStyle = [ 'ext.kartographer.style' => ''];
+		$linkMod = [ 'ext.kartographer.link' => '' ];
+		$linkStyle = [ 'ext.kartographer.style' => '' ];
 
 		return [
 			[ '', [], [] ],

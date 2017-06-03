@@ -46,15 +46,15 @@ class ValidationTest extends MediaWikiTestCase {
 	}
 
 	public function provideTestCases() {
-		$result = array();
+		$result = [];
 
 		foreach ( glob( "{$this->basePath}/good-schemas/*.json" ) as $file ) {
 			$file = substr( $file, strlen( $this->basePath ) + 1 );
-			$result[] = array( $file, false );
+			$result[] = [ $file, false ];
 		}
 		foreach ( glob( "{$this->basePath}/bad-schemas/*.json" ) as $file ) {
 			$file = substr( $file, strlen( $this->basePath ) + 1 );
-			$result[] = array( $file, true );
+			$result[] = [ $file, true ];
 		}
 
 		return $result;

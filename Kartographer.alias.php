@@ -1,13 +1,12 @@
 <?php
 /**
- * Aliases for special pages for extension Echo
+ * Aliases for special pages for extension Kartographer
  *
  * @file
  * @ingroup Extensions
  */
-// @codingStandardsIgnoreFile
 
-$specialPageAliases = array();
+$specialPageAliases = [];
 
 /** English (English) */
 $specialPageAliases['en'] = [
