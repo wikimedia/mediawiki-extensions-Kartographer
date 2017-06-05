@@ -18,6 +18,11 @@ module.exports = ( function ( $, mw ) {
 			/**
 			 * @property {Object}
 			 */
+			this.initialMapPosition = this.dialog.map.getInitialMapPosition();
+
+			/**
+			 * @property {Object}
+			 */
 			this.metadata = mw.config.get( 'wgKartographerExternalLinks' );
 			this.parseExternalLinks();
 		},
@@ -31,10 +36,10 @@ module.exports = ( function ( $, mw ) {
 	 * @return {string}
 	 */
 	SideBar.prototype.formatLink = function ( url ) {
-		var scale = Math.round( Math.pow( 2, Math.min( 3, Math.max( 0, 18 - this.mapPosition.zoom ) ) ) * 1000 );
-		url = url.replace( new RegExp( '{latitude}', 'g' ), this.mapPosition.center.lat );
-		url = url.replace( new RegExp( '{longitude}', 'g' ), this.mapPosition.center.lng );
-		url = url.replace( new RegExp( '{zoom}', 'g' ), this.mapPosition.zoom );
+		var scale = Math.round( Math.pow( 2, Math.min( 3, Math.max( 0, 18 - this.initialMapPosition.zoom ) ) ) * 1000 );
+		url = url.replace( new RegExp( '{latitude}', 'g' ), this.initialMapPosition.center.lat );
+		url = url.replace( new RegExp( '{longitude}', 'g' ), this.initialMapPosition.center.lng );
+		url = url.replace( new RegExp( '{zoom}', 'g' ), this.initialMapPosition.zoom );
 		url = url.replace( new RegExp( '{title}', 'g' ), mw.config.get( 'wgTitle' ) );
 		url = url.replace( new RegExp( '{language}', 'g' ), mw.config.get( 'wgContentLanguage' ) || mw.config.get( 'wgUserLanguage' ) );
 		url = url.replace( new RegExp( '{scale}', 'g' ), scale );
@@ -139,7 +144,6 @@ module.exports = ( function ( $, mw ) {
 		this.mapPosition = this.dialog.map.getMapPosition( { scaled: true } );
 
 		this.renderMapDetails();
-		this.renderExternalServices();
 	}, 350 );
 
 	/**
@@ -230,9 +234,9 @@ module.exports = ( function ( $, mw ) {
 				LBL_EXTERNAL_SERVICES: mw.msg( 'kartographer-sidebar-externalservices' ),
 				LBL_SERVICE: mw.msg( 'kartographer-sidebar-service' ),
 				services: featured.concat( regular ),
-				latitude: sidebar.mapPosition.center.lat,
-				longitude: sidebar.mapPosition.center.lng,
-				zoom: sidebar.mapPosition.zoom
+				latitude: sidebar.initialMapPosition.center.lat,
+				longitude: sidebar.initialMapPosition.center.lng,
+				zoom: sidebar.initialMapPosition.zoom
 			}
 		);
 
