@@ -222,6 +222,7 @@
 		},
 		"ext.kartographer.dialog": {
 			"dependencies": [
+				"oojs-ui.styles.icons-content",
 				"oojs-ui-windows",
 				"mediawiki.router"
 			],
@@ -241,6 +242,8 @@
 		},
 		"ext.kartographer.dialog.sidebar": {
 			"dependencies": [
+				"oojs-ui.styles.icons-interactions",
+				"oojs-ui.styles.icons-movement",
 				"ext.kartographer.extlinks"
 			],
 			"scripts": [
@@ -374,6 +377,7 @@
 			],
 			"dependencies": [
 				"jquery.throttle-debounce",
+				"oojs-ui.styles.icons-content",
 				"oojs-ui.styles.icons-location",
 				"ext.visualEditor.mwcore",
 				"ext.kartographer"
