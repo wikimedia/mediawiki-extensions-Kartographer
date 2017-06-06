@@ -46,12 +46,21 @@ class KartographerTest extends MediaWikiTestCase {
 
 		if ( $expected === false ) {
 			$this->assertTrue( $state->hasBrokenTags(), $message . ' Parse is expected to fail' );
-			$this->assertTrue( $this->hasTrackingCategory( $output, 'kartographer-broken-category' ), $message . ' Category for failed maps should be added' );
+			$this->assertTrue(
+				$this->hasTrackingCategory( $output, 'kartographer-broken-category' ),
+				$message . ' Category for failed maps should be added'
+			);
 			return;
 		}
 		$this->assertFalse( $state->hasBrokenTags(), $message . ' Parse is expected to succeed' );
-		$this->assertTrue( $state->hasValidTags(), $message . ' State is expected to have valid tags' );
-		$this->assertFalse( $this->hasTrackingCategory( $output, 'kartographer-broken-category' ), $message . ' No tracking category' );
+		$this->assertTrue(
+			$state->hasValidTags(),
+			$message . ' State is expected to have valid tags'
+		);
+		$this->assertFalse(
+			$this->hasTrackingCategory( $output, 'kartographer-broken-category' ),
+			$message . ' No tracking category'
+		);
 
 		$expected = json_encode( json_decode( $expected ) ); // Normalize JSON
 
@@ -59,6 +68,7 @@ class KartographerTest extends MediaWikiTestCase {
 	}
 
 	public function provideTagData() {
+		// @codingStandardsIgnoreStart
 		$validJson = '{
     "type": "Feature",
     "geometry": {
@@ -137,6 +147,7 @@ class KartographerTest extends MediaWikiTestCase {
 			[ $xssJsonSanitized, "<maplink zoom=13 longitude=10 latitude=20>$xssJson</maplink>", 'T134719: XSS via __proto__' ],
 			[ '[]', '<mapframe show="foo, bar, baz" zoom=12 latitude=10 longitude=20 width=100 height=100 />', 'T148971 - weird LiveData', true ],
 		];
+		// @codingStandardsIgnoreEnd
 	}
 
 	/**
@@ -148,8 +159,12 @@ class KartographerTest extends MediaWikiTestCase {
 	public function testResourceModules( $input, array $expectedModules, array $expectedStyles ) {
 		$output = $this->parse( $input );
 
-		$this->assertArrayEquals( array_keys( $expectedModules ), array_unique( $output->getModules() ) );
-		$this->assertArrayEquals( array_keys( $expectedStyles ), array_unique( $output->getModuleStyles() ) );
+		$this->assertArrayEquals(
+			array_keys( $expectedModules ), array_unique( $output->getModules() )
+		);
+		$this->assertArrayEquals(
+			array_keys( $expectedStyles ), array_unique( $output->getModuleStyles() )
+		);
 		$this->assertArrayEquals( [], array_unique( $output->getModuleScripts() ) );
 	}
 
@@ -180,7 +195,9 @@ class KartographerTest extends MediaWikiTestCase {
 	 * @param bool $preview
 	 * @param bool $sectionPreview
 	 */
-	public function testLiveData( $text, array $expected, $preview, $sectionPreview, $wikivoyageMode ) {
+	public function testLiveData(
+		$text, array $expected, $preview, $sectionPreview, $wikivoyageMode
+	) {
 		$this->setMwGlobals( 'wgKartographerWikivoyageMode', $wikivoyageMode );
 		$output = $this->parse( $text,
 			function( ParserOptions $options ) use ( $preview, $sectionPreview ) {
@@ -194,6 +211,7 @@ class KartographerTest extends MediaWikiTestCase {
 	}
 
 	public function provideLiveData() {
+		// @codingStandardsIgnoreStart
 		$frameAndLink =
 			<<<WIKITEXT
 			<maplink latitude=10 longitude=20 zoom=13>
@@ -224,6 +242,7 @@ WIKITEXT;
 			[ $frameAndLink, [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2', '_2251fa240a210d2861cc9f44c48d7e3ba116ff2f' ], true, true, false ],
 			[ $wikivoyageMaps, [ 'foo', 'bar', 'baz' ], false, false, true ],
 		];
+		// @codingStandardsIgnoreEnd
 	}
 
 	/**

@@ -29,7 +29,9 @@ class SimpleStyleParserTest extends MediaWikiTestCase  {
 
 		$status = $ssp->parse( $input );
 
-		$this->assertTrue( $status->isOK(), "Parse is expected to succeed, but encountered '{$status->getMessage()->text()}'" );
+		$this->assertTrue( $status->isOK(),
+			"Parse is expected to succeed, but encountered '{$status->getMessage()->text()}'"
+		);
 		$this->assertEquals( $expected, $status->getValue(), $message );
 	}
 
