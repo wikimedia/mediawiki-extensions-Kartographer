@@ -145,7 +145,6 @@ class SimpleStyleParser {
 		return $firstMarker;
 	}
 
-
 	/**
 	 * @param mixed $json
 	 * @return Status

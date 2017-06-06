@@ -106,7 +106,7 @@ abstract class TagHandler {
 	 * @param PPFrame $frame
 	 * @return string
 	 */
-	private final function handle( $input, array $args, Parser $parser, PPFrame $frame ) {
+	final private function handle( $input, array $args, Parser $parser, PPFrame $frame ) {
 		$this->parser = $parser;
 		$this->frame = $frame;
 		$output = $parser->getOutput();
@@ -169,7 +169,7 @@ abstract class TagHandler {
 	 * When overridden in a descendant class, returns tag HTML
 	 * @return string
 	 */
-	protected abstract function render();
+	abstract protected function render();
 
 	private function parseGroups() {
 		global $wgKartographerWikivoyageMode;
@@ -243,7 +243,6 @@ abstract class TagHandler {
 
 		return $value;
 	}
-
 
 	protected function saveData() {
 		$this->state->addRequestedGroups( $this->showGroups );
@@ -369,16 +368,21 @@ abstract class TagHandler {
 		$message = count( $errors ) > 1 ? 'kartographer-error-context-multi'
 			: 'kartographer-error-context';
 		// Status sucks, redoing a bunch of its code here
-		$errorText = implode( "\n* ", array_map( function( array $err ) {
-				return wfMessage( $err['message'] )
-					->params( $err['params'] )
-					->inLanguage( $this->getLanguage() )
-					->plain();
-			}, $errors ) );
+		$errorText = implode( "\n* ",
+			array_map(
+				function( array $err ) {
+					return wfMessage( $err['message'] )
+						->params( $err['params'] )
+						->inLanguage( $this->getLanguage() )
+						->plain();
+				},
+				$errors
+			)
+		);
 		if ( count( $errors ) > 1 ) {
 			$errorText = '* ' . $errorText;
 		}
-		return Html::rawElement( 'div', array( 'class' => 'mw-kartographer-error' ),
+		return Html::rawElement( 'div', [ 'class' => 'mw-kartographer-error' ],
 			wfMessage( $message, $this->tag, $errorText )->inLanguage( $this->getLanguage() )->parse() );
 	}
 

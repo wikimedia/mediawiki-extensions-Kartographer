@@ -15,18 +15,18 @@ use ResourceLoaderModule;
 class DataModule extends ResourceLoaderModule {
 
 	protected $origin = self::ORIGIN_USER_SITEWIDE;
-	protected $targets = array( 'desktop', 'mobile' );
+	protected $targets = [ 'desktop', 'mobile' ];
 
 	public function getScript( ResourceLoaderContext $context ) {
 		$config = $context->getResourceLoader()->getConfig();
-		return ResourceLoader::makeConfigSetScript( array(
+		return ResourceLoader::makeConfigSetScript( [
 			'wgKartographerMapServer' => $config->get( 'KartographerMapServer' ),
 			'wgKartographerIconServer' => $config->get( 'KartographerIconServer' ),
 			'wgKartographerSrcsetScales' => $config->get( 'KartographerSrcsetScales' ),
 			'wgKartographerStyles' => $config->get( 'KartographerStyles' ),
 			'wgKartographerDfltStyle' => $config->get( 'KartographerDfltStyle' ),
 			'wgKartographerEnableMapFrame' => $config->get( 'KartographerEnableMapFrame' ),
-		) );
+		] );
 	}
 
 	public function enableModuleContentVersion() {

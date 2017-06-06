@@ -16,12 +16,12 @@ use ResourceLoaderModule;
 class DataModuleLinks extends ResourceLoaderModule {
 
 	protected $origin = self::ORIGIN_USER_SITEWIDE;
-	protected $targets = array( 'desktop', 'mobile' );
+	protected $targets = [ 'desktop', 'mobile' ];
 
 	public function getScript( ResourceLoaderContext $context ) {
-		return ResourceLoader::makeConfigSetScript( array(
+		return ResourceLoader::makeConfigSetScript( [
 			'wgKartographerExternalLinks' => $this->getExternalLinks( $context )
-		) );
+		] );
 	}
 
 	public function getExternalLinks( ResourceLoaderContext $context ) {
@@ -51,7 +51,7 @@ class DataModuleLinks extends ResourceLoaderModule {
 		$data->types = array_unique( array_merge( $data->types, $allTypes ) );
 
 		$data->localization = [];
-		foreach( $allTypes as $type ) {
+		foreach ( $allTypes as $type ) {
 			$data->localization[$type] = $context->msg( 'kartographer-linktype-' . $type )->plain();
 		}
 
