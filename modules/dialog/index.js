@@ -48,7 +48,8 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 		render: function ( map ) {
 
 			var window = getWindowManager(),
-				dialog = getMapDialog();
+				dialog = getMapDialog(),
+				instance;
 
 			if ( map.useRouter && !routerEnabled ) {
 				router.on( 'route', closeIfNotMapRoute );
@@ -56,24 +57,18 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 				routerEnabled = true;
 			}
 
-			if ( !window.opened ) {
-				getWindowManager()
-					.openWindow( dialog, { map: map } )
-					.then( function ( opened ) {
-						return opened;
-					} )
-					.then( function ( closing ) {
-						if ( map.parentMap ) {
-							map.parentMap.setView(
-								map.getCenter(),
-								map.getZoom()
-							);
-						}
-						dialog.close();
-						mapDialog = null;
-						windowManager = null;
-						return closing;
-					} );
+			if ( !window.getCurrentWindow() ) {
+				instance = getWindowManager().openWindow( dialog, { map: map } );
+				instance.closing.then( function () {
+					if ( map.parentMap ) {
+						map.parentMap.setView(
+							map.getCenter(),
+							map.getZoom()
+						);
+					}
+					mapDialog = null;
+					windowManager = null;
+				} );
 			} else if ( dialog.map !== map ) {
 				dialog.setup( { map: map } );
 				dialog.ready( { map: map } );
@@ -90,7 +85,7 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 
 			var window = getWindowManager(),
 				dialog = getMapDialog(),
-				map;
+				map, instance;
 
 			function createAndRenderMap() {
 				mw.loader.using( 'ext.kartographer.box' ).then( function () {
@@ -109,27 +104,23 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 				} );
 			}
 
-			if ( window.opened ) {
+			if ( window.getCurrentWindow() ) {
 				createAndRenderMap();
 			} else {
-				getWindowManager()
-					.openWindow( dialog, {} )
-					.then( function ( opened ) {
-						createAndRenderMap();
-						return opened;
-					} )
-					.then( function ( closing ) {
-						if ( map.parentMap ) {
-							map.parentMap.setView(
-								map.getCenter(),
-								map.getZoom()
-							);
-						}
-						dialog.close();
-						mapDialog = null;
-						windowManager = null;
-						return closing;
-					} );
+				instance = getWindowManager().openWindow( dialog, {} );
+				instance.opened.then( function () {
+					createAndRenderMap();
+				} );
+				instance.closing.then( function () {
+					if ( map.parentMap ) {
+						map.parentMap.setView(
+							map.getCenter(),
+							map.getZoom()
+						);
+					}
+					mapDialog = null;
+					windowManager = null;
+				} );
 			}
 
 		},

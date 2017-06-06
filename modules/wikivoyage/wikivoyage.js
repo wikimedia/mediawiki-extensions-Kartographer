@@ -124,28 +124,25 @@ module.wikivoyage = ( function ( $, mw ) {
 						isFullScreen: !!map.options.fullscreen,
 						feature: map
 					} );
-					alertExternalData()
-						.then( function ( opened ) {
-							opened.then( function ( closing, data ) {
-								if ( data && data.action && data.action === 'good' ) {
-									areExternalAllowed = true;
-									mw.storage.set( STORAGE_KEY, '1' );
-									mw.track( 'mediawiki.kartographer', {
-										action: 'wv-warn-agree',
-										isFullScreen: !!map.options.fullscreen,
-										feature: map
-									} );
-									deferred.resolve();
-								} else {
-									mw.track( 'mediawiki.kartographer', {
-										action: 'wv-warn-reject',
-										isFullScreen: !!map.options.fullscreen,
-										feature: map
-									} );
-									deferred.reject();
-								}
+					alertExternalData().closed.then( function ( data ) {
+						if ( data && data.action && data.action === 'good' ) {
+							areExternalAllowed = true;
+							mw.storage.set( STORAGE_KEY, '1' );
+							mw.track( 'mediawiki.kartographer', {
+								action: 'wv-warn-agree',
+								isFullScreen: !!map.options.fullscreen,
+								feature: map
 							} );
-						} );
+							deferred.resolve();
+						} else {
+							mw.track( 'mediawiki.kartographer', {
+								action: 'wv-warn-reject',
+								isFullScreen: !!map.options.fullscreen,
+								feature: map
+							} );
+							deferred.reject();
+						}
+					} );
 				}
 			} );
 
