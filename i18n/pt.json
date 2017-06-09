@@ -86,6 +86,7 @@
 	"mapbox-control-zoomin-title": "Ampliar",
 	"mapbox-control-zoomout-title": "Reduzir",
 	"kartographer-fullscreen-close": "Fechar",
+	"kartographer-fullscreen-collapse": "Ocultar detalhes do mapa",
 	"kartographer-fullscreen-text": "Mostrar em ecrã inteiro",
 	"visualeditor-mwmapsdialog-align": "Alinhamento",
 	"visualeditor-mwmapsdialog-position-button": "Posição atual",
@@ -94,5 +95,7 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Ampliação",
 	"visualeditor-mwmapsdialog-reset-map": "Redefinir posicionamento do mapa",
 	"visualeditor-mwmapsdialog-size": "Tamanho",
-	"visualeditor-mwmapsdialog-title": "Mapa"
+	"visualeditor-mwmapsdialog-title": "Mapa",
+	"visualeditor-mwmapscontextitem-nosupport": "Este mapa contém funcionalidades dinâmicas e, por agora, só pode ser editado em modo fonte.",
+	"visualeditor-mwmapscontextitem-title": "Mapa"
 }
