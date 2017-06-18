@@ -3,10 +3,14 @@
 		"authors": [
 			"Upendradutt93",
 			"Sfic",
-			"Ziyaurr"
+			"Ziyaurr",
+			"Jayprakash12345"
 		]
 	},
 	"kartographer-attribution-externaldata-query": "अनुसंधान",
+	"kartographer-broken-category": "टूटे हुए नक्शे के साथ पृष्ठ",
+	"kartographer-broken-category-desc": "पृष्ठ में एक अमान्य मानचित्र उपयोग शामिल है",
+	"kartographer-desc": "नक्शे को विकी पृष्ठों में जोड़ा जा सकता है",
 	"kartographer-error-context-multi": "&lt;$1&gt; परेशानी:\n$2",
 	"kartographer-error-bad_data": "जेसन सामग्री लोड नहीं हुई।",
 	"kartographer-tracking-category": "नक्शों के साथ पन्ने",
@@ -51,14 +55,23 @@
 	"leafletdraw-edit-toolbar-actions-save-text": "सहेजें",
 	"leafletdraw-edit-toolbar-actions-save-title": "बदलाव सहेजें",
 	"leafletdraw-edit-toolbar-buttons-edit": "परत सम्पादन",
+	"leafletdraw-edit-toolbar-buttons-editdisabled": "संपादित करने के लिए कोई परत नहीं",
+	"leafletdraw-edit-toolbar-buttons-remove": "परतें हटाएं",
+	"leafletdraw-edit-toolbar-buttons-removedisabled": "हटाने के लिए कोई परत नहीं",
+	"map": "निर्देशांक जानकारी",
 	"mapbox-control-zoomin-title": "आकार बढ़ाएँ",
 	"mapbox-control-zoomout-title": "आकार घटाएँ",
 	"kartographer-fullscreen-close": "बंद करें",
+	"kartographer-fullscreen-collapse": "नक्शा विवरण छिपाएं",
+	"kartographer-fullscreen-text": "पूर्ण स्क्रीन में दिखाएं",
+	"visualeditor-mwmapsdialog-align": "संरेखण",
 	"visualeditor-mwmapsdialog-position-button": "वर्तमान स्थान",
 	"visualeditor-mwmapsdialog-position-lat": "अक्षांश",
 	"visualeditor-mwmapsdialog-position-lon": "देशांतर",
 	"visualeditor-mwmapsdialog-position-zoom": "आकार",
+	"visualeditor-mwmapsdialog-reset-map": "मानचित्र स्थिति रीसेट करें",
 	"visualeditor-mwmapsdialog-size": "आकार",
 	"visualeditor-mwmapsdialog-title": "मानचित्र",
+	"visualeditor-mwmapscontextitem-nosupport": "इस मानचित्र में गतिशील विशेषताएं हैं, और अब के लिए केवल स्रोत मोड में ही संपादित किया जा सकता है।",
 	"visualeditor-mwmapscontextitem-title": "मानचित्र"
 }
