@@ -200,7 +200,7 @@ class KartographerTest extends MediaWikiTestCase {
 	) {
 		$this->setMwGlobals( 'wgKartographerWikivoyageMode', $wikivoyageMode );
 		$output = $this->parse( $text,
-			function( ParserOptions $options ) use ( $preview, $sectionPreview ) {
+			function ( ParserOptions $options ) use ( $preview, $sectionPreview ) {
 				$options->setIsPreview( $preview );
 				$options->setIsSectionPreview( $sectionPreview );
 			}

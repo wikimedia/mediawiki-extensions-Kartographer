@@ -25,7 +25,6 @@ class DataModuleLinks extends ResourceLoaderModule {
 	}
 
 	public function getExternalLinks( ResourceLoaderContext $context ) {
-
 		$st = FormatJson::parse(
 			file_get_contents( __DIR__ . '/../externalLinks.json' ),
 			FormatJson::TRY_FIXING | FormatJson::STRIP_COMMENTS

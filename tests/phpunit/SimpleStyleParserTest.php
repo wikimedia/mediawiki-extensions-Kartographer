@@ -11,7 +11,7 @@ use Title;
 /**
  * @group Kartographer
  */
-class SimpleStyleParserTest extends MediaWikiTestCase  {
+class SimpleStyleParserTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideExternalData
 	 * @param string $expected

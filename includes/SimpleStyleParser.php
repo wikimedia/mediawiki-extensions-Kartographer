@@ -214,7 +214,6 @@ class SimpleStyleParser {
 	 * @return Status
 	 */
 	private function normalizeExternalData( &$object ) {
-
 		$ret = (object)[
 			'type' => 'ExternalData',
 			'service' => $object->service,

@@ -21,7 +21,6 @@ class Transformation {
 	 * @return float[]
 	 */
 	public static function transform( $point, $scale = 1 ) {
-
 		$x = $point[0];
 		$y = $point[1];
 

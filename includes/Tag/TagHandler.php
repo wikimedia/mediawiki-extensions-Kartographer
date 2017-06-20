@@ -370,7 +370,7 @@ abstract class TagHandler {
 		// Status sucks, redoing a bunch of its code here
 		$errorText = implode( "\n* ",
 			array_map(
-				function( array $err ) {
+				function ( array $err ) {
 					return wfMessage( $err['message'] )
 						->params( $err['params'] )
 						->inLanguage( $this->getLanguage() )

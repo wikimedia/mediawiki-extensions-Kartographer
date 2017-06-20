@@ -19,7 +19,6 @@ class SphericalMercator {
 	 * @return array
 	 */
 	public static function project( $latLon ) {
-
 		$lat = max( min( self::MAX_LATITUDE, $latLon[0] ), -self::MAX_LATITUDE );
 		$x = deg2rad( $latLon[1] );
 		$y = deg2rad( $lat );

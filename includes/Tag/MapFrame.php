@@ -32,9 +32,9 @@ class MapFrame extends TagHandler {
 	 */
 	protected function render() {
 		global $wgKartographerFrameMode,
-		       $wgKartographerMapServer,
-		       $wgServerName,
-		       $wgKartographerStaticMapframe;
+			$wgKartographerMapServer,
+			$wgServerName,
+			$wgKartographerStaticMapframe;
 
 		$alignClasses = [
 			'left' => 'floatleft',
