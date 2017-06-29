@@ -47,7 +47,7 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 		 */
 		render: function ( map ) {
 
-			var window = getWindowManager(),
+			var manager = getWindowManager(),
 				dialog = getMapDialog(),
 				instance;
 
@@ -57,8 +57,8 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 				routerEnabled = true;
 			}
 
-			if ( !window.getCurrentWindow() ) {
-				instance = getWindowManager().openWindow( dialog, { map: map } );
+			if ( !manager.getCurrentWindow() ) {
+				instance = manager.openWindow( dialog, { map: map } );
 				instance.closing.then( function () {
 					if ( map.parentMap ) {
 						map.parentMap.setView(
@@ -83,7 +83,7 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 		 */
 		renderNewMap: function ( mapObject, mapCb ) {
 
-			var window = getWindowManager(),
+			var manager = getWindowManager(),
 				dialog = getMapDialog(),
 				map, instance;
 
@@ -104,10 +104,10 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 				} );
 			}
 
-			if ( window.getCurrentWindow() ) {
+			if ( manager.getCurrentWindow() ) {
 				createAndRenderMap();
 			} else {
-				instance = getWindowManager().openWindow( dialog, {} );
+				instance = manager.openWindow( dialog, {} );
 				instance.opened.then( function () {
 					createAndRenderMap();
 				} );
