@@ -63,7 +63,6 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	} );
 
 	this.input = new ve.ui.MWAceEditorWidget( {
-		multiline: true,
 		autosize: true,
 		maxRows: 10,
 		classes: [ 've-ui-mwMapsDialog-geoJSONWidget' ]
