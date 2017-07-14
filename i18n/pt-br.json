@@ -6,9 +6,16 @@
 			"Felipe L. Ewald"
 		]
 	},
+	"kartographer-attribution-externaldata": "$1: $2",
+	"kartographer-attribution-externaldata-query": "consulta",
 	"kartographer-broken-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Arquivos|#default=Páginas}} com mapas inválidos",
 	"kartographer-error-title": "O título \"$1\" não é uma página de dados cartográficos válida",
 	"kartographer-tracking-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Arquivos|#default=Páginas}} com mapas",
+	"kartographer-coord-combined": "$1 $2",
+	"kartographer-coord-lat-positive": "$1N",
+	"kartographer-coord-lat-negative": "$1S",
+	"kartographer-coord-lon-positive": "$1E",
+	"kartographer-coord-lon-negative": "$1W",
 	"kartographer-specialmap-invalid-coordinates": "Coordenadas inválidas fornecidas",
 	"kartographer-linktype-aerial": "Aéreo",
 	"kartographer-linktype-map": "Mapa",
@@ -16,6 +23,7 @@
 	"kartographer-linktype-satellite": "Satélite",
 	"kartographer-linktype-terrain": "Terreno",
 	"kartographer-linktype-topo": "Topológico",
+	"kartographer-link-here": "HERE",
 	"kartographer-sidebar-coordinates": "Coordenadas",
 	"kartographer-sidebar-description": "Veja essa localização em um dos serviços listados abaixo. Você pode filtrar a lista pelo tipo de mapa:",
 	"kartographer-sidebar-filterdropdown": "Selecione um tipo de mapa",
@@ -70,5 +78,6 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Zoom",
 	"visualeditor-mwmapsdialog-reset-map": "Redefinir a posição do mapa",
 	"visualeditor-mwmapsdialog-size": "Tamanho",
-	"visualeditor-mwmapsdialog-title": "Mapa"
+	"visualeditor-mwmapsdialog-title": "Mapa",
+	"visualeditor-mwmapscontextitem-title": "Mapa"
 }
