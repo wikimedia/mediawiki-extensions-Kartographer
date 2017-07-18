@@ -270,9 +270,7 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 				this.scalable = this.selectedNode.getScalable();
 			} else {
 				this.scalable = ve.dm.MWMapsNode.static.createScalable(
-					inline ?
-					{ width: 850, height: 400 } :
-					{ width: 400, height: 300 }
+					inline ? { width: 850, height: 400 } : { width: 400, height: 300 }
 				);
 			}
 

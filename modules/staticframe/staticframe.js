@@ -149,7 +149,7 @@ module.exports = ( function ( $, mw, kartolink, router ) {
 			//     #/map/0
 			//     #/map/0/5
 			//     #/map/0/16/-122.4006/37.7873
-			router.route( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([\-\+]?\d+\.?\d{0,5})?\/([\-\+]?\d+\.?\d{0,5})?)?/, function ( maptagId, zoom, latitude, longitude ) {
+			router.route( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([+-]?\d+\.?\d{0,5})?\/([+-]?\d+\.?\d{0,5})?)?/, function ( maptagId, zoom, latitude, longitude ) {
 				var link = maps[ maptagId ],
 					position;
 

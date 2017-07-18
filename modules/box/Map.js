@@ -590,18 +590,18 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 				currentPosition = this.getMapPosition(),
 				initialPosition = this._initialPosition,
 				newHash = currentPosition.zoom + '/' + this.getScaleLatLng(
-						currentPosition.center.lat,
-						currentPosition.center.lng,
-						currentPosition.zoom
-					).join( '/' ),
+					currentPosition.center.lat,
+					currentPosition.center.lng,
+					currentPosition.zoom
+				).join( '/' ),
 				initialHash = initialPosition.center && (
-						initialPosition.zoom + '/' +
-						this.getScaleLatLng(
-							initialPosition.center.lat,
-							initialPosition.center.lng,
-							initialPosition.zoom
-						).join( '/' )
-					);
+					initialPosition.zoom + '/' +
+					this.getScaleLatLng(
+						initialPosition.center.lat,
+						initialPosition.center.lng,
+						initialPosition.zoom
+					).join( '/' )
+				);
 
 			if ( newHash !== initialHash ) {
 				hash += '/' + newHash;

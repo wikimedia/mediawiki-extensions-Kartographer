@@ -22,9 +22,9 @@
 				var content = '',
 					zoom = map.getZoom(),
 					coords = map.getScaleLatLng(
-					e.latlng.lat,
-					e.latlng.lng
-				);
+						e.latlng.lat,
+						e.latlng.lng
+					);
 
 				content += '<table>';
 				content += '<tr><th>' + mw.msg( 'visualeditor-mwmapsdialog-position-lat' ) + '</th><td>' + coords[ 0 ] + '</td></tr>';
