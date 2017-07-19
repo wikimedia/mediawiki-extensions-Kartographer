@@ -24,7 +24,12 @@ module.WVMapLayers = ( function ( $, mw, wikivoyage, ControlLayers ) {
 			mw.track( 'mediawiki.kartographer', {
 				action: ( event.layer === map.wikimediaLayer ) ? 'wv-select-wmflayer' : 'wv-select-exlayer',
 				isFullScreen: !!map.options.fullscreen,
-				feature: map
+				feature: map,
+				options: {
+					extra: {
+						layer: event.layer.options.wvName
+					}
+				}
 			} );
 		} );
 
@@ -47,7 +52,12 @@ module.WVMapLayers = ( function ( $, mw, wikivoyage, ControlLayers ) {
 			mw.track( 'mediawiki.kartographer', {
 				action: eventName,
 				isFullScreen: !!map.options.fullscreen,
-				feature: map
+				feature: map,
+				options: {
+					extra: {
+						layer: event.layer.options.wvName
+					}
+				}
 			} );
 		} );
 	};
