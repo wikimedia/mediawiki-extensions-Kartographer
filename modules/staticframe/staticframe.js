@@ -69,7 +69,7 @@ module.exports = ( function ( $, mw, kartolink, router ) {
 
 		// `wikipage.content` may be fired more than once.
 		$.each( maps, function () {
-			maps.pop().remove();
+			maps.pop().$container.off( 'click.kartographer' );
 		} );
 
 		$content.find( '.mw-kartographer-map' ).each( function ( index ) {
