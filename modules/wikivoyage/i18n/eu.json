@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Theklan"
+		]
+	},
+	"kartographer-wv-group": "Taldea:",
+	"kartographer-wv-layer-nearby-articles": "Inguruko artikuluak",
+	"kartographer-wv-nearby-articles-control": "Gertu dauden lekuak ikusi",
+	"kartographer-wv-warning-external-source-title": "Kanpoko datu-iturria",
+	"kartographer-wv-warning-external-source-message": "Eduki hau kanpoan du ostatu, beraz pizten baduzu beste webgune batekin ari zara zure datuak partekatzen.",
+	"kartographer-wv-warning-external-source-agree": "Ondo da",
+	"kartographer-wv-warning-external-source-disagree": "Utzi"
+}
