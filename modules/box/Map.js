@@ -745,6 +745,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 					window.innerWidth,
 					window.innerHeight
 				);
+				this._sizeChanged = false;
 				return;
 			}
 

@@ -25,9 +25,9 @@
     "stylelint-config-wikimedia": "0.4.1"
   },
   "dependencies": {
-    "leaflet": "^0.7.7",
     "leaflet-sleep": "juliengirault/Leaflet.Sleep",
     "maki": "^0.5.0",
+    "mapbox.js": "^3.0.1",
     "wikimedia-mapdata": "git+https://gerrit.wikimedia.org/r/mapdata#e022430df29f848ff04b4a0b21bd217751fdce32",
     "wmui-base": "git+https://phabricator.wikimedia.org/diffusion/WMUI/wikimedia-ui-base.git#v0.7.1"
   }
