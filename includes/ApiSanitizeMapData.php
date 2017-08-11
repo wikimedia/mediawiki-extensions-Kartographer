@@ -60,7 +60,7 @@ class ApiSanitizeMapData extends ApiBase {
 		$simpleStyle = new SimpleStyleParser( $parser, null );
 		$status = $simpleStyle->parse( $text );
 		if ( !$status->isOK() ) {
-			$error =  $status->getHTML( false, false, $this->getLanguage() );
+			$error = $status->getHTML( false, false, $this->getLanguage() );
 			$this->getResult()->addValue( null, $this->getModuleName(), [ 'error' => $error ] );
 		} else {
 			$data = $status->getValue();

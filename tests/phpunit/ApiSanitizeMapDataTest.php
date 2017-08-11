@@ -28,7 +28,7 @@ class ApiSanitizeMapDataTest extends MediaWikiTestCase {
 	public function test( $title, $json, $isValid, $text ) {
 		$result = $this->makeRequest( $title, $json );
 
-		$data =$result->getResultData();
+		$data = $result->getResultData();
 		$this->assertArrayHasKey( 'sanitize-mapdata', $data );
 		$data = $data['sanitize-mapdata'];
 		if ( $isValid ) {
