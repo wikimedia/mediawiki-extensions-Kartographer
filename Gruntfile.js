@@ -14,13 +14,14 @@ module.exports = function ( grunt ) {
 				'**/*.js',
 				'!node_modules/**',
 				'!lib/**',
-				'!docs/**'
+				'!docs/**',
+				'!vendor/**'
 			]
 		},
 		banana: conf.MessagesDirs,
 		watch: {
 			files: [
-				'.{stylelintrc}',
+				'.{stylelintrc}.json',
 				'<%= eslint.alll %>'
 			],
 			tasks: 'test'
@@ -34,14 +35,16 @@ module.exports = function ( grunt ) {
 					'**/*.{css,less}',
 					'!node_modules/**',
 					'!lib/**',
-					'!docs/**'
+					'!docs/**',
+					'!vendor/**'
 				]
 			}
 		},
 		jsonlint: {
 			all: [
 				'**/*.json',
-				'!node_modules/**'
+				'!node_modules/**',
+				'!vendor/**'
 			]
 		}
 	} );
