@@ -23,7 +23,7 @@ class ApiQueryMapData extends ApiQueryBase {
 			return;
 		}
 
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		$this->addTables( 'page_props' );
 		$this->addFields( [ 'pp_page', 'pp_value' ] );
 		$this->addWhere( [ 'pp_page' => array_keys( $titles ), 'pp_propname' => 'kartographer' ] );
