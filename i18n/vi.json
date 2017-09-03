@@ -6,7 +6,7 @@
 		]
 	},
 	"apihelp-query+mapdata-param-limit": "Dữ liệu cho bao nhiêu trang trả về",
-	"kartographer-attribution": "Bản đồ Wikimedia | Dữ liệu bản đồ © [https://www.openstreetmap.org/copyright/vi những người đóng góp vào OpenStreetMap]",
+	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Bản đồ Wikimedia] | Dữ liệu bản đồ © [https://www.openstreetmap.org/copyright/vi những người đóng góp vào OpenStreetMap]",
 	"kartographer-attribution-externaldata-query": "truy vấn",
 	"kartographer-broken-category": "Trang có bản đồ hỏng",
 	"kartographer-broken-category-desc": "Trang này nhúng một bản đồ một cách không hợp lệ",
@@ -35,6 +35,7 @@
 	"kartographer-linktype-terrain": "Địa thế",
 	"kartographer-linktype-topo": "Địa hình",
 	"kartographer-link-apple-maps": "Bản đồ Apple",
+	"kartographer-link-bing-maps": "Bản đồ Bing",
 	"kartographer-sidebar-coordinates": "Tọa độ",
 	"kartographer-sidebar-description": "Xem vị trí này trong một trong những dịch vụ được liệt kê bên dưới. Bạn có thể lọc danh sách theo kiểu bản đồ:",
 	"kartographer-sidebar-filterdropdown": "Chọn kiểu bản đồ",
@@ -80,6 +81,7 @@
 	"mapbox-control-zoomin-title": "Phóng to",
 	"mapbox-control-zoomout-title": "Thu nhỏ",
 	"kartographer-fullscreen-close": "Đóng",
+	"kartographer-fullscreen-collapse": "Ẩn chi tiết bản đồ",
 	"kartographer-fullscreen-text": "Xem toàn màn hình",
 	"visualeditor-mwmapsdialog-align": "Canh chỉnh",
 	"visualeditor-mwmapsdialog-position-button": "Vị trí hiện tại",
@@ -88,5 +90,7 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Thu phóng",
 	"visualeditor-mwmapsdialog-reset-map": "Đặt lại vị trí bản đồ",
 	"visualeditor-mwmapsdialog-size": "Kích thước",
-	"visualeditor-mwmapsdialog-title": "Bản đồ"
+	"visualeditor-mwmapsdialog-title": "Bản đồ",
+	"visualeditor-mwmapscontextitem-nosupport": "Bản đồ này chứa phần tử động, nên tạm thời chỉ có thể sửa đổi nó trong chế độ mã nguồn.",
+	"visualeditor-mwmapscontextitem-title": "Bản đồ"
 }
