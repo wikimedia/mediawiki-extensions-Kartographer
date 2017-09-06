@@ -1,14 +1,19 @@
 {
 	"@metadata": {
 		"authors": [
-			"Translatealcd"
+			"Translatealcd",
+			"Hitaypayan"
 		]
 	},
+	"kartographer-tracking-category": "Cyux syan cizu’ na zngazyan",
 	"kartographer-linktype-map": "Biru’ na rhzyal",
 	"kartographer-linktype-other": "Bzinah",
 	"kartographer-sidebar-longitude": "Cingtu’",
+	"leafletdraw-draw-toolbar-buttons-polygon": "Biru’ qutux sa pzyux hkuy na pintasan",
+	"leafletdraw-draw-toolbar-undo-text": "Pzyuciy quw qutux teng tay tpucing balay",
 	"leafletdraw-edit-toolbar-actions-save-text": "Cucun",
 	"kartographer-fullscreen-close": "Ql’iy",
 	"visualeditor-mwmapsdialog-position-lon": "Cingtu’",
+	"visualeditor-mwmapsdialog-reset-map": "T’ringun kbalay lawziy rhzyal cyux kli’an na biru’",
 	"visualeditor-mwmapsdialog-title": "Biru’ na rhzyal"
 }
