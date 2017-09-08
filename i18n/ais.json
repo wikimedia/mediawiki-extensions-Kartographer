@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bunukwiki"
+			"Bunukwiki",
+			"Benel"
 		]
 	},
 	"kartographer-attribution-externaldata-query": "palalitemuh tu kawaw",
@@ -11,10 +12,15 @@
 	"kartographer-sidebar-longitude": "cintu",
 	"leafletdraw-draw-handlers-circle-radius": "picih nu kitakit",
 	"leafletdraw-draw-toolbar-actions-text": "palawpes",
+	"leafletdraw-draw-toolbar-actions-title": "milawpes mizunga",
+	"leafletdraw-draw-toolbar-buttons-circle": "mikulit ku cacay a kimukimulu",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "palawpes",
 	"leafletdraw-edit-toolbar-actions-save-text": "suped",
+	"leafletdraw-edit-toolbar-buttons-edit": "selal nu kulit mikawaway-kalumyiti",
+	"leafletdraw-edit-toolbar-buttons-remove": "misipu tu selal nu zunga",
 	"mapbox-control-zoomin-title": "patabaki(micuwat)",
 	"mapbox-control-zoomout-title": "sukep",
+	"visualeditor-mwmapsdialog-align": "misilsilay a sasakawawen",
 	"visualeditor-mwmapsdialog-position-lat": "wyitu",
 	"visualeditor-mwmapsdialog-position-lon": "cintu",
 	"visualeditor-mwmapsdialog-size": "hacica-tabaki"
