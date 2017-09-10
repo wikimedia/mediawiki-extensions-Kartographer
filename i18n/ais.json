@@ -6,6 +6,7 @@
 		]
 	},
 	"kartographer-attribution-externaldata-query": "palalitemuh tu kawaw",
+	"kartographer-tracking-category": "sipapoay a kasabelih",
 	"kartographer-linktype-other": "zuma",
 	"kartographer-linktype-topo": "topu",
 	"kartographer-sidebar-latitude": "wyitu",
@@ -15,8 +16,10 @@
 	"leafletdraw-draw-toolbar-actions-title": "milawpes mizunga",
 	"leafletdraw-draw-toolbar-buttons-circle": "mikulit ku cacay a kimukimulu",
 	"leafletdraw-draw-toolbar-buttons-marker": "mikulit cacay a bacu",
+	"leafletdraw-draw-toolbar-buttons-polygon": "mikulit cacay yadah-tapiing a bacu",
 	"leafletdraw-draw-toolbar-buttons-polyline": "mikulit cacay malikaku’ a telay",
 	"leafletdraw-draw-toolbar-buttons-rectangle": "mikulit cacay kimpi’",
+	"leafletdraw-draw-toolbar-undo-text": "masipu sazikuzan a kawaw",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "palawpes",
 	"leafletdraw-edit-toolbar-actions-save-text": "suped",
 	"leafletdraw-edit-toolbar-actions-save-title": "misuped tu sumad",
@@ -24,8 +27,11 @@
 	"leafletdraw-edit-toolbar-buttons-remove": "misipu tu selal nu zunga",
 	"mapbox-control-zoomin-title": "patabaki(micuwat)",
 	"mapbox-control-zoomout-title": "sukep",
+	"kartographer-fullscreen-collapse": "midimut papo kahica nu kawaw",
+	"kartographer-fullscreen-text": "dadingu nu tyinaw paazih hamin",
 	"visualeditor-mwmapsdialog-align": "misilsilay a sasakawawen",
 	"visualeditor-mwmapsdialog-position-lat": "wyitu",
 	"visualeditor-mwmapsdialog-position-lon": "cintu",
+	"visualeditor-mwmapsdialog-reset-map": "miliyaw patizeng papo  kakitizaan",
 	"visualeditor-mwmapsdialog-size": "hacica-tabaki"
 }
