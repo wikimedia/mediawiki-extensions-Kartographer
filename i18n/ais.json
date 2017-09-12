@@ -2,11 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Bunukwiki",
-			"Benel"
+			"Benel",
+			"Tokoabibi"
 		]
 	},
 	"kartographer-attribution-externaldata-query": "palalitemuh tu kawaw",
 	"kartographer-tracking-category": "sipapoay a kasabelih",
+	"kartographer-linktype-map": "papo",
 	"kartographer-linktype-other": "zuma",
 	"kartographer-linktype-topo": "topu",
 	"kartographer-sidebar-latitude": "wyitu",
@@ -27,11 +29,13 @@
 	"leafletdraw-edit-toolbar-buttons-remove": "misipu tu selal nu zunga",
 	"mapbox-control-zoomin-title": "patabaki(micuwat)",
 	"mapbox-control-zoomout-title": "sukep",
+	"kartographer-fullscreen-close": "edeben",
 	"kartographer-fullscreen-collapse": "midimut papo kahica nu kawaw",
 	"kartographer-fullscreen-text": "dadingu nu tyinaw paazih hamin",
 	"visualeditor-mwmapsdialog-align": "misilsilay a sasakawawen",
 	"visualeditor-mwmapsdialog-position-lat": "wyitu",
 	"visualeditor-mwmapsdialog-position-lon": "cintu",
 	"visualeditor-mwmapsdialog-reset-map": "miliyaw patizeng papo  kakitizaan",
-	"visualeditor-mwmapsdialog-size": "hacica-tabaki"
+	"visualeditor-mwmapsdialog-size": "hacica-tabaki",
+	"visualeditor-mwmapsdialog-title": "papo"
 }
