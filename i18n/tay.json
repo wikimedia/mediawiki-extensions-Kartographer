@@ -5,15 +5,25 @@
 			"Hitaypayan"
 		]
 	},
+	"kartographer-attribution-externaldata-query": "hmkangi’",
 	"kartographer-tracking-category": "Cyux syan cizu’ na zngazyan",
 	"kartographer-linktype-map": "Biru’ na rhzyal",
 	"kartographer-linktype-other": "Bzinah",
+	"kartographer-linktype-terrain": "Inrkyasan na rhzyal",
+	"kartographer-linktype-topo": "Topo rocikal",
+	"kartographer-sidebar-latitude": "Wetu’",
 	"kartographer-sidebar-longitude": "Cingtu’",
+	"leafletdraw-draw-handlers-circle-radius": "Smka’ kinqruzyux na sinhzyuwan na kinqthuzyan",
+	"leafletdraw-draw-toolbar-actions-text": "Laxan",
 	"leafletdraw-draw-toolbar-buttons-polygon": "Biru’ qutux sa pzyux hkuy na pintasan",
 	"leafletdraw-draw-toolbar-undo-text": "Pzyuciy quw qutux teng tay tpucing balay",
+	"leafletdraw-edit-toolbar-actions-cancel-text": "Laxan",
 	"leafletdraw-edit-toolbar-actions-save-text": "Cucun",
+	"mapbox-control-zoomin-title": "Pkrahu’",
 	"kartographer-fullscreen-close": "Ql’iy",
+	"visualeditor-mwmapsdialog-position-lat": "Wetu’",
 	"visualeditor-mwmapsdialog-position-lon": "Cingtu’",
 	"visualeditor-mwmapsdialog-reset-map": "T’ringun kbalay lawziy rhzyal cyux kli’an na biru’",
+	"visualeditor-mwmapsdialog-size": "Sspngan kinkrahu’",
 	"visualeditor-mwmapsdialog-title": "Biru’ na rhzyal"
 }
