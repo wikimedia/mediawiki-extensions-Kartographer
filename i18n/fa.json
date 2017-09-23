@@ -4,6 +4,8 @@
 			"Ladsgroup"
 		]
 	},
+	"kartographer-linktype-map": "نقشه",
+	"kartographer-linktype-other": "دیگر",
 	"leafletdraw-draw-handlers-circle-radius": "شعاع",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "برای کشیدن دایره، کلیک کنید و بکشید",
 	"leafletdraw-draw-handlers-polygon-tooltip-cont": "کلیک کنید تا به کشیدن این شکل ادامه دهید",
