@@ -1,11 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ladsgroup"
+			"Ladsgroup",
+			"Reza1615"
 		]
 	},
+	"kartographer-attribution-externaldata-query": "پرسمان",
+	"kartographer-broken-category": "صفحات با نقشه خراب",
 	"kartographer-linktype-map": "نقشه",
 	"kartographer-linktype-other": "دیگر",
+	"kartographer-sidebar-coordinates": "مختصات‌ها",
+	"kartographer-sidebar-latitude": "عرض جغرافیایی",
+	"kartographer-sidebar-longitude": "طول جغرافیایی",
+	"kartographer-sidebar-togglebutton": "جزئیات بیشتر",
 	"leafletdraw-draw-handlers-circle-radius": "شعاع",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "برای کشیدن دایره، کلیک کنید و بکشید",
 	"leafletdraw-draw-handlers-polygon-tooltip-cont": "کلیک کنید تا به کشیدن این شکل ادامه دهید",
@@ -18,5 +25,14 @@
 	"leafletdraw-edit-toolbar-actions-save-text": "ذخیره",
 	"leafletdraw-edit-toolbar-actions-save-title": "ذخیره تغییرات",
 	"leafletdraw-edit-toolbar-buttons-edit": "لایه‌های ویرایش",
-	"leafletdraw-edit-toolbar-buttons-removedisabled": "هیچ لایه‌ای برای حذف وجود ندارد"
+	"leafletdraw-edit-toolbar-buttons-removedisabled": "هیچ لایه‌ای برای حذف وجود ندارد",
+	"mapbox-control-zoomin-title": "بزرگ‌نمایی",
+	"mapbox-control-zoomout-title": "کوچک‌نمایی",
+	"kartographer-fullscreen-close": "بستن",
+	"visualeditor-mwmapsdialog-position-lat": "عرض جغرافیایی",
+	"visualeditor-mwmapsdialog-position-lon": "طول جغرافیایی",
+	"visualeditor-mwmapsdialog-position-zoom": "بزگ‌نمایی",
+	"visualeditor-mwmapsdialog-size": "اندازه",
+	"visualeditor-mwmapsdialog-title": "نقشه",
+	"visualeditor-mwmapscontextitem-title": "نقشه"
 }
