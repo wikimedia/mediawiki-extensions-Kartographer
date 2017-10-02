@@ -59,7 +59,7 @@ ve.dm.MWInlineMapsNode.prototype.usesAutoPositioning = function () {
  */
 ve.dm.MWInlineMapsNode.prototype.usesExternalData = function () {
 	var mwData = this.getAttribute( 'mw' ),
-		geoJson = mwData.body.extsrc;
+		geoJson = ( mwData.body && mwData.body.extsrc ) || '';
 	return /ExternalData/.test( geoJson );
 };
 
@@ -70,7 +70,7 @@ ve.dm.MWInlineMapsNode.prototype.usesExternalData = function () {
  */
 ve.dm.MWInlineMapsNode.prototype.usesMapData = function () {
 	var mwData = this.getAttribute( 'mw' );
-	return !!mwData.body.extsrc;
+	return !!( mwData.body && mwData.body.extsrc );
 };
 
 /* Registration */

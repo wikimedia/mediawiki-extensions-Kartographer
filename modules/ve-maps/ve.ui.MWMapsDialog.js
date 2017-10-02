@@ -35,6 +35,8 @@ ve.ui.MWMapsDialog.static.size = 'larger';
 
 ve.ui.MWMapsDialog.static.allowedEmpty = true;
 
+ve.ui.MWMapsDialog.static.selfCloseEmptyBody = true;
+
 ve.ui.MWMapsDialog.static.modelClasses = [ ve.dm.MWMapsNode, ve.dm.MWInlineMapsNode ];
 
 /* Methods */

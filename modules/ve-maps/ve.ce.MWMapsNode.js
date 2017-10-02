@@ -70,7 +70,7 @@ ve.ce.MWMapsNode.static.primaryCommandName = 'mwMaps';
 ve.ce.MWMapsNode.prototype.requiresInteractive = function () {
 	var mwData = this.model.getAttribute( 'mw' );
 
-	return mwData.body.extsrc || isNaN( mwData.attrs.latitude ) || isNaN( mwData.attrs.zoom );
+	return ( mwData.body && mwData.body.extsrc ) || isNaN( mwData.attrs.latitude ) || isNaN( mwData.attrs.zoom );
 };
 
 /**
