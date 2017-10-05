@@ -63,5 +63,6 @@
 	"visualeditor-mwmapsdialog-position-lon": "Lengtegraad",
 	"visualeditor-mwmapsdialog-position-zoom": "Zoomen",
 	"visualeditor-mwmapsdialog-size": "Grootte",
-	"visualeditor-mwmapsdialog-title": "Kaart"
+	"visualeditor-mwmapsdialog-title": "Kaart",
+	"visualeditor-mwmapscontextitem-title": "Kaart"
 }
