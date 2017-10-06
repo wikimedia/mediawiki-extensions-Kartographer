@@ -64,7 +64,7 @@ class SpecialMap extends SpecialPage {
 	/**
 	 * Parses subpage parameter to this special page into zoom / lat /lon
 	 *
-	 * @param $par
+	 * @param string $par
 	 * @return array|bool
 	 */
 	public static function parseSubpage( $par ) {

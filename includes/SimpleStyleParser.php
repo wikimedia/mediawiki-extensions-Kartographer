@@ -67,7 +67,7 @@ class SimpleStyleParser {
 	/**
 	 * Validate and sanitize a parsed GeoJSON data object
 	 *
-	 * @param array|object $data
+	 * @param array|object &$data
 	 * @return Status
 	 */
 	public function parseObject( &$data ) {
@@ -84,7 +84,7 @@ class SimpleStyleParser {
 	/**
 	 * Normalize an object
 	 *
-	 * @param stdClass[] $data
+	 * @param stdClass[] &$data
 	 * @return Status
 	 */
 	public function normalizeAndSanitize( &$data ) {
@@ -94,8 +94,8 @@ class SimpleStyleParser {
 	}
 
 	/**
-	 * @param stdClass[] $values
-	 * @param stdClass $counters counter-name -> integer
+	 * @param stdClass[] &$values
+	 * @param stdClass &$counters counter-name -> integer
 	 * @return bool|array [ marker, marker properties ]
 	 */
 	public static function doCountersRecursive( array &$values, &$counters ) {
@@ -166,7 +166,7 @@ class SimpleStyleParser {
 	 * Does not attempt to be smart, just recurses through everything that can be dangerous even
 	 * if not a valid GeoJSON.
 	 *
-	 * @param object|array $json
+	 * @param object|array &$json
 	 */
 	protected function sanitize( &$json ) {
 		if ( is_array( $json ) ) {
@@ -192,7 +192,7 @@ class SimpleStyleParser {
 	/**
 	 * Normalizes JSON
 	 *
-	 * @param array $json
+	 * @param array &$json
 	 * @return Status
 	 */
 	protected function normalize( array &$json ) {
@@ -274,7 +274,7 @@ class SimpleStyleParser {
 	 *
 	 * HACK: this function supports JsonConfig-style localization that doesn't pass validation
 	 *
-	 * @param object $properties
+	 * @param object &$properties
 	 */
 	private function sanitizeProperties( &$properties ) {
 		foreach ( self::$parsedProps as $prop ) {

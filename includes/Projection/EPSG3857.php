@@ -41,8 +41,8 @@ class EPSG3857 {
 	/**
 	 * (Point, Number[, Boolean]) -> LatLon
 	 *
-	 * @param $point
-	 * @param $zoom
+	 * @param array $point
+	 * @param float $zoom
 	 * @return array
 	 */
 	public static function pointToLatLon( $point, $zoom ) {
