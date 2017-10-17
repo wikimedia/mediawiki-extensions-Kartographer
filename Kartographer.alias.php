@@ -12,3 +12,8 @@ $specialPageAliases = [];
 $specialPageAliases['en'] = [
 	'Map' => [ 'Map' ],
 ];
+
+/** Urdu (اردو) */
+$specialPageAliases['ur'] = [
+	'Map' => [ 'نقشہ' ],
+];
