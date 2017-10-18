@@ -14,6 +14,7 @@
 	"kartographer-error-missing-attr": "mahedaw susin \"$1\"",
 	"kartographer-error-bad_attr": "susin \"$1\" a sulyang la’cus",
 	"kartographer-tracking-category": "sipapoay a kasabelih",
+	"kartographer-tracking-category-desc": "izaw tituay kasabelih",
 	"kartographer-linktype-map": "papo",
 	"kartographer-linktype-other": "zuma",
 	"kartographer-linktype-topo": "topu",
