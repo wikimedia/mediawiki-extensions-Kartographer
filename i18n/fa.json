@@ -2,11 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Ladsgroup",
-			"Reza1615"
+			"Reza1615",
+			"Arash"
 		]
 	},
 	"kartographer-attribution-externaldata-query": "پرسمان",
 	"kartographer-broken-category": "صفحات با نقشه خراب",
+	"kartographer-error-context-multi": "&lt;$1&gt; مشکلات:\n$2",
 	"kartographer-tracking-category": "صفحات دارای نقشه",
 	"kartographer-tracking-category-desc": "صفحه دارای یک نقشه",
 	"kartographer-linktype-map": "نقشه",
@@ -32,6 +34,7 @@
 	"leafletdraw-draw-toolbar-buttons-rectangle": "یک مستطیل بکشید",
 	"leafletdraw-draw-toolbar-undo-text": "آخرین نقطه را پاک کن",
 	"leafletdraw-draw-toolbar-undo-title": "آخرین نقطه کشیده شده را دور بریز",
+	"leafletdraw-edit-handlers-edit-tooltip-subtext": "لغو رو لمس کنید تا تغییرات بازگردانی شوند.",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "لغو",
 	"leafletdraw-edit-toolbar-actions-save-text": "ذخیره",
 	"leafletdraw-edit-toolbar-actions-save-title": "ذخیره تغییرات",
