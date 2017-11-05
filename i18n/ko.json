@@ -18,7 +18,7 @@
 	"apihelp-sanitize-mapdata-param-title": "이 GeoJSON이 위치할 문서 제목입니다. title이 지정되지 않으면 더미값이 사용됩니다.",
 	"apihelp-sanitize-mapdata-param-text": "정리할 GeoJSON",
 	"apihelp-sanitize-mapdata-example": "GeoJSON 블롭을 정리합니다",
-	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use 위키미디어 지도] | 지도 자료 © [https://www.openstreetmap.org/copyright 오픈스트리트맵 기여자]",
+	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use 위키미디어 지도] | 지도 자료 © [https://www.openstreetmap.org/copyright OpenStreetMap 기여자]",
 	"kartographer-attribution-externaldata-query": "쿼리",
 	"kartographer-broken-category": "깨진 지도가 있는 문서",
 	"kartographer-broken-category-desc": "이 문서는 잘못 사용된 지도를 포함합니다.",
