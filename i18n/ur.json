@@ -1,9 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
-			"امین اکبر"
+			"امین اکبر",
+			"BukhariSaeed"
 		]
 	},
+	"kartographer-attribution-externaldata-query": "کیوری",
+	"kartographer-linktype-map": "نقشہ",
+	"kartographer-linktype-other": "دیگر",
+	"kartographer-linktype-satellite": "سیٹلائٹ",
+	"kartographer-linktype-terrain": "قطعۂ زمین",
+	"kartographer-linktype-topo": "مقامیات",
 	"kartographer-sidebar-coordinates": "محددات",
 	"kartographer-sidebar-description": "ذیل میں درج خدمات میں سے ایک کے اس مقام کو دیکھیں۔ آپ نقشے کی قسم سے بھی فہرست چھان سکتے ہیں۔",
 	"kartographer-sidebar-filterdropdown": "نقشے کی قسم منتخب کریں",
@@ -12,5 +19,7 @@
 	"kartographer-sidebar-longitude": "طول البلد",
 	"kartographer-sidebar-mapdetails": "نقشے کی تفصیلات",
 	"kartographer-sidebar-service": "خدمات",
-	"kartographer-sidebar-togglebutton": "مزید تفصیلات"
+	"kartographer-sidebar-togglebutton": "مزید تفصیلات",
+	"leafletdraw-draw-handlers-circle-radius": "نصف قطر",
+	"leafletdraw-draw-handlers-circle-tooltip-start": "دائرہ بنانے کے لیے کلک کریں"
 }
