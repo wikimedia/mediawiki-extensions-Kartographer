@@ -33,6 +33,7 @@
 	"kartographer-tracking-category": "Sider med kart",
 	"kartographer-tracking-category-desc": "Denne siden inneholder et kart",
 	"kartographer-specialmap-invalid-coordinates": "Ugyldige koordinater er angitt",
+	"kartographer.css": "/* CSS plassert i denne fila vil gjelde for alle sider med kart */",
 	"kartographer-linktype-aerial": "Luftfoto",
 	"kartographer-linktype-map": "Kart",
 	"kartographer-linktype-other": "Annet",
