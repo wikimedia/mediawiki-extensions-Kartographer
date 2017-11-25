@@ -11,6 +11,7 @@
 	"kartographer-error-context-multi": "&lt;$1&gt; مشکلات:\n$2",
 	"kartographer-tracking-category": "صفحات دارای نقشه",
 	"kartographer-tracking-category-desc": "صفحه دارای یک نقشه",
+	"kartographer-linktype-aerial": "هوایی",
 	"kartographer-linktype-map": "نقشه",
 	"kartographer-linktype-other": "دیگر",
 	"kartographer-linktype-satellite": "ماهواره‌ای",
