@@ -5,12 +5,11 @@
 			"Yogesh"
 		]
 	},
+	"kartographer-broken-category": "ಒಡಕಲು ನಕ್ಷೆಗಳಿರುವ ಪುಟಗಳು",
+	"kartographer-broken-category-desc": "ಅಮಾನ್ಯವಾದ ನಕ್ಷೆಯನ್ನು ಸೇರಿಸಲಾದ ಪುಟ",
 	"kartographer-desc": "ವಿಕಿ ಪುಟಗಳಿಗೆ ನಕ್ಷೆಗಳನ್ನು ಸೇರಿಸಲು ಸಮ್ಮತಿಸಿ",
-	"kartographer-errors": "ನಕ್ಷೆಯನ್ನು ತಯಾರಿಸಲು ಆಗಲಿಲ್ಲ\n$1",
 	"kartographer-error-bad_attr": "ಗುಣವಿಶೇಷ '$1' ಅಮಾನ್ಯ ಮೌಲ್ಯವನ್ನು ಹೊಂದಿದೆ",
 	"kartographer-error-bad_data": "JSON ವಿಷಯವು ತಪ್ಪಾಗಿದೆ",
 	"kartographer-tracking-category": "ನಕ್ಷೆಗಳಿರುವ ಪುಟಗಳು",
-	"kartographer-tracking-category-desc": "ಈ ಪುಟವು ನಕ್ಷೆಯನ್ನು ಹೊಂದಿದೆ",
-	"kartographer-broken-category": "ಒಡಕಲು ನಕ್ಷೆಗಳಿರುವ ಪುಟಗಳು",
-	"kartographer-broken-category-desc": "ಅಮಾನ್ಯವಾದ ನಕ್ಷೆಯನ್ನು ಸೇರಿಸಲಾದ ಪುಟ"
+	"kartographer-tracking-category-desc": "ಈ ಪುಟವು ನಕ್ಷೆಯನ್ನು ಹೊಂದಿದೆ"
 }
