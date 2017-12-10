@@ -1,14 +1,17 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ahmed-Najib-Biabani-Ibrahimkhel"
+			"Ahmed-Najib-Biabani-Ibrahimkhel",
+			"Baloch Khan"
 		]
 	},
 	"kartographer-broken-category": "د ماتو نخشو مخونه",
 	"kartographer-tracking-category": "نخشه لرونکي مخونه",
 	"kartographer-tracking-category-desc": "دا مخ يوه نخشه لري",
+	"kartographer-linktype-map": "نخشه",
 	"map": "د کووارډينېټونو مالومات",
 	"kartographer-fullscreen-close": "تړل",
 	"visualeditor-mwmapsdialog-size": "کچه",
-	"visualeditor-mwmapsdialog-title": "کښېده"
+	"visualeditor-mwmapsdialog-title": "نخشه",
+	"visualeditor-mwmapscontextitem-title": "نخشه"
 }
