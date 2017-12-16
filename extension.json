@@ -22,22 +22,8 @@
 	"SpecialPages": {
 		"Map": "Kartographer\\SpecialMap"
 	},
-	"AutoloadClasses": {
-		"Kartographer\\ApiQueryMapData": "includes/ApiQueryMapData.php",
-		"Kartographer\\ApiSanitizeMapData": "includes/ApiSanitizeMapData.php",
-		"Kartographer\\CoordFormatter": "includes/CoordFormatter.php",
-		"Kartographer\\DataModule": "includes/DataModule.php",
-		"Kartographer\\DataModuleLinks": "includes/DataModuleLinks.php",
-		"Kartographer\\Hooks": "includes/Hooks.php",
-		"Kartographer\\SimpleStyleParser": "includes/SimpleStyleParser.php",
-		"Kartographer\\SpecialMap": "includes/SpecialMap.php",
-		"Kartographer\\State": "includes/State.php",
-		"Kartographer\\Tag\\MapFrame": "includes/Tag/MapFrame.php",
-		"Kartographer\\Tag\\MapLink": "includes/Tag/MapLink.php",
-		"Kartographer\\Tag\\TagHandler": "includes/Tag/TagHandler.php",
-		"Kartographer\\Projection\\EPSG3857": "includes/Projection/EPSG3857.php",
-		"Kartographer\\Projection\\SphericalMercator": "includes/Projection/SphericalMercator.php",
-		"Kartographer\\Projection\\Transformation": "includes/Projection/Transformation.php"
+	"AutoloadNamespaces": {
+		"Kartographer\\": "includes/"
 	},
 	"APIModules": {
 		"sanitize-mapdata": "Kartographer\\ApiSanitizeMapData"
