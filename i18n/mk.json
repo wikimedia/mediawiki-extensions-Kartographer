@@ -67,7 +67,7 @@
 	"leafletdraw-draw-handlers-polygon-tooltip-start": "Стиснете за да почнете со цртање на фигурата",
 	"leafletdraw-draw-handlers-polyline-error": "Грешка: рабовите на фигурата не смеат да се вркстуваат",
 	"leafletdraw-draw-handlers-polyline-tooltip-cont": "Стиснете за да продолжите со цртање на линијава",
-	"leafletdraw-draw-handlers-polyline-tooltip-end": "Стиснете на посчедната точка за да ја довршите линијата",
+	"leafletdraw-draw-handlers-polyline-tooltip-end": "Стиснете на последната точка за да ја довршите линијата",
 	"leafletdraw-draw-handlers-polyline-tooltip-start": "Стиснете за да почнете со цртање на линија",
 	"leafletdraw-draw-handlers-rectangle-tooltip-start": "Стиснете и повлечете за да нацртате правоаголник",
 	"leafletdraw-draw-handlers-simpleshape-tooltip-end": "Пуштете го глувчето за да завршите со цртање",
