@@ -71,7 +71,7 @@
 	"leafletdraw-draw-toolbar-buttons-rectangle": "Dibuja un rectángulo",
 	"leafletdraw-draw-toolbar-undo-text": "Eliminar el último punto",
 	"leafletdraw-draw-toolbar-undo-title": "Eliminar el último punto dibujado",
-	"leafletdraw-edit-handlers-edit-tooltip-subtext": "Haz clic en cancelar para deshacer los cambios",
+	"leafletdraw-edit-handlers-edit-tooltip-subtext": "Pulsa en Cancelar para deshacer los cambios",
 	"leafletdraw-edit-handlers-edit-tooltip-text": "Arrastra puntos o marcadores para editar una función",
 	"leafletdraw-edit-handlers-remove-tooltip-text": "Haz clic en una función para eliminar",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "Cancelar",
