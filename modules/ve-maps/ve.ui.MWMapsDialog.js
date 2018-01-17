@@ -240,7 +240,7 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 	if ( !( this.selectedNode instanceof ve.dm.MWInlineMapsNode ) ) {
 		mwData.attrs.width = dimensions.width.toString();
 		mwData.attrs.height = dimensions.height.toString();
-		mwData.attrs.align = this.align.getSelectedItem().getData();
+		mwData.attrs.align = this.align.findSelectedItem().getData();
 	}
 };
 
