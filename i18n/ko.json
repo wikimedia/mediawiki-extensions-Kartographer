@@ -46,7 +46,7 @@
 	"kartographer-link-wikiminiatlas": "위키미니아틀라스",
 	"kartographer-link-yandex-maps": "얀덱스 지도",
 	"kartographer-sidebar-coordinates": "좌표",
-	"kartographer-sidebar-description": "이곳을 다른 지도 서비스로도 살펴보세요. 지도 유형 변경으로 목록을 설정할 수 있습니다.",
+	"kartographer-sidebar-description": "아래에 나열된 서비스 중 하나로 이 위치를 봅니다. 지도 유형별로 목록을 필터링할 수 있습니다.",
 	"kartographer-sidebar-filterdropdown": "지도 종류 선택",
 	"kartographer-sidebar-externalservices": "외부 서비스",
 	"kartographer-sidebar-latitude": "위도",
