@@ -9,6 +9,7 @@ use ParserOptions;
 use Title;
 
 /**
+ * @covers \Kartographer\SimpleStyleParser
  * @group Kartographer
  */
 class SimpleStyleParserTest extends MediaWikiTestCase {

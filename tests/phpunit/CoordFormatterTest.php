@@ -7,6 +7,7 @@ use Language;
 use MediaWikiTestCase;
 
 /**
+ * @covers \Kartographer\CoordFormatter
  * @group Kartographer
  */
 class CoordFormatterTest extends MediaWikiTestCase {

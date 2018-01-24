@@ -10,6 +10,7 @@ use Status;
 use Title;
 
 /**
+ * @covers \Kartographer\SimpleStyleParser
  * @group Kartographer
  */
 class ValidationTest extends MediaWikiTestCase {

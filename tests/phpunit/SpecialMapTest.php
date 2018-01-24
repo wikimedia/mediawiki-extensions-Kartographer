@@ -8,6 +8,7 @@ use MediaWikiTestCase;
 use Title;
 
 /**
+ * @covers \Kartographer\SpecialMap
  * @group Kartographer
  */
 class SpecialMapTest extends MediaWikiTestCase {
