@@ -10,6 +10,7 @@ use ApiUsageException;
 use UsageException;
 
 /**
+ * @covers \Kartographer\ApiSanitizeMapData
  * @group Kartographer
  */
 class ApiSanitizeMapDataTest extends MediaWikiTestCase {
