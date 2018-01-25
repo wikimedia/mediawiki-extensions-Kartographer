@@ -41,7 +41,7 @@
 	"kartographer-linktype-terrain": "Terreng",
 	"kartographer-linktype-topo": "Topografisk",
 	"kartographer-sidebar-coordinates": "Koordinater",
-	"kartographer-sidebar-description": "Vis dette stedet i en av tjenestene som listes nedenfor. Du kan fultrere listen etter karttype:",
+	"kartographer-sidebar-description": "Vis dette stedet i en av tjenestene som listes nedenfor. Du kan filtrere listen etter karttype:",
 	"kartographer-sidebar-filterdropdown": "Velg en karttype",
 	"kartographer-sidebar-externalservices": "Eksterne tjenester",
 	"kartographer-sidebar-latitude": "Breddegrad",
