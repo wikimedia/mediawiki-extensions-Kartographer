@@ -790,7 +790,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 					// skip if the map is full screen
 					return this;
 				}
-				// Local debounce because oojs is not yet available.
+				// Local debounce because OOjs is not yet available.
 				if ( this._staticTimer ) {
 					clearTimeout( this._staticTimer );
 				}
