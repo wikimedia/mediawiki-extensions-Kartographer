@@ -49,6 +49,25 @@
 	background: #ffc0cb;
 }
 
+// Bidi overrides for RTL interface
+.mw-kartographer-interactive {
+	.leaflet-control-container {
+		.leaflet-control {
+			&.leaflet-control-scale-line {
+				// Should never flip, since '10km' etc is not
+				// currently translateable in leaflet itself
+				/* @noflip */
+				direction: ltr;
+			}
+
+			&.leaflet-control-attribution {
+				// Should go by interface direction
+				direction: ltr;
+			}
+		}
+	}
+}
+
 .mw-kartographer-static {
 	.leaflet-control-container {
 		.leaflet-top .leaflet-control {
