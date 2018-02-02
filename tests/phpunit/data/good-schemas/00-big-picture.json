@@ -18,7 +18,7 @@
 		"properties": {
 			"marker-color": "#f00",
 			"marker-size": "large",
-			"marker-symbol": "rocket",
+			"marker-symbol": "42",
 			"video": "<iframe width='560' height='315' src='https://www.youtube.com/embed/tntOCGkgt98' frameborder='0' allowfullscreen></iframe>"
 		},
 		"geometry": {
