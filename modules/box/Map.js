@@ -228,7 +228,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 			 * @protected
 			 */
 			this.wikimediaLayer = L.tileLayer( mapServer + '/' + style + urlFormat, {
-				maxZoom: 18,
+				maxZoom: 19,
 				attribution: mw.message( 'kartographer-attribution' ).parse()
 			} ).addTo( this );
 
