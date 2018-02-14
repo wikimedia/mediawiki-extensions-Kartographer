@@ -19,9 +19,6 @@ module.Data = ( function ( $, mw, DataManager ) {
 		isPlainObject: function () {
 			return $.isPlainObject.apply( $, arguments );
 		},
-		isArray: function () {
-			return $.isArray.apply( $, arguments );
-		},
 		extend: function () {
 			return $.extend.apply( $, arguments );
 		},

@@ -13,7 +13,7 @@
 ( function ( mw, L ) {
 
 	mw.hook( 'wikipage.maps' ).add( function ( maps ) {
-		maps = $.isArray( maps ) ? maps : [ maps ];
+		maps = Array.isArray( maps ) ? maps : [ maps ];
 
 		$.each( maps, function ( i, map ) {
 			var popup = L.popup();
