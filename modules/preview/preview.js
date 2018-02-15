@@ -27,9 +27,9 @@
 					);
 
 				content += '<table>';
-				content += '<tr><th>' + mw.msg( 'visualeditor-mwmapsdialog-position-lat' ) + '</th><td>' + coords[ 0 ] + '</td></tr>';
-				content += '<tr><th>' + mw.msg( 'visualeditor-mwmapsdialog-position-lon' ) + '</th><td>' + coords[ 1 ] + '</td></tr>';
-				content += '<tr><th>' + mw.msg( 'visualeditor-mwmapsdialog-position-zoom' ) + '</th><td>' + zoom + '</td></tr>';
+				content += '<tr><th>' + mw.message( 'visualeditor-mwmapsdialog-position-lat' ).escaped() + '</th><td>' + coords[ 0 ] + '</td></tr>';
+				content += '<tr><th>' + mw.message( 'visualeditor-mwmapsdialog-position-lon' ).escaped() + '</th><td>' + coords[ 1 ] + '</td></tr>';
+				content += '<tr><th>' + mw.message( 'visualeditor-mwmapsdialog-position-zoom' ).escaped() + '</th><td>' + zoom + '</td></tr>';
 				content += '</table>';
 
 				popup
