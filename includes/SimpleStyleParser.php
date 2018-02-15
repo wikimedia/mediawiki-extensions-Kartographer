@@ -226,7 +226,7 @@ class SimpleStyleParser {
 				$query = [ 'getgeojson' => 1 ];
 				if ( property_exists( $object, 'ids' ) ) {
 					$query['ids'] =
-						is_array( $object->ids ) ? join( ',', $object->ids )
+						is_array( $object->ids ) ? implode( ',', $object->ids )
 							: preg_replace( '/\s*,\s*/', ',', $object->ids );
 				}
 				if ( property_exists( $object, 'query' ) ) {
