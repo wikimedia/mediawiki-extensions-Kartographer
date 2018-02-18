@@ -4,7 +4,8 @@
 			"WikiPhoenix",
 			"Rockyfelle",
 			"Jopparn",
-			"Josve05a"
+			"Josve05a",
+			"Larske"
 		]
 	},
 	"apihelp-query+mapdata-description": "Begär all kartdata från sidan <kbd>Metallica</kbd>",
@@ -15,7 +16,7 @@
 	"kartographer-broken-category-desc": "Sidan inkluderar taggen <code><nowiki><maps></nowiki></code> med felaktig användning.",
 	"kartographer-error-context-multi": "&lt;$1&gt; problem:\n$2",
 	"kartographer-error-missing-attr": "Attributen \"$1\" saknas",
-	"kartographer-tracking-category": "Sidor med kartor",
+	"kartographer-tracking-category": "Sidor med kartor skapade med Kartographer",
 	"kartographer-tracking-category-desc": "Sidan inkluderar taggen <code><nowiki><maps></nowiki></code>.",
 	"kartographer-linktype-map": "Karta",
 	"kartographer-linktype-other": "Övrigt",
