@@ -18,6 +18,10 @@
 		line-height: initial;
 
 		.leaflet-control-scale-line {
+			// Should never flip, since '10km' etc is not
+			// currently translateable in leaflet itself
+			/* @noflip */
+			direction: ltr;
 
 			/* Scale Line style on hover */
 			&:hover {
