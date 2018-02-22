@@ -89,7 +89,7 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 
 			function createAndRenderMap() {
 				mw.loader.using( 'ext.kartographer.box' ).then( function () {
-					map = mw.loader.require( 'ext.kartographer.box' ).map( mapObject );
+					map = require( 'ext.kartographer.box' ).map( mapObject );
 
 					if ( map.useRouter && !routerEnabled ) {
 						router.on( 'route', closeIfNotMapRoute );

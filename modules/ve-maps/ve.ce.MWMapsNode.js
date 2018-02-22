@@ -141,7 +141,7 @@ ve.ce.MWMapsNode.prototype.setupMap = function () {
 		mwAttrs = mwData && mwData.attrs,
 		node = this;
 
-	this.map = mw.loader.require( 'ext.kartographer.box' ).map( {
+	this.map = require( 'ext.kartographer.box' ).map( {
 		container: this.$element[ 0 ],
 		center: [ +mwAttrs.latitude, +mwAttrs.longitude ],
 		zoom: +mwAttrs.zoom
@@ -168,7 +168,7 @@ ve.ce.MWMapsNode.prototype.updateGeoJson = function () {
 		geoJson = mwData && mwData.body.extsrc;
 
 	if ( geoJson !== this.geoJson ) {
-		mw.loader.require( 'ext.kartographer.editing' ).updateKartographerLayer( this.map, mwData && mwData.body.extsrc ).then( this.updateMapPosition.bind( this ) );
+		require( 'ext.kartographer.editing' ).updateKartographerLayer( this.map, mwData && mwData.body.extsrc ).then( this.updateMapPosition.bind( this ) );
 		this.geoJson = geoJson;
 	}
 };

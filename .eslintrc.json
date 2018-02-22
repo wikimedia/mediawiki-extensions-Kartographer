@@ -8,6 +8,7 @@
 	"globals": {
 		"mw": true,
 		"mediaWiki": false,
+		"require": false,
 		"module": false,
 		"OO": false,
 		"L": false

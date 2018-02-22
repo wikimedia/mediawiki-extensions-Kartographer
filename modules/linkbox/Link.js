@@ -103,7 +103,7 @@ module.Link = ( function ( $ ) {
 			);
 
 			mw.loader.using( 'ext.kartographer.dialog' ).done( function () {
-				mw.loader.require( 'ext.kartographer.dialog' ).render( map );
+				require( 'ext.kartographer.dialog' ).render( map );
 			} );
 		} else {
 			el = document.createElement( 'div' );
@@ -123,7 +123,7 @@ module.Link = ( function ( $ ) {
 			};
 
 			mw.loader.using( 'ext.kartographer.dialog' ).done( function () {
-				mw.loader.require( 'ext.kartographer.dialog' ).renderNewMap( mapObject, function ( map ) {
+				require( 'ext.kartographer.dialog' ).renderNewMap( mapObject, function ( map ) {
 					link.fullScreenMap = map;
 				} );
 			} );

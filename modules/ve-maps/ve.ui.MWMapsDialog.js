@@ -319,7 +319,7 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 			mapPosition = dialog.getInitialMapPosition();
 
 		// TODO: Support 'style' editing
-		dialog.map = mw.loader.require( 'ext.kartographer.box' ).map( {
+		dialog.map = require( 'ext.kartographer.box' ).map( {
 			container: dialog.$map[ 0 ],
 			center: mapPosition.center,
 			zoom: mapPosition.zoom,
@@ -347,7 +347,7 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 				} );
 			}
 
-			geoJsonLayer = mw.loader.require( 'ext.kartographer.editing' )
+			geoJsonLayer = require( 'ext.kartographer.editing' )
 				.getKartographerLayer( dialog.map );
 			new L.Control.Draw( {
 				edit: { featureGroup: geoJsonLayer },
@@ -442,7 +442,7 @@ ve.ui.MWMapsDialog.prototype.updateGeoJson = function () {
 		return;
 	}
 
-	mw.loader.require( 'ext.kartographer.editing' )
+	require( 'ext.kartographer.editing' )
 		.updateKartographerLayer( this.map, this.input.getValue() )
 		.done( function () {
 			self.input.setValidityFlag( true );

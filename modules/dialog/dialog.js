@@ -92,7 +92,7 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 		mw.loader.using( 'ext.kartographer.dialog.sidebar' ).done( function () {
 			var SideBar;
 			if ( !dialog.sideBar ) {
-				SideBar = mw.loader.require( 'ext.kartographer.dialog.sidebar' );
+				SideBar = require( 'ext.kartographer.dialog.sidebar' );
 				dialog.sideBar = new SideBar( { dialog: dialog } );
 			}
 

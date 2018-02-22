@@ -518,7 +518,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 
 				mw.loader.using( 'ext.kartographer.dialog' ).done( function () {
 					map.doWhenReady( function () {
-						mw.loader.require( 'ext.kartographer.dialog' ).render( map );
+						require( 'ext.kartographer.dialog' ).render( map );
 					} );
 				} );
 			}, this );
@@ -531,7 +531,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 		 * @chainable
 		 */
 		closeFullScreen: function () {
-			mw.loader.require( 'ext.kartographer.dialog' ).close();
+			require( 'ext.kartographer.dialog' ).close();
 			return this;
 		},
 
