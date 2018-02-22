@@ -35,7 +35,7 @@ ve.ce.MWMapsNode = function VeCeMWMaps( model, config ) {
 	this.connect( this, { focus: 'onMapFocus' } );
 
 	// Ensure we have the styles to render the map node
-	mw.loader.using( 'ext.kartographer' );
+	mw.loader.load( 'ext.kartographer' );
 
 	// DOM changes
 	this.$element
