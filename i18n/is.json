@@ -1,0 +1,42 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sveinn í Felli"
+		]
+	},
+	"kartographer-attribution-externaldata-query": "fyrirspurn",
+	"kartographer-coord-lat-positive": "$1N",
+	"kartographer-coord-lat-negative": "$1S",
+	"kartographer-coord-lon-positive": "$1A",
+	"kartographer-coord-lon-negative": "$1V",
+	"kartographer-linktype-map": "Landakort",
+	"kartographer-linktype-other": "Annað",
+	"kartographer-linktype-satellite": "Gervitungl",
+	"kartographer-linktype-terrain": "Yfirborð",
+	"kartographer-link-geonames": "GeoNames",
+	"kartographer-link-google-maps": "Google Kort",
+	"kartographer-link-openstreetmap": "OpenStreetMap",
+	"kartographer-sidebar-coordinates": "Hnit",
+	"kartographer-sidebar-latitude": "Breiddargráða",
+	"kartographer-sidebar-longitude": "Lengdargráða",
+	"kartographer-sidebar-service": "Þjónusta",
+	"kartographer-sidebar-togglebutton": "Nánari upplýsingar",
+	"leafletdraw-draw-handlers-circle-radius": "Radíus",
+	"leafletdraw-draw-toolbar-actions-text": "Hætta við",
+	"leafletdraw-draw-toolbar-actions-title": "Hætta við teikningu",
+	"leafletdraw-draw-toolbar-buttons-rectangle": "Teikna rétthyrning",
+	"leafletdraw-edit-toolbar-actions-cancel-text": "Hætta við",
+	"leafletdraw-edit-toolbar-actions-save-text": "Vista",
+	"leafletdraw-edit-toolbar-actions-save-title": "Vista breytingar",
+	"mapbox-control-zoomin-title": "Renna að",
+	"mapbox-control-zoomout-title": "Renna frá",
+	"kartographer-fullscreen-close": "Loka",
+	"visualeditor-mwmapsdialog-align": "Hliðjöfnun",
+	"visualeditor-mwmapsdialog-geojson": "GeoJSON",
+	"visualeditor-mwmapsdialog-position-lat": "Breiddargráða",
+	"visualeditor-mwmapsdialog-position-lon": "Lengdargráða",
+	"visualeditor-mwmapsdialog-position-zoom": "Aðdráttur",
+	"visualeditor-mwmapsdialog-size": "Stærð",
+	"visualeditor-mwmapsdialog-title": "Landakort",
+	"visualeditor-mwmapscontextitem-title": "Landakort"
+}
