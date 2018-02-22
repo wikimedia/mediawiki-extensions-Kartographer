@@ -50,7 +50,7 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 
 	MapDialog.prototype.addFooterButton = function () {
 		var dialog = this;
-		mw.loader.using( 'oojs-ui-widgets' ).done( function () {
+		mw.loader.using( 'oojs-ui-widgets' ).then( function () {
 			$( function () {
 
 				// Create footer toggle button
@@ -89,7 +89,7 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 
 	MapDialog.prototype.toggleSideBar = function ( open ) {
 		var dialog = this;
-		mw.loader.using( 'ext.kartographer.dialog.sidebar' ).done( function () {
+		mw.loader.using( 'ext.kartographer.dialog.sidebar' ).then( function () {
 			var SideBar;
 			if ( !dialog.sideBar ) {
 				SideBar = require( 'ext.kartographer.dialog.sidebar' );

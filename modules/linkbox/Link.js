@@ -102,7 +102,7 @@ module.Link = ( function ( $ ) {
 				position.zoom
 			);
 
-			mw.loader.using( 'ext.kartographer.dialog' ).done( function () {
+			mw.loader.using( 'ext.kartographer.dialog' ).then( function () {
 				require( 'ext.kartographer.dialog' ).render( map );
 			} );
 		} else {
@@ -122,7 +122,7 @@ module.Link = ( function ( $ ) {
 				fullScreenRoute: link.fullScreenRoute
 			};
 
-			mw.loader.using( 'ext.kartographer.dialog' ).done( function () {
+			mw.loader.using( 'ext.kartographer.dialog' ).then( function () {
 				require( 'ext.kartographer.dialog' ).renderNewMap( mapObject, function ( map ) {
 					link.fullScreenMap = map;
 				} );

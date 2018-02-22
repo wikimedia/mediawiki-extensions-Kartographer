@@ -516,7 +516,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 					);
 				}
 
-				mw.loader.using( 'ext.kartographer.dialog' ).done( function () {
+				mw.loader.using( 'ext.kartographer.dialog' ).then( function () {
 					map.doWhenReady( function () {
 						require( 'ext.kartographer.dialog' ).render( map );
 					} );
