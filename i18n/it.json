@@ -5,7 +5,8 @@
 			"Marsitown",
 			"Matteocng",
 			"Anto",
-			"Nicole Scalinci"
+			"Nicole Scalinci",
+			"S4b1nuz E.656"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Esegue la convalida dei dati per l'estensione Kartographer",
@@ -72,6 +73,7 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Nessun livello da modificare",
 	"leafletdraw-edit-toolbar-buttons-remove": "Cancella livelli",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Nessun livello da cancellare",
+	"map": "Informazioni delle coordinate",
 	"mapbox-control-zoomin-title": "Zoom avanti",
 	"mapbox-control-zoomout-title": "Zoom indietro",
 	"kartographer-fullscreen-close": "Chiudi",
