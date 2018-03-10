@@ -157,6 +157,7 @@ class KartographerTest extends MediaWikiTestCase {
 	 * @param array $expectedStyles
 	 */
 	public function testResourceModules( $input, array $expectedModules, array $expectedStyles ) {
+		$this->setMwGlobals( 'wgKartographerStaticMapframe', false );
 		$output = $this->parse( $input );
 
 		$this->assertArrayEquals(
