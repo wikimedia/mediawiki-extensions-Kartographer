@@ -7,8 +7,7 @@
  */
 module.NearbyArticles = ( function ( $ ) {
 
-	var fetchArticlesDeferred,
-		data,
+	var fetchArticlesPromise,
 		config = {};
 
 	return {
@@ -43,27 +42,20 @@ module.NearbyArticles = ( function ( $ ) {
 		 *   once the map is initialized.
 		 */
 		fetch: function () {
-			if ( fetchArticlesDeferred ) {
-				return fetchArticlesDeferred;
-			} else {
-				fetchArticlesDeferred = $.Deferred();
+			if ( fetchArticlesPromise ) {
+				return fetchArticlesPromise;
 			}
 
-			if ( !config.url ) {
-				fetchArticlesDeferred.reject( 'url for nearby articles is missing.' );
-			}
-
-			if ( !data ) {
-				// fetch
-				$.getScript( config.url )
-					.done( function () {
-						data = window.addressPoints;
-						fetchArticlesDeferred.resolve( data ).promise();
+			if ( config.url ) {
+				fetchArticlesPromise = $.getScript( config.url )
+					.then( function () {
+						return window.addressPoints;
 					} );
 			} else {
-				fetchArticlesDeferred.resolve( data );
+				fetchArticlesPromise = $.Deferred().reject( 'url for nearby articles is missing.' ).promise();
 			}
-			return fetchArticlesDeferred.promise();
+
+			return fetchArticlesPromise;
 		}
 	};
 

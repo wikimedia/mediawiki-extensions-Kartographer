@@ -378,15 +378,13 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 		 * @return {jQuery.Promise}
 		 */
 		addDataGroups: function ( dataGroups ) {
-			var map = this,
-				deferred = $.Deferred();
+			var map = this;
 
 			if ( !dataGroups || !dataGroups.length ) {
-				return deferred.resolveWith().promise();
+				return $.Deferred().resolve().promise();
 			}
 
-			DataManager.loadGroups( dataGroups ).then( function ( dataGroups ) {
-
+			return DataManager.loadGroups( dataGroups ).then( function ( dataGroups ) {
 				$.each( dataGroups, function ( key, group ) {
 					var layerOptions = {
 							attribution: group.attribution
@@ -402,11 +400,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 						mw.log.warn( 'Layer not found or contains no data: "' + group.id + '"' );
 					}
 				} );
-				deferred.resolve();
-			} ).then( undefined, function ( err ) {
-				deferred.reject( err );
 			} );
-			return deferred.promise();
 		},
 
 		/**
@@ -417,12 +411,10 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 		 * @return {jQuery.Promise} Promise which resolves when the layer has been added
 		 */
 		addDataLayer: function ( groupData, options ) {
-			var map = this,
-				deferred = $.Deferred();
-
+			var map = this;
 			options = options || {};
 
-			DataManager.load( groupData ).then( function ( dataGroups ) {
+			return DataManager.load( groupData ).then( function ( dataGroups ) {
 				$.each( dataGroups, function ( key, group ) {
 					var groupId = inlineDataLayerKey + inlineDataLayerId++,
 						layerOptions = {
@@ -439,11 +431,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 						mw.log.warn( 'Layer not found or contains no data: "' + groupId + '"' );
 					}
 				} );
-				deferred.resolve();
-			} ).then( undefined, function ( err ) {
-				deferred.reject( err );
 			} );
-			return deferred.promise();
 		},
 
 		/**
