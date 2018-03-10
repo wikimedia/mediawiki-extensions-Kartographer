@@ -315,6 +315,7 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 
 	mw.loader.using( 'ext.kartographer.editor' ).then( function () {
 		var geoJsonLayer,
+			editing = require( 'ext.kartographer.editing' ),
 			defaultShapeOptions = { shapeOptions: L.mapbox.simplestyle.style( {} ) },
 			mapPosition = dialog.getInitialMapPosition();
 
@@ -347,8 +348,7 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 				} );
 			}
 
-			geoJsonLayer = require( 'ext.kartographer.editing' )
-				.getKartographerLayer( dialog.map );
+			geoJsonLayer = editing.getKartographerLayer( dialog.map );
 			new L.Control.Draw( {
 				edit: { featureGroup: geoJsonLayer },
 				draw: {
@@ -362,10 +362,14 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 			} ).addTo( dialog.map );
 
 			function update() {
+				var geoJson;
 				// Prevent circular update of map
 				dialog.updatingGeoJson = true;
 				try {
-					dialog.input.setValue( JSON.stringify( geoJsonLayer.toGeoJSON(), null, '  ' ) );
+					geoJson = geoJsonLayer.toGeoJSON();
+					// Undo the sanitization step's parsing of wikitext
+					editing.restoreUnparsedText( geoJson );
+					dialog.input.setValue( JSON.stringify( geoJson, null, '  ' ) );
 				} finally {
 					dialog.updatingGeoJson = false;
 				}

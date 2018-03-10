@@ -84,7 +84,9 @@ class ApiSanitizeMapDataTest extends MediaWikiTestCase {
 		"properties":{
 			"title":"A&amp;B",
 			"description":"<a href=\"\/w\/index.php?title=Link_to_nowhere&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Link to nowhere (page does not exist)\">Link to nowhere<\/a>",
-			"marker-symbol":"a"
+			"marker-symbol":"a",
+			"_origtitle":"A&B",
+			"_origdescription": "[[Link to nowhere]]"
 		}
 	}]' ],
 		];
