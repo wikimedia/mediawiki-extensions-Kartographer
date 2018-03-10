@@ -108,45 +108,40 @@ module.wikivoyage = ( function ( $, mw ) {
 		 * @return {jQuery.Promise}
 		 */
 		isAllowed: function ( layer, map ) {
-			var deferred = $.Deferred();
-
-			mw.loader.using( 'mediawiki.storage' ).then( function () {
+			return mw.loader.using( 'mediawiki.storage' ).then( function () {
 
 				if ( areExternalAllowed === undefined ) {
 					areExternalAllowed = mw.storage.get( STORAGE_KEY ) === '1';
 				}
 
 				if ( !layer.options.wvIsExternal || areExternalAllowed ) {
-					deferred.resolve();
-				} else {
-					mw.track( 'mediawiki.kartographer', {
-						action: 'wv-warn',
-						isFullScreen: !!map.options.fullscreen,
-						feature: map
-					} );
-					alertExternalData().closed.then( function ( data ) {
-						if ( data && data.action && data.action === 'good' ) {
-							areExternalAllowed = true;
-							mw.storage.set( STORAGE_KEY, '1' );
-							mw.track( 'mediawiki.kartographer', {
-								action: 'wv-warn-agree',
-								isFullScreen: !!map.options.fullscreen,
-								feature: map
-							} );
-							deferred.resolve();
-						} else {
-							mw.track( 'mediawiki.kartographer', {
-								action: 'wv-warn-reject',
-								isFullScreen: !!map.options.fullscreen,
-								feature: map
-							} );
-							deferred.reject();
-						}
-					} );
+					return;
 				}
+				mw.track( 'mediawiki.kartographer', {
+					action: 'wv-warn',
+					isFullScreen: !!map.options.fullscreen,
+					feature: map
+				} );
+				return alertExternalData().closed.then( function ( data ) {
+					if ( data && data.action && data.action === 'good' ) {
+						areExternalAllowed = true;
+						mw.storage.set( STORAGE_KEY, '1' );
+						mw.track( 'mediawiki.kartographer', {
+							action: 'wv-warn-agree',
+							isFullScreen: !!map.options.fullscreen,
+							feature: map
+						} );
+					} else {
+						mw.track( 'mediawiki.kartographer', {
+							action: 'wv-warn-reject',
+							isFullScreen: !!map.options.fullscreen,
+							feature: map
+						} );
+						return $.Deferred().reject().promise();
+					}
+				} );
 			} );
 
-			return deferred.promise();
 		}
 	};
 

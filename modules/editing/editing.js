@@ -34,41 +34,30 @@ module.exports = ( function ( $, mw ) {
 	 * indicating whether the GeoJSON was valid and was applied.
 	 *
 	 * @param {L.Map} map Map to set the GeoJSON for
-	 * @param {string} geoJsonString GeoJSON data, empty string to clear
+	 * @param {string} geoJsonString GeoJSON data
 	 * @return {jQuery.Promise} Promise which resolves when the GeoJSON is updated, and rejects if there was an error
 	 */
 	function updateKartographerLayer( map, geoJsonString ) {
-		var deferred = $.Deferred();
-
 		if ( geoJsonString === '' ) {
-			return deferred.resolve().promise();
+			return $.Deferred().resolve().promise();
 		}
 
-		new mw.Api().post( {
+		return new mw.Api().post( {
 			action: 'sanitize-mapdata',
 			text: geoJsonString,
 			title: mw.config.get( 'wgPageName' )
-		} ).done( function ( resp ) {
+		} ).then( function ( resp ) {
 			var geoJson, layer,
-				data = resp[ 'sanitize-mapdata' ];
+				data = resp[ 'sanitize-mapdata' ],
+				sanitizedJsonString = data && data.sanitized;
 
-			geoJsonString = data && data.sanitized;
-
-			if ( geoJsonString && !data.error ) {
-				try {
-					geoJson = JSON.parse( geoJsonString );
-					layer = getKartographerLayer( map );
-					layer.setGeoJSON( geoJson );
-					deferred.resolve();
-				} catch ( e ) {
-					deferred.reject( e );
-				}
-			} else {
-				deferred.reject();
+			if ( data.error || !sanitizedJsonString ) {
+				return $.Deferred().reject().promise();
 			}
+			geoJson = JSON.parse( sanitizedJsonString );
+			layer = getKartographerLayer( map );
+			layer.setGeoJSON( geoJson );
 		} );
-
-		return deferred.promise();
 	}
 
 	return {
