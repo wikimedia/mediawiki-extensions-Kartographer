@@ -9,7 +9,8 @@
 			"Trial",
 			"Derugon",
 			"Thibaut120094",
-			"The RedBurn"
+			"The RedBurn",
+			"Ltrlg"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Effectue la validation des données pour l’extension Kartographer",
@@ -24,7 +25,7 @@
 	"apihelp-query+mapdata-param-continue": "Utiliser ce paramètre pour continuer l’énumération des résultats",
 	"apihelp-query+mapdata-param-groups": "Groupes pour lesquels renvoyer les données, séparés par des barres verticales",
 	"apihelp-query+mapdata-param-limit": "Nombre de pages pour lesquelles renvoyer des données",
-	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Wikimedia maps] | Données de carte © [https://www.openstreetmap.org/copyright OpenStreetMap contributors]",
+	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Wikimedia maps] | Données de carte © [https://www.openstreetmap.org/copyright les contributeurs d’OpenStreetMap]",
 	"kartographer-attribution-externaldata-query": "requête",
 	"kartographer-attribution-short": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Wikimedia] | © [https://www.openstreetmap.org/copyright OpenStreetMap]",
 	"kartographer-broken-category": "Pages avec des cartes contenant des erreurs",
