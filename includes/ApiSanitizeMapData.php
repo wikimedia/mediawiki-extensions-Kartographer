@@ -57,7 +57,7 @@ class ApiSanitizeMapData extends ApiBase {
 		$parser->startExternalParse( $title, $parserOptions, Parser::OT_HTML );
 		$parser->setTitle( $title );
 		$parser->clearState();
-		$simpleStyle = new SimpleStyleParser( $parser, null );
+		$simpleStyle = new SimpleStyleParser( $parser, null, [ 'saveUnparsed' => true ] );
 		$status = $simpleStyle->parse( $text );
 		if ( !$status->isOK() ) {
 			$error = $status->getHTML( false, false, $this->getLanguage() );

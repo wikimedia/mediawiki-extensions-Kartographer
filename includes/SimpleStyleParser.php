@@ -33,10 +33,13 @@ class SimpleStyleParser {
 	 *
 	 * @param Parser $parser Parser used for wikitext processing
 	 * @param PPFrame|null $frame
+	 * @param array $options Set ['saveUnparsed' => true] to back up the original values of title
+	 *                       and descrition in _origtitle and _origdescription
 	 */
-	public function __construct( Parser $parser, PPFrame $frame = null ) {
+	public function __construct( Parser $parser, PPFrame $frame = null, array $options = [] ) {
 		$this->parser = $parser;
 		$this->frame = $frame;
+		$this->options = $options;
 		// @fixme: More precise config?
 		$this->mapService = MediaWikiServices::getInstance()
 			->getMainConfig()
@@ -277,24 +280,31 @@ class SimpleStyleParser {
 	 * @param object &$properties
 	 */
 	private function sanitizeProperties( &$properties ) {
+		$saveUnparsed = isset( $this->options['saveUnparsed'] ) && $this->options['saveUnparsed'];
 		foreach ( self::$parsedProps as $prop ) {
 			if ( property_exists( $properties, $prop ) ) {
 				$property = &$properties->$prop;
 
 				if ( is_string( $property ) ) {
+					if ( $saveUnparsed ) {
+						$properties->{"_orig$prop"} = $property;
+					}
 					$property = $this->parseText( $property );
 				} elseif ( is_object( $property ) ) {
-					foreach ( $property as $language => &$text ) {
-						if ( !is_string( $text ) ) {
-							unset( $property->$language );
-						} else {
-							$text = $this->parseText( $text );
-						}
-					}
-
 					// Delete empty localizations
 					if ( !count( get_object_vars( $property ) ) ) {
 						unset( $properties->$prop );
+					} else {
+						if ( $saveUnparsed ) {
+							$properties->{"_orig$prop"} = $property;
+						}
+						foreach ( $property as $language => &$text ) {
+							if ( !is_string( $text ) ) {
+								unset( $property->$language );
+							} else {
+								$text = $this->parseText( $text );
+							}
+						}
 					}
 				} else {
 					unset( $properties->$prop ); // Dunno what the hell it is, ditch
