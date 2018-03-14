@@ -227,7 +227,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 			 *   tile layer.
 			 * @protected
 			 */
-			this.wikimediaLayer = L.tileLayer( mapServer + '/' + style + urlFormat, {
+			this.wikimediaLayer = L.tileLayer( mapServer + '/' + style + urlFormat + '?' + $.param( { lang: mw.config.get( 'wgPageContentLanguage' ) } ), {
 				maxZoom: 19,
 				attribution: mw.message( 'kartographer-attribution' ).parse()
 			} ).addTo( this );

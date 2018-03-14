@@ -162,13 +162,19 @@ class MapFrame extends TagHandler {
 			$containerClass .= ' mw-kartographer-full';
 		}
 
+		$params = [
+			'lang' => $this->parser->getTargetLanguage()->getCode(),
+		];
 		$bgUrl = "{$wgKartographerMapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat}," .
 			"{$staticLon},{$staticWidth}x{$this->height}.png";
 		if ( $this->showGroups ) {
-			$title = urlencode( $this->parser->getTitle()->getPrefixedText() );
-			$groupList = urlencode( implode( ',', $this->showGroups ) );
-			$bgUrl .= "?domain={$wgServerName}&title={$title}&groups={$groupList}";
+			$params += [
+				'domain' => $wgServerName,
+				'title' => $this->parser->getTitle()->getPrefixedText(),
+				'groups' => implode( ',', $this->showGroups ),
+			];
 		}
+		$bgUrl .= '?' . wfArrayToCgi( $params );
 
 		$attrs['style'] = "background-image: url({$bgUrl});";
 		$attrs['href'] = SpecialMap::link( $staticLat, $staticLon, $staticZoom )->getLocalURL();
