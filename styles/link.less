@@ -73,8 +73,16 @@ a.mw-kartographer-link {
  * Applied only when JS is enabled.
  */
 .client-js {
+	// Use the 'grab' icon with fallbacks for both the dynamic map
+	// and the full-screen map from leaflet; leaflet only has the
+	// vendor-specific rules, so this adds the proper fallbacks as well
+	.leaflet-grab,
 	.mw-kartographer-map {
-		cursor: pointer;
+		cursor: move;
+		cursor: url( ./images/grab.cur ), default;
+		cursor: -webkit-grab;
+		cursor: -moz-grab;
+		cursor: grab;
 	}
 
 	/* stylelint-disable-next-line indentation */
