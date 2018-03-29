@@ -189,13 +189,13 @@ Error messages
 !! result
 <div class="mw-kartographer-error"><p>&lt;maplink&gt; problems:
 </p>
-<ul><li> Couldn't parse JSON: Syntax error</li>
-<li> Attribute "longitude" has an invalid value</li></ul>
+<ul><li>Couldn't parse JSON: Syntax error</li>
+<li>Attribute "longitude" has an invalid value</li></ul>
 </div>
 <div class="mw-kartographer-error"><p>&lt;mapframe&gt; problems:
 </p>
-<ul><li> Attribute "mapstyle" has an invalid value</li>
-<li> Attribute "align" has an invalid value</li></ul>
+<ul><li>Attribute "mapstyle" has an invalid value</li>
+<li>Attribute "align" has an invalid value</li></ul>
 </div>
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
@@ -203,9 +203,9 @@ Error messages
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
 <div class="mw-kartographer-error"><p>&lt;mapframe&gt; problems:
 </p>
-<ul><li> The JSON content is not valid GeoJSON+simplestyle</li>
-<li> Attribute "mapstyle" has an invalid value</li>
-<li> Attribute "align" has an invalid value</li></ul>
+<ul><li>The JSON content is not valid GeoJSON+simplestyle</li>
+<li>Attribute "mapstyle" has an invalid value</li>
+<li>Attribute "align" has an invalid value</li></ul>
 </div>
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Either both "latitude" and "longitude" parameters should be supplied or neither of them</div>
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Either both "latitude" and "longitude" parameters should be supplied or neither of them</div>
