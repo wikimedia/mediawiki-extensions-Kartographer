@@ -15,13 +15,17 @@
  * @param {Object} [config] Configuration options
  */
 ve.ce.MWMapsNode = function VeCeMWMaps( model, config ) {
+	var store, contents, $caption;
+
 	config = config || {};
+
+	this.$map = $( '<div>' ).addClass( 'mw-kartographer-map' );
 
 	// Parent constructor
 	ve.ce.MWMapsNode.super.apply( this, arguments );
 
 	// Mixin constructors
-	ve.ce.ResizableNode.call( this, this.$element, config );
+	ve.ce.ResizableNode.call( this, this.$map, config );
 
 	this.$imageLoader = null;
 	this.geoJson = null;
@@ -37,11 +41,20 @@ ve.ce.MWMapsNode = function VeCeMWMaps( model, config ) {
 	// Ensure we have the styles to render the map node
 	mw.loader.load( 'ext.kartographer' );
 
+	// HACK: Copy caption from originalDomElements
+	store = this.model.doc.getStore();
+	contents = store.value( store.hashOfValue( null, OO.getHash( [ this.model.getHashObjectForRendering(), null ] ) ) );
+	$caption = $( contents ).find( '.thumbcaption' ).clone();
+
 	// DOM changes
 	this.$element
 		.empty()
-		.addClass( 've-ce-mwMapsNode' )
-		.css( this.model.getCurrentDimensions() );
+		.addClass( 've-ce-mwMapsNode mw-kartographer-container thumb' )
+		.append(
+			$( '<div>' ).addClass( 'thumbinner' ).append(
+				this.$map, $caption
+			)
+		);
 };
 
 /* Inheritance */
@@ -127,9 +140,21 @@ ve.ce.MWMapsNode.prototype.update = function () {
 		this.updateStatic();
 		$( '<img>' ).attr( 'src', this.model.getUrl( 1000, 1000 ) );
 	}
+	switch ( align ) {
+		case 'right':
+			this.showHandles( [ 'sw' ] );
+			break;
+		case 'left':
+			this.showHandles( [ 'se' ] );
+			break;
+		case 'center':
+			this.showHandles( [ 'sw', 'se' ] );
+			break;
+	}
 	this.$element
 		.removeClass( 'floatleft center floatright' )
-		.addClass( alignClasses[ align ] )
+		.addClass( alignClasses[ align ] );
+	this.$map
 		.css( this.model.getCurrentDimensions() );
 };
 
@@ -142,7 +167,7 @@ ve.ce.MWMapsNode.prototype.setupMap = function () {
 		node = this;
 
 	this.map = require( 'ext.kartographer.box' ).map( {
-		container: this.$element[ 0 ],
+		container: this.$map[ 0 ],
 		center: [ +mwAttrs.latitude, +mwAttrs.longitude ],
 		zoom: +mwAttrs.zoom
 		// TODO: Support style editing
@@ -164,8 +189,12 @@ ve.ce.MWMapsNode.prototype.setupMap = function () {
  * Update the GeoJSON layer from the current model state
  */
 ve.ce.MWMapsNode.prototype.updateGeoJson = function () {
-	var mwData = this.model.getAttribute( 'mw' ),
-		geoJson = mwData && mwData.body.extsrc;
+	var mwData, geoJson;
+	if ( !this.model ) {
+		return;
+	}
+	mwData = this.model.getAttribute( 'mw' );
+	geoJson = mwData && mwData.body.extsrc;
 
 	if ( geoJson !== this.geoJson ) {
 		require( 'ext.kartographer.editing' ).updateKartographerLayer( this.map, mwData && mwData.body.extsrc ).then( this.updateMapPosition.bind( this ) );
@@ -177,10 +206,13 @@ ve.ce.MWMapsNode.prototype.updateGeoJson = function () {
  * Updates the map position (center and zoom) from the current model state.
  */
 ve.ce.MWMapsNode.prototype.updateMapPosition = function () {
-	var mwData = this.model.getAttribute( 'mw' ),
-		mapData = this.mapData,
-		updatedData = mwData && mwData.attrs,
-		current;
+	var mwData, mapData, updatedData, current;
+	if ( !this.model ) {
+		return;
+	}
+	mwData = this.model.getAttribute( 'mw' );
+	mapData = this.mapData;
+	updatedData = mwData && mwData.attrs;
 
 	if ( !updatedData ) {
 		// auto calculate the position
@@ -226,7 +258,7 @@ ve.ce.MWMapsNode.prototype.updateStatic = function ( width, height ) {
 	url = this.model.getUrl( width, height );
 
 	this.$imageLoader = this.$( '<img>' ).on( 'load', function () {
-		node.$element.css( 'backgroundImage', 'url(' + url + ')' );
+		node.$map.css( 'backgroundImage', 'url(' + url + ')' );
 	} ).attr( 'src', url );
 };
 
