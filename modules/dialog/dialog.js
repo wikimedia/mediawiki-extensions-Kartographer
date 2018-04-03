@@ -19,7 +19,6 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 			MapDialog.super.apply( this, arguments );
 		},
 		// Opens the sidebar when the screen is wide enough (greater than 1024px)
-		isWideScreen = $( document ).width() > 1024,
 		FOOTER_HEIGHT = 58,
 		SIDEBAR_WIDTH = 320;
 
@@ -56,7 +55,7 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 				// Create footer toggle button
 				var button = dialog.$mapDetailsButton = new OO.ui.ToggleButtonWidget( {
 						label: mw.msg( 'kartographer-sidebar-togglebutton' ),
-						icon: 'info',
+						icon: 'newWindow',
 						iconTitle: mw.msg( 'kartographer-sidebar-togglebutton' )
 					} ),
 					$captionContainer = dialog.$captionContainer = $( '<div class="mw-kartographer-captionfoot">' ),
@@ -76,19 +75,13 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 				dialog.$foot.append( $inlineContainer );
 
 				button.on( 'change', dialog.toggleSideBar, null, dialog );
-
-				if ( isWideScreen ) {
-					dialog.map.doWhenReady( function () {
-						dialog.offsetMap( true );
-						dialog.toggleSideBar( true );
-					} );
-				}
 			} );
 		} );
 	};
 
 	MapDialog.prototype.toggleSideBar = function ( open ) {
 		var dialog = this;
+
 		mw.loader.using( 'ext.kartographer.dialog.sidebar' ).then( function () {
 			var SideBar;
 			if ( !dialog.sideBar ) {

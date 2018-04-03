@@ -15,6 +15,9 @@ module.exports = ( function ( $, mw ) {
 			 */
 			this.dialog = options.dialog;
 
+			this.showAllServices = false;
+			this.toggleShowServices = null;
+
 			/**
 			 * @property {Object}
 			 */
@@ -26,7 +29,6 @@ module.exports = ( function ( $, mw ) {
 			this.metadata = mw.config.get( 'wgKartographerExternalLinks' );
 			this.parseExternalLinks();
 		},
-		MODULE_NAME = 'ext.kartographer.dialog.sidebar',
 		selectedType;
 
 	/**
@@ -87,10 +89,6 @@ module.exports = ( function ( $, mw ) {
 		 * @property {Object}
 		 */
 		sidebar.mapPosition = map.getMapPosition( { scaled: true } );
-
-		sidebar.createCloseButton().$element.appendTo( $container );
-		sidebar.createCollapseButton().$element.appendTo( $container );
-
 		/**
 		 * @property {jQuery}
 		 */
@@ -150,18 +148,67 @@ module.exports = ( function ( $, mw ) {
 	 * Renders the map details partial into its container.
 	 */
 	SideBar.prototype.renderMapDetails = function () {
-		var sidebar = this,
-			partial = mw.template.get( MODULE_NAME, 'dialog-sidebar-mapdetails.mustache' ).render( {
-				LBL_COORDINATES: mw.msg( 'kartographer-sidebar-coordinates' ),
-				LBL_LATITUDE: mw.msg( 'kartographer-sidebar-latitude' ),
-				LBL_LONGITUDE: mw.msg( 'kartographer-sidebar-longitude' ),
-				LBL_MAP_DETAILS: mw.msg( 'kartographer-sidebar-mapdetails' ),
-				latitude: sidebar.mapPosition.center.lat,
-				longitude: sidebar.mapPosition.center.lng,
-				zoom: sidebar.mapPosition.zoom
+		var $coords = $( '.mw-kartographer-mapdetails-coordinates' );
+
+		if ( !$coords.length ) {
+			// Only re-create the DOM elements if they don't already
+			// exist and are attached
+			this.labelLongtitude = new OO.ui.LabelWidget( {
+				classes: [ 'longitude' ],
+				title: mw.msg( 'kartographer-sidebar-longitude' ),
+				label: String( this.mapPosition.center.lng )
+			} );
+			this.labelLatitude = new OO.ui.LabelWidget( {
+				classes: [ 'latitude' ],
+				title: mw.msg( 'kartographer-sidebar-latitude' ),
+				label: String( this.mapPosition.center.lat )
 			} );
 
-		sidebar.$mapDetailsContainer.html( partial );
+			$coords = $( '<div>' )
+				.addClass( 'mw-kartographer-mapdetails-coordinates' )
+				.append(
+					new OO.ui.LabelWidget( {
+						classes: [ 'mw-kartographer-mapdetails-coordinates-title' ],
+						label: mw.msg( 'kartographer-sidebar-coordinates' )
+					} ).$element,
+					$( '<div>' )
+						.addClass( 'mw-kartographer-mapdetails-coordinates-latlon' )
+						.append(
+							this.labelLongtitude.$element,
+							',&nbsp;', // Comma and space
+							this.labelLatitude.$element
+						)
+				);
+
+			this.closeButton = new OO.ui.ButtonWidget( {
+				framed: false,
+				classes: [ 'mw-kartographer-mapdetails-title-arrow' ],
+				icon: 'arrowNext'
+			} );
+
+			// Event
+			this.closeButton.connect( this.dialog, {
+				click: [ 'toggleSideBar', false ]
+			} );
+
+			// Append to container
+			this.$mapDetailsContainer.append(
+				$( '<div>' )
+					.addClass( 'mw-kartographer-mapdetails-title' )
+					.append(
+						new OO.ui.LabelWidget( {
+							classes: [ 'mw-kartographer-mapdetails-title-label' ],
+							label: mw.msg( 'kartographer-sidebar-mapdetails' )
+						} ).$element,
+						this.closeButton.$element
+					),
+				$coords
+			);
+		}
+
+		// Update the information
+		this.labelLongtitude.setLabel( String( this.mapPosition.center.lng ) );
+		this.labelLatitude.setLabel( String( this.mapPosition.center.lat ) );
 	};
 
 	/**
@@ -197,7 +244,13 @@ module.exports = ( function ( $, mw ) {
 		} );
 		dropdown.getMenu().selectItemByData( selectedType || defaultType );
 
-		sidebar.$filterContainer.append( dropdown.$element );
+		sidebar.$filterContainer.append(
+			new OO.ui.LabelWidget( {
+				classes: [ 'mw-kartographer-filterservices-title' ],
+				label: mw.msg( 'kartographer-sidebar-externalservices' )
+			} ).$element,
+			dropdown.$element
+		);
 	};
 
 	/**
@@ -205,42 +258,95 @@ module.exports = ( function ( $, mw ) {
 	 */
 	SideBar.prototype.renderExternalServices = function () {
 		var sidebar = this,
-			services = sidebar.byType[ selectedType ],
-			featured = [],
-			regular = [],
-			partial;
+			$list = this.$servicesContainer.find( '.mw-kartographer-filterservices-list' ),
+			populateListItems = function () {
+				var items,
+					featured = [],
+					regular = [],
+					services = sidebar.byType[ selectedType ];
+
+				$.each( services, function ( serviceId, links ) {
+					// Only one link is supported per type per service for now.
+					var link = links[ 0 ],
+						service = sidebar.byService[ serviceId ],
+						formatted = service.featured ? featured : regular,
+						$item = $( '<div>' )
+							.addClass( 'mw-kartographer-filterservices-list-item' )
+							.toggleClass( 'mw-kartographer-filterservices-list-item-featured', service.featured )
+							.append(
+								$( '<div>' )
+									.addClass( 'mw-kartographer-table' )
+									.append(
+										$( '<div>' )
+											.addClass( 'mw-kartographer-row' )
+											.append(
+												$( '<div>' )
+													.addClass( 'mw-kartographer-cell' )
+													.append(
+														new OO.ui.ButtonWidget( {
+															framed: false,
+															flags: [ 'progressive' ],
+															label: service.name,
+															href: sidebar.formatLink( link.url ),
+															target: '_blank'
+														} ).$element
+													),
+												$( '<div>' )
+													.addClass( 'mw-kartographer-cell' )
+													.addClass( 'mw-kartographer-filterservices-list-item-button' )
+													.append(
+														new OO.ui.ButtonWidget( {
+															framed: false,
+															href: sidebar.formatLink( link.url ),
+															target: '_blank',
+															icon: 'newWindow'
+														} ).$element
+													)
+											)
+									)
+							);
+
+					formatted.push( $item );
+				} );
+
+				$list.empty();
+				items = sidebar.showAllServices ?
+					featured.concat( regular ) : featured;
+
+				// Update message
+				sidebar.toggleShowServices.setLabel(
+					sidebar.showAllServices ?
+						mw.msg( 'kartographer-sidebar-externalservices-show-featured' ) :
+						mw.msg( 'kartographer-sidebar-externalservices-show-all' )
+				);
+
+				$list.append( items );
+			};
 
 		if ( !selectedType ) {
 			return;
 		}
 
-		$.each( services, function ( serviceId, links ) {
-			// Only one link is supported per type per service for now.
-			var link = links[ 0 ],
-				service = sidebar.byService[ serviceId ],
-				formatted = service.featured ? featured : regular;
+		if ( !$list.length ) {
+			$list = $( '<div>' )
+				.addClass( 'mw-kartographer-filterservices-list' );
+			this.$servicesContainer.append( $list );
+		}
 
-			formatted.push( {
-				id: serviceId,
-				name: service.name,
-				featured: service.featured,
-				linkLabel: sidebar.metadata.localization[ selectedType ],
-				link: sidebar.formatLink( link.url )
+		if ( !this.toggleShowServices ) {
+			this.toggleShowServices = new OO.ui.ButtonWidget( {
+				framed: false,
+				flags: [ 'progressive' ]
 			} );
-		} );
 
-		partial = mw.template.get( MODULE_NAME, 'dialog-sidebar-externalservices.mustache' ).render(
-			{
-				LBL_EXTERNAL_SERVICES: mw.msg( 'kartographer-sidebar-externalservices' ),
-				LBL_SERVICE: mw.msg( 'kartographer-sidebar-service' ),
-				services: featured.concat( regular ),
-				latitude: sidebar.initialMapPosition.center.lat,
-				longitude: sidebar.initialMapPosition.center.lng,
-				zoom: sidebar.initialMapPosition.zoom
-			}
-		);
+			this.toggleShowServices.on( 'click', function () {
+				sidebar.showAllServices = !sidebar.showAllServices;
+				populateListItems();
+			} );
+			this.$servicesContainer.append( this.toggleShowServices.$element );
+		}
 
-		sidebar.$servicesContainer.html( partial );
+		populateListItems();
 	};
 
 	/**
@@ -275,40 +381,6 @@ module.exports = ( function ( $, mw ) {
 		 * @property {Object}
 		 */
 		this.byType = byType;
-	};
-
-	/**
-	 * Creates a close button instance.
-	 *
-	 * @return {OO.ui.ButtonWidget}
-	 */
-	SideBar.prototype.createCloseButton = function () {
-		// Add close button to the sidebar
-		var sidebar = this,
-			button = new OO.ui.ButtonWidget( {
-				icon: 'close',
-				title: mw.msg( 'kartographer-fullscreen-close' ),
-				framed: false,
-				classes: [ 'mw-kartographer-mapDialog-closeButton' ]
-			} ).connect( this, { click: sidebar.dialog.map.closeFullScreen.bind( sidebar.dialog.map ) } );
-		return button;
-	};
-
-	/**
-	 * Creates a collapse button instance.
-	 *
-	 * @return {OO.ui.ButtonWidget}
-	 */
-	SideBar.prototype.createCollapseButton = function () {
-		// Add close button to the sidebar
-		var sidebar = this,
-			button = new OO.ui.ButtonWidget( {
-				icon: 'expand',
-				title: mw.msg( 'kartographer-fullscreen-collapse' ),
-				framed: false,
-				classes: [ 'mw-kartographer-mapDialog-collapseButton' ]
-			} ).connect( this, { click: sidebar.dialog.toggleSideBar.bind( sidebar.dialog, false ) } );
-		return button;
 	};
 
 	/**
