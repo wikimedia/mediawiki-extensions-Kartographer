@@ -235,6 +235,13 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 					return;
 				}
 				this.map.doWhenReady( function () {
+					this.map.$container.find( '.leaflet-marker-icon' ).each( function () {
+						var height = $( this ).height();
+						$( this ).css( {
+							clip: 'rect(auto auto ' + ( ( height / 2 ) + 10 ) + 'px auto)'
+						} );
+					} );
+
 					mw.hook( 'wikipage.maps' ).fire( this.map, true /* isFullScreen */ );
 				}, this );
 			}, this );
