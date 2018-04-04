@@ -22,7 +22,6 @@
 	"apihelp-query+mapdata-param-limit": "{{doc-apihelp-param|query+mapdata|limit}}",
 	"kartographer-attribution": "Attribution text shown at the bottom of the map.",
 	"kartographer-attribution-externaldata": "Formats external data layer attribution: $1 is external data service (e.g. Wikidata), $2 is link to external data link (e.g. query).",
-	"kartographer-attribution-externaldata-query": "Label for external data 'query'.\n{{Identical|Query}}",
 	"kartographer-attribution-short": "Shorter version of the attribution text shown at the bottom of the map, for static maps embedded in the article.",
 	"kartographer-broken-category": "Name of the tracking category",
 	"kartographer-broken-category-desc": "Description on [[Special:TrackingCategories]] for the {{msg-mw|kartographer-broken-category}} tracking category.",
