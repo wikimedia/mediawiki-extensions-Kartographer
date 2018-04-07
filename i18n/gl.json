@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Banjo",
-			"Elisardojm"
+			"Elisardojm",
+			"Navhy"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Realiza a validación dos datos para a extensión Kartographer",
@@ -84,7 +85,7 @@
 	"mapbox-control-zoomout-title": "Reducir",
 	"kartographer-fullscreen-close": "Pechar",
 	"kartographer-fullscreen-collapse": "Agochar os detalles do mapa",
-	"kartographer-fullscreen-text": "Mostrar a pantalla completa",
+	"kartographer-fullscreen-text": "Amosar a pantalla completa",
 	"visualeditor-mwmapsdialog-align": "Aliñamento",
 	"visualeditor-mwmapsdialog-position-button": "Posición actual",
 	"visualeditor-mwmapsdialog-position-lat": "Latitude",
