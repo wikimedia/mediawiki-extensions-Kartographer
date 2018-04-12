@@ -245,15 +245,13 @@
 				"kartographer-sidebar-description",
 				"kartographer-sidebar-filterdropdown",
 				"kartographer-sidebar-externalservices",
+				"kartographer-sidebar-externalservices-show-featured",
+				"kartographer-sidebar-externalservices-show-all",
 				"kartographer-sidebar-latitude",
 				"kartographer-sidebar-longitude",
 				"kartographer-sidebar-mapdetails",
 				"kartographer-sidebar-service"
 			],
-			"templates": {
-				"dialog-sidebar-mapdetails.mustache": "templates/dialog-sidebar-mapdetails.mustache",
-				"dialog-sidebar-externalservices.mustache": "templates/dialog-sidebar-externalservices.mustache"
-			},
 			"targets": [
 				"mobile",
 				"desktop"

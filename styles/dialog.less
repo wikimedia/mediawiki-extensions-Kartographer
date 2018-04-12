@@ -6,6 +6,21 @@
 */
 @sidebarWidth: 320px;
 
+.mw-kartographer {
+	&-table {
+		display: table;
+		width: 100%;
+	}
+
+	&-row {
+		display: table-row;
+	}
+
+	&-cell {
+		display: table-cell;
+	}
+}
+
 /* Dialog footer */
 .mw-kartographer-mapDialog-foot {
 	/*
@@ -46,7 +61,7 @@
 	width: @sidebarWidth + 1px; /* 320+1 so border is hidden on common 320px wide mobile devices */
 	box-sizing: border-box;
 	background-color: #fff;
-	padding: 3em 2em 1em;
+	padding: 1em 2em 1em;
 	overflow-y: scroll;
 
 	.mw-kartographer-mapDialog-closeButton {
@@ -133,14 +148,68 @@
 .mw-kartographer-description,
 .mw-kartographer-mapdetails {
 	margin-bottom: 1.5em;
-}
 
-.mw-kartographer-mapdetails .geo {
-	white-space: nowrap;
+	.geo {
+		white-space: nowrap;
+	}
+
+	&-title-label {
+		font-size: 1.3em;
+		font-weight: bold;
+	}
+
+	&-title-arrow {
+		float: right;
+
+		.oo-ui-buttonElement-button .oo-ui-iconElement-icon.oo-ui-icon-arrowNext {
+			height: 1em;
+		}
+	}
+
+	&-coordinates {
+		margin-top: 1em;
+
+		&-title {
+			font-weight: bold;
+		}
+
+		&-latlon {
+			display: block;
+			margin-top: 0.5em;
+		}
+	}
 }
 
 .mw-kartographer-filterservices {
 	margin-bottom: 1em;
+
+	&-title {
+		margin-bottom: 1em;
+		font-weight: bold;
+	}
+
+	&-list {
+		&-item {
+			padding: 0.5em;
+
+			&:hover {
+				background-color: #eaf3ff; // Accent90
+			}
+
+			.oo-ui-buttonElement.oo-ui-buttonWidget .oo-ui-buttonElement-button .oo-ui-labelElement-label {
+				font-weight: normal;
+			}
+
+			.mw-kartographer-cell:last-child {
+				width: 1em;
+			}
+
+			&-button .oo-ui-iconElement .oo-ui-buttonElement-button .oo-ui-iconElement-icon.oo-ui-icon-newWindow {
+				width: 1em;
+				min-width: 1em;
+			}
+		}
+	}
 }
 
 .kartographer-mapDialog-loading {
@@ -158,6 +227,12 @@
 }
 
 .mw-kartographer-mapDialog-sidebar-opened {
+	.leaflet-right.leaflet-top .leaflet-bar.leaflet-control {
+		// Match the margin with the text inside the sidebar
+		margin-top: 1em;
+	}
+
+	.leaflet-right.leaflet-top,
 	.leaflet-right.leaflet-bottom {
 		right: @sidebarWidth;
 	}
