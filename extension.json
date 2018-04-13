@@ -464,9 +464,6 @@
 		"ext.kartographer.editing",
 		"ext.kartographer.visualEditor"
 	],
-	"ParserTestFiles": [
-		"tests/parserTests.txt"
-	],
 	"config": {
 		"KartographerStaticMapframe": false,
 		"KartographerWikivoyageMode": false,
