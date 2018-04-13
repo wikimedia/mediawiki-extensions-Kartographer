@@ -9,7 +9,7 @@
 	"url": "https://www.mediawiki.org/wiki/Extension:Kartographer",
 	"descriptionmsg": "kartographer-desc",
 	"license-name": "MIT",
-	"type": "other",
+	"type": "parserhook",
 	"requires": {
 		"MediaWiki": ">= 1.31.0"
 	},
