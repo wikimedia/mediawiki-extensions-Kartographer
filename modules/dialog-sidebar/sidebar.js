@@ -183,7 +183,7 @@ module.exports = ( function ( $, mw ) {
 			this.closeButton = new OO.ui.ButtonWidget( {
 				framed: false,
 				classes: [ 'mw-kartographer-mapdetails-title-arrow' ],
-				icon: 'arrowNext'
+				icon: 'next'
 			} );
 
 			// Event
