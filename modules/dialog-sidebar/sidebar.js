@@ -97,11 +97,6 @@ module.exports = ( function ( $, mw ) {
 		/**
 		 * @property {jQuery}
 		 */
-		sidebar.$descriptionContainer = $( '<div>' ).addClass( 'mw-kartographer-description' ).appendTo( $container );
-
-		/**
-		 * @property {jQuery}
-		 */
 		sidebar.$filterContainer = $( '<div>' ).addClass( 'mw-kartographer-filterservices' ).appendTo( $container );
 
 		/**
@@ -110,7 +105,6 @@ module.exports = ( function ( $, mw ) {
 		sidebar.$servicesContainer = $( '<div>' ).addClass( 'mw-kartographer-externalservices' ).appendTo( $container );
 
 		sidebar.renderMapDetails();
-		sidebar.renderDescription();
 		sidebar.renderTypeFilter();
 		sidebar.renderExternalServices();
 
@@ -183,7 +177,7 @@ module.exports = ( function ( $, mw ) {
 			this.closeButton = new OO.ui.ButtonWidget( {
 				framed: false,
 				classes: [ 'mw-kartographer-mapdetails-title-arrow' ],
-				icon: 'arrowNext'
+				icon: 'next'
 			} );
 
 			// Event
@@ -209,13 +203,6 @@ module.exports = ( function ( $, mw ) {
 		// Update the information
 		this.labelLongtitude.setLabel( String( this.mapPosition.center.lng ) );
 		this.labelLatitude.setLabel( String( this.mapPosition.center.lat ) );
-	};
-
-	/**
-	 * Renders the description partial into its container.
-	 */
-	SideBar.prototype.renderDescription = function () {
-		this.$descriptionContainer.text( mw.msg( 'kartographer-sidebar-description' ) );
 	};
 
 	/**
@@ -259,7 +246,10 @@ module.exports = ( function ( $, mw ) {
 	SideBar.prototype.renderExternalServices = function () {
 		var sidebar = this,
 			$list = this.$servicesContainer.find( '.mw-kartographer-filterservices-list' ),
-			populateListItems = function () {
+			toggleShowServicesState = function ( state ) {
+				sidebar.showAllServices = state !== undefined ? !!state : !sidebar.showAllServices;
+			},
+			populateListItems = function ( bypassAndShowAllServices ) {
 				var items,
 					featured = [],
 					regular = [],
@@ -274,53 +264,36 @@ module.exports = ( function ( $, mw ) {
 							.addClass( 'mw-kartographer-filterservices-list-item' )
 							.toggleClass( 'mw-kartographer-filterservices-list-item-featured', service.featured )
 							.append(
-								$( '<div>' )
-									.addClass( 'mw-kartographer-table' )
-									.append(
-										$( '<div>' )
-											.addClass( 'mw-kartographer-row' )
-											.append(
-												$( '<div>' )
-													.addClass( 'mw-kartographer-cell' )
-													.append(
-														new OO.ui.ButtonWidget( {
-															framed: false,
-															flags: [ 'progressive' ],
-															label: service.name,
-															href: sidebar.formatLink( link.url ),
-															target: '_blank'
-														} ).$element
-													),
-												$( '<div>' )
-													.addClass( 'mw-kartographer-cell' )
-													.addClass( 'mw-kartographer-filterservices-list-item-button' )
-													.append(
-														new OO.ui.ButtonWidget( {
-															framed: false,
-															href: sidebar.formatLink( link.url ),
-															target: '_blank',
-															icon: 'newWindow'
-														} ).$element
-													)
-											)
-									)
+								new OO.ui.ButtonWidget( {
+									framed: false,
+									href: sidebar.formatLink( link.url ),
+									target: '_blank',
+									classes: [ 'mw-kartographer-filterservices-list-item-button' ],
+									icon: 'newWindow',
+									label: service.name
+								} ).$element
 							);
 
 					formatted.push( $item );
 				} );
 
 				$list.empty();
-				items = sidebar.showAllServices ?
+				items = ( bypassAndShowAllServices || sidebar.showAllServices ) ?
 					featured.concat( regular ) : featured;
 
 				// Update message
 				sidebar.toggleShowServices.setLabel(
-					sidebar.showAllServices ?
+					( bypassAndShowAllServices || sidebar.showAllServices ) ?
 						mw.msg( 'kartographer-sidebar-externalservices-show-featured' ) :
 						mw.msg( 'kartographer-sidebar-externalservices-show-all' )
 				);
 
 				$list.append( items );
+				return items;
+			},
+			onToggleShowServicesButton = function () {
+				toggleShowServicesState();
+				populateListItems();
 			};
 
 		if ( !selectedType ) {
@@ -336,17 +309,21 @@ module.exports = ( function ( $, mw ) {
 		if ( !this.toggleShowServices ) {
 			this.toggleShowServices = new OO.ui.ButtonWidget( {
 				framed: false,
-				flags: [ 'progressive' ]
+				flags: [ 'progressive' ],
+				classes: [ 'mw-kartographer-filterservices-toggleButton' ]
 			} );
 
-			this.toggleShowServices.on( 'click', function () {
-				sidebar.showAllServices = !sidebar.showAllServices;
-				populateListItems();
-			} );
+			this.toggleShowServices.on( 'click', onToggleShowServicesButton );
 			this.$servicesContainer.append( this.toggleShowServices.$element );
 		}
 
-		populateListItems();
+		this.toggleShowServices.toggle( true );
+		if ( Object.keys( sidebar.byType[ selectedType ] ).length <= 7 ) {
+			populateListItems( true );
+			this.toggleShowServices.toggle( false );
+		} else {
+			populateListItems( false );
+		}
 	};
 
 	/**

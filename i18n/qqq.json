@@ -69,7 +69,6 @@
 	"kartographer-link-wikiminiatlas": "{{optional}}Full screen map info sidebar - external service name",
 	"kartographer-link-yandex-maps": "{{optional}}Full screen map info sidebar - external service name",
 	"kartographer-sidebar-coordinates": "Full screen map info sidebar - Coordinates label\n{{Identical|Coordinate}}",
-	"kartographer-sidebar-description": "Full screen map info sidebar - Text to indicate the links are external map services, at the same location, and the dropdown is to filter the list by map type.",
 	"kartographer-sidebar-filterdropdown": "Full screen map info sidebar - Placeholder for the type filter dropdown",
 	"kartographer-sidebar-externalservices": "Full screen map info sidebar -  Map services heading label",
 	"kartographer-sidebar-externalservices-show-featured": "Label for the button to show only the featured services in the map sidebar",
