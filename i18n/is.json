@@ -4,7 +4,6 @@
 			"Sveinn í Felli"
 		]
 	},
-	"kartographer-attribution-externaldata-query": "fyrirspurn",
 	"kartographer-coord-lat-positive": "$1N",
 	"kartographer-coord-lat-negative": "$1S",
 	"kartographer-coord-lon-positive": "$1A",

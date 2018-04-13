@@ -7,7 +7,6 @@
 	},
 	"apihelp-sanitize-mapdata-description": "Realitza la validació de dades per l'extensió Kartographer",
 	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Mapes Wikimedia] | Mapatge © [https://www.openstreetmap.org/copyright OpenStreetMap - col·laboradors]",
-	"kartographer-attribution-externaldata-query": "consulta",
 	"kartographer-broken-category": "Pàgines amb errors en els mapes",
 	"kartographer-broken-category-desc": "La pàgina inclou un mapa amb utilització no vàlida",
 	"kartographer-desc": "Permet afegir mapes en pàgines wiki",

@@ -5,7 +5,6 @@
 		]
 	},
 	"kartographer-attribution": "Wikimédia-térképek | Térképadatok © [https://www.openstreetmap.org/copyright OpenStreetMap közreműködők]",
-	"kartographer-attribution-externaldata-query": "lekérdezés",
 	"kartographer-broken-category": "Lapok hibás térképekkel",
 	"kartographer-broken-category-desc": "A lap érvénytelen térképhasználatot tartalmaz",
 	"kartographer-desc": "Lehetővé teszi térképek hozzáadását wikioldalakhoz",

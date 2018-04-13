@@ -4,7 +4,6 @@
 			"Умар"
 		]
 	},
-	"kartographer-attribution-externaldata-query": "дехар",
 	"kartographer-broken-category": "Болх ца беш карташ долу {{#switch:{{NAMESPACE}}|{{ns:File}}=файлаш|#default=агӀонаш}}",
 	"kartographer-desc": "Вики-агӀонашна карташ тӀетоха таро ло.",
 	"kartographer-tracking-category": "Картанаш долу агӀонаш",

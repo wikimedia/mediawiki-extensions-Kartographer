@@ -10,7 +10,6 @@
 	"apihelp-sanitize-mapdata-param-text": "جئوجی‌سان برای تمیزکاری",
 	"apihelp-sanitize-mapdata-example": "تمیزکاری یک باینری بزرگ جئوجی‌سان",
 	"apihelp-query+mapdata-param-limit": "داده‌ای برای تعیین اینکه چند صفحه برگردانده شود",
-	"kartographer-attribution-externaldata-query": "پرسمان",
 	"kartographer-broken-category": "صفحات با نقشه خراب",
 	"kartographer-error-context-multi": "&lt;$1&gt; مشکلات:\n$2",
 	"kartographer-error-json": "امکان تحلیل JSON وجود ندارد:‌$1",

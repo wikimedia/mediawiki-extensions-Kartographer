@@ -19,7 +19,6 @@
 	"apihelp-query+mapdata-param-groups": "Grupos para os que devolver os datos, separados por barras verticais",
 	"apihelp-query+mapdata-param-limit": "Número de páxinas para as que devolver os datos",
 	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Mapas de Wikimedia] | Datos de mapa © [https://www.openstreetmap.org/copyright contribuidores de OpenStreetMap]",
-	"kartographer-attribution-externaldata-query": "consulta",
 	"kartographer-broken-category": "Páxinas con mapas rotos",
 	"kartographer-broken-category-desc": "A páxina inclúe un mapa cun uso non válido.",
 	"kartographer-desc": "Permite insertar mapas nas páxinas da wiki",

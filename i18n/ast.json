@@ -17,7 +17,6 @@
 	"apihelp-query+mapdata-param-groups": "Grupos separaos por barres de los que devolver datos",
 	"apihelp-query+mapdata-param-limit": "Númberu de páxines pa les que devolver datos",
 	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Wikimedia maps] | Datos del mapa © [https://www.openstreetmap.org/copyright collaboradores d'OpenStreetMap]",
-	"kartographer-attribution-externaldata-query": "consulta",
 	"kartographer-broken-category": "Páxines con mapes frañaos",
 	"kartographer-broken-category-desc": "La páxina incluye un usu inválidu de mapa.",
 	"kartographer-desc": "Permite amestar mapes a les páxines wiki",

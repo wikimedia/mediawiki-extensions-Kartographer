@@ -13,7 +13,6 @@
 	"apihelp-query+mapdata-example-2": "Cere datele cartografice din grupurile <kbd>group1</kbd> și <kbd>group2</kbd> ale paginii <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-param-continue": "Utilizați acest parametru pentru a continua să iterați printre rezultate",
 	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Hărți Wikimedia] | Datele hărților © [https://www.openstreetmap.org/copyright Contribuitorii OpenStreetMap]",
-	"kartographer-attribution-externaldata-query": "interogare",
 	"kartographer-broken-category": "Pagini cu hărți stricate",
 	"kartographer-desc": "Permite adăugarea de hărți în paginile wiki",
 	"kartographer-error-context-multi": "Tag &lt;$1&gt; cu probleme:\n$2",

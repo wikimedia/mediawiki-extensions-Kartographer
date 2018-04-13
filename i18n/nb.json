@@ -19,7 +19,6 @@
 	"apihelp-query+mapdata-param-groups": "Grupper atskilt med | som data skal returneres for",
 	"apihelp-query+mapdata-param-limit": "Data for hvor mange sider som skal returneres",
 	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Wikimedia-kart] | Kartdata © [https://www.openstreetmap.org/copyright OpenStreetMaps bidragsytere]",
-	"kartographer-attribution-externaldata-query": "spørring",
 	"kartographer-broken-category": "Sider med ødelagte kart",
 	"kartographer-broken-category-desc": "Siden inkluderer ugyldig kartbruk",
 	"kartographer-desc": "Lar kart legges til på wikisider",

@@ -19,7 +19,6 @@
 	"apihelp-query+mapdata-param-groups": "データを戻すパイプ区切りのグループ",
 	"apihelp-query+mapdata-param-limit": "何ページ戻すかのデータ",
 	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Wikimedia maps] | Map data © [https://www.openstreetmap.org/copyright OpenStreetMap contributors]",
-	"kartographer-attribution-externaldata-query": "クエリ",
 	"kartographer-broken-category": "破損した地図があるページ",
 	"kartographer-broken-category-desc": "そのページは無効なマップ使用法を含んでいます",
 	"kartographer-desc": "ウィキページにマップを追加することを許可",

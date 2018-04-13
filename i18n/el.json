@@ -2,11 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Geraki",
-			"Thodoris"
+			"Thodoris",
+			"Nikosgranturismogt"
 		]
 	},
 	"kartographer-attribution": "Χάρτες Wikimedia | Δεδομένα χάρτη © [https://www.openstreetmap.org/copyright συνεισφέροντες OpenStreetMap]",
-	"kartographer-attribution-externaldata-query": "ερώτημα",
 	"kartographer-broken-category": "Σελίδες με σπασμένους χάρτες",
 	"kartographer-broken-category-desc": "Η σελίδα περιέχει μη έγκυρη χρήση χάρτη",
 	"kartographer-desc": "Επιτρέπει να προστεθούν χάρτες στο wiki",
@@ -29,6 +29,7 @@
 	"kartographer-sidebar-description": "Δείτε αυτή την τοποθεσία σε μία από τις υπηρεσίες που αναφέρονται παρακάτω. Μπορείτε να φιλτράρετε τη λίστα ανά τύπο χάρτη:",
 	"kartographer-sidebar-filterdropdown": "Επιλέξτε ένα τύπο χάρτη",
 	"kartographer-sidebar-externalservices": "Εξωτερικές υπηρεσίες",
+	"kartographer-sidebar-externalservices-show-all": "Δείτε περισσότερα",
 	"kartographer-sidebar-latitude": "Πλάτος",
 	"kartographer-sidebar-longitude": "Μήκος",
 	"kartographer-sidebar-mapdetails": "Λεπτομέρειες χάρτη",

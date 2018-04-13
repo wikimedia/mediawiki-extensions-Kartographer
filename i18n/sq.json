@@ -4,7 +4,6 @@
 			"Liridon"
 		]
 	},
-	"kartographer-attribution-externaldata-query": "query",
 	"kartographer-error-missing-attr": "Atributi \"$1\" mungon",
 	"kartographer-error-bad_attr": "Atributi \"$1\" ka një vlerë të pavlefshme",
 	"kartographer-tracking-category": "Faqet me harta",

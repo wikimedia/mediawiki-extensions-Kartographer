@@ -20,7 +20,6 @@
 	"apihelp-query+mapdata-param-limit": "Dados sobre quantas páginas retornar",
 	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Mapas Wikimedia] | Map data © [https://www.openstreetmap.org/copyright Contribuidores do OpenStreetMap]",
 	"kartographer-attribution-externaldata": "$1: $2",
-	"kartographer-attribution-externaldata-query": "consulta",
 	"kartographer-attribution-short": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Wikimedia] | © [https://www.openstreetmap.org/copyright OpenStreetMap]",
 	"kartographer-broken-category": "Páginas com mapas quebrados",
 	"kartographer-broken-category-desc": "A página inclui um uso de mapa inválido",

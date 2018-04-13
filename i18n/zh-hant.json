@@ -8,7 +8,6 @@
 		]
 	},
 	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use 維基媒體地圖] | 地圖資料 © [https://www.openstreetmap.org/copyright 開放街圖貢獻者]",
-	"kartographer-attribution-externaldata-query": "查詢",
 	"kartographer-attribution-short": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use 維基媒體] | © [https://www.openstreetmap.org/copyright OpenStreetMap]",
 	"kartographer-broken-category": "有損壞地圖的頁面",
 	"kartographer-broken-category-desc": "有包含無效地圖用法的頁面",

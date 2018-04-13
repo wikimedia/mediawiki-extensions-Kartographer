@@ -1,14 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Pickle12"
+			"Pickle12",
+			"Dbc334"
 		]
 	},
 	"kartographer-sidebar-coordinates": "Koordinate",
-	"kartographer-sidebar-externalservices": "Zunanje storitve",
+	"kartographer-sidebar-externalservices": "Storitve zemljevidov",
 	"kartographer-sidebar-latitude": "Zemljepisna širina",
 	"kartographer-sidebar-longitude": "Zemljepisna dolžina",
-	"kartographer-sidebar-mapdetails": "Podrobnosti zemljevida",
+	"kartographer-sidebar-mapdetails": "Zunanji zemljevidi",
 	"kartographer-sidebar-service": "Storitev",
-	"kartographer-sidebar-togglebutton": "Več podrobnosti"
+	"kartographer-sidebar-togglebutton": "Zunanje"
 }
