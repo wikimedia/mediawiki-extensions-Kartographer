@@ -57,7 +57,7 @@ ve.dm.MWMapsNode.static.getUrl = function ( dataElement, width, height ) {
 		mwAttrs.longitude + ',' +
 		( width || mwAttrs.width ) + 'x' +
 		( height || mwAttrs.height ) +
-		'.jpeg';
+		'.jpeg?' + $.param( { lang: mwAttrs.lang || mw.config.get( 'wgPageContentLanguage' ) } );
 };
 
 ve.dm.MWMapsNode.static.createScalable = function ( dimensions ) {

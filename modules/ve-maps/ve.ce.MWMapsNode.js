@@ -169,7 +169,8 @@ ve.ce.MWMapsNode.prototype.setupMap = function () {
 	this.map = require( 'ext.kartographer.box' ).map( {
 		container: this.$map[ 0 ],
 		center: [ +mwAttrs.latitude, +mwAttrs.longitude ],
-		zoom: +mwAttrs.zoom
+		zoom: +mwAttrs.zoom,
+		lang: mwAttrs.lang || mw.config.get( 'wgPageContentLanguage' )
 		// TODO: Support style editing
 	} );
 	this.map.on( 'layeradd', this.updateMapPosition, this );

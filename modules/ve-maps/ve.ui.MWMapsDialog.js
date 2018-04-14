@@ -317,13 +317,16 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 		var geoJsonLayer,
 			editing = require( 'ext.kartographer.editing' ),
 			defaultShapeOptions = { shapeOptions: L.mapbox.simplestyle.style( {} ) },
-			mapPosition = dialog.getInitialMapPosition();
+			mapPosition = dialog.getInitialMapPosition(),
+			mwData = dialog.selectedNode && dialog.selectedNode.getAttribute( 'mw' ),
+			mwAttrs = mwData && mwData.attrs;
 
 		// TODO: Support 'style' editing
 		dialog.map = require( 'ext.kartographer.box' ).map( {
 			container: dialog.$map[ 0 ],
 			center: mapPosition.center,
 			zoom: mapPosition.zoom,
+			lang: mwAttrs.lang || mw.config.get( 'wgPageContentLanguage' ),
 			alwaysInteractive: true
 		} );
 
