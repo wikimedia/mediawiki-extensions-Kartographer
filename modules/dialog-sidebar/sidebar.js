@@ -43,7 +43,7 @@ module.exports = ( function ( $, mw ) {
 		url = url.replace( new RegExp( '{longitude}', 'g' ), this.initialMapPosition.center.lng );
 		url = url.replace( new RegExp( '{zoom}', 'g' ), this.initialMapPosition.zoom );
 		url = url.replace( new RegExp( '{title}', 'g' ), mw.config.get( 'wgTitle' ) );
-		url = url.replace( new RegExp( '{language}', 'g' ), mw.config.get( 'wgContentLanguage' ) || mw.config.get( 'wgUserLanguage' ) );
+		url = url.replace( new RegExp( '{language}', 'g' ), this.dialog.map.lang );
 		url = url.replace( new RegExp( '{scale}', 'g' ), scale );
 
 		return url;
