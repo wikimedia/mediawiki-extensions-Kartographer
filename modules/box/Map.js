@@ -121,6 +121,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 		 *   from becoming static when the screen is too small.
 		 * @param {Array|L.LatLng} [options.center] **Initial map center.**
 		 * @param {number} [options.zoom] **Initial map zoom.**
+		 * @param {string} [options.lang] Language for map labels
 		 * @param {string} [options.style] Map style. _Defaults to
 		 *  `mw.config.get( 'wgKartographerDfltStyle' )`, or `'osm-intl'`._
 		 * @param {Kartographer.Box.MapClass} [options.parentMap] Parent map
@@ -215,6 +216,12 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 			this.captionText = options.captionText || '';
 
 			/**
+			 * @property {string} lang Language code to use for labels
+			 * @type {string}
+			 */
+			this.lang = options.lang || mw.config.get( 'wgPageContentLanguage' );
+
+			/**
 			 * @property {Object} dataLayers References to the data layers.
 			 * @protected
 			 */
@@ -227,10 +234,13 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 			 *   tile layer.
 			 * @protected
 			 */
-			this.wikimediaLayer = L.tileLayer( mapServer + '/' + style + urlFormat + '?' + $.param( { lang: mw.config.get( 'wgPageContentLanguage' ) } ), {
-				maxZoom: 19,
-				attribution: mw.message( 'kartographer-attribution' ).parse()
-			} ).addTo( this );
+			this.wikimediaLayer = L.tileLayer(
+				mapServer + '/' + style + urlFormat + '?' + $.param( { lang: this.lang } ),
+				{
+					maxZoom: 19,
+					attribution: mw.message( 'kartographer-attribution' ).parse()
+				}
+			).addTo( this );
 
 			/* Add map controls */
 
@@ -490,6 +500,7 @@ module.Map = ( function ( mw, OpenFullScreenControl, dataLayerOpts, ScaleControl
 						container: L.DomUtil.create( 'div', 'mw-kartographer-mapDialog-map' ),
 						center: position.center,
 						zoom: position.zoom,
+						lang: this.lang,
 						featureType: this.featureType,
 						fullscreen: true,
 						captionText: this.captionText,

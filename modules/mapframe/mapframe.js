@@ -32,8 +32,10 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 	 * @return {number} return.latitude
 	 * @return {number} return.longitude
 	 * @return {number} return.zoom
+	 * @return {string} return.lang Language code
 	 * @return {string} return.style Map style
 	 * @return {string[]} return.overlays Overlay groups
+	 * @return {string} return.captionText
 	 */
 	function getMapData( element ) {
 		var $el = $( element ),
@@ -53,6 +55,7 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 			latitude: +$el.data( 'lat' ),
 			longitude: +$el.data( 'lon' ),
 			zoom: +$el.data( 'zoom' ),
+			lang: $el.data( 'lang' ),
 			style: $el.data( 'style' ),
 			overlays: $el.data( 'overlays' ) || [],
 			captionText: captionText
@@ -89,6 +92,7 @@ module.exports = ( function ( $, mw, kartobox, router ) {
 					container: container,
 					center: [ data.latitude, data.longitude ],
 					zoom: data.zoom,
+					lang: data.lang,
 					fullScreenRoute: '/map/' + index,
 					allowFullScreen: true,
 					dataGroups: data.overlays,
