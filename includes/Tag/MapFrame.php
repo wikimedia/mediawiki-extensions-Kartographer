@@ -4,6 +4,7 @@ namespace Kartographer\Tag;
 
 use FormatJson;
 use Html;
+use Language;
 use UnexpectedValueException;
 use Kartographer\SpecialMap;
 
@@ -25,6 +26,10 @@ class MapFrame extends TagHandler {
 		$this->height = $this->getInt( 'height' );
 		$defaultAlign = $this->getLanguage()->isRTL() ? 'left' : 'right';
 		$this->align = $this->getText( 'align', $defaultAlign, '/^(left|center|right)$/' );
+		$this->langCode = $this->getText( 'lang', $this->getLanguage()->getCode() );
+		if ( !Language::isKnownLanguageTag( $this->langCode ) ) {
+			$this->langCode = $this->getLanguage()->getCode();
+		}
 	}
 
 	/**
@@ -163,7 +168,7 @@ class MapFrame extends TagHandler {
 		}
 
 		$params = [
-			'lang' => $this->parser->getTargetLanguage()->getCode(),
+			'lang' => $this->langCode,
 		];
 		$bgUrl = "{$wgKartographerMapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat}," .
 			"{$staticLon},{$staticWidth}x{$this->height}.png";
