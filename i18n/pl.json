@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Chrumps",
-			"Halibutt"
+			"Halibutt",
+			"Railfail536"
 		]
 	},
 	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use|Mapy Wikimedia] | Dane kartograficzne © [https://www.openstreetmap.org/copyright Twórcy projektu OpenStreetMap]",
@@ -19,19 +20,20 @@
 	"kartographer-tracking-category-desc": "Strona zawiera mapę",
 	"kartographer-specialmap-invalid-coordinates": "Podano nieprawidłowe współrzędne",
 	"kartographer-linktype-aerial": "Lotnicza",
-	"kartographer-linktype-map": "Mapa",
+	"kartographer-linktype-map": "Standardowe mapy",
 	"kartographer-linktype-other": "Inna",
 	"kartographer-linktype-satellite": "Satelitarna",
 	"kartographer-linktype-terrain": "Terenowa",
 	"kartographer-linktype-topo": "Topologiczna",
 	"kartographer-sidebar-coordinates": "Współrzędne",
 	"kartographer-sidebar-filterdropdown": "Wybierz rodzaj mapy",
-	"kartographer-sidebar-externalservices": "Usługi zewnętrzne",
+	"kartographer-sidebar-externalservices": "Usługi map",
+	"kartographer-sidebar-externalservices-show-all": "Zobacz więcej",
 	"kartographer-sidebar-latitude": "Szerokość geograficzna",
 	"kartographer-sidebar-longitude": "Długość geograficzna",
-	"kartographer-sidebar-mapdetails": "Szczegóły na mapie",
+	"kartographer-sidebar-mapdetails": "Zewnętrzne mapy",
 	"kartographer-sidebar-service": "Usługa",
-	"kartographer-sidebar-togglebutton": "Więcej szczegółów",
+	"kartographer-sidebar-togglebutton": "Zewnętrzne",
 	"leafletdraw-draw-handlers-circle-radius": "Promień",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "Kliknij i przeciągnij, aby narysować okrąg",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Kliknij na mapie, aby umieścić znacznik",

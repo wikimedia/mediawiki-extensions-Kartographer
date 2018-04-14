@@ -3,7 +3,8 @@
 		"authors": [
 			"Luk3",
 			"Opraco",
-			"Felipe L. Ewald"
+			"Felipe L. Ewald",
+			"Eduardo Addad de Oliveira"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Executa a validação de dados para a extensão Kartographer",
@@ -44,7 +45,7 @@
 	"kartographer.css": "/* O CSS colocado aqui será aplicado a todas as páginas com mapas */",
 	"kartographer.js": "/* Qualquer JavaScript aqui será carregado para todos os usuários no carregamento das páginas que contêm mapas */",
 	"kartographer-linktype-aerial": "Aéreo",
-	"kartographer-linktype-map": "Mapa",
+	"kartographer-linktype-map": "Mapas padrão",
 	"kartographer-linktype-other": "Outros",
 	"kartographer-linktype-satellite": "Satélite",
 	"kartographer-linktype-terrain": "Terreno",
@@ -68,12 +69,14 @@
 	"kartographer-sidebar-coordinates": "Coordenadas",
 	"kartographer-sidebar-description": "Veja essa localização em um dos serviços listados abaixo. Você pode filtrar a lista pelo tipo de mapa:",
 	"kartographer-sidebar-filterdropdown": "Selecione um tipo de mapa",
-	"kartographer-sidebar-externalservices": "Serviços externos",
+	"kartographer-sidebar-externalservices": "Serviços do mapa",
+	"kartographer-sidebar-externalservices-show-featured": "Visualização em destaque apenas",
+	"kartographer-sidebar-externalservices-show-all": "Exibir mais",
 	"kartographer-sidebar-latitude": "Latitude",
 	"kartographer-sidebar-longitude": "Longitude",
-	"kartographer-sidebar-mapdetails": "Detalhes do mapa",
+	"kartographer-sidebar-mapdetails": "Mapas externos",
 	"kartographer-sidebar-service": "Serviço",
-	"kartographer-sidebar-togglebutton": "Mais detalhes",
+	"kartographer-sidebar-togglebutton": "Externo",
 	"leafletdraw-draw-handlers-circle-radius": "Raio",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "Segure e arraste para desenhar um círculo",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Clique no mapa para colocar um marcador",
