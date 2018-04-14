@@ -390,6 +390,6 @@ abstract class TagHandler {
 	 * @return Language
 	 */
 	protected function getLanguage() {
-		return $this->parser->getTitle()->getPageLanguage();
+		return $this->parser->getTargetLanguage();
 	}
 }
