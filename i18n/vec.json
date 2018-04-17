@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Cusolotto"
+		]
+	},
+	"kartographer-linktype-map": "Mapa standard",
+	"kartographer-sidebar-externalservices": "Servisi cartografici",
+	"kartographer-sidebar-externalservices-show-all": "Varda de pì",
+	"kartographer-sidebar-mapdetails": "Mape de fora",
+	"kartographer-sidebar-togglebutton": "Fora"
+}
