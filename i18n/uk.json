@@ -39,7 +39,6 @@
 	"kartographer-linktype-terrain": "Місцевість",
 	"kartographer-linktype-topo": "Топологічна",
 	"kartographer-sidebar-coordinates": "Координати",
-	"kartographer-sidebar-description": "Перегляньте цю місцевість використовуючи один із сервісів, перелічених нижче. Ви можете фільтрувати список за типом мапи:",
 	"kartographer-sidebar-filterdropdown": "Виберіть тип мапи",
 	"kartographer-sidebar-externalservices": "Зовнішні служби",
 	"kartographer-sidebar-latitude": "Широта",

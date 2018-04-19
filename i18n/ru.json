@@ -44,7 +44,6 @@
 	"kartographer-linktype-topo": "Топологическая",
 	"kartographer-link-yandex-maps": "Яндекс.Карты",
 	"kartographer-sidebar-coordinates": "Координаты",
-	"kartographer-sidebar-description": "Посмотрите это место на одном из сервисов, перечисленных ниже. Вы можете отфильтровать список по типу карты:",
 	"kartographer-sidebar-filterdropdown": "Выберите тип карты",
 	"kartographer-sidebar-externalservices": "Внешние службы",
 	"kartographer-sidebar-latitude": "Широта",

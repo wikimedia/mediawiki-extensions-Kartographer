@@ -65,7 +65,6 @@
 	"kartographer-link-wikiminiatlas": "WikiMiniAtlas",
 	"kartographer-link-yandex-maps": "Yandex.Maps",
 	"kartographer-sidebar-coordinates": "Coordonnées",
-	"kartographer-sidebar-description": "Afficher cet emplacement dans un des services listés ci-dessous. Vous pouvez filtrer la liste par type de carte :",
 	"kartographer-sidebar-filterdropdown": "Sélectionner un type de carte",
 	"kartographer-sidebar-externalservices": "Services de cartographie",
 	"kartographer-sidebar-externalservices-show-featured": "Afficher les mis en avant uniquement",

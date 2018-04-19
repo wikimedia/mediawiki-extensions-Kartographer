@@ -38,7 +38,6 @@
 	"kartographer-linktype-terrain": "地形図",
 	"kartographer-linktype-topo": "位相幾何図",
 	"kartographer-sidebar-coordinates": "座標",
-	"kartographer-sidebar-description": "下記リストにあるサービスでこの場所を閲覧します。地図の種別でリストをフィルタリングできます。",
 	"kartographer-sidebar-filterdropdown": "地図の種別を選択",
 	"kartographer-sidebar-externalservices": "外部サービス",
 	"kartographer-sidebar-latitude": "緯度",

@@ -43,7 +43,6 @@
 	"kartographer-linktype-terrain": "Terreno",
 	"kartographer-linktype-topo": "Topológico",
 	"kartographer-sidebar-coordinates": "Coordenadas",
-	"kartographer-sidebar-description": "Ver esta localização num dos serviços listados abaixo. Pode filtrar a lista por tipo de mapa:",
 	"kartographer-sidebar-filterdropdown": "Selecione um tipo de mapa",
 	"kartographer-sidebar-externalservices": "Serviços do mapa",
 	"kartographer-sidebar-externalservices-show-featured": "Ver só destacados",

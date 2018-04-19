@@ -26,7 +26,6 @@
 	"kartographer-linktype-terrain": "Εδαφικός",
 	"kartographer-linktype-topo": "Τοπολογικός",
 	"kartographer-sidebar-coordinates": "Συντεταγμένες",
-	"kartographer-sidebar-description": "Δείτε αυτή την τοποθεσία σε μία από τις υπηρεσίες που αναφέρονται παρακάτω. Μπορείτε να φιλτράρετε τη λίστα ανά τύπο χάρτη:",
 	"kartographer-sidebar-filterdropdown": "Επιλέξτε ένα τύπο χάρτη",
 	"kartographer-sidebar-externalservices": "Υπηρεσίες χάρτη",
 	"kartographer-sidebar-externalservices-show-featured": "Προβολή προβεβλημμένων μόνο",
