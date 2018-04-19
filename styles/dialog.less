@@ -61,30 +61,8 @@
 	width: @sidebarWidth + 1px; /* 320+1 so border is hidden on common 320px wide mobile devices */
 	box-sizing: border-box;
 	background-color: #fff;
-	padding: 1em 2em 1em;
+	padding: 16px 0 !important; /* stylelint-disable-line declaration-no-important */
 	overflow-y: scroll;
-
-	.mw-kartographer-mapDialog-closeButton {
-		position: absolute;
-		top: 10px;
-		right: 10px;
-		margin-right: 0;
-
-		.oo-ui-buttonElement-button {
-			border: 0;
-		}
-	}
-
-	.mw-kartographer-mapDialog-collapseButton {
-		position: absolute;
-		top: 10px;
-		right: 44px;
-		margin-right: 0;
-
-		.oo-ui-buttonElement-button {
-			border: 0;
-		}
-	}
 
 	/* For MobileFrontend */
 	.skin-minerva & h2 {
@@ -131,23 +109,11 @@
 			background-color: @wmui-color-base100;
 		}
 	}
-
-	.mw-kartographer-externalservices & {
-		tbody tr {
-			&.featured {
-				background-color: @wmui-color-yellow90;
-				border-bottom: 1px solid @wmui-color-yellow50;
-			}
-			th {
-				font-weight: normal;
-			}
-		}
-	}
 }
 
-.mw-kartographer-description,
 .mw-kartographer-mapdetails {
 	margin-bottom: 1.5em;
+	padding: 0 16px;
 
 	.geo {
 		white-space: nowrap;
@@ -156,14 +122,11 @@
 	&-title-label {
 		font-size: 1.3em;
 		font-weight: bold;
+		padding-top: 4 / 14em; // Half of the icon's whitespace
 	}
 
 	&-title-arrow {
 		float: right;
-
-		.oo-ui-buttonElement-button .oo-ui-iconElement-icon.oo-ui-icon-arrowNext {
-			height: 1em;
-		}
 	}
 
 	&-coordinates {
@@ -175,6 +138,7 @@
 
 		&-latlon {
 			display: block;
+			color: #54595d; // Base20
 			margin-top: 0.5em;
 		}
 	}
@@ -182,31 +146,37 @@
 
 .mw-kartographer-filterservices {
 	margin-bottom: 1em;
+	padding: 0 16px;
 
 	&-title {
 		margin-bottom: 1em;
 		font-weight: bold;
 	}
 
+	&-toggleButton {
+		margin-left: 16px;
+	}
+
 	&-list {
 		&-item {
-			padding: 0.5em;
+			&-button {
+				width: 100%;
+				margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
+				padding: 0.5em;
 
-			&:hover {
-				background-color: #eaf3ff; // Accent90
-			}
+				&:hover {
+					background-color: #eaf3ff;
+				}
 
-			.oo-ui-buttonElement.oo-ui-buttonWidget .oo-ui-buttonElement-button .oo-ui-labelElement-label {
-				font-weight: normal;
-			}
+				.oo-ui-buttonElement-button {
+					width: 100%;
+					padding-left: 0.5em !important; /* stylelint-disable-line declaration-no-important */
 
-			.mw-kartographer-cell:last-child {
-				width: 1em;
-			}
-
-			&-button .oo-ui-iconElement .oo-ui-buttonElement-button .oo-ui-iconElement-icon.oo-ui-icon-newWindow {
-				width: 1em;
-				min-width: 1em;
+					> .oo-ui-iconElement-icon.oo-ui-icon-newWindow {
+						left: auto !important; /* stylelint-disable-line declaration-no-important */
+						right: 1.5em;
+					}
+				}
 			}
 		}
 	}
