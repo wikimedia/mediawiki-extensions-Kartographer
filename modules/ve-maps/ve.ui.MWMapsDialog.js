@@ -326,7 +326,7 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 			container: dialog.$map[ 0 ],
 			center: mapPosition.center,
 			zoom: mapPosition.zoom,
-			lang: mwAttrs.lang || mw.config.get( 'wgPageContentLanguage' ),
+			lang: mwAttrs && mwAttrs.lang || mw.config.get( 'wgPageContentLanguage' ),
 			alwaysInteractive: true
 		} );
 
