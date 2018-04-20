@@ -11,7 +11,8 @@
 			"IRTC1015",
 			"Idh0854",
 			"Garam",
-			"밥풀떼기"
+			"밥풀떼기",
+			"Doyoon1995"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Kartographer 확장을 위한 데이터 유효성 확인을 수행합니다",
@@ -52,7 +53,7 @@
 	"kartographer-sidebar-longitude": "경도",
 	"kartographer-sidebar-mapdetails": "외부 지도",
 	"kartographer-sidebar-service": "서비스",
-	"kartographer-sidebar-togglebutton": "외부",
+	"kartographer-sidebar-togglebutton": "외부 지도",
 	"leafletdraw-draw-handlers-circle-radius": "반경",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "클릭하고 드래그해서 원을 그립니다",
 	"leafletdraw-draw-handlers-simpleshape-tooltip-end": "그리기를 마치려면 마우스를 놓으세요",

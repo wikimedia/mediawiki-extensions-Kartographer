@@ -55,7 +55,7 @@
 	"kartographer-sidebar-longitude": "经度",
 	"kartographer-sidebar-mapdetails": "外部地图",
 	"kartographer-sidebar-service": "服务",
-	"kartographer-sidebar-togglebutton": "外部",
+	"kartographer-sidebar-togglebutton": "外部地图",
 	"leafletdraw-draw-handlers-circle-radius": "半径",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "点击并拖动以画一个圆形",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "点击地图以放置一个标记",

@@ -76,7 +76,7 @@
 	"kartographer-sidebar-longitude": "Full screen map info sidebar - Longitude label\n{{Identical|Longitude}}",
 	"kartographer-sidebar-mapdetails": "Full screen map info sidebar - External use heading label",
 	"kartographer-sidebar-service": "Full screen map info sidebar - Service table column label\n{{Identical|Service}}",
-	"kartographer-sidebar-togglebutton": "Label for button to toggle full screen map info sidebar\n{{Identical|External}}",
+	"kartographer-sidebar-togglebutton": "Label for button to toggle full screen map info sidebar",
 	"leafletdraw-draw-handlers-circle-radius": "Label for circle radius\n{{Identical|Radius}}",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "Tooltip for how to start drawing a circle",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Tooltip for how to place a marker",
