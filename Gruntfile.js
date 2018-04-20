@@ -30,7 +30,8 @@ module.exports = function ( grunt ) {
 		stylelint: {
 			all: {
 				options: {
-					syntax: 'less'
+					syntax: 'less',
+					formatter: 'verbose'
 				},
 				src: [
 					'**/*.{css,less}',
