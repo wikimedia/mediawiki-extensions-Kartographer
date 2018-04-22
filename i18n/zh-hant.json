@@ -4,7 +4,8 @@
 			"Liuxinyu970226",
 			"Cwlin0416",
 			"1233thehongkonger",
-			"烈羽"
+			"烈羽",
+			"Mutolisp"
 		]
 	},
 	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use 維基媒體地圖] | 地圖資料 © [https://www.openstreetmap.org/copyright 開放街圖貢獻者]",
@@ -22,6 +23,7 @@
 	"kartographer-linktype-other": "其他",
 	"kartographer-linktype-terrain": "地形",
 	"kartographer-linktype-topo": "拓撲",
+	"kartographer-sidebar-togglebutton": "外部地圖",
 	"leafletdraw-draw-handlers-circle-radius": "半徑",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "點選並拖曳來繪製一個圈",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "點選地圖來放置標記",

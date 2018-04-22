@@ -48,6 +48,7 @@
 	"kartographer-sidebar-coordinates": "좌표",
 	"kartographer-sidebar-filterdropdown": "지도 종류 선택",
 	"kartographer-sidebar-externalservices": "지도 서비스",
+	"kartographer-sidebar-externalservices-show-featured": "알찬 내용만 보기",
 	"kartographer-sidebar-externalservices-show-all": "더 보기",
 	"kartographer-sidebar-latitude": "위도",
 	"kartographer-sidebar-longitude": "경도",
