@@ -19,6 +19,7 @@ module.Link = ( function ( $ ) {
 	 *   add to the map.**
 	 * @param {Array|L.LatLng} [options.center] **Initial map center.**
 	 * @param {number} [options.zoom] **Initial map zoom.**
+	 * @param {string} [options.lang] Language code
 	 * @param {string} [options.fullScreenRoute] Route associated to this map
 	 *   _(internal, used by "`<maplink>`")_.
 	 * @member Kartographer.Linkbox.LinkClass
@@ -45,6 +46,7 @@ module.Link = ( function ( $ ) {
 
 		link.center = options.center || 'auto';
 		link.zoom = options.zoom || 'auto';
+		link.lang = options.lang || mw.config.get( 'wgPageContentLanguage' );
 
 		link.opened = false;
 
@@ -116,6 +118,7 @@ module.Link = ( function ( $ ) {
 				parentLink: this,
 				center: position.center,
 				zoom: position.zoom,
+				lang: link.lang,
 				captionText: link.captionText,
 				dataGroups: link.dataGroups,
 				data: link.data,

@@ -52,6 +52,7 @@ module.exports = ( function ( $, mw, kartolink, router ) {
 			latitude: +$el.data( 'lat' ),
 			longitude: +$el.data( 'lon' ),
 			zoom: +$el.data( 'zoom' ),
+			lang: $el.data( 'lang' ),
 			style: $el.data( 'style' ),
 			overlays: $el.data( 'overlays' ) || [],
 			captionText: captionText
@@ -108,6 +109,7 @@ module.exports = ( function ( $, mw, kartolink, router ) {
 					container: container,
 					center: [ data.latitude, data.longitude ],
 					zoom: data.zoom,
+					lang: data.lang,
 					dataGroups: data.overlays,
 					captionText: data.captionText,
 					fullScreenRoute: '/map/' + index
