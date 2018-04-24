@@ -27,7 +27,7 @@ class MapFrame extends TagHandler {
 		$defaultAlign = $this->getLanguage()->isRTL() ? 'left' : 'right';
 		$this->align = $this->getText( 'align', $defaultAlign, '/^(left|center|right)$/' );
 		$this->langCode = $this->getText( 'lang', $this->getLanguage()->getCode() );
-		if ( !Language::isKnownLanguageTag( $this->langCode ) ) {
+		if ( !Language::isKnownLanguageTag( $this->langCode ) && $this->langCode !== 'local' ) {
 			$this->langCode = $this->getLanguage()->getCode();
 		}
 	}
