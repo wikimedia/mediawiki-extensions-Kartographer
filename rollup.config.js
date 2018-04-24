@@ -6,6 +6,6 @@
 		entry: 'node_modules/wikimedia-mapdata/src/index.js',
 		format: 'cjs',
 		plugins: [ cjs() ],
-		dest: 'lib/wikimedia-mapdata.js'
+		dest: 'lib/external/wikimedia-mapdata.js'
 	};
 }() );

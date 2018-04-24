@@ -70,12 +70,12 @@
 		},
 		"mapbox": {
 			"scripts": [
-				"lib/mapbox/mapbox-lib.js",
-				"lib/mapbox/mapbox.i18n.js"
+				"lib/external/mapbox/mapbox-lib.js",
+				"lib/external/mapbox/mapbox.i18n.js"
 			],
 			"styles": [
-				"lib/mapbox/style.css",
-				"lib/mapbox/icons.css",
+				"lib/external/mapbox/style.css",
+				"lib/external/mapbox/icons.css",
 				"lib/mapbox-style-fixes.css"
 			],
 			"messages": [
@@ -167,7 +167,7 @@
 				"ext.kartographer.data"
 			],
 			"scripts": [
-				"lib/leaflet.sleep.js",
+				"lib/external/leaflet.sleep.js",
 				"modules/box/openfullscreen_control.js",
 				"modules/box/scale_control.js",
 				"modules/box/dataLayerOpts.js",
@@ -196,7 +196,7 @@
 		},
 		"ext.kartographer.data": {
 			"scripts": [
-				"lib/wikimedia-mapdata.js"
+				"lib/external/wikimedia-mapdata.js"
 			],
 			"messages": [
 				"kartographer-attribution-externaldata",
@@ -376,11 +376,11 @@
 				"mapbox"
 			],
 			"scripts": [
-				"lib/prunecluster/PruneCluster.js",
+				"lib/external/prunecluster/PruneCluster.js",
 				"modules/prunecluster/prunecluster.js"
 			],
 			"styles": [
-				"lib/prunecluster/LeafletStyleSheet.css"
+				"lib/external/prunecluster/LeafletStyleSheet.css"
 			],
 			"targets": [
 				"mobile",
