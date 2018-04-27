@@ -28,7 +28,7 @@ class SpecialMap extends SpecialPage {
 			$coordText = $this->msg( 'kartographer-specialmap-invalid-coordinates' )->text();
 			$markerHtml = '';
 		} else {
-			list( , $lat, $lon ) = $coord;
+			list( , $lat, $lon, $lang ) = $coord;
 			$coordText = CoordFormatter::format( $lat, $lon, $this->getLanguage() );
 			list( $x, $y ) = EPSG3857::latLonToPoint( [ $lat, $lon ], 0 );
 			$markerHtml = Html::element( 'div',
@@ -69,7 +69,10 @@ class SpecialMap extends SpecialPage {
 	 */
 	public static function parseSubpage( $par ) {
 		if ( !preg_match(
-			'#^(?<zoom>\d+)/(?<lat>-?\d+(\.\d+)?)/(?<lon>-?\d+(\.\d+)?)$#', $par, $matches )
+				'#^(?<zoom>\d+)/(?<lat>-?\d+(\.\d+)?)/(?<lon>-?\d+(\.\d+)?)(/(?<lang>[a-zA-Z]+))?$#',
+				$par,
+				$matches
+			)
 		) {
 			return false;
 		}
@@ -82,7 +85,14 @@ class SpecialMap extends SpecialPage {
 			}
 		}
 
-		return [ (int)$matches['zoom'], (float)$matches['lat'], (float)$matches['lon'] ];
+		$lang = isset( $matches['lang'] ) ? $matches['lang'] : 'local';
+
+		return [
+			(int)$matches['zoom'],
+			(float)$matches['lat'],
+			(float)$matches['lon'],
+			$lang
+		];
 	}
 
 	/**
@@ -91,9 +101,10 @@ class SpecialMap extends SpecialPage {
 	 * @param float $lat
 	 * @param float $lon
 	 * @param int $zoom
+	 * @param string $lang Optional language code. Defaults to 'local'
 	 * @return Title
 	 */
-	public static function link( $lat, $lon, $zoom ) {
-		return SpecialPage::getTitleFor( 'Map', "$zoom/$lat/$lon" );
+	public static function link( $lat, $lon, $zoom, $lang = 'local' ) {
+		return SpecialPage::getTitleFor( 'Map', "$zoom/$lat/$lon/$lang" );
 	}
 }

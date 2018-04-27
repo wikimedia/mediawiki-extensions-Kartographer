@@ -49,6 +49,9 @@ abstract class TagHandler {
 	/** @var string */
 	protected $mapStyle;
 
+	/** @var string */
+	protected $langCode;
+
 	/** @var string name of the group, or null for private */
 	protected $groupName;
 
@@ -163,6 +166,7 @@ abstract class TagHandler {
 		$this->zoom = $this->getInt( 'zoom', null );
 		$regexp = '/^(' . implode( '|', $wgKartographerStyles ) . ')$/';
 		$this->mapStyle = $this->getText( 'mapstyle', $wgKartographerDfltStyle, $regexp );
+		$this->langCode = $this->getLangCode();
 	}
 
 	/**
@@ -391,5 +395,17 @@ abstract class TagHandler {
 	 */
 	protected function getLanguage() {
 		return $this->parser->getTargetLanguage();
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getLangCode() {
+		$langCode = $this->getText( 'lang', $this->getLanguage()->getCode() );
+		if ( !Language::isKnownLanguageTag( $langCode ) && $langCode !== 'local' ) {
+			$langCode = $this->getLanguage()->getCode();
+		}
+
+		return $langCode;
 	}
 }

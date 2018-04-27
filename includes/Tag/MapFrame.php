@@ -4,7 +4,6 @@ namespace Kartographer\Tag;
 
 use FormatJson;
 use Html;
-use Language;
 use UnexpectedValueException;
 use Kartographer\SpecialMap;
 
@@ -26,10 +25,6 @@ class MapFrame extends TagHandler {
 		$this->height = $this->getInt( 'height' );
 		$defaultAlign = $this->getLanguage()->isRTL() ? 'left' : 'right';
 		$this->align = $this->getText( 'align', $defaultAlign, '/^(left|center|right)$/' );
-		$this->langCode = $this->getText( 'lang', $this->getLanguage()->getCode() );
-		if ( !Language::isKnownLanguageTag( $this->langCode ) && $this->langCode !== 'local' ) {
-			$this->langCode = $this->getLanguage()->getCode();
-		}
 	}
 
 	/**
@@ -183,7 +178,8 @@ class MapFrame extends TagHandler {
 		$bgUrl .= '?' . wfArrayToCgi( $params );
 
 		$attrs['style'] = "background-image: url({$bgUrl});";
-		$attrs['href'] = SpecialMap::link( $staticLat, $staticLon, $staticZoom )->getLocalURL();
+		$attrs['href'] = SpecialMap::link( $staticLat, $staticLon, $staticZoom, $this->langCode )
+			->getLocalURL();
 
 		if ( !$framed ) {
 			$attrs['style'] .= " width: {$width}; height: {$height};";
