@@ -9,7 +9,7 @@
  * @class Kartographer.StaticFrame
  * @singleton
  */
-module.exports = ( function ( $, mw, kartolink, router ) {
+module.exports = ( function ( $, mw, util, kartolink, router ) {
 
 	/**
 	 * References the mapframe containers of the page.
@@ -52,7 +52,7 @@ module.exports = ( function ( $, mw, kartolink, router ) {
 			latitude: +$el.data( 'lat' ),
 			longitude: +$el.data( 'lon' ),
 			zoom: +$el.data( 'zoom' ),
-			lang: $el.data( 'lang' ),
+			lang: $el.data( 'lang' ) || util.getDefaultLanguage(),
 			style: $el.data( 'style' ),
 			overlays: $el.data( 'overlays' ) || [],
 			captionText: captionText
@@ -188,6 +188,7 @@ module.exports = ( function ( $, mw, kartolink, router ) {
 }(
 	jQuery,
 	mediaWiki,
+	require( 'ext.kartographer.util' ),
 	require( 'ext.kartographer.linkbox' ),
 	require( 'mediawiki.router' )
 ) );

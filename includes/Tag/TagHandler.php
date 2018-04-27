@@ -155,7 +155,7 @@ abstract class TagHandler {
 	 * @return void
 	 */
 	protected function parseArgs() {
-		global $wgKartographerStyles, $wgKartographerDfltStyle;
+		global $wgKartographerStyles, $wgKartographerDfltStyle, $wgKartographerUsePageLanguage;
 
 		$this->lat = $this->getFloat( 'latitude', null );
 		$this->lon = $this->getFloat( 'longitude', null );
@@ -166,7 +166,22 @@ abstract class TagHandler {
 		$this->zoom = $this->getInt( 'zoom', null );
 		$regexp = '/^(' . implode( '|', $wgKartographerStyles ) . ')$/';
 		$this->mapStyle = $this->getText( 'mapstyle', $wgKartographerDfltStyle, $regexp );
-		$this->langCode = $this->getLangCode();
+
+		$defaultLangCode = $wgKartographerUsePageLanguage ? $this->getLanguage()->getCode() : 'local';
+		// Language code specified by the user (null if none)
+		$this->specifiedLangCode = $this->getText( 'lang', null );
+		// Language code we're going to use
+		$this->resolvedLangCode = $this->specifiedLangCode !== null ?
+			$this->specifiedLangCode :
+			$defaultLangCode;
+		// If the specified language code is invalid, behave as if no language was specified
+		if (
+			!Language::isKnownLanguageTag( $this->resolvedLangCode ) &&
+			$this->resolvedLangCode !== 'local'
+		) {
+			$this->specifiedLangCode = null;
+			$this->resolvedLangCode = $defaultLangCode;
+		}
 	}
 
 	/**
@@ -395,17 +410,5 @@ abstract class TagHandler {
 	 */
 	protected function getLanguage() {
 		return $this->parser->getTargetLanguage();
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getLangCode() {
-		$langCode = $this->getText( 'lang', $this->getLanguage()->getCode() );
-		if ( !Language::isKnownLanguageTag( $langCode ) && $langCode !== 'local' ) {
-			$langCode = $this->getLanguage()->getCode();
-		}
-
-		return $langCode;
 	}
 }

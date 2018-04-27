@@ -49,7 +49,9 @@ ve.dm.MWMapsNode.static.toDataElement = function () {
 };
 
 ve.dm.MWMapsNode.static.getUrl = function ( dataElement, width, height ) {
-	var mwAttrs = dataElement.attributes.mw.attrs;
+	var mwAttrs = dataElement.attributes.mw.attrs,
+		util = require( 'ext.kartographer.util' ),
+		lang = mwAttrs.lang || util.getDefaultLanguage();
 
 	return 'https://maps.wikimedia.org/img/osm-intl,' +
 		mwAttrs.zoom + ',' +
@@ -57,7 +59,7 @@ ve.dm.MWMapsNode.static.getUrl = function ( dataElement, width, height ) {
 		mwAttrs.longitude + ',' +
 		( width || mwAttrs.width ) + 'x' +
 		( height || mwAttrs.height ) +
-		'.jpeg?' + $.param( { lang: mwAttrs.lang || mw.config.get( 'wgPageContentLanguage' ) } );
+		'.jpeg?' + $.param( { lang: lang } );
 };
 
 ve.dm.MWMapsNode.static.createScalable = function ( dimensions ) {

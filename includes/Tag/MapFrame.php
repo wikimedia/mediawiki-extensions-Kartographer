@@ -128,7 +128,6 @@ class MapFrame extends TagHandler {
 					'data-style' => $this->mapStyle,
 					'data-width' => $this->width,
 					'data-height' => $this->height,
-					'data-lang' => $this->langCode,
 				];
 				if ( $this->zoom !== null ) {
 					$staticZoom = $this->zoom;
@@ -145,6 +144,10 @@ class MapFrame extends TagHandler {
 				} else {
 					$staticLat = 30;
 					$staticLon = 0;
+				}
+
+				if ( $this->specifiedLangCode !== null ) {
+					$attrs['data-lang'] = $this->specifiedLangCode;
 				}
 
 				if ( $this->showGroups ) {
@@ -164,7 +167,7 @@ class MapFrame extends TagHandler {
 		}
 
 		$params = [
-			'lang' => $this->langCode,
+			'lang' => $this->resolvedLangCode,
 		];
 		$bgUrl = "{$wgKartographerMapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat}," .
 			"{$staticLon},{$staticWidth}x{$this->height}.png";
@@ -178,7 +181,7 @@ class MapFrame extends TagHandler {
 		$bgUrl .= '?' . wfArrayToCgi( $params );
 
 		$attrs['style'] = "background-image: url({$bgUrl});";
-		$attrs['href'] = SpecialMap::link( $staticLat, $staticLon, $staticZoom, $this->langCode )
+		$attrs['href'] = SpecialMap::link( $staticLat, $staticLon, $staticZoom, $this->resolvedLangCode )
 			->getLocalURL();
 
 		if ( !$framed ) {

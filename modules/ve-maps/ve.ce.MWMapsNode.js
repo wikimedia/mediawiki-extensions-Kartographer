@@ -164,13 +164,14 @@ ve.ce.MWMapsNode.prototype.update = function () {
 ve.ce.MWMapsNode.prototype.setupMap = function () {
 	var mwData = this.model.getAttribute( 'mw' ),
 		mwAttrs = mwData && mwData.attrs,
+		util = require( 'ext.kartographer.util' ),
 		node = this;
 
 	this.map = require( 'ext.kartographer.box' ).map( {
 		container: this.$map[ 0 ],
 		center: [ +mwAttrs.latitude, +mwAttrs.longitude ],
 		zoom: +mwAttrs.zoom,
-		lang: mwAttrs.lang || mw.config.get( 'wgPageContentLanguage' )
+		lang: mwAttrs.lang || util.getDefaultLanguage()
 		// TODO: Support style editing
 	} );
 	this.map.on( 'layeradd', this.updateMapPosition, this );

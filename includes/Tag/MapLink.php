@@ -37,8 +37,8 @@ class MapLink extends TagHandler {
 			'class' => 'mw-kartographer-maplink',
 			'mw-data' => 'interface',
 			'data-style' => $this->mapStyle,
-			'data-lang' => $this->langCode,
-			'href' => SpecialMap::link( $this->lat, $this->lon, $this->zoom, $this->langCode )->getLocalURL()
+			'href' => SpecialMap::link( $this->lat, $this->lon, $this->zoom, $this->resolvedLangCode )
+				->getLocalURL()
 		];
 
 		if ( $this->zoom !== null ) {
@@ -47,7 +47,9 @@ class MapLink extends TagHandler {
 		if ( $this->lat !== null && $this->lon !== null ) {
 			$attrs['data-lat'] = $this->lat;
 			$attrs['data-lon'] = $this->lon;
-
+		}
+		if ( $this->specifiedLangCode !== null ) {
+			$attrs['data-lang'] = $this->specifiedLangCode;
 		}
 		$style = $this->extractMarkerCss();
 		if ( $style ) {

@@ -164,7 +164,8 @@
 				"ext.kartographer.style",
 				"ext.kartographer.settings",
 				"ext.kartographer.site",
-				"ext.kartographer.data"
+				"ext.kartographer.data",
+				"ext.kartographer.util"
 			],
 			"scripts": [
 				"lib/external/leaflet.sleep.js",
@@ -188,6 +189,9 @@
 			"scripts": [
 				"modules/linkbox/Link.js",
 				"modules/linkbox/index.js"
+			],
+			"dependencies": [
+				"ext.kartographer.util"
 			],
 			"targets": [
 				"mobile",
@@ -266,10 +270,23 @@
 				"desktop"
 			]
 		},
+		"ext.kartographer.util": {
+			"scripts": [
+				"modules/util/util.js"
+			],
+			"dependencies": [
+				"ext.kartographer"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
+			]
+		},
 		"ext.kartographer.frame": {
 			"dependencies": [
 				"mediawiki.router",
-				"ext.kartographer.box"
+				"ext.kartographer.box",
+				"ext.kartographer.util"
 			],
 			"scripts": [
 				"modules/mapframe/mapframe.js"
@@ -283,7 +300,8 @@
 			"dependencies": [
 				"mediawiki.router",
 				"oojs-ui.styles.icons-media",
-				"ext.kartographer.linkbox"
+				"ext.kartographer.linkbox",
+				"ext.kartographer.util"
 			],
 			"scripts": [
 				"modules/staticframe/staticframe.js"
@@ -471,7 +489,8 @@
 		"KartographerIconServer": "https://maps.wikimedia.org",
 		"KartographerFrameMode": "interactive",
 		"KartographerUseMarkerStyle": false,
-		"KartographerEnableMapFrame": true
+		"KartographerEnableMapFrame": true,
+		"KartographerUsePageLanguage": true
 	},
 	"TrackingCategories": [
 		"kartographer-tracking-category",
