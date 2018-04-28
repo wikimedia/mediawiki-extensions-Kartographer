@@ -3,7 +3,8 @@
 		"authors": [
 			"Hugo.arg",
 			"Zygimantus",
-			"Eitvys200"
+			"Eitvys200",
+			"Manvydasz"
 		]
 	},
 	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Vikimedija žemėlapiai] | Žemėlapio duomenys © [https://www.openstreetmap.org/copyright OpenStreetMap autoriai]",
@@ -11,18 +12,21 @@
 	"kartographer-error-bad_attr": "Atributas „$1“ turi neleistiną reikšmę",
 	"kartographer-tracking-category": "Puslapiai su žemėlapiais",
 	"kartographer-tracking-category-desc": "Puslapyje yra žemėlapis",
-	"kartographer-linktype-map": "Žemėlapis",
-	"kartographer-linktype-other": "Kita",
-	"kartographer-linktype-satellite": "Palydovas",
-	"kartographer-linktype-terrain": "Reljefas",
+	"kartographer-linktype-aerial": "Aviacinis",
+	"kartographer-linktype-map": "Standartinis žemėlapis",
+	"kartographer-linktype-other": "Kitos",
+	"kartographer-linktype-satellite": "Palydovinis",
+	"kartographer-linktype-terrain": "Reljefinis",
+	"kartographer-linktype-topo": "Topografinis",
 	"kartographer-sidebar-coordinates": "Koordinatės",
 	"kartographer-sidebar-filterdropdown": "Pasirinkite žemėlapio tipą",
-	"kartographer-sidebar-externalservices": "Išorinės paslaugos",
+	"kartographer-sidebar-externalservices": "Žemėlapio sistemos",
+	"kartographer-sidebar-externalservices-show-all": "Rodyti daugiau",
 	"kartographer-sidebar-latitude": "Platuma",
 	"kartographer-sidebar-longitude": "Ilguma",
-	"kartographer-sidebar-mapdetails": "Žemėlapio duomenys",
+	"kartographer-sidebar-mapdetails": "Išoriniai žemėlapiai",
 	"kartographer-sidebar-service": "Paslauga",
-	"kartographer-sidebar-togglebutton": "Daugiau informacijos",
+	"kartographer-sidebar-togglebutton": "Išoriniai žemėlapiai",
 	"leafletdraw-draw-handlers-circle-radius": "Spindulys",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "Spustelėkite ir vilkite norėdami nubrėžti apskritimą",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Spustelėkite žemėlapį, kad padėtumėte žymeklį",
@@ -63,5 +67,6 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Padidinti",
 	"visualeditor-mwmapsdialog-reset-map": "Nustatyti žemėlapio poziciją iš naujo",
 	"visualeditor-mwmapsdialog-size": "Dydis",
-	"visualeditor-mwmapsdialog-title": "Žemėlapis"
+	"visualeditor-mwmapsdialog-title": "Žemėlapis",
+	"visualeditor-mwmapscontextitem-title": "Žemėlapis"
 }
