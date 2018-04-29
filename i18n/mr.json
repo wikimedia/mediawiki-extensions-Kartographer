@@ -15,7 +15,7 @@
 	"apihelp-query+mapdata-description": "<kbd>Metallica</kbd> या पानावरून नकाशाचा सर्व डेटा मागवा",
 	"apihelp-query+mapdata-summary": "<kbd>Metallica</kbd> या पानावरून नकाशाचा सर्व डेटा मागवा",
 	"apihelp-query+mapdata-example-1": "<kbd>Metallica</kbd> या पानावरून नकाशाचा सर्व डेटा मागवा",
-	"apihelp-query+mapdata-example-2": "<kbd>मेटालिका</kbd> या पानावरून नकाशाचा <kbd>गट1</kbd> आणि <kbd>गट2</kbd> गटांमध्ये डेटा मागवा.",
+	"apihelp-query+mapdata-example-2": "<kbd>Metallica</kbd> या पानावरून नकाशाचा <kbd>group1</kbd> आणि <kbd>group2</kbd> गटांमध्ये डेटा मागवा.",
 	"apihelp-query+mapdata-param-continue": "ह्या चलांचा वापर करुन निकाल परत दाखवा.",
 	"apihelp-query+mapdata-param-groups": "वेगवेगळ्या गटांमध्ये डेटा दाखवा",
 	"apihelp-query+mapdata-param-limit": "किती पानांमध्ये निकाल दाखवायचा ते ठरवा",
