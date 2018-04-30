@@ -5,7 +5,8 @@
 			"Sfic",
 			"Ziyaurr",
 			"Jayprakash12345",
-			"Bhatakati aatma"
+			"Bhatakati aatma",
+			"Tiven2240"
 		]
 	},
 	"kartographer-broken-category": "टूटे हुए नक्शे के साथ पृष्ठ",
@@ -26,9 +27,9 @@
 	"kartographer-sidebar-externalservices": "बाहरी सेवा",
 	"kartographer-sidebar-latitude": "अक्षांश",
 	"kartographer-sidebar-longitude": "देशांतर",
-	"kartographer-sidebar-mapdetails": "नक्शे की जानकारी",
+	"kartographer-sidebar-mapdetails": "अन्य बाहरी नकशे",
 	"kartographer-sidebar-service": "सेवा",
-	"kartographer-sidebar-togglebutton": "अन्य जानकारी",
+	"kartographer-sidebar-togglebutton": "अन्य नकशे",
 	"leafletdraw-draw-handlers-circle-radius": "त्रिज्या",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "वृत बनाने हेतु क्लिक करें",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "मार्कर ले जाने हेतु नक्शे में क्लिक करें",
