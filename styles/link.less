@@ -1,5 +1,8 @@
 @import 'mediawiki.mixins';
 
+@ooui-font-size-browser: 16; // assumed browser default of `16px`
+@ooui-font-size-base: 0.875em; // equals `14px` at browser default of `16px`
+
 /* stylelint-disable no-descending-specificity */
 .mw-kartographer-link,
 .mw-kartographer-maplink {
@@ -7,8 +10,8 @@
 }
 
 // The icon only applies to <a> types of `.mw-kartographer-link`
-.mw-kartographer-maplink,
-a.mw-kartographer-link {
+a.mw-kartographer-link,
+.mw-kartographer-maplink {
 	&:not( .mw-kartographer-autostyled ):not( .mw-kartographer-map ):not( .no-icon ) {
 		/**
 		 * These two files were copied from OOUI repository after the build process
@@ -23,15 +26,15 @@ a.mw-kartographer-link {
 		background-position: left -3px;
 		background-repeat: no-repeat;
 		background-size: 18px 18px;
-		padding-left: 19px;
 		margin-left: 2px;
+		padding-left: 19px;
 	}
 
 	// One can display an iconless link by adding `class="no-icon"`
 	&.no-icon {
 		background: none;
-		padding-left: 0;
 		margin-left: 0;
+		padding-left: 0;
 	}
 }
 
@@ -46,20 +49,19 @@ a.mw-kartographer-link {
 		// One can display an iconless link by adding `class="no-icon"`
 		&.no-icon {
 			background: none;
-			padding-left: 0;
 			margin-left: 0;
+			padding-left: 0;
 		}
 	}
 }
 
 .mw-kartographer-map {
 	.mw-kartographer-fullScreen .oo-ui-iconElement > .oo-ui-buttonElement-button {
-		// Fix font size
-		font-size: ( 12.8em / 14 );
-		// Square button
-		min-width: 2.5em;
+		// Square that OOUI button
+		padding-right: 0;
+
 		& > .oo-ui-iconElement-icon {
-			left: 0.25em;
+			left: 5 / @ooui-font-size-browser / @ooui-font-size-base;
 		}
 	}
 
