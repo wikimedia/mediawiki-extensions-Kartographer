@@ -316,6 +316,7 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 	mw.loader.using( 'ext.kartographer.editor' ).then( function () {
 		var geoJsonLayer,
 			editing = require( 'ext.kartographer.editing' ),
+			util = require( 'ext.kartographer.util' ),
 			defaultShapeOptions = { shapeOptions: L.mapbox.simplestyle.style( {} ) },
 			mapPosition = dialog.getInitialMapPosition(),
 			mwData = dialog.selectedNode && dialog.selectedNode.getAttribute( 'mw' ),
@@ -326,7 +327,7 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 			container: dialog.$map[ 0 ],
 			center: mapPosition.center,
 			zoom: mapPosition.zoom,
-			lang: mwAttrs && mwAttrs.lang || mw.config.get( 'wgPageContentLanguage' ),
+			lang: mwAttrs && mwAttrs.lang || util.getDefaultLanguage(),
 			alwaysInteractive: true
 		} );
 

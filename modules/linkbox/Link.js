@@ -6,7 +6,7 @@
  *
  * @class Kartographer.Linkbox.LinkClass
  */
-module.Link = ( function ( $ ) {
+module.Link = ( function ( $, util ) {
 
 	/* eslint-disable no-underscore-dangle */
 	/**
@@ -46,7 +46,7 @@ module.Link = ( function ( $ ) {
 
 		link.center = options.center || 'auto';
 		link.zoom = options.zoom || 'auto';
-		link.lang = options.lang || mw.config.get( 'wgPageContentLanguage' );
+		link.lang = options.lang || util.getDefaultLanguage();
 
 		link.opened = false;
 
@@ -134,4 +134,7 @@ module.Link = ( function ( $ ) {
 	};
 
 	return Link;
-}( jQuery ) );
+}(
+	jQuery,
+	require( 'ext.kartographer.util' )
+) );
