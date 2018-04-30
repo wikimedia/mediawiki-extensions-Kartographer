@@ -46,6 +46,7 @@ module.exports = ( function ( $, mw, router, kartolink ) {
 			latitude: +$el.data( 'lat' ),
 			longitude: +$el.data( 'lon' ),
 			zoom: +$el.data( 'zoom' ),
+			lang: $el.data( 'lang' ),
 			style: $el.data( 'style' ),
 			captionText: $el.text(),
 			overlays: $el.data( 'overlays' ) || []
@@ -70,12 +71,12 @@ module.exports = ( function ( $, mw, router, kartolink ) {
 		$( '.mw-kartographer-maplink', '.mw-body' ).each( function ( index ) {
 			var data = getMapData( this ),
 				link;
-
 			link = maplinks[ index ] = kartolink.link( {
 				featureType: 'maplink',
 				container: this,
 				center: [ data.latitude, data.longitude ],
 				zoom: data.zoom,
+				lang: data.lang,
 				dataGroups: data.overlays,
 				captionText: data.captionText,
 				fullScreenRoute: '/maplink/' + index

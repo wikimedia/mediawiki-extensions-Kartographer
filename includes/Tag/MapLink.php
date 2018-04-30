@@ -37,8 +37,10 @@ class MapLink extends TagHandler {
 			'class' => 'mw-kartographer-maplink',
 			'mw-data' => 'interface',
 			'data-style' => $this->mapStyle,
-			'href' => SpecialMap::link( $this->lat, $this->lon, $this->zoom )->getLocalURL()
+			'data-lang' => $this->langCode,
+			'href' => SpecialMap::link( $this->lat, $this->lon, $this->zoom, $this->langCode )->getLocalURL()
 		];
+
 		if ( $this->zoom !== null ) {
 			$attrs['data-zoom'] = $this->zoom;
 		}
@@ -59,7 +61,6 @@ class MapLink extends TagHandler {
 			$attrs['data-overlays'] = FormatJson::encode( $this->showGroups, false,
 				FormatJson::ALL_OK );
 		}
-
 		return Html::rawElement( 'a', $attrs, $text );
 	}
 
