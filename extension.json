@@ -382,7 +382,8 @@
 				"oojs-ui.styles.icons-content",
 				"oojs-ui.styles.icons-location",
 				"ext.visualEditor.mwcore",
-				"ext.kartographer"
+				"ext.kartographer",
+				"ext.kartographer.util"
 			],
 			"targets": [
 				"mobile",
