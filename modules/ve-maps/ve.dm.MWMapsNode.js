@@ -53,7 +53,8 @@ ve.dm.MWMapsNode.static.getUrl = function ( dataElement, width, height ) {
 		util = require( 'ext.kartographer.util' ),
 		lang = mwAttrs.lang || util.getDefaultLanguage();
 
-	return 'https://maps.wikimedia.org/img/osm-intl,' +
+	return mw.config.get( 'wgKartographerMapServer' ) + '/img/' +
+		mw.config.get( 'wgKartographerDfltStyle' ) + ',' +
 		mwAttrs.zoom + ',' +
 		mwAttrs.latitude + ',' +
 		mwAttrs.longitude + ',' +
