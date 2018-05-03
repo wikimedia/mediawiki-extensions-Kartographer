@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"ديفيد"
+		]
+	},
+	"kartographer-wv-group": "المجموعة:",
+	"kartographer-wv-layer-nearby-articles": "المقالات القريبة",
+	"kartographer-wv-nearby-articles-control": "استكشاف الوجهات القريبة",
+	"kartographer-wv-warning-external-source-title": "مصدر البيانات الخارجي",
+	"kartographer-wv-warning-external-source-message": "تتم استضافة هذا المحتوى خارجيا، مما يتيح له مشاركة بياناتك مع المواقع الأخرى.",
+	"kartographer-wv-warning-external-source-agree": "إنه بخير",
+	"kartographer-wv-warning-external-source-disagree": "إلغاء"
+}
