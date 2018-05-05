@@ -34,6 +34,7 @@
 	"kartographer-sidebar-togglebutton": "نقشه‌های خارجی",
 	"leafletdraw-draw-handlers-circle-radius": "شعاع",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "برای کشیدن دایره، کلیک کنید و بکشید",
+	"leafletdraw-draw-handlers-marker-tooltip-start": "روی نقشه کلیک کنید تا یک مارکر را روی آن بگذارید",
 	"leafletdraw-draw-handlers-polygon-tooltip-cont": "کلیک کنید تا به کشیدن این شکل ادامه دهید",
 	"leafletdraw-draw-handlers-polygon-tooltip-end": "برای بسته‌کردن این شکل، نقطه اول را کلیک کنید",
 	"leafletdraw-draw-handlers-polygon-tooltip-start": "برای شروع کشیدن یک شکل کلیک کنید",
