@@ -168,9 +168,9 @@ module.exports = ( function ( $, mw ) {
 					$( '<div>' )
 						.addClass( 'mw-kartographer-mapdetails-coordinates-latlon' )
 						.append(
-							this.labelLongtitude.$element,
+							this.labelLatitude.$element,
 							',&nbsp;', // Comma and space
-							this.labelLatitude.$element
+							this.labelLongtitude.$element
 						)
 				);
 
