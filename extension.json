@@ -132,7 +132,9 @@
 				"leafletdraw-edit-toolbar-buttons-edit",
 				"leafletdraw-edit-toolbar-buttons-editdisabled",
 				"leafletdraw-edit-toolbar-buttons-remove",
-				"leafletdraw-edit-toolbar-buttons-removedisabled"
+				"leafletdraw-edit-toolbar-buttons-removedisabled",
+				"leafletdraw-draw-toolbar-finish-text",
+				"leafletdraw-draw-toolbar-finish-title"
 			],
 			"targets": [
 				"mobile",

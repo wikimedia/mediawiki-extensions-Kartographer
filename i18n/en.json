@@ -105,6 +105,8 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "No layers to edit",
 	"leafletdraw-edit-toolbar-buttons-remove": "Delete layers",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "No layers to delete",
+	"leafletdraw-draw-toolbar-finish-text": "Complete",
+	"leafletdraw-draw-toolbar-finish-title": "Click to complete drawing",
 	"map": "Coordinates information",
 	"mapbox-control-zoomin-title": "Zoom in",
 	"mapbox-control-zoomout-title": "Zoom out",

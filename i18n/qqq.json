@@ -109,6 +109,8 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Tooltip for edit layers button when disabled",
 	"leafletdraw-edit-toolbar-buttons-remove": "Tooltip for delete layers button",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Tooltip for delete layers button when disabled",
+	"leafletdraw-draw-toolbar-finish-text": "Label for the button to complete the current drawing",
+	"leafletdraw-draw-toolbar-finish-title": "Tooltip for the button to complete the current drawing",
 	"map": "Page title for Special:Map",
 	"mapbox-control-zoomin-title": "Title for map zoom in button\n{{Identical|Zoom in}}",
 	"mapbox-control-zoomout-title": "Title for map zoom out button\n{{Identical|Zoom out}}",
