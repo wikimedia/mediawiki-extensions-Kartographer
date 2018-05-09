@@ -69,12 +69,22 @@
 		border: 0;
 	}
 
+	.leaflet-draw-actions,
 	.leaflet-control-layers,
 	.leaflet-bar {
 		background-color: @background-color-framed;
 		border: 0;
 		box-shadow: none;
 	}
+
+	.leaflet-draw-toolbar .draw-actions {
+		// Override the background in this specific case, since
+		// the buttons are another level down, and get a background color
+		background-color: auto;
+	}
+
+	.leaflet-draw-actions a,
+	.leaflet-draw-actions a:hover,
 	.leaflet-bar > a,
 	.leaflet-bar > a:hover {
 		color: #000;
@@ -83,23 +93,31 @@
 		border-bottom: 0;
 		box-sizing: content-box;
 	}
+	.leaflet-draw-actions a {
+		background-color: @background-color-framed; //Override Leaflet.Draw default
+	}
+	.leaflet-draw-actions a:hover,
 	.leaflet-bar > a:hover {
 		border-color: @border-color-base--hover;
 		background-color: @background-color-framed--hover;
 	}
+	.leaflet-draw-actions a:active,
 	.leaflet-bar > a:active {
 		border-color: @border-color-base--active;
 		background-color: @background-color-framed--active;
 	}
+	.leaflet-draw-actions a:only-of-type,
 	.leaflet-bar > a:only-of-type {
 		border-bottom: @border-base;
 		border-radius: @border-radius-base;
 	}
+	.leaflet-draw-actions a:first-child,
 	.leaflet-bar > a:first-child {
 		&:not( :only-of-type ) {
 			border-radius: @border-radius-base @border-radius-base 0 0;
 		}
 	}
+	.leaflet-draw-actions a:last-child,
 	.leaflet-bar > a:last-child {
 		border-bottom: @border-base;
 		&:hover {
@@ -114,6 +132,8 @@
 			border-radius: 0 0 @border-radius-base @border-radius-base;
 		}
 	}
+
+	.leaflet-draw-actions a:hover:only-of-type,
 	.leaflet-bar > a:hover:only-of-type {
 		border-radius: @border-radius-base;
 	}
