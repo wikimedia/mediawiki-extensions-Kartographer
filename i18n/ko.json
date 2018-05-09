@@ -69,6 +69,8 @@
 	"leafletdraw-edit-toolbar-actions-cancel-title": "편집을 취소하고 모든 변경사항을 버립니다",
 	"leafletdraw-edit-toolbar-actions-save-text": "저장",
 	"leafletdraw-edit-toolbar-actions-save-title": "변경사항 저장",
+	"leafletdraw-draw-toolbar-finish-text": "완료",
+	"leafletdraw-draw-toolbar-finish-title": "그림을 완료하려면 클릭하세요",
 	"map": "좌표 정보",
 	"mapbox-control-zoomin-title": "확대",
 	"mapbox-control-zoomout-title": "축소",

@@ -97,6 +97,8 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Keine zu bearbeitenden Ebenen",
 	"leafletdraw-edit-toolbar-buttons-remove": "Ebenen löschen",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Keine zu löschenden Ebenen",
+	"leafletdraw-draw-toolbar-finish-text": "Vervollständigen",
+	"leafletdraw-draw-toolbar-finish-title": "Zur Vervollständigung der Zeichnung klicken",
 	"map": "Koordinateninformationen",
 	"mapbox-control-zoomin-title": "Vergrößern",
 	"mapbox-control-zoomout-title": "Verkleinern",

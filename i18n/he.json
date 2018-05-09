@@ -89,6 +89,8 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "אין שכבות לערוך",
 	"leafletdraw-edit-toolbar-buttons-remove": "מחיקת שכבות",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "אין שכבות למחוק",
+	"leafletdraw-draw-toolbar-finish-text": "השלמה",
+	"leafletdraw-draw-toolbar-finish-title": "יש ללחוץ כאן כדי להשלים את הציור",
 	"map": "מידע על קואורדינטות",
 	"mapbox-control-zoomin-title": "התקרבות",
 	"mapbox-control-zoomout-title": "התרחקות",
