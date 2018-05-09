@@ -62,7 +62,7 @@
 	box-sizing: border-box;
 	background-color: #fff;
 	padding: 16px 0 !important; /* stylelint-disable-line declaration-no-important */
-	overflow-y: scroll;
+	overflow-y: auto;
 
 	/* For MobileFrontend */
 	.skin-minerva & h2 {
@@ -160,9 +160,10 @@
 	&-list {
 		&-item {
 			&-button {
-				width: 100%;
+				// Width = sidebar width - left padding
+				width: ~'calc( @{sidebarWidth} - 0.5em )';
 				margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
-				padding: 0.5em;
+				padding: 0.5em 0 0.5em 0.5em; // Remove the right padding to prevent affecting the width
 
 				&:hover {
 					background-color: #eaf3ff;
