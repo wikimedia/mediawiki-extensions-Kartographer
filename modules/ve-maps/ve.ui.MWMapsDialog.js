@@ -250,7 +250,9 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 ve.ui.MWMapsDialog.prototype.getReadyProcess = function ( data ) {
 	return ve.ui.MWMapsDialog.super.prototype.getReadyProcess.call( this, data )
 		.next( function () {
-			this.setupMap();
+			this.pushPending();
+			this.setupMap()
+				.then( this.popPending.bind( this ) );
 		}, this );
 };
 
@@ -305,16 +307,20 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 
 /**
  * Setup the map control
+ *
+ * @return {jQuery.Promise} Promise that gets resolved when the map
+ *  editor finishes loading
  */
 ve.ui.MWMapsDialog.prototype.setupMap = function () {
 	var dialog = this;
 
 	if ( this.map ) {
-		return;
+		return $.Deferred.promise.resolve();
 	}
 
-	mw.loader.using( 'ext.kartographer.editor' ).then( function () {
+	return mw.loader.using( 'ext.kartographer.editor' ).then( function () {
 		var geoJsonLayer,
+			deferred = $.Deferred(),
 			editing = require( 'ext.kartographer.editing' ),
 			util = require( 'ext.kartographer.util' ),
 			defaultShapeOptions = { shapeOptions: L.mapbox.simplestyle.style( {} ) },
@@ -403,8 +409,9 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 				.on( 'draw:deleted', update )
 				.on( 'draw:created', created )
 				.on( 'moveend', onMapMove );
-
+			deferred.resolve();
 		} );
+		return deferred.promise();
 	} );
 };
 
@@ -450,6 +457,7 @@ ve.ui.MWMapsDialog.prototype.updateGeoJson = function () {
 		return;
 	}
 
+	this.input.pushPending();
 	require( 'ext.kartographer.editing' )
 		.updateKartographerLayer( this.map, this.input.getValue() )
 		.done( function () {
@@ -460,6 +468,7 @@ ve.ui.MWMapsDialog.prototype.updateGeoJson = function () {
 		} )
 		.always( function () {
 			self.updateActions();
+			self.input.popPending();
 		} );
 };
 

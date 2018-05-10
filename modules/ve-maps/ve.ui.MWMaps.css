@@ -7,11 +7,17 @@
 	margin: 0 auto 1em auto;
 	max-width: 866px;
 	max-height: 400px;
+	min-height: 300px;
 	overflow: auto;
 }
 
 .ve-ui-mwMapsDialog-geoJSONWidget {
 	max-width: none;
+}
+
+.ve-ui-mwMapsDialog-geoJSONWidget .oo-ui-inputWidget-input,
+.ve-ui-mwAceEditorWidget {
+	min-height: 210px;
 }
 
 .ve-ui-mwMapsDialog-position {
