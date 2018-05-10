@@ -88,6 +88,8 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "没有要编辑的图层",
 	"leafletdraw-edit-toolbar-buttons-remove": "删除图层",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "没有要删除的图层",
+	"leafletdraw-draw-toolbar-finish-text": "完成",
+	"leafletdraw-draw-toolbar-finish-title": "点击以完成绘图",
 	"map": "坐标信息",
 	"mapbox-control-zoomin-title": "放大",
 	"mapbox-control-zoomout-title": "缩小",

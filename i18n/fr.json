@@ -106,6 +106,8 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Aucune couche à modifier",
 	"leafletdraw-edit-toolbar-buttons-remove": "Supprimer les couches",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Aucune couche à supprimer",
+	"leafletdraw-draw-toolbar-finish-text": "Terminé",
+	"leafletdraw-draw-toolbar-finish-title": "Cliquez pour terminer le dessin",
 	"map": "Information sur les coordonnées",
 	"mapbox-control-zoomin-title": "Zoom avant",
 	"mapbox-control-zoomout-title": "Zoom arrière",

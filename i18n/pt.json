@@ -7,7 +7,8 @@
 			"Diniscoelho",
 			"Mansil",
 			"Hamilton Abreu",
-			"Opraco"
+			"Opraco",
+			"Athena in Wonderland"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Realiza a validação de dados para a extensão Kartographer",
@@ -84,6 +85,8 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Não há camadas para editar",
 	"leafletdraw-edit-toolbar-buttons-remove": "Eliminar camadas",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Não há camadas para eliminar",
+	"leafletdraw-draw-toolbar-finish-text": "Concluído",
+	"leafletdraw-draw-toolbar-finish-title": "Clique para terminar o desenho",
 	"map": "Informação das coordenadas",
 	"mapbox-control-zoomin-title": "Ampliar",
 	"mapbox-control-zoomout-title": "Reduzir",

@@ -108,6 +108,8 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Sem camadas para editar",
 	"leafletdraw-edit-toolbar-buttons-remove": "Eliminar camadas",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Sem camadas para eliminar",
+	"leafletdraw-draw-toolbar-finish-text": "Completo",
+	"leafletdraw-draw-toolbar-finish-title": "Clique para completar o desenho",
 	"map": "Informações das coordenadas",
 	"mapbox-control-zoomin-title": "Aumentar o zoom",
 	"mapbox-control-zoomout-title": "Diminuir o zoom",

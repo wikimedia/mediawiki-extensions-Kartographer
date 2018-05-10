@@ -99,6 +99,8 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "لا طبقات للتعديل",
 	"leafletdraw-edit-toolbar-buttons-remove": "حذف طبقات",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "لا طبقات للحذف",
+	"leafletdraw-draw-toolbar-finish-text": "اسكتمال",
+	"leafletdraw-draw-toolbar-finish-title": "انقر لاستكمال الرسم",
 	"map": "معلومات الإحداثيات",
 	"mapbox-control-zoomin-title": "تكبير",
 	"mapbox-control-zoomout-title": "تصغير",
