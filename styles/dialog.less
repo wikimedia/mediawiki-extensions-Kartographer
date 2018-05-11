@@ -159,11 +159,12 @@
 
 	&-list {
 		&-item {
+			width: 100%;
+
 			&-button {
-				// Width = sidebar width - left padding
-				width: ~'calc( @{sidebarWidth} - 0.5em )';
+				width: 100%;
 				margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
-				padding: 0.5em 0 0.5em 0.5em; // Remove the right padding to prevent affecting the width
+				box-sizing: border-box;
 
 				&:hover {
 					background-color: #eaf3ff;
@@ -171,7 +172,8 @@
 
 				.oo-ui-buttonElement-button {
 					width: 100%;
-					padding-left: 0.5em !important; /* stylelint-disable-line declaration-no-important */
+					// Override OOUI style
+					padding: 1em !important; /* stylelint-disable-line declaration-no-important */
 
 					> .oo-ui-iconElement-icon.oo-ui-icon-newWindow {
 						left: auto !important; /* stylelint-disable-line declaration-no-important */
