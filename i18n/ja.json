@@ -5,7 +5,8 @@
 			"Sujiniku",
 			"Ridmevo",
 			"Suchichi02",
-			"Higa4"
+			"Higa4",
+			"S2KTS"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Kartographer拡張機能用のデータ検証を実施します",
@@ -77,6 +78,7 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "編集するレイヤがありません",
 	"leafletdraw-edit-toolbar-buttons-remove": "レイヤを削除",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "削除するレイヤがありません",
+	"leafletdraw-draw-toolbar-finish-text": "完了",
 	"map": "座標情報",
 	"mapbox-control-zoomin-title": "拡大",
 	"mapbox-control-zoomout-title": "縮小",

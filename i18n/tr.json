@@ -4,7 +4,8 @@
 			"Sayginer",
 			"Mavrikant",
 			"Hbseren",
-			"Katpatuka"
+			"Katpatuka",
+			"Hedda"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Kartographer uzantısı için veri doğrulama gerçekleştirir.",
@@ -15,6 +16,8 @@
 	"kartographer-desc": "Viki sayfalarına haritalar eklenmesine imkân tanır",
 	"leafletdraw-draw-toolbar-actions-text": "İptal",
 	"leafletdraw-edit-toolbar-actions-save-text": "Kaydet",
+	"leafletdraw-draw-toolbar-finish-text": "Tamamlayınız",
+	"leafletdraw-draw-toolbar-finish-title": "Çizimi tamamlamak için tıklayın",
 	"mapbox-control-zoomin-title": "Yakınlaştır",
 	"kartographer-fullscreen-collapse": "Harita detayları gizle"
 }
