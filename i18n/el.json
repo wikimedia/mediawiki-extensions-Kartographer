@@ -67,6 +67,7 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Δεν υπάρχουν στρώματα για επεξεργασία",
 	"leafletdraw-edit-toolbar-buttons-remove": "Διαγραφή στρωμάτων",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Δεν υπάρχουν στρώματα για διαγραφή",
+	"leafletdraw-draw-toolbar-finish-text": "Πλήρης",
 	"map": "Πληροφορίες συντεταγμένες",
 	"mapbox-control-zoomin-title": "Μεγέθυνση",
 	"mapbox-control-zoomout-title": "Σμίκρυνση",
