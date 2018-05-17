@@ -52,9 +52,10 @@ module.exports = function ( grunt ) {
 		svgmin: {
 			options: {
 				js2svg: {
-					pretty: true,
-					multipass: true
+					indent: '	',
+					pretty: true
 				},
+				multipass: true,
 				plugins: [ {
 					cleanupIDs: false
 				}, {
