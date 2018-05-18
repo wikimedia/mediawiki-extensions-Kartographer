@@ -17,11 +17,35 @@ class State {
 
 	private $valid = false;
 	private $broken = false;
+
+	/**
+	 * @var int
+	 */
 	private $maplinks = 0;
+
+	/**
+	 * @var int
+	 */
 	private $mapframes = 0;
+
+	/**
+	 * @var int[]
+	 */
 	private $interactiveGroups = [];
+
+	/**
+	 * @var int[]
+	 */
 	private $requestedGroups = [];
+
+	/**
+	 * @var stdClass|null
+	 */
 	private $counters;
+
+	/**
+	 * @var strClass|array
+	 */
 	private $data = [];
 
 	/**
@@ -35,7 +59,8 @@ class State {
 	}
 
 	/**
-	 * Retrieves an instance of self from ParserOutput, initializing it anew if not present
+	 * Retrieves an instance of self from ParserOutput.
+	 * Creates a new instances and saves it into the ParserOutput, if needed.
 	 *
 	 * @param ParserOutput $output
 	 * @return State
@@ -72,23 +97,29 @@ class State {
 		$this->broken = true;
 	}
 
+	/**
+	 * Increment the number of maplinks by one.
+	 */
 	public function useMaplink() {
 		$this->maplinks++;
 	}
 
 	/**
-	 * @return int
+	 * @return int Number of maplinks.
 	 */
 	public function getMaplinks() {
 		return $this->maplinks;
 	}
 
+	/**
+	 * Increment the number of mapframes by one.
+	 */
 	public function useMapframe() {
 		$this->mapframes++;
 	}
 
 	/**
-	 * @return int
+	 * @return int Number of mapframes.
 	 */
 	public function getMapframes() {
 		return $this->mapframes;
@@ -116,7 +147,7 @@ class State {
 	}
 
 	/**
-	 * @return int[]
+	 * @return int[] Group name => original index map (flipped version of addRequestedGroups)
 	 */
 	public function getRequestedGroups() {
 		return $this->requestedGroups;
