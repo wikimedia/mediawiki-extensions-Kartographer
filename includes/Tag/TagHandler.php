@@ -17,9 +17,11 @@ use Kartographer\SimpleStyleParser;
 use Kartographer\State;
 use Language;
 use Parser;
+use ParserOutput;
 use PPFrame;
 use Status;
 use stdClass;
+use Title;
 
 /**
  * Base class for all <map...> tags
@@ -295,12 +297,13 @@ abstract class TagHandler {
 
 	/**
 	 * Handles the last step of parse process
-	 * @param Parser $parser
+	 * @param ParserOutput $output to read from and write to
+	 * @param bool $isPreview
+	 * @param Title $title required to properly add tracking categories
 	 */
-	public static function finalParseStep( Parser $parser ) {
+	public static function finalParseStep( ParserOutput $output, $isPreview, Title $title ) {
 		global $wgKartographerStaticMapframe;
 
-		$output = $parser->getOutput();
 		$state = State::getState( $output );
 
 		if ( !$state ) {
@@ -320,15 +323,14 @@ abstract class TagHandler {
 		}
 
 		if ( $state->hasBrokenTags() ) {
-			self::addTrackingCategory( $parser, 'kartographer-broken-category' );
+			self::addTrackingCategory( $output, 'kartographer-broken-category', $title );
 		}
 		if ( $state->hasValidTags() ) {
-			self::addTrackingCategory( $parser, 'kartographer-tracking-category' );
+			self::addTrackingCategory( $output, 'kartographer-tracking-category', $title );
 		}
 
 		// https://phabricator.wikimedia.org/T145615 - include all data in previews
-		$options = $parser->getOptions();
-		if ( $data && ( $options->getIsPreview() || $options->getIsSectionPreview() ) ) {
+		if ( $data && $isPreview ) {
 			$output->addJsConfigVars( 'wgKartographerLiveData', $data );
 			if ( $wgKartographerStaticMapframe ) {
 				// Preview generates HTML that is different from normal
@@ -355,10 +357,11 @@ abstract class TagHandler {
 	/**
 	 * Adds tracking category with extra checks
 	 *
-	 * @param Parser $parser
+	 * @param ParserOutput $output
 	 * @param string $categoryMsg
+	 * @param Title $title
 	 */
-	private static function addTrackingCategory( Parser $parser, $categoryMsg ) {
+	private static function addTrackingCategory( ParserOutput $output, $categoryMsg, Title $title ) {
 		static $hasParserFunctions;
 
 		// Our tracking categories rely on ParserFunctions to differentiate per namespace,
@@ -368,7 +371,7 @@ abstract class TagHandler {
 		}
 
 		if ( $hasParserFunctions ) {
-			$parser->getOutput()->addTrackingCategory( $categoryMsg, $parser->getTitle() );
+			$output->addTrackingCategory( $categoryMsg, $title );
 		}
 	}
 
