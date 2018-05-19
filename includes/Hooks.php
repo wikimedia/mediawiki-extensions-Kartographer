@@ -18,7 +18,6 @@ class Hooks {
 	 * ParserFirstCallInit hook handler
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ParserFirstCallInit
 	 * @param Parser $parser
-	 * @return bool
 	 */
 	public static function onParserFirstCallInit( Parser $parser ) {
 		global $wgKartographerEnableMapFrame;
@@ -27,15 +26,12 @@ class Hooks {
 		if ( $wgKartographerEnableMapFrame ) {
 			$parser->setHook( 'mapframe', 'Kartographer\Tag\MapFrame::entryPoint' );
 		}
-
-		return true;
 	}
 
 	/**
 	 * ParserAfterParse hook handler
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ParserAfterParse
 	 * @param Parser $parser
-	 * @return bool
 	 */
 	public static function onParserAfterParse( Parser $parser ) {
 		$output = $parser->getOutput();
@@ -46,8 +42,6 @@ class Hooks {
 			$isPreview = $options->getIsPreview() || $options->getIsSectionPreview();
 			TagHandler::finalParseStep( $state, $output, $isPreview, $parser->getTitle() );
 		}
-
-		return true;
 	}
 
 	/**
