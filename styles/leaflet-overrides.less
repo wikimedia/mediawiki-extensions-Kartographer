@@ -1,3 +1,4 @@
+@import 'mediawiki.mixins';
 @import '../lib/external/wmui-base.less';
 
 /* stylelint-disable no-descending-specificity */
@@ -5,8 +6,10 @@
 	z-index: 0;
 
 	&.leaflet-container {
-		font: 14px @font-family-base;
 		color: @color-base;
+		// Default to Vector's base font-size
+		font-size: 14px;
+		font-family: @font-family-base;
 
 		.marker-description img {
 			width: 100%;
@@ -80,63 +83,58 @@
 	.leaflet-draw-toolbar .draw-actions {
 		// Override the background in this specific case, since
 		// the buttons are another level down, and get a background color
-		background-color: auto;
+		background-color: unset;
 	}
 
 	.leaflet-draw-actions a,
-	.leaflet-draw-actions a:hover,
-	.leaflet-bar > a,
-	.leaflet-bar > a:hover {
-		color: #000;
+	.leaflet-bar > a {
+		background-color: @background-color-framed; // Override Leaflet.Draw default
+		color: @color-base;
+		.box-sizing( content-box );
 		border: @border-base;
 		border-radius: @border-radius-base;
-		border-bottom: 0;
-		box-sizing: content-box;
-	}
-	.leaflet-draw-actions a {
-		background-color: @background-color-framed; //Override Leaflet.Draw default
-	}
-	.leaflet-draw-actions a:hover,
-	.leaflet-bar > a:hover {
-		border-color: @border-color-base--hover;
-		background-color: @background-color-framed--hover;
-	}
-	.leaflet-draw-actions a:active,
-	.leaflet-bar > a:active {
-		border-color: @border-color-base--active;
-		background-color: @background-color-framed--active;
-	}
-	.leaflet-draw-actions a:only-of-type,
-	.leaflet-bar > a:only-of-type {
-		border-bottom: @border-base;
-		border-radius: @border-radius-base;
-	}
-	.leaflet-draw-actions a:first-child,
-	.leaflet-bar > a:first-child {
-		&:not( :only-of-type ) {
-			border-radius: @border-radius-base @border-radius-base 0 0;
-		}
-	}
-	.leaflet-draw-actions a:last-child,
-	.leaflet-bar > a:last-child {
-		border-bottom: @border-base;
+		border-bottom-width: 0;
+		.transition( ~'background-color @transition-ease-quick, color @transition-ease-quick, border-color @transition-ease-quick, box-shadow @transition-ease-quick' );
+
 		&:hover {
-			border-bottom: @border-base;
+			background-color: @background-color-framed--hover;
+			color: @color-base--hover;
 			border-color: @border-color-base--hover;
 		}
 		&:active {
-			border-bottom: @border-base;
+			background-color: @background-color-framed--active;
+			color: @color-base--active;
 			border-color: @border-color-base--active;
 		}
-		&:not( :only-of-type ) {
-			border-radius: 0 0 @border-radius-base @border-radius-base;
+
+		&:only-of-type {
+			border-radius: @border-radius-base;
+			border-bottom-width: @border-width-base;
+
+			&:hover {
+				border-radius: @border-radius-base;
+			}
+		}
+		&:first-child:not( :only-of-type ) {
+			border-radius: @border-radius-base @border-radius-base 0 0;
+		}
+		&:last-child {
+			border-bottom-width: @border-width-base;
+
+			&:hover {
+				border-color: @border-color-base--hover;
+				border-bottom-width: @border-width-base;
+			}
+			&:active {
+				border-bottom-width: @border-width-base;
+				border-color: @border-color-base--active;
+			}
+			&:not( :only-of-type ) {
+				border-radius: 0 0 @border-radius-base @border-radius-base;
+			}
 		}
 	}
 
-	.leaflet-draw-actions a:hover:only-of-type,
-	.leaflet-bar > a:hover:only-of-type {
-		border-radius: @border-radius-base;
-	}
 	.leaflet-bar > .oo-ui-icon-close,
 	.leaflet-bar > .oo-ui-icon-fullScreen {
 		background-position: center center;
