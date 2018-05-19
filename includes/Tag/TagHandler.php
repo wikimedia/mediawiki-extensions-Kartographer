@@ -297,18 +297,18 @@ abstract class TagHandler {
 
 	/**
 	 * Handles the last step of parse process
-	 * @param ParserOutput $output to read from and write to
+	 * @param State $state
+	 * @param ParserOutput $output to exclusively write to; nothing is read from this object
 	 * @param bool $isPreview
 	 * @param Title $title required to properly add tracking categories
 	 */
-	public static function finalParseStep( ParserOutput $output, $isPreview, Title $title ) {
+	public static function finalParseStep(
+		State $state,
+		ParserOutput $output,
+		$isPreview,
+		Title $title
+	) {
 		global $wgKartographerStaticMapframe;
-
-		$state = State::getState( $output );
-
-		if ( !$state ) {
-			return;
-		}
 
 		$data = $state->getData();
 		if ( $data ) {

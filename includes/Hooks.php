@@ -38,9 +38,15 @@ class Hooks {
 	 * @return bool
 	 */
 	public static function onParserAfterParse( Parser $parser ) {
-		$options = $parser->getOptions();
-		$isPreview = $options->getIsPreview() || $options->getIsSectionPreview();
-		TagHandler::finalParseStep( $parser->getOutput(), $isPreview, $parser->getTitle() );
+		$output = $parser->getOutput();
+		$state = State::getState( $output );
+
+		if ( $state ) {
+			$options = $parser->getOptions();
+			$isPreview = $options->getIsPreview() || $options->getIsSectionPreview();
+			TagHandler::finalParseStep( $state, $output, $isPreview, $parser->getTitle() );
+		}
+
 		return true;
 	}
 
