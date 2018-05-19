@@ -143,6 +143,16 @@ ve.dm.MWMapsNode.prototype.usesMapData = function () {
 	return !!( mwData.body && mwData.body.extsrc );
 };
 
+/**
+ * Gets the language used on this map.
+ * @return {string} Language code
+ */
+ve.dm.MWMapsNode.prototype.getLanguage = function () {
+	var mwAttrs = this.getAttribute( 'mw' ).attrs,
+		util = require( 'ext.kartographer.util' );
+	return mwAttrs.lang || util.getDefaultLanguage();
+};
+
 /* Registration */
 
 ve.dm.modelRegistry.register( ve.dm.MWMapsNode );

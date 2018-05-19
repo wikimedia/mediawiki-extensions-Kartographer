@@ -230,12 +230,18 @@ module.Map = ( function ( mw, util, OpenFullScreenControl, dataLayerOpts, ScaleC
 			/* Add base layer */
 
 			/**
+			 * @property {string} layerUrl Base URL for the tile layer
+			 * @protected
+			 */
+			this.layerUrl = mapServer + '/' + style + urlFormat;
+
+			/**
 			 * @property {L.TileLayer} wikimediaLayer Reference to `Wikimedia`
 			 *   tile layer.
 			 * @protected
 			 */
 			this.wikimediaLayer = L.tileLayer(
-				mapServer + '/' + style + urlFormat + '?' + $.param( { lang: this.lang } ),
+				this.getLayerUrl(),
 				{
 					maxZoom: 19,
 					attribution: mw.message( 'kartographer-attribution' ).parse()
@@ -676,6 +682,29 @@ module.Map = ( function ( mw, util, OpenFullScreenControl, dataLayerOpts, ScaleC
 				}
 			}
 			return this;
+		},
+
+		/**
+		 * Get the URL to be passed to L.TileLayer
+		 *
+		 * @private
+		 * @return {string}
+		 */
+		getLayerUrl: function () {
+			return this.layerUrl + '?' + $.param( { lang: this.lang } );
+		},
+
+		/**
+		 * Change the map's language.
+		 *
+		 * This will cause the map to be rerendered if the language is different.
+		 * @param {string} lang New language code
+		 */
+		setLang: function ( lang ) {
+			if ( this.lang !== lang ) {
+				this.lang = lang;
+				this.wikimediaLayer.setUrl( this.getLayerUrl() );
+			}
 		},
 
 		/**
