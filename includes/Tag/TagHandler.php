@@ -51,8 +51,11 @@ abstract class TagHandler {
 	/** @var string */
 	protected $mapStyle;
 
+	/** @var string|null */
+	protected $specifiedLangCode;
+
 	/** @var string */
-	protected $langCode;
+	protected $resolvedLangCode;
 
 	/** @var string name of the group, or null for private */
 	protected $groupName;
