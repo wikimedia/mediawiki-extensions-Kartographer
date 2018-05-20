@@ -221,6 +221,12 @@ abstract class TagHandler {
 		$this->showGroups = array_unique( $this->showGroups );
 	}
 
+	/**
+	 * @param string $name
+	 * @param string|bool|null $default
+	 *
+	 * @return int|false|null
+	 */
 	protected function getInt( $name, $default = false ) {
 		$value = $this->getText( $name, $default, '/^-?[0-9]+$/' );
 		if ( $value !== false && $value !== null ) {
@@ -250,7 +256,7 @@ abstract class TagHandler {
 	 * @param string $name Attribute name
 	 * @param string|bool $default Default value or false to trigger error if absent
 	 * @param string|bool $regexp Regular expression to validate against or false to not validate
-	 * @return string
+	 * @return string|false
 	 */
 	protected function getText( $name, $default, $regexp = false ) {
 		if ( !isset( $this->args[$name] ) ) {

@@ -81,6 +81,9 @@ class ApiSanitizeMapData extends ApiBase {
 		return true;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	protected function getExamplesMessages() {
 		return [
 			'action=sanitize-mapdata&text={"foo":"bar"}' => 'apihelp-sanitize-mapdata-example',
