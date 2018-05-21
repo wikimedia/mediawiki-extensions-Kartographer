@@ -17,12 +17,20 @@ class DataModuleLinks extends ResourceLoaderModule {
 
 	protected $targets = [ 'desktop', 'mobile' ];
 
+	/**
+	 * @inheritDoc
+	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		return ResourceLoader::makeConfigSetScript( [
 			'wgKartographerExternalLinks' => $this->getExternalLinks( $context )
 		] );
 	}
 
+	/**
+	 * @param ResourceLoaderContext $context
+	 *
+	 * @return \stdClass|array
+	 */
 	public function getExternalLinks( ResourceLoaderContext $context ) {
 		$st = FormatJson::parse(
 			file_get_contents( __DIR__ . '/../externalLinks.json' ),

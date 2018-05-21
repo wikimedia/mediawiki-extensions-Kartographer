@@ -9,6 +9,10 @@ use FormatJson;
 
 class ApiQueryMapData extends ApiQueryBase {
 
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 */
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'mpd' );
 	}
@@ -68,6 +72,9 @@ class ApiQueryMapData extends ApiQueryBase {
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function getAllowedParams() {
 		return [
 			'groups' => [
@@ -88,6 +95,9 @@ class ApiQueryMapData extends ApiQueryBase {
 		];
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function getExamplesMessages() {
 		return [
 			'action=query&prop=mapdata&titles=Metallica' => 'apihelp-query+mapdata-example-1',
@@ -96,6 +106,9 @@ class ApiQueryMapData extends ApiQueryBase {
 		];
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}

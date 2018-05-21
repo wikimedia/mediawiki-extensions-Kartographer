@@ -16,7 +16,7 @@ class SphericalMercator {
 	 * (LatLon) -> Point
 	 *
 	 * @param float[] $latLon
-	 * @return array
+	 * @return float[]
 	 */
 	public static function project( $latLon ) {
 		$lat = max( min( self::MAX_LATITUDE, $latLon[0] ), -self::MAX_LATITUDE );
@@ -32,7 +32,7 @@ class SphericalMercator {
 	 * (Point, Boolean) -> LatLon
 	 *
 	 * @param float[] $point
-	 * @return array
+	 * @return float[]
 	 */
 	public static function unproject( $point ) {
 		$lon = rad2deg( $point[0] );

@@ -30,6 +30,12 @@ class Transformation {
 		return [ $x, $y ];
 	}
 
+	/**
+	 * @param float[] $point
+	 * @param int $scale
+	 *
+	 * @return float[]
+	 */
 	public static function untransform( $point, $scale = 1 ) {
 		$x = $point[0];
 		$y = $point[1];

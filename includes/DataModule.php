@@ -16,6 +16,9 @@ class DataModule extends ResourceLoaderModule {
 
 	protected $targets = [ 'desktop', 'mobile' ];
 
+	/**
+	 * @inheritDoc
+	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		$config = $context->getResourceLoader()->getConfig();
 		return ResourceLoader::makeConfigSetScript( [

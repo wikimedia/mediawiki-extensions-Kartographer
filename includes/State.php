@@ -50,6 +50,9 @@ class State {
 		return $result;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function hasValidTags() {
 		return $this->valid;
 	}
@@ -58,6 +61,9 @@ class State {
 		$this->valid = true;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function hasBrokenTags() {
 		return $this->broken;
 	}
@@ -70,6 +76,9 @@ class State {
 		$this->maplinks++;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getMaplinks() {
 		return $this->maplinks;
 	}
@@ -78,35 +87,60 @@ class State {
 		$this->mapframes++;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getMapframes() {
 		return $this->mapframes;
 	}
 
+	/**
+	 * @param string[] $groups
+	 */
 	public function addInteractiveGroups( array $groups ) {
 		$this->interactiveGroups += array_flip( $groups );
 	}
 
+	/**
+	 * @return string[]
+	 */
 	public function getInteractiveGroups() {
 		return array_keys( $this->interactiveGroups );
 	}
 
+	/**
+	 * @param string[] $groups
+	 */
 	public function addRequestedGroups( array $groups ) {
 		$this->requestedGroups += array_flip( $groups );
 	}
 
+	/**
+	 * @return int[]
+	 */
 	public function getRequestedGroups() {
 		return $this->requestedGroups;
 	}
 
+	/**
+	 * @return stdClass
+	 */
 	public function getCounters() {
 		return $this->counters ?: new stdClass();
 	}
 
+	/**
+	 * @param stdClass $counters
+	 */
 	public function setCounters( stdClass $counters ) {
 		$this->counters = $counters;
 	}
 
-	public function addData( $key, $data ) {
+	/**
+	 * @param string $key
+	 * @param array $data
+	 */
+	public function addData( $key, array $data ) {
 		$this->data = $this->data ?: new stdClass();
 		if ( property_exists( $this->data, $key ) ) {
 			$this->data->$key = array_merge( $this->data->$key, $data );
@@ -115,6 +149,9 @@ class State {
 		}
 	}
 
+	/**
+	 * @return stdClass|array
+	 */
 	public function getData() {
 		return $this->data;
 	}

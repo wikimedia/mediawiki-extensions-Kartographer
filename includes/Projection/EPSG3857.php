@@ -29,7 +29,7 @@ class EPSG3857 {
 	 *
 	 * @param float[] $latLon
 	 * @param int $zoom
-	 * @return array
+	 * @return float[]
 	 */
 	public static function latLonToPoint( $latLon, $zoom ) {
 		$projectedPoint = SphericalMercator::project( $latLon );
@@ -41,9 +41,9 @@ class EPSG3857 {
 	/**
 	 * (Point, Number[, Boolean]) -> LatLon
 	 *
-	 * @param array $point
-	 * @param float $zoom
-	 * @return array
+	 * @param float[] $point
+	 * @param int $zoom
+	 * @return float[]
 	 */
 	public static function pointToLatLon( $point, $zoom ) {
 		$scale = self::scale( $zoom );
@@ -52,10 +52,20 @@ class EPSG3857 {
 		return SphericalMercator::unproject( $untransformedPoint );
 	}
 
+	/**
+	 * @param int $zoom
+	 *
+	 * @return int
+	 */
 	public static function scale( $zoom ) {
 		return 256 * pow( 2, $zoom );
 	}
 
+	/**
+	 * @param int $zoom
+	 *
+	 * @return int[]
+	 */
 	public static function getSize( $zoom ) {
 		$size = self::scale( $zoom );
 

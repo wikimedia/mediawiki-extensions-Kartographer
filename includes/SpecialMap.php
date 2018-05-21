@@ -15,10 +15,17 @@ use Kartographer\Projection\EPSG3857;
  * Zoom isn't used anywhere yet.
  */
 class SpecialMap extends SpecialPage {
+
+	/**
+	 * @param string $name
+	 */
 	public function __construct( $name = 'Map' ) {
 		parent::__construct( $name, /* $restriction */ '', /* $listed */ false );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->getOutput()->addModuleStyles( 'ext.kartographer.specialMap' );
@@ -65,7 +72,7 @@ class SpecialMap extends SpecialPage {
 	 * Parses subpage parameter to this special page into zoom / lat /lon
 	 *
 	 * @param string $par
-	 * @return array|bool
+	 * @return array|false
 	 */
 	public static function parseSubpage( $par ) {
 		if ( !preg_match(

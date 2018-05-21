@@ -64,6 +64,9 @@ class ApiSanitizeMapData extends ApiBase {
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function getAllowedParams() {
 		return [
 			'title' => [
