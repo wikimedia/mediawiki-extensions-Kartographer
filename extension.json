@@ -50,6 +50,11 @@
 				"styles/control-scale.less",
 				"styles/leaflet-overrides.less"
 			],
+			"skinStyles": {
+				"minerva": [
+					"styles/kartographer.minerva.less"
+				]
+			},
 			"targets": [
 				"mobile",
 				"desktop"
