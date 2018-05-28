@@ -62,6 +62,7 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "هیچ لایه‌ای برای ویرایش نیست",
 	"leafletdraw-edit-toolbar-buttons-remove": "حذف کردن لایه‌ها",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "هیچ لایه‌ای برای حذف وجود ندارد",
+	"leafletdraw-draw-toolbar-finish-text": "کامل",
 	"map": "اطلاعات مختصات",
 	"mapbox-control-zoomin-title": "بزرگ‌نمایی",
 	"mapbox-control-zoomout-title": "کوچک‌نمایی",
