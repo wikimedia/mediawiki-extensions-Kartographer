@@ -7,6 +7,7 @@
 			"Kocio"
 		]
 	},
+	"apihelp-query+mapdata-param-limit": "Dane dotyczące liczby stron do zwrócenia",
 	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Mapy Wikimedia] | Dane kartograficzne © [https://www.openstreetmap.org/copyright Twórcy projektu OpenStreetMap]",
 	"kartographer-broken-category": "Strony z uszkodzonymi mapami",
 	"kartographer-broken-category-desc": "Strona zawiera nieprawidłowe zastosowanie mapy",
@@ -65,6 +66,8 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Brak warstw do edycji",
 	"leafletdraw-edit-toolbar-buttons-remove": "Usuwanie warstw",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Brak warstw, które można usunąć",
+	"leafletdraw-draw-toolbar-finish-text": "Zakończ",
+	"leafletdraw-draw-toolbar-finish-title": "Kliknij, aby zakończyć rysowanie",
 	"map": "Informacje o koordynatach",
 	"mapbox-control-zoomin-title": "Powiększ",
 	"mapbox-control-zoomout-title": "Pomniejsz",
