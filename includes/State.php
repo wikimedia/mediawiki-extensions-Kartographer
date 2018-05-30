@@ -44,7 +44,7 @@ class State {
 	private $counters;
 
 	/**
-	 * @var strClass|array
+	 * @var array[]
 	 */
 	private $data = [];
 
@@ -172,16 +172,15 @@ class State {
 	 * @param array $data
 	 */
 	public function addData( $key, array $data ) {
-		$this->data = $this->data ?: new stdClass();
-		if ( property_exists( $this->data, $key ) ) {
-			$this->data->$key = array_merge( $this->data->$key, $data );
+		if ( array_key_exists( $key, $this->data ) ) {
+			$this->data[$key] = array_merge( $this->data[$key], $data );
 		} else {
-			$this->data->$key = $data;
+			$this->data[$key] = $data;
 		}
 	}
 
 	/**
-	 * @return stdClass|array
+	 * @return array[] Associative key-value array, build up by {@see addData}
 	 */
 	public function getData() {
 		return $this->data;

@@ -350,11 +350,11 @@ abstract class TagHandler {
 			$requested = array_keys( $state->getRequestedGroups() );
 			if ( $interact || $requested ) {
 				$interact = array_flip( $interact );
-				$liveData = array_intersect_key( (array)$data, $interact );
+				$liveData = array_intersect_key( $data, $interact );
 				$requested = array_unique( $requested );
 				// Prevent pointless API requests for missing groups
 				foreach ( $requested as $group ) {
-					if ( !isset( $data->$group ) ) {
+					if ( !isset( $data[$group] ) ) {
 						$liveData[$group] = [];
 					}
 				}
