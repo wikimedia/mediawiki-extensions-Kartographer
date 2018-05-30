@@ -64,6 +64,14 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		dir: this.getDir()
 	} );
 
+	this.language = new ve.ui.LanguageInputWidget( {
+		classes: [ 've-ui-mwMapsDialog-languageInput' ],
+		dirInput: 'none',
+		fieldConfig: {
+			align: 'right'
+		}
+	} );
+
 	this.input = new ve.ui.MWAceEditorWidget( {
 		autosize: true,
 		maxRows: 10,
@@ -90,6 +98,11 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	this.alignField = new OO.ui.FieldLayout( this.align, {
 		align: 'right',
 		label: ve.msg( 'visualeditor-mwmapsdialog-align' )
+	} );
+
+	this.languageField = new OO.ui.FieldLayout( this.language, {
+		align: 'right',
+		label: ve.msg( 'visualeditor-mwmapsdialog-language' )
 	} );
 
 	this.$currentPositionLatField = $( '<td></td>' );
@@ -122,6 +135,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	panel.$element.append(
 		this.dimensionsField.$element,
 		this.alignField.$element,
+		this.languageField.$element,
 		this.$mapContainer,
 		this.$mapPositionContainer.append( positionPopupButton.$element, this.resetMapButton.$element ),
 		this.geoJsonField.$element
@@ -181,6 +195,23 @@ ve.ui.MWMapsDialog.prototype.resetMapPosition = function () {
 };
 
 /**
+ * Handle language change events
+ *
+ * @param {string} lang
+ * @param {string} dir
+ */
+ve.ui.MWMapsDialog.prototype.onLanguageChange = function ( lang ) {
+	var util = require( 'ext.kartographer.util' );
+	lang = lang || util.getDefaultLanguage();
+	if ( lang.length > 1 ) {
+		// Don't re-render if still typing a new lang code
+		// TODO: Check lang is a valid code as well
+		this.map.setLang( lang );
+	}
+	this.updateActions();
+};
+
+/**
  * Update action states
  */
 ve.ui.MWMapsDialog.prototype.updateActions = function () {
@@ -217,6 +248,8 @@ ve.ui.MWMapsDialog.prototype.insertOrUpdateNode = function () {
  */
 ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 	var center, scaled, latitude, longitude, zoom,
+		lang = this.language.getLang(),
+		util = require( 'ext.kartographer.util' ),
 		dimensions = this.scalable.getBoundedDimensions(
 			this.dimensions.getDimensions()
 		);
@@ -237,6 +270,7 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 	mwData.attrs.latitude = latitude.toString();
 	mwData.attrs.longitude = longitude.toString();
 	mwData.attrs.zoom = zoom.toString();
+	mwData.attrs.lang = ( lang && lang !== util.getDefaultLanguage() ) ? lang : undefined;
 	if ( !( this.selectedNode instanceof ve.dm.MWInlineMapsNode ) ) {
 		mwData.attrs.width = dimensions.width.toString();
 		mwData.attrs.height = dimensions.height.toString();
@@ -264,7 +298,8 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 	return ve.ui.MWMapsDialog.super.prototype.getSetupProcess.call( this, data )
 		.next( function () {
 			var inline = this.selectedNode instanceof ve.dm.MWInlineMapsNode,
-				mwAttrs = this.selectedNode && this.selectedNode.getAttribute( 'mw' ).attrs || {};
+				mwAttrs = this.selectedNode && this.selectedNode.getAttribute( 'mw' ).attrs || {},
+				util = require( 'ext.kartographer.util' );
 
 			this.input.clearUndoStack();
 
@@ -296,6 +331,9 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 
 			// TODO: Support block/inline conversion
 			this.align.selectItemByData( mwAttrs.align || 'right' );
+
+			this.language.setLangAndDir( mwAttrs.lang || util.getDefaultLanguage() );
+			this.language.connect( this, { change: 'onLanguageChange' } );
 
 			this.resetMapButton.$element.toggle( !!this.selectedNode );
 
