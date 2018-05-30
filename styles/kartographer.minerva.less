@@ -1,0 +1,18 @@
+@import 'mediawiki.ui/variables';
+
+// Override for minerva's "hack.less" that tries to fix Template:Multiple_image
+@media all and ( max-width: @width-breakpoint-tablet ) {
+	.content .mw-kartographer-container.thumb .thumbinner {
+		// Override the 'flex' rules
+		display: block;
+		flex-wrap: unset;
+
+		justify-content: inherit;
+		align-content: normal;
+
+		> .thumbcaption {
+			display: block;
+		}
+	}
+
+}
