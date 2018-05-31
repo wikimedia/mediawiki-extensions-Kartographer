@@ -119,7 +119,7 @@
 	"kartographer-fullscreen-text": "Tooltip for a button that puts the map into full screen",
 	"visualeditor-mwmapsdialog-align": "Label for setting the map's alignment\n{{Identical|Alignment}}",
 	"visualeditor-mwmapsdialog-geojson": "{{optional}}\nLabel for map GeoJSON data",
-	"visualeditor-mwmapsdialog-language": "Label for setting the map's language",
+	"visualeditor-mwmapsdialog-language": "Label for setting the map's language\n{{Identical|Language}}",
 	"visualeditor-mwmapsdialog-position-button": "Label for current position button",
 	"visualeditor-mwmapsdialog-position-lat": "Label for latitude within current position popup\n{{Identical|Latitude}}",
 	"visualeditor-mwmapsdialog-position-lon": "Label for longitude within current position popup\n{{Identical|Longitude}}",
