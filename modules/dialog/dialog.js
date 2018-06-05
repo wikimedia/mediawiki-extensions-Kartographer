@@ -34,7 +34,7 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 	/* Methods */
 
 	MapDialog.prototype.initialize = function () {
-		this.$mapDetailsButton = null;
+		this.mapDetailsButton = null;
 
 		// Parent method
 		MapDialog.super.prototype.initialize.apply( this, arguments );
@@ -49,32 +49,52 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 
 	MapDialog.prototype.addFooterButton = function () {
 		var dialog = this;
+
 		mw.loader.using( 'oojs-ui-widgets' ).then( function () {
 			$( function () {
-
 				// Create footer toggle button
-				var button = dialog.$mapDetailsButton = new OO.ui.ToggleButtonWidget( {
+				var $buttonContainer, $inlineContainer;
+
+				dialog.$captionContainer = dialog.$element.find( '.mw-kartographer-captionfoot' );
+				$buttonContainer = dialog.$element.find( '.mw-kartographer-buttonfoot' );
+				$inlineContainer = dialog.$element.find( '.mw-kartographer-inlinefoot' );
+
+				if ( !dialog.mapDetailsButton ) {
+					dialog.mapDetailsButton = new OO.ui.ToggleButtonWidget( {
 						label: mw.msg( 'kartographer-sidebar-togglebutton' ),
 						icon: 'newWindow',
 						iconTitle: mw.msg( 'kartographer-sidebar-togglebutton' )
-					} ),
-					$captionContainer = dialog.$captionContainer = $( '<div class="mw-kartographer-captionfoot">' ),
-					$buttonContainer = $( '<div class="mw-kartographer-buttonfoot">' ),
-					$inlineContainer = $( '<div class="mw-kartographer-inlinefoot">' )
-						.append( $buttonContainer, $captionContainer );
-
-				if ( dialog.map ) {
-					$captionContainer
-						.attr( 'title', dialog.map.captionText )
-						.text( dialog.map.captionText );
+					} );
+					dialog.mapDetailsButton.connect( dialog, { change: 'toggleSideBar' } );
 				}
 
-				$buttonContainer.append( button.$element );
+				if ( !dialog.$captionContainer.length ) {
+					dialog.$captionContainer = $( '<div>' )
+						.addClass( 'mw-kartographer-captionfoot' );
+				}
+
+				if ( !$buttonContainer.length ) {
+					$buttonContainer = $( '<div>' )
+						.addClass( 'mw-kartographer-buttonfoot' );
+				}
+
+				if ( !$inlineContainer.length ) {
+					$inlineContainer = $( '<div>' )
+						.addClass( 'mw-kartographer-inlinefoot' );
+				}
+				$inlineContainer.append(
+					$buttonContainer.append( dialog.mapDetailsButton.$element ),
+					dialog.$captionContainer
+				);
 
 				// Add the button to the footer
 				dialog.$foot.append( $inlineContainer );
 
-				button.on( 'change', dialog.toggleSideBar, null, dialog );
+				if ( dialog.map ) {
+					dialog.$captionContainer
+						.attr( 'title', dialog.map.captionText )
+						.text( dialog.map.captionText );
+				}
 			} );
 		} );
 	};
@@ -89,10 +109,10 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 				dialog.sideBar = new SideBar( { dialog: dialog } );
 			}
 
-			open = ( typeof open === 'undefined' ) ? !dialog.$mapDetailsButton.value : open;
+			open = ( typeof open === 'undefined' ) ? !dialog.mapDetailsButton.value : open;
 
-			if ( dialog.$mapDetailsButton.value !== open ) {
-				dialog.$mapDetailsButton.setValue( open );
+			if ( dialog.mapDetailsButton.value !== open ) {
+				dialog.mapDetailsButton.setValue( open );
 				// This `change` event callback is fired again, so skip here.
 				return;
 			}
@@ -176,7 +196,7 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 		return MapDialog.super.prototype.getSetupProcess.call( this, options )
 			.next( function () {
 				var dialog = this,
-					isFirstTimeOpen = !dialog.$mapDetailsButton,
+					isFirstTimeOpen = !dialog.mapDetailsButton,
 					isSideBarVisible = dialog.sideBar;
 
 				if ( options.map && options.map !== dialog.map ) {
