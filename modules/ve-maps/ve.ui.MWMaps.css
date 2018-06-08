@@ -13,10 +13,11 @@
 
 .ve-ui-mwMapsDialog-geoJSONWidget {
 	max-width: none;
+	min-height: 210px;
 }
 
-.ve-ui-mwMapsDialog-geoJSONWidget .oo-ui-inputWidget-input,
-.ve-ui-mwAceEditorWidget {
+.ve-ui-mwMapsDialog-geoJSONWidget .oo-ui-inputWidget-input:first-child,
+.ve-ui-mwMapsDialog-geoJSONWidget .ace_editor.ace-tm {
 	min-height: 210px;
 }
 
