@@ -1,6 +1,6 @@
 @import 'mediawiki.ui/variables';
 
-// Override for minerva's "hack.less" that tries to fix Template:Multiple_image
+// Override for MinervaNeue's "hack.less" that tries to fix Template:Multiple_image
 @media all and ( max-width: @width-breakpoint-tablet ) {
 	.content .mw-kartographer-container.thumb .thumbinner {
 		// Override the 'flex' rules
@@ -14,5 +14,14 @@
 			display: block;
 		}
 	}
+}
 
+// Override for MinervaNeue's "common.less" rule that specifically
+// enforces width: 320px for thumbs, which means that thumb/maps that
+// are set for width=100% are overrided and remain small. We need
+// to override that override.
+@media screen and ( min-width: @width-breakpoint-tablet ) {
+	.content .mw-kartographer-container.mw-kartographer-full.thumb {
+		width: 100%;
+	}
 }
