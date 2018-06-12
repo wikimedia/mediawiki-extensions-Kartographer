@@ -197,10 +197,10 @@ ve.ce.MWMapsNode.prototype.updateGeoJson = function () {
 		return;
 	}
 	mwData = this.model.getAttribute( 'mw' );
-	geoJson = mwData && mwData.body.extsrc;
+	geoJson = ve.getProp( mwData, 'body', 'extsrc' );
 
 	if ( geoJson !== this.geoJson ) {
-		require( 'ext.kartographer.editing' ).updateKartographerLayer( this.map, mwData && mwData.body.extsrc ).then( this.updateMapPosition.bind( this ) );
+		require( 'ext.kartographer.editing' ).updateKartographerLayer( this.map, geoJson ).then( this.updateMapPosition.bind( this ) );
 		this.geoJson = geoJson;
 	}
 };
