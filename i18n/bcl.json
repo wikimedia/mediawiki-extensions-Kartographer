@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"ShimunUfesoj"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "Nagsasagibo nin pagpapatotoo kan data para sa extension kan Kartographer",
+	"apihelp-sanitize-mapdata-param-title": "\nPamagat kan pahina kun saen yaon an GeoJSON na ini. Kun mayong pamagat na pigtao, maggamit lang nin sarong dummy.",
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON para sa kalinigan",
+	"apihelp-query+mapdata-description": "Humiling kan gabos nin data kan mapa gikan sa pahina <kbd> Metallica </ kbd>",
+	"apihelp-query+mapdata-param-continue": "Gamiton an parametrong ini tanganing magpadagos sa pag-otro sa paagi kan mga resulta",
+	"kartographer-attribution": "\n[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Wikimedia maps] | Data kan Mapa © [https://www.openstreetmap.org/copyright OpenStreetMap contributors",
+	"kartographer-broken-category": "Mga pahina na igwang mga nagkaparasa na mapa",
+	"kartographer-broken-category-desc": "Kaiba sa pahina an sarong bakong-wastong paggamit kan mapa"
+}
