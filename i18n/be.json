@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Artsiom91"
+			"Artsiom91",
+			"Maksim L."
 		]
 	},
 	"kartographer-broken-category-desc": "Старонка змяшчае няслушна ўжытыя карты",
 	"kartographer-tracking-category-desc": "Старонка змяшчае карты.",
-	"kartographer-fullscreen-close": "Закрыць"
+	"kartographer-fullscreen-close": "Закрыць",
+	"visualeditor-mwmapscontextitem-title": "Карту"
 }
