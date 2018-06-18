@@ -7,7 +7,8 @@
 			"AlvaroMolina",
 			"Rubentl134",
 			"Fitoschido",
-			"Dgstranz"
+			"Dgstranz",
+			"MarcoAurelio"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Realiza la validación de datos para la extensión Kartographer",
@@ -81,6 +82,7 @@
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "No hay capas que editar",
 	"leafletdraw-edit-toolbar-buttons-remove": "Eliminar capas",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "No hay capas que eliminar",
+	"leafletdraw-draw-toolbar-finish-text": "Completo",
 	"map": "Información de coordenadas",
 	"mapbox-control-zoomin-title": "Acercar",
 	"mapbox-control-zoomout-title": "Alejar",
