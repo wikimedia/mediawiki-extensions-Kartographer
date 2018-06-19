@@ -21,6 +21,14 @@
 	min-height: 210px;
 }
 
+.ve-ui-mwMapsDialog-help {
+	position: absolute;
+	/* Align with first line of form */
+	/* <padding of PanelLayout> + <margin-top of first fieldset> */
+	top: calc( 1.14285714em + 0.85714286em );
+	right: 8px;
+}
+
 .ve-ui-mwMapsDialog-position {
 	margin-bottom: 1em;
 	text-align: center;
