@@ -95,6 +95,15 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		label: ve.msg( 'visualeditor-mwmapsdialog-size' )
 	} );
 
+	this.helpLink = new OO.ui.ButtonWidget( {
+		icon: 'help',
+		framed: false,
+		classes: [ 've-ui-mwMapsDialog-help' ],
+		title: ve.msg( 'visualeditor-mwmapsdialog-help-title' ),
+		href: 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:VisualEditor/Maps',
+		target: '_blank'
+	} );
+
 	this.alignField = new OO.ui.FieldLayout( this.align, {
 		align: 'right',
 		label: ve.msg( 'visualeditor-mwmapsdialog-align' )
@@ -133,6 +142,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	} );
 
 	panel.$element.append(
+		this.helpLink.$element,
 		this.dimensionsField.$element,
 		this.alignField.$element,
 		this.languageField.$element,
