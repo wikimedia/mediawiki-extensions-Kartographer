@@ -7,7 +7,8 @@
 			"Anto",
 			"Nicole Scalinci",
 			"S4b1nuz E.656",
-			"Sarah Bernabei"
+			"Sarah Bernabei",
+			"Toadino2"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Esegue la convalida dei dati per l'estensione Kartographer",
@@ -82,6 +83,7 @@
 	"kartographer-fullscreen-text": "Visualizza a schermo intero",
 	"visualeditor-mwmapsdialog-align": "Allineamento",
 	"visualeditor-mwmapsdialog-language": "Lingua",
+	"visualeditor-mwmapsdialog-help-title": "Impara come creare e modificare una mappa.",
 	"visualeditor-mwmapsdialog-position-button": "Posizione attuale",
 	"visualeditor-mwmapsdialog-position-lat": "Latitudine",
 	"visualeditor-mwmapsdialog-position-lon": "Longitudine",

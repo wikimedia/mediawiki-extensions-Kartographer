@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Liuxinyu970226",
-			"Shizhao"
+			"Shizhao",
+			"JerryLiu"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "为Kartographer扩展执行数据验证",
@@ -98,6 +99,7 @@
 	"kartographer-fullscreen-text": "全屏显示",
 	"visualeditor-mwmapsdialog-align": "对齐",
 	"visualeditor-mwmapsdialog-language": "语言",
+	"visualeditor-mwmapsdialog-help-title": "了解如何创建和编辑地图",
 	"visualeditor-mwmapsdialog-position-button": "目前位置",
 	"visualeditor-mwmapsdialog-position-lat": "纬度",
 	"visualeditor-mwmapsdialog-position-lon": "经度",
