@@ -18,7 +18,7 @@
 	"kartographer-error-context-multi": "&lt;$1&gt; 問題：\n$2",
 	"kartographer-error-missing-attr": "遺失屬性 \"$1\"",
 	"kartographer-error-bad_attr": "屬性 \"$1\" 的值無效",
-	"kartographer-error-bad_data": "JSON 內容不正確",
+	"kartographer-error-bad_data": "JSON 內容不是有效的 GeoJSON + simplestyle",
 	"kartographer-tracking-category": "有地圖的頁面",
 	"kartographer-tracking-category-desc": "含有地圖的頁面",
 	"kartographer-specialmap-invalid-coordinates": "提供了無效的座標",
