@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jeblad"
+			"Jeblad",
+			"Njardarlogar"
 		]
 	},
+	"kartographer-broken-category": "Sider med uverksame kart",
 	"leafletdraw-draw-toolbar-actions-text": "Bryt av",
 	"leafletdraw-draw-toolbar-buttons-circle": "Teikn ein sirkel",
 	"leafletdraw-draw-toolbar-buttons-marker": "Teikn ein markør",
