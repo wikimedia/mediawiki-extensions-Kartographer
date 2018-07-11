@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"C.R."
+			"C.R.",
+			"Ruthven"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Facesse 'a verifica 'e dati p' 'a stensione Kartographer",
@@ -45,11 +46,11 @@
 	"leafletdraw-draw-toolbar-buttons-rectangle": "Disegna nu rettangolo",
 	"leafletdraw-draw-toolbar-undo-text": "Scancella ll'urdemo punto",
 	"leafletdraw-draw-toolbar-undo-title": "Scancella ll'urdemo punto disegnato",
-	"leafletdraw-edit-handlers-edit-tooltip-subtext": "Clicca annulla pe' puté annullà 'e cagnamiente",
+	"leafletdraw-edit-handlers-edit-tooltip-subtext": "Clicca sfàjere pe puté turnà areto ch' 'e cagnamiente",
 	"leafletdraw-edit-handlers-edit-tooltip-text": "Trascina 'e maniglie o nu marcatore pe' puté scagnà na caratteristica",
 	"leafletdraw-edit-handlers-remove-tooltip-text": "Clicca ncopp'a caratteristica p' 'a luvà",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "Canciella",
-	"leafletdraw-edit-toolbar-actions-cancel-title": "Annulla 'a modifica, lassa perdere tutte cagnamiente",
+	"leafletdraw-edit-toolbar-actions-cancel-title": "Sfàje 'a modifica, scanciella tutt'ê cagnamiente",
 	"leafletdraw-edit-toolbar-actions-save-text": "Astipa",
 	"leafletdraw-edit-toolbar-actions-save-title": "Astipa modifiche",
 	"leafletdraw-edit-toolbar-buttons-edit": "Cagna 'e livelle",
