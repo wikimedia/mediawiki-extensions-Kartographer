@@ -20,7 +20,7 @@
 	"apihelp-query+mapdata-param-continue": "Använd denna parameter för att fortsätta gå igenom resultaten.",
 	"apihelp-query+mapdata-param-groups": "Grupper att returnera data för, separerade med vertikalstreck",
 	"apihelp-query+mapdata-param-limit": "Data för hur många sidor att returnera",
-	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Wikimedia maps] | Kartdata © [https://www.openstreetmap.org/copyright OpenStreetMaps bidragsgivare]",
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia maps] | Kartdata © [https://www.openstreetmap.org/copyright OpenStreetMaps bidragsgivare]",
 	"kartographer-broken-category": "Sidor med trasiga kartor",
 	"kartographer-broken-category-desc": "Sidan inkluderar taggen <code><nowiki><maps></nowiki></code> med felaktig användning.",
 	"kartographer-desc": "Tillåter kartor att läggas till i wikisidor",

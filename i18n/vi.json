@@ -6,7 +6,7 @@
 		]
 	},
 	"apihelp-query+mapdata-param-limit": "Dữ liệu cho bao nhiêu trang trả về",
-	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Bản đồ Wikimedia] | Dữ liệu bản đồ © [https://www.openstreetmap.org/copyright/vi những người đóng góp vào OpenStreetMap]",
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Bản đồ Wikimedia] | Dữ liệu bản đồ © [https://www.openstreetmap.org/copyright/vi những người đóng góp vào OpenStreetMap]",
 	"kartographer-broken-category": "Trang có bản đồ hỏng",
 	"kartographer-broken-category-desc": "Trang này nhúng một bản đồ một cách không hợp lệ",
 	"kartographer-desc": "Cho phép nhúng bản đồ vào trang wiki",

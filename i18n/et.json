@@ -4,7 +4,7 @@
 			"Pikne"
 		]
 	},
-	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Wikimedia kaardid] | Kaardiandmed © [https://www.openstreetmap.org/copyright OpenStreetMapi kaastöölised]",
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia kaardid] | Kaardiandmed © [https://www.openstreetmap.org/copyright OpenStreetMapi kaastöölised]",
 	"kartographer-broken-category": "Katkiste kaartidega leheküljed",
 	"kartographer-broken-category-desc": "Sellel leheküljel on vigane kaardikasutus.",
 	"kartographer-desc": "Võimaldab lisada vikileheküljele kaarte.",

@@ -20,7 +20,7 @@
 	"apihelp-query+mapdata-param-continue": "Käytä tätä parametria jatkaaksesi tulosten iteroimista.",
 	"apihelp-query+mapdata-param-groups": "Ryhmät, joille data palautetaan pystyviivalla erotettuna",
 	"apihelp-query+mapdata-param-limit": "Kuinka monelle sivulle data palautetaan",
-	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Wikimedia-kartat] | Karttatiedot © [https://www.openstreetmap.org/copyright OpenStreetMapin tekijät]",
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia-kartat] | Karttatiedot © [https://www.openstreetmap.org/copyright OpenStreetMapin tekijät]",
 	"kartographer-broken-category": "Sivut, joissa on rikkinäisiä karttoja",
 	"kartographer-broken-category-desc": "Sivu sisältää virheellisesti käytetyn <code><nowiki><maps></nowiki></code> tagin.",
 	"kartographer-desc": "Tekee mahdolliseksi karttojen lisäämisen wikisivuihin",

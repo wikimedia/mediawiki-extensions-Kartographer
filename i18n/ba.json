@@ -8,7 +8,7 @@
 			"Ләйсән"
 		]
 	},
-	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Викимедиа карталары] | мәғлүмәттәр © [https://www.openstreetmap.org/copyright OpenStreetMap ҡатнашыусылары]",
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Викимедиа карталары] | мәғлүмәттәр © [https://www.openstreetmap.org/copyright OpenStreetMap ҡатнашыусылары]",
 	"kartographer-broken-category": "Карталары дөрөҫ булмаған {{#switch:{{NAMESPACE}}|{{ns:File}}=файлдар|#default=биттәр}}",
 	"kartographer-broken-category-desc": "Был биттә файҙаланырға яраҡһыҙ графиктар",
 	"kartographer-desc": "Картаның вики-битенә өҫтәргә рөхсәт бирә.",

@@ -16,7 +16,7 @@
 	"apihelp-query+mapdata-param-continue": "Usaren daytoy a parametro tapno agtuloy nga agaramid kadagiti resulta",
 	"apihelp-query+mapdata-param-groups": "Dagiti grupo a naisina iti pipa tapno maipasubli ti datos",
 	"apihelp-query+mapdata-param-limit": "Datos no mano dagiti panid a maipasubli",
-	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Dagiti mapa ti Wikimedia] | Map data © [https://www.openstreetmap.org/copyright Dagiti kontributor ti OpenStreetMap]",
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Dagiti mapa ti Wikimedia] | Map data © [https://www.openstreetmap.org/copyright Dagiti kontributor ti OpenStreetMap]",
 	"kartographer-broken-category": "Pampanid nga agraman kadagiti nadadael a mapa",
 	"kartographer-broken-category-desc": "Mangiraman ti panid iti maysa nga imbalido a panagusar iti mapa",
 	"kartographer-desc": "Mangipalubos a mainayon dagiti mapa kadagiti panid ti wiki",

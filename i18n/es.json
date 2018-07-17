@@ -21,7 +21,7 @@
 	"apihelp-query+mapdata-param-continue": "Usa este parámetro para continuar con la iteración de los resultados",
 	"apihelp-query+mapdata-param-groups": "Grupos separados por barras para los que devolver datos",
 	"apihelp-query+mapdata-param-limit": "Datos de cuántas páginas para volver",
-	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Mapas de Wikimedia] | Datos del mapa © [https://www.openstreetmap.org/copyright Colaboradores de OpenStreetMap]",
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Mapas de Wikimedia] | Datos del mapa © [https://www.openstreetmap.org/copyright Colaboradores de OpenStreetMap]",
 	"kartographer-broken-category": "Páginas con mapas rotos",
 	"kartographer-broken-category-desc": "La página incluye un uso no válido de mapas.",
 	"kartographer-desc": "Permite insertar mapas en una página wiki",

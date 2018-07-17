@@ -16,7 +16,7 @@
 	"apihelp-query+mapdata-param-continue": "Gamiton an parametrong ini tanganing magpadagos sa pag-otro sa paagi kan mga resulta",
 	"apihelp-query+mapdata-param-groups": "Mga grupo na pigsusuway nin pipe tanganing ibalik an data para sa",
 	"apihelp-query+mapdata-param-limit": "Data para sa kun gurano kadakol nin mga pahina an mabalik",
-	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use Wikimedia maps] | Datus kan Mapa © [https://www.openstreetmap.org/copyright OpenStreetMap contributors]",
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia maps] | Datus kan Mapa © [https://www.openstreetmap.org/copyright OpenStreetMap contributors]",
 	"kartographer-broken-category": "Mga pahina na igwang mga nagkaparasa na mapa",
 	"kartographer-broken-category-desc": "Kaiba sa pahina an sarong bakong-wastong paggamit kan mapa",
 	"kartographer-desc": "pigtutugutan an mga mapa na idadagdag sa mga pahina kan wiki",

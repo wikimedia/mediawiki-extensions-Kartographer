@@ -19,7 +19,7 @@
 	"apihelp-query+mapdata-param-continue": "ह्या चलांचा वापर करुन निकाल परत दाखवा.",
 	"apihelp-query+mapdata-param-groups": "वेगवेगळ्या गटांमध्ये डेटा दाखवा",
 	"apihelp-query+mapdata-param-limit": "किती पानांमध्ये निकाल दाखवायचा ते ठरवा",
-	"kartographer-attribution": "[https://wikimediafoundation.org/wiki/Maps_Terms_of_Use विकिमीडिया नकाशे] | नकाशा डेटा © [https://www.openstreetmap.org/copyright OpenStreetMap contributors]",
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use विकिमीडिया नकाशे] | नकाशा डेटा © [https://www.openstreetmap.org/copyright OpenStreetMap contributors]",
 	"kartographer-broken-category": "मोडके नकाशे असलेली पाने",
 	"kartographer-broken-category-desc": "या पानात नकाशाचा अवैध वापर अंतर्भूत आहे",
 	"kartographer-desc": "विकिपानावर नकाशे जोडण्यास परवानगी द्या",
