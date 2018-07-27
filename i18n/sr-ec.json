@@ -8,14 +8,14 @@
 			"BadDog"
 		]
 	},
-	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Викимедијине карте] | Подаци карте © [https://www.openstreetmap.org/copyright Доприносиоци OpenStreetMap-а]",
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Викимедијине мапе] | Подаци мапе © [https://www.openstreetmap.org/copyright Сарадници OpenStreetMap]",
 	"kartographer-attribution-externaldata": "$1: $2",
 	"kartographer-broken-category": "Странице с поквареним картама",
 	"kartographer-broken-category-desc": "Страница укључује невалидну употребу карте",
 	"kartographer-error-json": "Не могу рашчланити JSON: $1",
 	"kartographer-error-missing-attr": "Недостаје атрибут „$1”",
 	"kartographer-error-bad_attr": "Атрибут „$1” има невалиду вредност",
-	"kartographer-error-title": "Наслов „$1” није валидна страница података карте",
+	"kartographer-error-title": "Наслов „$1” није валидна страница података мапе",
 	"kartographer-tracking-category": "Странице с картама",
 	"kartographer-tracking-category-desc": "Странице које укључују карту",
 	"kartographer-coord-combined": "$1 $2",
@@ -26,7 +26,7 @@
 	"kartographer-coord-lon-negative": "$1W",
 	"kartographer-specialmap-invalid-coordinates": "Пружене кординате су невалидне",
 	"kartographer-linktype-aerial": "Ваздушни",
-	"kartographer-linktype-map": "Стандардне карте",
+	"kartographer-linktype-map": "Стандардне мапе",
 	"kartographer-linktype-other": "Друго",
 	"kartographer-linktype-satellite": "Сателит",
 	"kartographer-linktype-terrain": "Терен",
@@ -96,6 +96,6 @@
 	"visualeditor-mwmapsdialog-reset-map": "Обнови позицију карте",
 	"visualeditor-mwmapsdialog-size": "Величина",
 	"visualeditor-mwmapsdialog-title": "Карта",
-	"visualeditor-mwmapscontextitem-nosupport": "Ова карта садржи динамичке функције и за сада се може уређивати само у изворном режиму.",
-	"visualeditor-mwmapscontextitem-title": "Карта"
+	"visualeditor-mwmapscontextitem-nosupport": "Ова мапа садржи динамичке функције и за сада се може уређивати само у изворничком моду.",
+	"visualeditor-mwmapscontextitem-title": "Мапа"
 }
