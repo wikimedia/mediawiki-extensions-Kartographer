@@ -268,7 +268,8 @@
 		},
 		"ext.kartographer.settings": {
 			"dependencies": [
-				"mapbox"
+				"mapbox",
+				"ext.kartographer"
 			],
 			"scripts": [
 				"modules/settings/settings.js"
