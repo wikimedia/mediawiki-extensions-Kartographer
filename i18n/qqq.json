@@ -50,7 +50,7 @@
 	"kartographer-linktype-other": "Full screen map info sidebar - type of external link - other\n{{Identical|Other}}",
 	"kartographer-linktype-satellite": "Full screen map info sidebar - type of external link - satellite\n{{Identical|Satellite}}",
 	"kartographer-linktype-terrain": "Full screen map info sidebar - type of external link - terrain\n{{Identical|Terrain}}",
-	"kartographer-linktype-topo": "Full screen map info sidebar - type of external link - topo\n{{Identical|Topological}}",
+	"kartographer-linktype-topo": "Full screen map info sidebar - type of external link - topo\n{{Identical|Topographic}}",
 	"kartographer-link-acme-mapper": "{{optional}}Full screen map info sidebar - external service name\n{{related|Kartographer-link}}",
 	"kartographer-link-apple-maps": "{{optional}}Full screen map info sidebar - external service name\n{{related|Kartographer-link}}",
 	"kartographer-link-arctic-io": "{{optional}}Full screen map info sidebar - external service name\n{{related|Kartographer-link}}",
