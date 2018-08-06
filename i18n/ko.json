@@ -42,7 +42,7 @@
 	"kartographer-linktype-other": "기타",
 	"kartographer-linktype-satellite": "인공위성",
 	"kartographer-linktype-terrain": "지형도",
-	"kartographer-linktype-topo": "등고도",
+	"kartographer-linktype-topo": "지형",
 	"kartographer-link-bing-maps": "Bing 지도",
 	"kartographer-link-google-maps": "Google 지도",
 	"kartographer-link-openstreetmap": "오픈스트리트맵",

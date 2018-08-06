@@ -3,7 +3,8 @@
 		"authors": [
 			"Piramidion",
 			"Base",
-			"Ата"
+			"Ата",
+			"Vlad5250"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Виконує перевірку даних для розширення Kartographer",
@@ -37,7 +38,7 @@
 	"kartographer-linktype-other": "Інше",
 	"kartographer-linktype-satellite": "Супутникова",
 	"kartographer-linktype-terrain": "Місцевість",
-	"kartographer-linktype-topo": "Топологічна",
+	"kartographer-linktype-topo": "Топографічна",
 	"kartographer-sidebar-coordinates": "Координати",
 	"kartographer-sidebar-filterdropdown": "Виберіть тип мапи",
 	"kartographer-sidebar-externalservices": "Служби карт",
