@@ -17,6 +17,8 @@ use stdClass;
  * Parses and sanitizes text properties of GeoJSON/simplestyle by putting them through parser
  */
 class SimpleStyleParser {
+
+	/** @var string[] */
 	private static $parsedProps = [ 'title', 'description' ];
 
 	/** @var Parser */
@@ -24,6 +26,9 @@ class SimpleStyleParser {
 
 	/** @var PPFrame */
 	private $frame;
+
+	/** @var array */
+	private $options;
 
 	/** @var string */
 	private $mapService;
