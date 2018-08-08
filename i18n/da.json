@@ -4,7 +4,10 @@
 			"Saederup92"
 		]
 	},
+	"kartographer-linktype-satellite": "Satellit",
+	"leafletdraw-draw-toolbar-buttons-circle": "Tegn en cirkel",
 	"leafletdraw-edit-toolbar-actions-save-text": "Gem",
 	"leafletdraw-edit-toolbar-actions-save-title": "Gem ændringer",
+	"visualeditor-mwmapsdialog-language": "Sprog",
 	"visualeditor-mwmapsdialog-size": "Størrelse"
 }

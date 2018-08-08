@@ -6,7 +6,8 @@
 			"Ziyaurr",
 			"Jayprakash12345",
 			"Bhatakati aatma",
-			"Tiven2240"
+			"Tiven2240",
+			"V.narsikar"
 		]
 	},
 	"kartographer-broken-category": "टूटे हुए नक्शे के साथ पृष्ठ",
@@ -27,7 +28,7 @@
 	"kartographer-sidebar-externalservices": "बाहरी सेवा",
 	"kartographer-sidebar-latitude": "अक्षांश",
 	"kartographer-sidebar-longitude": "देशांतर",
-	"kartographer-sidebar-mapdetails": "अन्य बाहरी नकशे",
+	"kartographer-sidebar-mapdetails": "बाह्य नकाशे",
 	"kartographer-sidebar-service": "सेवा",
 	"kartographer-sidebar-togglebutton": "अन्य नकशे",
 	"leafletdraw-draw-handlers-circle-radius": "त्रिज्या",
