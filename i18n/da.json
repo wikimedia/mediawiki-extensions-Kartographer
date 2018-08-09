@@ -4,10 +4,17 @@
 			"Saederup92"
 		]
 	},
+	"kartographer-linktype-other": "Andet",
 	"kartographer-linktype-satellite": "Satellit",
+	"kartographer-linktype-terrain": "Terræn",
+	"kartographer-sidebar-externalservices-show-all": "Vis mere",
 	"leafletdraw-draw-toolbar-buttons-circle": "Tegn en cirkel",
 	"leafletdraw-edit-toolbar-actions-save-text": "Gem",
 	"leafletdraw-edit-toolbar-actions-save-title": "Gem ændringer",
+	"mapbox-control-zoomin-title": "Zoom ind",
+	"mapbox-control-zoomout-title": "Zoom ud",
+	"kartographer-fullscreen-close": "Luk",
+	"kartographer-fullscreen-text": "Vis i fuldskærm",
 	"visualeditor-mwmapsdialog-language": "Sprog",
 	"visualeditor-mwmapsdialog-size": "Størrelse"
 }
