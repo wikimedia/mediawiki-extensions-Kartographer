@@ -23,6 +23,7 @@
 	"apihelp-query+mapdata-description": "<kbd>Metallica</kbd> 문서의 모든 지도 데이터를 요청합니다",
 	"apihelp-query+mapdata-summary": "<kbd>Metallica</kbd> 문서의 모든 지도 데이터를 요청합니다",
 	"apihelp-query+mapdata-example-1": "<kbd>Metallica</kbd> 문서의 모든 지도 데이터를 요청합니다",
+	"apihelp-query+mapdata-param-groups": "데이터를 반환할 파이프 구분 그룹",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use 위키미디어 지도] | 지도 자료 © [https://www.openstreetmap.org/copyright OpenStreetMap 기여자]",
 	"kartographer-broken-category": "깨진 지도가 있는 문서",
 	"kartographer-broken-category-desc": "이 문서는 잘못 사용된 지도를 포함합니다.",
