@@ -7,7 +7,8 @@
 			"Pyscowicz",
 			"Pxos",
 			"Zache",
-			"Alluk."
+			"Alluk.",
+			"Surjection"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Validoi datan Kartographer-laajennokselle",
@@ -39,7 +40,7 @@
 	"kartographer-linktype-other": "Muu",
 	"kartographer-linktype-satellite": "Satelliitti",
 	"kartographer-linktype-terrain": "Maanpinta",
-	"kartographer-linktype-topo": "Topologinen",
+	"kartographer-linktype-topo": "Topografinen",
 	"kartographer-sidebar-coordinates": "Koordinaatit",
 	"kartographer-sidebar-filterdropdown": "Valitse kartan tyyppi",
 	"kartographer-sidebar-externalservices": "Muut karttapalvelut",
