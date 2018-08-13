@@ -150,6 +150,10 @@
 				{
 					"type": "map",
 					"url": "https://www.openstreetmap.org/?mlat={latitude}&mlon={longitude}&zoom={zoom}&layers=M"
+				},
+				{
+					"type": "topo",
+					"url": "https://www.openstreetmap.org/?mlat={latitude}&mlon={longitude}&zoom={zoom}&layers=C"
 				}
 			]
 		},
