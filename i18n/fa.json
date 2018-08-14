@@ -4,12 +4,14 @@
 			"Ladsgroup",
 			"Reza1615",
 			"Arash",
-			"Alifakoor"
+			"Alifakoor",
+			"Fatemi127"
 		]
 	},
 	"apihelp-sanitize-mapdata-param-text": "جئوجی‌سان برای تمیزکاری",
 	"apihelp-sanitize-mapdata-example": "تمیزکاری یک باینری بزرگ جئوجی‌سان",
 	"apihelp-query+mapdata-param-limit": "داده‌ای برای تعیین اینکه چند صفحه برگردانده شود",
+	"kartographer-attribution": "[https://meta.wikimedia.org/wiki/Maps_Terms_of_Use/fa نقشه‌های ویکی‌مدیا] | داده‌های نقشه © [https://www.openstreetmap.org/copyright مشارکت‌کنندگان اوپن‌استریت‌مپ]",
 	"kartographer-broken-category": "صفحات با نقشه خراب",
 	"kartographer-error-context-multi": "&lt;$1&gt; مشکلات:\n$2",
 	"kartographer-error-json": "امکان تحلیل JSON وجود ندارد:‌$1",
