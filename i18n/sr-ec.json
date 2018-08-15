@@ -70,7 +70,7 @@
 	"leafletdraw-edit-handlers-edit-tooltip-text": "Повуците ручице ии маркер да бисте уредили елемент",
 	"leafletdraw-edit-handlers-remove-tooltip-text": "Кликните на елемент да бисте га уклонили",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "Откажи",
-	"leafletdraw-edit-toolbar-actions-cancel-title": "Откажи уређивање и одбаци све измене",
+	"leafletdraw-edit-toolbar-actions-cancel-title": "Откажи уређивање и одбаци све промене",
 	"leafletdraw-edit-toolbar-actions-save-text": "Сачувај",
 	"leafletdraw-edit-toolbar-actions-save-title": "Сачувај измене",
 	"leafletdraw-edit-toolbar-buttons-edit": "Уреди слојеве",
