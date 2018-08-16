@@ -6,7 +6,8 @@
 			"Ridmevo",
 			"Suchichi02",
 			"Higa4",
-			"S2KTS"
+			"S2KTS",
+			"Suyama"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Kartographer拡張機能用のデータ検証を実施します",
@@ -37,7 +38,7 @@
 	"kartographer-linktype-other": "その他",
 	"kartographer-linktype-satellite": "衛星画像",
 	"kartographer-linktype-terrain": "地形図",
-	"kartographer-linktype-topo": "位相幾何図",
+	"kartographer-linktype-topo": "地形",
 	"kartographer-sidebar-coordinates": "座標",
 	"kartographer-sidebar-filterdropdown": "地図の種別を選択",
 	"kartographer-sidebar-externalservices": "外部サービス",
