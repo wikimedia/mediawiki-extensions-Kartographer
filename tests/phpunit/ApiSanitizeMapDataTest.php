@@ -7,7 +7,6 @@ use FauxRequest;
 use MediaWikiTestCase;
 use RequestContext;
 use ApiUsageException;
-use UsageException;
 
 /**
  * @covers \Kartographer\ApiSanitizeMapData
@@ -48,9 +47,7 @@ class ApiSanitizeMapDataTest extends MediaWikiTestCase {
 	 * @dataProvider provideErrors
 	 */
 	public function testErrors( $title, $json ) {
-		$this->setExpectedException(
-			class_exists( ApiUsageException::class ) ? ApiUsageException::class : UsageException::class
-		);
+		$this->setExpectedException( ApiUsageException::class );
 		$this->makeRequest( $title, $json );
 	}
 
