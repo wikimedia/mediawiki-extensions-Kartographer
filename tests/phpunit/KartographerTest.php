@@ -10,7 +10,10 @@ use Title;
 
 /**
  * @group Kartographer
-*/
+ * @covers \Kartographer\Tag\TagHandler
+ * @covers \Kartographer\Tag\MapFrame
+ * @covers \Kartographer\Tag\MapLink
+ */
 class KartographerTest extends MediaWikiTestCase {
 	private $wikitextJson = '{
     "type": "Feature",
