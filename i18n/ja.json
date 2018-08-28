@@ -7,7 +7,8 @@
 			"Suchichi02",
 			"Higa4",
 			"S2KTS",
-			"Suyama"
+			"Suyama",
+			"Kkairri"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Kartographer拡張機能用のデータ検証を実施します",
@@ -87,6 +88,7 @@
 	"kartographer-fullscreen-collapse": "地図の詳細を非表示",
 	"kartographer-fullscreen-text": "全画面で表示",
 	"visualeditor-mwmapsdialog-align": "整列",
+	"visualeditor-mwmapsdialog-language": "言語",
 	"visualeditor-mwmapsdialog-position-button": "現在の位置",
 	"visualeditor-mwmapsdialog-position-lat": "緯度",
 	"visualeditor-mwmapsdialog-position-lon": "経度",
