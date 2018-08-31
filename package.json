@@ -9,7 +9,7 @@
     "build-lib": ". ./bin/build.sh"
   },
   "devDependencies": {
-    "browserify": "^13.0.0",
+    "browserify": "16.2.2",
     "eslint-config-wikimedia": "0.5.0",
     "grunt": "1.0.1",
     "grunt-banana-checker": "0.6.0",
