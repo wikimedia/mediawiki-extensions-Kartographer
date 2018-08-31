@@ -10,19 +10,20 @@
   },
   "devDependencies": {
     "browserify": "16.2.2",
-    "eslint-config-wikimedia": "0.5.0",
-    "grunt": "1.0.1",
+    "eslint-config-wikimedia": "0.7.2",
+    "eslint-plugin-qunit": "3.3.0",
+    "grunt": "1.0.3",
     "grunt-banana-checker": "0.6.0",
-    "grunt-contrib-watch": "1.0.0",
-    "grunt-eslint": "20.1.0",
+    "grunt-contrib-watch": "1.1.0",
+    "grunt-eslint": "21.0.0",
     "grunt-jsonlint": "1.1.0",
-    "grunt-stylelint": "0.9.0",
+    "grunt-stylelint": "0.10.0",
     "grunt-svgmin": "5.0.0",
     "prunecluster": "^2.0.0-beta.3",
     "rollup": "^0.36.1",
     "rollup-plugin-commonjs": "^5.0.4",
-    "stylelint": "8.2.0",
-    "stylelint-config-wikimedia": "0.4.2"
+    "stylelint": "9.2.0",
+    "stylelint-config-wikimedia": "0.4.3"
   },
   "dependencies": {
     "@wikimedia/leaflet-sleep": "^0.5.1",
