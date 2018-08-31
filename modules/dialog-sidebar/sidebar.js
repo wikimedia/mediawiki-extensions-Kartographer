@@ -112,16 +112,6 @@ module.exports = ( function ( $, mw ) {
 
 		map.on( 'move', sidebar.onMapMove, sidebar );
 
-		sidebar.$servicesContainer.on( 'click', 'a', function () {
-			mw.track( 'mediawiki.kartographer', {
-				action: 'sidebar-click',
-				isFullScreen: true,
-				service: $( this ).data( 'service' ),
-				type: selectedType,
-				feature: map.parentMap || map.parentLink
-			} );
-		} );
-
 		return sidebar;
 	};
 
@@ -211,23 +201,11 @@ module.exports = ( function ( $, mw ) {
 	SideBar.prototype.renderTypeFilter = function () {
 		var sidebar = this,
 			dropdown = sidebar.createFilterDropdown(),
-			defaultType = sidebar.metadata.types[ 0 ],
-			first = true;
+			defaultType = sidebar.metadata.types[ 0 ];
 
 		dropdown.getMenu().on( 'select', function ( item ) {
 			selectedType = item.getData();
 			sidebar.renderExternalServices();
-
-			// First selection is the default, skip it.
-			if ( !first ) {
-				mw.track( 'mediawiki.kartographer', {
-					action: 'sidebar-type',
-					isFullScreen: true,
-					type: selectedType,
-					feature: sidebar.dialog.map.parentMap || sidebar.dialog.map.parentLink
-				} );
-			}
-			first = false;
 		} );
 		dropdown.getMenu().selectItemByData( selectedType || defaultType );
 

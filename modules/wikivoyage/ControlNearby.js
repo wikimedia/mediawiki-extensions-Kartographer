@@ -173,7 +173,7 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 			enabled = ( enabled !== undefined ) ? enabled : this.isEnabled();
 
 			if ( !enabled ) {
-				wikivoyage.isAllowed( this.pruneCluster, this.map )
+				wikivoyage.isAllowed( this.pruneCluster )
 					.done( function () {
 						control.map.addLayer( control.pruneCluster );
 					} );

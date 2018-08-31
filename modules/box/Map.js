@@ -265,13 +265,6 @@ module.Map = ( function ( mw, util, OpenFullScreenControl, dataLayerOpts, ScaleC
 			if ( options.allowFullScreen ) {
 				// embed maps, and full screen is allowed
 				this.on( 'dblclick', function () {
-					// We need this hack to differentiate these events from `hashopen` events.
-					map.clicked = true;
-					mw.track( 'mediawiki.kartographer', {
-						action: 'open',
-						isFullScreen: true,
-						feature: map
-					} );
 					map.openFullScreen();
 				} );
 
@@ -303,12 +296,6 @@ module.Map = ( function ( mw, util, OpenFullScreenControl, dataLayerOpts, ScaleC
 					 * Fired when the Kartographer Map object is ready.
 					 */
 					'kartographerisready' );
-
-				mw.track( 'mediawiki.kartographer', {
-					action: 'initialize',
-					isFullScreen: !!map.options.fullscreen,
-					feature: map
-				} );
 			}
 
 			if ( this.parentMap ) {
@@ -741,12 +728,6 @@ module.Map = ( function ( mw, util, OpenFullScreenControl, dataLayerOpts, ScaleC
 			}
 			if ( parent ) {
 				parent.fullScreenMap = null;
-				mw.track( 'mediawiki.kartographer', {
-					action: 'close',
-					isFullScreen: true,
-					feature: parent
-				} );
-				parent.clicked = false;
 			}
 
 			return L.Map.prototype.remove.call( this );

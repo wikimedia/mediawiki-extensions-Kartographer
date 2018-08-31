@@ -43,7 +43,6 @@ module.ControlLayers = ( function ( $, mw, L, wikivoyage ) {
 		 */
 		_onInputClick: function ( event ) {
 			var self = this,
-				map = this._map,
 				proto = L.Control.Layers.prototype._onInputClick,
 				input = event && event.target,
 				obj;
@@ -62,7 +61,7 @@ module.ControlLayers = ( function ( $, mw, L, wikivoyage ) {
 					}
 					input.checked = false;
 					this._expand();
-					wikivoyage.isAllowed( obj.layer, map )
+					wikivoyage.isAllowed( obj.layer )
 						.done( function () {
 							input.checked = true;
 							proto.call( self );

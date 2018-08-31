@@ -119,11 +119,6 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 
 			dialog.$body.toggleClass( 'mw-kartographer-mapDialog-sidebar-opened', open );
 
-			mw.track( 'mediawiki.kartographer', {
-				action: open ? 'sidebar-show' : 'sidebar-hide',
-				isFullScreen: true,
-				feature: dialog.map.parentMap || dialog.map.parentLink
-			} );
 			dialog.sideBar.toggle( open );
 		} );
 	};

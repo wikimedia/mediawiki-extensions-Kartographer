@@ -10,7 +10,7 @@
  * @class Kartographer.Link
  * @singleton
  */
-module.exports = ( function ( $, mw, router, kartolink ) {
+module.exports = ( function ( $, mw, router ) {
 
 	/**
 	 * References the maplinks of the page.
@@ -25,35 +25,6 @@ module.exports = ( function ( $, mw, router, kartolink ) {
 		routerInited = false;
 
 	/**
-	 * Gets the map data attached to an element.
-	 *
-	 * @param {HTMLElement} element Element
-	 * @return {Object|null} Map properties
-	 * @return {number} return.latitude
-	 * @return {number} return.longitude
-	 * @return {number} return.zoom
-	 * @return {string} return.style Map style
-	 * @return {string[]} return.overlays Overlay groups
-	 */
-	function getMapData( element ) {
-		var $el = $( element );
-		// Prevent users from adding map divs directly via wikitext
-		if ( $el.attr( 'mw-data' ) !== 'interface' ) {
-			return null;
-		}
-
-		return {
-			latitude: +$el.data( 'lat' ),
-			longitude: +$el.data( 'lon' ),
-			zoom: +$el.data( 'zoom' ),
-			lang: $el.data( 'lang' ),
-			style: $el.data( 'style' ),
-			captionText: $el.text(),
-			overlays: $el.data( 'overlays' ) || []
-		};
-	}
-
-	/**
 	 * This code will be executed once the article is rendered and ready.
 	 *
 	 * @ignore
@@ -63,39 +34,6 @@ module.exports = ( function ( $, mw, router, kartolink ) {
 		// `wikipage.content` may be fired more than once.
 		$.each( maplinks, function () {
 			maplinks.pop().$container.off( 'click.kartographer' );
-		} );
-
-		// Some links might be displayed outside of $content, so we need to
-		// search outside. This is an anti-pattern and should be improved...
-		// Meanwhile .mw-body is better than searching the full document.
-		$( '.mw-kartographer-maplink', '.mw-body' ).each( function ( index ) {
-			var data = getMapData( this ),
-				link;
-			link = maplinks[ index ] = kartolink.link( {
-				featureType: 'maplink',
-				container: this,
-				center: [ data.latitude, data.longitude ],
-				zoom: data.zoom,
-				lang: data.lang,
-				dataGroups: data.overlays,
-				captionText: data.captionText,
-				fullScreenRoute: '/maplink/' + index
-			} );
-			mw.track( 'mediawiki.kartographer', {
-				action: 'view',
-				isFullScreen: false,
-				feature: link
-			} );
-			link.$container.click( function () {
-				// We need this hack to differentiate these events from `hashopen` events.
-				link.clicked = true;
-
-				mw.track( 'mediawiki.kartographer', {
-					action: 'open',
-					isFullScreen: true,
-					feature: link
-				} );
-			} );
 		} );
 
 		if ( routerInited ) {
@@ -125,15 +63,6 @@ module.exports = ( function ( $, mw, router, kartolink ) {
 				};
 			}
 
-			// We need this hack to differentiate these events from `open` events.
-			if ( !link.fullScreenMap && !link.clicked ) {
-				mw.track( 'mediawiki.kartographer', {
-					action: 'hashopen',
-					isFullScreen: true,
-					feature: link
-				} );
-				link.clicked = false;
-			}
 			link.openFullScreen( position );
 		} );
 

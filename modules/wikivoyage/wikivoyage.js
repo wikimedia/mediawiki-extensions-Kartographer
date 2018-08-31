@@ -104,10 +104,9 @@ module.wikivoyage = ( function ( $, mw ) {
 		 * so the user won't be prompted with a confirmation dialog anymore.
 		 *
 		 * @param {L.GeoJSON} layer
-		 * @param {Kartographer.Map} map
 		 * @return {jQuery.Promise}
 		 */
-		isAllowed: function ( layer, map ) {
+		isAllowed: function ( layer ) {
 			return mw.loader.using( 'mediawiki.storage' ).then( function () {
 
 				if ( areExternalAllowed === undefined ) {
@@ -117,26 +116,11 @@ module.wikivoyage = ( function ( $, mw ) {
 				if ( !layer.options.wvIsExternal || areExternalAllowed ) {
 					return;
 				}
-				mw.track( 'mediawiki.kartographer', {
-					action: 'wv-warn',
-					isFullScreen: !!map.options.fullscreen,
-					feature: map
-				} );
 				return alertExternalData().closed.then( function ( data ) {
 					if ( data && data.action && data.action === 'good' ) {
 						areExternalAllowed = true;
 						mw.storage.set( STORAGE_KEY, '1' );
-						mw.track( 'mediawiki.kartographer', {
-							action: 'wv-warn-agree',
-							isFullScreen: !!map.options.fullscreen,
-							feature: map
-						} );
 					} else {
-						mw.track( 'mediawiki.kartographer', {
-							action: 'wv-warn-reject',
-							isFullScreen: !!map.options.fullscreen,
-							feature: map
-						} );
 						return $.Deferred().reject().promise();
 					}
 				} );

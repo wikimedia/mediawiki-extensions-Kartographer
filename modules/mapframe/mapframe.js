@@ -101,11 +101,6 @@ module.exports = ( function ( $, mw, util, kartobox, router ) {
 
 				$container.removeAttr( 'href' );
 
-				mw.track( 'mediawiki.kartographer', {
-					action: 'view',
-					isFullScreen: false,
-					feature: map
-				} );
 				map.doWhenReady( function () {
 					map.$container.css( 'backgroundImage', '' );
 					map.$container.find( '.leaflet-marker-icon' ).each( function () {
@@ -167,15 +162,6 @@ module.exports = ( function ( $, mw, util, kartobox, router ) {
 					position = map.getInitialMapPosition();
 				}
 
-				// We need this hack to differentiate these events from `open` events.
-				if ( !map.fullScreenMap && !map.clicked ) {
-					mw.track( 'mediawiki.kartographer', {
-						action: 'hashopen',
-						isFullScreen: true,
-						feature: map
-					} );
-					map.clicked = false;
-				}
 				map.openFullScreen( position );
 			} );
 

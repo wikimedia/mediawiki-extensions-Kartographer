@@ -114,21 +114,6 @@ module.exports = ( function ( $, mw, util, kartolink, router ) {
 					captionText: data.captionText,
 					fullScreenRoute: '/map/' + index
 				} );
-				mw.track( 'mediawiki.kartographer', {
-					action: 'view',
-					isFullScreen: false,
-					feature: link
-				} );
-				link.$container.click( function () {
-					// We need this hack to differentiate these events from `hashopen` events.
-					link.clicked = true;
-
-					mw.track( 'mediawiki.kartographer', {
-						action: 'activate',
-						isFullScreen: true,
-						feature: link
-					} );
-				} );
 
 				mapsInArticle.push( link );
 				maps[ index ] = link;
@@ -167,15 +152,6 @@ module.exports = ( function ( $, mw, util, kartolink, router ) {
 					};
 				}
 
-				// We need this hack to differentiate these events from `open` events.
-				if ( !link.fullScreenMap && !link.clicked ) {
-					mw.track( 'mediawiki.kartographer', {
-						action: 'hashopen',
-						isFullScreen: true,
-						feature: link
-					} );
-					link.clicked = false;
-				}
 				link.openFullScreen( position );
 			} );
 
