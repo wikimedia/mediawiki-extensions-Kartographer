@@ -107,6 +107,7 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 			if ( !dialog.sideBar ) {
 				SideBar = require( 'ext.kartographer.dialog.sidebar' );
 				dialog.sideBar = new SideBar( { dialog: dialog } );
+				dialog.sideBar.toggle( true );
 			}
 
 			open = ( typeof open === 'undefined' ) ? !dialog.mapDetailsButton.value : open;
@@ -117,9 +118,11 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 				return;
 			}
 
-			dialog.$body.toggleClass( 'mw-kartographer-mapDialog-sidebar-opened', open );
+			// dialog.sideBar.toggle( open );
+			setTimeout( function () {
+				dialog.$body.toggleClass( 'mw-kartographer-mapDialog-sidebar-opened', open );
+			} );
 
-			dialog.sideBar.toggle( open );
 		} );
 	};
 
