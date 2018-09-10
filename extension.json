@@ -379,15 +379,16 @@
 			"messages": [
 				"visualeditor-mwmapscontextitem-nosupport",
 				"visualeditor-mwmapscontextitem-title",
+				"visualeditor-mwmapsdialog-area",
+				"visualeditor-mwmapsdialog-content",
+				"visualeditor-mwmapsdialog-options",
 				"visualeditor-mwmapsdialog-align",
 				"visualeditor-mwmapsdialog-geojson",
 				"visualeditor-mwmapsdialog-language",
 				"visualeditor-mwmapsdialog-help-title",
-				"visualeditor-mwmapsdialog-position-button",
 				"visualeditor-mwmapsdialog-position-lat",
 				"visualeditor-mwmapsdialog-position-lon",
 				"visualeditor-mwmapsdialog-position-zoom",
-				"visualeditor-mwmapsdialog-reset-map",
 				"visualeditor-mwmapsdialog-size",
 				"visualeditor-mwmapsdialog-title"
 			],
