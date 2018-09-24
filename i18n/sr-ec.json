@@ -5,13 +5,15 @@
 			"Milicevic01",
 			"Obsuser",
 			"Acamicamacaraca",
-			"BadDog"
+			"BadDog",
+			"Zoranzoki21"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Викимедијине мапе] | Подаци мапе © [https://www.openstreetmap.org/copyright Сарадници OpenStreetMap]",
 	"kartographer-attribution-externaldata": "$1: $2",
 	"kartographer-broken-category": "Странице са поквареним мапама",
 	"kartographer-broken-category-desc": "Страница укључује неважећу употребу мапе",
+	"kartographer-desc": "Дозвољава додавање мапа на страницама на викију",
 	"kartographer-error-json": "Не могу рашчланити JSON: $1",
 	"kartographer-error-missing-attr": "Недостаје атрибут „$1”",
 	"kartographer-error-bad_attr": "Атрибут „$1” има невалиду вредност",
