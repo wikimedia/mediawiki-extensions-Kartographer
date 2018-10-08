@@ -222,23 +222,6 @@ ve.ui.MWMapsDialog.prototype.onLanguageChange = function ( lang ) {
 };
 
 /**
- * Update action states
- */
-ve.ui.MWMapsDialog.prototype.updateActions = function () {
-	var newMwData, modified,
-		mwData = this.selectedNode && this.selectedNode.getAttribute( 'mw' );
-
-	if ( mwData ) {
-		newMwData = ve.copy( mwData );
-		this.updateMwData( newMwData );
-		modified = !ve.compare( mwData, newMwData );
-	} else {
-		modified = true;
-	}
-	this.actions.setAbilities( { done: modified } );
-};
-
-/**
  * @inheritdoc ve.ui.MWExtensionWindow
  */
 ve.ui.MWMapsDialog.prototype.insertOrUpdateNode = function () {
