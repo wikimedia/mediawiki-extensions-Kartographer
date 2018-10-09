@@ -19,7 +19,7 @@ class KartographerTest extends MediaWikiTestCase {
     "type": "Feature",
     "geometry": {
       "type": "Point",
-      "coordinates": [-122.3988, 37.8013]
+      "coordinates": [-122, 37]
     },
     "properties": {
       "title": "<script>alert(document.cookie);</script>",
@@ -76,7 +76,7 @@ class KartographerTest extends MediaWikiTestCase {
     "type": "Feature",
     "geometry": {
       "type": "Point",
-      "coordinates": [-122.3988, 37.8013]
+      "coordinates": [-122, 37]
     },
     "properties": {
       "title": "Foo bar",
@@ -92,7 +92,7 @@ class KartographerTest extends MediaWikiTestCase {
 	"type": "Feature",
 	"geometry": {
 		"type": "Point",
-		"coordinates": [-122.3988, 37.8013]
+		"coordinates": [-122, 37]
 	},
 	"properties": {
 		"__proto__": { "foo": "bar" },
@@ -111,30 +111,30 @@ class KartographerTest extends MediaWikiTestCase {
 	]
   }
 ]';
-		$xssJsonSanitized = '{"_a4d5387a1b7974bf854321421a36d913101f5724":[
-			{"type":"Feature","geometry":{"type":"Point","coordinates":[-122.3988,37.8013]},"properties":{"title":"Foo bar"}},
+		$xssJsonSanitized = '{"_52fbfcdf508cc75f6e496a8988b5311f9f0df8a8":[
+			{"type":"Feature","geometry":{"type":"Point","coordinates":[-122,37]},"properties":{"title":"Foo bar"}},
 			{"type":"GeometryCollection","geometries":[{"type":"Point","coordinates":[0,0],"properties":{}}]}
 		]}';
-		$wikitextJsonParsed = '{"_be34df99c99d1efd9eaa8eabc87a43f2541a67e5":[
-				{"type":"Feature","geometry":{"type":"Point","coordinates":[-122.3988,37.8013]},
+		$wikitextJsonParsed = '{"_ee2aa7342f7aee686e9d155932d0118dd4370c36":[
+				{"type":"Feature","geometry":{"type":"Point","coordinates":[-122,37]},
 				"properties":{"title":"&lt;script&gt;alert(document.cookie);&lt;\/script&gt;",
 				"description":"<a href=\"\/w\/index.php?title=Link_to_nowhere&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Link to nowhere (page does not exist)\">Link to nowhere<\/a>","marker-symbol":"1"}}
 			]}';
 		return [
-			[ '[]', '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013/>', '<mapframe> without JSON' ],
-			[ '[]', '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013></mapframe>', '<mapframe> without JSON 2' ],
-			[ "{\"_4622d19afa2e6480c327846395ed932ba6fa56d4\":[$validJson]}", "<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>$validJson</mapframe>", '<mapframe> with GeoJSON' ],
-			[ "{\"_4622d19afa2e6480c327846395ed932ba6fa56d4\":[$validJson]}", "<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>[$validJson]</mapframe>", '<mapframe> with GeoJSON array' ],
-			[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>123</mapframe>', 'Invalid JSON' ],
-			[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>{{"":""}}</mapframe>', 'Invalid JSON 2' ],
-			[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>[[]]</mapframe>', 'Invalid JSON 3' ],
-			[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>{"type":"fail"}</mapframe>', 'Invalid JSON 4' ],
-			[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>null</mapframe>', 'Invalid JSON 5' ],
-			[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>{
+			[ '[]', '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37/>', '<mapframe> without JSON' ],
+			[ '[]', '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37></mapframe>', '<mapframe> without JSON 2' ],
+			[ "{\"_07f50db5d8d017fd95ccd49d38b9b156fd35a281\":[$validJson]}", "<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37>$validJson</mapframe>", '<mapframe> with GeoJSON' ],
+			[ "{\"_07f50db5d8d017fd95ccd49d38b9b156fd35a281\":[$validJson]}", "<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37>[$validJson]</mapframe>", '<mapframe> with GeoJSON array' ],
+			[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37>123</mapframe>', 'Invalid JSON' ],
+			[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37>{{"":""}}</mapframe>', 'Invalid JSON 2' ],
+			[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37>[[]]</mapframe>', 'Invalid JSON 3' ],
+			[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37>{"type":"fail"}</mapframe>', 'Invalid JSON 4' ],
+			[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37>null</mapframe>', 'Invalid JSON 5' ],
+			[ false, '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37>{
     "type": "Feature",
     "geometry": {
       "type": "Point",
-      "coordinates": [-122.3988, 37.8013]
+      "coordinates": [-122, 37]
     },
     "properties": {
       "title": "Foo bar",
@@ -142,11 +142,11 @@ class KartographerTest extends MediaWikiTestCase {
       "marker-size": "medium"
     }
   }</mapframe>', 'Invalid JSON 6' ],
-			[ $wikitextJsonParsed, "<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013>[{$this->wikitextJson}]</mapframe>", '<mapframe> with parsable text and description' ],
-			[ $wikitextJsonParsed, "<maplink zoom=13 longitude=-122.3988 latitude=37.8013>[{$this->wikitextJson}]</maplink>", '<maplink> with parsable text and description' ],
+			[ $wikitextJsonParsed, "<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37>[{$this->wikitextJson}]</mapframe>", '<mapframe> with parsable text and description' ],
+			[ $wikitextJsonParsed, "<maplink zoom=13 longitude=-122 latitude=37>[{$this->wikitextJson}]</maplink>", '<maplink> with parsable text and description' ],
 
 			// Bugs
-			[ '[]', "<maplink zoom=13 longitude=-122.3988 latitude=37.8013>\t\r\n </maplink>", 'T127345: whitespace-only tag content, <maplink>' ],
+			[ '[]', "<maplink zoom=13 longitude=-122 latitude=37>\t\r\n </maplink>", 'T127345: whitespace-only tag content, <maplink>' ],
 			[ $xssJsonSanitized, "<maplink zoom=13 longitude=10 latitude=20>$xssJson</maplink>", 'T134719: XSS via __proto__' ],
 			[ '[]', '<mapframe show="foo, bar, baz" zoom=12 latitude=10 longitude=20 width=100 height=100 />', 'T148971 - weird LiveData', true ],
 		];
@@ -173,8 +173,8 @@ class KartographerTest extends MediaWikiTestCase {
 	}
 
 	public function provideResourceModulesData() {
-		$mapframe = '<mapframe width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013/>';
-		$maplink = '<maplink width=700 height=400 zoom=13 longitude=-122.3988 latitude=37.8013/>';
+		$mapframe = '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37/>';
+		$maplink = '<maplink width=700 height=400 zoom=13 longitude=-122 latitude=37/>';
 
 		// @todo @fixme These are incorrect, but match existing code
 		// When the code is fixed, they should be changed
@@ -223,7 +223,7 @@ class KartographerTest extends MediaWikiTestCase {
     "type": "Feature",
     "geometry": {
       "type": "Point",
-      "coordinates": [-122.3988, 37.8013]
+      "coordinates": [-122, 37]
     }
 }
 </maplink>
@@ -241,9 +241,9 @@ WIKITEXT;
 		return [
 			// text          expected                                        preview sectionPreview wikivoyageMode
 			[ $frameAndLink, [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2' ], false, false, false ],
-			[ $frameAndLink, [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2', '_2251fa240a210d2861cc9f44c48d7e3ba116ff2f' ], true, false, false ],
-			[ $frameAndLink, [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2', '_2251fa240a210d2861cc9f44c48d7e3ba116ff2f' ], false, true, false ],
-			[ $frameAndLink, [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2', '_2251fa240a210d2861cc9f44c48d7e3ba116ff2f' ], true, true, false ],
+			[ $frameAndLink, [ '_0616e83db3b0cc67d5f835eb765da7a1ca26f4ce', '_5e4843908b3c3d3b11ac4321edadedde28882cc2' ], true, false, false ],
+			[ $frameAndLink, [ '_0616e83db3b0cc67d5f835eb765da7a1ca26f4ce', '_5e4843908b3c3d3b11ac4321edadedde28882cc2' ], false, true, false ],
+			[ $frameAndLink, [ '_0616e83db3b0cc67d5f835eb765da7a1ca26f4ce', '_5e4843908b3c3d3b11ac4321edadedde28882cc2' ], true, true, false ],
 			[ $wikivoyageMaps, [ 'foo', 'bar', 'baz' ], false, false, true ],
 		];
 		// @codingStandardsIgnoreEnd

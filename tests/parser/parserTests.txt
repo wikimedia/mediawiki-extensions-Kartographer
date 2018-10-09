@@ -26,7 +26,7 @@
 "type": "Feature",
 	"geometry": {
 		"type": "Point",
-		"coordinates": [-122.3988, 37.8013]
+		"coordinates": [-122, 37]
 	},
 	"properties": {
 		"marker-symbol": "-number"
@@ -39,7 +39,7 @@
 "type": "Feature",
 	"geometry": {
 		"type": "Point",
-		"coordinates": [-122.3988, 37.8013]
+		"coordinates": [-122, 37]
 	},
 	"properties": {
 		"marker-symbol": "-number"
@@ -52,7 +52,7 @@
 "type": "Feature",
 	"geometry": {
 		"type": "Point",
-		"coordinates": [-122.3988, 37.8013]
+		"coordinates": [-122, 37]
 	},
 	"properties": {
 		"marker-symbol": "-letter"
@@ -65,7 +65,7 @@
 "type": "Feature",
 	"geometry": {
 		"type": "Point",
-		"coordinates": [-122.3988, 37.8013]
+		"coordinates": [-122, 37]
 	},
 	"properties": {
 		"marker-symbol": "-letter"
@@ -73,10 +73,10 @@
 }
 </maplink>
 !! result
-<p><a class="mw-kartographer-maplink" mw-data="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10.123/20.456/en" data-zoom="13" data-lat="10.123" data-lon="20.456" data-overlays="[&quot;_b34053f88dea58fe70a7da09c558f792394f6e11&quot;]">Foo</a>
-</p><p><a class="mw-kartographer-maplink" mw-data="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_2e4133dc429eb3c3abf4e45916c073e841f9d193&quot;]">2</a>
-</p><p><a class="mw-kartographer-maplink" mw-data="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_dd3c7bae539f7c3747c64d043c97e1a8834fbc8f&quot;]">A</a>
-</p><p><a class="mw-kartographer-maplink" mw-data="interface" data-style="osm" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_8ce73f7395e427bd6f462824717c0a214b3ca564&quot;]">B</a>
+<p><a class="mw-kartographer-maplink" mw-data="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10.123/20.456/en" data-zoom="13" data-lat="10.123" data-lon="20.456" data-overlays="[&quot;_83116cf234d349c9a28ff94255a598843fe4304d&quot;]">Foo</a>
+</p><p><a class="mw-kartographer-maplink" mw-data="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_71c9ddc35eae0a234381347ca4b7440cae1c4edd&quot;]">2</a>
+</p><p><a class="mw-kartographer-maplink" mw-data="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_9226ee438e3c59edfcd19e81452d7c2ba7e1d841&quot;]">A</a>
+</p><p><a class="mw-kartographer-maplink" mw-data="interface" data-style="osm" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_37e6b9ac695579cb73066fa218a00fc6ed01a04d&quot;]">B</a>
 </p>
 !! end
 
@@ -178,7 +178,7 @@ Error messages
     "type": "Feature",
     "geometry": {
       "type": "Point",
-      "coordinates": [-122.3988, 37.8013]
+      "coordinates": [-122, 37]
     },
     "properties": {
       "title": "Foo bar",
@@ -253,7 +253,7 @@ wgKartographerUseMarkerStyle=true
 "type": "Feature",
 	"geometry": {
 		"type": "Point",
-		"coordinates": [-122.3988, 37.8013]
+		"coordinates": [-122, 37]
 	},
 	"properties": {
 		"marker-symbol": "-letter",
@@ -264,7 +264,7 @@ wgKartographerUseMarkerStyle=true
 "type": "Feature",
 	"geometry": {
 		"type": "Point",
-		"coordinates": [-122.3988, 37.8013]
+		"coordinates": [-122, 37]
 	},
 	"properties": {
 		"marker-symbol": "-number",
@@ -273,7 +273,7 @@ wgKartographerUseMarkerStyle=true
 }
 ]</maplink>
 !! result
-<p><a class="mw-kartographer-maplink mw-kartographer-autostyled" mw-data="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" style="background: #abcdef;" data-overlays="[&quot;_0d28e3b8954f29b4a6af62bd43a9cacc70ce0261&quot;]">A</a>
+<p><a class="mw-kartographer-maplink mw-kartographer-autostyled" mw-data="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" style="background: #abcdef;" data-overlays="[&quot;_a179016647e3e59d6050d1da013ff6b20ba0a5e2&quot;]">A</a>
 </p>
 !! end
 
@@ -287,7 +287,7 @@ wgKartographerUseMarkerStyle=false
 "type": "Feature",
 	"geometry": {
 		"type": "Point",
-		"coordinates": [-122.3988, 37.8013]
+		"coordinates": [-122, 37]
 	},
 	"properties": {
 		"marker-symbol": "-letter",
@@ -296,7 +296,7 @@ wgKartographerUseMarkerStyle=false
 }
 </maplink>
 !! result
-<p><a class="mw-kartographer-maplink" mw-data="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_a724df91b09b20c8c7ea0dc28127eaed1727511b&quot;]">A</a>
+<p><a class="mw-kartographer-maplink" mw-data="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_6a13e7df56bf97361c4d92be23c3d6de3311e4c8&quot;]">A</a>
 </p>
 !! end
 
@@ -312,7 +312,7 @@ wgKartographerWikivoyageMode=true
 "type": "Feature",
 	"geometry": {
 		"type": "Point",
-		"coordinates": [-122.3988, 37.8013]
+		"coordinates": [-122, 37]
 	},
 	"properties": {
 		"marker-symbol": "-letter",
@@ -341,7 +341,7 @@ wgKartographerWikivoyageMode=false
 "type": "Feature",
 	"geometry": {
 		"type": "Point",
-		"coordinates": [-122.3988, 37.8013]
+		"coordinates": [-122, 37]
 	},
 	"properties": {
 		"marker-symbol": "-letter",
@@ -352,7 +352,7 @@ wgKartographerWikivoyageMode=false
 !! result
 <p><a class="mw-kartographer-maplink" mw-data="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0">0°0′0″N 0°0′0″E</a>
 </p>
-<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" mw-data="interface" data-style="osm-intl" data-width="300" data-height="300" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;_a724df91b09b20c8c7ea0dc28127eaed1727511b&quot;]" style="background-image: url(https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300.png?lang=en&amp;domain=example.org&amp;title=Parser+test&amp;groups=_a724df91b09b20c8c7ea0dc28127eaed1727511b); height: 300px;" href="/wiki/Special:Map/0/0/0/en"></a><div class="thumbcaption"></div></div></div>
+<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" mw-data="interface" data-style="osm-intl" data-width="300" data-height="300" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;_6a13e7df56bf97361c4d92be23c3d6de3311e4c8&quot;]" style="background-image: url(https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300.png?lang=en&amp;domain=example.org&amp;title=Parser+test&amp;groups=_6a13e7df56bf97361c4d92be23c3d6de3311e4c8); height: 300px;" href="/wiki/Special:Map/0/0/0/en"></a><div class="thumbcaption"></div></div></div>
 
 !! end
 
