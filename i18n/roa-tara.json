@@ -4,5 +4,8 @@
 			"Joetaras"
 		]
 	},
+	"apihelp-query+mapdata-description": "Cirche tutte le date d'a mappe da 'a pàgene <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-summary": "Cirche tutte le date d'a mappe da 'a pàgene <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-example-1": "Cirche tutte le date d'a mappe da 'a pàgene <kbd>Metallica</kbd>",
 	"visualeditor-mwmapsdialog-reset-map": "Azzere 'a posizione jndr'à mappe"
 }
