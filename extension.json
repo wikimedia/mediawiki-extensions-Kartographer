@@ -103,13 +103,13 @@
 				"lib/leaflet.draw/leaflet.draw.i18n.js"
 			],
 			"styles": [
-				"lib/leaflet.draw/leaflet.draw.css",
-				"lib/leaflet.draw/icons.css"
+				"lib/leaflet.draw/leaflet.draw-src.css"
 			],
 			"messages": [
 				"leafletdraw-draw-handlers-circle-radius",
 				"leafletdraw-draw-handlers-circle-tooltip-start",
 				"leafletdraw-draw-handlers-marker-tooltip-start",
+				"leafletdraw-draw-handlers-circlemarker-tooltip-start",
 				"leafletdraw-draw-handlers-polygon-tooltip-cont",
 				"leafletdraw-draw-handlers-polygon-tooltip-end",
 				"leafletdraw-draw-handlers-polygon-tooltip-start",
@@ -123,6 +123,7 @@
 				"leafletdraw-draw-toolbar-actions-title",
 				"leafletdraw-draw-toolbar-buttons-circle",
 				"leafletdraw-draw-toolbar-buttons-marker",
+				"leafletdraw-draw-toolbar-buttons-circlemarker",
 				"leafletdraw-draw-toolbar-buttons-polygon",
 				"leafletdraw-draw-toolbar-buttons-polyline",
 				"leafletdraw-draw-toolbar-buttons-rectangle",
@@ -135,6 +136,8 @@
 				"leafletdraw-edit-toolbar-actions-cancel-title",
 				"leafletdraw-edit-toolbar-actions-save-text",
 				"leafletdraw-edit-toolbar-actions-save-title",
+				"leafletdraw-edit-toolbar-actions-clearall-text",
+				"leafletdraw-edit-toolbar-actions-clearall-title",
 				"leafletdraw-edit-toolbar-buttons-edit",
 				"leafletdraw-edit-toolbar-buttons-editdisabled",
 				"leafletdraw-edit-toolbar-buttons-remove",

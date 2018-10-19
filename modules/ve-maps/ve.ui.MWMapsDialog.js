@@ -394,6 +394,7 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 				edit: { featureGroup: geoJsonLayer },
 				draw: {
 					circle: false,
+					circlemarker: false,
 					// TODO: Determine metric preference from locale information
 					polyline: defaultShapeOptions,
 					polygon: defaultShapeOptions,

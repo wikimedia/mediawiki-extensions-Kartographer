@@ -1,8 +1,0 @@
-/**
- * SVG icons
- */
-.leaflet-draw-toolbar a,
-.leaflet-retina .leaflet-draw-toolbar a {
-	background-image: url( images/spritesheet.svg );
-	background-size: 270px 30px;
-}
