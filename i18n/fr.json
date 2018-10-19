@@ -10,7 +10,8 @@
 			"Derugon",
 			"Thibaut120094",
 			"The RedBurn",
-			"Ltrlg"
+			"Ltrlg",
+			"Zarisi"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Effectue la validation des données pour l’extension Kartographer",
@@ -90,6 +91,7 @@
 	"leafletdraw-draw-toolbar-actions-title": "Annuler le dessin",
 	"leafletdraw-draw-toolbar-buttons-circle": "Dessiner un cercle",
 	"leafletdraw-draw-toolbar-buttons-marker": "Dessiner un marqueur",
+	"leafletdraw-draw-toolbar-buttons-circlemarker": "Dessiner un marqueur circulaire",
 	"leafletdraw-draw-toolbar-buttons-polygon": "Dessiner un polygone",
 	"leafletdraw-draw-toolbar-buttons-polyline": "Dessiner une ligne multiple",
 	"leafletdraw-draw-toolbar-buttons-rectangle": "Dessiner un rectangle",
