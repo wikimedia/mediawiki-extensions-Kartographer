@@ -63,6 +63,7 @@
 	"leafletdraw-edit-toolbar-actions-cancel-title": "Ακυρώσετε την επεξεργασία, απορρίπτοντας όλες τις αλλαγές",
 	"leafletdraw-edit-toolbar-actions-save-text": "Αποθήκευση",
 	"leafletdraw-edit-toolbar-actions-save-title": "Αποθήκευση αλλαγών",
+	"leafletdraw-edit-toolbar-actions-clearall-text": "Καθάρισμα όλων",
 	"leafletdraw-edit-toolbar-buttons-edit": "Επεξεργαστείτε στρώματα",
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Δεν υπάρχουν στρώματα για επεξεργασία",
 	"leafletdraw-edit-toolbar-buttons-remove": "Διαγραφή στρωμάτων",

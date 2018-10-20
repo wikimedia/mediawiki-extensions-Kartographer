@@ -14,6 +14,8 @@
 	"leafletdraw-edit-toolbar-actions-cancel-text": "Annullér",
 	"leafletdraw-edit-toolbar-actions-save-text": "Gem",
 	"leafletdraw-edit-toolbar-actions-save-title": "Gem ændringer",
+	"leafletdraw-edit-toolbar-actions-clearall-text": "Ryd alle",
+	"leafletdraw-edit-toolbar-actions-clearall-title": "Ryd alle lag",
 	"leafletdraw-edit-toolbar-buttons-edit": "Rediger lag",
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Ingen lag at redigere",
 	"leafletdraw-edit-toolbar-buttons-remove": "Slet lag",
