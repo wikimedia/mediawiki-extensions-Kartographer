@@ -87,6 +87,8 @@
 	"leafletdraw-edit-toolbar-actions-cancel-title": "편집을 취소하고 모든 변경사항을 버립니다",
 	"leafletdraw-edit-toolbar-actions-save-text": "저장",
 	"leafletdraw-edit-toolbar-actions-save-title": "변경사항 저장",
+	"leafletdraw-edit-toolbar-actions-clearall-text": "모두 지우기",
+	"leafletdraw-edit-toolbar-actions-clearall-title": "모든 레이어 지우기",
 	"leafletdraw-edit-toolbar-buttons-edit": "레이어 편집",
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "편집할 레이어가 없습니다",
 	"leafletdraw-edit-toolbar-buttons-remove": "레이어 삭제",

@@ -53,6 +53,8 @@
 	"leafletdraw-edit-toolbar-actions-cancel-title": "Atšaukti redagavimą, atmetami visi pakeitimai",
 	"leafletdraw-edit-toolbar-actions-save-text": "Išsaugoti",
 	"leafletdraw-edit-toolbar-actions-save-title": "Išsaugoti pakeitimus",
+	"leafletdraw-edit-toolbar-actions-clearall-text": "Valyti visus",
+	"leafletdraw-edit-toolbar-actions-clearall-title": "Valyti visus sluoksnius",
 	"leafletdraw-edit-toolbar-buttons-edit": "Keisti sluoksnius",
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Nėra sluoksnių redagavimui",
 	"leafletdraw-edit-toolbar-buttons-remove": "Ištrinti sluoksnius",
