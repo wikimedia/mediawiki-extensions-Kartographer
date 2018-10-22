@@ -71,6 +71,8 @@
 	"leafletdraw-edit-toolbar-actions-cancel-title": "Annulla la modifica, scarta tutti i cambiamenti",
 	"leafletdraw-edit-toolbar-actions-save-text": "Salva",
 	"leafletdraw-edit-toolbar-actions-save-title": "Salva le modifiche",
+	"leafletdraw-edit-toolbar-actions-clearall-text": "Pulisci tutto",
+	"leafletdraw-edit-toolbar-actions-clearall-title": "Pulisci tutti i livelli",
 	"leafletdraw-edit-toolbar-buttons-edit": "Modifica livelli",
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Nessun livello da modificare",
 	"leafletdraw-edit-toolbar-buttons-remove": "Cancella livelli",
