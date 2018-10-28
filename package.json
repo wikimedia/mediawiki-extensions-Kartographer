@@ -10,8 +10,7 @@
   },
   "devDependencies": {
     "browserify": "16.2.2",
-    "eslint-config-wikimedia": "0.7.2",
-    "eslint-plugin-qunit": "3.3.0",
+    "eslint-config-wikimedia": "0.8.1",
     "grunt": "1.0.3",
     "grunt-banana-checker": "0.6.0",
     "grunt-contrib-watch": "1.1.0",
