@@ -74,6 +74,7 @@
 	"leafletdraw-draw-toolbar-actions-title": "অঙ্কন বাতিল করুন",
 	"leafletdraw-draw-toolbar-buttons-circle": "একটি বৃত্ত আঁকুন",
 	"leafletdraw-draw-toolbar-buttons-marker": "একটি চিহ্নিতকারী আঁকুন",
+	"leafletdraw-draw-toolbar-buttons-circlemarker": "একটি বৃত্ত চিহ্নিতকারী আঁকুন",
 	"leafletdraw-draw-toolbar-buttons-polygon": "একটি বহুভূজ আঁকুন",
 	"leafletdraw-draw-toolbar-buttons-polyline": "একটি বহুরেখা আঁকুন",
 	"leafletdraw-draw-toolbar-buttons-rectangle": "একটি আয়তক্ষেত্র আঁকুন",

@@ -61,6 +61,8 @@
 	"leafletdraw-edit-toolbar-actions-cancel-title": "لغو ویرایش، همه تغییرات را دور بریز",
 	"leafletdraw-edit-toolbar-actions-save-text": "ذخیره",
 	"leafletdraw-edit-toolbar-actions-save-title": "ذخیره تغییرات",
+	"leafletdraw-edit-toolbar-actions-clearall-text": "پاک کردن همه",
+	"leafletdraw-edit-toolbar-actions-clearall-title": "پاک‌کردن تمام لایه‌ها",
 	"leafletdraw-edit-toolbar-buttons-edit": "لایه‌های ویرایش",
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "هیچ لایه‌ای برای ویرایش نیست",
 	"leafletdraw-edit-toolbar-buttons-remove": "حذف کردن لایه‌ها",

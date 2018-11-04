@@ -5,7 +5,8 @@
 			"Mavrikant",
 			"Hbseren",
 			"Katpatuka",
-			"Hedda"
+			"Hedda",
+			"TmY e12"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Kartographer uzantısı için veri doğrulama gerçekleştirir.",
@@ -19,5 +20,13 @@
 	"leafletdraw-draw-toolbar-finish-text": "Tamamlayınız",
 	"leafletdraw-draw-toolbar-finish-title": "Çizimi tamamlamak için tıklayın",
 	"mapbox-control-zoomin-title": "Yakınlaştır",
-	"kartographer-fullscreen-collapse": "Harita detayları gizle"
+	"kartographer-fullscreen-collapse": "Harita detayları gizle",
+	"visualeditor-mwmapsdialog-align": "Hiza",
+	"visualeditor-mwmapsdialog-language": "Dil",
+	"visualeditor-mwmapsdialog-help-title": "Harita oluşturma ve düzenleme hakkında bilgi edinin.",
+	"visualeditor-mwmapsdialog-position-lat": "Enlem",
+	"visualeditor-mwmapsdialog-position-lon": "Boylam",
+	"visualeditor-mwmapsdialog-position-zoom": "Yakınlaştırma",
+	"visualeditor-mwmapsdialog-size": "Boyut",
+	"visualeditor-mwmapsdialog-title": "Harita"
 }
