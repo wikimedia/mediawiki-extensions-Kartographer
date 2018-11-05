@@ -133,7 +133,7 @@ class MapFrame extends TagHandler {
 					$staticZoom = $this->zoom;
 					$attrs['data-zoom'] = $this->zoom;
 				} else {
-					$staticZoom = 2;
+					$staticZoom = 'a';
 				}
 
 				if ( $this->lat !== null && $this->lon !== null ) {
@@ -142,8 +142,8 @@ class MapFrame extends TagHandler {
 					$staticLat = $this->lat;
 					$staticLon = $this->lon;
 				} else {
-					$staticLat = 30;
-					$staticLon = 0;
+					$staticLat = 'a';
+					$staticLon = 'a';
 				}
 
 				if ( $this->specifiedLangCode !== null ) {
