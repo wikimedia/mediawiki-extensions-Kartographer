@@ -4,11 +4,14 @@
 }
 
 .ve-ui-mwMapsDialog-mapWidget {
-	margin: 1em auto;
-	max-width: 866px;
-	max-height: 400px;
-	min-height: 300px;
-	overflow: auto;
+	width: 100%;
+	height: 70%;
+}
+
+.ve-ui-mwMapsDialog-mapWidget > div {
+	width: 100%;
+	height: 100%;
+	background-color: #eaecf0;
 }
 
 .ve-ui-mwMapsDialog-geoJSONWidget {
@@ -23,24 +26,9 @@
 
 .ve-ui-mwMapsDialog-help {
 	position: absolute;
-	/* Align with first line of form */
-	/* <padding of PanelLayout> + <margin-top of first fieldset> */
-	top: calc( 1.14285714em + 0.85714286em );
-	right: 8px;
-}
-
-.ve-ui-mwMapsDialog-position {
-	margin-bottom: 1em;
-	text-align: center;
-}
-
-.ve-ui-mwMapsDialog-position .oo-ui-buttonWidget {
-	margin-right: 2em;
-}
-
-/* Fixes overlap with ace editor */
-.ve-ui-mwMapsDialog-position .oo-ui-popupWidget-popup {
-	z-index: 3;
+	top: 0.714285em;
+	right: 0.714285em;
+	margin: 0;
 }
 
 /* Fixes align=center */
@@ -49,15 +37,6 @@
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
-}
-
-.ve-ui-mwMapsDialog-position-table {
-	margin: 1em;
-	text-align: left;
-}
-
-.ve-ui-mwMapsDialog-position-table th {
-	padding: 0.5em 1em 0.5em 0;
 }
 
 .ve-ui-mwMapsContextItem-nosupport {

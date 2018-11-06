@@ -17,8 +17,7 @@ ve.ui.MWMapsDialog = function VeUiMWMapsDialog() {
 	// Parent constructor
 	ve.ui.MWMapsDialog.super.apply( this, arguments );
 
-	this.updateGeoJson = $.debounce( 300, $.proxy( this.updateGeoJson, this ) );
-	this.resetMapPosition = $.debounce( 300, $.proxy( this.resetMapPosition, this ) );
+	this.updateMapContentsDebounced = $.debounce( 300, $.proxy( this.updateMapContents, this ) );
 };
 
 /* Inheritance */
@@ -31,7 +30,7 @@ ve.ui.MWMapsDialog.static.name = 'mwMaps';
 
 ve.ui.MWMapsDialog.static.title = OO.ui.deferMsg( 'visualeditor-mwmapsdialog-title' );
 
-ve.ui.MWMapsDialog.static.size = 'larger';
+ve.ui.MWMapsDialog.static.size = 'large';
 
 ve.ui.MWMapsDialog.static.allowedEmpty = true;
 
@@ -45,32 +44,77 @@ ve.ui.MWMapsDialog.static.modelClasses = [ ve.dm.MWMapsNode, ve.dm.MWInlineMapsN
  * @inheritdoc
  */
 ve.ui.MWMapsDialog.prototype.initialize = function () {
-	var panel,
-		positionPopupButton,
-		$currentPositionTable;
-
 	// Parent method
 	ve.ui.MWMapsDialog.super.prototype.initialize.call( this );
 
+	this.helpLink = new OO.ui.ButtonWidget( {
+		icon: 'help',
+		classes: [ 've-ui-mwMapsDialog-help' ],
+		title: ve.msg( 'visualeditor-mwmapsdialog-help-title' ),
+		href: 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:VisualEditor/Maps',
+		target: '_blank'
+	} );
+
+	// Map
 	this.$mapContainer = $( '<div>' ).addClass( 've-ui-mwMapsDialog-mapWidget' );
 	this.$map = $( '<div>' ).appendTo( this.$mapContainer );
 	this.map = null;
+
+	// Panels
+	this.indexLayout = new OO.ui.IndexLayout( {
+		expanded: false,
+		classes: [ 've-ui-mwMapsDialog-indexLayout' ]
+	} );
+	this.areaPanel = new OO.ui.TabPanelLayout( 'area', {
+		expanded: false,
+		label: ve.msg( 'visualeditor-mwmapsdialog-area' )
+	} );
+	this.contentPanel = new OO.ui.TabPanelLayout( 'content', {
+		expanded: false,
+		label: ve.msg( 'visualeditor-mwmapsdialog-content' )
+	} );
+	this.optionsPanel = new OO.ui.TabPanelLayout( 'options', {
+		expanded: false,
+		label: ve.msg( 'visualeditor-mwmapsdialog-options' )
+	} );
+
+	// Map area panel
 	this.scalable = null;
-	this.updatingGeoJson = false;
+
+	this.latitude = new OO.ui.TextInputWidget();
+	this.latitudeField = new OO.ui.FieldLayout( this.latitude, {
+		align: 'left',
+		label: ve.msg( 'visualeditor-mwmapsdialog-position-lat' )
+	} );
+
+	this.longitude = new OO.ui.TextInputWidget();
+	this.longitudeField = new OO.ui.FieldLayout( this.longitude, {
+		align: 'left',
+		label: ve.msg( 'visualeditor-mwmapsdialog-position-lon' )
+	} );
+
+	this.zoom = new OO.ui.NumberInputWidget( { min: 1, max: 19, step: 1 } );
+	this.zoomField = new OO.ui.FieldLayout( this.zoom, {
+		align: 'left',
+		label: ve.msg( 'visualeditor-mwmapsdialog-position-zoom' )
+	} );
 
 	this.dimensions = new ve.ui.DimensionsWidget();
-
-	this.align = new ve.ui.AlignWidget( {
-		dir: this.getDir()
+	this.dimensionsField = new OO.ui.FieldLayout( this.dimensions, {
+		align: 'left',
+		label: ve.msg( 'visualeditor-mwmapsdialog-size' )
 	} );
 
-	this.language = new ve.ui.LanguageInputWidget( {
-		classes: [ 've-ui-mwMapsDialog-languageInput' ],
-		dirInput: 'none',
-		fieldConfig: {
-			align: 'right'
-		}
-	} );
+	this.areaPanel.$element.append(
+		this.$areaMap,
+		this.latitudeField.$element,
+		this.longitudeField.$element,
+		this.zoomField.$element,
+		this.dimensionsField.$element
+	);
+
+	// Map content panel
+	this.updatingGeoJson = false;
 
 	this.input = new ve.ui.MWAceEditorWidget( {
 		autosize: true,
@@ -80,128 +124,176 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		.setLanguage( 'json' )
 		.toggleLineNumbers( false )
 		.setDir( 'ltr' );
-
-	this.resetMapButton = new OO.ui.ButtonWidget( {
-		label: ve.msg( 'visualeditor-mwmapsdialog-reset-map' )
-	} );
-
-	panel = new OO.ui.PanelLayout( {
-		padded: true,
-		expanded: false
-	} );
-
-	this.dimensionsField = new OO.ui.FieldLayout( this.dimensions, {
-		align: 'right',
-		label: ve.msg( 'visualeditor-mwmapsdialog-size' )
-	} );
-
-	this.helpLink = new OO.ui.ButtonWidget( {
-		icon: 'help',
-		framed: false,
-		classes: [ 've-ui-mwMapsDialog-help' ],
-		title: ve.msg( 'visualeditor-mwmapsdialog-help-title' ),
-		href: 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:VisualEditor/Maps',
-		target: '_blank'
-	} );
-
-	this.alignField = new OO.ui.FieldLayout( this.align, {
-		align: 'right',
-		label: ve.msg( 'visualeditor-mwmapsdialog-align' )
-	} );
-
-	this.languageField = new OO.ui.FieldLayout( this.language, {
-		align: 'right',
-		label: ve.msg( 'visualeditor-mwmapsdialog-language' )
-	} );
-
-	this.$currentPositionLatField = $( '<td></td>' );
-	this.$currentPositionLonField = $( '<td></td>' );
-	this.$currentPositionZoomField = $( '<td></td>' );
-	$currentPositionTable = $( '<table>' ).addClass( 've-ui-mwMapsDialog-position-table' )
-		.append( $( '<tr>' ).append( '<th>' + ve.msg( 'visualeditor-mwmapsdialog-position-lat' ) + '</th>' ).append( this.$currentPositionLatField ) )
-		.append( $( '<tr>' ).append( '<th>' + ve.msg( 'visualeditor-mwmapsdialog-position-lon' ) + '</th>' ).append( this.$currentPositionLonField ) )
-		.append( $( '<tr>' ).append( '<th>' + ve.msg( 'visualeditor-mwmapsdialog-position-zoom' ) + '</th>' ).append( this.$currentPositionZoomField ) );
-
-	positionPopupButton = new OO.ui.PopupButtonWidget( {
-		$overlay: this.$overlay,
-		label: ve.msg( 'visualeditor-mwmapsdialog-position-button' ),
-		icon: 'info',
-		framed: false,
-		popup: {
-			$content: $currentPositionTable,
-			padded: true,
-			align: 'forwards'
-		}
-	} );
-
-	this.$mapPositionContainer = $( '<div>' ).addClass( 've-ui-mwMapsDialog-position' );
-
 	this.geoJsonField = new OO.ui.FieldLayout( this.input, {
 		align: 'top',
 		label: ve.msg( 'visualeditor-mwmapsdialog-geojson' )
 	} );
 
-	panel.$element.append(
-		this.helpLink.$element,
-		this.dimensionsField.$element,
-		this.alignField.$element,
-		this.languageField.$element,
-		this.$mapContainer,
-		this.$mapPositionContainer.append( positionPopupButton.$element, this.resetMapButton.$element ),
+	this.contentPanel.$element.append(
+		this.$contentMap,
 		this.geoJsonField.$element
 	);
-	this.$body.append( panel.$element );
+
+	// Options panel
+	this.align = new ve.ui.AlignWidget( {
+		dir: this.getDir()
+	} );
+	this.alignField = new OO.ui.FieldLayout( this.align, {
+		align: 'top',
+		label: ve.msg( 'visualeditor-mwmapsdialog-align' )
+	} );
+
+	this.language = new ve.ui.LanguageInputWidget( {
+		classes: [ 've-ui-mwMapsDialog-languageInput' ],
+		dirInput: 'none'
+	} );
+	this.languageField = new OO.ui.FieldLayout( this.language, {
+		align: 'top',
+		label: ve.msg( 'visualeditor-mwmapsdialog-language' )
+	} );
+
+	this.optionsPanel.$element.append(
+		this.alignField.$element,
+		this.languageField.$element
+	);
+
+	// Initialize
+	this.indexLayout.addTabPanels( [
+		this.areaPanel,
+		this.contentPanel,
+		this.optionsPanel
+	] );
+	this.$body.append(
+		this.$mapContainer,
+		this.indexLayout.$element,
+		this.helpLink.$element
+	);
+};
+
+/**
+ * Handle change events on the latitude and longitude widgets
+ */
+ve.ui.MWMapsDialog.prototype.onCoordsChange = function () {
+	this.updateActions();
+	if ( this.wasDragging ) {
+		return;
+	}
+	this.updateMapArea();
+	this.resetMapPosition();
+};
+
+/**
+ * Handle zoom change events
+ */
+ve.ui.MWMapsDialog.prototype.onZoomChange = function () {
+	this.updateActions();
+	this.updateMapArea();
+	this.resetMapZoomAndPosition();
 };
 
 /**
  * Handle change events on the dimensions widget
- *
- * @param {string} newValue
  */
 ve.ui.MWMapsDialog.prototype.onDimensionsChange = function () {
-	var dimensions, center;
+	this.updateActions();
+	if ( this.wasDragging ) {
+		return;
+	}
+	this.updateMapArea();
+	this.resetMapZoomAndPosition();
+};
+
+/**
+ * Update the greyed out selected map area shown on the map
+ */
+ve.ui.MWMapsDialog.prototype.updateMapArea = function () {
+	var
+		dimensions, centerCoord, zoom,
+		centerPoint, boundPoints, boundCoords;
 
 	if ( !this.map ) {
 		return;
 	}
 
-	dimensions = this.scalable.getBoundedDimensions(
-		this.dimensions.getDimensions()
-	);
-	center = this.map && this.map.getCenter();
+	dimensions = this.dimensions.getDimensions();
+	centerCoord = [ this.latitude.getValue(), this.longitude.getValue() ];
+	zoom = this.zoom.getValue();
 
-	// Set container width for centering
-	this.$mapContainer.css( { width: dimensions.width } );
-	this.$map.css( dimensions );
-	this.updateSize();
+	centerPoint = this.map.project( centerCoord, zoom );
+	boundPoints = [
+		centerPoint.add( [ dimensions.width / 2, dimensions.height / 2 ] ),
+		centerPoint.add( [ -dimensions.width / 2, -dimensions.height / 2 ] )
+	];
+	boundCoords = [
+		this.map.unproject( boundPoints[ 0 ], zoom ),
+		this.map.unproject( boundPoints[ 1 ], zoom )
+	];
 
-	if ( center ) {
-		this.map.setView( center, this.map.getZoom() );
+	this.mapArea.setBounds( boundCoords );
+	// Re-render the drag markers
+	this.mapArea.editing.disable().enable();
+
+	this.updateMapCutout( this.mapArea.getLatLngs() );
+};
+
+/**
+ * @private
+ * @param {Array} latLngs
+ */
+ve.ui.MWMapsDialog.prototype.updateMapCutout = function ( latLngs ) {
+	// Show black overlay nicely when panning around the world (1/3):
+	// * Add some massive bleed to the whole-world coordinates.
+	var worldCoords = [
+		[ -90, -180 * 2 * 10 ],
+		[ -90, 180 * 2 * 10 ],
+		[ 90, 180 * 2 * 10 ],
+		[ 90, -180 * 2 * 10 ]
+	];
+	this.mapCutout.setLatLngs( [ worldCoords, latLngs ] );
+};
+
+/**
+ * Reset the map's zoom and position
+ *
+ * @param {bool} [instant=false]
+ */
+ve.ui.MWMapsDialog.prototype.resetMapZoomAndPosition = function ( instant ) {
+	if ( !this.map ) {
+		return;
 	}
-	this.map.invalidateSize();
-	this.updateActions();
+
+	this.map.fitBounds( this.mapArea.getBounds(), { animate: !instant } );
 };
 
 /**
  * Reset the map's position
+ *
+ * @param {bool} [instant=false]
  */
-ve.ui.MWMapsDialog.prototype.resetMapPosition = function () {
-	var position,
-		dialog = this;
-
+ve.ui.MWMapsDialog.prototype.resetMapPosition = function ( instant ) {
 	if ( !this.map ) {
 		return;
 	}
 
-	position = this.getInitialMapPosition();
-	this.map.setView( position.center, position.zoom );
+	this.map.panTo( this.mapArea.getCenter(), { animate: !instant } );
+};
 
-	this.updateActions();
-	this.resetMapButton.setDisabled( true );
-
-	this.map.once( 'moveend', function () {
-		dialog.resetMapButton.setDisabled( false );
-	} );
+/**
+ * Handle index layout set events
+ *
+ * @param {OO.ui.TabPanelLayout} tabPanel
+ */
+ve.ui.MWMapsDialog.prototype.onIndexLayoutSet = function ( tabPanel ) {
+	if ( tabPanel === this.areaPanel ) {
+		this.contentsDraw.remove();
+		this.mapArea.addTo( this.map );
+	} else if ( tabPanel === this.contentPanel ) {
+		this.mapArea.remove();
+		this.contentsDraw.addTo( this.map );
+	} else {
+		this.mapArea.remove();
+		this.contentsDraw.remove();
+	}
 };
 
 /**
@@ -212,6 +304,9 @@ ve.ui.MWMapsDialog.prototype.resetMapPosition = function () {
  */
 ve.ui.MWMapsDialog.prototype.onLanguageChange = function ( lang ) {
 	var util = require( 'ext.kartographer.util' );
+	if ( !this.map ) {
+		return;
+	}
 	lang = lang || util.getDefaultLanguage();
 	if ( lang.length > 1 ) {
 		// Don't re-render if still typing a new lang code
@@ -240,7 +335,7 @@ ve.ui.MWMapsDialog.prototype.insertOrUpdateNode = function () {
  * @inheritdoc ve.ui.MWExtensionWindow
  */
 ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
-	var center, scaled, latitude, longitude, zoom,
+	var latitude, longitude, zoom,
 		lang = this.language.getLang(),
 		util = require( 'ext.kartographer.util' ),
 		dimensions = this.scalable.getBoundedDimensions(
@@ -251,11 +346,9 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 	ve.ui.MWMapsDialog.super.prototype.updateMwData.call( this, mwData );
 
 	if ( this.map ) {
-		center = this.map.getCenter();
-		zoom = this.map.getZoom();
-		scaled = this.map.getScaleLatLng( center.lat, center.lng, zoom );
-		latitude = scaled[ 0 ];
-		longitude = scaled[ 1 ];
+		latitude = this.latitude.getValue();
+		longitude = this.longitude.getValue();
+		zoom = this.zoom.getValue();
 	} else {
 		// Map not loaded in insert, can't insert
 		return;
@@ -292,6 +385,7 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 		.next( function () {
 			var inline = this.selectedNode instanceof ve.dm.MWInlineMapsNode,
 				mwAttrs = this.selectedNode && this.selectedNode.getAttribute( 'mw' ).attrs || {},
+				mapPosition = this.getInitialMapPosition(),
 				util = require( 'ext.kartographer.util' );
 
 			this.input.clearUndoStack();
@@ -307,30 +401,36 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 			}
 
 			// Events
-			this.input.connect( this, {
-				change: 'updateGeoJson',
-				resize: 'updateSize'
-			} );
+			this.indexLayout.connect( this, { set: 'onIndexLayoutSet' } );
+
+			this.latitude.connect( this, { change: 'onCoordsChange' } );
+			this.longitude.connect( this, { change: 'onCoordsChange' } );
+			this.zoom.connect( this, { change: 'onZoomChange' } );
 			this.dimensions.connect( this, {
 				widthChange: 'onDimensionsChange',
 				heightChange: 'onDimensionsChange'
 			} );
+
+			this.input.connect( this, {
+				change: 'updateMapContentsDebounced',
+				resize: 'updateSize'
+			} );
+
 			this.align.connect( this, { choose: 'updateActions' } );
-			this.resetMapButton.connect( this, { click: 'resetMapPosition' } );
+			this.language.connect( this, { change: 'onLanguageChange' } );
 
+			// Initial values
 			this.dimensionsField.toggle( !inline );
-
 			this.alignField.toggle( !inline );
+
+			this.latitude.setValue( String( mapPosition.center[ 0 ] ) );
+			this.longitude.setValue( String( mapPosition.center[ 1 ] ) );
+			this.zoom.setValue( String( mapPosition.zoom ) );
+			this.dimensions.setDimensions( this.scalable.getCurrentDimensions() );
 
 			// TODO: Support block/inline conversion
 			this.align.selectItemByData( mwAttrs.align || 'right' );
-
 			this.language.setLangAndDir( mwAttrs.lang || util.getDefaultLanguage() );
-			this.language.connect( this, { change: 'onLanguageChange' } );
-
-			this.resetMapButton.$element.toggle( !!this.selectedNode );
-
-			this.dimensions.setDimensions( this.scalable.getCurrentDimensions() );
 
 			this.updateActions();
 		}, this );
@@ -355,42 +455,100 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 			editing = require( 'ext.kartographer.editing' ),
 			util = require( 'ext.kartographer.util' ),
 			defaultShapeOptions = { shapeOptions: L.mapbox.simplestyle.style( {} ) },
-			mapPosition = dialog.getInitialMapPosition(),
 			mwData = dialog.selectedNode && dialog.selectedNode.getAttribute( 'mw' ),
 			mwAttrs = mwData && mwData.attrs;
 
 		// TODO: Support 'style' editing
 		dialog.map = require( 'ext.kartographer.box' ).map( {
 			container: dialog.$map[ 0 ],
-			center: mapPosition.center,
-			zoom: mapPosition.zoom,
 			lang: mwAttrs && mwAttrs.lang || util.getDefaultLanguage(),
 			alwaysInteractive: true
 		} );
 
 		dialog.map.doWhenReady( function () {
+			// Show black overlay nicely when panning around the world (2/3):
+			// * Prevent wrapping around the antimeridian, so that we don't have to duplicate the drawings
+			//   in imaginary parallel worlds.
+			dialog.map.setMaxBounds( [ [ -90, -180 ], [ 90, 180 ] ] );
 
-			dialog.updateGeoJson();
-			dialog.onDimensionsChange();
-			// Wait for dialog to resize as this triggers map move events
-			setTimeout( function () {
-				dialog.resetMapPosition();
-			}, OO.ui.theme.getDialogTransitionDuration() );
+			dialog.mapArea = L.rectangle( [ [ 0, 0 ], [ 0, 0 ] ], {
+				// Invisible
+				stroke: false,
+				fillOpacity: 0,
+				// Prevent the area from affecting cursors (this is unrelated to editing)
+				interactive: false
+			} );
+			dialog.mapArea.editing.enable();
 
-			// if geojson and no center, we need the map to automatically
-			// position itself when the feature layer is added.
-			if (
-				dialog.input.getValue() &&
-				( !mapPosition.center || isNaN( mapPosition.center[ 0 ] ) || isNaN( mapPosition.center[ 1 ] ) )
-			) {
-				dialog.map.on( 'layeradd', function () {
-					dialog.map.setView( null, mapPosition.zoom );
-					dialog.updateActions();
-				} );
+			dialog.mapCutout = L.polygon( [], {
+				stroke: false,
+				color: 'black',
+				// Prevent the area from affecting cursors
+				interactive: false
+			} );
+			dialog.map.addLayer( dialog.mapCutout );
+
+			// Show black overlay nicely when panning around the world (3/3):
+			// * Allow large bleed when drawing map cutout area.
+			dialog.map.getRenderer( dialog.mapCutout ).options.padding = 10;
+
+			dialog.updateMapContents();
+			dialog.updateMapArea();
+			dialog.resetMapZoomAndPosition( true );
+
+			function updateCutout() {
+				dialog.updateMapCutout( dialog.mapArea.getLatLngs() );
 			}
 
+			function updateCoordsAndDimensions() {
+				var
+					center, bounds, scale, resized,
+					topLeftPoint, topRightPoint, bottomLeftPoint,
+					lat, lng, width, height;
+
+				dialog.wasDragging = true;
+
+				center = dialog.mapArea.getCenter();
+				bounds = dialog.mapArea.getBounds();
+				scale = dialog.map.getZoomScale( dialog.zoom.getValue(), dialog.map.getZoom() );
+
+				// Calculate everything before setting anything, because that modifies the `bounds` object
+				topLeftPoint = dialog.map.project( bounds.getNorthWest(), dialog.map.getZoom() );
+				topRightPoint = dialog.map.project( bounds.getNorthEast(), dialog.map.getZoom() );
+				bottomLeftPoint = dialog.map.project( bounds.getSouthWest(), dialog.map.getZoom() );
+				width = Math.round( scale * ( topRightPoint.x - topLeftPoint.x ) );
+				height = Math.round( scale * ( bottomLeftPoint.y - topLeftPoint.y ) );
+
+				// Round lat/lng to 0.000001 deg (chosen per https://enwp.org/Decimal_degrees#Precision)
+				lat = center.lat.toFixed( 6 );
+				lng = center.lng.toFixed( 6 );
+
+				// Ignore changes in size by 1px, they happen while moving due to rounding
+				resized = Math.abs( dialog.dimensions.getDimensions().width - width ) > 1 ||
+					Math.abs( dialog.dimensions.getDimensions().height - height ) > 1;
+
+				dialog.latitude.setValue( lat );
+				dialog.longitude.setValue( lng );
+				dialog.dimensions.setDimensions( {
+					width: width,
+					height: height
+				} );
+
+				dialog.wasDragging = false;
+				dialog.updateMapArea();
+				if ( resized ) {
+					dialog.resetMapZoomAndPosition();
+				} else {
+					dialog.resetMapPosition();
+				}
+			}
+
+			dialog.mapArea
+				.on( 'editdrag', updateCutout )
+				.on( 'edit', updateCoordsAndDimensions );
+
 			geoJsonLayer = editing.getKartographerLayer( dialog.map );
-			new L.Control.Draw( {
+			dialog.contentsDraw = new L.Control.Draw( {
 				edit: { featureGroup: geoJsonLayer },
 				draw: {
 					circle: false,
@@ -401,7 +559,7 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 					rectangle: defaultShapeOptions,
 					marker: { icon: L.mapbox.marker.icon( {} ) }
 				}
-			} ).addTo( dialog.map );
+			} );
 
 			function update() {
 				var geoJson;
@@ -423,24 +581,12 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 				update();
 			}
 
-			function updatePositionContainer() {
-				var position = dialog.map.getMapPosition(),
-					scaled = dialog.map.getScaleLatLng( position.center.lat, position.center.lng, position.zoom );
-				dialog.$currentPositionLatField.text( scaled[ 0 ] );
-				dialog.$currentPositionLonField.text( scaled[ 1 ] );
-				dialog.$currentPositionZoomField.text( position.zoom );
-			}
-
-			function onMapMove() {
-				dialog.updateActions();
-				updatePositionContainer();
-			}
-
 			dialog.map
 				.on( 'draw:edited', update )
 				.on( 'draw:deleted', update )
-				.on( 'draw:created', created )
-				.on( 'moveend', onMapMove );
+				.on( 'draw:created', created );
+
+			dialog.onIndexLayoutSet( dialog.indexLayout.getCurrentTabPanel() );
 			deferred.resolve();
 		} );
 		return deferred.promise();
@@ -482,7 +628,7 @@ ve.ui.MWMapsDialog.prototype.getInitialMapPosition = function () {
 /**
  * Update the GeoJSON layer from the current input state
  */
-ve.ui.MWMapsDialog.prototype.updateGeoJson = function () {
+ve.ui.MWMapsDialog.prototype.updateMapContents = function () {
 	var self = this;
 
 	if ( !this.map || this.updatingGeoJson ) {
@@ -511,16 +657,30 @@ ve.ui.MWMapsDialog.prototype.getTeardownProcess = function ( data ) {
 	return ve.ui.MWMapsDialog.super.prototype.getTeardownProcess.call( this, data )
 		.first( function () {
 			// Events
-			this.input.disconnect( this );
-			this.dimensions.disconnect( this );
-			this.resetMapButton.disconnect( this );
+			this.indexLayout.disconnect( this );
 
-			this.dimensions.clear();
+			this.latitude.disconnect( this );
+			this.longitude.disconnect( this );
+			this.zoom.disconnect( this );
+			this.dimensions.disconnect( this );
+
+			this.input.disconnect( this );
+
+			this.align.disconnect( this );
+			this.language.disconnect( this );
+
 			if ( this.map ) {
 				this.map.remove();
 				this.map = null;
 			}
 		}, this );
+};
+
+/**
+ * @inheritdoc
+ */
+ve.ui.MWMapsDialog.prototype.getBodyHeight = function () {
+	return 1000;
 };
 
 /* Registration */
