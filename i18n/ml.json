@@ -50,11 +50,9 @@
 	"kartographer-fullscreen-collapse": "ഭൂപട വിവരങ്ങൾ മറയ്ക്കുക",
 	"kartographer-fullscreen-text": "മുഴുവൻ സ്ക്രീനിൽ കാണിക്കുക",
 	"visualeditor-mwmapsdialog-align": "സ്ഥാനനിർണ്ണയം",
-	"visualeditor-mwmapsdialog-position-button": "ഇപ്പോഴുള്ള സ്ഥാനം",
 	"visualeditor-mwmapsdialog-position-lat": "അക്ഷാംശം",
 	"visualeditor-mwmapsdialog-position-lon": "രേഖാംശം",
 	"visualeditor-mwmapsdialog-position-zoom": "വലിപ്പം മാറ്റുക",
-	"visualeditor-mwmapsdialog-reset-map": "ഭൂപടത്തിന്റെ സ്ഥാനം പുനഃസജ്ജീകരിക്കുക",
 	"visualeditor-mwmapsdialog-size": "വലിപ്പം",
 	"visualeditor-mwmapsdialog-title": "ഭൂപടം",
 	"visualeditor-mwmapscontextitem-title": "ഭൂപടം"

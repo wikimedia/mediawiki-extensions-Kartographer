@@ -72,11 +72,9 @@
 	"kartographer-fullscreen-close": "Tanca",
 	"kartographer-fullscreen-text": "Mostra a pantalla completa",
 	"visualeditor-mwmapsdialog-align": "Alineació",
-	"visualeditor-mwmapsdialog-position-button": "Posició actual",
 	"visualeditor-mwmapsdialog-position-lat": "Latitud",
 	"visualeditor-mwmapsdialog-position-lon": "Longitud",
 	"visualeditor-mwmapsdialog-position-zoom": "Zoom",
-	"visualeditor-mwmapsdialog-reset-map": "Restableix la posició del mapa",
 	"visualeditor-mwmapsdialog-size": "Mida",
 	"visualeditor-mwmapsdialog-title": "Mapa"
 }

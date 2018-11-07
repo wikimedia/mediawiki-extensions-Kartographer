@@ -65,11 +65,9 @@
 	"kartographer-fullscreen-collapse": "Ascunde detaliile hărții",
 	"kartographer-fullscreen-text": "Afișează pe tot ecranul",
 	"visualeditor-mwmapsdialog-align": "Aliniere",
-	"visualeditor-mwmapsdialog-position-button": "Poziția curentă",
 	"visualeditor-mwmapsdialog-position-lat": "Latitudine",
 	"visualeditor-mwmapsdialog-position-lon": "Longitudine",
 	"visualeditor-mwmapsdialog-position-zoom": "Zoom",
-	"visualeditor-mwmapsdialog-reset-map": "Resetează poziția hărții",
 	"visualeditor-mwmapsdialog-size": "Mărime",
 	"visualeditor-mwmapsdialog-title": "Hartă",
 	"visualeditor-mwmapscontextitem-title": "Hartă"

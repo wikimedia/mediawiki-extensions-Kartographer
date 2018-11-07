@@ -67,11 +67,9 @@
 	"kartographer-fullscreen-close": "Bezárás",
 	"kartographer-fullscreen-text": "Teljes képernyős megjelenítés",
 	"visualeditor-mwmapsdialog-align": "Igazítás",
-	"visualeditor-mwmapsdialog-position-button": "Aktuális pozíció",
 	"visualeditor-mwmapsdialog-position-lat": "Szélesség",
 	"visualeditor-mwmapsdialog-position-lon": "Hosszúság",
 	"visualeditor-mwmapsdialog-position-zoom": "Nagyítás",
-	"visualeditor-mwmapsdialog-reset-map": "Térkép pozíciójának visszaállítása",
 	"visualeditor-mwmapsdialog-size": "Méret",
 	"visualeditor-mwmapsdialog-title": "Térkép"
 }

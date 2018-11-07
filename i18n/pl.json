@@ -77,11 +77,9 @@
 	"visualeditor-mwmapsdialog-align": "Wyrównanie",
 	"visualeditor-mwmapsdialog-language": "Język",
 	"visualeditor-mwmapsdialog-help-title": "Dowiedz się więcej o tworzeniu i edycji map.",
-	"visualeditor-mwmapsdialog-position-button": "Bieżąca pozycja",
 	"visualeditor-mwmapsdialog-position-lat": "Szerokość geograficzna",
 	"visualeditor-mwmapsdialog-position-lon": "Długość geograficzna",
 	"visualeditor-mwmapsdialog-position-zoom": "Powiększenie",
-	"visualeditor-mwmapsdialog-reset-map": "Zresetuj położenie mapy",
 	"visualeditor-mwmapsdialog-size": "Rozmiar",
 	"visualeditor-mwmapsdialog-title": "Mapa",
 	"visualeditor-mwmapscontextitem-title": "Mapa"

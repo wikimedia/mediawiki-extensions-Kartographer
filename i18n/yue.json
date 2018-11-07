@@ -48,11 +48,9 @@
 	"visualeditor-mwmapsdialog-align": "對齊",
 	"visualeditor-mwmapsdialog-language": "語文",
 	"visualeditor-mwmapsdialog-help-title": "學識點樣整同改地圖。",
-	"visualeditor-mwmapsdialog-position-button": "家下位置",
 	"visualeditor-mwmapsdialog-position-lat": "緯度",
 	"visualeditor-mwmapsdialog-position-lon": "經度",
 	"visualeditor-mwmapsdialog-position-zoom": "放大縮細",
-	"visualeditor-mwmapsdialog-reset-map": "重設地圖位置",
 	"visualeditor-mwmapsdialog-size": "大細",
 	"visualeditor-mwmapsdialog-title": "地圖",
 	"visualeditor-mwmapscontextitem-title": "地圖"
