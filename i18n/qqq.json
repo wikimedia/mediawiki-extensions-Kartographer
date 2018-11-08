@@ -121,6 +121,7 @@
 	"kartographer-fullscreen-close": "Title of the fullscreen close button\n{{Identical|Close}}",
 	"kartographer-fullscreen-collapse": "Title of the map details collapse button",
 	"kartographer-fullscreen-text": "Tooltip for a button that puts the map into full screen",
+	"visualeditor-mwmapsdialog-area": "Label for a tab in the map editing dialog.\n\nMap 'area' refers to the fragment of the world map which will be shown.",
 	"visualeditor-mwmapsdialog-content": "Label for a tab in the map editing dialog.\n\nMap 'contents' refers to the various features that can be drawn on top of the map, like markers and lines.",
 	"visualeditor-mwmapsdialog-options": "Label for a tab in the map editing dialog.",
 	"visualeditor-mwmapsdialog-align": "Label for setting the map's alignment\n{{Identical|Alignment}}",
