@@ -63,6 +63,75 @@ module.exports = ( function ( $, mw, util, kartobox, router ) {
 	}
 
 	/**
+	 * @param {Object} data
+	 * @param {jQuery} $container
+	 * @return {Object} map KartographerMap
+	 */
+	function initMapBox( data, $container ) {
+		var map,
+			index = maps.length + 1,
+			container = $container.get( 0 );
+
+		data.enableFullScreenButton = true;
+
+		map = kartobox.map( {
+			featureType: 'mapframe',
+			container: container,
+			center: [ data.latitude, data.longitude ],
+			zoom: data.zoom,
+			lang: data.lang,
+			fullScreenRoute: '/map/' + index,
+			allowFullScreen: true,
+			dataGroups: data.overlays,
+			captionText: data.captionText
+		} );
+
+		$container.removeAttr( 'href' );
+
+		map.doWhenReady( function () {
+			map.$container.css( 'backgroundImage', '' );
+			map.$container.find( '.leaflet-marker-icon' ).each( function () {
+				var height = $( this ).height();
+				$( this ).css( {
+					clip: 'rect(auto auto ' + ( ( height / 2 ) + 10 ) + 'px auto)'
+				} );
+			} );
+		} );
+
+		maps[ index ] = map;
+
+		// Special case for collapsible maps.
+		// When the container is hidden Leaflet is not able to
+		// calculate the expected size when visible. We need to force
+		// updating the map to the new container size on `expand`.
+		if ( !$container.is( ':visible' ) ) {
+			$container.closest( '.mw-collapsible' )
+				.on( 'afterExpand.mw-collapsible', function () {
+					map.invalidateSize();
+				} );
+		}
+
+		return map;
+	}
+
+	/**
+	 * Create a mapbox from a given element.
+	 *
+	 * @param {HTMLElement} element Parsed <mapframe> element
+	 */
+	function initMapframeFromElement( element ) {
+		var map,
+			container = element,
+			$container = $( element ),
+			data = getMapData( container );
+
+		if ( data ) {
+			map = initMapBox( data, $container );
+			mw.hook( 'wikipage.maps' ).fire( [ map ], false /* isFullScreen */ );
+		}
+	}
+
+	/**
 	 * This code will be executed once the article is rendered and ready.
 	 *
 	 * @ignore
@@ -76,8 +145,8 @@ module.exports = ( function ( $, mw, util, kartobox, router ) {
 			maps.pop().remove();
 		} );
 
-		$content.find( '.mw-kartographer-map' ).each( function ( index ) {
-			var map, data,
+		$content.find( '.mw-kartographer-map' ).each( function () {
+			var data,
 				container = this,
 				$container = $( this ),
 				deferred = $.Deferred();
@@ -85,45 +154,7 @@ module.exports = ( function ( $, mw, util, kartobox, router ) {
 			data = getMapData( container );
 
 			if ( data ) {
-				data.enableFullScreenButton = true;
-
-				map = kartobox.map( {
-					featureType: 'mapframe',
-					container: container,
-					center: [ data.latitude, data.longitude ],
-					zoom: data.zoom,
-					lang: data.lang,
-					fullScreenRoute: '/map/' + index,
-					allowFullScreen: true,
-					dataGroups: data.overlays,
-					captionText: data.captionText
-				} );
-
-				$container.removeAttr( 'href' );
-
-				map.doWhenReady( function () {
-					map.$container.css( 'backgroundImage', '' );
-					map.$container.find( '.leaflet-marker-icon' ).each( function () {
-						var height = $( this ).height();
-						$( this ).css( {
-							clip: 'rect(auto auto ' + ( ( height / 2 ) + 10 ) + 'px auto)'
-						} );
-					} );
-				} );
-
-				mapsInArticle.push( map );
-				maps[ index ] = map;
-
-				// Special case for collapsible maps.
-				// When the container is hidden Leaflet is not able to
-				// calculate the expected size when visible. We need to force
-				// updating the map to the new container size on `expand`.
-				if ( !$container.is( ':visible' ) ) {
-					$container.closest( '.mw-collapsible' )
-						.on( 'afterExpand.mw-collapsible', function () {
-							map.invalidateSize();
-						} );
-				}
+				mapsInArticle.push( initMapBox( data, $container ) );
 
 				promises.push( deferred.promise() );
 			}
@@ -170,7 +201,9 @@ module.exports = ( function ( $, mw, util, kartobox, router ) {
 		} );
 	} );
 
-	return maps;
+	return {
+		initMapframeFromElement: initMapframeFromElement
+	};
 }(
 	jQuery,
 	mediaWiki,
