@@ -316,9 +316,6 @@ module.Map = ( function ( util, OpenFullScreenControl, dataLayerOpts, ScaleContr
 				} else {
 					ready();
 				}
-			} ).then( undefined, function ( err ) {
-				// console will catch this
-				throw err;
 			} );
 		},
 
