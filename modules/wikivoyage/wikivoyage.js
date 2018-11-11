@@ -54,8 +54,8 @@ module.wikivoyage = ( function () {
 			options.wvLayerId = id;
 			options.attribution = options.attribution || '';
 			$.each( options.attribs, function ( i, attrib ) {
-				options.attribution += mw.html.escape( attrib.label ) +
-				' <a href="' + mw.html.escape( attrib.url ) + '">' + mw.html.escape( attrib.name ) + '</a>';
+				options.attribution += mw.html.escape( attrib.label ) + ' ' +
+				mw.html.element( 'a', { href: attrib.url }, attrib.name );
 			} );
 
 			tileLayerDefs[ id.toString() ] = {
