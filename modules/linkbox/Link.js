@@ -6,7 +6,7 @@
  *
  * @class Kartographer.Linkbox.LinkClass
  */
-module.Link = ( function ( $, util ) {
+module.Link = ( function ( util ) {
 
 	/* eslint-disable no-underscore-dangle */
 	/**
@@ -135,6 +135,5 @@ module.Link = ( function ( $, util ) {
 
 	return Link;
 }(
-	jQuery,
 	require( 'ext.kartographer.util' )
 ) );

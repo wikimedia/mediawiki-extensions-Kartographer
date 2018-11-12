@@ -6,7 +6,7 @@
  * @class Kartographer.Wikivoyage.WVMapLayers
  * @private
  */
-module.WVMapLayers = ( function ( $, mw, wikivoyage, ControlLayers ) {
+module.WVMapLayers = ( function ( wikivoyage, ControlLayers ) {
 
 	/* eslint-disable no-underscore-dangle */
 	var WVMapLayers = function ( map ) {
@@ -99,8 +99,6 @@ module.WVMapLayers = ( function ( $, mw, wikivoyage, ControlLayers ) {
 
 	return WVMapLayers;
 }(
-	jQuery,
-	mediaWiki,
 	module.wikivoyage,
 	module.ControlLayers
 ) );

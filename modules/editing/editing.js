@@ -6,7 +6,7 @@
  * @class Kartographer.Editing
  * @singleton
  */
-module.exports = ( function ( $, mw ) {
+module.exports = ( function () {
 
 	/**
 	 * Get "editable" geojson layer for the map.
@@ -89,4 +89,4 @@ module.exports = ( function ( $, mw ) {
 		restoreUnparsedText: restoreUnparsedText
 	};
 
-}( jQuery, mediaWiki ) );
+}() );

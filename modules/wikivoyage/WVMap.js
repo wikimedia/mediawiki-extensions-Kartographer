@@ -4,7 +4,7 @@
  * @alias WVMap
  * @class Kartographer.Wikivoyage.WVMap
  */
-module.WVMap = ( function ( $, mw, wikivoyage, WVMapLayers, ControlNearby ) {
+module.WVMap = ( function ( wikivoyage, WVMapLayers, ControlNearby ) {
 
 	/* eslint-disable no-underscore-dangle */
 	var WVMap = function ( map ) {
@@ -54,8 +54,6 @@ module.WVMap = ( function ( $, mw, wikivoyage, WVMapLayers, ControlNearby ) {
 	return WVMap;
 
 }(
-	jQuery,
-	mediaWiki,
 	module.wikivoyage,
 	module.WVMapLayers,
 	module.ControlNearby

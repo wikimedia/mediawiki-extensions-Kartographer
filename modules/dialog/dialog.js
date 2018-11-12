@@ -8,7 +8,7 @@
  * @class Kartographer.Dialog.DialogClass
  * @extends OO.ui.Dialog
  */
-module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
+module.Dialog = ( function ( CloseFullScreenControl, router ) {
 
 	/**
 	 * @constructor
@@ -274,8 +274,6 @@ module.Dialog = ( function ( $, mw, CloseFullScreenControl, router ) {
 	};
 
 }(
-	jQuery,
-	mediaWiki,
 	module.CloseFullScreenControl,
 	require( 'mediawiki.router' )
 ) );

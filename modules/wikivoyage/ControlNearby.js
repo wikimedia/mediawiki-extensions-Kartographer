@@ -10,7 +10,7 @@
  * @extends L.Control
  * @private
  */
-module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneClusterLib ) {
+module.ControlNearby = ( function ( wikivoyage, NearbyArticles, pruneClusterLib ) {
 
 	var articlePath = mw.config.get( 'wgArticlePath' );
 
@@ -206,9 +206,6 @@ module.ControlNearby = ( function ( $, mw, L, wikivoyage, NearbyArticles, pruneC
 		}
 	} );
 }(
-	jQuery,
-	mediaWiki,
-	L,
 	module.wikivoyage,
 	module.NearbyArticles,
 	require( 'ext.kartographer.lib.prunecluster' )

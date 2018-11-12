@@ -10,7 +10,7 @@
  * @class Kartographer.Preview
  * @singleton
  */
-( function ( mw, L ) {
+( function () {
 
 	mw.hook( 'wikipage.maps' ).add( function ( maps ) {
 		maps = Array.isArray( maps ) ? maps : [ maps ];
@@ -44,4 +44,4 @@
 		} );
 	} );
 
-}( mediaWiki, L ) );
+}() );

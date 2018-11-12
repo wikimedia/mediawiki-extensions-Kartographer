@@ -13,7 +13,7 @@
  * @class Kartographer.Settings
  * @singleton
  */
-( function ( $, mw ) {
+( function () {
 
 	var mapServer = mw.config.get( 'wgKartographerMapServer' ),
 		forceHttps = mapServer[ 4 ] === 's',
@@ -24,4 +24,4 @@
 	config.HTTP_URL = forceHttps ? false : mapServer;
 	config.HTTPS_URL = !forceHttps ? false : mapServer;
 
-}( jQuery, mediaWiki ) );
+}() );

@@ -10,7 +10,7 @@
  * @class Kartographer.Frame
  * @singleton
  */
-module.exports = ( function ( $, mw, util, kartobox, router ) {
+module.exports = ( function ( util, kartobox, router ) {
 
 	/**
 	 * References the mapframe containers of the page.
@@ -172,8 +172,6 @@ module.exports = ( function ( $, mw, util, kartobox, router ) {
 
 	return maps;
 }(
-	jQuery,
-	mediaWiki,
 	require( 'ext.kartographer.util' ),
 	require( 'ext.kartographer.box' ),
 	require( 'mediawiki.router' )

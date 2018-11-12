@@ -10,7 +10,7 @@
  * @extends L.Control.Layers
  * @private
  */
-module.ControlLayers = ( function ( $, mw, L, wikivoyage ) {
+module.ControlLayers = ( function ( wikivoyage ) {
 
 	return L.Control.Layers.extend( {
 
@@ -72,9 +72,4 @@ module.ControlLayers = ( function ( $, mw, L, wikivoyage ) {
 			}
 		}
 	} );
-}(
-	jQuery,
-	mediaWiki,
-	L,
-	module.wikivoyage
-) );
+}( module.wikivoyage ) );

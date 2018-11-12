@@ -1,5 +1,5 @@
 /* globals require */
-module.Data = ( function ( $, mw, DataManager ) {
+module.Data = ( function ( DataManager ) {
 	return DataManager( {
 		createPromise: function ( callback ) {
 			var promise = $.Deferred();
@@ -47,7 +47,5 @@ module.Data = ( function ( $, mw, DataManager ) {
 		title: mw.config.get( 'wgPageName' )
 	} );
 }(
-	jQuery,
-	mediaWiki,
 	require( 'ext.kartographer.data' )
 ) );

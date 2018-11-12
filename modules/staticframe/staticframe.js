@@ -9,7 +9,7 @@
  * @class Kartographer.StaticFrame
  * @singleton
  */
-module.exports = ( function ( $, mw, util, kartolink, router ) {
+module.exports = ( function ( util, kartolink, router ) {
 
 	/**
 	 * References the mapframe containers of the page.
@@ -162,8 +162,6 @@ module.exports = ( function ( $, mw, util, kartolink, router ) {
 
 	return maps;
 }(
-	jQuery,
-	mediaWiki,
 	require( 'ext.kartographer.util' ),
 	require( 'ext.kartographer.linkbox' ),
 	require( 'mediawiki.router' )

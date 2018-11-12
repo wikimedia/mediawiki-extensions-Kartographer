@@ -3,7 +3,7 @@
  *
  * @class Kartographer.DialogSideBar
  */
-module.exports = ( function ( $, mw ) {
+module.exports = ( function () {
 
 	/**
 	 * @constructor
@@ -380,4 +380,4 @@ module.exports = ( function ( $, mw ) {
 	};
 
 	return SideBar;
-}( jQuery, mediaWiki ) );
+}() );

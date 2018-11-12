@@ -5,7 +5,7 @@
  * @class Kartographer.Wikivoyage.NearbyArticles
  * @singleton
  */
-module.NearbyArticles = ( function ( $ ) {
+module.NearbyArticles = ( function () {
 
 	var fetchArticlesPromise,
 		config = {};
@@ -59,4 +59,4 @@ module.NearbyArticles = ( function ( $ ) {
 		}
 	};
 
-}( jQuery ) );
+}() );

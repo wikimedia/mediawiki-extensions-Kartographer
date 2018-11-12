@@ -9,7 +9,7 @@
  * @class Kartographer.Box.MapClass
  * @extends L.Map
  */
-module.Map = ( function ( mw, util, OpenFullScreenControl, dataLayerOpts, ScaleControl, DataManager ) {
+module.Map = ( function ( util, OpenFullScreenControl, dataLayerOpts, ScaleControl, DataManager ) {
 
 	var scale, urlFormat,
 		mapServer = mw.config.get( 'wgKartographerMapServer' ),
@@ -855,7 +855,6 @@ module.Map = ( function ( mw, util, OpenFullScreenControl, dataLayerOpts, ScaleC
 
 	return KartographerMap;
 }(
-	mediaWiki,
 	require( 'ext.kartographer.util' ),
 	module.OpenFullScreenControl,
 	module.dataLayerOpts,

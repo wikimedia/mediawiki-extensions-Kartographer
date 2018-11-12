@@ -10,7 +10,7 @@
  * @class Kartographer.Link
  * @singleton
  */
-module.exports = ( function ( $, mw, router, kartolink ) {
+module.exports = ( function ( router, kartolink ) {
 
 	/**
 	 * References the maplinks of the page.
@@ -117,8 +117,6 @@ module.exports = ( function ( $, mw, router, kartolink ) {
 
 	return maplinks;
 }(
-	jQuery,
-	mediaWiki,
 	require( 'mediawiki.router' ),
 	require( 'ext.kartographer.linkbox' )
 ) );
