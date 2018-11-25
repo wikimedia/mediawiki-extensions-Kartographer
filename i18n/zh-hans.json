@@ -3,7 +3,8 @@
 		"authors": [
 			"Liuxinyu970226",
 			"Shizhao",
-			"JerryLiu"
+			"JerryLiu",
+			"A Chinese Wikipedian"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "为Kartographer扩展执行数据验证",
@@ -85,6 +86,8 @@
 	"leafletdraw-edit-toolbar-actions-cancel-title": "取消编辑，抛弃所有更改",
 	"leafletdraw-edit-toolbar-actions-save-text": "保存",
 	"leafletdraw-edit-toolbar-actions-save-title": "保存更改",
+	"leafletdraw-edit-toolbar-actions-clearall-text": "全部清除",
+	"leafletdraw-edit-toolbar-actions-clearall-title": "抹掉所有层次",
 	"leafletdraw-edit-toolbar-buttons-edit": "编辑图层",
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "没有要编辑的图层",
 	"leafletdraw-edit-toolbar-buttons-remove": "删除图层",
@@ -97,6 +100,9 @@
 	"kartographer-fullscreen-close": "关闭",
 	"kartographer-fullscreen-collapse": "隐藏地图详情",
 	"kartographer-fullscreen-text": "全屏显示",
+	"visualeditor-mwmapsdialog-area": "地图地点",
+	"visualeditor-mwmapsdialog-content": "地图主要内容",
+	"visualeditor-mwmapsdialog-options": "选项",
 	"visualeditor-mwmapsdialog-align": "对齐",
 	"visualeditor-mwmapsdialog-language": "语言",
 	"visualeditor-mwmapsdialog-help-title": "了解如何创建和编辑地图。",
