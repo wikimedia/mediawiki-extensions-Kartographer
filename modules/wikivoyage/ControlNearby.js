@@ -194,6 +194,7 @@ module.ControlNearby = ( function ( wikivoyage, NearbyArticles, pruneClusterLib 
 			// boolean is temporarily set.
 			control.map._preventTracking = true;
 
+			// eslint-disable-next-line jquery/no-each-util
 			$.each( control.map.dataLayers, function ( group, layer ) {
 				control.map[ enabled ? 'addLayer' : 'removeLayer' ]( layer );
 			} );

@@ -53,7 +53,7 @@ module.wikivoyage = ( function () {
 		addTileLayer: function ( id, url, options ) {
 			options.wvLayerId = id;
 			options.attribution = options.attribution || '';
-			$.each( options.attribs, function ( i, attrib ) {
+			( options.attribs || [] ).forEach( function ( attrib ) {
 				options.attribution += mw.html.escape( attrib.label ) + ' ' +
 				mw.html.element( 'a', { href: attrib.url }, attrib.name );
 			} );

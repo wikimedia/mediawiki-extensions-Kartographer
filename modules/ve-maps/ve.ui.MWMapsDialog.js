@@ -17,7 +17,7 @@ ve.ui.MWMapsDialog = function VeUiMWMapsDialog() {
 	// Parent constructor
 	ve.ui.MWMapsDialog.super.apply( this, arguments );
 
-	this.updateMapContentsDebounced = $.debounce( 300, $.proxy( this.updateMapContents, this ) );
+	this.updateMapContentsDebounced = OO.ui.debounce( this.updateMapContents.bind( this ), 300 );
 };
 
 /* Inheritance */

@@ -233,6 +233,7 @@ module.exports = ( function () {
 					regular = [],
 					services = sidebar.byType[ selectedType ];
 
+				// eslint-disable-next-line jquery/no-each-util
 				$.each( services, function ( serviceId, links ) {
 					// Only one link is supported per type per service for now.
 					var link = links[ 0 ],
@@ -313,11 +314,11 @@ module.exports = ( function () {
 			byService = {},
 			byType = {};
 
-		$.each( services, function ( key, service ) {
+		services.forEach( function ( service ) {
 			byService[ service.id ] = service;
 			service.byType = {};
 
-			$.each( service.links, function ( key, link ) {
+			service.links.forEach( function ( link ) {
 				service.byType[ link.type ] = service.byType[ link.type ] || [];
 				service.byType[ link.type ].push( link );
 
@@ -344,17 +345,16 @@ module.exports = ( function () {
 	 * @return {OO.ui.DropdownWidget}
 	 */
 	SideBar.prototype.createFilterDropdown = function () {
-		var items = [],
+		var items,
 			labels = this.metadata.localization;
 
-		$.each( this.metadata.types, function ( key, type ) {
-			items.push(
-				new OO.ui.MenuOptionWidget( {
-					data: type,
-					label: labels[ type ],
-					title: labels[ type ]
-				} )
-			);
+		// eslint-disable-next-line jquery/no-map-util
+		items = $.map( this.metadata.types, function ( type ) {
+			return new OO.ui.MenuOptionWidget( {
+				data: type,
+				label: labels[ type ],
+				title: labels[ type ]
+			} );
 		} );
 
 		return new OO.ui.DropdownWidget( {

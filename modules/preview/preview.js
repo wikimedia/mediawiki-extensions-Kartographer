@@ -15,7 +15,7 @@
 	mw.hook( 'wikipage.maps' ).add( function ( maps ) {
 		maps = Array.isArray( maps ) ? maps : [ maps ];
 
-		$.each( maps, function ( i, map ) {
+		maps.forEach( function ( map ) {
 			var popup = L.popup();
 
 			function onMapMenu( e ) {

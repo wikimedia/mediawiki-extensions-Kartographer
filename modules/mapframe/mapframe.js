@@ -141,9 +141,9 @@ module.exports = ( function ( util, kartobox, router ) {
 			promises = [];
 
 		// `wikipage.content` may be fired more than once.
-		$.each( maps, function () {
+		while ( maps.length ) {
 			maps.pop().remove();
-		} );
+		}
 
 		$content.find( '.mw-kartographer-map' ).each( function () {
 			var data,
