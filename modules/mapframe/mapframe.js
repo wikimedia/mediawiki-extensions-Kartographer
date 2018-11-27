@@ -69,7 +69,7 @@ module.exports = ( function ( util, kartobox, router ) {
 	 */
 	function initMapBox( data, $container ) {
 		var map,
-			index = maps.length + 1,
+			index = maps.length,
 			container = $container.get( 0 );
 
 		data.enableFullScreenButton = true;
