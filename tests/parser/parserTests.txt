@@ -151,7 +151,7 @@
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=left text="Foo is a <b>bar</b>" />
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=center text="Foo is a <script>" />
 <mapframe latitude=10 longitude=20 zoom=13 width=50% height=480 align=right frameless text="Frameless gets cynically ignored here" />
-<mapframe latitude=10 longitude=20 zoom=13 width=100% height=480 text="Foo is a [https://example.com bar]"" />
+<mapframe latitude=10 longitude=20 zoom=13 width=100% height=480 text="Foo is a [https://example.com bar]" />
 <mapframe latitude=10 longitude=20 zoom=13 width=full height=480 text="<div>Muhaha</div>" />
 !! result
 <div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 640px;"><a class="mw-kartographer-map" mw-data="interface" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" style="background-image: url(https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=en); height: 480px;" href="/wiki/Special:Map/13/10/20/en"></a><div class="thumbcaption">Foo is a <b>bar</b></div></div></div>
@@ -159,7 +159,7 @@
 &lt;mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=center text="Foo is a &lt;script&gt;" /&gt;
 </p>
 <div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" mw-data="interface" data-style="osm-intl" data-width="50%" data-height="480" data-zoom="13" data-lat="10" data-lon="20" style="background-image: url(https://maps.wikimedia.org/img/osm-intl,13,10,20,300x480.png?lang=en); height: 480px;" href="/wiki/Special:Map/13/10/20/en"></a><div class="thumbcaption">Frameless gets cynically ignored here</div></div></div>
-<div class="mw-kartographer-container mw-kartographer-full thumb tright"><div class="thumbinner" style="width: 100%;"><a class="mw-kartographer-map" mw-data="interface" data-style="osm-intl" data-width="100%" data-height="480" data-zoom="13" data-lat="10" data-lon="20" style="background-image: url(https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480.png?lang=en); height: 480px;" href="/wiki/Special:Map/13/10/20/en"></a><div class="thumbcaption">"Foo</div></div></div>
+<div class="mw-kartographer-container mw-kartographer-full thumb tright"><div class="thumbinner" style="width: 100%;"><a class="mw-kartographer-map" mw-data="interface" data-style="osm-intl" data-width="100%" data-height="480" data-zoom="13" data-lat="10" data-lon="20" style="background-image: url(https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480.png?lang=en); height: 480px;" href="/wiki/Special:Map/13/10/20/en"></a><div class="thumbcaption">Foo is a <a rel="nofollow" class="external text" href="https://example.com">bar</a></div></div></div>
 &lt;mapframe latitude=10 longitude=20 zoom=13 width=full height=480 text="<div>Muhaha</div>" /&gt;
 
 !! end
