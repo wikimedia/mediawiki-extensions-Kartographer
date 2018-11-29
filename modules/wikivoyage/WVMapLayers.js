@@ -83,6 +83,7 @@ module.WVMapLayers = ( function ( wikivoyage, ControlLayers ) {
 	WVMapLayers.prototype.datalayer = function ( id, layer ) {
 		var self = this;
 		if ( typeof id === 'object' ) {
+			// eslint-disable-next-line jquery/no-each-util
 			$.each( id, function ( group, groupLayer ) {
 				self.datalayer( group, groupLayer );
 			} );

@@ -61,9 +61,9 @@ module.exports = ( function ( router, kartolink ) {
 	mw.hook( 'wikipage.content' ).add( function () {
 
 		// `wikipage.content` may be fired more than once.
-		$.each( maplinks, function () {
+		while ( maplinks.length ) {
 			maplinks.pop().$container.off( 'click.kartographer' );
-		} );
+		}
 
 		// Some links might be displayed outside of $content, so we need to
 		// search outside. This is an anti-pattern and should be improved...

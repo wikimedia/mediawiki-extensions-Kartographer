@@ -31,8 +31,8 @@ ve.ce.MWMapsNode = function VeCeMWMaps( model, config ) {
 	this.geoJson = null;
 	this.mapData = {};
 
-	this.updateMapPosition = $.debounce( 300, $.proxy( this.updateMapPosition, this ) );
-	this.updateGeoJson = $.debounce( 300, $.proxy( this.updateGeoJson, this ) );
+	this.updateMapPosition = OO.ui.debounce( this.updateMapPosition.bind( this ), 300 );
+	this.updateGeoJson = OO.ui.debounce( this.updateGeoJson.bind( this ), 300 );
 
 	// Events
 	this.model.connect( this, { attributeChange: 'onAttributeChange' } );
