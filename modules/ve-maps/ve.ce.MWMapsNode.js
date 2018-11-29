@@ -20,6 +20,7 @@ ve.ce.MWMapsNode = function VeCeMWMaps( model, config ) {
 	config = config || {};
 
 	this.$map = $( '<div>' ).addClass( 'mw-kartographer-map' );
+	this.$thumbinner = $( '<div>' ).addClass( 'thumbinner' );
 
 	// Parent constructor
 	ve.ce.MWMapsNode.super.apply( this, arguments );
@@ -51,7 +52,7 @@ ve.ce.MWMapsNode = function VeCeMWMaps( model, config ) {
 		.empty()
 		.addClass( 've-ce-mwMapsNode mw-kartographer-container thumb' )
 		.append(
-			$( '<div>' ).addClass( 'thumbinner' ).append(
+			this.$thumbinner.append(
 				this.$map, $caption
 			)
 		);
@@ -157,6 +158,8 @@ ve.ce.MWMapsNode.prototype.update = function () {
 		.addClass( alignClasses[ align ] );
 	this.$map
 		.css( this.model.getCurrentDimensions() );
+	this.$thumbinner
+		.css( 'width', this.model.getCurrentDimensions().width );
 };
 
 /**
