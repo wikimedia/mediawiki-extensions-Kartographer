@@ -2,11 +2,10 @@
 
 namespace Kartographer\Tests;
 
-use Kartographer\SimpleStyleParser;
+use Kartographer\Tests\Mock\MockSimpleStyleParser;
 use MediaWikiTestCase;
 use Parser;
 use ParserOptions;
-use Status;
 use Title;
 
 /**
@@ -59,14 +58,5 @@ class ValidationTest extends MediaWikiTestCase {
 		}
 
 		return $result;
-	}
-}
-
-class MockSimpleStyleParser extends SimpleStyleParser {
-	protected function sanitize( &$json ) {
-	}
-
-	protected function normalize( array &$json ) {
-		return Status::newGood( $json );
 	}
 }
