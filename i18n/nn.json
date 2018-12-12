@@ -5,6 +5,7 @@
 			"Njardarlogar"
 		]
 	},
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia-kart] | Kartdata © [https://www.openstreetmap.org/copyright OpenStreetMap-bidragsytarar]",
 	"kartographer-broken-category": "Sider med uverksame kart",
 	"leafletdraw-draw-toolbar-actions-text": "Bryt av",
 	"leafletdraw-draw-toolbar-buttons-circle": "Teikn ein sirkel",
