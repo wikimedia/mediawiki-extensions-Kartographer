@@ -44,7 +44,11 @@ class ApiQueryMapData extends ApiQueryBase {
 				$this->setContinueEnumParameter( 'continue', $pageId );
 				break;
 			}
+			// FIXME: pp_value can be corrupt due to trimming, which emits
+			// "PHP Warning: data error" and returns false (T184128).
+			Wikimedia\suppressWarnings();
 			$status = FormatJson::parse( gzdecode( $row->pp_value ) );
+			Wikimedia\restoreWarnings();
 			$data = $status->getValue();
 			if ( !$status->isOK() || !is_object( $data ) ) {
 				continue;
