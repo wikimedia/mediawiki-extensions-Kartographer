@@ -11,19 +11,19 @@
 			"links": [
 				{
 					"type": "map",
-					"url": "http://mapper.acme.com/?ll={latitude},{longitude}&z={zoom}&t=M&marker0={latitude},{longitude},{title}"
+					"url": "https://mapper.acme.com/?ll={latitude},{longitude}&z={zoom}&t=M&marker0={latitude},{longitude},{title}"
 				},
 				{
 					"type": "satellite",
-					"url": "http://mapper.acme.com/?ll={latitude},{longitude}&z={zoom}&t=H&marker0={latitude},{longitude},{title}"
+					"url": "https://mapper.acme.com/?ll={latitude},{longitude}&z={zoom}&t=H&marker0={latitude},{longitude},{title}"
 				},
 				{
 					"type": "terrain",
-					"url": "http://mapper.acme.com/?ll={latitude},{longitude}&z={zoom}&t=R&marker0={latitude},{longitude},{title}"
+					"url": "https://mapper.acme.com/?ll={latitude},{longitude}&z={zoom}&t=R&marker0={latitude},{longitude},{title}"
 				},
 				{
 					"type": "topo",
-					"url": "http://mapper.acme.com/?ll={latitude},{longitude}&z={zoom}&t=T&marker0={latitude},{longitude},{title}"
+					"url": "https://mapper.acme.com/?ll={latitude},{longitude}&z={zoom}&t=T&marker0={latitude},{longitude},{title}"
 				}
 			]
 		},
@@ -45,7 +45,7 @@
 			"links": [
 				{
 					"type": "satellite",
-					"url": "http://www.arctic.io/wikipedia/?lon={longitude}&lat={latitude}&title={title}"
+					"url": "https://www.arctic.io/wikipedia/?lon={longitude}&lat={latitude}&title={title}"
 				}
 			]
 		},
@@ -72,11 +72,11 @@
 			"links": [
 				{
 					"type": "satellite",
-					"url": "http://www.blue-marble.de?lon={longitude}&nlat={latitude}&borders&geonames&townnames&zoom&overlay=14&base=7"
+					"url": "https://www.blue-marble.de?lon={longitude}&nlat={latitude}&borders&geonames&townnames&zoom&overlay=14&base=7"
 				},
 				{
 					"type": "other",
-					"url": "http://www.blue-marble.de/nightlights?ll={latitude},{longitude}"
+					"url": "https://www.blue-marble.de/nightlights?ll={latitude},{longitude}"
 				}
 			]
 		},
@@ -139,7 +139,7 @@
 			"links": [
 				{
 					"type": "map",
-					"url": "http://www.mapquest.com/?center={latitude},{longitude}&zoom={zoom}&q={title}"
+					"url": "https://www.mapquest.com/?center={latitude},{longitude}&zoom={zoom}&q={title}"
 				}
 			]
 		},
