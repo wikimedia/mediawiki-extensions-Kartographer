@@ -92,7 +92,7 @@ class SpecialMap extends SpecialPage {
 			}
 		}
 
-		$lang = isset( $matches['lang'] ) ? $matches['lang'] : 'local';
+		$lang = $matches['lang'] ?? 'local';
 
 		return [
 			(int)$matches['zoom'],

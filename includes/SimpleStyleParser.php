@@ -285,7 +285,7 @@ class SimpleStyleParser {
 	 * @param object &$properties
 	 */
 	private function sanitizeProperties( &$properties ) {
-		$saveUnparsed = isset( $this->options['saveUnparsed'] ) && $this->options['saveUnparsed'];
+		$saveUnparsed = $this->options['saveUnparsed'] ?? false;
 		foreach ( self::$parsedProps as $prop ) {
 			if ( property_exists( $properties, $prop ) ) {
 				$property = &$properties->$prop;
