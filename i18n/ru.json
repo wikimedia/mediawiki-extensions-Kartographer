@@ -13,7 +13,8 @@
 			"Ole Yves",
 			"Stjn",
 			"Vlad5250",
-			"Shaleych"
+			"Shaleych",
+			"Nk88"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Выполняет проверку данных для расширения Kartographer",
@@ -108,6 +109,7 @@
 	"visualeditor-mwmapsdialog-options": "Настройки",
 	"visualeditor-mwmapsdialog-align": "Выравнивание",
 	"visualeditor-mwmapsdialog-language": "Язык",
+	"visualeditor-mwmapsdialog-help-title": "Узнайте о создании и редактировании карт.",
 	"visualeditor-mwmapsdialog-position-lat": "Широта",
 	"visualeditor-mwmapsdialog-position-lon": "Долгота",
 	"visualeditor-mwmapsdialog-position-zoom": "Масштаб",
