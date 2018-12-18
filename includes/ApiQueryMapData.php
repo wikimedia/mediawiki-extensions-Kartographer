@@ -6,6 +6,7 @@ use ApiBase;
 use ApiQuery;
 use ApiQueryBase;
 use FormatJson;
+use Wikimedia;
 
 class ApiQueryMapData extends ApiQueryBase {
 
