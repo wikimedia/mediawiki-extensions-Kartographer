@@ -6,7 +6,6 @@ use ApiBase;
 use ApiQuery;
 use ApiQueryBase;
 use FormatJson;
-use Wikimedia;
 
 class ApiQueryMapData extends ApiQueryBase {
 
@@ -47,9 +46,10 @@ class ApiQueryMapData extends ApiQueryBase {
 			}
 			// FIXME: pp_value can be corrupt due to trimming, which emits
 			// "PHP Warning: data error" and returns false (T184128).
-			Wikimedia\suppressWarnings();
-			$status = FormatJson::parse( gzdecode( $row->pp_value ) );
-			Wikimedia\restoreWarnings();
+			\Wikimedia\suppressWarnings();
+			$decoded = gzdecode( $row->pp_value );
+			\Wikimedia\restoreWarnings();
+			$status = FormatJson::parse( $decoded );
 			$data = $status->getValue();
 			if ( !$status->isOK() || !is_object( $data ) ) {
 				continue;
