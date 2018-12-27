@@ -37,7 +37,7 @@
 	"kartographer-tracking-category-desc": "Sivu sisältää kartan",
 	"kartographer-specialmap-invalid-coordinates": "Annetut koordinaatit ovat virheelliset",
 	"kartographer-linktype-aerial": "Ilmakuva",
-	"kartographer-linktype-map": "Kartta",
+	"kartographer-linktype-map": "Peruskartat",
 	"kartographer-linktype-other": "Muu",
 	"kartographer-linktype-satellite": "Satelliitti",
 	"kartographer-linktype-terrain": "Maanpinta",
