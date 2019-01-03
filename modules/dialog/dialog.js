@@ -63,7 +63,7 @@ module.Dialog = ( function ( CloseFullScreenControl, router ) {
 					dialog.mapDetailsButton = new OO.ui.ToggleButtonWidget( {
 						label: mw.msg( 'kartographer-sidebar-togglebutton' ),
 						icon: 'newWindow',
-						iconTitle: mw.msg( 'kartographer-sidebar-togglebutton' )
+						title: mw.msg( 'kartographer-sidebar-togglebutton' )
 					} );
 					dialog.mapDetailsButton.connect( dialog, { change: 'toggleSideBar' } );
 				}
