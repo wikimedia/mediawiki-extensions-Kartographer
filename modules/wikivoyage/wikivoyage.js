@@ -79,7 +79,7 @@ module.wikivoyage = ( function () {
 			if ( options.wvIsExternal ) {
 				icon = new OO.ui.IconWidget( {
 					icon: 'linkExternal',
-					iconTitle: mw.msg( 'kartographer-wv-warning-external-source-message' ),
+					title: mw.msg( 'kartographer-wv-warning-external-source-message' ),
 					classes: [ 'leaflet-control-layers-oo-ui-icon' ]
 				} );
 				icon = icon.$element[ 0 ].outerHTML;
