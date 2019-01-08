@@ -4,7 +4,8 @@
 			"Mormegil",
 			"Kvetoslav47",
 			"Matěj Suchánek",
-			"Danny B."
+			"Danny B.",
+			"Dvorapa"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Mapy Wikimedia] | Mapová data © [https://www.openstreetmap.org/copyright přispěvatelé OpenStreetMap]",
@@ -17,9 +18,23 @@
 	"kartographer-error-bad_attr": "Atribut „$1“ má neplatnou hodnotu",
 	"kartographer-error-bad_data": "JSON obsah není platný GeoJSON+simplestyle",
 	"kartographer-error-latlon": "Zadány by měly být buď oba parametry „latitude“ a „longitude“, nebo ani jeden",
+	"kartographer-error-title": "„$1“ není platný název stránky s mapovými daty",
 	"kartographer-tracking-category": "Stránky s mapami",
 	"kartographer-tracking-category-desc": "Tato stránka obsahuje mapu",
 	"kartographer-specialmap-invalid-coordinates": "Zadány neplatné souřadnice",
+	"kartographer.css": "/* Zde uvedené CSS bude ovlivňovat každou stránku obsahující mapu */",
+	"kartographer.js": "/* Zde uvedený JavaScript bude použit pro všechny uživatele při načítání každé stránky obsahující mapu */",
+	"kartographer-linktype-aerial": "Letecké",
+	"kartographer-linktype-map": "Standardní mapy",
+	"kartographer-linktype-other": "Jiné",
+	"kartographer-linktype-satellite": "Satelitní",
+	"kartographer-linktype-topo": "Topografické",
+	"kartographer-sidebar-coordinates": "Souřadnice",
+	"kartographer-sidebar-filterdropdown": "Vyberte typ mapy",
+	"kartographer-sidebar-latitude": "Šířka",
+	"kartographer-sidebar-longitude": "Délka",
+	"kartographer-sidebar-mapdetails": "Externí mapy",
+	"kartographer-sidebar-togglebutton": "Externí mapy",
 	"leafletdraw-draw-handlers-circle-radius": "Poloměr",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "Kliknutím a tažením budete kreslit kruh",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Kliknutím do mapy umístíte značku",
@@ -58,6 +73,9 @@
 	"kartographer-fullscreen-close": "Zavřít",
 	"kartographer-fullscreen-text": "Zobrazit přes celou obrazovku",
 	"visualeditor-mwmapsdialog-align": "Zarovnání",
+	"visualeditor-mwmapsdialog-language": "Jazyk",
 	"visualeditor-mwmapsdialog-size": "Velikost",
-	"visualeditor-mwmapsdialog-title": "Mapa"
+	"visualeditor-mwmapsdialog-title": "Mapa",
+	"visualeditor-mwmapscontextitem-nosupport": "Tato mapa obsahuje dynamické prvky a zatím ji lze editovat pouze v režimu zdrojového kódu.",
+	"visualeditor-mwmapscontextitem-title": "Mapa"
 }
