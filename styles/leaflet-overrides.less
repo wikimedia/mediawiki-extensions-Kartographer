@@ -25,9 +25,11 @@
 				color: @color-primary--hover;
 				text-decoration: underline;
 			}
+
 			&:active {
 				color: @color-primary--active;
 			}
+
 			&:focus {
 				color: @color-primary--focus;
 			}
@@ -101,11 +103,13 @@
 			color: @color-base--hover;
 			border-color: @border-color-base--hover;
 		}
+
 		&:active {
 			background-color: @background-color-framed--active;
 			color: @color-base--active;
 			border-color: @border-color-base--active;
 		}
+
 		&:focus {
 			border-color: @color-primary--focus;
 			outline: 0;
@@ -120,9 +124,11 @@
 				border-radius: @border-radius-base;
 			}
 		}
+
 		&:first-child:not( :only-of-type ) {
 			border-radius: @border-radius-base @border-radius-base 0 0;
 		}
+
 		&:last-child {
 			border-bottom: @border-width-base solid;
 			border-color: @border-color-base;
@@ -131,10 +137,12 @@
 				border-color: @border-color-base--hover;
 				border-bottom-width: @border-width-base;
 			}
+
 			&:active {
 				border-bottom-width: @border-width-base;
 				border-color: @border-color-base--active;
 			}
+
 			&:not( :only-of-type ) {
 				border-radius: 0 0 @border-radius-base @border-radius-base;
 			}

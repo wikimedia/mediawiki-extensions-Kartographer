@@ -1,33 +1,32 @@
 {
-  "name": "Kartographer",
-  "version": "0.0.0",
-  "private": true,
-  "description": "Build tools for the Kartographer MediaWiki extension.",
-  "scripts": {
-    "doc": "jsduck",
-    "test": "grunt test",
-    "build-lib": ". ./bin/build.sh"
-  },
-  "devDependencies": {
-    "browserify": "16.2.2",
-    "eslint-config-wikimedia": "0.9.0",
-    "grunt": "1.0.3",
-    "grunt-banana-checker": "0.6.0",
-    "grunt-contrib-watch": "1.1.0",
-    "grunt-eslint": "21.0.0",
-    "grunt-jsonlint": "1.1.0",
-    "grunt-stylelint": "0.10.1",
-    "grunt-svgmin": "5.0.0",
-    "prunecluster": "^2.0.0-beta.3",
-    "rollup": "^0.36.1",
-    "rollup-plugin-commonjs": "^5.0.4",
-    "stylelint": "9.2.0",
-    "stylelint-config-wikimedia": "0.4.3"
-  },
-  "dependencies": {
-    "@wikimedia/leaflet-sleep": "^0.5.1",
-    "@wikimedia/mapdata": "^0.5.0",
-    "mapbox.js": "3.1.1",
-    "wikimedia-ui-base": "0.12.0"
-  }
+	"name": "Kartographer",
+	"version": "0.0.0",
+	"private": true,
+	"description": "Build tools for the Kartographer MediaWiki extension.",
+	"scripts": {
+		"doc": "jsduck",
+		"test": "grunt test",
+		"build-lib": ". ./bin/build.sh"
+	},
+	"devDependencies": {
+		"browserify": "16.2.2",
+		"eslint-config-wikimedia": "0.9.0",
+		"grunt": "1.0.3",
+		"grunt-banana-checker": "0.6.0",
+		"grunt-contrib-watch": "1.1.0",
+		"grunt-eslint": "21.0.0",
+		"grunt-jsonlint": "1.1.0",
+		"grunt-stylelint": "0.10.1",
+		"grunt-svgmin": "5.0.0",
+		"prunecluster": "^2.0.0-beta.3",
+		"rollup": "^0.36.1",
+		"rollup-plugin-commonjs": "^5.0.4",
+		"stylelint-config-wikimedia": "0.5.0"
+	},
+	"dependencies": {
+		"@wikimedia/leaflet-sleep": "^0.5.1",
+		"@wikimedia/mapdata": "^0.5.0",
+		"mapbox.js": "3.1.1",
+		"wikimedia-ui-base": "0.12.0"
+	}
 }
