@@ -33,6 +33,8 @@
 	"kartographer-sidebar-coordinates": "Coordonate",
 	"kartographer-sidebar-filterdropdown": "Selectați tipul de hartă",
 	"kartographer-sidebar-externalservices": "Servicii externe",
+	"kartographer-sidebar-externalservices-show-featured": "Vezi mai puține",
+	"kartographer-sidebar-externalservices-show-all": "Vezi mai multe",
 	"kartographer-sidebar-latitude": "Latitudine",
 	"kartographer-sidebar-longitude": "Longitudine",
 	"kartographer-sidebar-mapdetails": "Detalii despre hartă",
