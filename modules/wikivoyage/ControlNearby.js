@@ -33,10 +33,10 @@ module.ControlNearby = ( function ( wikivoyage, NearbyArticles, pruneClusterLib 
 				target: '_blank'
 			}, wgPageName ),
 			title = mw.html.element( 'div', {
-				'class': 'marker-title'
+				class: 'marker-title'
 			}, new mw.html.Raw( link ) ),
 			description = mw.html.element( 'div', {
-				'class': 'marker-description'
+				class: 'marker-description'
 			}, new mw.html.Raw( img ) );
 		return title + description;
 	}

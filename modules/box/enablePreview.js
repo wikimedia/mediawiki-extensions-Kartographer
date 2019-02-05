@@ -10,7 +10,7 @@
  */
 module.enablePreview = ( function () {
 
-	if ( mw.config.get( 'wgAction' ) === 'submit' && !$( 'html' ).hasClass( 've-active' ) ) {
+	if ( mw.config.get( 'wgAction' ) === 'submit' && !$( document.documentElement ).hasClass( 've-active' ) ) {
 		mw.loader.using( 'ext.kartographer.preview' );
 	}
 

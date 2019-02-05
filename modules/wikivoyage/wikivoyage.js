@@ -20,7 +20,7 @@ module.wikivoyage = ( function () {
 		}
 		messageDialog = new OO.ui.MessageDialog();
 		windowManager = new OO.ui.WindowManager();
-		$( 'body' ).append( windowManager.$element );
+		$( document.body ).append( windowManager.$element );
 		windowManager.addWindows( [ messageDialog ] );
 		return windowManager;
 	}
@@ -88,7 +88,7 @@ module.wikivoyage = ( function () {
 					src: pathToKartographerImages + 'Wikimedia-logo.png',
 					srcset: pathToKartographerImages + 'Wikimedia-logo@1.5x.png 1.5x, ' +
 					pathToKartographerImages + 'Wikimedia-logo@2x.png 2x',
-					'class': 'leaflet-control-layers-wm-icon'
+					class: 'leaflet-control-layers-wm-icon'
 				} );
 			}
 			return mw.html.escape( name ) + '&nbsp;' + icon;
