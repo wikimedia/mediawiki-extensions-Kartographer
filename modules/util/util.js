@@ -1,4 +1,3 @@
-/* globals require */
 /**
  * Kartographer utility functions.
  *
