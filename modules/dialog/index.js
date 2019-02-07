@@ -18,7 +18,7 @@ module.exports = ( function ( CloseFullScreenControl, Dialog, router ) {
 	function getWindowManager() {
 		if ( !windowManager ) {
 			windowManager = new OO.ui.WindowManager();
-			$( 'body' ).append( windowManager.$element );
+			$( document.body ).append( windowManager.$element );
 			getWindowManager().addWindows( [ getMapDialog() ] );
 		}
 		return windowManager;

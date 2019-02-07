@@ -83,7 +83,7 @@ module.exports = ( function () {
 		/**
 		 * @property {jQuery}
 		 */
-		$container = sidebar.$el = $( '<div class="mw-kartographer-mapDialog-sidebar">' );
+		$container = sidebar.$el = $( '<div>' ).addClass( 'mw-kartographer-mapDialog-sidebar' );
 
 		/**
 		 * @property {Object}
@@ -132,6 +132,8 @@ module.exports = ( function () {
 	 * Renders the map details partial into its container.
 	 */
 	SideBar.prototype.renderMapDetails = function () {
+		// FIXME: Store $coords in memory to avoid selector here.
+		// eslint-disable-next-line jquery/no-global-selector
 		var $coords = $( '.mw-kartographer-mapdetails-coordinates' );
 
 		if ( !$coords.length ) {

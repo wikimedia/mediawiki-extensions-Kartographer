@@ -87,7 +87,7 @@ module.exports = ( function ( util, kartolink, router ) {
 						title: mw.msg( 'kartographer-fullscreen-text' ),
 						framed: true
 					} ),
-					$div = $( '<div class="mw-kartographer-fullScreen"></div>' ).append( button.$element );
+					$div = $( '<div>' ).addClass( 'mw-kartographer-fullScreen' ).append( button.$element );
 
 				$container.append( $div );
 				$container.append(
