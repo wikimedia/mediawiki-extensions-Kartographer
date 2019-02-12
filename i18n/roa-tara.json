@@ -4,8 +4,8 @@
 			"Joetaras"
 		]
 	},
-	"apihelp-query+mapdata-description": "Cirche tutte le date d'a mappe da 'a pàgene <kbd>Metallica</kbd>",
-	"apihelp-query+mapdata-summary": "Cirche tutte le date d'a mappe da 'a pàgene <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-description": "Analizze le date Kartographer d'a mappe",
+	"apihelp-query+mapdata-summary": "Cirche tutte le date Kartographer d'a mappe pe le pàggene date",
 	"apihelp-query+mapdata-example-1": "Cirche tutte le date d'a mappe da 'a pàgene <kbd>Metallica</kbd>",
 	"kartographer-error-context-multi": "&lt;$1&gt; probbleme:\n$2",
 	"leafletdraw-edit-toolbar-actions-clearall-text": "Pulizze tutte",
