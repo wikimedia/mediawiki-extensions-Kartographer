@@ -1,0 +1,31 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mogoeilor"
+		]
+	},
+	"kartographer-tracking-category": "بٱلگاْیٱلی کاْ نٱشقاْ دارن",
+	"kartographer-tracking-category-desc": "بٱلگاْیٱلی کاْ نٱشقاْ دارن",
+	"kartographer-linktype-map": "نٱشقاْیٱل اوستاندارد",
+	"kartographer-linktype-other": "دیٱری",
+	"kartographer-linktype-topo": "توپوگرافی",
+	"kartographer-sidebar-coordinates": "تیارگٱیٱل",
+	"kartographer-sidebar-externalservices": "خڌمات نٱشقاْیی",
+	"kartographer-sidebar-service": "خڌمت",
+	"kartographer-sidebar-togglebutton": "نٱشقاْ خارجی",
+	"leafletdraw-draw-toolbar-actions-text": "ٱنجومشیڤ کردن",
+	"leafletdraw-draw-toolbar-buttons-circle": "یٱ دایراْ بکٱشین",
+	"leafletdraw-edit-toolbar-actions-cancel-text": "ٱنجومشیڤ کردن",
+	"leafletdraw-edit-toolbar-actions-save-text": "کۊ کردن",
+	"leafletdraw-edit-toolbar-actions-save-title": "کۊکرڌن آلشدکاریٱل",
+	"leafletdraw-edit-toolbar-actions-clearall-text": "پاک کردن هٱماْ",
+	"leafletdraw-edit-toolbar-actions-clearall-title": "پاک کردن تٱموم لایاْیٱل",
+	"leafletdraw-edit-toolbar-buttons-edit": "آلشدکاری لایاْیٱل",
+	"leafletdraw-edit-toolbar-buttons-editdisabled": "هیژ لایاْیی سی آلشدکاری نیڌ",
+	"leafletdraw-edit-toolbar-buttons-remove": "پاکسا کردن لایاْیٱل",
+	"leafletdraw-edit-toolbar-buttons-removedisabled": "هیژ لایاْیی سی پاکسا کردن نی",
+	"leafletdraw-draw-toolbar-finish-text": "تٱموم کردن",
+	"mapbox-control-zoomin-title": "گٱپ کردن",
+	"mapbox-control-zoomout-title": "کۊچیر کردن",
+	"kartographer-fullscreen-close": "بٱسدن"
+}
