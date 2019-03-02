@@ -251,7 +251,7 @@ class SimpleStyleParser {
 				break;
 
 			case 'page':
-				if ( !class_exists( 'JsonConfig\\JCSingleton' ) ) {
+				if ( !class_exists( JCSingleton::class ) ) {
 					return Status::newFatal( 'kartographer-error-service-name', $object->service );
 				}
 				$jct = JCSingleton::parseTitle( $object->title, NS_DATA );
