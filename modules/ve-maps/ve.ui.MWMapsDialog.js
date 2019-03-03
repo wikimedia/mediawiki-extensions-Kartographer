@@ -390,8 +390,6 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 
 			this.input.clearUndoStack();
 
-			this.actions.setMode( this.selectedNode ? 'edit' : 'insert' );
-
 			if ( this.selectedNode && !inline ) {
 				this.scalable = this.selectedNode.getScalable();
 			} else {
