@@ -133,7 +133,7 @@ module.exports = ( function () {
 	 */
 	SideBar.prototype.renderMapDetails = function () {
 		// FIXME: Store $coords in memory to avoid selector here.
-		// eslint-disable-next-line jquery/no-global-selector
+		// eslint-disable-next-line no-jquery/no-global-selector
 		var $coords = $( '.mw-kartographer-mapdetails-coordinates' );
 
 		if ( !$coords.length ) {
@@ -235,7 +235,7 @@ module.exports = ( function () {
 					regular = [],
 					services = sidebar.byType[ selectedType ];
 
-				// eslint-disable-next-line jquery/no-each-util
+				// eslint-disable-next-line no-jquery/no-each-util
 				$.each( services, function ( serviceId, links ) {
 					// Only one link is supported per type per service for now.
 					var link = links[ 0 ],
@@ -350,7 +350,7 @@ module.exports = ( function () {
 		var items,
 			labels = this.metadata.localization;
 
-		// eslint-disable-next-line jquery/no-map-util
+		// eslint-disable-next-line no-jquery/no-map-util
 		items = $.map( this.metadata.types, function ( type ) {
 			return new OO.ui.MenuOptionWidget( {
 				data: type,

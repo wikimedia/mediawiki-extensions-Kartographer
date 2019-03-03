@@ -68,7 +68,7 @@ module.exports = ( function ( router, kartolink ) {
 		// Some links might be displayed outside of $content, so we need to
 		// search outside. This is an anti-pattern and should be improved...
 		// Meanwhile .mw-body is better than searching the full document.
-		// eslint-disable-next-line jquery/no-global-selector
+		// eslint-disable-next-line no-jquery/no-global-selector
 		$( '.mw-kartographer-maplink', '.mw-body' ).each( function ( index ) {
 			var data = getMapData( this );
 			maplinks[ index ] = kartolink.link( {

@@ -6,3 +6,4 @@ vendor/
 composer.lock
 docs/
 .DS_Store
+.eslintcache

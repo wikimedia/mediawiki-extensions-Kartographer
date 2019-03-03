@@ -299,7 +299,7 @@ module.Map = ( function ( util, OpenFullScreenControl, dataLayerOpts, ScaleContr
 			}
 
 			if ( this.parentMap ) {
-				// eslint-disable-next-line jquery/no-each-util
+				// eslint-disable-next-line no-jquery/no-each-util
 				$.each( this.parentMap.dataLayers, function ( groupId, layer ) {
 					var newLayer = map.addGeoJSONLayer( groupId, layer.getGeoJSON(), layer.options );
 					newLayer.dataGroup = layer.group;
@@ -386,7 +386,7 @@ module.Map = ( function ( util, OpenFullScreenControl, dataLayerOpts, ScaleContr
 			}
 
 			return DataManager.loadGroups( dataGroups ).then( function ( dataGroups ) {
-				// eslint-disable-next-line jquery/no-each-util
+				// eslint-disable-next-line no-jquery/no-each-util
 				$.each( dataGroups, function ( key, group ) {
 					var layerOptions = {
 							attribution: group.attribution
@@ -417,7 +417,7 @@ module.Map = ( function ( util, OpenFullScreenControl, dataLayerOpts, ScaleContr
 			options = options || {};
 
 			return DataManager.load( groupData ).then( function ( dataGroups ) {
-				// eslint-disable-next-line jquery/no-each-util
+				// eslint-disable-next-line no-jquery/no-each-util
 				$.each( dataGroups, function ( key, group ) {
 					var groupId = inlineDataLayerKey + inlineDataLayerId++,
 						layerOptions = {
