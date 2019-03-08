@@ -263,7 +263,7 @@ ve.ce.MWMapsNode.prototype.updateStatic = function ( width, height ) {
 
 	url = this.model.getUrl( width, height );
 
-	this.$imageLoader = this.$( '<img>' ).on( 'load', function () {
+	this.$imageLoader = $( '<img>' ).on( 'load', function () {
 		node.$map.css( 'backgroundImage', 'url(' + url + ')' );
 	} ).attr( 'src', url );
 };
