@@ -169,7 +169,6 @@ class KartographerTest extends MediaWikiTestCase {
 		$this->assertArrayEquals(
 			array_keys( $expectedStyles ), array_unique( $output->getModuleStyles() )
 		);
-		$this->assertArrayEquals( [], array_unique( $output->getModuleScripts() ) );
 	}
 
 	public function provideResourceModulesData() {
