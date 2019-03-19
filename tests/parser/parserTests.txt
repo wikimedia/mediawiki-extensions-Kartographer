@@ -105,7 +105,6 @@
 </p>
 <div class="mw-kartographer-error">&lt;maplink&gt;: Attribute "class" has an invalid value</div>
 <div class="mw-kartographer-error">&lt;maplink&gt;: Attribute "class" has an invalid value</div>
-
 !! end
 
 !! test
@@ -161,7 +160,6 @@
 <div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" mw-data="interface" data-style="osm-intl" data-width="50%" data-height="480" data-zoom="13" data-lat="10" data-lon="20" style="background-image: url(https://maps.wikimedia.org/img/osm-intl,13,10,20,300x480.png?lang=en); height: 480px;" href="/wiki/Special:Map/13/10/20/en"></a><div class="thumbcaption">Frameless gets cynically ignored here</div></div></div>
 <div class="mw-kartographer-container mw-kartographer-full thumb tright"><div class="thumbinner" style="width: 100%;"><a class="mw-kartographer-map" mw-data="interface" data-style="osm-intl" data-width="100%" data-height="480" data-zoom="13" data-lat="10" data-lon="20" style="background-image: url(https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480.png?lang=en); height: 480px;" href="/wiki/Special:Map/13/10/20/en"></a><div class="thumbcaption">Foo is a <a rel="nofollow" class="external text" href="https://example.com">bar</a></div></div></div>
 &lt;mapframe latitude=10 longitude=20 zoom=13 width=full height=480 text="<div>Muhaha</div>" /&gt;
-
 !! end
 
 !! test
@@ -194,13 +192,11 @@ Error messages
 <div class="mw-kartographer-error"><p>&lt;maplink&gt; problems:
 </p>
 <ul><li>Couldn't parse JSON: Syntax error</li>
-<li>Attribute "longitude" has an invalid value</li></ul>
-</div>
+<li>Attribute "longitude" has an invalid value</li></ul></div>
 <div class="mw-kartographer-error"><p>&lt;mapframe&gt; problems:
 </p>
 <ul><li>Attribute "mapstyle" has an invalid value</li>
-<li>Attribute "align" has an invalid value</li></ul>
-</div>
+<li>Attribute "align" has an invalid value</li></ul></div>
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
@@ -209,11 +205,9 @@ Error messages
 </p>
 <ul><li>The JSON content is not valid GeoJSON+simplestyle</li>
 <li>Attribute "mapstyle" has an invalid value</li>
-<li>Attribute "align" has an invalid value</li></ul>
-</div>
+<li>Attribute "align" has an invalid value</li></ul></div>
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Either both "latitude" and "longitude" parameters should be supplied or neither of them</div>
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Either both "latitude" and "longitude" parameters should be supplied or neither of them</div>
-
 !! end
 
 !! test
@@ -224,7 +218,6 @@ language=ru
 <maplink zoom=0 latitude=0 longitude=0>fail</maplink>
 !! result
 <div class="mw-kartographer-error">&lt;maplink&gt;: Ошибка JSON: Синтаксическая ошибка</div>
-
 !! end
 
 !! test
@@ -327,7 +320,6 @@ wgKartographerWikivoyageMode=true
 </p>
 <div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" mw-data="interface" data-style="osm-intl" data-width="300" data-height="300" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;ponies&quot;]" style="background-image: url(https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300.png?lang=en&amp;domain=example.org&amp;title=Parser+test&amp;groups=ponies); height: 300px;" href="/wiki/Special:Map/0/0/0/en"></a><div class="thumbcaption"></div></div></div>
 <div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" mw-data="interface" data-style="osm-intl" data-width="300" data-height="300" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;ponies&quot;,&quot;horses&quot;]" style="background-image: url(https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300.png?lang=en&amp;domain=example.org&amp;title=Parser+test&amp;groups=ponies%2Chorses); height: 300px;" href="/wiki/Special:Map/0/0/0/en"></a><div class="thumbcaption"></div></div></div>
-
 !! end
 
 !! test
@@ -353,7 +345,6 @@ wgKartographerWikivoyageMode=false
 <p><a class="mw-kartographer-maplink" mw-data="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0">0°0′0″N 0°0′0″E</a>
 </p>
 <div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" mw-data="interface" data-style="osm-intl" data-width="300" data-height="300" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;_6a13e7df56bf97361c4d92be23c3d6de3311e4c8&quot;]" style="background-image: url(https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300.png?lang=en&amp;domain=example.org&amp;title=Parser+test&amp;groups=_6a13e7df56bf97361c4d92be23c3d6de3311e4c8); height: 300px;" href="/wiki/Special:Map/0/0/0/en"></a><div class="thumbcaption"></div></div></div>
-
 !! end
 
 !! test
@@ -375,7 +366,6 @@ wgKartographerWikivoyageMode=true
 <a class="mw-kartographer-maplink" mw-data="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0">0°0′0″N 0°0′0″E</a>
 </p>
 <div class="mw-kartographer-error">&lt;maplink&gt;: Attribute "show" has an invalid value</div>
-
 !! end
 
 !! test
@@ -397,5 +387,4 @@ ExternalData errors
 </maplink>
 !! result
 <div class="mw-kartographer-error">&lt;maplink&gt;: The JSON content is not valid GeoJSON+simplestyle</div>
-
 !! end
