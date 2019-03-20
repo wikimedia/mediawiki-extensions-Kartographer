@@ -122,15 +122,15 @@
 			"links": [
 				{
 					"type": "map",
-					"url": "https://www.here.com/location/?map={latitude},{longitude},{zoom},normal&msg={title}"
+					"url": "https://wego.here.com/?map={latitude},{longitude},{zoom},normal&msg={title}"
 				},
 				{
 					"type": "satellite",
-					"url": "https://www.here.com/location/?map={latitude},{longitude},{zoom},satellite&msg={title}"
+					"url": "https://wego.here.com/?map={latitude},{longitude},{zoom},satellite&msg={title}"
 				},
 				{
 					"type": "terrain",
-					"url": "https://www.here.com/location/?map={latitude},{longitude},{zoom},terrain&msg={title}"
+					"url": "https://wego.here.com/?map={latitude},{longitude},{zoom},terrain&msg={title}"
 				}
 			]
 		},
