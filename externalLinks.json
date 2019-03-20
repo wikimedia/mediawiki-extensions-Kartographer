@@ -95,7 +95,7 @@
 			"links": [
 				{
 					"type": "satellite",
-					"url": "http://www.geonames.org/maps/google_{latitude}_{longitude}.html"
+					"url": "https://www.geonames.org/maps/google_{latitude}_{longitude}.html"
 				}
 			]
 		},
@@ -180,11 +180,11 @@
 			"links": [
 				{
 					"type": "map",
-					"url": "http://wikimapia.org/#lang={language}&lat={latitude}&lon={longitude}&z={zoom}&m=w"
+					"url": "https://wikimapia.org/#lang={language}&lat={latitude}&lon={longitude}&z={zoom}&m=w"
 				},
 				{
 					"type": "satellite",
-					"url": "http://wikimapia.org/#lang={language}&lat={latitude}&lon={longitude}&z={zoom}&m=b"
+					"url": "https://wikimapia.org/#lang={language}&lat={latitude}&lon={longitude}&z={zoom}&m=b"
 				}
 			]
 		},
