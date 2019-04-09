@@ -35,7 +35,7 @@ class MapLink extends TagHandler {
 
 		$attrs = [
 			'class' => 'mw-kartographer-maplink',
-			'mw-data' => 'interface',
+			'data-mw' => 'interface',
 			'data-style' => $this->mapStyle,
 			'href' => SpecialMap::link( $this->lat, $this->lon, $this->zoom, $this->resolvedLangCode )
 				->getLocalURL()

@@ -37,8 +37,11 @@ module.exports = ( function ( router, kartolink ) {
 	 */
 	function getMapData( element ) {
 		var $el = $( element );
+		// TODO: Remove the check for mw-data when the HTML cache is expired.
 		// Prevent users from adding map divs directly via wikitext
-		if ( $el.attr( 'mw-data' ) !== 'interface' ) {
+		if ( $el.attr( 'mw-data' ) !== 'interface' &&
+			$el.attr( 'data-mw' ) !== 'interface'
+		) {
 			return null;
 		}
 

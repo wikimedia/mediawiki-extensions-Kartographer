@@ -42,8 +42,11 @@ module.exports = ( function ( util, kartobox, router ) {
 			$caption = $el.parent().find( '.thumbcaption' ),
 			captionText = '';
 
+		// TODO: Remove the check for mw-data when the HTML cache is expired.
 		// Prevent users from adding map divs directly via wikitext
-		if ( $el.attr( 'mw-data' ) !== 'interface' ) {
+		if ( $el.attr( 'mw-data' ) !== 'interface' &&
+			$el.attr( 'data-mw' ) !== 'interface'
+		) {
 			return null;
 		}
 

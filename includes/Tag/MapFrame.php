@@ -124,7 +124,7 @@ class MapFrame extends TagHandler {
 
 				$attrs = [
 					'class' => 'mw-kartographer-map',
-					'mw-data' => 'interface',
+					'data-mw' => 'interface',
 					'data-style' => $this->mapStyle,
 					'data-width' => $this->width,
 					'data-height' => $this->height,
