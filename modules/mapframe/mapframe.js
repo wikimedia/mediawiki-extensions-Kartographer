@@ -28,7 +28,7 @@ module.exports = ( function ( util, kartobox, router ) {
 	 * Gets the map data attached to an element.
 	 *
 	 * @param {HTMLElement} element Element
-	 * @return {Object|null} Map properties
+	 * @return {Object} Map properties
 	 * @return {number} return.latitude
 	 * @return {number} return.longitude
 	 * @return {number} return.zoom
@@ -41,14 +41,6 @@ module.exports = ( function ( util, kartobox, router ) {
 		var $el = $( element ),
 			$caption = $el.parent().find( '.thumbcaption' ),
 			captionText = '';
-
-		// TODO: Remove the check for mw-data when the HTML cache is expired.
-		// Prevent users from adding map divs directly via wikitext
-		if ( $el.attr( 'mw-data' ) !== 'interface' &&
-			$el.attr( 'data-mw' ) !== 'interface'
-		) {
-			return null;
-		}
 
 		if ( $caption[ 0 ] ) {
 			captionText = $caption.text();
@@ -128,10 +120,8 @@ module.exports = ( function ( util, kartobox, router ) {
 			$container = $( element ),
 			data = getMapData( container );
 
-		if ( data ) {
-			map = initMapBox( data, $container );
-			mw.hook( 'wikipage.maps' ).fire( [ map ], false /* isFullScreen */ );
-		}
+		map = initMapBox( data, $container );
+		mw.hook( 'wikipage.maps' ).fire( [ map ], false /* isFullScreen */ );
 	}
 
 	/**
@@ -148,7 +138,7 @@ module.exports = ( function ( util, kartobox, router ) {
 			maps.pop().remove();
 		}
 
-		$content.find( '.mw-kartographer-map' ).each( function () {
+		$content.find( '.mw-kartographer-map[data-mw="interface"]' ).each( function () {
 			var data,
 				container = this,
 				$container = $( this ),
@@ -156,11 +146,9 @@ module.exports = ( function ( util, kartobox, router ) {
 
 			data = getMapData( container );
 
-			if ( data ) {
-				mapsInArticle.push( initMapBox( data, $container ) );
+			mapsInArticle.push( initMapBox( data, $container ) );
 
-				promises.push( deferred.promise() );
-			}
+			promises.push( deferred.promise() );
 		} );
 
 		// Allow customizations of interactive maps in article.
