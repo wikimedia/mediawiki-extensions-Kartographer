@@ -71,6 +71,9 @@ module.exports = ( function ( router, kartolink ) {
 		// eslint-disable-next-line no-jquery/no-global-selector
 		$( '.mw-kartographer-maplink', '.mw-body' ).each( function ( index ) {
 			var data = getMapData( this );
+			if ( !data ) {
+				return;
+			}
 			maplinks[ index ] = kartolink.link( {
 				featureType: 'maplink',
 				container: this,
