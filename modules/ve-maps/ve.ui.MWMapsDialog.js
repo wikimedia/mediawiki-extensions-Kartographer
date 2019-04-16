@@ -231,7 +231,10 @@ ve.ui.MWMapsDialog.prototype.updateMapArea = function () {
 
 	this.mapArea.setBounds( boundCoords );
 	// Re-render the drag markers
-	this.mapArea.editing.disable().enable();
+	this.mapArea.editing.disable();
+	if ( !this.isReadOnly() ) {
+		this.mapArea.editing.enable();
+	}
 
 	this.updateMapCutout( this.mapArea.getLatLngs() );
 };
@@ -289,7 +292,9 @@ ve.ui.MWMapsDialog.prototype.onIndexLayoutSet = function ( tabPanel ) {
 		this.mapArea.addTo( this.map );
 	} else if ( tabPanel === this.contentPanel ) {
 		this.mapArea.remove();
-		this.contentsDraw.addTo( this.map );
+		if ( !this.isReadOnly() ) {
+			this.contentsDraw.addTo( this.map );
+		}
 	} else {
 		this.mapArea.remove();
 		this.contentsDraw.remove();
@@ -386,7 +391,8 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 			var inline = this.selectedNode instanceof ve.dm.MWInlineMapsNode,
 				mwAttrs = this.selectedNode && this.selectedNode.getAttribute( 'mw' ).attrs || {},
 				mapPosition = this.getInitialMapPosition(),
-				util = require( 'ext.kartographer.util' );
+				util = require( 'ext.kartographer.util' ),
+				isReadOnly = this.isReadOnly();
 
 			this.input.clearUndoStack();
 
@@ -421,14 +427,14 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 			this.dimensionsField.toggle( !inline );
 			this.alignField.toggle( !inline );
 
-			this.latitude.setValue( String( mapPosition.center[ 0 ] ) );
-			this.longitude.setValue( String( mapPosition.center[ 1 ] ) );
-			this.zoom.setValue( String( mapPosition.zoom ) );
-			this.dimensions.setDimensions( this.scalable.getCurrentDimensions() );
+			this.latitude.setValue( String( mapPosition.center[ 0 ] ) ).setReadOnly( isReadOnly );
+			this.longitude.setValue( String( mapPosition.center[ 1 ] ) ).setReadOnly( isReadOnly );
+			this.zoom.setValue( String( mapPosition.zoom ) ).setReadOnly( isReadOnly );
+			this.dimensions.setDimensions( this.scalable.getCurrentDimensions() ).setReadOnly( isReadOnly );
 
 			// TODO: Support block/inline conversion
-			this.align.selectItemByData( mwAttrs.align || 'right' );
-			this.language.setLangAndDir( mwAttrs.lang || util.getDefaultLanguage() );
+			this.align.selectItemByData( mwAttrs.align || 'right' ).setDisabled( isReadOnly );
+			this.language.setLangAndDir( mwAttrs.lang || util.getDefaultLanguage() ).setReadOnly( isReadOnly );
 
 			this.updateActions();
 		}, this );
