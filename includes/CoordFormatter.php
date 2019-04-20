@@ -44,6 +44,11 @@ class CoordFormatter {
 			->inLanguage( $language )
 			->plain();
 
+		// Messages that can be used here:
+		// * kartographer-coord-lat-positive
+		// * kartographer-coord-lat-negative
+		// * kartographer-coord-lon-positive
+		// * kartographer-coord-lon-negative
 		return wfMessage( "kartographer-coord-$latLon-$plusMinus" )
 			->params( $text )
 			->inLanguage( $language )
