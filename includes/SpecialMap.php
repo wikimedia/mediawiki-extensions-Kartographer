@@ -76,7 +76,7 @@ class SpecialMap extends SpecialPage {
 	 */
 	public static function parseSubpage( $par ) {
 		if ( !preg_match(
-				'#^(?<zoom>\d+)/(?<lat>-?\d+(\.\d+)?)/(?<lon>-?\d+(\.\d+)?)(/(?<lang>[a-zA-Z]+))?$#',
+				'#^(?<zoom>\d+)/(?<lat>-?\d+(\.\d+)?)/(?<lon>-?\d+(\.\d+)?)(/(?<lang>[a-zA-Z0-9-]+))?$#',
 				$par,
 				$matches
 			)
