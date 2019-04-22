@@ -40,7 +40,10 @@ module.exports = ( function ( util, kartolink, router ) {
 			captionText = '';
 
 		// Prevent users from adding map divs directly via wikitext
-		if ( $el.attr( 'mw-data' ) !== 'interface' ) {
+		// TODO: Remove the check for mw-data when the HTML cache is expired.
+		if ( $el.attr( 'mw-data' ) !== 'interface' &&
+			$el.attr( 'data-mw' ) !== 'interface'
+		) {
 			return null;
 		}
 
