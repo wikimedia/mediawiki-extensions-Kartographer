@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Rance"
+			"Rance",
+			"Yasen igra"
 		]
 	},
+	"leafletdraw-draw-handlers-circle-radius": "Rediasi",
 	"visualeditor-mwmapsdialog-area": "Eneo la Ramani",
 	"visualeditor-mwmapsdialog-content": "Yaliyomo katika Ramani"
 }
