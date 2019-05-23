@@ -176,9 +176,7 @@ abstract class TagHandler {
 		// Language code specified by the user (null if none)
 		$this->specifiedLangCode = $this->getText( 'lang', null );
 		// Language code we're going to use
-		$this->resolvedLangCode = $this->specifiedLangCode !== null ?
-			$this->specifiedLangCode :
-			$defaultLangCode;
+		$this->resolvedLangCode = $this->specifiedLangCode ?? $defaultLangCode;
 		// If the specified language code is invalid, behave as if no language was specified
 		if (
 			!Language::isKnownLanguageTag( $this->resolvedLangCode ) &&
