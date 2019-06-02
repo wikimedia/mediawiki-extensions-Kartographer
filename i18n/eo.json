@@ -2,20 +2,45 @@
 	"@metadata": {
 		"authors": [
 			"Robin van der Vliet",
-			"Yekrats"
+			"Yekrats",
+			"Mirin"
 		]
 	},
 	"kartographer-error-context-multi": "&lt;$1&gt; problemoj:\n$2",
+	"kartographer-error-json": "Ne povis sintakse analizi JSON: $1",
+	"kartographer-error-missing-attr": "Atributo \"$1\" mankas",
+	"kartographer-tracking-category": "Paĝoj kun mapoj",
+	"kartographer-linktype-map": "Normaj mapoj",
+	"kartographer-linktype-terrain": "Tereno",
 	"kartographer-sidebar-coordinates": "Koordinatoj",
+	"kartographer-sidebar-externalservices-show-all": "Vidi pli",
 	"kartographer-sidebar-latitude": "Latitudo",
 	"kartographer-sidebar-longitude": "Longitudo",
 	"kartographer-sidebar-service": "Servo",
+	"leafletdraw-draw-handlers-circle-radius": "Radiuso",
 	"leafletdraw-draw-toolbar-actions-text": "Nuligi",
+	"leafletdraw-draw-toolbar-buttons-circle": "Desegni cirklon",
+	"leafletdraw-draw-toolbar-buttons-polygon": "Desegni plurangulon",
+	"leafletdraw-draw-toolbar-buttons-rectangle": "Desegni ortangulon",
+	"leafletdraw-draw-toolbar-undo-text": "Forigi lastan punkton",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "Nuligi",
 	"leafletdraw-edit-toolbar-actions-save-text": "Konservi",
 	"leafletdraw-edit-toolbar-actions-save-title": "Konservi ŝanĝojn",
+	"leafletdraw-edit-toolbar-buttons-edit": "Redakti tavolojn",
+	"leafletdraw-edit-toolbar-buttons-remove": "Forigi tavolojn",
+	"leafletdraw-draw-toolbar-finish-text": "Kompletigi",
+	"mapbox-control-zoomin-title": "Enzomi",
+	"mapbox-control-zoomout-title": "Elzomi",
 	"kartographer-fullscreen-close": "Fermi",
+	"visualeditor-mwmapsdialog-area": "Mapa areo",
+	"visualeditor-mwmapsdialog-content": "Mapa enhavo",
+	"visualeditor-mwmapsdialog-options": "Opcioj",
+	"visualeditor-mwmapsdialog-align": "Ĝisrandigo",
+	"visualeditor-mwmapsdialog-language": "Lingvo",
 	"visualeditor-mwmapsdialog-position-lat": "Latitudo",
 	"visualeditor-mwmapsdialog-position-lon": "Longitudo",
-	"visualeditor-mwmapsdialog-title": "Mapo"
+	"visualeditor-mwmapsdialog-position-zoom": "Zomi",
+	"visualeditor-mwmapsdialog-size": "Grando",
+	"visualeditor-mwmapsdialog-title": "Mapo",
+	"visualeditor-mwmapscontextitem-title": "Mapo"
 }
