@@ -1,7 +1,7 @@
 === mapPin-progressive.svg ===
 This icon file was copied from OOUI repository after the build process generated the progressive
 icons.
-The master version is: https://github.com/wikimedia/oojs-ui/blob/master/src/themes/mediawiki/images/icons/mapPin.svg
+The master version is: https://gerrit.wikimedia.org/g/oojs/ui/+/master/src/themes/wikimediaui/images/icons/mapPin.svg
 
 === mapPin-progressive.png ===
 Same as above, copied from OOUI repository after the build process generated the progressive
