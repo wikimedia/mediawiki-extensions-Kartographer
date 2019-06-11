@@ -27,7 +27,7 @@ module.exports = ( function ( util, kartolink, router ) {
 	 * Gets the map data attached to an element.
 	 *
 	 * @param {HTMLElement} element Element
-	 * @return {Object|null} Map properties
+	 * @return {Object} Map properties
 	 * @return {number} return.latitude
 	 * @return {number} return.longitude
 	 * @return {number} return.zoom
@@ -38,14 +38,6 @@ module.exports = ( function ( util, kartolink, router ) {
 		var $el = $( element ),
 			$caption = $el.parent().find( '.thumbcaption' ),
 			captionText = '';
-
-		// Prevent users from adding map divs directly via wikitext
-		// TODO: Remove the check for mw-data when the HTML cache is expired.
-		if ( $el.attr( 'mw-data' ) !== 'interface' &&
-			$el.attr( 'data-mw' ) !== 'interface'
-		) {
-			return null;
-		}
 
 		if ( $caption[ 0 ] ) {
 			captionText = $caption.text();
@@ -76,7 +68,7 @@ module.exports = ( function ( util, kartolink, router ) {
 			maps.pop().$container.off( 'click.kartographer' );
 		}
 
-		$content.find( '.mw-kartographer-map' ).each( function ( index ) {
+		$content.find( '.mw-kartographer-map[data-mw="interface"]' ).each( function ( index ) {
 
 			var container = this,
 				$container = $( container ),
@@ -104,25 +96,23 @@ module.exports = ( function ( util, kartolink, router ) {
 
 			data = getMapData( container );
 
-			if ( data ) {
-				data.enableFullScreenButton = true;
+			data.enableFullScreenButton = true;
 
-				link = kartolink.link( {
-					featureType: 'mapframe',
-					container: container,
-					center: [ data.latitude, data.longitude ],
-					zoom: data.zoom,
-					lang: data.lang,
-					dataGroups: data.overlays,
-					captionText: data.captionText,
-					fullScreenRoute: '/map/' + index
-				} );
+			link = kartolink.link( {
+				featureType: 'mapframe',
+				container: container,
+				center: [ data.latitude, data.longitude ],
+				zoom: data.zoom,
+				lang: data.lang,
+				dataGroups: data.overlays,
+				captionText: data.captionText,
+				fullScreenRoute: '/map/' + index
+			} );
 
-				mapsInArticle.push( link );
-				maps[ index ] = link;
+			mapsInArticle.push( link );
+			maps[ index ] = link;
 
-				promises.push( deferred.promise() );
-			}
+			promises.push( deferred.promise() );
 		} );
 
 		// Allow customizations of interactive maps in article.

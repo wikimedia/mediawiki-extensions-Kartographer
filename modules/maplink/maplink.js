@@ -28,7 +28,7 @@ module.exports = ( function ( router, kartolink ) {
 	 * Gets the map data attached to an element.
 	 *
 	 * @param {HTMLElement} element Element
-	 * @return {Object|null} Map properties
+	 * @return {Object} Map properties
 	 * @return {number} return.latitude
 	 * @return {number} return.longitude
 	 * @return {number} return.zoom
@@ -37,13 +37,6 @@ module.exports = ( function ( router, kartolink ) {
 	 */
 	function getMapData( element ) {
 		var $el = $( element );
-		// TODO: Remove the check for mw-data when the HTML cache is expired.
-		// Prevent users from adding map divs directly via wikitext
-		if ( $el.attr( 'mw-data' ) !== 'interface' &&
-			$el.attr( 'data-mw' ) !== 'interface'
-		) {
-			return null;
-		}
 
 		return {
 			latitude: +$el.data( 'lat' ),
@@ -72,11 +65,9 @@ module.exports = ( function ( router, kartolink ) {
 		// search outside. This is an anti-pattern and should be improved...
 		// Meanwhile .mw-body is better than searching the full document.
 		// eslint-disable-next-line no-jquery/no-global-selector
-		$( '.mw-kartographer-maplink', '.mw-body' ).each( function ( index ) {
+		$( '.mw-body .mw-kartographer-maplink[data-mw="interface"]' ).each( function ( index ) {
 			var data = getMapData( this );
-			if ( !data ) {
-				return;
-			}
+
 			maplinks[ index ] = kartolink.link( {
 				featureType: 'maplink',
 				container: this,
