@@ -4,7 +4,8 @@
 			"Liuxinyu970226",
 			"Shizhao",
 			"JerryLiu",
-			"A Chinese Wikipedian"
+			"A Chinese Wikipedian",
+			"神樂坂秀吉"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "为Kartographer扩展执行数据验证",
@@ -74,6 +75,7 @@
 	"leafletdraw-draw-toolbar-actions-title": "取消绘画",
 	"leafletdraw-draw-toolbar-buttons-circle": "画一个圆形",
 	"leafletdraw-draw-toolbar-buttons-marker": "画一个标记",
+	"leafletdraw-draw-toolbar-buttons-circlemarker": "绘制圆形标记",
 	"leafletdraw-draw-toolbar-buttons-polygon": "画一个多边形",
 	"leafletdraw-draw-toolbar-buttons-polyline": "画一个多段线",
 	"leafletdraw-draw-toolbar-buttons-rectangle": "画一个矩形",
