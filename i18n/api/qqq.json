@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Yuri Astrakhan",
+			"Liuxinyu970226",
+			"Raymond",
+			"Amire80",
+			"Robby"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "{{doc-apihelp-description|sanitize-mapdata}}",
+	"apihelp-sanitize-mapdata-summary": "{{doc-apihelp-summary|sanitize-mapdata}}",
+	"apihelp-sanitize-mapdata-param-title": "{{doc-apihelp-param|sanitize-mapdata|title}}",
+	"apihelp-sanitize-mapdata-param-text": "{{doc-apihelp-param|sanitize-mapdata|text}}",
+	"apihelp-sanitize-mapdata-example": "{{doc-apihelp-example|sanitize-mapdata}}",
+	"apihelp-query+mapdata-description": "{{doc-apihelp-description|query+mapdata}}",
+	"apihelp-query+mapdata-summary": "{{doc-apihelp-summary|query+mapdata}}",
+	"apihelp-query+mapdata-example-1": "{{doc-apihelp-example|query+mapdata}}",
+	"apihelp-query+mapdata-example-2": "{{doc-apihelp-example|query+mapdata}}",
+	"apihelp-query+mapdata-param-continue": "{{doc-apihelp-param|query+mapdata|continue}}",
+	"apihelp-query+mapdata-param-groups": "{{doc-apihelp-param|query+mapdata|groups}}",
+	"apihelp-query+mapdata-param-limit": "{{doc-apihelp-param|query+mapdata|limit}}"
+}

@@ -19,6 +19,7 @@
 	"MessagesDirs": {
 		"Kartographer": [
 			"i18n",
+			"i18n/api",
 			"modules/wikivoyage/i18n"
 		]
 	},
