@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"Max Semenik",
+			"Brad Jorsch",
+			"Reedy",
+			"James D. Forrester",
+			"Yuri Astrakhan"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "Performs data validation for Kartographer extension",
+	"apihelp-sanitize-mapdata-summary": "Performs data validation for Kartographer extension",
+	"apihelp-sanitize-mapdata-param-title": "Title of page on which this GeoJSON is supposed to be located. If no title is provided, a dummy one will be used.",
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON to sanitize",
+	"apihelp-sanitize-mapdata-example": "Sanitize a GeoJSON blob",
+	"apihelp-query+mapdata-description": "Fetch Kartographer map data",
+	"apihelp-query+mapdata-summary": "Request all Kartographer map data for the given pages",
+	"apihelp-query+mapdata-example-1": "Request all map data from the page <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-example-2": "Request map data in groups <kbd>group1</kbd> and <kbd>group2</kbd> from the page <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-param-continue": "Use this parameter to continue iterating through results",
+	"apihelp-query+mapdata-param-groups": "Pipe-separated groups to return data for",
+	"apihelp-query+mapdata-param-limit": "Data for how many pages to return"
+}
