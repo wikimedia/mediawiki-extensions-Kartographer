@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Lam-ang"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "Agaramid ti pammasingked ti datos para iti pagpaatiddog ti Kartographer",
+	"apihelp-sanitize-mapdata-summary": "Agaramid iti pammasingked iti datos para iti pagpaatiddog iti Kartographer",
+	"apihelp-sanitize-mapdata-param-title": "Titulo ti panid a pakabirukan koma iti daytoy a GeoJSON. No awan ti maited a titulo,ti sinantaonto ti mausar.",
+	"apihelp-sanitize-mapdata-param-text": "Ti isanitisio a GeoJSON",
+	"apihelp-sanitize-mapdata-example": "Isanitisio ti blob ti GeoJSON",
+	"apihelp-query+mapdata-description": "Kiddawen amin a datos ti mapa manipud iti panid ti <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-summary": "Kiddawen amin a datos ti mapa manipud iti panid ti <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-example-1": "Kiddawen amin a datos ti mapa manipud iti panid ti <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-example-2": "Kiddawen ti datos ti mapa kadagiti grupo ti <kbd>grupo1</kbd> ken <kbd>grupo2</kbd> manipud iti panid ti <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-param-continue": "Usaren daytoy a parametro tapno agtuloy nga agaramid kadagiti resulta",
+	"apihelp-query+mapdata-param-groups": "Dagiti grupo a naisina iti pipa tapno maipasubli ti datos",
+	"apihelp-query+mapdata-param-limit": "Datos no mano dagiti panid a maipasubli"
+}

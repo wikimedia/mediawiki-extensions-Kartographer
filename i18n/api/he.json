@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "ביצוע בדיקת תקינות נתונים עבור ההרחבה קרטוגרפר",
+	"apihelp-sanitize-mapdata-summary": "ביצוע בדיקת תקינות נתונים עבור ההרחבה Kartographer",
+	"apihelp-sanitize-mapdata-param-title": "כותרת הדף שעליו ה־GeoJSON הזה ממוקם. אם לא תינתן כותרת, תיווצר כותרת־דמה.",
+	"apihelp-sanitize-mapdata-param-text": "איזה GeoJSON לנקות",
+	"apihelp-sanitize-mapdata-example": "לנקות קוד GeoJSON",
+	"apihelp-query+mapdata-description": "אחזור נתוני מפה של קרטוגרפר",
+	"apihelp-query+mapdata-summary": "בקשת כל נתוני המפה של קרטוגרפר עבור הדפים הנתונים",
+	"apihelp-query+mapdata-example-1": "בקשת כל נתוני המפה מהדף <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-example-2": "בקשת כל נתוני המפה בקבוצות <kbd>group1</kbd> ו־<kbd>group2</kbd> מהדף <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-param-continue": "יש להשתמש בפרמטר הזה כדי להמשיך לעבור על התוצאות",
+	"apihelp-query+mapdata-param-groups": "קבוצות מופרדות בפסיק להחזרת נתונים",
+	"apihelp-query+mapdata-param-limit": "על כמה דפים להחזיר נתונים"
+}

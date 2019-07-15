@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Chrumps"
+		]
+	},
+	"apihelp-query+mapdata-param-limit": "Dane dotyczące liczby stron do zwrócenia"
+}

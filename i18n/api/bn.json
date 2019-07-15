@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"আফতাবুজ্জামান"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "Kartographer এক্সটেনশনের জন্য উপাত্তের বৈধতা যাচাই সঞ্চালিত করে",
+	"apihelp-sanitize-mapdata-summary": "Kartographer এক্সটেনশনের জন্য উপাত্তের বৈধতা যাচাই সঞ্চালিত করে",
+	"apihelp-query+mapdata-param-continue": "ফলাফলের মাধ্যমে পুনরাবৃত্তি অব্যাহত করার জন্য এই পরামিতি ব্যবহার করে"
+}

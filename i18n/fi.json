@@ -12,16 +12,6 @@
 			"Valtlait"
 		]
 	},
-	"apihelp-sanitize-mapdata-description": "Validoi datan Kartographer-laajennokselle",
-	"apihelp-sanitize-mapdata-param-title": "Sen sivun otsikko, jolla tämän GeoJSON-tiedoston kuuluu sijaita. Jos otsikkoa ei ole määritelty, käytetään esimerkkiä sen sijaan.",
-	"apihelp-sanitize-mapdata-param-text": "Sanitoitava GeoJSON",
-	"apihelp-sanitize-mapdata-example": "Sanitoi GeoJSON-data",
-	"apihelp-query+mapdata-description": "Pyydä kaikki karttatieto sivulta <kbd>Metallica</kbd>",
-	"apihelp-query+mapdata-example-1": "Pyydä kaikki karttatieto sivulta <kbd>Metallica</kbd>",
-	"apihelp-query+mapdata-example-2": "Pyydä kaikki karttatieto ryhmistä <kbd>ryhmä1</kbd> ja <kbd>ryhmä2</kbd> sivulla <kbd>Metallica</kbd>",
-	"apihelp-query+mapdata-param-continue": "Käytä tätä parametria jatkaaksesi tulosten iteroimista.",
-	"apihelp-query+mapdata-param-groups": "Ryhmät, joille data palautetaan pystyviivalla erotettuna",
-	"apihelp-query+mapdata-param-limit": "Kuinka monelle sivulle data palautetaan",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia-kartat] | Karttatiedot © [https://www.openstreetmap.org/copyright OpenStreetMapin tekijät]",
 	"kartographer-broken-category": "Sivut, joissa on rikkinäisiä karttoja",
 	"kartographer-broken-category-desc": "Sivu sisältää virheellisesti käytetyn <code><nowiki><maps></nowiki></code> tagin.",

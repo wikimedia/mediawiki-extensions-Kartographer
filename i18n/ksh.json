@@ -4,9 +4,6 @@
 			"Purodha"
 		]
 	},
-	"apihelp-query+mapdata-description": "Holl alle Kaate-Dahte vun dä Sigg <kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">Metallica</kbd>",
-	"apihelp-query+mapdata-example-1": "Holl alle Kaate-dahte vun dä Sigg <kbd  lang=\"en\" xml:lang=\"en\" dir=\"ltr\">Metallica</kbd>",
-	"apihelp-query+mapdata-param-limit": "Dohe for wi vill Sigge wdderjävve",
 	"kartographer-attribution": "Wikkimehdija Kaate | De Kaatedahte kumme vun © [https://www.openstreetmap.org/copyright <i lang=\"en\" xml:lang=\"en\" dir=\"ltr\" title=\"An openly licensed map of the world being created by volunteers using local knowledge, GPS tracks and donated sources\">OpenStreetMap</i>]",
 	"kartographer-broken-category": "Sigge met kapodde Kaate",
 	"kartographer-broken-category-desc": "En heh dä Sigg es ene „<code lang=\"en\" xml:lang=\"en\" dir=\"ltr\">&lt;maps&gt;</code>“ Befähl wi hä nit jebruch wähde kann.",

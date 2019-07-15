@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Alifakoor"
+		]
+	},
+	"apihelp-sanitize-mapdata-param-text": "جئوجی‌سان برای تمیزکاری",
+	"apihelp-sanitize-mapdata-example": "تمیزکاری یک باینری بزرگ جئوجی‌سان",
+	"apihelp-query+mapdata-param-limit": "داده‌ای برای تعیین اینکه چند صفحه برگردانده شود"
+}

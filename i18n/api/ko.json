@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ykhwong"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "Kartographer 확장을 위한 데이터 유효성 확인을 수행합니다",
+	"apihelp-sanitize-mapdata-summary": "Kartographer 확장을 위한 데이터 유효성 확인을 수행합니다",
+	"apihelp-sanitize-mapdata-param-title": "이 GeoJSON이 위치할 문서 제목입니다. title이 지정되지 않으면 더미값이 사용됩니다.",
+	"apihelp-sanitize-mapdata-param-text": "정리할 GeoJSON",
+	"apihelp-sanitize-mapdata-example": "GeoJSON 블롭을 정리합니다",
+	"apihelp-query+mapdata-description": "Kartographer 지도 데이터를 가져옵니다",
+	"apihelp-query+mapdata-summary": "지정된 문서의 모든 Kartographer 지도 데이터를 요청합니다",
+	"apihelp-query+mapdata-example-1": "<kbd>Metallica</kbd> 문서의 모든 지도 데이터를 요청합니다",
+	"apihelp-query+mapdata-param-groups": "데이터를 반환할 파이프 구분 그룹"
+}

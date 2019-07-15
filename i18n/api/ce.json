@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Умар"
+		]
+	},
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON цӀанярна",
+	"apihelp-sanitize-mapdata-example": "GeoJSON хаамаш цӀанбан"
+}

@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Metalhead64",
+			"TMg"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "Führt eine Datenvalidierung für die Erweiterung „Kartographer“ aus",
+	"apihelp-sanitize-mapdata-summary": "Führt eine Datenvalidierung für die Erweiterung „Kartographer“ aus",
+	"apihelp-sanitize-mapdata-param-title": "Titel der Seite, auf der dieses GeoJSON vermutet wird. Falls kein Titel angegeben ist, wird ein Dummytitel verwendet.",
+	"apihelp-sanitize-mapdata-param-text": "Zu säuberndes GeoJSON",
+	"apihelp-sanitize-mapdata-example": "Säubert einen GeoJSON-Blob",
+	"apihelp-query+mapdata-description": "Ruft Kartendaten für Kartographer ab",
+	"apihelp-query+mapdata-summary": "Fordert alle Kartographer-Kartendaten für die angegebenen Seiten an",
+	"apihelp-query+mapdata-example-1": "Fragt alle Kartendaten der Seite <kbd>Metallica</kbd> ab",
+	"apihelp-query+mapdata-example-2": "Ruft Kartendaten in den Gruppen <kbd>group1</kbd> und <kbd>group2</kbd> der Seite <kbd>Metallica</kbd> ab",
+	"apihelp-query+mapdata-param-continue": "Verwende diesen Parameter, um mit der Wiederholung der Ergebnisse fortzufahren.",
+	"apihelp-query+mapdata-param-groups": "Mit | getrennte Gruppen, für die die Daten zurückgegeben werden sollen.",
+	"apihelp-query+mapdata-param-limit": "Für wie viele Seiten Daten zurückgegeben werden sollen"
+}

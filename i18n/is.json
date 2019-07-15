@@ -5,7 +5,6 @@
 			"Sveinki"
 		]
 	},
-	"apihelp-query+mapdata-description": "Sækja kortagögn frá Kartographer",
 	"kartographer-tracking-category": "Síður með landakortum",
 	"kartographer-coord-lat-positive": "$1N",
 	"kartographer-coord-lat-negative": "$1S",

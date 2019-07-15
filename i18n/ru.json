@@ -17,18 +17,6 @@
 			"Nk88"
 		]
 	},
-	"apihelp-sanitize-mapdata-description": "Выполняет проверку данных для расширения Kartographer",
-	"apihelp-sanitize-mapdata-summary": "Выполняет проверку данных для расширения Kartographer",
-	"apihelp-sanitize-mapdata-param-title": "Заголовок страницы, на которой этот GeoJSON должен быть расположен. Если заголовок не указано, будет использоваться фиктивная.",
-	"apihelp-sanitize-mapdata-param-text": "GeoJSON для очистки",
-	"apihelp-sanitize-mapdata-example": "Очистить данные GeoJSON",
-	"apihelp-query+mapdata-description": "Запрос всех данных карты на странице <kbd>Metallica</kbd>",
-	"apihelp-query+mapdata-summary": "Запросить все данные карты со страницы <kbd>Metallica</kbd>",
-	"apihelp-query+mapdata-example-1": "Запрос всех данных карты на странице <kbd>Metallica</kbd>",
-	"apihelp-query+mapdata-example-2": "Запрос данных карты в группах <kbd> group1 </kbd> и <kbd> group2 </kbd> со страницы <kbd>Metallica</kbd>",
-	"apihelp-query+mapdata-param-continue": "Используйте этот параметр для продолжения перебора результатов",
-	"apihelp-query+mapdata-param-groups": "Разделенные вертикальной чертой группы для получения данных",
-	"apihelp-query+mapdata-param-limit": "Данные для скольких страниц вернуть",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use карты Викимедиа] | данные © [https://www.openstreetmap.org/copyright участники OpenStreetMap]",
 	"kartographer-broken-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Файлы|#default=Страницы}} с некорректными картами",
 	"kartographer-broken-category-desc": "Эта страница содержит недопустимое использование карты",

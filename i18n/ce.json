@@ -4,8 +4,6 @@
 			"Умар"
 		]
 	},
-	"apihelp-sanitize-mapdata-param-text": "GeoJSON цӀанярна",
-	"apihelp-sanitize-mapdata-example": "GeoJSON хаамаш цӀанбан",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Викимедиан картанаш] | хаамаш © [https://www.openstreetmap.org/copyright OpenStreetMap декъашхой]",
 	"kartographer-broken-category": "Болх ца беш карташ долу {{#switch:{{NAMESPACE}}|{{ns:File}}=файлаш|#default=агӀонаш}}",
 	"kartographer-desc": "Вики-агӀонашна карташ тӀетоха таро ло.",

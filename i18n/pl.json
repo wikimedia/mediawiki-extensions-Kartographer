@@ -7,7 +7,6 @@
 			"Kocio"
 		]
 	},
-	"apihelp-query+mapdata-param-limit": "Dane dotyczące liczby stron do zwrócenia",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Mapy Wikimedia] | Dane kartograficzne © [https://www.openstreetmap.org/copyright Twórcy projektu OpenStreetMap]",
 	"kartographer-broken-category": "Strony z uszkodzonymi mapami",
 	"kartographer-broken-category-desc": "Strona zawiera nieprawidłowe zastosowanie mapy",

@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Andrei Stroe",
+			"Strainu"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "Realizează validarea datelor pentru extensia Kartographer",
+	"apihelp-sanitize-mapdata-summary": "Realizează validarea datelor pentru extensia Kartographer",
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON de sanitizat",
+	"apihelp-sanitize-mapdata-example": "Sanitizează un blob de GeoJSON",
+	"apihelp-query+mapdata-description": "Cere datele cartografice Kartographer",
+	"apihelp-query+mapdata-example-1": "Cere toate datele cartografice din pagina <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-example-2": "Cere datele cartografice din grupurile <kbd>group1</kbd> și <kbd>group2</kbd> ale paginii <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-param-continue": "Utilizați acest parametru pentru a continua să iterați printre rezultate"
+}

@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bikarhêner"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "Ji bo pêveka Kartographerê teyîdkirina daneyên nexşeyê bi cih tîne",
+	"apihelp-sanitize-mapdata-summary": "Ji bo pêveka Kartographerê teyîdkirina daneyên nexşeyê bi cih tîne",
+	"apihelp-sanitize-mapdata-param-title": "Sernava rûpela tê ferzkirin ku ev GeoJSON lê bi cî bûye. Eger sernav nêye peydakirin, wê modelek were bikaranîn.",
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON'a ji bo paqijkirinê",
+	"apihelp-sanitize-mapdata-example": "Paqijkirina 'GeoJSON blob'ê",
+	"apihelp-query+mapdata-description": "Ji rûpela <kbd>Metallica</kbd> hemû daneyên nexşeyê bixwaze",
+	"apihelp-query+mapdata-summary": "Ji rûpela <kbd>Metallica</kbd> hemû daneyên nexşeyê bixwaze",
+	"apihelp-query+mapdata-example-1": "Ji rûpela <kbd>Metallica</kbd> hemû daneyên nexşeyê bixwaze",
+	"apihelp-query+mapdata-example-2": "Ji rûpela <kbd>Metallicayê<kbd> daneyên nexşeyê yên di komên <kbd>group1<kbd> û <kbd>group2</kbd> bixwaze.",
+	"apihelp-query+mapdata-param-continue": "Ji bo ku li seranserê encaman tekrarkirinê bidî berdewamkirin vê parametreyê bi kar bîne.",
+	"apihelp-query+mapdata-param-groups": "Komên ku wê daneyên wan wê bi xeta tîkane werin vegerandin",
+	"apihelp-query+mapdata-param-limit": "Daneya ku wê çend rûpel werin vegerandin"
+}

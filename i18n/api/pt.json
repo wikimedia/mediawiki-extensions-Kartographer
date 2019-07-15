@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hamilton Abreu"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "Realiza a validação de dados para a extensão Kartographer",
+	"apihelp-sanitize-mapdata-summary": "Realiza a validação de dados para a extensão Kartographer",
+	"apihelp-sanitize-mapdata-param-title": "Título da página na qual este GeoJSON é suposto estar. Se não for fornecido um título, será usado um fictício.",
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON a validar",
+	"apihelp-sanitize-mapdata-example": "Validar um ''blob'' GeoJSON",
+	"apihelp-query+mapdata-description": "Obter dados do mapa do Kartographer",
+	"apihelp-query+mapdata-summary": "Pedir todos os dados cartográficos do Kartographer para as páginas especificadas",
+	"apihelp-query+mapdata-example-1": "Pedir todos os dados cartográficos da página <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-example-2": "Pedir os dados cartográficos dos grupos <kbd>group1</kbd> e <kbd>group2</kbd> da página <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-param-continue": "Utilize este parâmetro para continuar a iteração dos resultados",
+	"apihelp-query+mapdata-param-groups": "Os grupos, separados por barras verticais, sobre os quais serão devolvidos dados",
+	"apihelp-query+mapdata-param-limit": "O número de páginas das quais serão devolvidos dados"
+}

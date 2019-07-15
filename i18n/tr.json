@@ -10,10 +10,6 @@
 			"ToprakM"
 		]
 	},
-	"apihelp-sanitize-mapdata-description": "Kartographer uzantısı için veri doğrulama gerçekleştirir.",
-	"apihelp-sanitize-mapdata-param-title": "Bu GeoJSON'un olması gereken yerdeki sayfa başlığı . Eğer başlık sağlanmıyorsa, yerine bir geçici bir başlık kullanılacaktır.",
-	"apihelp-sanitize-mapdata-param-text": "temizlemek için GeoJSON",
-	"apihelp-sanitize-mapdata-example": "Bir GeoJSON yığınını temizle",
 	"kartographer-broken-category-desc": "Sayfa geçersiz bir harita kullanımını içeriyor",
 	"kartographer-desc": "Viki sayfalarına haritalar eklenmesine imkân tanır",
 	"leafletdraw-draw-toolbar-actions-text": "İptal",

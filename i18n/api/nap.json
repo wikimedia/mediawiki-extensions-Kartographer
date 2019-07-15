@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"C.R."
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "Facesse 'a verifica 'e dati p' 'a stensione Kartographer",
+	"apihelp-sanitize-mapdata-param-title": "Titolo d' 'a paggena ca se penzasse ca stu GeoJSON avess'a mpizzà.\nSi nun se facesse veré nu titolo, n'atu titolo 'e fantasia sarrà mpizzato.",
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON 'a sanità",
+	"apihelp-sanitize-mapdata-example": "'A sanità nu blobbo 'e GeoJSON",
+	"apihelp-query+mapdata-description": "Addimanna tutt' 'e date 'e mappe d' 'a paggena <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-example-1": "Addimanna tutt' 'e date 'e mappa d' 'a paggena <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-example-2": "Addimanna 'e date 'e mappa pe' gruppe <kbd>group1</kbd> e <kbd>group2</kbd> d' 'a paggena <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-param-continue": "Aùsa stu parammetro pe' puté cuntinuà a ffà iterazione pe' mmiez' 'e risultate",
+	"apihelp-query+mapdata-param-groups": "Gruppe spartut'a-tubbe d' 'e quale 'e date s'avesser'a turnà",
+	"apihelp-query+mapdata-param-limit": "Date 'e quante paggene s'avesser'a turnà"
+}

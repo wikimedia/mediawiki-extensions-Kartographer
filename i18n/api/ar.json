@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Meno25",
+			"ديفيد"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "يقوم بالتحقق من البيانات لامتداد Kartographer",
+	"apihelp-sanitize-mapdata-summary": "يقوم بالتحقق من البيانات لامتداد Kartographer",
+	"apihelp-sanitize-mapdata-param-title": "عنوان الصفحة التي من المفروض أن يكون بها GeoJSON. لو لم يتم توفير عنوان، فسيتم استخدام عنوان زائف.",
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON للتعقيم",
+	"apihelp-sanitize-mapdata-example": "عقم بلوب GeoJSON",
+	"apihelp-query+mapdata-description": "إحضار بيانات خريطة Kartographer",
+	"apihelp-query+mapdata-summary": "اطلب جميع بيانات خريطة Kartographer للصفحات المعينة",
+	"apihelp-query+mapdata-example-1": "اطلب كل بيانات الخريطة من الصفحة <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-example-2": "اطلب بيانات الخريطة في مجموعات <kbd>group1</kbd> و <kbd>group2</kbd> من الصفحة <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-param-continue": "استخدم هذا المعامل للاستمرار في التكرار خلال النتائج",
+	"apihelp-query+mapdata-param-groups": "مجموعات مفصولة بPipe لإرجاع البيانات لها",
+	"apihelp-query+mapdata-param-limit": "البيانات لكم صفحة للإرجاع"
+}

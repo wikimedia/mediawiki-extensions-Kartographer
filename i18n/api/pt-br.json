@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eduardo Addad de Oliveira",
+			"Felipe L. Ewald"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "Executa a validação de dados para a extensão Kartographer",
+	"apihelp-sanitize-mapdata-summary": "Executa a validação de dados para a extensão Kartographer",
+	"apihelp-sanitize-mapdata-param-title": "Título da página em que este GeoJSON deveria estar localizado. Se nenhum título for fornecido, será usado um manequim.",
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON para higienizar",
+	"apihelp-sanitize-mapdata-example": "Sanitizar uma gota de GeoJSON",
+	"apihelp-query+mapdata-description": "Buscar dados do mapa do Kartographer",
+	"apihelp-query+mapdata-summary": "Solicitar todos os dados do mapa do Kartographer para as páginas fornecidas",
+	"apihelp-query+mapdata-example-1": "Solicite todos os dados do mapa da página <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-example-2": "Solicite dados do mapa em grupos <kbd>group1</kbd> e <kbd>group2</kbd> da página <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-param-continue": "Use este parâmetro para continuar a iterar através dos resultados",
+	"apihelp-query+mapdata-param-groups": "Grupos separados por barra para os quais retornar dados",
+	"apihelp-query+mapdata-param-limit": "Dados sobre quantas páginas retornar"
+}

@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Piramidion",
+			"Ата"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "Виконує перевірку даних для розширення Kartographer",
+	"apihelp-sanitize-mapdata-summary": "Виконує перевірку даних для розширення Kartographer",
+	"apihelp-sanitize-mapdata-param-title": "Назва сторінки, в якій має бути розміщений GeoJSON. Якщо не вказано жодної назви, буде використано її замінник з нульовим значенням.",
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON до очищення",
+	"apihelp-sanitize-mapdata-example": "Очистити blob-об'єкт GeoJSON",
+	"apihelp-query+mapdata-description": "Дістати усі картографічні дані",
+	"apihelp-query+mapdata-summary": "Подати запит на всі картографічні дані з певних сторінок",
+	"apihelp-query+mapdata-example-1": "Подати запит на всі картографічні дані зі сторінки <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-example-2": "Подати запит на картографічні дані в групах <kbd>group1</kbd> та <kbd>group2</kbd> зі сторінки <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-param-continue": "Використати цей параметр для продовження ітерації результатів",
+	"apihelp-query+mapdata-param-groups": "Відокремлені вертикальною рискою групи, дані для яких вивести",
+	"apihelp-query+mapdata-param-limit": "Для скількох сторінок треба вивести дані"
+}

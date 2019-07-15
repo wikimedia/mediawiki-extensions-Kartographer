@@ -9,8 +9,6 @@
 			"Zoranzoki21"
 		]
 	},
-	"apihelp-sanitize-mapdata-description": "Извршава проверу ваљаности података за додатак „Картограф”",
-	"apihelp-sanitize-mapdata-summary": "Извршава проверу ваљаности података за додатак „Картограф”",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Викимедијине мапе] | Подаци мапе © [https://www.openstreetmap.org/copyright Сарадници OpenStreetMap]",
 	"kartographer-attribution-externaldata": "$1: $2",
 	"kartographer-broken-category": "Странице са поквареним мапама",

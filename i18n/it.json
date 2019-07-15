@@ -11,9 +11,6 @@
 			"Toadino2"
 		]
 	},
-	"apihelp-sanitize-mapdata-description": "Esegue la convalida dei dati per l'estensione Kartographer",
-	"apihelp-sanitize-mapdata-param-title": "Titolo della pagina in cui si pensa che questo GeoJSON dovrebbe essere situato. Se non viene indicato alcun titolo, ne sarà utilizzato uno fittizio.",
-	"apihelp-query+mapdata-param-continue": "Utilizza questo parametro per continuare l'iterazione attraverso i risultati",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Mappe Wikimedia] | Dati mappa © [https://www.openstreetmap.org/copyright contributori OpenStreetMap]",
 	"kartographer-broken-category": "Pagine con errori nelle mappe",
 	"kartographer-broken-category-desc": "La pagina include una mappa con utilizzo non valido",

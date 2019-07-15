@@ -6,18 +6,6 @@
 			"Jon Harald Søby"
 		]
 	},
-	"apihelp-sanitize-mapdata-description": "Utfører datavalidering for Kartographer-utvidelsen",
-	"apihelp-sanitize-mapdata-summary": "Utfører datavalidering for Kartographer-utvidelsen",
-	"apihelp-sanitize-mapdata-param-title": "Tittelen til en side hvor denne GeoJSON-en skal befinne seg. Om ingen tittel blir oppgitt vil en tilfeldig en bli brukt.",
-	"apihelp-sanitize-mapdata-param-text": "GeoJSON å sanitere",
-	"apihelp-sanitize-mapdata-example": "Saniter en GeoJSON-blobb",
-	"apihelp-query+mapdata-description": "Etterspør alle kartdata fra siden <kbd>Metallica</kbd>",
-	"apihelp-query+mapdata-summary": "Be om alle kartdata for siden <kbd>Metallica</kbd>",
-	"apihelp-query+mapdata-example-1": "Etterspør alle kartdata fra side <kbd>Metallica</kbd>",
-	"apihelp-query+mapdata-example-2": "Etterspør kartdata i gruppene <kbd>group1</kbd> og <kbd>group2</kbd> fra siden <kbd>Metallica</kbd>",
-	"apihelp-query+mapdata-param-continue": "Bruk denne parameteren for å fortsette å iterere over resultatene",
-	"apihelp-query+mapdata-param-groups": "Grupper atskilt med | som data skal returneres for",
-	"apihelp-query+mapdata-param-limit": "Data for hvor mange sider som skal returneres",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia-kart] | Kartdata © [https://www.openstreetmap.org/copyright OpenStreetMaps bidragsytere]",
 	"kartographer-broken-category": "Sider med ødelagte kart",
 	"kartographer-broken-category-desc": "Siden inkluderer ugyldig kartbruk",

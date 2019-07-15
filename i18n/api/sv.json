@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"WikiPhoenix"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "Utför datavalidering för tillägget Kartographer",
+	"apihelp-sanitize-mapdata-summary": "Utför datavalidering för tillägget Kartographer",
+	"apihelp-sanitize-mapdata-param-title": "Titeln för sidan där denna GeoJSON ska finnas. Om ingen titeln anges kommer en testsida användas.",
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON att städa upp",
+	"apihelp-sanitize-mapdata-example": "Städa upp en GeoJSON-blob",
+	"apihelp-query+mapdata-description": "Hämta Kartographer-kartdata",
+	"apihelp-query+mapdata-summary": "Begär all Kartographer-kartdata från de angivna sidorna",
+	"apihelp-query+mapdata-example-1": "Begär alla kartdata från sidan <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-example-2": "Begär kartdata i grupperna <kbd>group1</kbd> och <kbd>group2</kbd> från sidan <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-param-continue": "Använd denna parameter för att fortsätta gå igenom resultaten.",
+	"apihelp-query+mapdata-param-groups": "Grupper att returnera data för, separerade med vertikalstreck",
+	"apihelp-query+mapdata-param-limit": "Data för hur många sidor att returnera"
+}

@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hbseren"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "Kartographer uzantısı için veri doğrulama gerçekleştirir.",
+	"apihelp-sanitize-mapdata-param-title": "Bu GeoJSON'un olması gereken yerdeki sayfa başlığı . Eğer başlık sağlanmıyorsa, yerine bir geçici bir başlık kullanılacaktır.",
+	"apihelp-sanitize-mapdata-param-text": "temizlemek için GeoJSON",
+	"apihelp-sanitize-mapdata-example": "Bir GeoJSON yığınını temizle"
+}

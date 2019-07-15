@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sureshkhole",
+			"Tiven2240"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "कार्टोग्राफ़र उपायोजनासाठी डाटा वैधता तपासणे",
+	"apihelp-sanitize-mapdata-summary": "कार्टोग्राफ़र उपायोजनासाठी डाटा वैधता तपासणे",
+	"apihelp-sanitize-mapdata-param-title": "GeoJSON ही फ़ाईल ठेवण्यासाठी ह्या पानाचा वापर केला जावा. जर कोणतेच शिर्षक दिले गेले नाहीतर नेहमीचे एक नाव वापरले जाईल.",
+	"apihelp-sanitize-mapdata-param-text": "स्वच्छता करण्यासाठी GeoJSON",
+	"apihelp-sanitize-mapdata-example": "GeoJSON ब्लॉब ची स्वच्छता करा.",
+	"apihelp-query+mapdata-description": "<kbd>Metallica</kbd> या पानावरून नकाशाचा सर्व डेटा मागवा",
+	"apihelp-query+mapdata-summary": "<kbd>Metallica</kbd> या पानावरून नकाशाचा सर्व डेटा मागवा",
+	"apihelp-query+mapdata-example-1": "<kbd>Metallica</kbd> या पानावरून नकाशाचा सर्व डेटा मागवा",
+	"apihelp-query+mapdata-example-2": "<kbd>Metallica</kbd> या पानावरून नकाशाचा <kbd>group1</kbd> आणि <kbd>group2</kbd> गटांमध्ये डेटा मागवा.",
+	"apihelp-query+mapdata-param-continue": "ह्या चलांचा वापर करुन निकाल परत दाखवा.",
+	"apihelp-query+mapdata-param-groups": "वेगवेगळ्या गटांमध्ये डेटा दाखवा",
+	"apihelp-query+mapdata-param-limit": "किती पानांमध्ये निकाल दाखवायचा ते ठरवा"
+}

@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kly"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "替 Kartographer 擴充功能執行資料驗證",
+	"apihelp-sanitize-mapdata-summary": "替 Kartographer 擴充功能執行資料驗證",
+	"apihelp-sanitize-mapdata-param-title": "應設置在此 GeoJSON 所支援的頁面標題。若未提供標題，會使用一個假冒內容。",
+	"apihelp-sanitize-mapdata-param-text": "要清理的 GeoJSON",
+	"apihelp-sanitize-mapdata-example": "清理一個 GeoJSON blob",
+	"apihelp-query+mapdata-description": "索取 Kartographer 地圖資料",
+	"apihelp-query+mapdata-summary": "請求所有用於指定頁面的 Kartographer 地圖資料",
+	"apihelp-query+mapdata-example-1": "請求所有來自頁面 <kbd>Metallica</kbd> 的地圖資料",
+	"apihelp-query+mapdata-example-2": "請求所有來自頁面 <kbd>Metallica</kbd> 的 <kbd>group1</kbd> 與 <kbd>group2</kbd> 群組裡地圖資料",
+	"apihelp-query+mapdata-param-continue": "使用此參數來繼續透過結果疊代",
+	"apihelp-query+mapdata-param-groups": "以豎線分隔要回傳資料的群組",
+	"apihelp-query+mapdata-param-limit": "會回傳多少個用於頁面的資料"
+}

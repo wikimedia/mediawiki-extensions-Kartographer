@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Purodha"
+		]
+	},
+	"apihelp-query+mapdata-description": "Holl alle Kaate-Dahte vun dä Sigg <kbd lang=\"en\" xml:lang=\"en\" dir=\"ltr\">Metallica</kbd>",
+	"apihelp-query+mapdata-example-1": "Holl alle Kaate-dahte vun dä Sigg <kbd  lang=\"en\" xml:lang=\"en\" dir=\"ltr\">Metallica</kbd>",
+	"apihelp-query+mapdata-param-limit": "Dohe for wi vill Sigge wdderjävve"
+}

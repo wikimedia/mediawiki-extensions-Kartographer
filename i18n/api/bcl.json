@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"ShimunUfesoj"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "Nagsasagibo nin pagpapatotoo kan data para sa ekstensyon kan Kartographer",
+	"apihelp-sanitize-mapdata-summary": "Nagsasagibo nin pagpapatotoo kan data para sa ekstensyon kan Kartographer",
+	"apihelp-sanitize-mapdata-param-title": "\nPamagat kan pahina kun saen yaon an GeoJSON na ini. Kun mayong pamagat na pigtao, maggamit lang nin sarong dummy.",
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON para sa kalinigan",
+	"apihelp-sanitize-mapdata-example": "I-sanitize an sarong patak kan GeoJSON",
+	"apihelp-query+mapdata-description": "Humiling kan gabos nin data kan mapa gikan sa pahina <kbd> Metallica </ kbd>",
+	"apihelp-query+mapdata-summary": "Humiling kan gabos nin data kan mapa gikan sa pahina <kbd> Metallica </kbd>",
+	"apihelp-query+mapdata-example-1": "Humiling kan gabos nin data kan mapa gikan sa pahina <kbd> Metallica </kbd>",
+	"apihelp-query+mapdata-example-2": "Humiling kan mapa nin data sa mga grupo <kbd>grupo1</kbd> and <kbd>grupo2</kbd> gikan sa pahina <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-param-continue": "Gamiton an parametrong ini tanganing magpadagos sa pag-otro sa paagi kan mga resulta",
+	"apihelp-query+mapdata-param-groups": "Mga grupo na pigsusuway nin pipe tanganing ibalik an data para sa",
+	"apihelp-query+mapdata-param-limit": "Data para sa kun gurano kadakol nin mga pahina an mabalik"
+}

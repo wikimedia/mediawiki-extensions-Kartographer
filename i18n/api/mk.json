@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bjankuloski06"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "Врши проверка на податоци за додатокот „Картограф“.",
+	"apihelp-sanitize-mapdata-summary": "Врши проверка на податоци за додатокот „Картограф“.",
+	"apihelp-sanitize-mapdata-param-title": "Наслов на страницата кајшто треба да се наоѓа овој GeoJSON. Ако не укажете наслов, ќе се користи пополнувач.",
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON за чистење",
+	"apihelp-sanitize-mapdata-example": "Истчисти грутка во GeoJSON",
+	"apihelp-query+mapdata-description": "Дај картографски податоци од „Картограф“",
+	"apihelp-query+mapdata-summary": "Побарај ги сите картографски податоци од „Картограф“ за дадените страници",
+	"apihelp-query+mapdata-example-1": "Побарај ги сите картографски податоци од страницата <kbd>Металика</kbd>",
+	"apihelp-query+mapdata-example-2": "Побарај ги картографските податоци во групите <kbd>група1</kbd> и <kbd>група2</kbd> од страницата <kbd>Металика</kbd>",
+	"apihelp-query+mapdata-param-continue": "Послужете се со параметаров за да продолжите со повторувањето низ исходот",
+	"apihelp-query+mapdata-param-groups": "За кои групи да се дадат податоци (одделени со прави црти)",
+	"apihelp-query+mapdata-param-limit": "Податоци за колку страници да се дадат"
+}

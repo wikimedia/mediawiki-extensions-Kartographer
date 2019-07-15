@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Gomoko",
+			"Orlodrim",
+			"Wladek92"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "Effectue la validation des données pour l’extension Kartographer",
+	"apihelp-sanitize-mapdata-summary": "Effectue la validation des données pour l’extension Kartographer",
+	"apihelp-sanitize-mapdata-param-title": "Titre de la page sur laquelle ce GeoJSON est censé se trouver. Si aucun titre n’est fourni, un pseudo-titre sera utilisé.",
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON à assainir",
+	"apihelp-sanitize-mapdata-example": "Assainir un blob GeoJSON",
+	"apihelp-query+mapdata-description": "Récupérer les données cartographiques de Kartographer",
+	"apihelp-query+mapdata-summary": "Demander toutes les données cartographiques de  Kartographer pour les pages données",
+	"apihelp-query+mapdata-example-1": "Demande toutes les données cartographiques de la page <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-example-2": "Demande les données cartographiques dans les groupes <kbd>group1</kbd> et <kbd>group2</kbd> de la page <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-param-continue": "Utiliser ce paramètre pour continuer l’énumération des résultats",
+	"apihelp-query+mapdata-param-groups": "Groupes pour lesquels renvoyer les données, séparés par des barres verticales",
+	"apihelp-query+mapdata-param-limit": "Nombre de pages pour lesquelles renvoyer des données"
+}

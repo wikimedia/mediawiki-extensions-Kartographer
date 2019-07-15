@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vriullop"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "Realitza la validació de dades per l'extensió Kartographer"
+}
