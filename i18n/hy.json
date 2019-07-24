@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kareyac"
+			"Kareyac",
+			"Դավիթ Սարոյան"
 		]
 	},
 	"kartographer-linktype-map": "Քարտեզ",
@@ -14,9 +15,28 @@
 	"leafletdraw-edit-toolbar-actions-cancel-text": "Չեղարկել",
 	"leafletdraw-edit-toolbar-actions-save-text": "Հիշել",
 	"leafletdraw-edit-toolbar-actions-save-title": "Հիշել փոփոխությունները",
+	"leafletdraw-edit-toolbar-actions-clearall-text": "Մաքրել բոլորը",
+	"leafletdraw-edit-toolbar-actions-clearall-title": "Մաքրել բոլոր շերտերը",
+	"leafletdraw-edit-toolbar-buttons-edit": "Խմբագրել շերտերը",
+	"leafletdraw-edit-toolbar-buttons-editdisabled": "Խմբագրման ենթակա շերտեր չկան",
+	"leafletdraw-edit-toolbar-buttons-remove": "Ջնջել շերտեր",
+	"leafletdraw-edit-toolbar-buttons-removedisabled": "Ջնջման ենթակա շերտեր չկան",
+	"leafletdraw-draw-toolbar-finish-text": "Պատրաստ է",
+	"mapbox-control-zoomin-title": "Խոշորացնել",
+	"mapbox-control-zoomout-title": "Փոքրացնել",
 	"kartographer-fullscreen-close": "Փակել",
+	"kartographer-fullscreen-collapse": "Թաքցնել քարտեզի մանրամասները",
+	"kartographer-fullscreen-text": "Ցուցադրել լիաէկրան",
+	"visualeditor-mwmapsdialog-area": "Քարտեզի հատված",
+	"visualeditor-mwmapsdialog-content": "Քարտեզի բովանդակություն",
+	"visualeditor-mwmapsdialog-options": "Ընտրանքներ",
+	"visualeditor-mwmapsdialog-align": "Դասավորություն",
+	"visualeditor-mwmapsdialog-geojson": "GeoJSON",
+	"visualeditor-mwmapsdialog-language": "Լեզու",
+	"visualeditor-mwmapsdialog-help-title": "Իմացեք ավելին քարտեզներ ստեղծելու և խմբագրելու մասին։",
 	"visualeditor-mwmapsdialog-position-lat": "Լայնություն",
 	"visualeditor-mwmapsdialog-position-lon": "Երկայնություն",
+	"visualeditor-mwmapsdialog-position-zoom": "Խոշորացում",
 	"visualeditor-mwmapsdialog-size": "Չափ",
 	"visualeditor-mwmapsdialog-title": "Քարտեզ",
 	"visualeditor-mwmapscontextitem-title": "Քարտեզ"
