@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ильнар"
+			"Ильнар",
+			"Ерней"
 		]
 	},
 	"kartographer-linktype-aerial": "Аэро",
@@ -41,7 +42,7 @@
 	"visualeditor-mwmapsdialog-position-lat": "Киңлек",
 	"visualeditor-mwmapsdialog-position-lon": "Озынлык",
 	"visualeditor-mwmapsdialog-position-zoom": "Масштаб",
-	"visualeditor-mwmapsdialog-size": "Үлчәм",
+	"visualeditor-mwmapsdialog-size": "Зурлык",
 	"visualeditor-mwmapsdialog-title": "Харита",
 	"visualeditor-mwmapscontextitem-title": "Харита"
 }
