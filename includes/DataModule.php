@@ -20,7 +20,7 @@ class DataModule extends ResourceLoaderModule {
 	 * @inheritDoc
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		$config = $context->getResourceLoader()->getConfig();
+		$config = $this->getConfig();
 		return ResourceLoader::makeConfigSetScript( [
 			'wgKartographerMapServer' => $config->get( 'KartographerMapServer' ),
 			'wgKartographerIconServer' => $config->get( 'KartographerIconServer' ),
@@ -42,6 +42,7 @@ class DataModule extends ResourceLoaderModule {
 	 * @return bool
 	 */
 	public function supportsURLLoading() {
-		return false; // always use getScript() to acquire JavaScript (even in debug mode)
+		// always use getScript() to acquire JavaScript (even in debug mode)
+		return false;
 	}
 }
