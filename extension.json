@@ -178,13 +178,13 @@
 				"ext.kartographer.lib.topojson",
 				"ext.kartographer",
 				"ext.kartographer.style",
-				"ext.kartographer.settings",
 				"ext.kartographer.site",
 				"ext.kartographer.data",
 				"ext.kartographer.util"
 			],
 			"scripts": [
 				"lib/external/leaflet.sleep.js",
+				"modules/settings/settings.js",
 				"modules/box/openfullscreen_control.js",
 				"modules/box/scale_control.js",
 				"modules/box/dataLayerOpts.js",
@@ -268,19 +268,6 @@
 				"kartographer-sidebar-longitude",
 				"kartographer-sidebar-mapdetails",
 				"kartographer-sidebar-service"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
-			]
-		},
-		"ext.kartographer.settings": {
-			"dependencies": [
-				"mapbox",
-				"ext.kartographer"
-			],
-			"scripts": [
-				"modules/settings/settings.js"
 			],
 			"targets": [
 				"mobile",
