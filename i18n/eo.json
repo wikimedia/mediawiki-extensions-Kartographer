@@ -9,6 +9,7 @@
 	"kartographer-error-context-multi": "&lt;$1&gt; problemoj:\n$2",
 	"kartographer-error-json": "Ne povis sintakse analizi JSON: $1",
 	"kartographer-error-missing-attr": "Atributo \"$1\" mankas",
+	"kartographer-error-bad_attr": "La valoro de la atributo \"$1\" ne estas valida",
 	"kartographer-tracking-category": "Paĝoj kun mapoj",
 	"kartographer-tracking-category-desc": "La paĝo inkluzivas mapon",
 	"kartographer-linktype-aerial": "Aeraj",
