@@ -14,6 +14,7 @@ class PurgeMapPages extends Maintenance {
 		$this->addDescription( 'Purge all pages that use <maplink> or <mapframe>.' );
 		$this->addOption( 'dry-run', 'Only print page names, do not purge them', false, false );
 		$this->setBatchSize( 100 );
+		$this->requireExtension( 'Kartographer' );
 	}
 
 	public function execute() {
