@@ -4,10 +4,12 @@
 			"AlvaroMolina",
 			"Fitoschido",
 			"Macofe",
-			"MarcoAurelio"
+			"MarcoAurelio",
+			"Rafael.minuesa"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Realiza la validación de datos para la extensión Kartographer",
+	"apihelp-sanitize-mapdata-summary": "Realiza validación de datos para la extensión Kartographer",
 	"apihelp-sanitize-mapdata-param-title": "Título de la página en la que esta GeoJSON se supone que se encuentra. Si no hay ningún título, un maniquí.",
 	"apihelp-sanitize-mapdata-param-text": "GeoJSON que expurgar",
 	"apihelp-sanitize-mapdata-example": "Expurgar un objeto binario GeoJSON",
