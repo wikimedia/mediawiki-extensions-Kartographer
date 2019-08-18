@@ -318,11 +318,6 @@ abstract class TagHandler {
 	) {
 		global $wgKartographerStaticMapframe;
 
-		$data = $state->getData();
-		if ( $data ) {
-			$json = FormatJson::encode( $data, false, FormatJson::ALL_OK );
-			$output->setProperty( 'kartographer', gzencode( $json ) );
-		}
 		if ( $state->getMaplinks() ) {
 			$output->setProperty( 'kartographer_links', $state->getMaplinks() );
 		}
@@ -338,6 +333,7 @@ abstract class TagHandler {
 		}
 
 		// https://phabricator.wikimedia.org/T145615 - include all data in previews
+		$data = $state->getData();
 		if ( $data && $isPreview ) {
 			$output->addJsConfigVars( 'wgKartographerLiveData', $data );
 			if ( $wgKartographerStaticMapframe ) {
