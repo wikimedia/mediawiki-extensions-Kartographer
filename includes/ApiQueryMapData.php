@@ -6,6 +6,8 @@ use ApiBase;
 use ApiQuery;
 use ApiQueryBase;
 use FormatJson;
+use ParserOptions;
+use WikiPage;
 
 class ApiQueryMapData extends ApiQueryBase {
 
@@ -27,38 +29,22 @@ class ApiQueryMapData extends ApiQueryBase {
 			return;
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
-		$this->addTables( 'page_props' );
-		$this->addFields( [ 'pp_page', 'pp_value' ] );
-		$this->addWhere( [ 'pp_page' => array_keys( $titles ), 'pp_propname' => 'kartographer' ] );
-		$this->addWhereIf( 'pp_page >= ' . $dbr->addQuotes( $continue ), $continue );
-		$this->addOption( 'ORDER BY', 'pp_page' );
-		$this->addOption( 'LIMIT', $limit + 1 );
-
-		$res = $this->select( __METHOD__ );
-
 		$count = 0;
-		foreach ( $res as $row ) {
-			$pageId = $row->pp_page;
+		foreach ( $titles as $pageId => $title ) {
 			if ( ++$count > $limit ) {
 				$this->setContinueEnumParameter( 'continue', $pageId );
 				break;
 			}
-			// FIXME: pp_value can be corrupt due to trimming, which emits
-			// "PHP Warning: data error" and returns false (T184128).
-			\Wikimedia\suppressWarnings();
-			$decoded = gzdecode( $row->pp_value );
-			\Wikimedia\restoreWarnings();
-			$status = FormatJson::parse( $decoded );
-			$data = $status->getValue();
-			if ( !$status->isOK() || !is_object( $data ) ) {
-				continue;
-			}
+
+			$page = WikiPage::factory( $title );
+			$parserOutput = $page->getParserOutput( ParserOptions::newCanonical( 'canonical' ) );
+			$state = State::getState( $parserOutput );
+			$data = $state->getData();
 
 			$result = [];
 			if ( $groups ) {
 				foreach ( $groups as $group ) {
-					if ( property_exists( $data, $group ) ) {
+					if ( array_key_exists( $group, $data ) ) {
 						$result[$group] = $data->$group;
 					} else {
 						// Let the client know there is no data found for this group
