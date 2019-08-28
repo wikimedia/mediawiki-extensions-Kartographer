@@ -45,7 +45,7 @@ class ApiQueryMapData extends ApiQueryBase {
 			if ( $groups ) {
 				foreach ( $groups as $group ) {
 					if ( array_key_exists( $group, $data ) ) {
-						$result[$group] = $data->$group;
+						$result[$group] = $data[$group];
 					} else {
 						// Let the client know there is no data found for this group
 						$result[$group] = null;
