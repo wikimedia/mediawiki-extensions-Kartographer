@@ -39,6 +39,9 @@ class ApiQueryMapData extends ApiQueryBase {
 			$page = WikiPage::factory( $title );
 			$parserOutput = $page->getParserOutput( ParserOptions::newCanonical( 'canonical' ) );
 			$state = State::getState( $parserOutput );
+			if ( !$state ) {
+				continue;
+			}
 			$data = $state->getData();
 
 			$result = [];
