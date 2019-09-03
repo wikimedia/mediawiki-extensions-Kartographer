@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"ShimunUfesoj"
+		]
+	},
+	"kartographer-wv-group": "Grupo:",
+	"kartographer-wv-layer-nearby-articles": "Mga haraning artikulo",
+	"kartographer-wv-nearby-articles-control": "Galugadon an mga haraning padudumanan",
+	"kartographer-wv-warning-external-source-title": "Panluwas na ginunuan nin datus",
+	"kartographer-wv-warning-external-source-message": "Nai-host sa panluwas an nilalaog kaini, kaya pinagana kaini an pagheheras kan saimong datus sa iba pang mga sityo.",
+	"kartographer-wv-warning-external-source-agree": "Ayos lang 'to",
+	"kartographer-wv-warning-external-source-disagree": "Kanselaron"
+}
