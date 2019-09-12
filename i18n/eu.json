@@ -2,23 +2,24 @@
 	"@metadata": {
 		"authors": [
 			"Sator",
-			"Subi"
+			"Subi",
+			"An13sa"
 		]
 	},
 	"kartographer-linktype-aerial": "Airetikoa",
-	"kartographer-linktype-map": "Mapa",
+	"kartographer-linktype-map": "Mapa estandarrak",
 	"kartographer-linktype-other": "Bestelakoa",
 	"kartographer-linktype-satellite": "Satelitea",
 	"kartographer-linktype-terrain": "Lurrekoa",
-	"kartographer-linktype-topo": "Topologikoa",
+	"kartographer-linktype-topo": "Topografikoa",
 	"kartographer-sidebar-coordinates": "Koordenatuak",
 	"kartographer-sidebar-filterdropdown": "Hautatu mapa-mota",
-	"kartographer-sidebar-externalservices": "Kanpo zerbitzuak",
+	"kartographer-sidebar-externalservices": "Mapa zerbitzuak",
 	"kartographer-sidebar-latitude": "Latitudea",
 	"kartographer-sidebar-longitude": "Longitudea",
-	"kartographer-sidebar-mapdetails": "Mapa xehetasunak",
+	"kartographer-sidebar-mapdetails": "Kanpoko mapak",
 	"kartographer-sidebar-service": "Zerbitzua",
-	"kartographer-sidebar-togglebutton": "Xehetasun gehiago",
+	"kartographer-sidebar-togglebutton": "Kanpoko mapak",
 	"leafletdraw-draw-handlers-circle-radius": "Erradioa",
 	"leafletdraw-draw-toolbar-actions-text": "Utzi",
 	"leafletdraw-draw-toolbar-buttons-circle": "Marraztu zirkulu bat",

@@ -4,7 +4,8 @@
 			"Chrumps",
 			"Halibutt",
 			"Railfail536",
-			"Kocio"
+			"Kocio",
+			"Rail"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Mapy Wikimedia] | Dane kartograficzne © [https://www.openstreetmap.org/copyright Twórcy projektu OpenStreetMap]",
@@ -17,6 +18,7 @@
 	"kartographer-error-bad_attr": "Atrybut '$1' ma niepoprawną wartość",
 	"kartographer-error-bad_data": "Zawartość JSON nie jest poprawnym GeoJSON+simplestyle",
 	"kartographer-error-latlon": "Podaj zarówno \"długość\" jak i \"szerokość\", albo żaden z parametrów",
+	"kartographer-error-title": "Tytuł „$1” nie jest prawidłową stroną danych mapy",
 	"kartographer-tracking-category": "Strony z mapami",
 	"kartographer-tracking-category-desc": "Strona zawiera mapę",
 	"kartographer-specialmap-invalid-coordinates": "Podano nieprawidłowe współrzędne",
@@ -29,6 +31,7 @@
 	"kartographer-sidebar-coordinates": "Współrzędne",
 	"kartographer-sidebar-filterdropdown": "Wybierz rodzaj mapy",
 	"kartographer-sidebar-externalservices": "Usługi map",
+	"kartographer-sidebar-externalservices-show-featured": "Zobacz tylko wyróżnione",
 	"kartographer-sidebar-externalservices-show-all": "Zobacz więcej",
 	"kartographer-sidebar-latitude": "Szerokość geograficzna",
 	"kartographer-sidebar-longitude": "Długość geograficzna",
@@ -38,6 +41,7 @@
 	"leafletdraw-draw-handlers-circle-radius": "Promień",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "Kliknij i przeciągnij, aby narysować okrąg",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Kliknij na mapie, aby umieścić znacznik",
+	"leafletdraw-draw-handlers-circlemarker-tooltip-start": "Kliknij na mapie, aby umieścić okrągły znacznik",
 	"leafletdraw-draw-handlers-polygon-tooltip-cont": "Kliknij, aby kontynuować rysowanie kształtu",
 	"leafletdraw-draw-handlers-polygon-tooltip-end": "Kliknij na pierwszy punkt, aby zamknąć kształt",
 	"leafletdraw-draw-handlers-polygon-tooltip-start": "Kliknij, aby rozpocząć rysowanie kształtu",
@@ -51,6 +55,7 @@
 	"leafletdraw-draw-toolbar-actions-title": "Skasuj rysunek",
 	"leafletdraw-draw-toolbar-buttons-circle": "Rysowanie okrągu",
 	"leafletdraw-draw-toolbar-buttons-marker": "Narysuj znacznik",
+	"leafletdraw-draw-toolbar-buttons-circlemarker": "Narysuj okrągły znacznik",
 	"leafletdraw-draw-toolbar-buttons-polygon": "Rysowanie wielokąta",
 	"leafletdraw-draw-toolbar-buttons-polyline": "Narysuj wielokąt",
 	"leafletdraw-draw-toolbar-buttons-rectangle": "Narysuj prostokąt",
@@ -76,6 +81,7 @@
 	"kartographer-fullscreen-collapse": "Ukryj szczegóły mapy",
 	"kartographer-fullscreen-text": "Pokaż w trybie pełnoekranowym",
 	"visualeditor-mwmapsdialog-area": "Obszar mapy",
+	"visualeditor-mwmapsdialog-content": "Legenda mapy",
 	"visualeditor-mwmapsdialog-options": "Opcje",
 	"visualeditor-mwmapsdialog-align": "Wyrównanie",
 	"visualeditor-mwmapsdialog-language": "Język",
@@ -85,5 +91,6 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Powiększenie",
 	"visualeditor-mwmapsdialog-size": "Rozmiar",
 	"visualeditor-mwmapsdialog-title": "Mapa",
+	"visualeditor-mwmapscontextitem-nosupport": "Ta mapa zawiera dynamiczne elementy i na razie może być edytowana tylko w trybie źródłowym.",
 	"visualeditor-mwmapscontextitem-title": "Mapa"
 }

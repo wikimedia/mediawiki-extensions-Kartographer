@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Praveenp"
+			"Praveenp",
+			"Adithyak1997"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use വിക്കിമീഡിയ ഭൂപടം] | ഭൂപടവിവരങ്ങൾ © [https://www.openstreetmap.org/copyright ഓപ്പൺസ്ട്രീറ്റ്‌മാപ്പ് ഉപയോക്താക്കൾ]",
@@ -35,6 +36,9 @@
 	"leafletdraw-draw-handlers-marker-tooltip-start": "അടയാളം ചേർക്കാനായി ഭൂപടത്തിൽ ഞെക്കുക",
 	"leafletdraw-draw-handlers-circlemarker-tooltip-start": "വൃത്ത അടയാളം ചേർക്കാനായി ഭൂപടത്തിൽ ഞെക്കുക",
 	"leafletdraw-draw-handlers-polygon-tooltip-cont": "ഈ ആകൃതി വരയ്ക്കാനായി ഞെക്കുന്നത് തുടരുക",
+	"leafletdraw-draw-handlers-polygon-tooltip-start": "ആകൃതി വരച്ചുതുടങ്ങുവാൻ അമർത്തുക",
+	"leafletdraw-draw-handlers-polyline-tooltip-cont": "ഈ വരി വരയ്ക്കുന്നത് തുടരുവാനായി അമർത്തുക",
+	"leafletdraw-draw-handlers-polyline-tooltip-start": "ആകൃതി വരച്ചുതുടങ്ങുവാൻ അമർത്തുക",
 	"leafletdraw-draw-toolbar-actions-text": "റദ്ദാക്കുക",
 	"leafletdraw-draw-toolbar-actions-title": "വരയ്ക്കൽ റദ്ദാക്കുക",
 	"leafletdraw-draw-toolbar-buttons-circle": "വൃത്തം വരയ്ക്കുക",
