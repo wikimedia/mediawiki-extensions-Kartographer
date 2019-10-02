@@ -14,7 +14,8 @@
 			"Stjn",
 			"Vlad5250",
 			"Shaleych",
-			"Nk88"
+			"Nk88",
+			"Katunchik"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use карты Викимедиа] | данные © [https://www.openstreetmap.org/copyright участники OpenStreetMap]",
@@ -79,11 +80,11 @@
 	"leafletdraw-edit-toolbar-actions-save-text": "Сохранить",
 	"leafletdraw-edit-toolbar-actions-save-title": "Сохранить изменения",
 	"leafletdraw-edit-toolbar-actions-clearall-text": "Очистить все",
-	"leafletdraw-edit-toolbar-actions-clearall-title": "Очистить все слои",
-	"leafletdraw-edit-toolbar-buttons-edit": "Редактировать слои",
-	"leafletdraw-edit-toolbar-buttons-editdisabled": "Нет слоёв для редактирования",
-	"leafletdraw-edit-toolbar-buttons-remove": "Удалить слои",
-	"leafletdraw-edit-toolbar-buttons-removedisabled": "Нет слоёв для удаления",
+	"leafletdraw-edit-toolbar-actions-clearall-title": "Очистить все объекты",
+	"leafletdraw-edit-toolbar-buttons-edit": "Редактировать объекты",
+	"leafletdraw-edit-toolbar-buttons-editdisabled": "Нет объектов для редактирования",
+	"leafletdraw-edit-toolbar-buttons-remove": "Удалить объекты",
+	"leafletdraw-edit-toolbar-buttons-removedisabled": "Нет объектов для удаления",
 	"leafletdraw-draw-toolbar-finish-text": "Готово",
 	"leafletdraw-draw-toolbar-finish-title": "Кликните, чтобы закончить рисунок",
 	"map": "Информация о координатах",
