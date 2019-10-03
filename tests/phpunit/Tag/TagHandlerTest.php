@@ -10,8 +10,6 @@ use Kartographer\Tag\TagHandler;
  * @author Thiemo Kreuz
  */
 trait TagHandlerTest {
-	use \PHPUnit4And6Compat;
-
 	/**
 	 * @covers \Kartographer\Tag\TagHandler::finalParseStep
 	 */

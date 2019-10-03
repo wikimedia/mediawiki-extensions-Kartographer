@@ -47,7 +47,7 @@ class ApiSanitizeMapDataTest extends MediaWikiTestCase {
 	 * @dataProvider provideErrors
 	 */
 	public function testErrors( $title, $json ) {
-		$this->setExpectedException( ApiUsageException::class );
+		$this->expectException( ApiUsageException::class );
 		$this->makeRequest( $title, $json );
 	}
 
