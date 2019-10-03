@@ -4,7 +4,8 @@
 			"Piramidion",
 			"Base",
 			"Ата",
-			"Vlad5250"
+			"Vlad5250",
+			"Movses"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Карти Вікімедіа] | Картографічні дані © [https://www.openstreetmap.org/copyright Дописувачі OpenStreetMap]",
@@ -68,11 +69,11 @@
 	"leafletdraw-edit-toolbar-actions-save-text": "Зберегти",
 	"leafletdraw-edit-toolbar-actions-save-title": "Зберегти зміни",
 	"leafletdraw-edit-toolbar-actions-clearall-text": "Очистити все",
-	"leafletdraw-edit-toolbar-actions-clearall-title": "Очистити всі шари",
-	"leafletdraw-edit-toolbar-buttons-edit": "Редагувати шари",
-	"leafletdraw-edit-toolbar-buttons-editdisabled": "Немає шарів для редагування",
-	"leafletdraw-edit-toolbar-buttons-remove": "Вилучити шари",
-	"leafletdraw-edit-toolbar-buttons-removedisabled": "Немає шарів для вилучення",
+	"leafletdraw-edit-toolbar-actions-clearall-title": "Очистити всі об'єкти",
+	"leafletdraw-edit-toolbar-buttons-edit": "Редагувати об'єкти",
+	"leafletdraw-edit-toolbar-buttons-editdisabled": "Немає об'єктів для редагування",
+	"leafletdraw-edit-toolbar-buttons-remove": "Вилучити об'єкти",
+	"leafletdraw-edit-toolbar-buttons-removedisabled": "Немає об'єктів для вилучення",
 	"leafletdraw-draw-toolbar-finish-text": "Готово",
 	"leafletdraw-draw-toolbar-finish-title": "Клацніть, щоб завершити креслення",
 	"map": "Інформація щодо координат",
