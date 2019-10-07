@@ -1,4 +1,3 @@
-/* globals require */
 ( function () {
 	var cjs = require( 'rollup-plugin-commonjs' );
 

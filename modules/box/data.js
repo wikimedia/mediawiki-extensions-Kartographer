@@ -1,4 +1,3 @@
-/* globals require */
 module.Data = ( function ( DataManager ) {
 	return DataManager( {
 		createPromise: function ( callback ) {

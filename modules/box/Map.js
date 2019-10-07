@@ -755,6 +755,7 @@ module.Map = ( function ( util, OpenFullScreenControl, dataLayerOpts, ScaleContr
 				return;
 			}
 
+			// eslint-disable-next-line no-jquery/no-sizzle
 			$visibleParent = this.$container.closest( ':visible' );
 
 			// Try `max` properties.

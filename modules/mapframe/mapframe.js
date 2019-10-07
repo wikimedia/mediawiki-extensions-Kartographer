@@ -1,4 +1,3 @@
-/* globals require */
 /**
  * Frame module.
  *
@@ -99,6 +98,7 @@ module.exports = ( function ( util, kartobox, router ) {
 		// When the container is hidden Leaflet is not able to
 		// calculate the expected size when visible. We need to force
 		// updating the map to the new container size on `expand`.
+		// eslint-disable-next-line no-jquery/no-sizzle
 		if ( !$container.is( ':visible' ) ) {
 			$container.closest( '.mw-collapsible' )
 				.on( 'afterExpand.mw-collapsible', function () {

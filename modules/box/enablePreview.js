@@ -10,6 +10,7 @@
  */
 module.enablePreview = ( function () {
 
+	// eslint-disable-next-line no-jquery/no-class-state
 	if ( mw.config.get( 'wgAction' ) === 'submit' && !$( document.documentElement ).hasClass( 've-active' ) ) {
 		mw.loader.using( 'ext.kartographer.preview' );
 	}

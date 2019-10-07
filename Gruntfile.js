@@ -5,7 +5,6 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-eslint' );
-	grunt.loadNpmTasks( 'grunt-jsonlint' );
 	grunt.loadNpmTasks( 'grunt-stylelint' );
 	grunt.loadNpmTasks( 'grunt-svgmin' );
 
@@ -13,10 +12,11 @@ module.exports = function ( grunt ) {
 		eslint: {
 			options: {
 				reportUnusedDisableDirectives: true,
+				extensions: [ '.js', '.json' ],
 				cache: true
 			},
 			all: [
-				'**/*.js',
+				'**/*.{js,json}',
 				'!node_modules/**',
 				'!lib/**',
 				'!docs/**',
@@ -44,13 +44,6 @@ module.exports = function ( grunt ) {
 					'!vendor/**'
 				]
 			}
-		},
-		jsonlint: {
-			all: [
-				'**/*.json',
-				'!node_modules/**',
-				'!vendor/**'
-			]
 		},
 		// SVG Optimization
 		svgmin: {
@@ -119,7 +112,7 @@ module.exports = function ( grunt ) {
 		} );
 	} );
 
-	grunt.registerTask( 'lint', [ 'eslint', 'stylelint', 'jsonlint', 'banana', 'svgmin' ] );
+	grunt.registerTask( 'lint', [ 'eslint', 'stylelint', 'banana', 'svgmin' ] );
 	grunt.registerTask( 'test', [ 'lint', 'libcheck' ] );
 	grunt.registerTask( 'default', 'test' );
 };

@@ -1,4 +1,3 @@
-/* globals require */
 /**
  * Static Frame module.
  *

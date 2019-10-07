@@ -1,4 +1,3 @@
-/* globals require */
 /**
  * Module to help rendering maps in a full screen dialog.
  *

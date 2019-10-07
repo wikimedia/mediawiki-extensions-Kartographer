@@ -1,4 +1,3 @@
-/* globals require */
 /**
  * Dialog for displaying maps in full screen mode.
  *
@@ -40,7 +39,7 @@ module.Dialog = ( function ( CloseFullScreenControl, router ) {
 		MapDialog.super.prototype.initialize.apply( this, arguments );
 
 		this.$body
-			.append( '<div class="kartographer-mapDialog-loading"></div>' );
+			.append( $( '<div>' ).addClass( 'kartographer-mapDialog-loading' ) );
 		this.$foot
 			.addClass( 'mw-kartographer-mapDialog-foot' );
 
