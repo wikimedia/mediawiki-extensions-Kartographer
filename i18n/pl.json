@@ -5,7 +5,8 @@
 			"Halibutt",
 			"Railfail536",
 			"Kocio",
-			"Rail"
+			"Rail",
+			"FunPL"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Mapy Wikimedia] | Dane kartograficzne © [https://www.openstreetmap.org/copyright Twórcy projektu OpenStreetMap]",
@@ -71,7 +72,7 @@
 	"leafletdraw-edit-toolbar-buttons-edit": "Edycja obiektów",
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Brak obiektów do edycji",
 	"leafletdraw-edit-toolbar-buttons-remove": "Usuwanie obiektów",
-	"leafletdraw-edit-toolbar-buttons-removedisabled": "Brak obiektów, które można usunąć",
+	"leafletdraw-edit-toolbar-buttons-removedisabled": "Brak obiektów do usunięcia",
 	"leafletdraw-draw-toolbar-finish-text": "Zakończ",
 	"leafletdraw-draw-toolbar-finish-title": "Kliknij, aby zakończyć rysowanie",
 	"map": "Informacje o koordynatach",
