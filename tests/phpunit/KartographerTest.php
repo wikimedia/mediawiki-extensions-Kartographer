@@ -28,7 +28,7 @@ class KartographerTest extends MediaWikiTestCase {
     }
   }';
 
-	public function setUp() {
+	public function setUp() : void {
 		$this->setMwGlobals( [
 			'wgScriptPath' => '/w',
 			'wgScript' => '/w/index.php',
