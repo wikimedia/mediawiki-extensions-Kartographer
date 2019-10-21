@@ -1,10 +1,32 @@
 {
 	"@metadata": {
 		"authors": [
-			"Rakeshonwiki"
+			"Rakeshonwiki",
+			"Balajijagadesh"
 		]
 	},
+	"kartographer-broken-category": "உடைந்த வரைப்படங்கள் கொண்ட பக்கங்கள்",
+	"kartographer-linktype-satellite": "செயற்கைக்கோள்",
+	"kartographer-sidebar-externalservices-show-all": "மேலும் பார்க்க",
+	"kartographer-sidebar-latitude": "குறுக்குக் கோடு",
+	"kartographer-sidebar-longitude": "குத்துயரக் கோடு",
+	"kartographer-sidebar-mapdetails": "வெளி வரைப்படம்",
+	"kartographer-sidebar-service": "சேவை",
+	"kartographer-sidebar-togglebutton": "வெளி வரைப்படம்",
+	"leafletdraw-draw-handlers-circle-radius": "ஆரம்",
+	"leafletdraw-draw-toolbar-actions-text": "கைவிடுக",
+	"leafletdraw-draw-toolbar-buttons-circle": "ஒரு வட்டத்தை வரைக",
+	"leafletdraw-edit-toolbar-actions-cancel-text": "கைவிடுக",
+	"leafletdraw-edit-toolbar-actions-save-text": "சேமிக்கவும்",
+	"leafletdraw-edit-toolbar-actions-save-title": "மாற்றங்களைச் சேமிக்கவும்",
+	"mapbox-control-zoomin-title": "உருவ அளவு பெரிதாக்கு",
+	"mapbox-control-zoomout-title": "உருவ அளவு சிறிதாக்கு",
+	"kartographer-fullscreen-close": "மூடுக",
+	"visualeditor-mwmapsdialog-language": "மொழி",
 	"visualeditor-mwmapsdialog-position-lat": "அட்சரேகை:",
 	"visualeditor-mwmapsdialog-position-lon": "தீர்க்க ரேகை:",
-	"visualeditor-mwmapsdialog-position-zoom": "பெரிதாக்கு"
+	"visualeditor-mwmapsdialog-position-zoom": "பெரிதாக்கு",
+	"visualeditor-mwmapsdialog-size": "அளவு",
+	"visualeditor-mwmapsdialog-title": "வரைபடம்",
+	"visualeditor-mwmapscontextitem-title": "வரைபடம்"
 }
