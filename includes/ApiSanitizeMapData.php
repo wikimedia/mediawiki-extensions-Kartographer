@@ -12,6 +12,7 @@ namespace Kartographer;
 
 use ApiBase;
 use FormatJson;
+use MediaWiki\MediaWikiServices;
 use Parser;
 use ParserOptions;
 use stdClass;
@@ -39,10 +40,7 @@ class ApiSanitizeMapData extends ApiBase {
 	}
 
 	private function sanitizeJson( Title $title, $text ) {
-		/** @var Parser $wgParser */
-		global $wgParser;
-
-		$parser = $wgParser->getFreshParser();
+		$parser = MediaWikiServices::getInstance()->getParser();
 		$parserOptions = new ParserOptions( $this->getUser() );
 		$parser->startExternalParse( $title, $parserOptions, Parser::OT_HTML );
 		$parser->setTitle( $title );

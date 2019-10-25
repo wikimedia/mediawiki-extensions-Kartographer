@@ -26,7 +26,7 @@ module.exports = ( function () {
 			/**
 			 * @property {Object}
 			 */
-			this.metadata = mw.config.get( 'wgKartographerExternalLinks' );
+			this.metadata = require( './externalLinks.json' );
 			this.parseExternalLinks();
 		},
 		selectedType;
