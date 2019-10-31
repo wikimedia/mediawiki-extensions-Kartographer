@@ -47,12 +47,16 @@
 	"kartographer-fullscreen-close": "Затваряне",
 	"kartographer-fullscreen-collapse": "Скриване на детайли",
 	"kartographer-fullscreen-text": "Показване на цял екран",
+	"visualeditor-mwmapsdialog-content": "Съдържание на картата",
+	"visualeditor-mwmapsdialog-options": "Настройки",
 	"visualeditor-mwmapsdialog-align": "Подравняване",
 	"visualeditor-mwmapsdialog-language": "Език",
+	"visualeditor-mwmapsdialog-help-title": "Научете повече за създаването и редактирането на карти.",
 	"visualeditor-mwmapsdialog-position-lat": "Географска ширина",
 	"visualeditor-mwmapsdialog-position-lon": "Географска дължина",
 	"visualeditor-mwmapsdialog-position-zoom": "Мащабиране",
 	"visualeditor-mwmapsdialog-size": "Размер",
 	"visualeditor-mwmapsdialog-title": "Карта",
+	"visualeditor-mwmapscontextitem-nosupport": "Тази карта съдържа има динамични възможности и за сега може да се редактира само в режим на редактиране на кода.",
 	"visualeditor-mwmapscontextitem-title": "Карта"
 }
