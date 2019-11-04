@@ -9,7 +9,8 @@
 			"Hamilton Abreu",
 			"Opraco",
 			"Athena in Wonderland",
-			"CaiusSPQR"
+			"CaiusSPQR",
+			"Mansil alfalb"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Cartas geográficas da Wikimedia] | Dados cartográficos © [https://www.openstreetmap.org/copyright Contribuidores do OpenStreetMap]",
@@ -74,10 +75,10 @@
 	"leafletdraw-edit-toolbar-actions-save-title": "Gravar alterações",
 	"leafletdraw-edit-toolbar-actions-clearall-text": "Limpar tudo",
 	"leafletdraw-edit-toolbar-actions-clearall-title": "Limpar todas as camadas",
-	"leafletdraw-edit-toolbar-buttons-edit": "Editar camadas",
-	"leafletdraw-edit-toolbar-buttons-editdisabled": "Não há camadas para editar",
-	"leafletdraw-edit-toolbar-buttons-remove": "Eliminar camadas",
-	"leafletdraw-edit-toolbar-buttons-removedisabled": "Não há camadas para eliminar",
+	"leafletdraw-edit-toolbar-buttons-edit": "Editar objetos",
+	"leafletdraw-edit-toolbar-buttons-editdisabled": "Não existem objetos para editar",
+	"leafletdraw-edit-toolbar-buttons-remove": "Eliminar objetos",
+	"leafletdraw-edit-toolbar-buttons-removedisabled": "Não existem objetos para eliminar",
 	"leafletdraw-draw-toolbar-finish-text": "Concluído",
 	"leafletdraw-draw-toolbar-finish-title": "Clique para terminar o desenho",
 	"map": "Informação das coordenadas",

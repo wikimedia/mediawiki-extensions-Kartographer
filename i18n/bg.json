@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"StanProg",
-			"Iliev"
+			"Iliev",
+			"Ted Masters"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Карти на Уикимедия] | Карт. данни © [https://www.openstreetmap.org/copyright Редактори в OpenStreetMap]",
@@ -57,6 +58,6 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Мащабиране",
 	"visualeditor-mwmapsdialog-size": "Размер",
 	"visualeditor-mwmapsdialog-title": "Карта",
-	"visualeditor-mwmapscontextitem-nosupport": "Тази карта съдържа има динамични възможности и за сега може да се редактира само в режим на редактиране на кода.",
+	"visualeditor-mwmapscontextitem-nosupport": "Тази карта съдържа динамични възможности и за сега може да се редактира само в режим на редактиране на кода.",
 	"visualeditor-mwmapscontextitem-title": "Карта"
 }
