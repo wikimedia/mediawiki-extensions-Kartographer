@@ -108,9 +108,6 @@ class SimpleStyleParser {
 	 */
 	public static function doCountersRecursive( array &$values, &$counters ) {
 		$firstMarker = false;
-		if ( !is_array( $values ) ) {
-			return $firstMarker;
-		}
 		foreach ( $values as $item ) {
 			if ( property_exists( $item, 'properties' ) &&
 				 property_exists( $item->properties, 'marker-symbol' )

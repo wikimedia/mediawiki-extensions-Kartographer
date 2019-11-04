@@ -102,7 +102,7 @@ abstract class TagHandler {
 	 * @return string
 	 */
 	public static function entryPoint( $input, array $args, Parser $parser, PPFrame $frame ) {
-		/** @phan-suppress-next-line PhanTypeInstantiateAbstract */
+		/** @phan-suppress-next-line PhanTypeInstantiateAbstractStatic */
 		$handler = new static();
 
 		return $handler->handle( $input, $args, $parser, $frame );
