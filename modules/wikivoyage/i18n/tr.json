@@ -2,8 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"TmY e12",
-			"ToprakM"
+			"ToprakM",
+			"BaRaN6161 TURK"
 		]
 	},
-	"kartographer-wv-group": "Grup:"
+	"kartographer-wv-group": "Grup:",
+	"kartographer-wv-layer-nearby-articles": "Yakındaki makaleler",
+	"kartographer-wv-nearby-articles-control": "Yakındaki varış yerlerini keşfedin",
+	"kartographer-wv-warning-external-source-title": "Dış veri kaynağı",
+	"kartographer-wv-warning-external-source-message": "Bu içerik harici olarak barındırılıyor, bu nedenle verilerinizi diğer sitelerle paylaşıyor.",
+	"kartographer-wv-warning-external-source-agree": "Sorun değil",
+	"kartographer-wv-warning-external-source-disagree": "İptal"
 }
