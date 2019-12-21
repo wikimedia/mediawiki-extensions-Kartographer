@@ -34,8 +34,10 @@ class ApiSanitizeMapData extends ApiBase {
 			$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['title'] ) ] );
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 		$this->checkTitleUserPermissions( $title, 'read' );
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 		$this->sanitizeJson( $title, $params['text'] );
 	}
 

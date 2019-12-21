@@ -195,7 +195,7 @@ class MapFrame extends TagHandler {
 		$containerClass .= " thumb {$thumbAlignClasses[$this->align]}";
 
 		$captionFrame = Html::rawElement( 'div', [ 'class' => 'thumbcaption' ],
-			$this->parser->recursiveTagParse( $caption ) );
+			$caption ? $this->parser->recursiveTagParse( $caption ) : '' );
 
 		$mapDiv = Html::rawElement( 'a', $attrs );
 

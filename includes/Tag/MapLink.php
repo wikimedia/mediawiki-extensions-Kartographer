@@ -80,7 +80,7 @@ class MapLink extends TagHandler {
 			// JsonSchema already validates this value for us, however this regex will also fail
 			// if the color is invalid
 			preg_match( '/^#?(([0-9a-fA-F]{3}){1,2})$/', $this->markerProperties->{'marker-color'}, $m );
-			if ( $m && $m[2] ) {
+			if ( $m && isset( $m[1] ) && isset( $m[2] ) ) {
 				return "background: #{$m[1]};";
 			}
 		}
