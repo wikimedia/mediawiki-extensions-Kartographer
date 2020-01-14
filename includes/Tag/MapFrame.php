@@ -4,8 +4,8 @@ namespace Kartographer\Tag;
 
 use FormatJson;
 use Html;
-use UnexpectedValueException;
 use Kartographer\SpecialMap;
+use UnexpectedValueException;
 
 /**
  * The <mapframe> tag inserts a map into wiki page

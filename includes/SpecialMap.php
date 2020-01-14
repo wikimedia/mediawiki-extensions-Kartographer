@@ -4,9 +4,9 @@ namespace Kartographer;
 
 use GeoData\Globe;
 use Html;
+use Kartographer\Projection\EPSG3857;
 use SpecialPage;
 use Title;
-use Kartographer\Projection\EPSG3857;
 
 /**
  * Special page that works as a fallback destination for non-JS users

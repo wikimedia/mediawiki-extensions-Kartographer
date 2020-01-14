@@ -2,11 +2,11 @@
 namespace Kartographer\Tests;
 
 use ApiMain;
+use ApiUsageException;
 use DerivativeContext;
 use FauxRequest;
 use MediaWikiTestCase;
 use RequestContext;
-use ApiUsageException;
 
 /**
  * @covers \Kartographer\ApiSanitizeMapData
