@@ -72,11 +72,11 @@ class SpecialMapTest extends MediaWikiTestCase {
 	public function testLink() {
 		$this->setMwGlobals( 'wgArticlePath', '/wiki/$1' );
 		$title = SpecialMap::link( 12, -34.5, 6 );
-		$this->assertType( Title::class, $title );
+		$this->assertInstanceOf( Title::class, $title );
 		$this->assertEquals( '/wiki/Special:Map/6/12/-34.5/local', $title->getLocalURL() );
 
 		$title = SpecialMap::link( 12, -34.5, 6, 'zh' );
-		$this->assertType( Title::class, $title );
+		$this->assertInstanceOf( Title::class, $title );
 		$this->assertEquals( '/wiki/Special:Map/6/12/-34.5/zh', $title->getLocalURL() );
 	}
 }
