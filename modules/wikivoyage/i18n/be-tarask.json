@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Red Winged Duck"
+			"Red Winged Duck",
+			"Renessaince"
 		]
 	},
 	"kartographer-wv-group": "Група:",
@@ -10,5 +11,5 @@
 	"kartographer-wv-warning-external-source-title": "Вонкавая крыніца зьвестак",
 	"kartographer-wv-warning-external-source-message": "Гэты зьмест знаходзіцца на вонкавым рэсурсе, яго падключэньне прывядзе да таго, што вашыя зьвесткі будуць даступныя іншым сайтам.",
 	"kartographer-wv-warning-external-source-agree": "Гэта добра",
-	"kartographer-wv-warning-external-source-disagree": "Адмяніць"
+	"kartographer-wv-warning-external-source-disagree": "Скасаваць"
 }
