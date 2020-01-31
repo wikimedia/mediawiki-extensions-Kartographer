@@ -15,6 +15,7 @@
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia maps] | Données de carte © [https://www.openstreetmap.org/copyright les contributeurs d’OpenStreetMap]",
+	"kartographer-attribution-externaldata": "$1 : $2",
 	"kartographer-attribution-short": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia] | © [https://www.openstreetmap.org/copyright OpenStreetMap]",
 	"kartographer-broken-category": "Pages avec des cartes contenant des erreurs",
 	"kartographer-broken-category-desc": "La page contient une carte avec des erreurs de syntaxe.",
