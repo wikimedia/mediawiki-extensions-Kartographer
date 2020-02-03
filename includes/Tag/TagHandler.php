@@ -116,10 +116,13 @@ abstract class TagHandler {
 	 * @return string
 	 */
 	final private function handle( $input, array $args, Parser $parser, PPFrame $frame ) {
+		global $wgKartographerMapServer;
+
 		$this->parser = $parser;
 		$this->frame = $frame;
 		$output = $parser->getOutput();
 		$output->addModuleStyles( 'ext.kartographer.style' );
+		$output->addExtraCSPDefaultSrc( $wgKartographerMapServer );
 		$this->state = State::getOrCreate( $output );
 
 		$this->status = Status::newGood();
