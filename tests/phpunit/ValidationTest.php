@@ -3,6 +3,7 @@
 namespace Kartographer\Tests;
 
 use Kartographer\Tests\Mock\MockSimpleStyleParser;
+use MediaWiki\MediaWikiServices;
 use MediaWikiTestCase;
 use Parser;
 use ParserOptions;
@@ -24,7 +25,7 @@ class ValidationTest extends MediaWikiTestCase {
 	 * @dataProvider provideTestCases
 	 */
 	public function testValidation( $fileName, $shouldFail ) {
-		$parser = new Parser();
+		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 		$options = new ParserOptions();
 		$title = Title::newMainPage();
 		$parser->startExternalParse( $title, $options, Parser::OT_HTML );
