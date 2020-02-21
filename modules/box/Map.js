@@ -44,7 +44,10 @@ module.Map = ( function ( util, OpenFullScreenControl, dataLayerOpts, ScaleContr
 		sleepTime: 250,
 		wakeTime: 500,
 		sleepNote: false,
-		sleepOpacity: 1
+		sleepOpacity: 1,
+		// the default zoom applied when `longitude` and `latitude` were
+		// specified, but zoom was not.
+		fallbackZoom: 13
 	} );
 
 	L.Popup.mergeOptions( {
@@ -648,8 +651,6 @@ module.Map = ( function ( util, OpenFullScreenControl, dataLayerOpts, ScaleContr
 
 				if ( initial && !isNaN( initial.zoom ) ) {
 					this.setZoom( initial.zoom );
-				} else if ( this.getZoom() > this.options.fallbackZoom ) {
-					this.setZoom( this.options.fallbackZoom );
 				}
 
 				if ( save ) {
