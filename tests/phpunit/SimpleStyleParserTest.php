@@ -3,6 +3,7 @@
 namespace Kartographer\Tests;
 
 use Kartographer\SimpleStyleParser;
+use MediaWiki\MediaWikiServices;
 use MediaWikiTestCase;
 use Parser;
 use ParserOptions;
@@ -23,7 +24,7 @@ class SimpleStyleParserTest extends MediaWikiTestCase {
 		$expected = json_decode( $expected );
 
 		$options = new ParserOptions();
-		$parser = new Parser();
+		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 		$title = Title::newFromText( 'Test' );
 		$parser->startExternalParse( $title, $options, Parser::OT_HTML );
 		$ssp = new SimpleStyleParser( $parser );

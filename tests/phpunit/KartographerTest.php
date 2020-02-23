@@ -2,8 +2,8 @@
 namespace Kartographer\Tests;
 
 use Kartographer\State;
+use MediaWiki\MediaWikiServices;
 use MediaWikiTestCase;
-use Parser;
 use ParserOptions;
 use ParserOutput;
 use Title;
@@ -277,7 +277,7 @@ WIKITEXT;
 	 * @return ParserOutput
 	 */
 	private function parse( $text, callable $optionsCallback = null ) {
-		$parser = new Parser();
+		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 		$options = new ParserOptions();
 		if ( $optionsCallback ) {
 			$optionsCallback( $options );
