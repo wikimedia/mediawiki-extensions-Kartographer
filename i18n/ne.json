@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"राम प्रसाद जोशी"
+			"राम प्रसाद जोशी",
+			"हिमाल सुबेदी"
 		]
 	},
-	"leafletdraw-edit-toolbar-actions-save-title": "परिवर्तन सङ्ग्रह गर्नुहोस्"
+	"leafletdraw-edit-toolbar-actions-save-title": "परिवर्तन सङ्ग्रह गर्नुहोस्",
+	"visualeditor-mwmapsdialog-language": "भाषा"
 }
