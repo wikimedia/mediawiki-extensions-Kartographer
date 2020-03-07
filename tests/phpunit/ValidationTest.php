@@ -26,7 +26,7 @@ class ValidationTest extends MediaWikiTestCase {
 	 */
 	public function testValidation( $fileName, $shouldFail ) {
 		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
-		$options = new ParserOptions();
+		$options = ParserOptions::newFromAnon();
 		$title = Title::newMainPage();
 		$parser->startExternalParse( $title, $options, Parser::OT_HTML );
 		$validator = new MockSimpleStyleParser( $parser );

@@ -278,7 +278,7 @@ WIKITEXT;
 	 */
 	private function parse( $text, callable $optionsCallback = null ) {
 		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
-		$options = new ParserOptions();
+		$options = ParserOptions::newFromAnon();
 		if ( $optionsCallback ) {
 			$optionsCallback( $options );
 		}

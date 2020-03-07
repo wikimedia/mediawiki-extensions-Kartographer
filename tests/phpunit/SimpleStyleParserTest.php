@@ -23,7 +23,7 @@ class SimpleStyleParserTest extends MediaWikiTestCase {
 	public function testExternalData( $expected, $input, $message = '' ) {
 		$expected = json_decode( $expected );
 
-		$options = new ParserOptions();
+		$options = ParserOptions::newFromAnon();
 		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 		$title = Title::newFromText( 'Test' );
 		$parser->startExternalParse( $title, $options, Parser::OT_HTML );
