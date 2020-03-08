@@ -12,7 +12,7 @@
  * @singleton
  * @private
  */
-module.dataLayerOpts = {
+module.exports = {
 	/**
 	 * A function that accepts a string containing tooltip data,
 	 * and returns a sanitized result for HTML display.

@@ -8,7 +8,7 @@
  * @class Kartographer.Box.ScaleControl
  * @extends L.Control
  */
-module.ScaleControl = L.Control.Scale.extend( {
+var ScaleControl = L.Control.Scale.extend( {
 
 	isMetric: true,
 
@@ -55,3 +55,5 @@ module.ScaleControl = L.Control.Scale.extend( {
 		this._toggleScale();
 	}
 } );
+
+module.exports = ScaleControl;

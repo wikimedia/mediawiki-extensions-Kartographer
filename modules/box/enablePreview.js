@@ -8,7 +8,7 @@
  * @singleton
  * @private
  */
-module.enablePreview = ( function () {
+module.exports = ( function () {
 
 	// eslint-disable-next-line no-jquery/no-class-state
 	if ( mw.config.get( 'wgAction' ) === 'submit' && !$( document.documentElement ).hasClass( 've-active' ) ) {

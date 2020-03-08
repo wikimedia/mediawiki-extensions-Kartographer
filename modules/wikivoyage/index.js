@@ -9,15 +9,15 @@ module.exports = {
 	/**
 	 * @type {Kartographer.Wikivoyage.wikivoyage}
 	 */
-	wikivoyage: module.wikivoyage,
+	wikivoyage: require( './wikivoyage.js' ),
 
 	/**
 	 * @type {Kartographer.Wikivoyage.WVMap}
 	 */
-	WVMap: module.WVMap,
+	WVMap: require( './WVMap.js' ),
 
 	/**
 	 * @type {Kartographer.Wikivoyage.NearbyArticles}
 	 */
-	NearbyArticles: module.NearbyArticles
+	NearbyArticles: require( './NearbyArticles.js' )
 };

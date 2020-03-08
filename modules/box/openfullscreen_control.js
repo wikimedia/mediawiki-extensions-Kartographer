@@ -8,7 +8,7 @@
  * @class Kartographer.Box.OpenFullScreenControl
  * @extends L.Control
  */
-module.OpenFullScreenControl = L.Control.extend( {
+var OpenFullScreenControl = L.Control.extend( {
 	options: {
 		// Do not switch for RTL because zoom also stays in place
 		position: 'topright'
@@ -69,3 +69,5 @@ module.OpenFullScreenControl = L.Control.extend( {
 		this._map.openFullScreen();
 	}
 } );
+
+module.exports = OpenFullScreenControl;

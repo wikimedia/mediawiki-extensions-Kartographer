@@ -1,4 +1,7 @@
 {
+	"env": {
+		"commonjs": false
+	},
 	"globals": {
 		"ve": false
 	}
