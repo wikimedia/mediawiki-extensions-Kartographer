@@ -479,12 +479,8 @@
 		"remoteExtPath": "Kartographer"
 	},
 	"Hooks": {
-		"ParserFirstCallInit": [
-			"Kartographer\\Hooks::onParserFirstCallInit"
-		],
-		"ParserAfterParse": [
-			"Kartographer\\Hooks::onParserAfterParse"
-		]
+		"ParserFirstCallInit": "Kartographer\\Hooks::onParserFirstCallInit",
+		"ParserAfterParse": "Kartographer\\Hooks::onParserAfterParse"
 	},
 	"VisualEditorPluginModules": [
 		"ext.kartographer.editing",
