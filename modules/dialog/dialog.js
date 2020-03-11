@@ -10,7 +10,7 @@
 var CloseFullScreenControl = require( './closefullscreen_control.js' ),
 	router = require( 'mediawiki.router' ),
 	// Opens the sidebar when the screen is wide enough (greater than 1024px)
-	FOOTER_HEIGHT = 58,
+	FOOTER_HEIGHT = 63,
 	SIDEBAR_WIDTH = 320;
 
 /**
