@@ -61,10 +61,10 @@
 	width: @sidebarWidth + 1px; /* 320+1 so border is hidden on common 320px wide mobile devices */
 	box-sizing: border-box;
 	background-color: #fff;
-	padding: 16px 0 !important; /* stylelint-disable-line declaration-no-important */
 	overflow-y: auto;
 	transform: translateX( 100% );
 	transition: transform 100ms ease-out;
+	/* don't use padding on this object, because then it will retain height after being pushed off screen */
 
 	/* For MobileFrontend */
 	.skin-minerva & h2 {
@@ -141,7 +141,7 @@
 }
 
 .mw-kartographer-mapdetails {
-	margin-bottom: 1.5em;
+	margin: 1.5em 0;
 	padding: 0 16px;
 
 	.geo {
@@ -174,7 +174,7 @@
 }
 
 .mw-kartographer-filterservices {
-	margin-bottom: 1em;
+	margin: 1em 0;
 	padding: 0 16px;
 
 	&-title {
@@ -212,6 +212,10 @@
 			}
 		}
 	}
+}
+
+.mw-kartographer-externalservices {
+	margin: 1em 0;
 }
 
 .kartographer-mapDialog-loading {
