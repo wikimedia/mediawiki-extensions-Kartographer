@@ -84,8 +84,10 @@ function validateBounds( layer ) {
 
 	if ( bounds && worldLatLng.contains( bounds ) ) {
 		return bounds;
-	} else if ( layer instanceof L.Polygon && layer._holes && layer._holes[ 0 ] ) {
-		bounds = new L.LatLngBounds( layer._convertLatLngs( layer._holes[ 0 ] ) );
+	} else if ( layer instanceof L.Polygon && layer.getLatLngs() && layer.getLatLngs()[ 1 ] ) {
+		// This is a geomask
+		// We drop the outer ring (aka world) and only look at the layers that are holes
+		bounds = new L.LatLngBounds( layer._convertLatLngs( layer.getLatLngs().slice( 1 ) ) );
 		if ( worldLatLng.contains( bounds ) ) {
 			return bounds;
 		}
