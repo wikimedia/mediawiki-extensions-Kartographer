@@ -230,7 +230,7 @@
 		"ext.kartographer.dialog": {
 			"localBasePath": "modules/dialog",
 			"dependencies": [
-				"oojs-ui.styles.icons-content",
+				"oojs-ui.styles.icons-interactions",
 				"oojs-ui-windows",
 				"mediawiki.router"
 			],
