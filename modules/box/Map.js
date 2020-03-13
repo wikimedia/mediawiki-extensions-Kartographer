@@ -45,6 +45,7 @@ urlFormat = '/{z}/{x}/{y}' + scale + '.png';
 
 require( './leaflet.sleep.js' );
 require( './mapbox-settings.js' ).configure();
+require( './enablePreview.js' );
 
 L.Map.mergeOptions( {
 	sleepTime: 250,

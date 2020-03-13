@@ -34,8 +34,5 @@ L.kartographer = module.exports = {
 	 * @return {Kartographer.Box.MapClass}
 	 * @member Kartographer.Box
 	 */
-	map: function ( options ) {
-		var Map = this.Map;
-		return new Map( options );
-	}
+	map: require( './Map.js' ).map
 };
