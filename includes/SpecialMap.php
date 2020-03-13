@@ -28,7 +28,9 @@ class SpecialMap extends SpecialPage {
 	 */
 	public function execute( $par ) {
 		$this->setHeaders();
-		$this->getOutput()->addModuleStyles( 'ext.kartographer.specialMap' );
+		$output = $this->getOutput();
+		$output->addModuleStyles( 'ext.kartographer.specialMap' );
+		$output->getCSP()->addDefaultSrc( $this->getConfig()->get( 'KartographerMapServer' ) );
 
 		$coord = self::parseSubpage( $par );
 		if ( !$coord ) {
