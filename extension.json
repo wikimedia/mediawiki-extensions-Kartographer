@@ -170,9 +170,9 @@
 			"localBasePath": "modules/box",
 			"dependencies": [
 				"mediawiki.api",
+				"mediawiki.util",
 				"mediawiki.Uri",
 				"oojs-ui.styles.icons-media",
-				"jquery.throttle-debounce",
 				"mapbox",
 				"ext.kartographer.lib.topojson",
 				"ext.kartographer",
