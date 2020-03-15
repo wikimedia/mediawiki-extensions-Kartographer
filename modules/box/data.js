@@ -26,7 +26,7 @@ module.exports = DataManager( {
 		return $.getJSON.apply( $, arguments );
 	},
 	debounce: function () {
-		return mw.util.debounce.apply( $, arguments );
+		return mw.util.debounce.apply( mw.util, arguments );
 	},
 	bind: function () {
 		return $.proxy.apply( $, arguments );
