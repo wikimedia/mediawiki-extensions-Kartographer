@@ -486,6 +486,7 @@
 		"remoteExtPath": "Kartographer"
 	},
 	"Hooks": {
+		"ParserTestGlobals": "Kartographer\\Hooks::onParserTestGlobals",
 		"ParserFirstCallInit": "Kartographer\\Hooks::onParserFirstCallInit",
 		"ParserAfterParse": "Kartographer\\Hooks::onParserAfterParse"
 	},
@@ -520,7 +521,7 @@
 		},
 		"KartographerMapServer": {
 			"description": "Server providing the map tiles",
-			"value": "https://maps.wikimedia.org"
+			"value": false
 		},
 		"KartographerUseMarkerStyle": {
 			"description": "Allows Kartographer to extract CSS style to be used by the link from the GeoJSON",

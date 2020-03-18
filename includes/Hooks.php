@@ -45,4 +45,10 @@ class Hooks {
 		}
 	}
 
+	/**
+	 * @inheritDoc
+	 */
+	public static function onParserTestGlobals( array &$globals ) {
+		$globals['wgKartographerMapServer'] = 'https://maps.wikimedia.org';
+	}
 }
