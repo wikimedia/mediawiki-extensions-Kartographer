@@ -5,7 +5,6 @@ namespace Kartographer\Tag;
 use FormatJson;
 use Html;
 use Kartographer\SpecialMap;
-use UnexpectedValueException;
 
 /**
  * The <mapframe> tag inserts a map into wiki page
@@ -31,8 +30,7 @@ class MapFrame extends TagHandler {
 	 * @return string
 	 */
 	protected function render() {
-		global $wgKartographerFrameMode,
-			$wgKartographerMapServer,
+		global $wgKartographerMapServer,
 			$wgServerName,
 			$wgKartographerStaticMapframe;
 
@@ -58,107 +56,64 @@ class MapFrame extends TagHandler {
 			$wgKartographerStaticMapframe && !$options->getIsPreview() &&
 			!$options->getIsSectionPreview();
 
-		switch ( $wgKartographerFrameMode ) {
-			/* Not implemented in Kartotherian yet
-			case 'static':
-				global $wgKartographerMapServer, $wgKartographerSrcsetScales
-				// http://.../img/{source},{zoom},{lat},{lon},{width}x{height} [ @{scale}x ] .{format}
-				// Optional query value:  ? data = {title}|{group1}|{group2}|...
+		$output->addModules( $useSnapshot
+			? 'ext.kartographer.staticframe'
+			: 'ext.kartographer.frame' );
 
-				$statParams = sprintf( '%s/img/%s,%s,%s,%s,%sx%s',
-					$wgKartographerMapServer,
-					$this->style, $this->zoom, $this->lat, $this->lon, $this->width, $this->height
-				);
+		$fullWidth = false;
 
-				$dataParam = '';
-				$showGroups = $this->showGroups;
-				if ( $showGroups ) {
-					array_unshift( $showGroups, $this->parser->getTitle()->getPrefixedDBkey() );
-					$dataParam = '?data=' .
-						implode( '|', array_map( 'rawurlencode', $showGroups ) );
-				}
-				$imgAttrs = array(
-					'src' => $statParams . '.jpeg' . $dataParam,
-					'width' => $this->width,
-					'height' => $this->height,
-				);
-				if ( $wgKartographerSrcsetScales ) {
-					$srcSet = array();
-					foreach ( $wgKartographerSrcsetScales as $scale ) {
-						$s = '@' . $scale . 'x';
-						$srcSet[$scale] = $statParams . $s . '.jpeg' . $dataParam;
-					}
-					$imgAttrs['srcset'] = Html::srcSet( $srcSet );
-				}
+		$width = is_numeric( $this->width ) ? "{$this->width}px" : $this->width;
 
-				return Html::rawElement( 'div', $attrs, Html::rawElement( 'img', $imgAttrs ) );
-				break;
-			*/
+		if ( preg_match( '/^\d+%$/', $width ) ) {
+			if ( $width === '100%' ) {
+				$fullWidth = true;
+				$staticWidth = 800;
+			} else {
+				$width = '300px'; // @todo: deprecate old syntax completely
+				$staticWidth = 300;
+			}
+		} elseif ( $width === 'full' ) {
+			$width = '100%';
+			$fullWidth = true;
+			$staticWidth = 800;
+		} else {
+			$staticWidth = $this->width;
+		}
 
-			case 'interactive':
-				$output->addModules( $useSnapshot
-					? 'ext.kartographer.staticframe'
-					: 'ext.kartographer.frame' );
+		$height = "{$this->height}px";
 
-				$fullWidth = false;
+		$attrs = [
+			'class' => 'mw-kartographer-map',
+			'data-mw' => 'interface',
+			'data-style' => $this->mapStyle,
+			'data-width' => $this->width,
+			'data-height' => $this->height,
+		];
+		if ( $this->zoom !== null ) {
+			$staticZoom = $this->zoom;
+			$attrs['data-zoom'] = $this->zoom;
+		} else {
+			$staticZoom = 'a';
+		}
 
-				$width = is_numeric( $this->width ) ? "{$this->width}px" : $this->width;
+		if ( $this->lat !== null && $this->lon !== null ) {
+			$attrs['data-lat'] = $this->lat;
+			$attrs['data-lon'] = $this->lon;
+			$staticLat = $this->lat;
+			$staticLon = $this->lon;
+		} else {
+			$staticLat = 'a';
+			$staticLon = 'a';
+		}
 
-				if ( preg_match( '/^\d+%$/', $width ) ) {
-					if ( $width === '100%' ) {
-						$fullWidth = true;
-						$staticWidth = 800;
-					} else {
-						$width = '300px'; // @todo: deprecate old syntax completely
-						$staticWidth = 300;
-					}
-				} elseif ( $width === 'full' ) {
-					$width = '100%';
-					$fullWidth = true;
-					$staticWidth = 800;
-				} else {
-					$staticWidth = $this->width;
-				}
+		if ( $this->specifiedLangCode !== null ) {
+			$attrs['data-lang'] = $this->specifiedLangCode;
+		}
 
-				$height = "{$this->height}px";
-
-				$attrs = [
-					'class' => 'mw-kartographer-map',
-					'data-mw' => 'interface',
-					'data-style' => $this->mapStyle,
-					'data-width' => $this->width,
-					'data-height' => $this->height,
-				];
-				if ( $this->zoom !== null ) {
-					$staticZoom = $this->zoom;
-					$attrs['data-zoom'] = $this->zoom;
-				} else {
-					$staticZoom = 'a';
-				}
-
-				if ( $this->lat !== null && $this->lon !== null ) {
-					$attrs['data-lat'] = $this->lat;
-					$attrs['data-lon'] = $this->lon;
-					$staticLat = $this->lat;
-					$staticLon = $this->lon;
-				} else {
-					$staticLat = 'a';
-					$staticLon = 'a';
-				}
-
-				if ( $this->specifiedLangCode !== null ) {
-					$attrs['data-lang'] = $this->specifiedLangCode;
-				}
-
-				if ( $this->showGroups ) {
-					$attrs['data-overlays'] = FormatJson::encode( $this->showGroups, false,
-						FormatJson::ALL_OK );
-					$this->state->addInteractiveGroups( $this->showGroups );
-				}
-				break;
-			default:
-				throw new UnexpectedValueException(
-					"Unexpected frame mode '$wgKartographerFrameMode'" );
+		if ( $this->showGroups ) {
+			$attrs['data-overlays'] = FormatJson::encode( $this->showGroups, false,
+				FormatJson::ALL_OK );
+			$this->state->addInteractiveGroups( $this->showGroups );
 		}
 
 		$containerClass = 'mw-kartographer-container';
