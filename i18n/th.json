@@ -1,0 +1,26 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aefgh39622"
+		]
+	},
+	"kartographer-linktype-other": "อื่น ๆ",
+	"kartographer-linktype-satellite": "ดาวเทียม",
+	"kartographer-sidebar-coordinates": "พิกัด",
+	"kartographer-sidebar-latitude": "ละติจูด",
+	"kartographer-sidebar-longitude": "ลองจิจูด",
+	"kartographer-sidebar-mapdetails": "แผนที่ภายนอก",
+	"kartographer-sidebar-togglebutton": "แผนที่ภายนอก",
+	"leafletdraw-draw-toolbar-actions-text": "ยกเลิก",
+	"leafletdraw-draw-toolbar-buttons-circle": "วาดวงกลม",
+	"leafletdraw-edit-toolbar-actions-cancel-text": "ยกเลิก",
+	"leafletdraw-edit-toolbar-actions-save-text": "บันทึก",
+	"leafletdraw-edit-toolbar-actions-save-title": "บันทึกการเปลี่ยนแปลง",
+	"mapbox-control-zoomin-title": "ซูมเข้า",
+	"mapbox-control-zoomout-title": "ซูมออก",
+	"kartographer-fullscreen-close": "ปิด",
+	"kartographer-fullscreen-text": "แสดงแบบเต็มหน้าจอ",
+	"visualeditor-mwmapsdialog-size": "ขนาด",
+	"visualeditor-mwmapsdialog-title": "แผนที่",
+	"visualeditor-mwmapscontextitem-title": "แผนที่"
+}
