@@ -31,7 +31,9 @@ class MapFrame extends TagHandler {
 	 */
 	protected function render() {
 		global $wgKartographerMapServer,
+			$wgResponsiveImages,
 			$wgServerName,
+			$wgKartographerSrcsetScales,
 			$wgKartographerStaticMapframe;
 
 		$alignClasses = [
@@ -52,24 +54,15 @@ class MapFrame extends TagHandler {
 		$output = $this->parser->getOutput();
 		$options = $this->parser->getOptions();
 
-		$useSnapshot =
-			$wgKartographerStaticMapframe && !$options->getIsPreview() &&
-			!$options->getIsSectionPreview();
-
-		$output->addModules( $useSnapshot
-			? 'ext.kartographer.staticframe'
-			: 'ext.kartographer.frame' );
-
-		$fullWidth = false;
-
 		$width = is_numeric( $this->width ) ? "{$this->width}px" : $this->width;
-
+		$fullWidth = false;
 		if ( preg_match( '/^\d+%$/', $width ) ) {
 			if ( $width === '100%' ) {
 				$fullWidth = true;
 				$staticWidth = 800;
 			} else {
 				$width = '300px'; // @todo: deprecate old syntax completely
+				$this->width = 300;
 				$staticWidth = 300;
 			}
 		} elseif ( $width === 'full' ) {
@@ -79,8 +72,17 @@ class MapFrame extends TagHandler {
 		} else {
 			$staticWidth = $this->width;
 		}
+		// TODO if fullwidth, we really should use interactive mode..
+		// BUT not possible to use both modes at the same time right now. T248023
+		// Should be fixed, especially considering VE in page editing etc...
 
-		$height = "{$this->height}px";
+		$useSnapshot =
+			$wgKartographerStaticMapframe && !$options->getIsPreview() &&
+			!$options->getIsSectionPreview();
+
+		$output->addModules( $useSnapshot
+			? 'ext.kartographer.staticframe'
+			: 'ext.kartographer.frame' );
 
 		$attrs = [
 			'class' => 'mw-kartographer-map',
@@ -121,38 +123,54 @@ class MapFrame extends TagHandler {
 			$containerClass .= ' mw-kartographer-full';
 		}
 
-		$params = [
+		$attrs['href'] = SpecialMap::link( $staticLat, $staticLon, $staticZoom, $this->resolvedLangCode )
+			->getLocalURL();
+		$imgUrlParams = [
 			'lang' => $this->resolvedLangCode,
 		];
-		$bgUrl = "{$wgKartographerMapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat}," .
-			"{$staticLon},{$staticWidth}x{$this->height}.png";
 		if ( $this->showGroups ) {
-			$params += [
+			$imgUrlParams += [
 				'domain' => $wgServerName,
 				'title' => $this->parser->getTitle()->getPrefixedText(),
 				'groups' => implode( ',', $this->showGroups ),
 			];
 		}
-		$bgUrl .= '?' . wfArrayToCgi( $params );
+		$imgUrl = "{$wgKartographerMapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat}," .
+		"{$staticLon},{$staticWidth}x{$this->height}.png";
+		$imgUrl .= '?' . wfArrayToCgi( $imgUrlParams );
+		$imgAttrs = [
+			'src' => $imgUrl,
+			'alt' => '',
+			'width' => (int)$staticWidth,
+			'height' => (int)$this->height,
+			'decoding' => 'async'
+		];
 
-		$attrs['style'] = "background-image: url({$bgUrl});";
-		$attrs['href'] = SpecialMap::link( $staticLat, $staticLon, $staticZoom, $this->resolvedLangCode )
-			->getLocalURL();
-
-		if ( !$framed ) {
-			$attrs['style'] .= " width: {$width}; height: {$height};";
-			$attrs['class'] .= " {$containerClass} {$alignClasses[$this->align]}";
-
-			return Html::rawElement( 'a', $attrs );
+		if ( $wgResponsiveImages && $wgKartographerSrcsetScales ) {
+			// For now only support 2x, not 1.5. Saves some bytes...
+			$srcSetScales = array_intersect( $wgKartographerSrcsetScales, [ 2 ] );
+			$srcSets = [];
+			foreach ( $srcSetScales as $srcSetScale ) {
+				$scaledImgUrl = "{$wgKartographerMapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat}," .
+				"{$staticLon},{$staticWidth}x{$this->height}@{$srcSetScale}x.png";
+				$scaledImgUrl .= '?' . wfArrayToCgi( $imgUrlParams );
+				$srcSets[] = "{$scaledImgUrl} {$srcSetScale}x";
+			}
+			$imgAttrs[ 'srcset' ] = implode( ', ', $srcSets );
 		}
 
-		$attrs['style'] .= " height: {$height};";
+		if ( !$framed ) {
+			$attrs[ 'class' ] .= " {$containerClass} {$alignClasses[$this->align]}";
+
+			return Html::rawElement( 'a', $attrs, Html::rawElement( 'img', $imgAttrs ) );
+		}
+
 		$containerClass .= " thumb {$thumbAlignClasses[$this->align]}";
 
 		$captionFrame = Html::rawElement( 'div', [ 'class' => 'thumbcaption' ],
 			$caption ? $this->parser->recursiveTagParse( $caption ) : '' );
 
-		$mapDiv = Html::rawElement( 'a', $attrs );
+		$mapDiv = Html::rawElement( 'a', $attrs, Html::rawElement( 'img', $imgAttrs ) );
 
 		return Html::rawElement( 'div', [ 'class' => $containerClass ],
 			Html::rawElement( 'div', [
