@@ -56,7 +56,7 @@
 			],
 			"skinStyles": {
 				"minerva": [
-					"styles/kartographer.minerva.less"
+					"styles/skins.minerva.kartographer.less"
 				]
 			},
 			"targets": [

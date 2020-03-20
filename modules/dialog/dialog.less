@@ -6,21 +6,6 @@
 */
 @sidebarWidth: 320px;
 
-.mw-kartographer {
-	&-table {
-		display: table;
-		width: 100%;
-	}
-
-	&-row {
-		display: table-row;
-	}
-
-	&-cell {
-		display: table-cell;
-	}
-}
-
 /* Dialog footer */
 .mw-kartographer-mapDialog-foot {
 	/*
@@ -74,6 +59,13 @@
 }
 
 .mw-kartographer-mapDialog-map {
+	position: absolute;
+	top: 0;
+	bottom: 4.5em;
+	left: 0;
+	right: 0;
+	z-index: 1;
+
 	.leaflet-right.leaflet-top,
 	.leaflet-right.leaflet-bottom {
 		transition: right 100ms ease-out;
@@ -97,47 +89,6 @@
 	.leaflet-right.leaflet-top,
 	.leaflet-right.leaflet-bottom {
 		right: @sidebarWidth;
-	}
-}
-
-.mw-kartographer-mapdetails-table {
-	width: 100%;
-	border-collapse: collapse;
-
-	tr {
-		background-color: @wmui-color-base80;
-		text-align: center;
-	}
-
-	th {
-		text-align: left;
-	}
-
-	th,
-	td {
-		padding: 0.5em 1em;
-		font-size: 90%;
-	}
-
-	thead {
-		tr {
-			background-color: @wmui-color-base70;
-
-			th {
-				font-weight: bold;
-			}
-		}
-	}
-
-	tbody {
-		tr th:first-child {
-			width: 70%;
-			text-align: left;
-		}
-
-		tr:nth-child( even ) {
-			background-color: @wmui-color-base100;
-		}
 	}
 }
 
