@@ -40,12 +40,14 @@ class MapFrame extends TagHandler {
 			'left' => 'floatleft',
 			'center' => 'center',
 			'right' => 'floatright',
+			'none' => '',
 		];
 
 		$thumbAlignClasses = [
 			'left' => 'tleft',
-			'center' => 'center',
+			'center' => 'tnone center',
 			'right' => 'tright',
+			'none' => 'tnone',
 		];
 
 		$caption = $this->getText( 'text', null );
@@ -60,6 +62,7 @@ class MapFrame extends TagHandler {
 			if ( $width === '100%' ) {
 				$fullWidth = true;
 				$staticWidth = 800;
+				$this->align = 'none';
 			} else {
 				$width = '300px'; // @todo: deprecate old syntax completely
 				$this->width = 300;
@@ -67,6 +70,7 @@ class MapFrame extends TagHandler {
 			}
 		} elseif ( $width === 'full' ) {
 			$width = '100%';
+			$this->align = 'none';
 			$fullWidth = true;
 			$staticWidth = 800;
 		} else {

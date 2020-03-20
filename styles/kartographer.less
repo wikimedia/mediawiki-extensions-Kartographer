@@ -1,6 +1,11 @@
 /**
  * CSS Classes Definitions
  *
+ * .mw-kartographer-container:
+ *     Contains either a framed or frameless .mw-kartographer-map.
+ *     When framed this class is at the .thumb level.
+ *     When frameless this class is at the a.mw-kartographer-map level
+ *
  * .mw-kartographer-maplink:
  *     Represents a <maplink> element as output by the Parser.
  *     May or may not be an interactive link yet (meanwhile JS gets loaded).
@@ -18,12 +23,15 @@
  *    Represents an interactive map.
  *    The class is added when the element becomes an interactive map.
  *
- * .mw-kartographer-mapDialog-map
- *    Represents an interactive map within a full screen map dialog.
- *
  * .mw-kartographer-static
  *    Represents an interactive map that was made static afterward because the
  *    viewport is too small.
+ *
+ * .mw-kartographer-mapDialog-map
+ *    Represents an interactive map within a full screen map dialog.
+ *
+ * .mw-kartographer-fullScreen
+ *    Fullscreen button shown on all <mapframe> elments (static and interactive)
  *
  * In practice:
  *
@@ -34,16 +42,6 @@
  *                        .mw-kartographer-link then, if displaying static snapshot.
  *                        .mw-kartographer-interactive then, if directly interactive.
  */
-
-.mw-kartographer-mapDialog-map {
-	position: absolute;
-	top: 0;
-	bottom: 4.5em;
-	left: 0;
-	right: 0;
-	z-index: 1;
-}
-
 .mw-kartographer-error {
 	display: inline-block;
 	background: #ffc0cb;
@@ -88,24 +86,6 @@
 	}
 }
 
-.mw-kartographer-map {
-	direction: ltr;
-	position: relative;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	display: block;
-	font-size: 14px;
-
-	&.mw-kartographer-link {
-		display: block;
-	}
-
-	&.leaflet-container {
-		background-size: contain;
-	}
-}
-
 .mw-kartographer-fullScreen {
 	position: absolute;
 	top: 10px;
@@ -113,7 +93,42 @@
 	margin-right: 0;
 }
 
+.mw-kartographer-map {
+	direction: ltr;
+	position: relative;
+	display: block;
+	font-size: 14px;
+
+	&.mw-kartographer-link {
+		display: block;
+	}
+}
+
+// static prerendered map
+.mw-kartographer-map:not( .mw-kartographer-interactive ) {
+	> img {
+		box-sizing: border-box;
+		max-width: 100%;
+		width: 100%;
+		object-position: center center;
+		object-fit: cover;
+	}
+}
+
+// Fullwidth thumb or frameless map
+.mw-kartographer-container.mw-kartographer-full {
+	box-sizing: border-box;
+	clear: both;
+	width: 100%;
+
+	.thumbinner {
+		width: 100%;
+		box-sizing: border-box;
+	}
+}
+
 .mw-kartographer-container:not( .mw-kartographer-full ) {
+	box-sizing: border-box;
 	max-width: 100%;
 
 	/* Fixes `align=center` use case */
@@ -125,17 +140,17 @@
 
 	&.thumb {
 		.thumbinner {
+			// include frame margin in 100%
+			box-sizing: border-box;
+			// prevent overflowing content area
 			max-width: 100%;
 
 			> .mw-kartographer-map {
-				width: 100%;
+				box-sizing: border-box;
+				max-width: 100%;
 			}
 		}
 	}
-}
-
-.mw-kartographer-container.mw-kartographer-full {
-	width: 100%;
 }
 
 // Define `.floatright` and `.floatleft` for `a` elements.
