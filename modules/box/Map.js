@@ -294,7 +294,7 @@ KartographerMap = L.Map.extend( {
 		}
 
 		if ( !this.options.fullscreen && !options.alwaysInteractive ) {
-			this._invalidateInterative();
+			this._invalidateInteractive();
 		}
 
 		function ready() {
@@ -649,6 +649,9 @@ KartographerMap = L.Map.extend( {
 			L.Map.prototype.setView.call( this, center, zoom, options );
 		} else {
 			// Determines best center of the map
+			// Bounds calulation depends on the size of the frame
+			// If the frame is not visible, there is no point in calculating
+			// You need to call invalidateSize when it becomes available again
 			maxBounds = getValidBounds( this );
 
 			if ( maxBounds.isValid() ) {
@@ -662,7 +665,12 @@ KartographerMap = L.Map.extend( {
 				this.setZoom( initial.zoom );
 			}
 
-			if ( save ) {
+			// Save the calculated position,
+			// unless we already know it is incorrect due to being loaded
+			// when the frame was invisble and had no dimensions to base
+			// autozoom, autocenter on.
+			// eslint-disable-next-line no-jquery/no-sizzle
+			if ( this.$container.is( ':visible' ) && save ) {
 				// Updates map data.
 				this.initView( this.getCenter(), this.getZoom(), false );
 				// Updates container's data attributes to avoid `NaN` errors
@@ -794,7 +802,7 @@ KartographerMap = L.Map.extend( {
 	 * @chainable
 	 * @protected
 	 */
-	_invalidateInterative: function () {
+	_invalidateInteractive: function () {
 
 		// add Leaflet.Sleep when the map isn't full screen.
 		this.addHandler( 'sleep', L.Map.Sleep );
@@ -857,6 +865,30 @@ KartographerMap = L.Map.extend( {
 			this.sleep.enable();
 		}
 		this.$container.toggleClass( 'mw-kartographer-static', staticMap );
+		return this;
+	},
+
+	/**
+	 * Reinitialize a view that was originally hidden.
+	 *
+	 * These views will have calculated autozoom and autoposition of shapes incorrectly
+	 * because the size of the map frame will initially be 0.
+	 *
+	 * We need to fetch the original position information, invalidate to make sure the
+	 * frame is readjusted and then reset the view, so that it will recalculate the
+	 * autozoom and autoposition if needed.
+	 *
+	 * @override
+	 * @chainable
+	 */
+	invalidateSizeAndSetInitialView: function () {
+		var position = this.getInitialMapPosition();
+		this.invalidateSize();
+		if ( position ) {
+			// at rare times during load fases, position might be undefined
+			this.initView( position.center, position.zoom, true );
+		}
+
 		return this;
 	}
 } );

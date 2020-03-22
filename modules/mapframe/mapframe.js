@@ -95,16 +95,23 @@ function initMapBox( data, $container ) {
 
 	maps[ index ] = map;
 
-	// Special case for collapsible maps.
-	// When the container is hidden Leaflet is not able to
+	// Special case for collapsed maps.
+	// When the container is initially hidden Leaflet is not able to
 	// calculate the expected size when visible. We need to force
 	// updating the map to the new container size on `expand`.
 	// eslint-disable-next-line no-jquery/no-sizzle
 	if ( !$container.is( ':visible' ) ) {
 		$container.closest( '.mw-collapsible' )
-			.on( 'afterExpand.mw-collapsible', function () {
-				map.invalidateSize();
-			} );
+			.on( 'afterExpand.mw-collapsible', map.invalidateSizeAndSetInitialView.bind( map ) );
+
+		// If MobileFrontend is active do the same for collapsible sections
+		// Unfortunately doesn't work when those sections are immediately
+		// made visible again on page load.
+		mw.loader.using( 'mobile.startup', function () {
+			// this will not complete when target != desktop
+			mw.mobileFrontend.require( 'mobile.startup' ).eventBusSingleton
+				.on( 'section-toggled', map.invalidateSizeAndSetInitialView.bind( map ) );
+		} );
 	}
 
 	return map;
