@@ -255,6 +255,7 @@
 		"ext.kartographer.dialog.sidebar": {
 			"localBasePath": "modules/dialog-sidebar",
 			"dependencies": [
+				"mediawiki.storage",
 				"oojs-ui.styles.icons-interactions",
 				"oojs-ui.styles.icons-movement"
 			],
