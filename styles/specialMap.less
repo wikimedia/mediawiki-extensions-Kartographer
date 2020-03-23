@@ -5,7 +5,7 @@
 
 /* stylelint-disable selector-max-id */
 
-div#mw-specialMap-container {
+#mw-specialMap-container {
 	position: relative;
 
 	.thumbinner {
@@ -15,12 +15,12 @@ div#mw-specialMap-container {
 	}
 }
 
-div#mw-specialMap-inner {
+#mw-specialMap-inner {
 	height: @mapHeight;
 	position: relative;
 }
 
-div#mw-specialMap-map {
+#mw-specialMap-map {
 	position: absolute;
 	width: @mapWidth;
 	height: @mapHeight;
@@ -37,7 +37,7 @@ div#mw-specialMap-map {
 	( min--moz-device-pixel-ratio: 1.5 ),
 	( min-resolution: 1.5dppx ),
 	( min-resolution: 144dpi ) {
-	div#mw-specialMap-map {
+	#mw-specialMap-map {
 		/* stylelint-disable function-parentheses-space-inside */
 		background-image: url(https://maps.wikimedia.org/osm-intl/0/0/0@1.5x.png);
 		/* stylelint-enable function-parentheses-space-inside */
@@ -48,7 +48,7 @@ div#mw-specialMap-map {
 	( min--moz-device-pixel-ratio: 2 ),
 	( min-resolution: 2dppx ),
 	( min-resolution: 192dpi ) {
-	div#mw-specialMap-map {
+	#mw-specialMap-map {
 		/* stylelint-disable function-parentheses-space-inside */
 		background-image: url(https://maps.wikimedia.org/osm-intl/0/0/0@2x.png);
 		/* stylelint-enable function-parentheses-space-inside */
@@ -56,7 +56,7 @@ div#mw-specialMap-map {
 }
 /* stylelint-enable media-feature-name-no-vendor-prefix, media-feature-name-no-unknown */
 
-div#mw-specialMap-marker {
+#mw-specialMap-marker {
 	position: absolute;
 	background-color: @markerColor;
 	height: @markerSize;
@@ -66,12 +66,12 @@ div#mw-specialMap-marker {
 	border-radius: @markerSize/2;
 }
 
-div#mw-specialMap-caption {
+#mw-specialMap-caption {
 	display: block;
 	padding-top: 0.5em;
 }
 
-span#mw-specialMap-icon {
+#mw-specialMap-icon {
 	display: inline-block;
 	margin: 0 12px 0 0;
 	background-color: @markerColor;
@@ -82,7 +82,7 @@ span#mw-specialMap-icon {
 	border-radius: @markerSize/2;
 }
 
-div#mw-specialMap-attributions {
+#mw-specialMap-attributions {
 	position: absolute;
 	bottom: 0;
 	font-size: 9px;
