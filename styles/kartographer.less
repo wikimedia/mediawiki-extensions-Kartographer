@@ -109,7 +109,6 @@
 	> img {
 		box-sizing: border-box;
 		max-width: 100%;
-		width: 100%;
 		object-position: center center;
 		object-fit: cover;
 	}
@@ -121,14 +120,21 @@
 	clear: both;
 	width: 100%;
 
+	> img {
+		width: 100%;
+	}
+
 	.thumbinner {
 		width: 100%;
 		box-sizing: border-box;
+
+		> a > img {
+			width: 100%;
+		}
 	}
 }
 
 .mw-kartographer-container:not( .mw-kartographer-full ) {
-	box-sizing: border-box;
 	max-width: 100%;
 
 	/* Fixes `align=center` use case */
@@ -140,8 +146,6 @@
 
 	&.thumb {
 		.thumbinner {
-			// include frame margin in 100%
-			box-sizing: border-box;
 			// prevent overflowing content area
 			max-width: 100%;
 
