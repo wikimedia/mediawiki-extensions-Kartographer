@@ -165,7 +165,12 @@ class MapFrame extends TagHandler {
 
 		if ( !$framed ) {
 			$attrs[ 'class' ] .= " {$containerClass} {$alignClasses[$this->align]}";
-
+			// @phan-suppress-next-line PhanSuspiciousValueComparison
+			if ( $this->align === 'center' ) {
+				// We need this to keep the button overlay contained when centered,
+				// because our <a> is forced to display:block here.
+				$attrs[ 'style' ] = "width: {$width};";
+			}
 			return Html::rawElement( 'a', $attrs, Html::rawElement( 'img', $imgAttrs ) );
 		}
 
