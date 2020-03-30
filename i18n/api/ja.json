@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Higa4"
+			"Higa4",
+			"Shirayuki"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Kartographer拡張機能用のデータ検証を実施します",
@@ -11,7 +12,7 @@
 	"apihelp-query+mapdata-description": "<kbd>Metallica</kbd>ページから全ての地図データをリクエスト",
 	"apihelp-query+mapdata-example-1": "全ての地図データを<kbd>Metallica</kbd>ページからリクエスト",
 	"apihelp-query+mapdata-example-2": "<kbd>Metallica</kbd>ページから<kbd>group1</kbd>と<kbd>group2</kbd>のグループ内にある地図データをリクエスト",
-	"apihelp-query+mapdata-param-continue": "結果を使った繰り返しを続けるにはこのパラメータを使用",
+	"apihelp-query+mapdata-param-continue": "結果を使った繰り返しを続けるにはこのパラメーターを使用",
 	"apihelp-query+mapdata-param-groups": "データを戻すパイプ区切りのグループ",
 	"apihelp-query+mapdata-param-limit": "何ページ戻すかのデータ"
 }

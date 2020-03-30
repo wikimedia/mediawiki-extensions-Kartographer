@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Saederup92"
+			"Saederup92",
+			"Steenth"
 		]
 	},
+	"kartographer-broken-category": "Sider med uvirksomme kort",
 	"kartographer-tracking-category": "Sider med kort",
 	"kartographer-linktype-other": "Andet",
 	"kartographer-linktype-satellite": "Satellit",
