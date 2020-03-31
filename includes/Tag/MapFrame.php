@@ -90,6 +90,11 @@ class MapFrame extends TagHandler {
 
 		$attrs = [
 			'class' => 'mw-kartographer-map',
+			// We need dimensions for when there is no img (editpreview or no staticmap)
+			// because an <img> element with permanent failing src has either:
+			// - intrinsic dimensions of 0x0, when alt=''
+			// - intrinsic dimensions of alt size
+			'style' => "width: {$width}; height: {$this->height}px;",
 			'data-mw' => 'interface',
 			'data-style' => $this->mapStyle,
 			'data-width' => $this->width,
@@ -165,12 +170,6 @@ class MapFrame extends TagHandler {
 
 		if ( !$framed ) {
 			$attrs[ 'class' ] .= " {$containerClass} {$alignClasses[$this->align]}";
-			// @phan-suppress-next-line PhanSuspiciousValueComparison
-			if ( $this->align === 'center' ) {
-				// We need this to keep the button overlay contained when centered,
-				// because our <a> is forced to display:block here.
-				$attrs[ 'style' ] = "width: {$width};";
-			}
 			return Html::rawElement( 'a', $attrs, Html::rawElement( 'img', $imgAttrs ) );
 		}
 

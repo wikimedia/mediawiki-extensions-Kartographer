@@ -81,10 +81,6 @@ function initMapBox( data, $container ) {
 		captionText: data.captionText
 	} );
 
-	map.$container.css( {
-		width: map.$container.data( 'width' ),
-		height: map.$container.data( 'height' )
-	} );
 	$container.removeAttr( 'href' );
 	$container.find( 'img' ).remove();
 
