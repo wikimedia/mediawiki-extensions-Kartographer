@@ -1,9 +1,15 @@
+!! Version 2
+# Force the test runner to ensure the extension is loaded
+!! hooks
+maplink
+!! endhooks
+
 !! test
 <maplink>
-!! input
+!! wikitext
 <maplink />
 <maplink latitude=10 longitude=20 zoom=13 text='Foo &amp; bar'/>
-!! result
+!! html
 <p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map////en">0°0′0″N 0°0′0″E</a>
 <a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20">Foo &amp; bar</a>
 </p>
@@ -11,16 +17,16 @@
 
 !! test
 <maplink> - HTML sanitization
-!! input
+!! wikitext
 <maplink latitude=10 longitude=20 zoom=13 text='<&'/>
-!! result
+!! html
 <p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20">&lt;&amp;</a>
 </p>
 !! end
 
 !! test
 <maplink> - counters and markers
-!! input
+!! wikitext
 <maplink latitude=10.123 longitude=20.456 zoom=13 text='Foo'>
 {
 "type": "Feature",
@@ -72,7 +78,7 @@
 	}
 }
 </maplink>
-!! result
+!! html
 <p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10.123/20.456/en" data-zoom="13" data-lat="10.123" data-lon="20.456" data-overlays="[&quot;_83116cf234d349c9a28ff94255a598843fe4304d&quot;]">Foo</a>
 </p><p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_71c9ddc35eae0a234381347ca4b7440cae1c4edd&quot;]">2</a>
 </p><p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_9226ee438e3c59edfcd19e81452d7c2ba7e1d841&quot;]">A</a>
@@ -82,9 +88,9 @@
 
 !! test
 <maplink> - autolabelling with coordinates
-!! input
+!! wikitext
 <maplink latitude=10 longitude=20 zoom=13 />
-!! result
+!! html
 <p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20">10°0′0″N 20°0′0″E</a>
 </p>
 !! end
@@ -92,13 +98,13 @@
 
 !! test
 <maplink> - class parameter
-!! input
+!! wikitext
 <maplink zoom=0 latitude=0 longitude=0 class="" text="Empty class - do nothing"/>
 <maplink zoom=0 latitude=0 longitude=0 class="   " text="Whitespace only class - do nothing"/>
 <maplink zoom=0 latitude=0 longitude=0 class="Valid-link_class_123" text="Valid class"/>
 <maplink zoom=0 latitude=0 longitude=0 class="class1 class2" text="Multiple classes aren't allowed for now"/>
 <maplink zoom=0 latitude=0 longitude=0 class="-Invalid-cl@ss-symbols"/>
-!! result
+!! html
 <p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0">Empty class - do nothing</a>
 <a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0">Whitespace only class - do nothing</a>
 <a class="mw-kartographer-maplink Valid-link_class_123" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0">Valid class</a>
@@ -109,7 +115,7 @@
 
 !! test
 <mapframe>
-!! input
+!! wikitext
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480/>
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=left/>
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=center/>
@@ -125,46 +131,46 @@
 <mapframe latitude=10 longitude=20 zoom=13 width=100% height=480 frameless />
 <mapframe latitude=10 longitude=20 zoom=13 width=full height=480 frameless />
 
-!! result
-<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 640px;"><a class="mw-kartographer-map" style="width: 640px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=en" alt="" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=en 2x"/></a><div class="thumbcaption"></div></div></div>
-<div class="mw-kartographer-container thumb tleft"><div class="thumbinner" style="width: 640px;"><a class="mw-kartographer-map" style="width: 640px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=en" alt="" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=en 2x"/></a><div class="thumbcaption"></div></div></div>
-<div class="mw-kartographer-container thumb tnone center"><div class="thumbinner" style="width: 640px;"><a class="mw-kartographer-map" style="width: 640px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=en" alt="" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=en 2x"/></a><div class="thumbcaption"></div></div></div>
-<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" style="width: 300px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="300" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,300x480.png?lang=en" alt="" width="300" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,300x480@2x.png?lang=en 2x"/></a><div class="thumbcaption"></div></div></div>
-<div class="mw-kartographer-container mw-kartographer-full thumb tnone"><div class="thumbinner" style="width: 100%;"><a class="mw-kartographer-map" style="width: 100%; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="100%" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480.png?lang=en" alt="" width="800" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480@2x.png?lang=en 2x"/></a><div class="thumbcaption"></div></div></div>
-<div class="mw-kartographer-container mw-kartographer-full thumb tnone"><div class="thumbinner" style="width: 100%;"><a class="mw-kartographer-map" style="width: 100%; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="full" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480.png?lang=en" alt="" width="800" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480@2x.png?lang=en 2x"/></a><div class="thumbcaption"></div></div></div>
-<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 640px;"><a class="mw-kartographer-map" style="width: 640px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=en" alt="" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=en 2x"/></a><div class="thumbcaption"></div></div></div>
-<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 640px;"><a class="mw-kartographer-map" style="width: 640px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" data-lang="he" href="/wiki/Special:Map/13/10/20/he"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=he" alt="" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=he 2x"/></a><div class="thumbcaption"></div></div></div>
-<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 640px;"><a class="mw-kartographer-map" style="width: 640px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=en" alt="" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=en 2x"/></a><div class="thumbcaption"></div></div></div>
-<p><a class="mw-kartographer-map mw-kartographer-container floatleft" style="width: 640px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=en" alt="" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=en 2x"/></a>
-<a class="mw-kartographer-map mw-kartographer-container center" style="width: 640px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=en" alt="" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=en 2x"/></a>
-<a class="mw-kartographer-map mw-kartographer-container floatright" style="width: 300px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="300" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,300x480.png?lang=en" alt="" width="300" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,300x480@2x.png?lang=en 2x"/></a>
-<a class="mw-kartographer-map mw-kartographer-container mw-kartographer-full" style="width: 100%; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="100%" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480.png?lang=en" alt="" width="800" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480@2x.png?lang=en 2x"/></a>
-<a class="mw-kartographer-map mw-kartographer-container mw-kartographer-full" style="width: 100%; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="full" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480.png?lang=en" alt="" width="800" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480@2x.png?lang=en 2x"/></a>
+!! html
+<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 640px;"><a class="mw-kartographer-map" style="width: 640px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=en" alt="" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=en 2x" /></a><div class="thumbcaption"></div></div></div>
+<div class="mw-kartographer-container thumb tleft"><div class="thumbinner" style="width: 640px;"><a class="mw-kartographer-map" style="width: 640px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=en" alt="" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=en 2x" /></a><div class="thumbcaption"></div></div></div>
+<div class="mw-kartographer-container thumb tnone center"><div class="thumbinner" style="width: 640px;"><a class="mw-kartographer-map" style="width: 640px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=en" alt="" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=en 2x" /></a><div class="thumbcaption"></div></div></div>
+<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" style="width: 300px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="300" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,300x480.png?lang=en" alt="" width="300" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,300x480@2x.png?lang=en 2x" /></a><div class="thumbcaption"></div></div></div>
+<div class="mw-kartographer-container mw-kartographer-full thumb tnone"><div class="thumbinner" style="width: 100%;"><a class="mw-kartographer-map" style="width: 100%; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="100%" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480.png?lang=en" alt="" width="800" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480@2x.png?lang=en 2x" /></a><div class="thumbcaption"></div></div></div>
+<div class="mw-kartographer-container mw-kartographer-full thumb tnone"><div class="thumbinner" style="width: 100%;"><a class="mw-kartographer-map" style="width: 100%; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="full" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480.png?lang=en" alt="" width="800" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480@2x.png?lang=en 2x" /></a><div class="thumbcaption"></div></div></div>
+<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 640px;"><a class="mw-kartographer-map" style="width: 640px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=en" alt="" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=en 2x" /></a><div class="thumbcaption"></div></div></div>
+<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 640px;"><a class="mw-kartographer-map" style="width: 640px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" data-lang="he" href="/wiki/Special:Map/13/10/20/he"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=he" alt="" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=he 2x" /></a><div class="thumbcaption"></div></div></div>
+<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 640px;"><a class="mw-kartographer-map" style="width: 640px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=en" alt="" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=en 2x" /></a><div class="thumbcaption"></div></div></div>
+<p><a class="mw-kartographer-map mw-kartographer-container floatleft" style="width: 640px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=en" alt="" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=en 2x" /></a>
+<a class="mw-kartographer-map mw-kartographer-container center" style="width: 640px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=en" alt="" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=en 2x" /></a>
+<a class="mw-kartographer-map mw-kartographer-container floatright" style="width: 300px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="300" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,300x480.png?lang=en" alt="" width="300" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,300x480@2x.png?lang=en 2x" /></a>
+<a class="mw-kartographer-map mw-kartographer-container mw-kartographer-full" style="width: 100%; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="100%" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480.png?lang=en" alt="" width="800" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480@2x.png?lang=en 2x" /></a>
+<a class="mw-kartographer-map mw-kartographer-container mw-kartographer-full" style="width: 100%; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="full" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480.png?lang=en" alt="" width="800" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480@2x.png?lang=en 2x" /></a>
 </p>
 !! end
 
 !! test
 <mapframe> with a caption
-!! input
+!! wikitext
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 text="Foo is a '''bar'''" />
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=left text="Foo is a <b>bar</b>" />
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=center text="Foo is a <script>" />
 <mapframe latitude=10 longitude=20 zoom=13 width=50% height=480 align=right frameless text="Frameless gets cynically ignored here" />
 <mapframe latitude=10 longitude=20 zoom=13 width=100% height=480 text="Foo is a [https://example.com bar]" />
 <mapframe latitude=10 longitude=20 zoom=13 width=full height=480 text="<div>Muhaha</div>" />
-!! result
-<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 640px;"><a class="mw-kartographer-map" style="width: 640px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=en" alt="" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=en 2x"/></a><div class="thumbcaption">Foo is a <b>bar</b></div></div></div>
+!! html
+<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 640px;"><a class="mw-kartographer-map" style="width: 640px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=en" alt="" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=en 2x" /></a><div class="thumbcaption">Foo is a <b>bar</b></div></div></div>
 <p>&lt;mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=left text="Foo is a <b>bar</b>" /&gt;
 &lt;mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=center text="Foo is a &lt;script&gt;" /&gt;
 </p>
-<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" style="width: 300px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="300" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,300x480.png?lang=en" alt="" width="300" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,300x480@2x.png?lang=en 2x"/></a><div class="thumbcaption">Frameless gets cynically ignored here</div></div></div>
-<div class="mw-kartographer-container mw-kartographer-full thumb tnone"><div class="thumbinner" style="width: 100%;"><a class="mw-kartographer-map" style="width: 100%; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="100%" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480.png?lang=en" alt="" width="800" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480@2x.png?lang=en 2x"/></a><div class="thumbcaption">Foo is a <a rel="nofollow" class="external text" href="https://example.com">bar</a></div></div></div>
-&lt;mapframe latitude=10 longitude=20 zoom=13 width=full height=480 text="<div>Muhaha</div>" /&gt;
+<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" style="width: 300px; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="300" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,300x480.png?lang=en" alt="" width="300" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,300x480@2x.png?lang=en 2x" /></a><div class="thumbcaption">Frameless gets cynically ignored here</div></div></div>
+<div class="mw-kartographer-container mw-kartographer-full thumb tnone"><div class="thumbinner" style="width: 100%;"><a class="mw-kartographer-map" style="width: 100%; height: 480px;" data-mw="interface" data-style="osm-intl" data-width="100%" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480.png?lang=en" alt="" width="800" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,800x480@2x.png?lang=en 2x" /></a><div class="thumbcaption">Foo is a <a rel="nofollow" class="external text" href="https://example.com">bar</a></div></div></div><p>
+&lt;mapframe latitude=10 longitude=20 zoom=13 width=full height=480 text="</p><div>Muhaha</div><p>" /&gt;</p>
 !! end
 
 !! test
 Error messages
-!! input
+!! wikitext
 <maplink latitude=10 longitude=fail text=Derp>>Derp goes here</maplink>
 <mapframe latitude=10 longitude=20 zoom=13 width=" 640	" height=480 align=crap mapstyle=derp />
 <mapframe latitude=10 longitude=20 zoom=13 width=% height=480/>
@@ -188,7 +194,7 @@ Error messages
 </mapframe>
 <mapframe width=200 height=200 latitude=100/>
 <mapframe width=200 height=200 longitude=100/>
-!! result
+!! html
 <div class="mw-kartographer-error"><p>&lt;maplink&gt; problems:
 </p>
 <ul><li>Couldn't parse JSON: Syntax error</li>
@@ -214,17 +220,17 @@ Error messages
 Error messages - localized
 !! options
 language=ru
-!! input
+!! wikitext
 <maplink zoom=0 latitude=0 longitude=0>fail</maplink>
-!! result
+!! html
 <div class="mw-kartographer-error">&lt;maplink&gt;: Ошибка JSON: Синтаксическая ошибка</div>
 !! end
 
 !! test
 CSS sanitization
-!! input
+!! wikitext
 <maplink latitude=10 longitude=20 zoom=10 style="color: red;" text="<span style='foo: bar; background-image: url(https://example.com);'&gt;foo</span&gt;"/><!-- style=... was removed -->
-!! result
+!! html
 <p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/10/10/20/en" data-zoom="10" data-lat="10" data-lon="20"><span style="/* insecure input */">foo</span></a>
 </p>
 !! end
@@ -233,7 +239,7 @@ CSS sanitization
 <maplink> - marker styles
 !! config
 wgKartographerUseMarkerStyle=true
-!! input
+!! wikitext
 <maplink latitude=10 longitude=20 zoom=13>[
 {
 	"type": "Feature",
@@ -265,7 +271,7 @@ wgKartographerUseMarkerStyle=true
 	}
 }
 ]</maplink>
-!! result
+!! html
 <p><a class="mw-kartographer-maplink mw-kartographer-autostyled" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" style="background: #abcdef;" data-overlays="[&quot;_a179016647e3e59d6050d1da013ff6b20ba0a5e2&quot;]">A</a>
 </p>
 !! end
@@ -274,7 +280,7 @@ wgKartographerUseMarkerStyle=true
 <maplink> - marker styles disabled
 !! config
 wgKartographerUseMarkerStyle=false
-!! input
+!! wikitext
 <maplink latitude=10 longitude=20 zoom=13>
 {
 "type": "Feature",
@@ -288,7 +294,7 @@ wgKartographerUseMarkerStyle=false
 	}
 }
 </maplink>
-!! result
+!! html
 <p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" data-overlays="[&quot;_6a13e7df56bf97361c4d92be23c3d6de3311e4c8&quot;]">A</a>
 </p>
 !! end
@@ -297,7 +303,7 @@ wgKartographerUseMarkerStyle=false
 Wikivoyage mode enabled
 !! config
 wgKartographerWikivoyageMode=true
-!! input
+!! wikitext
 <maplink zoom=0 latitude=0 longitude=0 group=ponies/>
 <maplink zoom=0 latitude=0 longitude=0 show="ponies,horses"/>
 <mapframe zoom=0 latitude=0 longitude=0 width=300 height=300 group=ponies>
@@ -314,19 +320,19 @@ wgKartographerWikivoyageMode=true
 }
 </mapframe>
 <mapframe zoom=0 latitude=0 longitude=0 width=300 height=300 show="ponies,horses"/>
-!! result
+!! html
 <p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;ponies&quot;]">0°0′0″N 0°0′0″E</a>
 <a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;ponies&quot;,&quot;horses&quot;]">0°0′0″N 0°0′0″E</a>
 </p>
-<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" style="width: 300px; height: 300px;" data-mw="interface" data-style="osm-intl" data-width="300" data-height="300" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;ponies&quot;]" href="/wiki/Special:Map/0/0/0/en"><img src="https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300.png?lang=en&amp;domain=example.org&amp;title=Parser+test&amp;groups=ponies" alt="" width="300" height="300" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300@2x.png?lang=en&amp;domain=example.org&amp;title=Parser+test&amp;groups=ponies 2x"/></a><div class="thumbcaption"></div></div></div>
-<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" style="width: 300px; height: 300px;" data-mw="interface" data-style="osm-intl" data-width="300" data-height="300" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;ponies&quot;,&quot;horses&quot;]" href="/wiki/Special:Map/0/0/0/en"><img src="https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300.png?lang=en&amp;domain=example.org&amp;title=Parser+test&amp;groups=ponies%2Chorses" alt="" width="300" height="300" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300@2x.png?lang=en&amp;domain=example.org&amp;title=Parser+test&amp;groups=ponies%2Chorses 2x"/></a><div class="thumbcaption"></div></div></div>
+<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" style="width: 300px; height: 300px;" data-mw="interface" data-style="osm-intl" data-width="300" data-height="300" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;ponies&quot;]" href="/wiki/Special:Map/0/0/0/en"><img src="https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300.png?lang=en&amp;domain=example.org&amp;title=Parser+test&amp;groups=ponies" alt="" width="300" height="300" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300@2x.png?lang=en&amp;domain=example.org&amp;title=Parser+test&amp;groups=ponies 2x" /></a><div class="thumbcaption"></div></div></div>
+<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" style="width: 300px; height: 300px;" data-mw="interface" data-style="osm-intl" data-width="300" data-height="300" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;ponies&quot;,&quot;horses&quot;]" href="/wiki/Special:Map/0/0/0/en"><img src="https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300.png?lang=en&amp;domain=example.org&amp;title=Parser+test&amp;groups=ponies%2Chorses" alt="" width="300" height="300" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300@2x.png?lang=en&amp;domain=example.org&amp;title=Parser+test&amp;groups=ponies%2Chorses 2x" /></a><div class="thumbcaption"></div></div></div>
 !! end
 
 !! test
 Wikivoyage mode disabled
 !! config
 wgKartographerWikivoyageMode=false
-!! input
+!! wikitext
 <maplink zoom=0 latitude=0 longitude=0 group=ponies/>
 <mapframe zoom=0 latitude=0 longitude=0 width=300 height=300 group=ponies>
 {
@@ -341,24 +347,24 @@ wgKartographerWikivoyageMode=false
 	}
 }
 </mapframe>
-!! result
+!! html
 <p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0">0°0′0″N 0°0′0″E</a>
 </p>
-<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" style="width: 300px; height: 300px;" data-mw="interface" data-style="osm-intl" data-width="300" data-height="300" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;_6a13e7df56bf97361c4d92be23c3d6de3311e4c8&quot;]" href="/wiki/Special:Map/0/0/0/en"><img src="https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300.png?lang=en&amp;domain=example.org&amp;title=Parser+test&amp;groups=_6a13e7df56bf97361c4d92be23c3d6de3311e4c8" alt="" width="300" height="300" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300@2x.png?lang=en&amp;domain=example.org&amp;title=Parser+test&amp;groups=_6a13e7df56bf97361c4d92be23c3d6de3311e4c8 2x"/></a><div class="thumbcaption"></div></div></div>
+<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" style="width: 300px; height: 300px;" data-mw="interface" data-style="osm-intl" data-width="300" data-height="300" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;_6a13e7df56bf97361c4d92be23c3d6de3311e4c8&quot;]" href="/wiki/Special:Map/0/0/0/en"><img src="https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300.png?lang=en&amp;domain=example.org&amp;title=Parser+test&amp;groups=_6a13e7df56bf97361c4d92be23c3d6de3311e4c8" alt="" width="300" height="300" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300@2x.png?lang=en&amp;domain=example.org&amp;title=Parser+test&amp;groups=_6a13e7df56bf97361c4d92be23c3d6de3311e4c8 2x" /></a><div class="thumbcaption"></div></div></div>
 !! end
 
 !! test
 show=...
 !! config
 wgKartographerWikivoyageMode=true
-!! input
+!! wikitext
 <maplink zoom=0 latitude=0 longitude=0 show="foo"/>
 <maplink zoom=0 latitude=0 longitude=0 show="foo	, bar"/>
 <maplink zoom=0 latitude=0 longitude=0 show="foo"/>
 <maplink zoom=0 latitude=0 longitude=0 show= />
 <maplink zoom=0 latitude=0 longitude=0 show=""/>
 <maplink zoom=0 latitude=0 longitude=0 show='йа криветко'/>
-!! result
+!! html
 <p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;foo&quot;]">0°0′0″N 0°0′0″E</a>
 <a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;foo&quot;,&quot;bar&quot;]">0°0′0″N 0°0′0″E</a>
 <a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;foo&quot;]">0°0′0″N 0°0′0″E</a>
@@ -370,7 +376,7 @@ wgKartographerWikivoyageMode=true
 
 !! test
 ExternalData errors
-!! input
+!! wikitext
 <maplink>
 [
 	{
@@ -385,6 +391,6 @@ ExternalData errors
 	}
 ]
 </maplink>
-!! result
+!! html
 <div class="mw-kartographer-error">&lt;maplink&gt;: The JSON content is not valid GeoJSON+simplestyle</div>
 !! end
