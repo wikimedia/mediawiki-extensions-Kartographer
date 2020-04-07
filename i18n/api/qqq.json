@@ -1,11 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Yuri Astrakhan",
+			"Amire80",
 			"Liuxinyu970226",
 			"Raymond",
-			"Amire80",
-			"Robby"
+			"Robby",
+			"Yuri Astrakhan"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "{{doc-apihelp-description|sanitize-mapdata}}",

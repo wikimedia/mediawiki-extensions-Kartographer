@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hbseren",
-			"BaRaN6161 TURK"
+			"BaRaN6161 TURK",
+			"Hbseren"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Kartographer uzantısı için veri doğrulama gerçekleştirir.",

@@ -1,15 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Macofe",
-			"YoViajo",
-			"Mgpena",
 			"AlvaroMolina",
-			"Rubentl134",
-			"Fitoschido",
 			"Dgstranz",
+			"Fitoschido",
+			"Macofe",
 			"MarcoAurelio",
-			"Rafael.minuesa"
+			"Mgpena",
+			"Rafael.minuesa",
+			"Rubentl134",
+			"YoViajo"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Mapas de Wikimedia] | Datos del mapa © [https://www.openstreetmap.org/copyright Colaboradores de OpenStreetMap]",

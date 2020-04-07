@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Mirin",
 			"Robin van der Vliet",
-			"Yekrats",
-			"Mirin"
+			"Yekrats"
 		]
 	},
 	"kartographer-error-context-multi": "&lt;$1&gt; problemoj:\n$2",

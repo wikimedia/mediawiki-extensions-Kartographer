@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Movses",
 			"Putnik",
-			"Stjn",
-			"Movses"
+			"Stjn"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Выполняет проверку данных для расширения Kartographer",
