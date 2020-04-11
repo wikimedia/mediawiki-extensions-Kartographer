@@ -232,6 +232,7 @@
 			"dependencies": [
 				"oojs-ui.styles.icons-interactions",
 				"oojs-ui-windows",
+				"oojs-ui-widgets",
 				"mediawiki.router",
 				"mapbox"
 			],

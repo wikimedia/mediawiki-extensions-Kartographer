@@ -60,21 +60,20 @@ function getMapData( element ) {
  * @ignore
  */
 mw.hook( 'wikipage.content' ).add( function ( $content ) {
-	var mapsInArticle = [],
-		promises = [];
+	var map;
 
 	// `wikipage.content` may be fired more than once.
 	while ( maps.length ) {
-		maps.pop().$container.off( 'click.kartographer' );
+		map = maps.pop();
+		map.$container.off( 'click.kartographer' );
+		map.remove();
 	}
 
 	$content.find( '.mw-kartographer-map[data-mw="interface"]' ).each( function ( index ) {
-
 		var container = this,
 			$container = $( container ),
 			link,
-			data,
-			deferred = $.Deferred();
+			data;
 
 		mw.loader.using( 'oojs-ui', function () {
 			var button = new OO.ui.ButtonWidget( {
@@ -109,48 +108,42 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 			fullScreenRoute: '/map/' + index
 		} );
 
-		mapsInArticle.push( link );
 		maps[ index ] = link;
-
-		promises.push( deferred.promise() );
 	} );
 
 	// Allow customizations of interactive maps in article.
-	$.when( promises ).then( function () {
+	if ( routerInited ) {
+		return;
+	}
+	// execute this piece of code only once
+	routerInited = true;
 
-		if ( routerInited ) {
+	// Opens a map in full screen. #/map(/:zoom)(/:latitude)(/:longitude)
+	// Examples:
+	//     #/map/0
+	//     #/map/0/5
+	//     #/map/0/16/-122.4006/37.7873
+	router.route( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([+-]?\d+\.?\d{0,5})?\/([+-]?\d+\.?\d{0,5})?)?/, function ( maptagId, zoom, latitude, longitude ) {
+		var link = maps[ maptagId ],
+			position;
+
+		if ( !link ) {
+			router.navigate( '' );
 			return;
 		}
-		// execute this piece of code only once
-		routerInited = true;
 
-		// Opens a map in full screen. #/map(/:zoom)(/:latitude)(/:longitude)
-		// Examples:
-		//     #/map/0
-		//     #/map/0/5
-		//     #/map/0/16/-122.4006/37.7873
-		router.route( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([+-]?\d+\.?\d{0,5})?\/([+-]?\d+\.?\d{0,5})?)?/, function ( maptagId, zoom, latitude, longitude ) {
-			var link = maps[ maptagId ],
-				position;
+		if ( zoom !== undefined && latitude !== undefined && longitude !== undefined ) {
+			position = {
+				center: [ +latitude, +longitude ],
+				zoom: +zoom
+			};
+		}
 
-			if ( !link ) {
-				router.navigate( '' );
-				return;
-			}
-
-			if ( zoom !== undefined && latitude !== undefined && longitude !== undefined ) {
-				position = {
-					center: [ +latitude, +longitude ],
-					zoom: +zoom
-				};
-			}
-
-			link.openFullScreen( position );
-		} );
-
-		// Check if we need to open a map in full screen.
-		router.checkRoute();
+		link.openFullScreen( position );
 	} );
+
+	// Check if we need to open a map in full screen.
+	router.checkRoute();
 } );
 
 module.exports = maps;

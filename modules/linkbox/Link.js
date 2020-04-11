@@ -126,7 +126,7 @@ Link.prototype.openFullScreen = function ( position ) {
 		};
 
 		mw.loader.using( 'ext.kartographer.dialog' ).then( function () {
-			require( 'ext.kartographer.dialog' ).renderNewMap( mapObject, function ( map ) {
+			require( 'ext.kartographer.dialog' ).renderNewMap( mapObject ).then( function ( map ) {
 				link.fullScreenMap = map;
 			} );
 		} );

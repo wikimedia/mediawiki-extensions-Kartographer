@@ -47,56 +47,100 @@ MapDialog.prototype.initialize = function () {
 	this.map = null;
 };
 
-MapDialog.prototype.addFooterButton = function () {
+MapDialog.prototype.setMap = function ( map ) {
 	var dialog = this;
+	// remove older map
+	if ( dialog.map ) {
+		dialog.map.remove();
+		dialog.$body.empty();
+	}
+	// set new map
+	dialog.map = map;
 
-	mw.loader.using( 'oojs-ui-widgets' ).then( function () {
-		$( function () {
-			// Create footer toggle button
-			var $buttonContainer, $inlineContainer;
+	if ( !dialog.map ) {
+		return;
+	}
+	// update the view
+	if ( dialog.isOpening() || dialog.isOpened() ) {
+		dialog.map.closeFullScreenControl = new CloseFullScreenControl( { position: 'topright' } )
+			.addTo( dialog.map );
+	}
 
-			dialog.$captionContainer = dialog.$element.find( '.mw-kartographer-captionfoot' );
-			$buttonContainer = dialog.$element.find( '.mw-kartographer-buttonfoot' );
-			$inlineContainer = dialog.$element.find( '.mw-kartographer-inlinefoot' );
+	dialog.$body.append(
+		dialog.map.$container.css( 'position', '' )
+	);
 
-			if ( !dialog.mapDetailsButton ) {
-				dialog.mapDetailsButton = new OO.ui.ToggleButtonWidget( {
-					label: mw.msg( 'kartographer-sidebar-togglebutton' ),
-					icon: 'newWindow',
-					title: mw.msg( 'kartographer-sidebar-togglebutton' )
-				} );
-				dialog.mapDetailsButton.connect( dialog, { change: 'toggleSideBar' } );
-			}
+	dialog.$captionContainer
+		.attr( 'title', dialog.map.captionText )
+		.text( dialog.map.captionText );
 
-			if ( !dialog.$captionContainer.length ) {
-				dialog.$captionContainer = $( '<div>' )
-					.addClass( 'mw-kartographer-captionfoot' );
-			}
-
-			if ( !$buttonContainer.length ) {
-				$buttonContainer = $( '<div>' )
-					.addClass( 'mw-kartographer-buttonfoot' );
-			}
-
-			if ( !$inlineContainer.length ) {
-				$inlineContainer = $( '<div>' )
-					.addClass( 'mw-kartographer-inlinefoot' );
-			}
-			$inlineContainer.append(
-				$buttonContainer.append( dialog.mapDetailsButton.$element ),
-				dialog.$captionContainer
-			);
-
-			// Add the button to the footer
-			dialog.$foot.append( $inlineContainer );
-
-			if ( dialog.map ) {
-				dialog.$captionContainer
-					.attr( 'title', dialog.map.captionText )
-					.text( dialog.map.captionText );
-			}
+	// The button exists, the sidebar was open, call `tearDown` and reopen it.
+	if ( dialog.sideBar ) {
+		dialog.sideBar.tearDown();
+		dialog.map.doWhenReady( function () {
+			dialog.offsetMap( true );
+			dialog.toggleSideBar( true );
 		} );
-	} );
+	} else {
+		// The button exists, the sidebar was not open, simply run `offsetMap`
+		dialog.map.doWhenReady( function () {
+			dialog.offsetMap( false );
+			// preload the sidebar, we finished doing all the other stuff
+			mw.loader.load( 'ext.kartographer.dialog.sidebar' );
+		} );
+	}
+	// If the window was already open, trigger wikipage.maps
+	// otherwise let the ready() of the window handle this.
+	if ( dialog.isOpened() ) {
+		mw.hook( 'wikipage.maps' ).fire( dialog.map, true /* isFullScreen */ );
+	}
+};
+
+MapDialog.prototype.addFooterButton = function () {
+	var dialog = this,
+		$buttonContainer, $inlineContainer;
+
+	// Create footer toggle button
+	dialog.$captionContainer = dialog.$element.find( '.mw-kartographer-captionfoot' );
+	$buttonContainer = dialog.$element.find( '.mw-kartographer-buttonfoot' );
+	$inlineContainer = dialog.$element.find( '.mw-kartographer-inlinefoot' );
+
+	if ( !dialog.mapDetailsButton ) {
+		dialog.mapDetailsButton = new OO.ui.ToggleButtonWidget( {
+			label: mw.msg( 'kartographer-sidebar-togglebutton' ),
+			icon: 'newWindow',
+			title: mw.msg( 'kartographer-sidebar-togglebutton' )
+		} );
+		dialog.mapDetailsButton.connect( dialog, { change: 'toggleSideBar' } );
+	}
+
+	if ( !dialog.$captionContainer.length ) {
+		dialog.$captionContainer = $( '<div>' )
+			.addClass( 'mw-kartographer-captionfoot' );
+	}
+
+	if ( !$buttonContainer.length ) {
+		$buttonContainer = $( '<div>' )
+			.addClass( 'mw-kartographer-buttonfoot' );
+	}
+
+	if ( !$inlineContainer.length ) {
+		$inlineContainer = $( '<div>' )
+			.addClass( 'mw-kartographer-inlinefoot' );
+	}
+	$inlineContainer.append(
+		$buttonContainer.append( dialog.mapDetailsButton.$element ),
+		dialog.$captionContainer
+	);
+
+	// Add the button to the footer
+	dialog.$foot.append( $inlineContainer );
+
+	if ( dialog.map ) {
+		dialog.$captionContainer
+			.attr( 'title', dialog.map.captionText )
+			.text( dialog.map.captionText );
+	}
 };
 
 MapDialog.prototype.toggleSideBar = function ( open ) {
@@ -194,46 +238,15 @@ MapDialog.prototype.getSetupProcess = function ( options ) {
 	return MapDialog.super.prototype.getSetupProcess.call( this, options )
 		.next( function () {
 			var dialog = this,
-				isFirstTimeOpen = !dialog.mapDetailsButton,
-				isSideBarVisible = dialog.sideBar;
+				isFirstTimeOpen = !dialog.mapDetailsButton;
+
+			if ( isFirstTimeOpen ) {
+				// The button does not exist yet, add it
+				dialog.addFooterButton();
+			}
 
 			if ( options.map && options.map !== dialog.map ) {
-
-				if ( dialog.map ) {
-					dialog.map.remove();
-				}
-
-				dialog.map = options.map;
-
-				dialog.map.closeFullScreenControl = new CloseFullScreenControl( { position: 'topright' } )
-					.addTo( dialog.map );
-
-				dialog.$body.append(
-					dialog.map.$container.css( 'position', '' )
-				);
-
-				if ( dialog.$captionContainer ) {
-					dialog.$captionContainer
-						.attr( 'title', dialog.map.captionText )
-						.text( dialog.map.captionText );
-				}
-
-				if ( isFirstTimeOpen ) {
-					// The button does not exist yet, add it
-					dialog.addFooterButton();
-				} else if ( isSideBarVisible ) {
-					// The button exists, the sidebar was open, call `tearDown` and reopen it.
-					dialog.sideBar.tearDown();
-					dialog.map.doWhenReady( function () {
-						dialog.offsetMap( true );
-						dialog.toggleSideBar( true );
-					} );
-					return;
-				}
-				// The button exists, the sidebar was not open, simply run `offsetMap`
-				dialog.map.doWhenReady( function () {
-					dialog.offsetMap( false );
-				} );
+				this.setMap( options.map );
 			}
 		}, this );
 };
@@ -246,6 +259,8 @@ MapDialog.prototype.getReadyProcess = function ( data ) {
 				return;
 			}
 			this.map.doWhenReady( function () {
+				// T141750
+				// not needed in newer versions of leaflet ?
 				this.map.$container.find( '.leaflet-marker-icon' ).each( function () {
 					var height = $( this ).height();
 					$( this ).css( {

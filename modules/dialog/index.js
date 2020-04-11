@@ -27,8 +27,6 @@ function close() {
 	if ( mapDialog ) {
 		mapDialog.close();
 	}
-	mapDialog = null;
-	windowManager = null;
 }
 
 function closeIfNotMapRoute( routeEv ) {
@@ -41,11 +39,11 @@ function closeIfNotMapRoute( routeEv ) {
 module.exports = {
 	/**
 	 * Opens the map dialog and renders the map.
+	 * Used by mapframe
 	 *
 	 * @param {Kartographer.Box.MapClass} map
 	 */
 	render: function ( map ) {
-
 		var manager = getWindowManager(),
 			dialog = getMapDialog(),
 			instance;
@@ -60,68 +58,64 @@ module.exports = {
 			instance = manager.openWindow( dialog, { map: map } );
 			instance.closing.then( function () {
 				if ( map.parentMap ) {
+					// FIXME we need to correct for the footerbar offset
 					map.parentMap.setView(
 						map.getCenter(),
 						map.getZoom()
 					);
 				}
-				mapDialog = null;
-				windowManager = null;
 			} );
-		} else if ( dialog.map !== map ) {
-			dialog.setup( { map: map } );
-			dialog.ready( { map: map } );
 		}
+		dialog.opening.then( function () {
+			if ( dialog.map !== map ) {
+				dialog.setMap( map );
+			}
+		} );
 	},
 
 	/**
 	 * Opens the map dialog, creates the map and renders it.
+	 * Used by staticframe and maplink.
 	 *
 	 * @param {Object} mapObject
-	 * @param {Function} mapCb
+	 * @return {jQuery.Promise} Promise which resolves when the map has been created from mapObject.
+	 *                          The rendering process might not yet be finished.
 	 */
-	renderNewMap: function ( mapObject, mapCb ) {
-
+	renderNewMap: function ( mapObject ) {
 		var manager = getWindowManager(),
 			dialog = getMapDialog(),
-			map, instance;
+			deferred = $.Deferred(),
+			promises = [ mw.loader.using( 'ext.kartographer.box' ) ],
+			instance;
 
-		function createAndRenderMap() {
-			mw.loader.using( 'ext.kartographer.box' ).then( function () {
-				map = require( 'ext.kartographer.box' ).map( mapObject );
-
-				if ( map.useRouter && !routerEnabled ) {
-					router.on( 'route', closeIfNotMapRoute );
-					router.route( '', closeIfNotMapRoute );
-					routerEnabled = true;
-				}
-
-				dialog.setup( { map: map } );
-				dialog.ready( { map: map } );
-
-				mapCb( map );
-			} );
-		}
-
-		if ( manager.getCurrentWindow() ) {
-			createAndRenderMap();
-		} else {
+		if ( !manager.getCurrentWindow() ) {
+			// We open the window immediately to guarantee responsiveness
+			// Only THEN we set the map
 			instance = manager.openWindow( dialog, {} );
-			instance.opened.then( function () {
-				createAndRenderMap();
-			} );
 			instance.closing.then( function () {
-				if ( map.parentMap ) {
-					map.parentMap.setView(
-						map.getCenter(),
-						map.getZoom()
+				if ( dialog.map.parentMap ) {
+					// FIXME we need to correct for the footerbar offset
+					dialog.map.parentMap.setView(
+						dialog.map.getCenter(),
+						dialog.map.getZoom()
 					);
 				}
-				mapDialog = null;
-				windowManager = null;
 			} );
+			promises.push( instance.opened );
 		}
-
+		$.when.apply( $, promises ).then( function () {
+			var map = require( 'ext.kartographer.box' ).map( mapObject );
+			deferred.resolve( map );
+			if ( map.useRouter && !routerEnabled ) {
+				router.on( 'route', closeIfNotMapRoute );
+				router.route( '', closeIfNotMapRoute );
+				routerEnabled = true;
+			}
+			dialog.setMap( map );
+		}, function () {
+			deferred.reject();
+		} );
+		return deferred.promise();
 	},
 
 	/**
