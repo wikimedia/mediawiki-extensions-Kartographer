@@ -4,8 +4,9 @@
  * @class Kartographer.DialogSideBar
  */
 
-/** Storage key for Last known selected map type in sidebar */
-var SELECTEDTYPE_KEY = 'ext.kartographer.sidebar.selectedType';
+var storage = require( 'mediawiki.storage' ),
+	/** Storage key for Last known selected map type in sidebar */
+	SELECTEDTYPE_KEY = 'ext.kartographer.sidebar.selectedType';
 
 /**
  * @constructor
@@ -207,11 +208,11 @@ SideBar.prototype.renderTypeFilter = function () {
 		defaultType = sidebar.metadata.types[ 0 ];
 
 	dropdown.getMenu().on( 'select', function ( item ) {
-		mw.storage.set( SELECTEDTYPE_KEY, item.getData() );
+		storage.set( SELECTEDTYPE_KEY, item.getData() );
 		sidebar.renderExternalServices();
 	} );
 	dropdown.getMenu().selectItemByData(
-		mw.storage.get( SELECTEDTYPE_KEY ) ||
+		storage.get( SELECTEDTYPE_KEY ) ||
 		defaultType
 	);
 
@@ -229,7 +230,7 @@ SideBar.prototype.renderTypeFilter = function () {
  */
 SideBar.prototype.renderExternalServices = function () {
 	var sidebar = this,
-		selectedType = mw.storage.get( SELECTEDTYPE_KEY ),
+		selectedType = storage.get( SELECTEDTYPE_KEY ),
 		$list = this.$servicesContainer.find( '.mw-kartographer-filterservices-list' ),
 		toggleShowServicesState = function ( state ) {
 			sidebar.showAllServices = state !== undefined ? !!state : !sidebar.showAllServices;
