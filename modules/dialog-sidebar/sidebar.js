@@ -4,7 +4,7 @@
  * @class Kartographer.DialogSideBar
  */
 
-var storage = require( 'mediawiki.storage' ),
+var storage = require( 'mediawiki.storage' ).local,
 	/** Storage key for Last known selected map type in sidebar */
 	SELECTEDTYPE_KEY = 'ext.kartographer.sidebar.selectedType';
 
