@@ -121,6 +121,12 @@ function getValidBounds( layer ) {
 
 KartographerMap = L.Map.extend( {
 	/**
+	 * Create a map within options.container
+	 *
+	 * options.container has to be visible before constructing the map
+	 * or call invalidateSizeAndSetInitialView when it becomes visible.
+	 * See also phab:T151524 and https://github.com/Leaflet/Leaflet/issues/4200
+	 *
 	 * @constructor
 	 * @param {Object} options **Configuration and options:**
 	 * @param {HTMLElement} options.container **Map container.**

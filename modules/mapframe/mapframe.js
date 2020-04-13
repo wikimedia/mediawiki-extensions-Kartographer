@@ -12,6 +12,8 @@
 var util = require( 'ext.kartographer.util' ),
 	kartobox = require( 'ext.kartographer.box' ),
 	router = require( 'mediawiki.router' ),
+	rAF = window.requestAnimationFrame || setTimeout,
+
 	/**
 	 * References the mapframe containers of the page.
 	 *
@@ -145,52 +147,57 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		maps.pop().remove();
 	}
 
-	$content.find( '.mw-kartographer-map[data-mw="interface"]' ).each( function () {
-		var data,
-			container = this,
-			$container = $( this );
+	// Wait for next draw cycle, so that the JS map is not initialized before it is on screen.
+	// If initialized too early leaflet uses incorrect dimensions. phab:T151524
+	// https://github.com/Leaflet/Leaflet/issues/4200
+	rAF( function () {
+		$content.find( '.mw-kartographer-map[data-mw="interface"]' ).each( function () {
+			var data,
+				container = this,
+				$container = $( this );
 
-		data = getMapData( container );
-		initMapBox( data, $container );
-	} );
+			data = getMapData( container );
+			initMapBox( data, $container );
+		} );
 
-	// Allow customizations of interactive maps in article.
-	mw.hook( 'wikipage.maps' ).fire( maps, false /* isFullScreen */ );
+		// Allow customizations of interactive maps in article.
+		mw.hook( 'wikipage.maps' ).fire( maps, false /* isFullScreen */ );
 
-	if ( routerInited ) {
-		return;
-	}
-	// execute this piece of code only once
-	routerInited = true;
-
-	// Opens a map in full screen. #/map(/:zoom)(/:latitude)(/:longitude)
-	// Examples:
-	//     #/map/0
-	//     #/map/0/5
-	//     #/map/0/16/-122.4006/37.7873
-	router.route( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([+-]?\d+\.?\d{0,5})?\/([+-]?\d+\.?\d{0,5})?)?/, function ( maptagId, zoom, latitude, longitude ) {
-		var map = maps[ maptagId ],
-			position;
-
-		if ( !map ) {
-			router.navigate( '' );
+		if ( routerInited ) {
 			return;
 		}
+		// execute this piece of code only once
+		routerInited = true;
 
-		if ( zoom !== undefined && latitude !== undefined && longitude !== undefined ) {
-			position = {
-				center: [ +latitude, +longitude ],
-				zoom: +zoom
-			};
-		} else {
-			position = map.getInitialMapPosition();
-		}
+		// Opens a map in full screen. #/map(/:zoom)(/:latitude)(/:longitude)
+		// Examples:
+		//     #/map/0
+		//     #/map/0/5
+		//     #/map/0/16/-122.4006/37.7873
+		router.route( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([+-]?\d+\.?\d{0,5})?\/([+-]?\d+\.?\d{0,5})?)?/, function ( maptagId, zoom, latitude, longitude ) {
+			var map = maps[ maptagId ],
+				position;
 
-		map.openFullScreen( position );
+			if ( !map ) {
+				router.navigate( '' );
+				return;
+			}
+
+			if ( zoom !== undefined && latitude !== undefined && longitude !== undefined ) {
+				position = {
+					center: [ +latitude, +longitude ],
+					zoom: +zoom
+				};
+			} else {
+				position = map.getInitialMapPosition();
+			}
+
+			map.openFullScreen( position );
+		} );
+
+		// Check if we need to open a map in full screen.
+		router.checkRoute();
 	} );
-
-	// Check if we need to open a map in full screen.
-	router.checkRoute();
 } );
 
 module.exports = {
