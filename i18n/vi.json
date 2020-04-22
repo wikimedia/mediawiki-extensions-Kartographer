@@ -3,7 +3,8 @@
 		"authors": [
 			"Dinhxuanduyet",
 			"Leducthn",
-			"Minh Nguyen"
+			"Minh Nguyen",
+			"Phjtieudoc"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Bản đồ Wikimedia] | Dữ liệu bản đồ © [https://www.openstreetmap.org/copyright/vi những người đóng góp vào OpenStreetMap]",
@@ -72,7 +73,7 @@
 	"leafletdraw-edit-toolbar-actions-cancel-text": "Hủy bỏ",
 	"leafletdraw-edit-toolbar-actions-cancel-title": "Hủy bỏ sửa đổi và vứt bỏ các thay đổi",
 	"leafletdraw-edit-toolbar-actions-save-text": "Lưu",
-	"leafletdraw-edit-toolbar-actions-save-title": "Lưu các thay đổi",
+	"leafletdraw-edit-toolbar-actions-save-title": "Lưu thay đổi",
 	"leafletdraw-edit-toolbar-buttons-edit": "Sửa đổi các lớp",
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Không có lớp để sửa đổi",
 	"leafletdraw-edit-toolbar-buttons-remove": "Xóa lớp",
