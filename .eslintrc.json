@@ -12,6 +12,9 @@
 		"L": "readonly"
 	},
 	"rules": {
-		"max-len": "off"
+		"max-len": "off",
+		"mediawiki/class-doc": "warn",
+		"mediawiki/valid-package-file-require": "warn",
+		"prefer-regex-literals": "warn"
 	}
 }
