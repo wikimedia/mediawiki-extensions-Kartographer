@@ -14,7 +14,7 @@ var router = require( 'mediawiki.router' ),
 	/**
 	 * References the maplinks of the page.
 	 *
-	 * @type {HTMLElement[]}
+	 * @type {Kartographer.Linkbox.LinkClass[]}
 	 */
 	maplinks = [],
 	/**

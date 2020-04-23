@@ -12,11 +12,11 @@ var util = require( 'ext.kartographer.util' ),
 	kartolink = require( 'ext.kartographer.linkbox' ),
 	router = require( 'mediawiki.router' ),
 	/**
-	 * References the mapframe containers of the page.
+	 * References the maplinks wrapping static mapframe containers of the page.
 	 *
-	 * @type {HTMLElement[]}
+	 * @type {Kartographer.Linkbox.LinkClass[]}
 	 */
-	maps = [],
+	maplinks = [],
 	/**
 	 * @private
 	 * @ignore
@@ -60,13 +60,9 @@ function getMapData( element ) {
  * @ignore
  */
 mw.hook( 'wikipage.content' ).add( function ( $content ) {
-	var map;
-
 	// `wikipage.content` may be fired more than once.
-	while ( maps.length ) {
-		map = maps.pop();
-		map.$container.off( 'click.kartographer' );
-		map.remove();
+	while ( maplinks.length ) {
+		maplinks.pop().$container.off( 'click.kartographer' );
 	}
 
 	$content.find( '.mw-kartographer-map[data-mw="interface"]' ).each( function ( index ) {
@@ -108,7 +104,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 			fullScreenRoute: '/map/' + index
 		} );
 
-		maps[ index ] = link;
+		maplinks[ index ] = link;
 	} );
 
 	// Allow customizations of interactive maps in article.
@@ -124,7 +120,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 	//     #/map/0/5
 	//     #/map/0/16/-122.4006/37.7873
 	router.route( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([+-]?\d+\.?\d{0,5})?\/([+-]?\d+\.?\d{0,5})?)?/, function ( maptagId, zoom, latitude, longitude ) {
-		var link = maps[ maptagId ],
+		var link = maplinks[ maptagId ],
 			position;
 
 		if ( !link ) {
@@ -146,4 +142,4 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 	router.checkRoute();
 } );
 
-module.exports = maps;
+module.exports = maplinks;
