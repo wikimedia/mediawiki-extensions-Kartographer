@@ -1,12 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"Cusolotto"
+			"Cusolotto",
+			"Fierodelveneto"
 		]
 	},
 	"kartographer-linktype-map": "Mapa standard",
 	"kartographer-sidebar-externalservices": "Servisi cartografici",
 	"kartographer-sidebar-externalservices-show-all": "Varda de pì",
 	"kartographer-sidebar-mapdetails": "Mape de fora",
-	"kartographer-sidebar-togglebutton": "Fora"
+	"kartographer-sidebar-togglebutton": "Fora",
+	"kartographer-fullscreen-text": "Varda a schermada intiera"
 }
