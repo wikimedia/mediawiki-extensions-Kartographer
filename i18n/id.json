@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Diki Ananta",
 			"Presidenvolksraad",
 			"Rachmat.Wahidi",
 			"Rachmat04",
@@ -72,11 +73,11 @@
 	"leafletdraw-edit-toolbar-actions-save-text": "Simpan",
 	"leafletdraw-edit-toolbar-actions-save-title": "Simpan perubahan",
 	"leafletdraw-edit-toolbar-actions-clearall-text": "Hapus semua",
-	"leafletdraw-edit-toolbar-actions-clearall-title": "Kosongkan semua lapisan",
-	"leafletdraw-edit-toolbar-buttons-edit": "Sunting lapisan",
-	"leafletdraw-edit-toolbar-buttons-editdisabled": "Tidak ada lapisan untuk disunting",
-	"leafletdraw-edit-toolbar-buttons-remove": "Hapus lapisan",
-	"leafletdraw-edit-toolbar-buttons-removedisabled": "Tidak ada lapisan untuk dihapus",
+	"leafletdraw-edit-toolbar-actions-clearall-title": "Kosongkan semua objek",
+	"leafletdraw-edit-toolbar-buttons-edit": "Sunting objek",
+	"leafletdraw-edit-toolbar-buttons-editdisabled": "Tidak ada objek untuk disunting",
+	"leafletdraw-edit-toolbar-buttons-remove": "Hapus objek",
+	"leafletdraw-edit-toolbar-buttons-removedisabled": "Tidak ada objek untuk dihapus",
 	"leafletdraw-draw-toolbar-finish-text": "Selesaikan",
 	"leafletdraw-draw-toolbar-finish-title": "Klik untuk menyelesaikan gambar",
 	"map": "Informasi koordinat",

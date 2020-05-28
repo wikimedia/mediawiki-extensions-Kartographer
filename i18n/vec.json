@@ -5,6 +5,7 @@
 			"Fierodelveneto"
 		]
 	},
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Mape Wikimédia] | Dati mapa © [https://www.openstreetmap.org/copyright contribudori OpenStreetMap]",
 	"kartographer-linktype-map": "Mapa standard",
 	"kartographer-sidebar-externalservices": "Servisi cartografici",
 	"kartographer-sidebar-externalservices-show-all": "Varda de pì",
