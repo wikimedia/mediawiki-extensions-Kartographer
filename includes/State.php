@@ -9,8 +9,8 @@ use stdClass;
  * Stores information about map tags on page in ParserOutput
  */
 class State {
-	const DATA_KEY = 'kartographer';
-	const VERSION = 1;
+	private const DATA_KEY = 'kartographer';
+	private const VERSION = 1;
 
 	/** @var int Version of this class, for checking after deserialization */
 	private /** @noinspection PhpUnusedPrivateFieldInspection */ $version = self::VERSION;

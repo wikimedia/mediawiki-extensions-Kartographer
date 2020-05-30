@@ -10,7 +10,7 @@ namespace Kartographer\Projection;
  */
 class SphericalMercator {
 
-	const MAX_LATITUDE = 85.0511287798;
+	private const MAX_LATITUDE = 85.0511287798;
 
 	/**
 	 * (LatLon) -> Point

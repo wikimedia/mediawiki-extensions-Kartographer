@@ -9,9 +9,9 @@ namespace Kartographer\Projection;
  * Converted to PHP from L.Transformation (leaflet.js)
  */
 class Transformation {
-// @fixme: cleanup
-	const A = 0.159154943; // 0.5 * pi()
-	const C = -0.159154943; // -0.5 * pi()
+	// @fixme: cleanup
+	private const A = 0.159154943; // 0.5 * pi()
+	private const C = -0.159154943; // -0.5 * pi()
 
 	/**
 	 * (LatLon) -> Point

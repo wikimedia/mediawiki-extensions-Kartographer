@@ -10,7 +10,7 @@ namespace Kartographer\Projection;
  */
 class EPSG3857 {
 
-	const EARTH_RADIUS = 6378137;
+	private const EARTH_RADIUS = 6378137;
 
 	/**
 	 * (LatLon) -> Point
