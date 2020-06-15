@@ -1,13 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Dvorapa"
+			"Dvorapa",
+			"Mormegil"
 		]
 	},
 	"kartographer-wv-group": "Skupina:",
 	"kartographer-wv-layer-nearby-articles": "Články poblíž",
 	"kartographer-wv-nearby-articles-control": "Prozkoumat místa poblíž",
 	"kartographer-wv-warning-external-source-title": "Externí zdroj dat",
+	"kartographer-wv-warning-external-source-message": "Tento obsah je hostován externě, takže zapnutím budete sdílet své údaje s jinými servery.",
 	"kartographer-wv-warning-external-source-agree": "V pořádku",
 	"kartographer-wv-warning-external-source-disagree": "Storno"
 }
