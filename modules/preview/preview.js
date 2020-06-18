@@ -5,8 +5,8 @@
  * This module may be loaded and executed by
  * {@link Kartographer.Box.enablePreview ext.kartographer.box}.
  *
- * @alias Preview
- * @alias ext.kartographer.preview
+ * @alternateClassName Preview
+ * @alternateClassName ext.kartographer.preview
  * @class Kartographer.Preview
  * @singleton
  */

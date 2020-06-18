@@ -3,13 +3,12 @@
 	"extends": [
 		"wikimedia/client",
 		"wikimedia/jquery",
-		"wikimedia/mediawiki"
+		"wikimedia/mediawiki",
+		"wikimedia/jsduck"
 	],
 	"globals": {
-		"require": "readonly",
-		"module": "readonly",
-		"OO": "readonly",
-		"L": "readonly"
+		"L": "readonly",
+		"Kartographer": "readonly"
 	},
 	"rules": {
 		"max-len": "off",

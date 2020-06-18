@@ -145,6 +145,7 @@ ve.dm.MWMapsNode.prototype.usesMapData = function () {
 
 /**
  * Gets the language used on this map.
+ *
  * @return {string} Language code
  */
 ve.dm.MWMapsNode.prototype.getLanguage = function () {

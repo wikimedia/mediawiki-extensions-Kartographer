@@ -29,7 +29,7 @@ function SideBar( options ) {
 	/**
 	 * @property {Object}
 	 */
-	this.metadata = require( './externalLinks.json' );
+	this.metadata = require( '../../externalLinks.json' );
 	this.parseExternalLinks();
 }
 
@@ -41,17 +41,16 @@ function SideBar( options ) {
  */
 SideBar.prototype.formatLink = function ( url ) {
 	var scale = Math.round( Math.pow( 2, Math.min( 3, Math.max( 0, 18 - this.initialMapPosition.zoom ) ) ) * 1000 );
-	url = url.replace( new RegExp( '{latitude}', 'g' ), this.initialMapPosition.center.lat );
-	url = url.replace( new RegExp( '{longitude}', 'g' ), this.initialMapPosition.center.lng );
-	url = url.replace( new RegExp( '{zoom}', 'g' ), this.initialMapPosition.zoom );
-	url = url.replace( new RegExp( '{title}', 'g' ), mw.config.get( 'wgTitle' ) );
-	url = url.replace( new RegExp( '{language}', 'g' ), this.dialog.map.lang );
-	url = url.replace( new RegExp( '{scale}', 'g' ), scale );
+	url = url.replace( /{latitude}/g, this.initialMapPosition.center.lat );
+	url = url.replace( /{longitude}/g, this.initialMapPosition.center.lng );
+	url = url.replace( /{zoom}/g, this.initialMapPosition.zoom );
+	url = url.replace( /{title}/g, mw.config.get( 'wgTitle' ) );
+	url = url.replace( /{language}/g, this.dialog.map.lang );
+	url = url.replace( /{scale}/g, scale );
 
 	return url;
 };
 
-// eslint-disable-next-line valid-jsdoc
 /**
  * Toggles the sidebar
  *
@@ -71,7 +70,6 @@ SideBar.prototype.toggle = function ( open ) {
 	return this;
 };
 
-// eslint-disable-next-line valid-jsdoc
 /**
  * Renders the sidebar.
  *
@@ -373,7 +371,6 @@ SideBar.prototype.createFilterDropdown = function () {
 	} );
 };
 
-// eslint-disable-next-line valid-jsdoc
 /**
  * Detaches events and removes the element.
  *

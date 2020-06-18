@@ -2,7 +2,7 @@
  * Module to add {@link Kartographer.Wikivoyage.ControlLayers} control to the
  * map and add the tile layers and overlays.
  *
- * @alias WVMapLayers
+ * @alternateClassName WVMapLayers
  * @class Kartographer.Wikivoyage.WVMapLayers
  * @private
  */
@@ -22,7 +22,6 @@ function WVMapLayers( map ) {
 	);
 }
 
-// eslint-disable-next-line valid-jsdoc
 /**
  * Adds a layer.
  *
@@ -36,7 +35,6 @@ WVMapLayers.prototype.addLayer = function ( layer, name, overlay ) {
 	return this;
 };
 
-// eslint-disable-next-line valid-jsdoc
 /**
  * Refreshes the list of layers displayed in the control dropdown.
  *
@@ -47,7 +45,6 @@ WVMapLayers.prototype.update = function () {
 	return this;
 };
 
-// eslint-disable-next-line valid-jsdoc
 /**
  * Adds a base map.
  *
@@ -60,7 +57,6 @@ WVMapLayers.prototype.basemap = function ( id ) {
 	return this;
 };
 
-// eslint-disable-next-line valid-jsdoc
 /**
  * Adds an overlay.
  *
@@ -73,7 +69,6 @@ WVMapLayers.prototype.overlay = function ( id ) {
 	return this;
 };
 
-// eslint-disable-next-line valid-jsdoc
 /**
  * Adds a data layer.
  *

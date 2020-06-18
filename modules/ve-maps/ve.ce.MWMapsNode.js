@@ -153,6 +153,8 @@ ve.ce.MWMapsNode.prototype.update = function () {
 			this.showHandles( [ 'sw', 'se' ] );
 			break;
 	}
+	// Classes documented in removeClass
+	// eslint-disable-next-line mediawiki/class-doc
 	this.$element
 		.removeClass( 'floatleft center floatright' )
 		.addClass( alignClasses[ align ] );

@@ -4,7 +4,7 @@
  * See [L.Control](https://www.mapbox.com/mapbox.js/api/v2.3.0/l-control/)
  * documentation for more details.
  *
- * @alias ControlNearby
+ * @alternateClassName ControlNearby
  * @class Kartographer.Wikivoyage.ControlNearby
  * @extends L.Control
  * @private
@@ -149,6 +149,7 @@ ControlNearby = L.Control.extend( {
 
 	/**
 	 * Checks whether the map has the layer.
+	 *
 	 * @return {boolean}
 	 */
 	isEnabled: function () {

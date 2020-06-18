@@ -258,7 +258,7 @@ ve.ui.MWMapsDialog.prototype.updateMapCutout = function ( latLngs ) {
 /**
  * Reset the map's zoom and position
  *
- * @param {bool} [instant=false]
+ * @param {boolean} [instant=false]
  */
 ve.ui.MWMapsDialog.prototype.resetMapZoomAndPosition = function ( instant ) {
 	if ( !this.map ) {
@@ -271,7 +271,7 @@ ve.ui.MWMapsDialog.prototype.resetMapZoomAndPosition = function ( instant ) {
 /**
  * Reset the map's position
  *
- * @param {bool} [instant=false]
+ * @param {boolean} [instant=false]
  */
 ve.ui.MWMapsDialog.prototype.resetMapPosition = function ( instant ) {
 	if ( !this.map ) {

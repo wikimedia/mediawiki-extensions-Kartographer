@@ -1,7 +1,7 @@
 /**
  * Wikivoyage Map class.
  *
- * @alias WVMap
+ * @alternateClassName WVMap
  * @class Kartographer.Wikivoyage.WVMap
  */
 var wikivoyage = require( './wikivoyage.js' ),

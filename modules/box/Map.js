@@ -5,7 +5,7 @@
  *
  * Avoid creating a local variable "Map" as this is a native function in ES6.
  *
- * @alias KartographerMap
+ * @alternateClassName KartographerMap
  * @class Kartographer.Box.MapClass
  * @extends L.Map
  */
@@ -328,7 +328,6 @@ KartographerMap = L.Map.extend( {
 		} );
 	},
 
-	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Runs the given callback **when the Kartographer map has finished
 	 * loading the data layers and positioning** the map with a center and
@@ -347,7 +346,6 @@ KartographerMap = L.Map.extend( {
 		return this;
 	},
 
-	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Sets the initial center and zoom of the map, and optionally calls
 	 * {@link #setView} to reposition the map.
@@ -525,7 +523,6 @@ KartographerMap = L.Map.extend( {
 		}, this );
 	},
 
-	// eslint-disable-next-line
 	/**
 	 * Closes full screen dialog.
 	 *
@@ -611,7 +608,6 @@ KartographerMap = L.Map.extend( {
 		return hash;
 	},
 
-	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Sets the map at a certain zoom and position.
 	 *
@@ -700,6 +696,7 @@ KartographerMap = L.Map.extend( {
 	 * Change the map's language.
 	 *
 	 * This will cause the map to be rerendered if the language is different.
+	 *
 	 * @param {string} lang New language code
 	 */
 	setLang: function ( lang ) {
@@ -791,7 +788,6 @@ KartographerMap = L.Map.extend( {
 		this._size = new L.Point( width, height );
 	},
 
-	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Adds Leaflet.Sleep handler and overrides `invalidateSize` when the map
 	 * is not in full screen mode.
@@ -828,7 +824,6 @@ KartographerMap = L.Map.extend( {
 		return this;
 	},
 
-	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Makes the map interactive IIF :
 	 *

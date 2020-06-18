@@ -1,7 +1,7 @@
 /**
  * Kartographer utility functions.
  *
- * @alias ext.kartographer.util
+ * @alternateClassName ext.kartographer.util
  * @class Kartographer.Util
  * @singleton
  */

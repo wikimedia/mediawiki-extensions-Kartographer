@@ -1,7 +1,7 @@
 /**
  * Utility methods.
  *
- * @alias wikivoyage
+ * @alternateClassName wikivoyage
  * @class Kartographer.Wikivoyage.wikivoyage
  * @singleton
  */
@@ -39,7 +39,6 @@ function alertExternalData() {
 }
 
 module.exports = {
-	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Adds a tile layer definition to the internal store.
 	 *
