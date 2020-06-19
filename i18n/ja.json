@@ -3,6 +3,7 @@
 		"authors": [
 			"Higa4",
 			"Kkairri",
+			"Linuxmetel",
 			"Omotecho",
 			"Otokoume",
 			"Ridmevo",
@@ -84,5 +85,6 @@
 	"visualeditor-mwmapsdialog-position-lon": "経度",
 	"visualeditor-mwmapsdialog-position-zoom": "ズーム",
 	"visualeditor-mwmapsdialog-size": "サイズ",
-	"visualeditor-mwmapsdialog-title": "地図"
+	"visualeditor-mwmapsdialog-title": "地図",
+	"visualeditor-mwmapscontextitem-title": "地図"
 }
