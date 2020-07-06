@@ -8,6 +8,7 @@
 			"Otokoume",
 			"Ridmevo",
 			"S2KTS",
+			"Shirayuki",
 			"Suchichi02",
 			"Sujiniku",
 			"Suyama"
@@ -65,7 +66,7 @@
 	"leafletdraw-edit-handlers-edit-tooltip-text": "地物を編集するにはハンドルまたはマーカーをドラッグ",
 	"leafletdraw-edit-handlers-remove-tooltip-text": "地物をクリックして削除",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "中止",
-	"leafletdraw-edit-toolbar-actions-cancel-title": "編集をキャンセルして全ての変更を無視",
+	"leafletdraw-edit-toolbar-actions-cancel-title": "編集をキャンセルしてすべての変更を無視",
 	"leafletdraw-edit-toolbar-actions-save-text": "保存",
 	"leafletdraw-edit-toolbar-actions-save-title": "変更を保存",
 	"leafletdraw-edit-toolbar-actions-clearall-text": "すべてクリア",
