@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Azniv Stepanian",
 			"Դավիթ Սարոյան"
 		]
 	},
+	"visualeditor-mwmapsdialog-position-lat": "Տարածութիւն",
 	"visualeditor-mwmapsdialog-title": "Քարտէս",
 	"visualeditor-mwmapscontextitem-title": "Քարտէս"
 }
