@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hello903hello"
+			"Hello903hello",
+			"Moon0319"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use 維基媒體地圖] | 地圖資料 © [https://www.openstreetmap.org/copyright OpenStreetMap貢獻者]",
@@ -13,7 +14,7 @@
 	"kartographer-specialmap-invalid-coordinates": "提供咗無效嘅座標",
 	"kartographer-linktype-aerial": "航拍",
 	"kartographer-linktype-map": "標準地圖",
-	"kartographer-linktype-other": "其他",
+	"kartographer-linktype-other": "第啲",
 	"kartographer-linktype-satellite": "衛星",
 	"kartographer-linktype-terrain": "地形",
 	"kartographer-sidebar-coordinates": "座標",
