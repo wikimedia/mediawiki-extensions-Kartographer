@@ -325,6 +325,10 @@ KartographerMap = L.Map.extend( {
 			} else {
 				ready();
 			}
+		}, function () {
+			// T25787
+			ready();
+			mw.log.error( 'Unable to add datalayers to map.' );
 		} );
 	},
 
