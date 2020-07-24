@@ -1,12 +1,11 @@
 /* == Nearby articles icon == */
 
-@import 'mediawiki.mixins';
 @import '../../../lib/external/wikimedia-ui-base';
 
 .leaflet-control-container .leaflet-control {
 	.mw-kartographer-icon-nearby {
 		/* @embed */
-		.background-image-svg( '../images/icon-nearby.svg', '../images/icon-nearby.png' );
+		background-image: url( ../images/icon-nearby.svg );
 		background-position: center center;
 		background-size: 20px;
 
@@ -14,7 +13,7 @@
 		&.mapbox-icon-nearby-active:hover {
 			background-color: @color-primary--active;
 			/* @embed */
-			.background-image-svg( '../images/icon-nearby-invert.svg', '../images/icon-nearby-invert.png' );
+			background-image: url( ../images/icon-nearby-invert.svg );
 			border-color: @color-primary--active;
 		}
 	}
