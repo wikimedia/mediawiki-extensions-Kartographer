@@ -297,8 +297,16 @@ KartographerMap = L.Map.extend( {
 			this._invalidateInteractive();
 		}
 
+		// The `ready` function has not fired yet so there is no center or zoom defined.
+		// Disable panning and zooming until that has happened.
+		// See T257872.
+		map.dragging.disable();
+		map.touchZoom.disable();
+
 		function ready() {
 			map.initView( options.center, options.zoom );
+			map.dragging.enable();
+			map.touchZoom.enable();
 			map.fire(
 				/**
 				 * @event
