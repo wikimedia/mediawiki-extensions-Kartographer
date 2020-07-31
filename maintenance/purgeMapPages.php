@@ -17,6 +17,9 @@ class PurgeMapPages extends Maintenance {
 		$this->requireExtension( 'Kartographer' );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function execute() {
 		$categoryMessage = wfMessage( 'kartographer-tracking-category' );
 		if ( $categoryMessage->isDisabled() ) {

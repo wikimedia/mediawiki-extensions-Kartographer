@@ -32,6 +32,9 @@ class DataModule extends ResourceLoaderModule {
 		] );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function enableModuleContentVersion() {
 		return true;
 	}

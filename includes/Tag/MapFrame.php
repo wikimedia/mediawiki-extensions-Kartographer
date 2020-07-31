@@ -21,6 +21,9 @@ class MapFrame extends TagHandler {
 	/** @var string One of "left", "center", "right", or "none" */
 	private $align;
 
+	/**
+	 * @inheritDoc
+	 */
 	protected function parseArgs() {
 		parent::parseArgs();
 		$this->state->useMapframe();
