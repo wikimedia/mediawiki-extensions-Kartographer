@@ -16,12 +16,18 @@ class MapLink extends TagHandler {
 	/** @var string */
 	protected $cssClass = '';
 
+	/**
+	 * @inheritDoc
+	 */
 	protected function parseArgs() {
 		$this->state->useMaplink();
 		parent::parseArgs();
 		$this->cssClass = $this->getText( 'class', '', '/^(|[a-zA-Z][-_a-zA-Z0-9]*)$/' );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	protected function render() {
 		$output = $this->parser->getOutput();
 		$output->addModules( 'ext.kartographer.link' );

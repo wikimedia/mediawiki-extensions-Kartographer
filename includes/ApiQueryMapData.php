@@ -19,6 +19,9 @@ class ApiQueryMapData extends ApiQueryBase {
 		parent::__construct( $query, $moduleName, 'mpd' );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$limit = $params['limit'];
@@ -107,6 +110,9 @@ class ApiQueryMapData extends ApiQueryBase {
 		return 'public';
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function isInternal() {
 		return true;
 	}

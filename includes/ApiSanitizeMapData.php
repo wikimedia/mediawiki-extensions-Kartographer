@@ -25,6 +25,9 @@ use Title;
  */
 class ApiSanitizeMapData extends ApiBase {
 
+	/**
+	 * @inheritDoc
+	 */
 	public function execute() {
 		$params = $this->extractRequestParams();
 
@@ -80,6 +83,9 @@ class ApiSanitizeMapData extends ApiBase {
 		];
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function mustBePosted() {
 		return true;
 	}

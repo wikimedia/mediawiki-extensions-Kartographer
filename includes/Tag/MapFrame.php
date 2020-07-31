@@ -16,6 +16,9 @@ class MapFrame extends TagHandler {
 	private $height;
 	private $align;
 
+	/**
+	 * @inheritDoc
+	 */
 	protected function parseArgs() {
 		parent::parseArgs();
 		$this->state->useMapframe();
