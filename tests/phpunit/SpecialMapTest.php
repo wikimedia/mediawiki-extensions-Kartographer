@@ -6,6 +6,7 @@ use GeoData\Globe;
 use Kartographer\SpecialMap;
 use MediaWikiTestCase;
 use Title;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \Kartographer\SpecialMap
@@ -23,11 +24,13 @@ class SpecialMapTest extends MediaWikiTestCase {
 	public function testParseSubpage(
 		$par, $expectedLat = null, $expectedLon = null, $expectedLang = null
 	) {
-		$res = SpecialMap::parseSubpage( $par );
+		/** @var SpecialMap $specialMap */
+		$specialMap = TestingAccessWrapper::newFromObject( new SpecialMap() );
+		$res = $specialMap->parseSubpage( $par );
 		if ( $expectedLat === null || $expectedLon === null ) {
 			$this->assertFalse( $res, 'Parsing is expected to fail' );
 		} else {
-			list( , $lat, $lon, $lang ) = $res;
+			[ 'lat' => $lat, 'lon' => $lon, 'lang' => $lang ] = $res;
 			$this->assertSame( $expectedLat, $lat, 'Comparing latitudes' );
 			$this->assertSame( $expectedLon, $lon, 'Comparing longitudes' );
 			$this->assertSame( $expectedLang, $lang, 'Comparing language' );

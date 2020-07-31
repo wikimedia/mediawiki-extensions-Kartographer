@@ -32,12 +32,12 @@ class SpecialMap extends SpecialPage {
 		$output->addModuleStyles( 'ext.kartographer.specialMap' );
 		$output->getCSP()->addDefaultSrc( $this->getConfig()->get( 'KartographerMapServer' ) );
 
-		$coord = self::parseSubpage( $par );
+		$coord = $this->parseSubpage( $par );
 		if ( !$coord ) {
 			$coordText = $this->msg( 'kartographer-specialmap-invalid-coordinates' )->text();
 			$markerHtml = '';
 		} else {
-			list( , $lat, $lon, $lang ) = $coord;
+			[ 'lat' => $lat, 'lon' => $lon ] = $coord;
 			$coordText = CoordFormatter::format( $lat, $lon, $this->getLanguage() );
 			list( $x, $y ) = EPSG3857::latLonToPoint( [ $lat, $lon ], 0 );
 			$markerHtml = Html::element( 'div',
@@ -76,7 +76,7 @@ class SpecialMap extends SpecialPage {
 	 * @param string $par
 	 * @return array|false
 	 */
-	public static function parseSubpage( $par ) {
+	private function parseSubpage( $par ) {
 		if ( !preg_match(
 				'#^(?<zoom>\d+)/(?<lat>-?\d+(\.\d+)?)/(?<lon>-?\d+(\.\d+)?)(/(?<lang>[a-zA-Z0-9-]+))?$#',
 				$par,
@@ -94,13 +94,11 @@ class SpecialMap extends SpecialPage {
 			}
 		}
 
-		$lang = $matches['lang'] ?? 'local';
-
 		return [
-			(int)$matches['zoom'],
-			(float)$matches['lat'],
-			(float)$matches['lon'],
-			$lang
+			'zoom' => (int)$matches['zoom'],
+			'lat' => (float)$matches['lat'],
+			'lon' => (float)$matches['lon'],
+			'lang' => $matches['lang'] ?? 'local',
 		];
 	}
 
