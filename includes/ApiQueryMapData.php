@@ -25,7 +25,6 @@ class ApiQueryMapData extends ApiQueryBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$limit = $params['limit'];
-		$continue = $params['continue'] ?? 0;
 		$groups = $params['groups'] === '' ? false : explode( '|', $params['groups'] );
 		$titles = $this->getPageSet()->getGoodTitles();
 		if ( !$titles ) {

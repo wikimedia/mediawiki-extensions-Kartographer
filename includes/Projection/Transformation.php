@@ -20,7 +20,7 @@ class Transformation {
 	 * @param int $scale
 	 * @return float[]
 	 */
-	public static function transform( $point, $scale = 1 ) {
+	public static function transform( $point, $scale ) {
 		$x = $point[0];
 		$y = $point[1];
 
@@ -36,7 +36,7 @@ class Transformation {
 	 *
 	 * @return float[]
 	 */
-	public static function untransform( $point, $scale = 1 ) {
+	public static function untransform( $point, $scale ) {
 		$x = $point[0];
 		$y = $point[1];
 
