@@ -10,10 +10,15 @@ use Kartographer\SpecialMap;
  * The <mapframe> tag inserts a map into wiki page
  */
 class MapFrame extends TagHandler {
+
+	/** @inheritDoc */
 	protected $tag = 'mapframe';
 
+	/** @var int|string either a number of pixels, a percentage (e.g. "100%"), or "full" */
 	private $width;
+	/** @var int */
 	private $height;
+	/** @var string One of "left", "center", "right", or "none" */
 	private $align;
 
 	protected function parseArgs() {

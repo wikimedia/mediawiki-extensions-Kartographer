@@ -11,6 +11,8 @@ use Kartographer\SpecialMap;
  * The <maplink> tag creates a link that, when clicked,
  */
 class MapLink extends TagHandler {
+
+	/** @inheritDoc */
 	protected $tag = 'maplink';
 
 	/** @var string */

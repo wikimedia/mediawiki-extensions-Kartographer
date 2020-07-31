@@ -15,7 +15,9 @@ class State {
 	/** @var int Version of this class, for checking after deserialization */
 	private /** @noinspection PhpUnusedPrivateFieldInspection */ $version = self::VERSION;
 
+	/** @var bool */
 	private $valid = false;
+	/** @var bool */
 	private $broken = false;
 
 	/**

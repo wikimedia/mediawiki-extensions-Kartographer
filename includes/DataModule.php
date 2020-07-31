@@ -14,6 +14,7 @@ use ResourceLoaderModule;
 
 class DataModule extends ResourceLoaderModule {
 
+	/** @inheritDoc */
 	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**

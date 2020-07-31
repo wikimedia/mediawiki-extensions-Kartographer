@@ -321,6 +321,9 @@ class SimpleStyleParser {
 		return trim( Parser::stripOuterParagraph( $text ) );
 	}
 
+	/**
+	 * @return stdClass
+	 */
 	private static function loadSchema() {
 		static $schema;
 

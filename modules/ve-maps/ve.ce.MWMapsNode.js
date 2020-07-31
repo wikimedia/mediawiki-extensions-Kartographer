@@ -140,6 +140,7 @@ ve.ce.MWMapsNode.prototype.update = function () {
 			this.map = null;
 		}
 		this.updateStatic();
+		// Preload larger static map for resizing
 		$( '<img>' ).attr( 'src', this.model.getUrl( 1000, 1000 ) );
 	}
 	switch ( align ) {
