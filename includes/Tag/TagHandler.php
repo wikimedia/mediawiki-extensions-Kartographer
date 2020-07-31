@@ -57,7 +57,7 @@ abstract class TagHandler {
 	/** @var string */
 	protected $resolvedLangCode;
 
-	/** @var string name of the group, or null for private */
+	/** @var string|null name of the group, or null for private */
 	protected $groupName;
 
 	/** @var string[] list of groups to show */

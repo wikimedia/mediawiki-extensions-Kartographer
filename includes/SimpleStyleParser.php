@@ -24,7 +24,7 @@ class SimpleStyleParser {
 	/** @var Parser */
 	private $parser;
 
-	/** @var PPFrame */
+	/** @var PPFrame|null */
 	private $frame;
 
 	/** @var array */
@@ -34,8 +34,6 @@ class SimpleStyleParser {
 	private $mapService;
 
 	/**
-	 * Constructor
-	 *
 	 * @param Parser $parser Parser used for wikitext processing
 	 * @param PPFrame|null $frame
 	 * @param array $options Set ['saveUnparsed' => true] to back up the original values of title
@@ -319,7 +317,7 @@ class SimpleStyleParser {
 	 * @return string
 	 */
 	private function parseText( $text ) {
-		$text = $this->parser->recursiveTagParseFully( $text, $this->frame );
+		$text = $this->parser->recursiveTagParseFully( $text, $this->frame ?: false );
 		return trim( Parser::stripOuterParagraph( $text ) );
 	}
 

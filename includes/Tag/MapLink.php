@@ -13,7 +13,8 @@ use Kartographer\SpecialMap;
 class MapLink extends TagHandler {
 	protected $tag = 'maplink';
 
-	protected $cssClass;
+	/** @var string */
+	protected $cssClass = '';
 
 	protected function parseArgs() {
 		$this->state->useMaplink();
