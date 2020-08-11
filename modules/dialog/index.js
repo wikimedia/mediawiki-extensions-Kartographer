@@ -65,12 +65,10 @@ module.exports = {
 					);
 				}
 			} );
+			return;
+		} else {
+			dialog.setMap( map );
 		}
-		dialog.opening.then( function () {
-			if ( dialog.map !== map ) {
-				dialog.setMap( map );
-			}
-		} );
 	},
 
 	/**
