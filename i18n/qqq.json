@@ -5,12 +5,13 @@
 			"Liuxinyu970226",
 			"Raymond",
 			"Robby",
+			"Umherirrender",
 			"Yuri Astrakhan"
 		]
 	},
 	"kartographer-attribution": "Attribution text shown at the bottom of the map.",
-	"kartographer-attribution-externaldata": "Formats external data layer attribution: $1 is external data service (e.g. Wikidata), $2 is link to external data link (e.g. query).",
-	"kartographer-attribution-short": "Shorter version of the attribution text shown at the bottom of the map, for static maps embedded in the article.",
+	"kartographer-attribution-externaldata": "{{optional}}\nFormats external data layer attribution: $1 is external data service (e.g. Wikidata), $2 is link to external data link (e.g. query).",
+	"kartographer-attribution-short": "{{optional}}\nShorter version of the attribution text shown at the bottom of the map, for static maps embedded in the article.",
 	"kartographer-broken-category": "Name of the tracking category",
 	"kartographer-broken-category-desc": "Description on [[Special:TrackingCategories]] for the {{msg-mw|kartographer-broken-category}} tracking category.",
 	"kartographer-desc": "{{desc|name=Kartographer|url=https://www.mediawiki.org/wiki/Extension:Kartographer}}",

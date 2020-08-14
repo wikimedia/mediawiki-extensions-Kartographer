@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Pyscowicz",
 			"Susannaanas"
 		]
 	},
@@ -8,7 +9,7 @@
 	"apihelp-sanitize-mapdata-param-title": "Sen sivun otsikko, jolla tämän GeoJSON-tiedoston kuuluu sijaita. Jos otsikkoa ei ole määritelty, käytetään esimerkkiä sen sijaan.",
 	"apihelp-sanitize-mapdata-param-text": "Sanitoitava GeoJSON",
 	"apihelp-sanitize-mapdata-example": "Sanitoi GeoJSON-data",
-	"apihelp-query+mapdata-description": "Pyydä kaikki karttatieto sivulta <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-description": "Fetch Kartographer -karttatieto",
 	"apihelp-query+mapdata-example-1": "Pyydä kaikki karttatieto sivulta <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-example-2": "Pyydä kaikki karttatieto ryhmistä <kbd>ryhmä1</kbd> ja <kbd>ryhmä2</kbd> sivulla <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-param-continue": "Käytä tätä parametria jatkaaksesi tulosten iteroimista.",
