@@ -37,6 +37,7 @@ class PurgeMapPages extends Maintenance {
 		$iterator->addConditions( [ 'cl_to' => $categoryTitle->getDBkey() ] );
 		$iterator->addJoinConditions( [ 'page' => [ 'INNER JOIN', [ 'page_id=cl_from' ] ] ] );
 		$iterator->setFetchColumns( [ 'page_id', 'page_namespace', 'page_title' ] );
+		$iterator->setCaller( __METHOD__ );
 
 		$pages = 0;
 		$failures = 0;
