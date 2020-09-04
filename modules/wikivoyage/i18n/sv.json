@@ -2,11 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Josve05a",
+			"Sabelöga",
 			"WikiPhoenix"
 		]
 	},
 	"kartographer-wv-group": "Grupp:",
 	"kartographer-wv-layer-nearby-articles": "Artiklar i närheten",
+	"kartographer-wv-layer-wikimedia": "Wikimedia",
+	"kartographer-wv-nearby-articles-control": "Utforska resmål i närheten",
 	"kartographer-wv-warning-external-source-title": "Extern datakälla",
 	"kartographer-wv-warning-external-source-agree": "Det är okej",
 	"kartographer-wv-warning-external-source-disagree": "Avbryt"
