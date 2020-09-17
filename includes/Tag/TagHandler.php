@@ -115,7 +115,7 @@ abstract class TagHandler {
 	 * @param PPFrame $frame
 	 * @return string
 	 */
-	final private function handle( $input, array $args, Parser $parser, PPFrame $frame ) {
+	private function handle( $input, array $args, Parser $parser, PPFrame $frame ) {
 		global $wgKartographerMapServer;
 
 		$this->parser = $parser;
