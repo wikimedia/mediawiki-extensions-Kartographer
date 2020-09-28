@@ -2,19 +2,20 @@
 	"@metadata": {
 		"authors": [
 			"BaRaN6161 TURK",
-			"Hbseren"
+			"Hbseren",
+			"MuratTheTurkish"
 		]
 	},
-	"apihelp-sanitize-mapdata-description": "Kartographer uzantısı için veri doğrulama gerçekleştirir.",
-	"apihelp-sanitize-mapdata-summary": "Kartographer eklentisi için veri doğrulama işlemi gerçekleştirir",
-	"apihelp-sanitize-mapdata-param-title": "Bu GeoJSON'un olması gereken yerdeki sayfa başlığı . Eğer başlık sağlanmıyorsa, yerine bir geçici bir başlık kullanılacaktır.",
-	"apihelp-sanitize-mapdata-param-text": "temizlemek için GeoJSON",
-	"apihelp-sanitize-mapdata-example": "Bir GeoJSON yığınını temizle",
-	"apihelp-query+mapdata-description": "Kartographer harita verilerini al",
+	"apihelp-sanitize-mapdata-description": "Kartographer uzantısı için veri doğrulaması gerçekleştirir",
+	"apihelp-sanitize-mapdata-summary": "Kartographer uzantısı için veri doğrulaması gerçekleştirir",
+	"apihelp-sanitize-mapdata-param-title": "Bu GeoJSON'un konumlandırılması gereken sayfanın başlığı. Başlık belirtilmezse, sahte bir başlık kullanılacaktır.",
+	"apihelp-sanitize-mapdata-param-text": "Sterilize edilecek GeoJSON",
+	"apihelp-sanitize-mapdata-example": "GeoJSON blobunu temizleyin",
+	"apihelp-query+mapdata-description": "Kartographer harita verilerini alın",
 	"apihelp-query+mapdata-summary": "Verilen sayfalar için tüm Kartographer harita verilerini isteyin",
-	"apihelp-query+mapdata-example-1": "Tüm harita verilerini sayfa <kbd>Metallica</kbd>'den isteyin",
+	"apihelp-query+mapdata-example-1": "Tüm harita verilerini <kbd>Metallica</kbd> sayfasından isteyin",
 	"apihelp-query+mapdata-example-2": "Harita verilerini <kbd>group1</kbd> ve <kbd>group2</kbd> gruplarında <kbd>Metallica</kbd> sayfasından isteyin",
-	"apihelp-query+mapdata-param-continue": "Sonuçlarda yineleme işlemine devam etmek için bu parametreyi kullanın",
-	"apihelp-query+mapdata-param-groups": "Boru ayrılmış gruplar için veri döndürme",
+	"apihelp-query+mapdata-param-continue": "Sonuçlar arasında yinelemeye devam etmek için bu parametreyi kullanın",
+	"apihelp-query+mapdata-param-groups": "Veri döndürülecek boru ile ayrılmış gruplar",
 	"apihelp-query+mapdata-param-limit": "Kaç sayfa döndürüleceğine ilişkin veriler"
 }

@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Azniv Stepanian",
+			"Kareyac",
 			"Դավիթ Սարոյան"
 		]
 	},
+	"kartographer-sidebar-latitude": "Լայնութիւն",
 	"visualeditor-mwmapsdialog-position-lat": "Տարածութիւն",
 	"visualeditor-mwmapsdialog-title": "Քարտէս",
 	"visualeditor-mwmapscontextitem-title": "Քարտէս"
