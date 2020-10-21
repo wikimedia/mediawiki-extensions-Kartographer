@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"kartographer-wv-group": "Skupina:",
+	"kartographer-wv-layer-nearby-articles": "Bližnji članki",
+	"kartographer-wv-layer-wikimedia": "Wikimedia",
+	"kartographer-wv-nearby-articles-control": "Razišči bližnje cilje",
+	"kartographer-wv-warning-external-source-title": "Vir zunanjih podatkov",
+	"kartographer-wv-warning-external-source-message": "Ta vsebina gostuje zunanje in bo delila vaše podatke z drugimi spletnimi mesti, če jo boste omogočili.",
+	"kartographer-wv-warning-external-source-agree": "V redu",
+	"kartographer-wv-warning-external-source-disagree": "Prekliči"
+}

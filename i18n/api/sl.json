@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"apihelp-sanitize-mapdata-description": "Izvaja validacijo podatkov za razširitev Kartographer",
+	"apihelp-sanitize-mapdata-summary": "Izvaja validacijo podatkov za razširitev Kartographer",
+	"apihelp-sanitize-mapdata-param-title": "Naslov strani, s katere naj bi izviral GeoJSON. Če naslov ni naveden, bo uporabljen psevdonaslov.",
+	"apihelp-sanitize-mapdata-param-text": "GeoJOSN za čiščenje",
+	"apihelp-sanitize-mapdata-example": "Očisti GeoJSON blob",
+	"apihelp-query+mapdata-description": "Prikliče podatke zemljevidov za razširitev Kartographer",
+	"apihelp-query+mapdata-summary": "Zahteva vse podatke zemljevidov razširitve Kartographer za navedene strani",
+	"apihelp-query+mapdata-example-1": "Zahteva vse podatke zemljevidov s strani <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-example-2": "S strani <kbd>Metallica</kbd> zahteva podatke zemljevidov v skupinah<kbd>group1</kbd> in <kbd>group2</kbd>",
+	"apihelp-query+mapdata-param-continue": "S tem parametrom nadaljujte iteriranje rezultatov",
+	"apihelp-query+mapdata-param-groups": "Z navpičnico ločene skupine, za katere naj se pridobijo podatki",
+	"apihelp-query+mapdata-param-limit": "Število strani, za katere je treba pridobiti podatke"
+}
