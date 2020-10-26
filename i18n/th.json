@@ -4,12 +4,17 @@
 			"Aefgh39622"
 		]
 	},
+	"kartographer-broken-category": "หน้าที่มีแผนที่เสีย",
+	"kartographer-tracking-category": "หน้าที่มีแผนที่",
 	"kartographer-linktype-other": "อื่น ๆ",
 	"kartographer-linktype-satellite": "ดาวเทียม",
 	"kartographer-sidebar-coordinates": "พิกัด",
+	"kartographer-sidebar-filterdropdown": "เลือกชนิดแผนที่",
+	"kartographer-sidebar-externalservices-show-all": "ดูเพิ่มเติม",
 	"kartographer-sidebar-latitude": "ละติจูด",
 	"kartographer-sidebar-longitude": "ลองจิจูด",
 	"kartographer-sidebar-mapdetails": "แผนที่ภายนอก",
+	"kartographer-sidebar-service": "บริการ",
 	"kartographer-sidebar-togglebutton": "แผนที่ภายนอก",
 	"leafletdraw-draw-toolbar-actions-text": "ยกเลิก",
 	"leafletdraw-draw-toolbar-buttons-circle": "วาดวงกลม",
