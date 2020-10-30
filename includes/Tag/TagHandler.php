@@ -133,14 +133,19 @@ abstract class TagHandler {
 		$this->parseArgs();
 
 		if ( !$this->status->isGood() ) {
-			return $this->reportError();
+			$result = $this->reportError();
+			State::setState( $output, $this->state );
+			return $result;
 		}
 
 		$this->saveData();
 
 		$this->state->setValidTags();
 
-		return $this->render();
+		$result = $this->render();
+
+		State::setState( $output, $this->state );
+		return $result;
 	}
 
 	/**

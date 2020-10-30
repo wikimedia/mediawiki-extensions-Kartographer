@@ -2,18 +2,15 @@
 
 namespace Kartographer;
 
+use JsonSerializable;
 use ParserOutput;
 use stdClass;
 
 /**
  * Stores information about map tags on page in ParserOutput
  */
-class State {
-	private const DATA_KEY = 'kartographer';
-	private const VERSION = 1;
-
-	/** @var int Version of this class, for checking after deserialization */
-	private /** @noinspection PhpUnusedPrivateFieldInspection */ $version = self::VERSION;
+class State implements JsonSerializable {
+	public const DATA_KEY = 'kartographer';
 
 	/** @var bool */
 	private $valid = false;
@@ -57,12 +54,19 @@ class State {
 	 * @return self|null
 	 */
 	public static function getState( ParserOutput $output ) {
-		return $output->getExtensionData( self::DATA_KEY );
+		// $state may be null, an array, or a State object
+		$state = $output->getExtensionData( self::DATA_KEY );
+
+		if ( is_array( $state ) ) {
+			$state = self::newFromJson( $state );
+		}
+
+		return $state;
 	}
 
 	/**
-	 * Retrieves an instance of self from ParserOutput.
-	 * Creates a new instances and saves it into the ParserOutput, if needed.
+	 * Retrieves an instance of self from ParserOutput if possible,
+	 * otherwise creates a new instance.
 	 *
 	 * @param ParserOutput $output
 	 * @return State
@@ -71,10 +75,21 @@ class State {
 		$result = self::getState( $output );
 		if ( !$result ) {
 			$result = new self;
-			$output->setExtensionData( self::DATA_KEY, $result );
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Stores an instance of self in the ParserOutput.
+	 *
+	 * @param ParserOutput $output
+	 * @param State $state
+	 */
+	public static function setState( ParserOutput $output, State $state ) {
+		$output->setExtensionData( self::DATA_KEY, $state );
+		// TODO: make JSON serializable. See T266260
+		// $output->setExtensionData( self::DATA_KEY, $state->jsonSerialize() );
 	}
 
 	/**
@@ -163,7 +178,7 @@ class State {
 	}
 
 	/**
-	 * @param stdClass $counters
+	 * @param stdClass $counters A JSON-serializable structure
 	 */
 	public function setCounters( stdClass $counters ) {
 		$this->counters = $counters;
@@ -171,7 +186,7 @@ class State {
 
 	/**
 	 * @param string $key
-	 * @param array $data
+	 * @param array $data A JSON-serializable structure
 	 */
 	public function addData( $key, array $data ) {
 		if ( array_key_exists( $key, $this->data ) ) {
@@ -187,4 +202,40 @@ class State {
 	public function getData() {
 		return $this->data;
 	}
+
+	/**
+	 * @return array A JSON serializable associative array
+	 */
+	public function jsonSerialize() {
+		return [
+			'valid' => $this->valid,
+			'broken' => $this->broken,
+			'maplinks' => $this->maplinks,
+			'mapframes' => $this->mapframes,
+			'interactiveGroups' => $this->interactiveGroups,
+			'requestedGroups' => $this->requestedGroups,
+			'counters' => $this->counters !== null ? (array)$this->counters : null,
+			'data' => $this->data,
+		];
+	}
+
+	/**
+	 * @param array $data A JSON serializable associative array, as returned by jsonSerialize()
+	 *
+	 * @return State
+	 */
+	public static function newFromJson( array $data ) {
+		$status = new self();
+		$status->valid = $data['valid'];
+		$status->broken = $data['broken'];
+		$status->maplinks = $data['maplinks'];
+		$status->mapframes = $data['mapframes'];
+		$status->interactiveGroups = $data['interactiveGroups'];
+		$status->requestedGroups = $data['requestedGroups'];
+		$status->counters = $data['counters'] !== null ? (object)$data['counters'] : null;
+		$status->data = $data['data'];
+
+		return $status;
+	}
+
 }

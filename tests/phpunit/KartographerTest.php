@@ -1,9 +1,10 @@
 <?php
 namespace Kartographer\Tests;
 
+use ExtensionRegistry;
 use Kartographer\State;
 use MediaWiki\MediaWikiServices;
-use MediaWikiTestCase;
+use MediaWikiLangTestCase;
 use ParserOptions;
 use ParserOutput;
 use Title;
@@ -14,7 +15,7 @@ use Title;
  * @covers \Kartographer\Tag\MapFrame
  * @covers \Kartographer\Tag\MapLink
  */
-class KartographerTest extends MediaWikiTestCase {
+class KartographerTest extends MediaWikiLangTestCase {
 	private $wikitextJson = '{
     "type": "Feature",
     "geometry": {
@@ -37,6 +38,13 @@ class KartographerTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @return bool
+	 */
+	private function hasParserFunctions() {
+		return ExtensionRegistry::getInstance()->isLoaded( 'ParserFunctions' );
+	}
+
+	/**
 	 * @dataProvider provideTagData
 	 * @param string|false $expected
 	 * @param string $input
@@ -49,10 +57,13 @@ class KartographerTest extends MediaWikiTestCase {
 
 		if ( $expected === false ) {
 			$this->assertTrue( $state->hasBrokenTags(), $message . ' Parse is expected to fail' );
-			$this->assertTrue(
-				$this->hasTrackingCategory( $output, 'kartographer-broken-category' ),
-				$message . ' Category for failed maps should be added'
-			);
+
+			if ( $this->hasParserFunctions() ) {
+				$this->assertTrue(
+					$this->hasTrackingCategory( $output, 'kartographer-broken-category' ),
+					$message . ' Category for failed maps should be added'
+				);
+			}
 			return;
 		}
 		$this->assertFalse( $state->hasBrokenTags(), $message . ' Parse is expected to succeed' );
