@@ -2,10 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Mirin",
+			"NMaia",
 			"Robin van der Vliet",
 			"Yekrats"
 		]
 	},
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Vikimediaj mapoj] | Mapdatumoj © [https://www.openstreetmap.org/copyright Kontribuantoj de OpenStreetMap]",
 	"kartographer-error-context-multi": "&lt;$1&gt; problemoj:\n$2",
 	"kartographer-error-json": "Ne povis sintakse analizi JSON: $1",
 	"kartographer-error-missing-attr": "Atributo \"$1\" mankas",
