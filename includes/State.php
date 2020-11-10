@@ -54,7 +54,8 @@ class State implements JsonSerializable {
 	 * @return self|null
 	 */
 	public static function getState( ParserOutput $output ) {
-		// $state may be null, an array, or a State object
+		// $state may be null or a JSON serializable array.
+		// When reading old cache entries, it may for a while still be a State object (T266260).
 		$state = $output->getExtensionData( self::DATA_KEY );
 
 		if ( is_array( $state ) ) {
@@ -87,9 +88,7 @@ class State implements JsonSerializable {
 	 * @param State $state
 	 */
 	public static function setState( ParserOutput $output, State $state ) {
-		$output->setExtensionData( self::DATA_KEY, $state );
-		// TODO: make JSON serializable. See T266260
-		// $output->setExtensionData( self::DATA_KEY, $state->jsonSerialize() );
+		$output->setExtensionData( self::DATA_KEY, $state->jsonSerialize() );
 	}
 
 	/**
