@@ -15,12 +15,12 @@
 		"grunt-banana-checker": "0.9.0",
 		"grunt-contrib-watch": "1.1.0",
 		"grunt-eslint": "23.0.0",
-		"grunt-stylelint": "0.15.0",
+		"grunt-stylelint": "0.16.0",
 		"grunt-svgmin": "5.0.0",
 		"prunecluster": "^2.0.0-beta.3",
 		"rollup": "^0.36.1",
 		"rollup-plugin-commonjs": "^5.0.4",
-		"stylelint-config-wikimedia": "0.10.1"
+		"stylelint-config-wikimedia": "0.10.3"
 	},
 	"dependencies": {
 		"@wikimedia/leaflet-sleep": "^0.5.1",
