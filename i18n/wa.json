@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Reptilien.19831209BE1"
+			"Reptilien.19831209BE1",
+			"Èl-Gueuye-Noere"
 		]
 	},
+	"kartographer-tracking-category": "Pådjes avou des mapes",
 	"mapbox-control-zoomout-title": "Diszoumer"
 }
