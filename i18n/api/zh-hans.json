@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Func",
 			"Liuxinyu970226",
 			"Shizhao"
 		]
@@ -10,8 +11,8 @@
 	"apihelp-sanitize-mapdata-param-title": "此GeoJSON应该位于页面标题。如果未提供标题，将使用一个假的标题。",
 	"apihelp-sanitize-mapdata-param-text": "要清洗的GeoJSON",
 	"apihelp-sanitize-mapdata-example": "清洗一个GeoJSON大对象",
-	"apihelp-query+mapdata-description": "请求所有来自页面<kbd>Metallica</kbd>的地图数据",
-	"apihelp-query+mapdata-summary": "请求所有来自页面<kbd>Metallica</kbd>的地图数据",
+	"apihelp-query+mapdata-description": "获取Kartographer的地图数据",
+	"apihelp-query+mapdata-summary": "为提供的所有页面请求来自Kartographer的地图数据",
 	"apihelp-query+mapdata-example-1": "请求所有来自页面<kbd>Metallica</kbd>的地图数据",
 	"apihelp-query+mapdata-example-2": "请求来自页面<kbd>Metallica</kbd>的组<kbd>group1</kbd>和<kbd>group2</kbd>中的地图数据",
 	"apihelp-query+mapdata-param-continue": "使用此参数以继续通过结果迭代",
