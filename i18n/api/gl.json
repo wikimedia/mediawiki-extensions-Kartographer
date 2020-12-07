@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"ArenaL5",
 			"Elisardojm"
 		]
 	},
@@ -10,7 +11,7 @@
 	"apihelp-sanitize-mapdata-param-text": "GeoJSON a sanear",
 	"apihelp-sanitize-mapdata-example": "Sanear un blob GeoJSON",
 	"apihelp-query+mapdata-description": "Consultar todos os datos de mapa da páxina <kbd>Metallica</kbd>",
-	"apihelp-query+mapdata-summary": "Consultar todos os datos de mapa da páxina <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-summary": "Consultar todos os datos de mapa de Kartographer para as páxinas dadas",
 	"apihelp-query+mapdata-example-1": "Consultar todos os datos de mapa da páxina <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-example-2": "Consultar os datos de mapa nos grupos <kbd>group1</kbd> e <kbd>group2</kbd> da páxina <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-param-continue": "Usar este parámetro para continuar a enumeración dos resultados",
