@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"KuboF",
 			"Mirin",
 			"NMaia",
 			"Robin van der Vliet",
@@ -40,11 +41,11 @@
 	"leafletdraw-edit-toolbar-actions-save-text": "Konservi",
 	"leafletdraw-edit-toolbar-actions-save-title": "Konservi ŝanĝojn",
 	"leafletdraw-edit-toolbar-actions-clearall-text": "Forviŝi ĉion",
-	"leafletdraw-edit-toolbar-actions-clearall-title": "Forviŝi ĉiujn tavolojn",
-	"leafletdraw-edit-toolbar-buttons-edit": "Redakti tavolojn",
-	"leafletdraw-edit-toolbar-buttons-editdisabled": "Neniu tavolo por redaktado",
-	"leafletdraw-edit-toolbar-buttons-remove": "Forigi tavolojn",
-	"leafletdraw-edit-toolbar-buttons-removedisabled": "Neniu tavolo por forigado",
+	"leafletdraw-edit-toolbar-actions-clearall-title": "Forviŝi ĉiujn objektojn",
+	"leafletdraw-edit-toolbar-buttons-edit": "Redakti objektojn",
+	"leafletdraw-edit-toolbar-buttons-editdisabled": "Neniu objekto por redaktado",
+	"leafletdraw-edit-toolbar-buttons-remove": "Forigi objektojn",
+	"leafletdraw-edit-toolbar-buttons-removedisabled": "Neniuj objektoj por forigo",
 	"leafletdraw-draw-toolbar-finish-text": "Kompletigi",
 	"map": "Informo pri koordinatoj",
 	"mapbox-control-zoomin-title": "Enzomi",
