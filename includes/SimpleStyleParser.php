@@ -73,7 +73,7 @@ class SimpleStyleParser {
 	/**
 	 * Validate and sanitize a parsed GeoJSON data object
 	 *
-	 * @param array|object &$data
+	 * @param array|\stdClass &$data
 	 * @return Status
 	 */
 	public function parseObject( &$data ) {
@@ -169,7 +169,7 @@ class SimpleStyleParser {
 	 * Does not attempt to be smart, just recurses through everything that can be dangerous even
 	 * if not a valid GeoJSON.
 	 *
-	 * @param object|array &$json
+	 * @param \stdClass|array &$json
 	 */
 	protected function sanitize( &$json ) {
 		if ( is_array( $json ) ) {
@@ -213,7 +213,7 @@ class SimpleStyleParser {
 	/**
 	 * Canonicalizes an ExternalData object
 	 *
-	 * @param object &$object
+	 * @param \stdClass &$object
 	 * @return Status
 	 */
 	private function normalizeExternalData( &$object ) {
@@ -274,7 +274,7 @@ class SimpleStyleParser {
 	 *
 	 * HACK: this function supports JsonConfig-style localization that doesn't pass validation
 	 *
-	 * @param object &$properties
+	 * @param \stdClass &$properties
 	 */
 	private function sanitizeProperties( &$properties ) {
 		$saveUnparsed = $this->options['saveUnparsed'] ?? false;
