@@ -173,7 +173,7 @@ abstract class TagHandler {
 
 		$this->lat = $this->getFloat( 'latitude', null );
 		$this->lon = $this->getFloat( 'longitude', null );
-		if ( ( $this->lat === null ) ^ ( $this->lon === null ) ) {
+		if ( ( $this->lat === null ) xor ( $this->lon === null ) ) {
 			$this->status->fatal( 'kartographer-error-latlon' );
 		}
 
