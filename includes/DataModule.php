@@ -29,6 +29,7 @@ class DataModule extends ResourceLoaderModule {
 			'wgKartographerDfltStyle' => $config->get( 'KartographerDfltStyle' ),
 			'wgKartographerEnableMapFrame' => $config->get( 'KartographerEnableMapFrame' ),
 			'wgKartographerUsePageLanguage' => $config->get( 'KartographerUsePageLanguage' ),
+			'wgKartographerFallbackZoom' => $config->get( 'KartographerFallbackZoom' ),
 		] );
 	}
 

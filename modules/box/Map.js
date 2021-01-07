@@ -54,7 +54,7 @@ L.Map.mergeOptions( {
 	sleepOpacity: 1,
 	// the default zoom applied when `longitude` and `latitude` were
 	// specified, but zoom was not.
-	fallbackZoom: 13
+	fallbackZoom: mw.config.get( 'wgKartographerFallbackZoom' )
 } );
 
 L.Popup.mergeOptions( {
