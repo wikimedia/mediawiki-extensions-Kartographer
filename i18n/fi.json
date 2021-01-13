@@ -3,6 +3,7 @@
 		"authors": [
 			"Alluk.",
 			"McSalama",
+			"Moj",
 			"Nike",
 			"Pxos",
 			"Pyscowicz",
@@ -14,7 +15,7 @@
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia-kartat] | Karttatiedot © [https://www.openstreetmap.org/copyright OpenStreetMapin tekijät]",
 	"kartographer-broken-category": "Sivut, joissa on rikkinäisiä karttoja",
-	"kartographer-broken-category-desc": "Sivu sisältää virheellisesti käytetyn <code><nowiki><maps></nowiki></code> tagin.",
+	"kartographer-broken-category-desc": "Sivu sisältää virheellisesti käytetyn <code><nowiki><maps></nowiki></code>-tagin.",
 	"kartographer-desc": "Tekee mahdolliseksi karttojen lisäämisen wikisivuihin",
 	"kartographer-error-context-multi": "&lt;$1&gt; ongelmat:\n$2",
 	"kartographer-error-json": "JSONin $1 jäsentäminen epäonnistui",
