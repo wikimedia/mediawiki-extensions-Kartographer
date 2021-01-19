@@ -14,6 +14,7 @@ use Title;
  * @group Kartographer
  */
 class ValidationTest extends MediaWikiTestCase {
+	/** @var string */
 	private $basePath;
 
 	public function __construct( $name = null, array $data = [], $dataName = '' ) {

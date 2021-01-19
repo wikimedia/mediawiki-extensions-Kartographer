@@ -16,6 +16,7 @@ use Title;
  * @covers \Kartographer\Tag\MapLink
  */
 class KartographerTest extends MediaWikiLangTestCase {
+	/** @var string */
 	private $wikitextJson = '{
     "type": "Feature",
     "geometry": {
@@ -46,9 +47,6 @@ class KartographerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideTagData
-	 * @param string|false $expected
-	 * @param string $input
-	 * @param string $message
 	 */
 	public function testTagData( $expected, $input, $message, $wikivoyageMode = false ) {
 		$this->setMwGlobals( 'wgKartographerWikivoyageMode', $wikivoyageMode );
@@ -166,9 +164,6 @@ class KartographerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideResourceModulesData
-	 * @param string $input
-	 * @param array $expectedModules
-	 * @param array $expectedStyles
 	 */
 	public function testResourceModules( $input, array $expectedModules, array $expectedStyles ) {
 		$this->setMwGlobals( 'wgKartographerStaticMapframe', false );
@@ -204,10 +199,6 @@ class KartographerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideLiveData
-	 * @param string $text
-	 * @param string[] $expected
-	 * @param bool $preview
-	 * @param bool $sectionPreview
 	 */
 	public function testLiveData(
 		$text, array $expected, $preview, $sectionPreview, $wikivoyageMode
@@ -261,9 +252,6 @@ WIKITEXT;
 
 	/**
 	 * @dataProvider providePageProps
-	 * @param strin $text
-	 * @param int|null $frames
-	 * @param int|null $links
 	 */
 	public function testPageProps( $text, $frames, $links ) {
 		$po = $this->parse( $text );
