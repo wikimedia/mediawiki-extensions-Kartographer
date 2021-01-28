@@ -13,10 +13,6 @@ use MediaWikiTestCase;
 class CoordFormatterTest extends MediaWikiTestCase {
 	/**
 	 * @dataProvider provideFormatter
-	 *
-	 * @param $expected
-	 * @param $lat
-	 * @param $lon
 	 */
 	public function testFormatter( $expected, $lat, $lon ) {
 		$lang = Language::factory( 'en' );
