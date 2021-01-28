@@ -60,7 +60,7 @@ ve.dm.MWInlineMapsNode.prototype.usesAutoPositioning = function () {
 ve.dm.MWInlineMapsNode.prototype.usesExternalData = function () {
 	var mwData = this.getAttribute( 'mw' ),
 		geoJson = ( mwData.body && mwData.body.extsrc ) || '';
-	return /ExternalData/.test( geoJson );
+	return geoJson.indexOf( 'ExternalData' ) !== -1;
 };
 
 /**

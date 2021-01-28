@@ -130,7 +130,7 @@ ve.dm.MWMapsNode.prototype.usesAutoPositioning = function () {
 ve.dm.MWMapsNode.prototype.usesExternalData = function () {
 	var mwData = this.getAttribute( 'mw' ),
 		geoJson = ( mwData.body && mwData.body.extsrc ) || '';
-	return /ExternalData/.test( geoJson );
+	return geoJson.indexOf( 'ExternalData' ) !== -1;
 };
 
 /**
