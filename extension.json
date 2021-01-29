@@ -183,8 +183,8 @@
 			],
 			"packageFiles": [
 				"index.js",
-				{ "name": "leaflet.sleep.js", "file": "../../lib/external/leaflet.sleep.js"},
-				{ "name": "mapbox-settings.js", "file": "../settings/settings.js"},
+				{ "name": "leaflet.sleep.js", "file": "../../lib/external/leaflet.sleep.js" },
+				{ "name": "mapbox-settings.js", "file": "../settings/settings.js" },
 				"openfullscreen_control.js",
 				"scale_control.js",
 				"dataLayerOpts.js",
@@ -503,7 +503,7 @@
 			"description": "Defines if the map will be a static image",
 			"value": false
 		},
-		"KartographerWikivoyageMode":  {
+		"KartographerWikivoyageMode": {
 			"description": "Enables Wikivoyage mode",
 			"value": false
 		},
@@ -513,25 +513,25 @@
 		},
 		"KartographerStyles": {
 			"description": "Available map styles on KartographerMapServer",
-			"value": ["osm-intl", "osm"]
+			"value": [ "osm-intl", "osm" ]
 		},
 		"KartographerSrcsetScales": {
 			"description": "Set of allowed hidpi pixelratios supported by the map tile server",
-			"value": [1.3, 1.5, 2, 2.6, 3]
+			"value": [ 1.3, 1.5, 2, 2.6, 3 ]
 		},
 		"KartographerMapServer": {
 			"description": "Server providing the map tiles",
 			"value": "https://maps.wikimedia.org"
 		},
-		"KartographerUseMarkerStyle":  {
+		"KartographerUseMarkerStyle": {
 			"description": "Allows Kartographer to extract CSS style to be used by the link from the GeoJSON",
 			"value": false
 		},
-		"KartographerEnableMapFrame":  {
+		"KartographerEnableMapFrame": {
 			"description": "Enables the tag <mapframe> to be used and create static or interactive maps.",
 			"value": true
 		},
-		"KartographerUsePageLanguage":  {
+		"KartographerUsePageLanguage": {
 			"description": "Use the language of the page instead of that of the interface",
 			"value": true
 		}

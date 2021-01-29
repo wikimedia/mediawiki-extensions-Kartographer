@@ -3,7 +3,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [-122.3988, 37.8013]
+			"coordinates": [ -122.3988, 37.8013 ]
 		},
 		"properties": {
 			"title": "foo bar",
@@ -23,7 +23,7 @@
 		},
 		"geometry": {
 			"type": "Point",
-			"coordinates": [-122.3998, 37.8123]
+			"coordinates": [ -122.3998, 37.8123 ]
 		}
 	},
 
