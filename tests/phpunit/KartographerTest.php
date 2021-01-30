@@ -284,7 +284,7 @@ WIKITEXT;
 	/**
 	 * Parses wikitext
 	 * @param string $text
-	 * @param callable $optionsCallback
+	 * @param callable|null $optionsCallback
 	 * @return ParserOutput
 	 */
 	private function parse( $text, callable $optionsCallback = null ) {

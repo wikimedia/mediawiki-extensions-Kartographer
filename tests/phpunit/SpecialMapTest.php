@@ -18,8 +18,8 @@ class SpecialMapTest extends MediaWikiTestCase {
 	 * @dataProvider provideParseSubpage
 	 *
 	 * @param string $par
-	 * @param float $expectedLat
-	 * @param float $expectedLon
+	 * @param float|null $expectedLat
+	 * @param float|null $expectedLon
 	 */
 	public function testParseSubpage(
 		$par, $expectedLat = null, $expectedLon = null, $expectedLang = null
