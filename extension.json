@@ -83,8 +83,7 @@
 				"lib/external/mapbox/mapbox.i18n.js"
 			],
 			"styles": [
-				"lib/external/mapbox/style.css",
-				"lib/external/mapbox/icons.css",
+				"lib/external/mapbox/mapbox.css",
 				"lib/mapbox-style-fixes.css"
 			],
 			"messages": [
