@@ -396,7 +396,6 @@
 				"visualeditor-mwmapsdialog-title"
 			],
 			"dependencies": [
-				"jquery.throttle-debounce",
 				"oojs-ui.styles.icons-content",
 				"oojs-ui.styles.icons-location",
 				"ext.visualEditor.mwcore",
