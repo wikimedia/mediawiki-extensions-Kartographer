@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bikarhêner"
+			"Bikarhêner",
+			"Guherto"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Ji bo pêveka Kartographerê teyîdkirina daneyên nexşeyê bi cih tîne",
 	"apihelp-sanitize-mapdata-summary": "Ji bo pêveka Kartographerê teyîdkirina daneyên nexşeyê bi cih tîne",
-	"apihelp-sanitize-mapdata-param-title": "Sernava rûpela tê ferzkirin ku ev GeoJSON lê bi cî bûye. Eger sernav nêye peydakirin, wê modelek were bikaranîn.",
+	"apihelp-sanitize-mapdata-param-title": "Sernavê rûpela tê ferzkirin ku ev GeoJSON lê bi cî bûye. Eger sernav nêye peydakirin, wê modelek were bikaranîn.",
 	"apihelp-sanitize-mapdata-param-text": "GeoJSON'a ji bo paqijkirinê",
 	"apihelp-sanitize-mapdata-example": "Paqijkirina 'GeoJSON blob'ê",
 	"apihelp-query+mapdata-description": "Ji rûpela <kbd>Metallica</kbd> hemû daneyên nexşeyê bixwaze",

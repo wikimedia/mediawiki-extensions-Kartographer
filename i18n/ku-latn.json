@@ -17,7 +17,7 @@
 	"kartographer-error-bad_attr": "Di parametreya \"$1\" de nirxek nemuteber heye",
 	"kartographer-error-bad_data": "Naveroka JSONê ne GeoJSON+simplestyle yê derbasdar e",
 	"kartographer-error-latlon": "Divê him \"firehî\" him jî \"dirêjî\" were dayîn, an jî yekî ji wan jî nêye dayîn",
-	"kartographer-error-title": "Sernava \"$1\" ne rûpelek derbasdar yê daneyên nexşeyê ye",
+	"kartographer-error-title": "Sernavê \"$1\" ne rûpelek derbasdar yê daneyên nexşeyê ye",
 	"kartographer-tracking-category": "Rûpelên bi nexşeyan",
 	"kartographer-tracking-category-desc": "Rûpel nexşeyek dihewîne",
 	"kartographer-specialmap-invalid-coordinates": "Koordînatên nemuteber hatine dayîn",
@@ -84,6 +84,6 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Nêzîk bike",
 	"visualeditor-mwmapsdialog-size": "Mezinbûn",
 	"visualeditor-mwmapsdialog-title": "Nexşe",
-	"visualeditor-mwmapscontextitem-nosupport": "Di vê nexşeyê de taybetmendiyên dînamîk hene, û ji bo niha tenê di moda çavkaniyê de dikare were guherandin.",
+	"visualeditor-mwmapscontextitem-nosupport": "Di vê nexşeyê de taybetmendiyên dînamîk hene, û ji bo niha tenê di moda çavkaniyê de dikare were guhartin.",
 	"visualeditor-mwmapscontextitem-title": "Nexşe"
 }
