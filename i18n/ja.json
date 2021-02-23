@@ -13,7 +13,8 @@
 			"Shirayuki",
 			"Suchichi02",
 			"Sujiniku",
-			"Suyama"
+			"Suyama",
+			"Tmv"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia maps] | Map data © [https://www.openstreetmap.org/copyright OpenStreetMap contributors]",
@@ -29,6 +30,8 @@
 	"kartographer-tracking-category": "地図があるページ",
 	"kartographer-tracking-category-desc": "そのページはマップを含んでいます",
 	"kartographer-specialmap-invalid-coordinates": "不適切な座標が入力されました",
+	"kartographer.css": "/* ここに記述されたCSSは、マップを含むページを読み込んだ際の全利用者に影響します */",
+	"kartographer.js": "/* ここに記述されたJavascriptは、マップを含むページを読み込んだ際の全利用者に影響します */",
 	"kartographer-linktype-aerial": "航空写真",
 	"kartographer-linktype-map": "標準地図",
 	"kartographer-linktype-other": "その他",

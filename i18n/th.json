@@ -1,11 +1,24 @@
 {
 	"@metadata": {
 		"authors": [
-			"Aefgh39622"
+			"Aefgh39622",
+			"Patsagorn Y."
 		]
 	},
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use แผนที่วิกิมีเดีย] | ข้อมูลแผนที่ทั้งหมด © [https://www.openstreetmap.org/copyright ผู้มีส่วนร่วมใน OpenStreetMap]",
 	"kartographer-broken-category": "หน้าที่มีแผนที่เสีย",
+	"kartographer-broken-category-desc": "หน้าที่มีการใช้แผนที่ที่ใช้อย่างไม่ถูกต้อง",
+	"kartographer-desc": "ช่วยให้สามารถเพิ่มแผนที่ในหน้าวิกิได้",
+	"kartographer-error-context-multi": "เกิดปัญหากับ &lt;$1&gt;: $2",
+	"kartographer-error-json": "ไม่สามารถเรียกข้อมูลจาก JSON ได้: $1",
+	"kartographer-error-missing-attr": "แอตทริบิวต์ \"$1\" ขาดหายไป",
+	"kartographer-error-bad_attr": "แอตทริบิว \"$1\" มีค่าไม่ถูกต้อง",
+	"kartographer-error-bad_data": "เนื้อหา JSON ไม่ตรงตามลักษณะของ GeoJSON+simplestyle",
+	"kartographer-error-latlon": "หากมี \"latitude\" แล้ว ต้องมี \"longitude\" ด้วยเท่านั้น หรือกลับกัน หากขาดอย่างใดอย่างหนึ่งจะทำงานไม่ถูกต้อง หรืออาจนำออกทั้งคู่",
+	"kartographer-error-title": "หน้าชื่อ \"$1\" ไม่ใช้หน้าข้อมูลแผนที่อย่างถูกต้อง",
 	"kartographer-tracking-category": "หน้าที่มีแผนที่",
+	"kartographer-tracking-category-desc": "หน้าที่มีแผนที่ในเนื้อหา",
+	"kartographer-specialmap-invalid-coordinates": "การป้อนค่าพิกัดที่ไม่ถูกต้อง",
 	"kartographer-linktype-other": "อื่น ๆ",
 	"kartographer-linktype-satellite": "ดาวเทียม",
 	"kartographer-sidebar-coordinates": "พิกัด",
@@ -16,6 +29,12 @@
 	"kartographer-sidebar-mapdetails": "แผนที่ภายนอก",
 	"kartographer-sidebar-service": "บริการ",
 	"kartographer-sidebar-togglebutton": "แผนที่ภายนอก",
+	"leafletdraw-draw-handlers-circle-tooltip-start": "กดและลากเพื่อวาดวงกลม",
+	"leafletdraw-draw-handlers-marker-tooltip-start": "กดที่แผนที่เพื่อวางมาร์กเกอร์",
+	"leafletdraw-draw-handlers-circlemarker-tooltip-start": "กดที่แผนที่เพื่อใส่มาร์กเกอร์วงกลม",
+	"leafletdraw-draw-handlers-polygon-tooltip-cont": "กดเพื่อวาดรูปทรงนี้ต่อ",
+	"leafletdraw-draw-handlers-polygon-tooltip-end": "กดที่จุดแรกเพื่อปิดทรงนี้",
+	"leafletdraw-draw-handlers-polygon-tooltip-start": "กดเพื่อเริ่มวาดรูปทรง",
 	"leafletdraw-draw-toolbar-actions-text": "ยกเลิก",
 	"leafletdraw-draw-toolbar-buttons-circle": "วาดวงกลม",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "ยกเลิก",
@@ -25,6 +44,14 @@
 	"mapbox-control-zoomout-title": "ซูมออก",
 	"kartographer-fullscreen-close": "ปิด",
 	"kartographer-fullscreen-text": "แสดงแบบเต็มหน้าจอ",
+	"visualeditor-mwmapsdialog-area": "พื้นที่แผนที่",
+	"visualeditor-mwmapsdialog-content": "เนืัอหาแผนที่",
+	"visualeditor-mwmapsdialog-options": "ตัวเลือก",
+	"visualeditor-mwmapsdialog-align": "การจัดแนว",
+	"visualeditor-mwmapsdialog-language": "ภาษา",
+	"visualeditor-mwmapsdialog-position-lat": "ละติจูด",
+	"visualeditor-mwmapsdialog-position-lon": "ลองจิจูด",
+	"visualeditor-mwmapsdialog-position-zoom": "ซูม",
 	"visualeditor-mwmapsdialog-size": "ขนาด",
 	"visualeditor-mwmapsdialog-title": "แผนที่",
 	"visualeditor-mwmapscontextitem-title": "แผนที่"
