@@ -11,7 +11,7 @@
 	"apihelp-sanitize-mapdata-param-text": "GeoJSON'a ji bo paqijkirinê",
 	"apihelp-sanitize-mapdata-example": "Paqijkirina 'GeoJSON blob'ê",
 	"apihelp-query+mapdata-description": "Daneya nexşeyê ya Kartographer bîne",
-	"apihelp-query+mapdata-summary": "Ji rûpela <kbd>Metallica</kbd> hemû daneyên nexşeyê bixwaze",
+	"apihelp-query+mapdata-summary": "Ji bo rûpelên dayî <kbd>Metallica</kbd> hemû daneyên nexşeya Kartographer bixwaze",
 	"apihelp-query+mapdata-example-1": "Ji rûpela <kbd>Metallica</kbd> hemû daneyên nexşeyê bixwaze",
 	"apihelp-query+mapdata-example-2": "Ji rûpela <kbd>Metallicayê<kbd> daneyên nexşeyê yên di komên <kbd>group1<kbd> û <kbd>group2</kbd> bixwaze.",
 	"apihelp-query+mapdata-param-continue": "Ji bo ku li seranserê encaman tekrarkirinê bidî berdewamkirin vê parametreyê bi kar bîne.",
