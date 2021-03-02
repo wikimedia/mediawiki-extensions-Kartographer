@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Chaduvari",
 			"Veeven"
 		]
 	},
-	"kartographer-fullscreen-collapse": "పటం వివరాలను దాచు"
+	"kartographer-fullscreen-collapse": "పటం వివరాలను దాచు",
+	"visualeditor-mwmapsdialog-title": "పటం",
+	"visualeditor-mwmapscontextitem-title": "పటం"
 }
