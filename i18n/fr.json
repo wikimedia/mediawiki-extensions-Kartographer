@@ -10,6 +10,7 @@
 			"The RedBurn",
 			"Thibaut120094",
 			"Trial",
+			"Verdy p",
 			"Wladek92",
 			"Zarisi"
 		]
@@ -30,6 +31,11 @@
 	"kartographer-error-title": "Le titre « $1 » n’est pas une page de données de carte valide",
 	"kartographer-tracking-category": "Pages avec des cartes",
 	"kartographer-tracking-category-desc": "La page contient une carte",
+	"kartographer-coord-dms": "$1° $2′ $3″",
+	"kartographer-coord-lat-positive": "$1 N",
+	"kartographer-coord-lat-negative": "$1 S",
+	"kartographer-coord-lon-positive": "$1 E",
+	"kartographer-coord-lon-negative": "$1 O",
 	"kartographer-specialmap-invalid-coordinates": "Coordonnées soumises invalides",
 	"kartographer.css": "/* Le CSS placé ici s'appliquera à toutes les pages contenant des cartes */",
 	"kartographer.js": "/* Tout JavaScript placé ici sera chargé pour tous les utilisateurs au chargement des pages contenant une carte */",

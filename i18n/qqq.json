@@ -7,6 +7,7 @@
 			"Raymond",
 			"Robby",
 			"Umherirrender",
+			"Verdy p",
 			"Yuri Astrakhan"
 		]
 	},
@@ -27,7 +28,7 @@
 	"kartographer-tracking-category": "Name of the tracking category",
 	"kartographer-tracking-category-desc": "Description on [[Special:TrackingCategories]] for the {{msg-mw|kartographer-tracking-category}} tracking category.",
 	"kartographer-coord-combined": "{{optional}}\nJoins two parts of geogrpahical coordinates. $1 and $2 are latitude and longitude, respectively.",
-	"kartographer-coord-dms": "{{optional}}\nFormats geographical latitude or longitude into degrees, munutes and seconds.\nParameters:\n* $1 - degrees\n* $2 - minutes\n* $3 - seconds",
+	"kartographer-coord-dms": "{{optional}}\nFormats geographical latitude or longitude into degrees, minutes and seconds.\n\nParameters:\n* $1 - degrees\n* $2 - minutes\n* $3 - seconds",
 	"kartographer-coord-lat-positive": "{{optional}}\nNorth latitude suffix for geographical coordinates. $1 is value in degrees/minutes/seconds, see {{msg-mw|kartographer-coord-dms}}",
 	"kartographer-coord-lat-negative": "{{optional}}\nSouth latitude suffix for geographical coordinates. $1 is value in degrees/minutes/seconds, see {{msg-mw|kartographer-coord-dms}}",
 	"kartographer-coord-lon-positive": "{{optional}}\nEast longitude suffix for geographical coordinates. $1 is value in degrees/minutes/seconds, see {{msg-mw|kartographer-coord-dms}}",
