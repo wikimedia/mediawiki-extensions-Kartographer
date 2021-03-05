@@ -16,7 +16,7 @@ class MapLink extends TagHandler {
 	protected $tag = 'maplink';
 
 	/** @var string */
-	protected $cssClass = '';
+	private $cssClass = '';
 
 	/**
 	 * @inheritDoc

@@ -152,7 +152,7 @@ class SimpleStyleParser {
 	 * @param mixed $json
 	 * @return Status
 	 */
-	protected function validateContent( $json ) {
+	private function validateContent( $json ) {
 		$schema = self::loadSchema();
 		$validator = new Validator();
 		$validator->check( $json, $schema );
