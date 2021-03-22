@@ -15,7 +15,7 @@
 	"kartographer-error-json": "Couldn't parse JSON: $1",
 	"kartographer-error-missing-attr": "Attribute \"$1\" is missing",
 	"kartographer-error-bad_attr": "Attribute \"$1\" has an invalid value",
-	"kartographer-error-bad_data": "The JSON content is not valid GeoJSON+simplestyle",
+	"kartographer-error-bad_data": "The JSON content is not valid GeoJSON+simplestyle. The first validation error is on the element \"$1\": \"$2\".",
 	"kartographer-error-latlon": "Either both \"latitude\" and \"longitude\" parameters should be supplied or neither of them",
 	"kartographer-error-title": "Title \"$1\" is not a valid map data page",
 	"kartographer-tracking-category": "Pages with maps",

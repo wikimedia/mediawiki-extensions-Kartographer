@@ -209,7 +209,7 @@ Error messages
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
 <div class="mw-kartographer-error"><p>&lt;mapframe&gt; problems:
 </p>
-<ul><li>The JSON content is not valid GeoJSON+simplestyle</li>
+<ul><li>The JSON content is not valid GeoJSON+simplestyle. The first validation error is on the element "/0/query": "The property query is required".</li>
 <li>Attribute "mapstyle" has an invalid value</li>
 <li>Attribute "align" has an invalid value</li></ul></div>
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Either both "latitude" and "longitude" parameters should be supplied or neither of them</div>
@@ -392,5 +392,5 @@ ExternalData errors
 ]
 </maplink>
 !! html
-<div class="mw-kartographer-error">&lt;maplink&gt;: The JSON content is not valid GeoJSON+simplestyle</div>
+<div class="mw-kartographer-error">&lt;maplink&gt;: The JSON content is not valid GeoJSON+simplestyle. The first validation error is on the element "/0/service": "Does not have a value in the enumeration ["geoshape","geoline","geomask"]".</div>
 !! end
