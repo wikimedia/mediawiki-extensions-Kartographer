@@ -65,7 +65,6 @@ module.exports = {
 					);
 				}
 			} );
-			return;
 		} else {
 			dialog.setMap( map );
 		}
