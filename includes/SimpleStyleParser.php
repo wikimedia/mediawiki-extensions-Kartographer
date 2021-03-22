@@ -100,11 +100,11 @@ class SimpleStyleParser {
 	}
 
 	/**
-	 * @param stdClass[] &$values
-	 * @param stdClass &$counters counter-name -> integer
+	 * @param stdClass[] $values
+	 * @param stdClass $counters counter-name -> integer
 	 * @return bool|array [ marker, marker properties ]
 	 */
-	public static function doCountersRecursive( array &$values, &$counters ) {
+	public static function doCountersRecursive( array $values, $counters ) {
 		$firstMarker = false;
 		foreach ( $values as $item ) {
 			if ( property_exists( $item, 'properties' ) &&
@@ -274,9 +274,9 @@ class SimpleStyleParser {
 	 *
 	 * HACK: this function supports JsonConfig-style localization that doesn't pass validation
 	 *
-	 * @param \stdClass &$properties
+	 * @param \stdClass $properties
 	 */
-	private function sanitizeProperties( &$properties ) {
+	private function sanitizeProperties( $properties ) {
 		$saveUnparsed = $this->options['saveUnparsed'] ?? false;
 		foreach ( self::$parsedProps as $prop ) {
 			if ( property_exists( $properties, $prop ) ) {
