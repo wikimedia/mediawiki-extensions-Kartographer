@@ -25,7 +25,7 @@ function WVMapLayers( map ) {
 /**
  * Adds a layer.
  *
- * @param {string} layer A unique id for the layer.
+ * @param {L.Layer} layer
  * @param {string} [name] A label for the layer
  * @param {boolean} [overlay] Whether it is a base layer or an overlay.
  * @chainable
