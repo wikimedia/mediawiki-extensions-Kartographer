@@ -48,6 +48,12 @@ ve.dm.MWMapsNode.static.toDataElement = function () {
 	return dataElement;
 };
 
+/**
+ * @param {Object} dataElement
+ * @param {number} [width]
+ * @param {number} [height]
+ * @returns {string}
+ */
 ve.dm.MWMapsNode.static.getUrl = function ( dataElement, width, height ) {
 	var mwAttrs = dataElement.attributes.mw.attrs,
 		util = require( 'ext.kartographer.util' ),
@@ -90,6 +96,11 @@ ve.dm.MWMapsNode.prototype.getCurrentDimensions = function () {
 
 /* Methods */
 
+/**
+ * @param {number} [width]
+ * @param {number} [height]
+ * @returns {string}
+ */
 ve.dm.MWMapsNode.prototype.getUrl = function ( width, height ) {
 	return this.constructor.static.getUrl( this.element, width, height );
 };
