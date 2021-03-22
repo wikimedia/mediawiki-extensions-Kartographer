@@ -10,6 +10,7 @@ use Kartographer\Tag\TagHandler;
  * @author Thiemo Kreuz
  */
 trait TagHandlerTest {
+
 	/**
 	 * @covers \Kartographer\Tag\TagHandler::finalParseStep
 	 */

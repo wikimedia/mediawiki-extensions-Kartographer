@@ -27,6 +27,7 @@ use Title;
  * Base class for all <map...> tags
  */
 abstract class TagHandler {
+
 	/** @var string */
 	protected $tag;
 

@@ -6,6 +6,7 @@ use Kartographer\SimpleStyleParser;
 use Status;
 
 class MockSimpleStyleParser extends SimpleStyleParser {
+
 	/** @inheritDoc */
 	protected function sanitize( &$json ) {
 	}

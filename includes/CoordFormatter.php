@@ -8,6 +8,7 @@ use Language;
  * Formats coordinates into human-readable strings
  */
 class CoordFormatter {
+
 	/**
 	 * Formats coordinates
 	 *

@@ -9,6 +9,7 @@ require_once "$IP/maintenance/Maintenance.php";
  * Purges all pages that use <maplink> or <mapframe>, using the tracking category.
  */
 class PurgeMapPages extends Maintenance {
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Purge all pages that use <maplink> or <mapframe>.' );

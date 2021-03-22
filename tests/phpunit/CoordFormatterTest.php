@@ -11,6 +11,7 @@ use MediaWikiTestCase;
  * @group Kartographer
  */
 class CoordFormatterTest extends MediaWikiTestCase {
+
 	/**
 	 * @dataProvider provideFormatter
 	 */

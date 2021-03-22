@@ -10,6 +10,7 @@ use stdClass;
  * Stores information about map tags on page in ParserOutput
  */
 class State implements JsonSerializable {
+
 	public const DATA_KEY = 'kartographer';
 
 	/** @var bool */

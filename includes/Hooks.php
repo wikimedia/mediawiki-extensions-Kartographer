@@ -15,6 +15,7 @@ use Kartographer\Tag\TagHandler;
 use Parser;
 
 class Hooks {
+
 	/**
 	 * ParserFirstCallInit hook handler
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ParserFirstCallInit
