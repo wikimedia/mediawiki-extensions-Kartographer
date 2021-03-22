@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Adeliine",
 			"Pikne"
 		]
 	},
@@ -23,7 +24,7 @@
 	"kartographer-linktype-other": "Muu",
 	"kartographer-linktype-satellite": "Satelliidipilt",
 	"kartographer-linktype-terrain": "Reljeefikaart",
-	"kartographer-linktype-topo": "Topoloogiline kaart",
+	"kartographer-linktype-topo": "Topograafiline kaart",
 	"kartographer-sidebar-coordinates": "Koordinaadid",
 	"kartographer-sidebar-externalservices": "Kaarditeenused",
 	"kartographer-sidebar-externalservices-show-featured": "Näita ainult esiletõstetud kaarte",
