@@ -9,6 +9,8 @@
 
 namespace Kartographer;
 
+use Kartographer\Tag\MapFrame;
+use Kartographer\Tag\MapLink;
 use Kartographer\Tag\TagHandler;
 use Parser;
 use ParserOutput;
@@ -22,9 +24,9 @@ class Hooks {
 	public static function onParserFirstCallInit( Parser $parser ) {
 		global $wgKartographerEnableMapFrame;
 
-		$parser->setHook( 'maplink', 'Kartographer\Tag\MapLink::entryPoint' );
+		$parser->setHook( 'maplink', [ MapLink::class, 'entryPoint' ] );
 		if ( $wgKartographerEnableMapFrame ) {
-			$parser->setHook( 'mapframe', 'Kartographer\Tag\MapFrame::entryPoint' );
+			$parser->setHook( 'mapframe', [ MapFrame::class, 'entryPoint' ] );
 		}
 	}
 
