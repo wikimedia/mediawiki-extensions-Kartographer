@@ -15,11 +15,11 @@ use RequestContext;
 class ApiSanitizeMapDataTest extends MediaWikiTestCase {
 
 	protected function setUp() : void {
+		parent::setUp();
 		$this->setMwGlobals( [
 			'wgScriptPath' => '/w',
 			'wgScript' => '/w/index.php',
 		] );
-		parent::setUp();
 	}
 
 	/**

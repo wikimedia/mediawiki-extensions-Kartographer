@@ -16,8 +16,8 @@ use Title;
  * @covers \Kartographer\Tag\MapLink
  */
 class KartographerTest extends MediaWikiLangTestCase {
-	/** @var string */
-	private $wikitextJson = '{
+
+	private const WIKITEXT_JSON = '{
     "type": "Feature",
     "geometry": {
       "type": "Point",
@@ -31,11 +31,11 @@ class KartographerTest extends MediaWikiLangTestCase {
   }';
 
 	protected function setUp() : void {
+		parent::setUp();
 		$this->setMwGlobals( [
 			'wgScriptPath' => '/w',
 			'wgScript' => '/w/index.php',
 		] );
-		parent::setUp();
 	}
 
 	/**
@@ -151,8 +151,18 @@ class KartographerTest extends MediaWikiLangTestCase {
       "marker-size": "medium"
     }
   }</mapframe>', 'Invalid JSON 6' ],
-			[ $wikitextJsonParsed, "<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37>[{$this->wikitextJson}]</mapframe>", '<mapframe> with parsable text and description' ],
-			[ $wikitextJsonParsed, "<maplink zoom=13 longitude=-122 latitude=37>[{$this->wikitextJson}]</maplink>", '<maplink> with parsable text and description' ],
+			[
+				$wikitextJsonParsed,
+				'<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37>[' .
+					self::WIKITEXT_JSON . ']</mapframe>',
+				'<mapframe> with parsable text and description'
+			],
+			[
+				$wikitextJsonParsed,
+				'<maplink zoom=13 longitude=-122 latitude=37>[' .
+					self::WIKITEXT_JSON . ']</maplink>',
+				'<maplink> with parsable text and description'
+			],
 
 			// Bugs
 			[ '[]', "<maplink zoom=13 longitude=-122 latitude=37>\t\r\n </maplink>", 'T127345: whitespace-only tag content, <maplink>' ],

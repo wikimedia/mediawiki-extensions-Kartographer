@@ -18,8 +18,7 @@ use stdClass;
  */
 class SimpleStyleParser {
 
-	/** @var string[] */
-	private static $parsedProps = [ 'title', 'description' ];
+	private const PARSED_PROPS = [ 'title', 'description' ];
 
 	/** @var Parser */
 	private $parser;
@@ -278,7 +277,7 @@ class SimpleStyleParser {
 	 */
 	private function sanitizeProperties( &$properties ) {
 		$saveUnparsed = $this->options['saveUnparsed'] ?? false;
-		foreach ( self::$parsedProps as $prop ) {
+		foreach ( self::PARSED_PROPS as $prop ) {
 			if ( property_exists( $properties, $prop ) ) {
 				$property = &$properties->$prop;
 
