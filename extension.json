@@ -503,11 +503,11 @@
 			"value": false
 		},
 		"KartographerWikivoyageMode": {
-			"description": "Enables Wikivoyage mode",
+			"description": "Enables the group feature where different <maplink> and <mapframe> tags can access each others data via group=\"…\" and show=\"…\" attributes. See [[mw:Help:Extension:Kartographer#Groups]]. Disabled by default. Meant to be enabled on Wikivoyage.",
 			"value": false
 		},
 		"KartographerDfltStyle": {
-			"description": "Default map style to be used",
+			"description": "Default map style to be used. Must be one of the values from KartographerStyles.",
 			"value": "osm-intl"
 		},
 		"KartographerStyles": {
