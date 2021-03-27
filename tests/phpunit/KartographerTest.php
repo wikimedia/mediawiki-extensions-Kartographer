@@ -80,7 +80,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 	}
 
 	public function provideTagData() {
-		// @codingStandardsIgnoreStart
+		// phpcs:disable Generic.Files.LineLength
 		$validJson = '{
     "type": "Feature",
     "geometry": {
@@ -159,7 +159,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 			[ $xssJsonSanitized, "<maplink zoom=13 longitude=10 latitude=20>$xssJson</maplink>", 'T134719: XSS via __proto__' ],
 			[ '[]', '<mapframe show="foo, bar, baz" zoom=12 latitude=10 longitude=20 width=100 height=100 />', 'T148971 - weird LiveData', true ],
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 
 	/**
@@ -216,7 +216,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 	}
 
 	public function provideLiveData() {
-		// @codingStandardsIgnoreStart
+		// phpcs:disable Generic.Files.LineLength
 		$frameAndLink =
 			<<<WIKITEXT
 			<maplink latitude=10 longitude=20 zoom=13>
@@ -247,7 +247,7 @@ WIKITEXT;
 			[ $frameAndLink, [ '_0616e83db3b0cc67d5f835eb765da7a1ca26f4ce', '_5e4843908b3c3d3b11ac4321edadedde28882cc2' ], true, true, false ],
 			[ $wikivoyageMaps, [ 'foo', 'bar', 'baz' ], false, false, true ],
 		];
-		// @codingStandardsIgnoreEnd
+		// phpcs:enable
 	}
 
 	/**
