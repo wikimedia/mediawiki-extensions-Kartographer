@@ -1,0 +1,19 @@
+{
+	"@metadata": {
+		"authors": [
+			"NMW03"
+		]
+	},
+	"kartographer-linktype-aerial": "Aerial",
+	"kartographer-linktype-map": "Standard xəritələr",
+	"kartographer-linktype-other": "Digər",
+	"kartographer-linktype-satellite": "Peyk",
+	"kartographer-linktype-terrain": "Ərazi",
+	"kartographer-linktype-topo": "Topoqrafik",
+	"kartographer-sidebar-coordinates": "Koordinatlar",
+	"kartographer-sidebar-externalservices": "Xəritə xidmətləri",
+	"kartographer-sidebar-externalservices-show-featured": "Ancaq seçilmişlərə bax",
+	"kartographer-sidebar-externalservices-show-all": "Daha çoxuna bax",
+	"kartographer-sidebar-mapdetails": "Digər xəritələr",
+	"kartographer-sidebar-togglebutton": "Digər xəritələr"
+}
