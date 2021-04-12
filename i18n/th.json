@@ -6,6 +6,7 @@
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use แผนที่วิกิมีเดีย] | ข้อมูลแผนที่ทั้งหมด © โดย[https://www.openstreetmap.org/copyright ผู้มีส่วนร่วมใน OpenStreetMap]",
+	"kartographer-attribution-short": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use วิกิมีเดีย] | © [https://www.openstreetmap.org/copyright โอเพนสตรีทแมพ]",
 	"kartographer-broken-category": "หน้าที่มีแผนที่เสีย",
 	"kartographer-broken-category-desc": "หน้าที่มีการใช้แผนที่ที่ใช้อย่างไม่ถูกต้อง",
 	"kartographer-desc": "ช่วยให้สามารถเพิ่มแผนที่ในหน้าวิกิได้",
