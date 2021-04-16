@@ -52,7 +52,7 @@ ve.dm.MWMapsNode.static.toDataElement = function () {
  * @param {Object} dataElement
  * @param {number} [width]
  * @param {number} [height]
- * @returns {string}
+ * @return {string}
  */
 ve.dm.MWMapsNode.static.getUrl = function ( dataElement, width, height ) {
 	var mwAttrs = dataElement.attributes.mw.attrs,
@@ -99,7 +99,7 @@ ve.dm.MWMapsNode.prototype.getCurrentDimensions = function () {
 /**
  * @param {number} [width]
  * @param {number} [height]
- * @returns {string}
+ * @return {string}
  */
 ve.dm.MWMapsNode.prototype.getUrl = function ( width, height ) {
 	return this.constructor.static.getUrl( this.element, width, height );

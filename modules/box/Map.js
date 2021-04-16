@@ -599,7 +599,6 @@ KartographerMap = L.Map.extend( {
 			return this.fullScreenRoute;
 		}
 
-		// eslint-disable-next-line vars-on-top
 		var hash = this.fullScreenRoute,
 			currentPosition = this.getMapPosition(),
 			initialPosition = this._initialPosition,
