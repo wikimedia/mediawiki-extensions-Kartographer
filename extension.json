@@ -534,6 +534,10 @@
 		"KartographerUsePageLanguage": {
 			"description": "Use the language of the page instead of that of the interface",
 			"value": true
+		},
+		"KartographerFallbackZoom": {
+			"description": "Fallback zoom value when zoom is undefined",
+			"value": 13
 		}
 	},
 	"TrackingCategories": [
