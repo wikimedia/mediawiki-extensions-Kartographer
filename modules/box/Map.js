@@ -323,7 +323,9 @@ KartographerMap = L.Map.extend( {
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( this.parentMap.dataLayers, function ( groupId, layer ) {
 				var newLayer = map.addGeoJSONLayer( groupId, layer.getGeoJSON(), layer.options );
-				newLayer.dataGroup = layer.group;
+				if ( newLayer ) {
+					newLayer.dataGroup = layer.group;
+				}
 			} );
 			ready();
 			return;
@@ -420,7 +422,9 @@ KartographerMap = L.Map.extend( {
 				}
 				if ( !$.isEmptyObject( group.getGeoJSON() ) ) {
 					layer = map.addGeoJSONLayer( group.id, group.getGeoJSON(), layerOptions );
-					layer.dataGroup = group;
+					if ( layer ) {
+						layer.dataGroup = group;
+					}
 				} else {
 					mw.log.warn( 'Layer not found or contains no data: "' + group.id + '"' );
 				}
@@ -452,7 +456,9 @@ KartographerMap = L.Map.extend( {
 				}
 				if ( !$.isEmptyObject( group.getGeoJSON() ) ) {
 					layer = map.addGeoJSONLayer( groupId, group.getGeoJSON(), layerOptions );
-					layer.dataGroup = layer;
+					if ( layer ) {
+						layer.dataGroup = layer;
+					}
 				} else {
 					mw.log.warn( 'Layer not found or contains no data: "' + groupId + '"' );
 				}
@@ -467,7 +473,8 @@ KartographerMap = L.Map.extend( {
 	 *   characters or spaces).
 	 * @param {Object} geoJson Features
 	 * @param {Object} [options] Layer options
-	 * @return {L.mapbox.FeatureLayer} Added layer
+	 * @return {L.mapbox.FeatureLayer|undefined} Added layer, or undefined in case e.g. the GeoJSON
+	 *   was invalid
 	 */
 	addGeoJSONLayer: function ( groupName, geoJson, options ) {
 		var layer;
