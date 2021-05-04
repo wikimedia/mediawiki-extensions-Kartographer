@@ -22,7 +22,7 @@
 	"kartographer-error-json": "Error message preceding JSON errors\nParameters: $1 - underlying message from JSON parser",
 	"kartographer-error-missing-attr": "Error shown instead of a map when required parameter(s) is missing.\n\nParameters:\n* $1 - non-localized attribute name, such as 'height', 'latitude', etc",
 	"kartographer-error-bad_attr": "Error shown instead of a map in case of a problem with parameters.\n\nParameters:\n* $1 - non-localized attribute name, such as 'height', 'latitude', etc",
-	"kartographer-error-bad_data": "This error is shown if the content of the tag is syntactically valid JSON however it does not adhere to GeoJSON and simplestyle specifications",
+	"kartographer-error-bad_data": "This error is shown if the content of the tag is syntactically valid JSON however it does not adhere to GeoJSON and simplestyle specifications.\n\nParameters:\n* $1 - Position of the error in the JSON\n* $2 - Message explaining the error",
 	"kartographer-error-latlon": "{{doc-important|Do not translate <code>latitude</code> and <code>longitude</code>.}}\nError shown by &lt;maplink&gt; or &lt;mapframe&gt; when certain parameters are incorrect",
 	"kartographer-error-title": "Error shown by &lt;maplink&gt; or &lt;mapframe&gt;. Parameters:\n* $1 - page title.",
 	"kartographer-tracking-category": "Name of the tracking category",

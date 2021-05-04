@@ -157,7 +157,11 @@ class SimpleStyleParser {
 		$validator->check( $json, $schema );
 
 		if ( !$validator->isValid() ) {
-			return Status::newFatal( 'kartographer-error-bad_data' );
+			return Status::newFatal(
+				'kartographer-error-bad_data',
+				$validator->getErrors()[0]['pointer'] ?? '',
+				$validator->getErrors()[0]['message'] ?? ''
+			);
 		}
 
 		return Status::newGood();
