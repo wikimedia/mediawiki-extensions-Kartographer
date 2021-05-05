@@ -14,7 +14,7 @@
 	"kartographer-error-json": "JSON konnte nicht geparst werden: $1",
 	"kartographer-error-missing-attr": "Das Attribut „$1“ fehlt",
 	"kartographer-error-bad_attr": "Das Attribut „$1“ hat einen ungültigen Wert",
-	"kartographer-error-bad_data": "Der JSON-Inhalt ist kein gültiges GeoJSON+simplestyle",
+	"kartographer-error-bad_data": "Der JSON-Inhalt ist kein gültiges GeoJSON+simplestyle.  Der erste Validierungsfehler tritt bei dem Element „$1“ auf: „$2“.",
 	"kartographer-error-latlon": "Entweder sollten die Parameter „latitude“ und „longitude“ oder keiner der beiden angegeben werden.",
 	"kartographer-error-title": "Der Titel „$1“ ist keine gültige Kartendatenseite",
 	"kartographer-tracking-category": "Seiten mit Karten",
