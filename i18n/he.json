@@ -13,7 +13,7 @@
 	"kartographer-error-json": "לא היה אפשר לפענח JSON כי: $1",
 	"kartographer-error-missing-attr": "המאפיין \"$1\" חסר",
 	"kartographer-error-bad_attr": "למאפיין \"$1\" יש ערך בלתי־תקין",
-	"kartographer-error-bad_data": "תוכן ה־JSON אינו GeoJSON+simplestyle תקין",
+	"kartographer-error-bad_data": "תוכן ה־JSON אינו GeoJSON+simplestyle תקין. שגיאת הבדיקה הראשונה היא על רכיב \"$1\", והתוכן שלה הוא: \"$2\".",
 	"kartographer-error-latlon": "יש לספק את שני הפרמטרים \"קו רוחב\" ו\"קו אורך\", או לא לספק אף אחד מהם",
 	"kartographer-error-title": "הכותרת \"$1\" אינה דף נתוני מפה תקין",
 	"kartographer-tracking-category": "דפים עם מפות",

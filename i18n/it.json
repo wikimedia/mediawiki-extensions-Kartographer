@@ -19,7 +19,7 @@
 	"kartographer-error-json": "Il JSON non può essere analizzato: $1",
 	"kartographer-error-missing-attr": "L'attributo \"$1\" non è presente",
 	"kartographer-error-bad_attr": "L'attributo '$1' ha un valore non valido",
-	"kartographer-error-bad_data": "Il contenuto JSON non è un valido GeoJSON+simplestyle",
+	"kartographer-error-bad_data": "Il contenuto JSON non è un valido GeoJSON+simplestyle. Il primo errore di validazione è sull'elemento \"$1\": \"$2\".",
 	"kartographer-error-title": "Il titolo \"$1\" non è una pagina di dati di mappa valida",
 	"kartographer-tracking-category": "Pagine con mappe",
 	"kartographer-tracking-category-desc": "La pagina include una mappa",

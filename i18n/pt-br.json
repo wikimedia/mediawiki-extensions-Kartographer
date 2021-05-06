@@ -19,7 +19,7 @@
 	"kartographer-error-json": "Não foi possível analisar JSON: $1",
 	"kartographer-error-missing-attr": "O atributo \"$1\" está faltando",
 	"kartographer-error-bad_attr": "O atributo \"$1\" tem um valor inválido",
-	"kartographer-error-bad_data": "O conteúdo JSON não é válido GeoJSON+simplicestyle",
+	"kartographer-error-bad_data": "O conteúdo JSON não é válido GeoJSON+simplicestyle. O primeiro erro de validação está no elemento \"$1\": \"$2\".",
 	"kartographer-error-latlon": "Ambos os parâmetros \"latitude\" e \"longitude\" devem ser fornecidos ou nenhum deles",
 	"kartographer-error-title": "O título \"$1\" não é uma página de dados cartográficos válida",
 	"kartographer-tracking-category": "Páginas com mapas",
