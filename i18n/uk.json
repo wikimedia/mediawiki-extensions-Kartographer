@@ -16,7 +16,7 @@
 	"kartographer-error-json": "Помилка JSON: $1",
 	"kartographer-error-missing-attr": "Відсутній атрибут «$1»",
 	"kartographer-error-bad_attr": "Атрибут '$1' має недійсне значення",
-	"kartographer-error-bad_data": "JSON-вміст не є правильним GeoJSON+simplestyle",
+	"kartographer-error-bad_data": "JSON-вміст не є правильним GeoJSON+simplestyle. Перша помилка валідації — в елементі «$1»: «$2».",
 	"kartographer-error-latlon": "Мають бути вказані або обидва параметри широти і довготи, або жоден",
 	"kartographer-error-title": "Назва «$1» не є дійсною сторінкою картографічних даних",
 	"kartographer-tracking-category": "Сторінки з мапами",

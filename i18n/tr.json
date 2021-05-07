@@ -7,6 +7,7 @@
 			"Katpatuka",
 			"Mavrikant",
 			"MuratTheTurkish",
+			"SaldırganSincap",
 			"Sayginer",
 			"TmY e12",
 			"ToprakM"
@@ -20,7 +21,7 @@
 	"kartographer-error-json": "JSON ayrıştırılamadı: $1",
 	"kartographer-error-missing-attr": "\"$1\" özelliği eksik",
 	"kartographer-error-bad_attr": "\"$1\" özelliği geçersiz bir değere sahip",
-	"kartographer-error-bad_data": "JSON içeriği geçerli GeoJSON+simplestyle değil",
+	"kartographer-error-bad_data": "JSON içeriği geçerli GeoJSON+simplestyle değil. İlk doğrulama hatası \"$1\" öğesinde: \"$2\".",
 	"kartographer-error-latlon": "Hem \"latitude\" hem de \"longitude\" parametreleri sağlanmalı veya hiçbiri sağlanmamalıdır",
 	"kartographer-error-title": "\"$1\" başlığı geçerli bir harita veri sayfası değil",
 	"kartographer-tracking-category": "Haritalı sayfalar",
