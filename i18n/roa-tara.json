@@ -12,7 +12,7 @@
 	"kartographer-error-json": "'U JSON non ge pò essere analizzate: $1",
 	"kartographer-error-missing-attr": "L'attribbute \"$1\" jè mangande",
 	"kartographer-error-bad_attr": "L'attribbute \"$1\" ave 'nu valore non valide",
-	"kartographer-error-bad_data": "'U condenute d'u JSON non g'è 'nu valide GeoJSON+simplestyle",
+	"kartographer-error-bad_data": "'U condenute d'u JSON non g'è 'nu valide GeoJSON+simplestyle. 'U prime errore de validazione jè sus a l'elemende \"$1\": \"$2\".",
 	"kartographer-error-latlon": "Tutte e doje le parametre \"latitudine\" e \"longitudine\" avessera essere date o nisciune de le doje",
 	"kartographer-error-title": "'U titole \"$1\" non g'è 'na pàgene de date de mappe valide",
 	"kartographer-tracking-category": "Pàggene cu le mappe",

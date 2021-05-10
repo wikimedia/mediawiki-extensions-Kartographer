@@ -7,6 +7,7 @@
 			"Kly",
 			"Liuxinyu970226",
 			"Mutolisp",
+			"Neetp7k9",
 			"Xiplus",
 			"烈羽"
 		]
@@ -20,7 +21,7 @@
 	"kartographer-error-json": "無法解析 JSON：$1",
 	"kartographer-error-missing-attr": "遺失屬性 \"$1\"",
 	"kartographer-error-bad_attr": "屬性 \"$1\" 的值無效",
-	"kartographer-error-bad_data": "JSON 內容不是有效的 GeoJSON + simplestyle",
+	"kartographer-error-bad_data": "JSON 內容不是有效的 GeoJSON + simplestyle\n第一個錯誤是在元素 \"$1\": \"$2\".",
 	"kartographer-error-latlon": "請同時或都不提供「latitude」和「longitude」參數",
 	"kartographer-error-title": "標題「$1」不是有效的地圖資料頁面",
 	"kartographer-tracking-category": "有地圖的頁面",
