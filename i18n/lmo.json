@@ -12,7 +12,7 @@
 	"kartographer-error-json": "El JSON el po vesser minga analizzad: $1",
 	"kartographer-error-missing-attr": "L'attribud \"$1\" el gh'è no",
 	"kartographer-error-bad_attr": "L'atribud '$1' el gh'hà un valor minga valid",
-	"kartographer-error-bad_data": "El contegnud JSON l'è minga valid GeoJSON+simplestyle",
+	"kartographer-error-bad_data": "El contegnud JSON l'è minga bon GeoJSON+simplestyle. El prim eror de ratifica l'è in su l'element\"$1\": \"$2\".",
 	"kartographer-error-latlon": "Tant i parameter de \" latitudin\" quant quei de \"longitudin\" i gh'hann de vesser fornid oppure nissun de lor du.",
 	"kartographer-error-title": "El titol \"$1\" a l'è minga una pagina de dati de mappa valida",
 	"kartographer-tracking-category": "Pagina con mappe",
