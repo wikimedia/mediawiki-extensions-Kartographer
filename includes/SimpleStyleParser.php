@@ -89,7 +89,7 @@ class SimpleStyleParser {
 	/**
 	 * Normalize an object
 	 *
-	 * @param stdClass[] &$data
+	 * @param stdClass[]|stdClass &$data
 	 * @return Status
 	 */
 	public function normalizeAndSanitize( &$data ) {
@@ -172,7 +172,7 @@ class SimpleStyleParser {
 	 * Does not attempt to be smart, just recurses through everything that can be dangerous even
 	 * if not a valid GeoJSON.
 	 *
-	 * @param \stdClass|array &$json
+	 * @param stdClass[]|stdClass &$json
 	 */
 	protected function sanitize( &$json ) {
 		if ( is_array( $json ) ) {
@@ -198,15 +198,17 @@ class SimpleStyleParser {
 	/**
 	 * Normalizes JSON
 	 *
-	 * @param array &$json
+	 * @param stdClass[]|stdClass &$json
 	 * @return Status
 	 */
-	protected function normalize( array &$json ) {
+	protected function normalize( &$json ) {
 		$status = Status::newGood();
-		foreach ( $json as &$object ) {
-			if ( $object->type === 'ExternalData' ) {
-				$status->merge( $this->normalizeExternalData( $object ) );
+		if ( is_array( $json ) ) {
+			foreach ( $json as &$element ) {
+				$this->normalize( $element );
 			}
+		} elseif ( is_object( $json ) && $json->type === 'ExternalData' ) {
+			$status->merge( $this->normalizeExternalData( $json ) );
 		}
 		$status->value = $json;
 
