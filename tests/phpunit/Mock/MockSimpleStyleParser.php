@@ -11,7 +11,7 @@ class MockSimpleStyleParser extends SimpleStyleParser {
 	}
 
 	/** @inheritDoc */
-	protected function normalize( array &$json ) {
+	protected function normalize( &$json ) {
 		return Status::newGood( $json );
 	}
 }
