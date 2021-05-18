@@ -89,15 +89,6 @@ module.exports = {
 			// We open the window immediately to guarantee responsiveness
 			// Only THEN we set the map
 			instance = manager.openWindow( dialog, {} );
-			instance.closing.then( function () {
-				if ( dialog.map.parentMap ) {
-					// FIXME we need to correct for the footerbar offset
-					dialog.map.parentMap.setView(
-						dialog.map.getCenter(),
-						dialog.map.getZoom()
-					);
-				}
-			} );
 			promises.push( instance.opened );
 		}
 		$.when.apply( $, promises ).then( function () {
