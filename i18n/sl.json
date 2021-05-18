@@ -18,7 +18,7 @@
 	"kartographer-error-json": "Niza JSON ni mogoče razčleniti: $1",
 	"kartographer-error-missing-attr": "Manjka atribut »$1«",
 	"kartographer-error-bad_attr": "Atribut »$1« ima neveljavno vrednost",
-	"kartographer-error-bad_data": "Vsebina JSON ni veljaven GeoJSON+simplestyle",
+	"kartographer-error-bad_data": "Vsebina JSON ni veljaven GeoJSON+simplestyle. Prva napaka validacije je na elementu »$1«: »$2«.",
 	"kartographer-error-latlon": "Treba je navesti parametra »latitude« in »longitude« ali nobenega od njiju",
 	"kartographer-error-title": "Naslov »$1« ni veljavna stran s podatki zemljevida",
 	"kartographer-tracking-category": "Strani z zemljevidi",
