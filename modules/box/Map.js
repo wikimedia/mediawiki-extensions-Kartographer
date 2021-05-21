@@ -322,10 +322,7 @@ KartographerMap = L.Map.extend( {
 		if ( this.parentMap ) {
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( this.parentMap.dataLayers, function ( groupId, layer ) {
-				var newLayer = map.addGeoJSONLayer( groupId, layer.getGeoJSON(), layer.options );
-				if ( newLayer ) {
-					newLayer.dataGroup = layer.group;
-				}
+				map.addGeoJSONLayer( groupId, layer.getGeoJSON(), layer.options );
 			} );
 			ready();
 			return;
@@ -414,17 +411,13 @@ KartographerMap = L.Map.extend( {
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( dataGroups, function ( key, group ) {
 				var layerOptions = {
-						attribution: group.attribution
-					},
-					layer;
+					attribution: group.attribution
+				};
 				if ( group.isExternal ) {
 					layerOptions.name = group.attribution;
 				}
 				if ( !$.isEmptyObject( group.getGeoJSON() ) ) {
-					layer = map.addGeoJSONLayer( group.id, group.getGeoJSON(), layerOptions );
-					if ( layer ) {
-						layer.dataGroup = group;
-					}
+					map.addGeoJSONLayer( group.id, group.getGeoJSON(), layerOptions );
 				} else {
 					mw.log.warn( 'Layer not found or contains no data: "' + group.id + '"' );
 				}
@@ -449,16 +442,12 @@ KartographerMap = L.Map.extend( {
 				var groupId = inlineDataLayerKey + inlineDataLayerId++,
 					layerOptions = {
 						attribution: group.attribution || options.attribution
-					},
-					layer;
+					};
 				if ( group.isExternal ) {
 					layerOptions.name = group.attribution;
 				}
 				if ( !$.isEmptyObject( group.getGeoJSON() ) ) {
-					layer = map.addGeoJSONLayer( groupId, group.getGeoJSON(), layerOptions );
-					if ( layer ) {
-						layer.dataGroup = layer;
-					}
+					map.addGeoJSONLayer( groupId, group.getGeoJSON(), layerOptions );
 				} else {
 					mw.log.warn( 'Layer not found or contains no data: "' + groupId + '"' );
 				}
@@ -485,6 +474,7 @@ KartographerMap = L.Map.extend( {
 			};
 			this.attributionControl.addAttribution( layer.getAttribution() );
 			this.dataLayers[ groupName ] = layer;
+			layer.dataGroup = groupName;
 			return layer;
 		} catch ( e ) {
 			mw.log( e );
