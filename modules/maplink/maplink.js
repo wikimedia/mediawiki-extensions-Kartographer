@@ -16,12 +16,7 @@ var router = require( 'mediawiki.router' ),
 	 *
 	 * @type {Kartographer.Linkbox.LinkClass[]}
 	 */
-	maplinks = [],
-	/**
-	 * @private
-	 * @ignore
-	 */
-	routerInited = false;
+	maplinks = [];
 
 /**
  * Gets the map data attached to an element.
@@ -49,25 +44,15 @@ function getMapData( element ) {
 }
 
 /**
- * This code will be executed once the article is rendered and ready.
- * FIXME: this should find from hook param, instead of body
+ * Attach the maplink handler.
  *
- * @ignore
+ * @param {jQuery} jQuery element with the content
  */
-mw.hook( 'wikipage.content' ).add( function () {
-
-	// `wikipage.content` may be fired more than once.
-	while ( maplinks.length ) {
-		maplinks.pop().$container.off( 'click.kartographer' );
-	}
-
-	// Some links might be displayed outside of $content, so we need to
-	// search outside. This is an anti-pattern and should be improved...
-	// Meanwhile .mw-body is better than searching the full document.
-	// eslint-disable-next-line no-jquery/no-global-selector
-	$( '.mw-body .mw-kartographer-maplink[data-mw="interface"]' ).each( function ( index ) {
+function handleMapLinks( $content ) {
+	$content.find( '.mw-kartographer-maplink[data-mw="interface"]' ).each( function () {
 		var data = getMapData( this );
 
+		var index = maplinks.length;
 		maplinks[ index ] = kartolink.link( {
 			featureType: 'maplink',
 			container: this,
@@ -80,12 +65,14 @@ mw.hook( 'wikipage.content' ).add( function () {
 		} );
 	} );
 
-	if ( routerInited ) {
-		return;
-	}
-	// execute this piece of code only once
-	routerInited = true;
+	// Check if we need to open a map in full screen.
+	router.checkRoute();
+}
 
+/**
+ * Activate the router for the full screen mode.
+ */
+function activateRouter() {
 	// Opens a maplink in full screen. #/maplink(/:zoom)(/:latitude)(/:longitude)
 	// Examples:
 	//     #/maplink/0
@@ -96,7 +83,6 @@ mw.hook( 'wikipage.content' ).add( function () {
 			position;
 
 		if ( !link ) {
-			router.navigate( '' );
 			return;
 		}
 
@@ -108,9 +94,11 @@ mw.hook( 'wikipage.content' ).add( function () {
 		}
 		link.openFullScreen( position );
 	} );
+}
 
-	// Check if we need to open a map in full screen.
-	router.checkRoute();
-} );
+activateRouter();
+
+mw.hook( 'wikipage.indicators' ).add( handleMapLinks );
+mw.hook( 'wikipage.content' ).add( handleMapLinks );
 
 module.exports = maplinks;
