@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Geraki",
+			"Giannaras99",
 			"NikosLikomitros",
 			"Nikosgranturismogt",
 			"Thodoris"
@@ -65,10 +66,10 @@
 	"leafletdraw-edit-toolbar-actions-save-text": "Αποθήκευση",
 	"leafletdraw-edit-toolbar-actions-save-title": "Αποθήκευση αλλαγών",
 	"leafletdraw-edit-toolbar-actions-clearall-text": "Καθάρισμα όλων",
-	"leafletdraw-edit-toolbar-buttons-edit": "Επεξεργαστείτε στρώματα",
-	"leafletdraw-edit-toolbar-buttons-editdisabled": "Δεν υπάρχουν στρώματα για επεξεργασία",
-	"leafletdraw-edit-toolbar-buttons-remove": "Διαγραφή στρωμάτων",
-	"leafletdraw-edit-toolbar-buttons-removedisabled": "Δεν υπάρχουν στρώματα για διαγραφή",
+	"leafletdraw-edit-toolbar-buttons-edit": "Επεξεργασία αντικειμένων",
+	"leafletdraw-edit-toolbar-buttons-editdisabled": "Δεν υπάρχουν αντικείμενα προς επεξεργασία",
+	"leafletdraw-edit-toolbar-buttons-remove": "Διαγραφή αντικειμένων",
+	"leafletdraw-edit-toolbar-buttons-removedisabled": "Δεν υπάρχουν αντικείμενα προς διαγραφή",
 	"leafletdraw-draw-toolbar-finish-text": "Πλήρης",
 	"map": "Πληροφορίες συντεταγμένες",
 	"mapbox-control-zoomin-title": "Μεγέθυνση",
