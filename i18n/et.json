@@ -13,7 +13,7 @@
 	"kartographer-error-json": "JSON-sisu ei õnnestunud liigendada: $1",
 	"kartographer-error-missing-attr": "Atribuut \"$1\" puudub.",
 	"kartographer-error-bad_attr": "Atribuudi \"$1\" väärtus on vigane.",
-	"kartographer-error-bad_data": "See JSON-sisu pole õige GeoJSON+simplestyle.",
+	"kartographer-error-bad_data": "See JSON-sisu pole õige GeoJSON+simplestyle. Esimene valideerimisviga on elemendi \"$1\" juures: \"$2\".",
 	"kartographer-error-latlon": "Ära peab olema toodud nii \"latitude\" kui ka \"longitude\" või mitte kumbki.",
 	"kartographer-error-title": "Pealkiri \"$1\" ei vasta sobivale kaardiandmete leheküljele.",
 	"kartographer-tracking-category": "Kaartidega leheküljed",
