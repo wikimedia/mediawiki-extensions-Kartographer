@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Anont",
 			"Doyoon1995",
 			"Garam",
 			"HDNua",
@@ -23,7 +24,7 @@
 	"kartographer-error-json": "JSON 구문 분석을 할 수 없습니다: $1",
 	"kartographer-error-missing-attr": "\"$1\" 특성을 찾을 수 없습니다",
 	"kartographer-error-bad_attr": "\"$1\" 특성에 잘못된 값이 있습니다",
-	"kartographer-error-bad_data": "JSON 내용이 올비른 GeoJSON+simplestyle이 아닙니다",
+	"kartographer-error-bad_data": "JSON 내용이 올비른 GeoJSON+simplestyle이 아닙니다. 첫번째 유효성 오류는 \"$1\": \"$2\"에서 발생했습니다.",
 	"kartographer-error-latlon": "\"latitude\"와 \"longitude\" 변수는 둘 다 있거나 둘 다 없어야 합니다",
 	"kartographer-error-title": "\"$1\" 제목은 유효한 지도 데이터 문서가 아닙니다",
 	"kartographer-tracking-category": "지도가 있는 문서",
