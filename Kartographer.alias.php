@@ -13,12 +13,12 @@ $specialPageAliases['en'] = [
 	'Map' => [ 'Map' ],
 ];
 
-/** Serbian (Cyrillic script) (српски (ћирилица)‎) */
+/** Serbian (Cyrillic script) (српски (ћирилица)) */
 $specialPageAliases['sr-ec'] = [
 	'Map' => [ 'Мапа' ],
 ];
 
-/** Serbian (Latin script) (srpski (latinica)‎) */
+/** Serbian (Latin script) (srpski (latinica)) */
 $specialPageAliases['sr-el'] = [
 	'Map' => [ 'Mapa' ],
 ];
