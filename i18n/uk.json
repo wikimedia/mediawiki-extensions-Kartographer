@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Base",
+			"DDPAT",
 			"Movses",
 			"Piramidion",
 			"Vlad5250",
@@ -92,7 +93,7 @@
 	"visualeditor-mwmapsdialog-position-lon": "Довгота",
 	"visualeditor-mwmapsdialog-position-zoom": "Масштаб",
 	"visualeditor-mwmapsdialog-size": "Розмір",
-	"visualeditor-mwmapsdialog-title": "Карта",
+	"visualeditor-mwmapsdialog-title": "Мапа",
 	"visualeditor-mwmapscontextitem-nosupport": "Ця карта містить динамічні деталі, і станом на зараз її можна редагувати лише в режимі редагування коду.",
 	"visualeditor-mwmapscontextitem-title": "Мапа"
 }
