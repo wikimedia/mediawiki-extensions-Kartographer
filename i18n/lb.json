@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Les Meloures",
 			"Robby"
 		]
 	},
 	"kartographer-broken-category": "Säite mat futtisse Kaarten",
 	"kartographer-broken-category-desc": "D'Säit huet en net valabele Gebrauch vun enger Kaart",
-	"kartographer-desc": "Erméiglecht et fir Kaarten op d'Wiki-Säiten dobäizesetzen.",
+	"kartographer-desc": "Erméiglecht et fir Kaarten op d'Wiki-Säiten derbäizesetzen.",
 	"kartographer-error-context-multi": "&lt;$1&gt;-Problemer:\n$2",
 	"kartographer-error-missing-attr": "Attribut \"$1\" feelt",
 	"kartographer-error-bad_data": "Den JSON-Inhalt ass kee valabelen GeoJSON+simplestyle. Den éischte Validatiounsfeeler ass um Element: \"$1\": \"$2\".",
