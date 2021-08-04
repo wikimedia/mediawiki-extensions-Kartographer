@@ -15,7 +15,7 @@
 	"kartographer-error-json": "JSON: $1 ji hev nikare were veqetandin",
 	"kartographer-error-missing-attr": "Parametreya \"$1\" kêm e",
 	"kartographer-error-bad_attr": "Di parametreya \"$1\" de nirxek nemuteber heye",
-	"kartographer-error-bad_data": "Naveroka JSONê ne GeoJSON+simplestyle yê derbasdar e",
+	"kartographer-error-bad_data": "Naveroka JSONê ne GeoJSON+simplestyle yê derbasdar e. Çewtiya yekem li ser hêmana \"$1\" ye: \"$2\".",
 	"kartographer-error-latlon": "Divê him \"firehî\" him jî \"dirêjî\" were dayîn, an jî yekî ji wan jî nêye dayîn",
 	"kartographer-error-title": "Sernavê \"$1\" ne rûpelek derbasdar yê daneyên nexşeyê ye",
 	"kartographer-tracking-category": "Rûpelên bi nexşeyan",
