@@ -16,7 +16,7 @@
 	"kartographer-error-json": "Nepodařilo se analyzovat JSON: $1",
 	"kartographer-error-missing-attr": "Chybí atribut „$1“",
 	"kartographer-error-bad_attr": "Atribut „$1“ má neplatnou hodnotu",
-	"kartographer-error-bad_data": "JSON obsah není platný GeoJSON+simplestyle",
+	"kartographer-error-bad_data": "JSON obsah není platný GeoJSON+simplestyle. První chyba validace je na elementu „$1“: „$2“.",
 	"kartographer-error-latlon": "Zadány by měly být buď oba parametry „latitude“ a „longitude“, nebo ani jeden",
 	"kartographer-error-title": "„$1“ není platný název stránky s mapovými daty",
 	"kartographer-tracking-category": "Stránky s mapami",
