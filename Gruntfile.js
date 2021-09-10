@@ -30,18 +30,16 @@ module.exports = function ( grunt ) {
 			tasks: 'test'
 		},
 		stylelint: {
-			all: {
-				options: {
-					syntax: 'less'
-				},
-				src: [
-					'**/*.{css,less}',
-					'!node_modules/**',
-					'!lib/**',
-					'!docs/**',
-					'!vendor/**'
-				]
-			}
+			options: {
+				syntax: 'less'
+			},
+			all: [
+				'**/*.{css,less}',
+				'!node_modules/**',
+				'!lib/**',
+				'!docs/**',
+				'!vendor/**'
+			]
 		}
 	} );
 
