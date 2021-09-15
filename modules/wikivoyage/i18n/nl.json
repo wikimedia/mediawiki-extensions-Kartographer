@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mainframe98"
+			"Mainframe98",
+			"Romaine"
 		]
 	},
 	"kartographer-wv-group": "Groep:",
+	"kartographer-wv-layer-nearby-articles": "Artikelen in de buurt",
+	"kartographer-wv-warning-external-source-title": "Externe databron",
 	"kartographer-wv-warning-external-source-disagree": "Annuleren"
 }
