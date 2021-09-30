@@ -6,6 +6,8 @@
 		]
 	},
 	"kartographer-tracking-category": "မြေပုံများပါဝင်သည့် စာမျက်နှာများ",
+	"kartographer-linktype-aerial": "ကောင်းကင်မြင်ကွင်း",
+	"kartographer-linktype-map": "စံမြေပုံများ",
 	"kartographer-linktype-other": "အခြား",
 	"kartographer-linktype-satellite": "ဂြိုလ်တု",
 	"kartographer-sidebar-coordinates": "ကိုဩဒိနိတ်များ",
