@@ -314,10 +314,10 @@ abstract class TagHandler {
 		global $wgKartographerStaticMapframe;
 
 		if ( $state->getMaplinks() ) {
-			$output->setProperty( 'kartographer_links', $state->getMaplinks() );
+			$output->setPageProperty( 'kartographer_links', $state->getMaplinks() );
 		}
 		if ( $state->getMapframes() ) {
-			$output->setProperty( 'kartographer_frames', $state->getMapframes() );
+			$output->setPageProperty( 'kartographer_frames', $state->getMapframes() );
 		}
 
 		if ( $state->hasBrokenTags() ) {

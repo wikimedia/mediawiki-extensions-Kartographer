@@ -265,8 +265,8 @@ WIKITEXT;
 	 */
 	public function testPageProps( $text, $frames, $links ) {
 		$po = $this->parse( $text );
-		$this->assertEquals( $frames, $po->getProperty( 'kartographer_frames' ) );
-		$this->assertEquals( $links, $po->getProperty( 'kartographer_links' ) );
+		$this->assertEquals( $frames, $po->getPageProperty( 'kartographer_frames' ) );
+		$this->assertEquals( $links, $po->getPageProperty( 'kartographer_links' ) );
 	}
 
 	public function providePageProps() {
