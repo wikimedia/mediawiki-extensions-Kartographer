@@ -6,8 +6,10 @@ use ApiBase;
 use ApiQuery;
 use ApiQueryBase;
 use FormatJson;
+use MediaWiki\MediaWikiServices;
 use ParserOptions;
-use WikiPage;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 class ApiQueryMapData extends ApiQueryBase {
 
@@ -26,11 +28,12 @@ class ApiQueryMapData extends ApiQueryBase {
 		$params = $this->extractRequestParams();
 		$limit = $params['limit'];
 		$groups = $params['groups'] === '' ? false : explode( '|', $params['groups'] );
-		$titles = $this->getPageSet()->getGoodTitles();
+		$titles = $this->getPageSet()->getGoodPages();
 		if ( !$titles ) {
 			return;
 		}
 
+		$pageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
 		$count = 0;
 		foreach ( $titles as $pageId => $title ) {
 			if ( ++$count > $limit ) {
@@ -38,7 +41,7 @@ class ApiQueryMapData extends ApiQueryBase {
 				break;
 			}
 
-			$page = WikiPage::factory( $title );
+			$page = $pageFactory->newFromTitle( $title );
 			$parserOutput = $page->getParserOutput( ParserOptions::newCanonical( 'canonical' ) );
 			$state = $parserOutput ? State::getState( $parserOutput ) : null;
 			if ( !$state ) {
@@ -74,18 +77,18 @@ class ApiQueryMapData extends ApiQueryBase {
 	public function getAllowedParams() {
 		return [
 			'groups' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_DFLT => '',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_DEFAULT => '',
 			],
 			'limit' => [
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_DFLT => 10,
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
+				ParamValidator::PARAM_TYPE => 'limit',
+				ParamValidator::PARAM_DEFAULT => 10,
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				IntegerDef::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			],
 			'continue' => [
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			],
 		];

@@ -17,6 +17,7 @@ use Parser;
 use ParserOptions;
 use stdClass;
 use Title;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * This class implements action=sanitize-mapdata API, validating and sanitizing user-entered
@@ -50,7 +51,7 @@ class ApiSanitizeMapData extends ApiBase {
 		$parser = MediaWikiServices::getInstance()->getParser();
 		$parserOptions = new ParserOptions( $this->getUser() );
 		$parser->startExternalParse( $title, $parserOptions, Parser::OT_HTML );
-		$parser->setTitle( $title );
+		$parser->setPage( $title );
 		$parser->clearState();
 		$simpleStyle = new SimpleStyleParser( $parser, null, [ 'saveUnparsed' => true ] );
 		$status = $simpleStyle->parse( $text );
@@ -75,12 +76,12 @@ class ApiSanitizeMapData extends ApiBase {
 	public function getAllowedParams() {
 		return [
 			'title' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_DFLT => 'Dummy title (called from ' . __CLASS__ . ')',
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_DEFAULT => 'Dummy title (called from ' . __CLASS__ . ')',
 			],
 			'text' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
 			]
 		];
 	}
