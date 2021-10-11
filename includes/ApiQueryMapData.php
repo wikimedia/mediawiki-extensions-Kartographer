@@ -29,20 +29,32 @@ class ApiQueryMapData extends ApiQueryBase {
 		$limit = $params['limit'];
 		$groups = $params['groups'] === '' ? false : explode( '|', $params['groups'] );
 		$titles = $this->getPageSet()->getGoodPages();
+		$revIds = $this->getPageSet()->getLiveRevisionIDs();
 		if ( !$titles ) {
 			return;
 		}
 
 		$pageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
+		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		// `revids` and `titles` can't be used simultaneously, we're either using revs or titles
+		$revIdMode = (bool)count( $revIds );
+
+		if ( !$revIdMode ) {
+			foreach ( array_keys( $titles ) as $pageId ) {
+				$rev = $revisionLookup->getRevisionByPageId( $pageId );
+				$revIds[ $rev->getId() ] = $pageId;
+			}
+		}
+
 		$count = 0;
-		foreach ( $titles as $pageId => $title ) {
+		foreach ( $revIds as $revId => $pageId ) {
 			if ( ++$count > $limit ) {
 				$this->setContinueEnumParameter( 'continue', $pageId );
 				break;
 			}
-
-			$page = $pageFactory->newFromTitle( $title );
-			$parserOutput = $page->getParserOutput( ParserOptions::newCanonical( 'canonical' ) );
+			$revison = $revisionLookup->getRevisionById( $revId );
+			$page = $pageFactory->newFromLinkTarget( $revison->getPageAsLinkTarget() );
+			$parserOutput = $page->getParserOutput( ParserOptions::newCanonical( 'canonical' ), $revId );
 			$state = $parserOutput ? State::getState( $parserOutput ) : null;
 			if ( !$state ) {
 				continue;
@@ -64,6 +76,8 @@ class ApiQueryMapData extends ApiQueryBase {
 			}
 			$result = FormatJson::encode( $result, false, FormatJson::ALL_OK );
 
+			// FIXME results are added by pageId, if revIds belong to the same pageId the mapdata
+			// will be in one list of results
 			$fit = $this->addPageSubItem( $pageId, $result );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue', $pageId );
