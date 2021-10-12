@@ -6,6 +6,7 @@ use FormatJson;
 use Html;
 use Kartographer\CoordFormatter;
 use Kartographer\SpecialMap;
+use MediaWiki\MediaWikiServices;
 
 /**
  * The <maplink> tag creates a link that, when clicked,
@@ -80,9 +81,7 @@ class MapLink extends TagHandler {
 	 * @return string
 	 */
 	private function extractMarkerCss() {
-		global $wgKartographerUseMarkerStyle;
-
-		if ( $wgKartographerUseMarkerStyle
+		if ( MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerUseMarkerStyle' )
 			&& $this->markerProperties
 			&& property_exists( $this->markerProperties, 'marker-color' )
 			// JsonSchema already validates this value for us, however this regex will also fail
