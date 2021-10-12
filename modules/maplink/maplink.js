@@ -38,7 +38,7 @@ function getMapData( element ) {
 		zoom: +$el.data( 'zoom' ),
 		lang: $el.data( 'lang' ),
 		style: $el.data( 'style' ),
-		captionText: $el.text(),
+		captionText: $el.get( 0 ).innerText,
 		overlays: $el.data( 'overlays' ) || []
 	};
 }

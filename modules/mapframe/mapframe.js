@@ -43,7 +43,7 @@ function getMapData( element ) {
 		captionText = '';
 
 	if ( $caption[ 0 ] ) {
-		captionText = $caption.text();
+		captionText = $caption.get( 0 ).innerText;
 	}
 
 	return {
