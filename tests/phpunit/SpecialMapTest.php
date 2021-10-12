@@ -4,7 +4,7 @@ namespace Kartographer\Tests;
 
 use GeoData\Globe;
 use Kartographer\SpecialMap;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Title;
 use Wikimedia\TestingAccessWrapper;
 
@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \Kartographer\SpecialMap
  * @group Kartographer
  */
-class SpecialMapTest extends MediaWikiTestCase {
+class SpecialMapTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideParseSubpage
