@@ -148,6 +148,7 @@ class MapFrame extends TagHandler {
 			$imgUrlParams += [
 				'domain' => $wgServerName,
 				'title' => $this->parser->getTitle()->getPrefixedText(),
+				'revid' => $this->parser->getRevisionId(),
 				'groups' => implode( ',', $this->showGroups ),
 			];
 		}
