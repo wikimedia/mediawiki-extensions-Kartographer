@@ -4,7 +4,7 @@ namespace Kartographer\Tests;
 
 use Kartographer\Tests\Mock\MockSimpleStyleParser;
 use MediaWiki\MediaWikiServices;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Parser;
 use ParserOptions;
 use Title;
@@ -13,7 +13,7 @@ use Title;
  * @covers \Kartographer\SimpleStyleParser
  * @group Kartographer
  */
-class ValidationTest extends MediaWikiTestCase {
+class ValidationTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideTestCases

@@ -5,14 +5,14 @@ use ApiMain;
 use ApiUsageException;
 use DerivativeContext;
 use FauxRequest;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use RequestContext;
 
 /**
  * @covers \Kartographer\ApiSanitizeMapData
  * @group Kartographer
  */
-class ApiSanitizeMapDataTest extends MediaWikiTestCase {
+class ApiSanitizeMapDataTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();

@@ -4,13 +4,13 @@ namespace Kartographer\Tests;
 
 use Kartographer\CoordFormatter;
 use Language;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @covers \Kartographer\CoordFormatter
  * @group Kartographer
  */
-class CoordFormatterTest extends MediaWikiTestCase {
+class CoordFormatterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideFormatter

@@ -4,7 +4,7 @@ namespace Kartographer\Tests;
 
 use Kartographer\SimpleStyleParser;
 use MediaWiki\MediaWikiServices;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Parser;
 use ParserOptions;
 use Title;
@@ -13,7 +13,7 @@ use Title;
  * @covers \Kartographer\SimpleStyleParser
  * @group Kartographer
  */
-class SimpleStyleParserTest extends MediaWikiTestCase {
+class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		$this->setMwGlobals( 'wgKartographerMapServer', 'https://maps.wikimedia.org' );
