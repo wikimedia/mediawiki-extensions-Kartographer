@@ -34,7 +34,7 @@ trait TagHandlerTest {
 			$state,
 			$output,
 			false,
-			$this->createMock( \Title::class )
+			$this->createMock( \Parser::class )
 		);
 	}
 

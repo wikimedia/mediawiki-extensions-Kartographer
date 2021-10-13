@@ -42,7 +42,7 @@ class Hooks {
 		if ( $state ) {
 			$options = $parser->getOptions();
 			$isPreview = $options->getIsPreview() || $options->getIsSectionPreview();
-			TagHandler::finalParseStep( $state, $output, $isPreview, $parser->getTitle() );
+			TagHandler::finalParseStep( $state, $output, $isPreview, $parser );
 		}
 	}
 

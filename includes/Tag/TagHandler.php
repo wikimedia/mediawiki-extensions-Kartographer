@@ -21,7 +21,6 @@ use ParserOutput;
 use PPFrame;
 use Status;
 use stdClass;
-use Title;
 
 /**
  * Base class for all <map...> tags
@@ -303,13 +302,13 @@ abstract class TagHandler {
 	 * @param State $state
 	 * @param ParserOutput $output to exclusively write to; nothing is read from this object
 	 * @param bool $isPreview
-	 * @param Title $title required to properly add tracking categories
+	 * @param Parser $parser required to properly add tracking categories
 	 */
 	public static function finalParseStep(
 		State $state,
 		ParserOutput $output,
 		$isPreview,
-		Title $title
+		Parser $parser
 	) {
 		global $wgKartographerStaticMapframe;
 
@@ -321,10 +320,10 @@ abstract class TagHandler {
 		}
 
 		if ( $state->hasBrokenTags() ) {
-			self::addTrackingCategory( $output, 'kartographer-broken-category', $title );
+			self::addTrackingCategory( $parser, 'kartographer-broken-category' );
 		}
 		if ( $state->hasValidTags() ) {
-			self::addTrackingCategory( $output, 'kartographer-tracking-category', $title );
+			self::addTrackingCategory( $parser, 'kartographer-tracking-category' );
 		}
 
 		// https://phabricator.wikimedia.org/T145615 - include all data in previews
@@ -356,11 +355,10 @@ abstract class TagHandler {
 	/**
 	 * Adds tracking category with extra checks
 	 *
-	 * @param ParserOutput $output
+	 * @param Parser $parser
 	 * @param string $categoryMsg
-	 * @param Title $title
 	 */
-	private static function addTrackingCategory( ParserOutput $output, $categoryMsg, Title $title ) {
+	private static function addTrackingCategory( Parser $parser, $categoryMsg ) {
 		static $hasParserFunctions;
 
 		// Our tracking categories rely on ParserFunctions to differentiate per namespace,
@@ -370,7 +368,7 @@ abstract class TagHandler {
 		}
 
 		if ( $hasParserFunctions ) {
-			$output->addTrackingCategory( $categoryMsg, $title );
+			$parser->addTrackingCategory( $categoryMsg );
 		}
 	}
 
