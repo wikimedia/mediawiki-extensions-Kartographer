@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Abuluntu",
 			"Danmichaelo",
 			"Jeblad",
 			"Jon Harald Søby"
@@ -14,7 +15,7 @@
 	"kartographer-error-json": "Kunne ikke parse JSON: $1",
 	"kartographer-error-missing-attr": "Attributtet «$1» mangler",
 	"kartographer-error-bad_attr": "Attributtet «$1» har en ugyldig verdi",
-	"kartographer-error-bad_data": "JSON-innholdet er ikke gyldig GeoJSON+simplestyle",
+	"kartographer-error-bad_data": "JSON-innholdet er ikke gyldig GeoJSON+simplestyle. Den første feilen under validering er ved element «$1»: «$2».",
 	"kartographer-error-latlon": "Enten må både «latitude» og «longitude»-parameterne oppgis, eller ingen av dem",
 	"kartographer-error-title": "Tittelen «$1» er ikke en gyldig kartdataside",
 	"kartographer-tracking-category": "Sider med kart",
