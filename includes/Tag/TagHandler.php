@@ -16,6 +16,7 @@ use Html;
 use Kartographer\SimpleStyleParser;
 use Kartographer\State;
 use Language;
+use MediaWiki\MediaWikiServices;
 use Parser;
 use ParserOutput;
 use PPFrame;
@@ -102,13 +103,14 @@ abstract class TagHandler {
 	 * @return string
 	 */
 	private function handle( $input, array $args, Parser $parser, PPFrame $frame ) {
-		global $wgKartographerMapServer;
-
 		$this->parser = $parser;
 		$this->frame = $frame;
 		$output = $parser->getOutput();
+
 		$output->addModuleStyles( 'ext.kartographer.style' );
-		$output->addExtraCSPDefaultSrc( $wgKartographerMapServer );
+		$output->addExtraCSPDefaultSrc(
+			MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerMapServer' )
+		);
 		$this->state = State::getOrCreate( $output );
 
 		$this->status = Status::newGood();
@@ -155,7 +157,7 @@ abstract class TagHandler {
 	 * @return void
 	 */
 	protected function parseArgs() {
-		global $wgKartographerStyles, $wgKartographerDfltStyle, $wgKartographerUsePageLanguage;
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 
 		$this->lat = $this->getFloat( 'latitude', null );
 		$this->lon = $this->getFloat( 'longitude', null );
@@ -164,10 +166,10 @@ abstract class TagHandler {
 		}
 
 		$this->zoom = $this->getInt( 'zoom', null );
-		$regexp = '/^(' . implode( '|', $wgKartographerStyles ) . ')$/';
-		$this->mapStyle = $this->getText( 'mapstyle', $wgKartographerDfltStyle, $regexp );
+		$regexp = '/^(' . implode( '|', $config->get( 'KartographerStyles' ) ) . ')$/';
+		$this->mapStyle = $this->getText( 'mapstyle', $config->get( 'KartographerDfltStyle' ), $regexp );
 
-		$defaultLangCode = $wgKartographerUsePageLanguage ? $this->getLanguage()->getCode() : 'local';
+		$defaultLangCode = $config->get( 'KartographerUsePageLanguage' ) ? $this->getLanguage()->getCode() : 'local';
 		// Language code specified by the user (null if none)
 		$this->specifiedLangCode = $this->getText( 'lang', null );
 		// Language code we're going to use
@@ -189,9 +191,7 @@ abstract class TagHandler {
 	abstract protected function render();
 
 	private function parseGroups() {
-		global $wgKartographerWikivoyageMode;
-
-		if ( !$wgKartographerWikivoyageMode ) {
+		if ( !MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerWikivoyageMode' ) ) {
 			// if we ignore all the 'group' and 'show' parameters,
 			// each tag stays private, and will be unable to share data
 			return;
@@ -310,8 +310,6 @@ abstract class TagHandler {
 		$isPreview,
 		Parser $parser
 	) {
-		global $wgKartographerStaticMapframe;
-
 		if ( $state->getMaplinks() ) {
 			$output->setPageProperty( 'kartographer_links', $state->getMaplinks() );
 		}
@@ -330,7 +328,7 @@ abstract class TagHandler {
 		$data = $state->getData();
 		if ( $data && $isPreview ) {
 			$output->addJsConfigVars( 'wgKartographerLiveData', $data );
-			if ( $wgKartographerStaticMapframe ) {
+			if ( MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerStaticMapframe' ) ) {
 				// Preview generates HTML that is different from normal
 				$output->updateCacheExpiry( 0 );
 			}
