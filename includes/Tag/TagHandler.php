@@ -157,7 +157,8 @@ abstract class TagHandler {
 	 * @return void
 	 */
 	protected function parseArgs() {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$services = MediaWikiServices::getInstance();
+		$config = $services->getMainConfig();
 
 		$this->lat = $this->getFloat( 'latitude', null );
 		$this->lon = $this->getFloat( 'longitude', null );
@@ -176,7 +177,7 @@ abstract class TagHandler {
 		$this->resolvedLangCode = $this->specifiedLangCode ?? $defaultLangCode;
 		// If the specified language code is invalid, behave as if no language was specified
 		if (
-			!Language::isKnownLanguageTag( $this->resolvedLangCode ) &&
+			!$services->getLanguageNameUtils()->isKnownLanguageTag( $this->resolvedLangCode ) &&
 			$this->resolvedLangCode !== 'local'
 		) {
 			$this->specifiedLangCode = null;
