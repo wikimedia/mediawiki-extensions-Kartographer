@@ -52,21 +52,20 @@ class SpecialMap extends SpecialPage {
 			$this->msg( 'kartographer-attribution' )->parse() );
 
 		$this->getOutput()->addHTML(
-			Html::openElement( 'div', [ 'id' => 'mw-specialMap-container', 'class' => 'thumb' ] )
-				. Html::openElement( 'div', [ 'class' => 'thumbinner' ] )
-					. Html::openElement( 'div', [ 'id' => 'mw-specialMap-inner' ] )
-						. Html::element( 'div', [ 'id' => 'mw-specialMap-map' ] )
-						. $markerHtml
-						. $attributions
-					. Html::closeElement( 'div' )
-					. Html::openElement( 'div',
-						[ 'id' => 'mw-specialMap-caption', 'class' => 'thumbcaption' ]
+			Html::rawElement( 'div', [ 'id' => 'mw-specialMap-container', 'class' => 'thumb' ],
+				Html::rawElement( 'div', [ 'class' => 'thumbinner' ],
+					Html::rawElement( 'div', [ 'id' => 'mw-specialMap-inner' ],
+						Html::element( 'div', [ 'id' => 'mw-specialMap-map' ] ) .
+						$markerHtml .
+						$attributions
+					) .
+					Html::rawElement( 'div',
+						[ 'id' => 'mw-specialMap-caption', 'class' => 'thumbcaption' ],
+						Html::element( 'span', [ 'id' => 'mw-specialMap-icon' ] ) .
+						Html::element( 'span', [ 'id' => 'mw-specialMap-coords' ], $coordText )
 					)
-						. Html::element( 'span', [ 'id' => 'mw-specialMap-icon' ] )
-						. Html::element( 'span', [ 'id' => 'mw-specialMap-coords' ], $coordText )
-					. Html::closeElement( 'div' )
-				. Html::closeElement( 'div' )
-			. Html::closeElement( 'div' )
+				)
+			)
 		);
 	}
 
