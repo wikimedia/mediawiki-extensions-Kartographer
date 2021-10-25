@@ -105,13 +105,24 @@ class ApiQueryMapDataTest extends ApiTestCase {
 		] );
 		$this->assertResult( [ $expected, $expectedOther ], $apiResultRevisions );
 
-		// using an old revision from the same page still just returns the data from the latest revision
+		// using an old revision from the same page returns the data from that revision
 		[ $apiResultOldRevision ] = $this->doApiRequest( [
 			'action' => 'query',
 			'prop' => 'mapdata',
 			'revids' => $oldRevPageOne->getId(),
 		] );
-		// with old revids working this should return `[ $expectedOther ]`
+		$this->assertResult( [ $expectedOther ], $apiResultOldRevision );
+
+		// with the feature turned off using an old revision from the same page just returns the
+		// data from the latest revision
+		$this->setMwGlobals( [
+			'wgKartographerVersionedMapdata' => false,
+		] );
+		[ $apiResultOldRevision ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'mapdata',
+			'revids' => $oldRevPageOne->getId(),
+		] );
 		$this->assertResult( [ $expected ], $apiResultOldRevision );
 	}
 

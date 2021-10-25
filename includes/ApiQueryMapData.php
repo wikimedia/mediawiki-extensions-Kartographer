@@ -29,9 +29,13 @@ class ApiQueryMapData extends ApiQueryBase {
 		$limit = $params['limit'];
 		$groupIds = $params['groups'] === '' ? false : explode( '|', $params['groups'] );
 		$titles = $this->getPageSet()->getGoodPages();
-		$revIds = $this->getPageSet()->getLiveRevisionIDs();
 		if ( !$titles ) {
 			return;
+		}
+		// Temporary feature flag to control whether we support fetching mapdata from older revisions.
+		$revIds = [];
+		if ( $this->getConfig()->get( 'KartographerVersionedMapdata' ) ) {
+			$revIds = $this->getPageSet()->getLiveRevisionIDs();
 		}
 
 		$pageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();

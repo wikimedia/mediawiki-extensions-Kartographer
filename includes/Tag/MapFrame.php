@@ -145,9 +145,16 @@ class MapFrame extends TagHandler {
 			$imgUrlParams += [
 				'domain' => $config->get( 'ServerName' ),
 				'title' => $this->parser->getTitle()->getPrefixedText(),
-				'revid' => $this->parser->getRevisionId(),
 				'groups' => implode( ',', $this->showGroups ),
 			];
+
+			// Temporary feature flag to control whether static map thumbnails include the revision ID.
+			$configRevid = MediaWikiServices::getInstance()
+							->getMainConfig()
+							->get( 'KartographerVersionedStaticMaps' );
+			if ( $configRevid ) {
+				$imgUrlParams['revid'] = $this->parser->getRevisionId();
+			}
 		}
 		$imgUrl = "{$mapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat}," .
 		"{$staticLon},{$staticWidth}x{$this->height}.png";

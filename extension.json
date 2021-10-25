@@ -523,6 +523,18 @@
 			"description": "Server providing the map tiles",
 			"value": false
 		},
+		"KartographerVersionedLiveMaps": {
+			"description": "Temporary feature flag to allow Kartographer to render versioned live mapframes.",
+			"value": false
+		},
+		"KartographerVersionedMapdata": {
+			"description": "Temporary feature flag to disable serving versioned mapdata from the API",
+			"value": true
+		},
+		"KartographerVersionedStaticMaps": {
+			"description": "Do not enable in production until varnish rules are merged. Temporary feature flag to allow Kartographer to render versioned mapframe images.",
+			"value": false
+		},
 		"KartographerUseMarkerStyle": {
 			"description": "Allows Kartographer to extract CSS style to be used by the link from the GeoJSON",
 			"value": false
