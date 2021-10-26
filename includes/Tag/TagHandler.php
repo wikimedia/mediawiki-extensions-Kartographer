@@ -199,9 +199,9 @@ abstract class TagHandler {
 			return;
 		}
 
-		$this->groupId = $this->getText( 'group', null, '/^[a-zA-Z0-9]+$/' );
+		$this->groupId = $this->getText( 'group', null, '/^(\w| )+$/u' );
 
-		$text = $this->getText( 'show', null, '/^(|[a-zA-Z0-9]+(\s*,\s*[a-zA-Z0-9]+)*)$/' );
+		$text = $this->getText( 'show', null, '/^(|(\w| )+(\s*,\s*(\w| )+)*)$/u' );
 		if ( $text ) {
 			$this->showGroups = array_map( 'trim', explode( ',', $text ) );
 		}

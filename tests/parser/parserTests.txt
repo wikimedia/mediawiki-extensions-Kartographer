@@ -363,6 +363,8 @@ wgKartographerWikivoyageMode=true
 <maplink zoom=0 latitude=0 longitude=0 show="foo"/>
 <maplink zoom=0 latitude=0 longitude=0 show= />
 <maplink zoom=0 latitude=0 longitude=0 show=""/>
+<maplink zoom=0 latitude=0 longitude=0 show='😂'/>
+<maplink zoom=0 latitude=0 longitude=0 show='test-foo'/>
 <maplink zoom=0 latitude=0 longitude=0 show='йа криветко'/>
 !! html
 <p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;foo&quot;]">0°0′0″N 0°0′0″E</a>
@@ -372,6 +374,9 @@ wgKartographerWikivoyageMode=true
 <a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0">0°0′0″N 0°0′0″E</a>
 </p>
 <div class="mw-kartographer-error">&lt;maplink&gt;: Attribute "show" has an invalid value</div>
+<div class="mw-kartographer-error">&lt;maplink&gt;: Attribute "show" has an invalid value</div>
+<p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;йа криветко&quot;]">0°0′0″N 0°0′0″E</a>
+</p>
 !! end
 
 !! test

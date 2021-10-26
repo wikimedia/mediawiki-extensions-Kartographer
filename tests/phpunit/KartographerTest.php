@@ -280,6 +280,51 @@ WIKITEXT;
 	}
 
 	/**
+	 * @dataProvider provideGroupNames
+	 */
+	public function testGroupNames( $expected, $input ) {
+		$this->setMwGlobals( 'wgKartographerWikivoyageMode', true );
+		$output = $this->parse( $input );
+		$state = State::getState( $output );
+
+		$this->assertTrue( $state->hasValidTags() );
+		$this->assertFalse( $state->hasBrokenTags() );
+		$this->assertSame( $expected, $state->getRequestedGroups() );
+	}
+
+	public function provideGroupNames() {
+		return [
+			[ [], '<maplink></maplink>' ],
+			[ [ 'a1' => 0 ], '<maplink show="a1"></maplink>' ],
+			[ [ 'a1' => 0, 'b1' => 1 ], '<maplink group="b1" show="a1"></maplink>' ],
+			[ [ 'a 1' => 0, 'b 1' => 1 ], '<maplink group="b 1" show="a 1"></maplink>' ],
+			[ [ 'a 1' => 0, 'b 1' => 1 ], '<maplink group="b 1" show="a 1, b 1"></maplink>' ],
+			[ [ 'cab 1' => 0, 'b 1' => 1 ], '<maplink group="b 1" show="cab 1, b 1"></maplink>' ],
+			[ [ 'שלום' => 0 ], '<maplink show="שלום"></maplink>' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideInvalidGroupNames
+	 */
+	public function testInvalidGroupNames( $input ) {
+		$this->setMwGlobals( 'wgKartographerWikivoyageMode', true );
+		$output = $this->parse( $input );
+		$state = State::getState( $output );
+
+		$this->assertFalse( $state->hasValidTags() );
+		$this->assertTrue( $state->hasBrokenTags() );
+	}
+
+	public function provideInvalidGroupNames() {
+		return [
+			[ '<maplink show="test😂"></maplink>' ],
+			[ '<maplink show="hell.o"></maplink>' ],
+			[ '<maplink group="c,1" show="a 1"></maplink>' ],
+		];
+	}
+
+	/**
 	 * Parses wikitext
 	 * @param string $text
 	 * @param callable|null $optionsCallback
