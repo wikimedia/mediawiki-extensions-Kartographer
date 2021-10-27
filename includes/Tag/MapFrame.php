@@ -141,7 +141,11 @@ class MapFrame extends TagHandler {
 		$imgUrlParams = [
 			'lang' => $this->resolvedLangCode,
 		];
-		if ( $this->showGroups ) {
+		if ( $this->showGroups && !$options->getIsPreview() &&
+			!$options->getIsSectionPreview()
+		) {
+			// Groups are not available to the static map renderer
+			// before the page was saved, can only be applied via JS
 			$imgUrlParams += [
 				'domain' => $config->get( 'ServerName' ),
 				'title' => $this->parser->getTitle()->getPrefixedText(),

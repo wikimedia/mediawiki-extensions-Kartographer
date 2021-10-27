@@ -207,6 +207,32 @@ class KartographerTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	public function testImagePreview() {
+		// Previews should not contain group data for the static image
+		$this->setMwGlobals( [
+			'wgKartographerStaticMapframe' => false,
+			'wgKartographerMapServer' => '',
+			'KartographerDfltStyle' => 'osm-intl',
+		] );
+		$input = '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37>' .
+				self::WIKITEXT_JSON .
+				'</mapframe>';
+		$output = $this->parse( $input,
+			static function ( ParserOptions $options ) {
+				$options->setIsPreview( true );
+				$options->setIsSectionPreview( true );
+			}
+		);
+		// In preview mode, static maps get disabled and dynamic maps are used
+		// The embedded img url therefor cannot refer to any groups,
+		// because they might not yet exist when the renderer requests them.
+		$this->assertStringNotContainsString( 'domain=localhost&amp;title=Test&amp;', $output->getRawText() );
+		$this->assertStringContainsString(
+			'/img/osm-intl,13,37,-122,700x400.png?lang=en',
+			$output->getRawText()
+		);
+	}
+
 	/**
 	 * @dataProvider provideLiveData
 	 */
