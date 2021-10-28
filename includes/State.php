@@ -189,7 +189,8 @@ class State implements JsonSerializable {
 	 * @param array $data A JSON-serializable structure
 	 */
 	public function addData( $groupId, array $data ) {
-		if ( array_key_exists( $groupId, $this->data ) ) {
+		// There is no way to ever add anything to a private group starting with `_`
+		if ( array_key_exists( $groupId, $this->data ) && $groupId[0] !== '_' ) {
 			$this->data[$groupId] = array_merge( $this->data[$groupId], $data );
 		} else {
 			$this->data[$groupId] = $data;
