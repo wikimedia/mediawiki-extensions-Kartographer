@@ -17,7 +17,7 @@ class CoordFormatter {
 	 * @param Language $language
 	 * @return string
 	 */
-	public static function format( $lat, $lon, Language $language ) {
+	public static function format( $lat, $lon, Language $language ): string {
 		$latStr = self::formatOneCoord( $lat, 'lat', $language );
 		$lonStr = self::formatOneCoord( $lon, 'lon', $language );
 
@@ -33,7 +33,7 @@ class CoordFormatter {
 	 * @param Language $language
 	 * @return string
 	 */
-	private static function formatOneCoord( $coord, $latLon, Language $language ) {
+	private static function formatOneCoord( $coord, $latLon, Language $language ): string {
 		$val = $sign = round( $coord * 3600 );
 		$val = abs( $val );
 		$degrees = floor( $val / 3600 );

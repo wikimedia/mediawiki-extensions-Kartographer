@@ -88,7 +88,7 @@ abstract class TagHandler {
 	 * @param PPFrame $frame
 	 * @return string
 	 */
-	public static function entryPoint( $input, array $args, Parser $parser, PPFrame $frame ) {
+	public static function entryPoint( $input, array $args, Parser $parser, PPFrame $frame ): string {
 		/** @phan-suppress-next-line PhanTypeInstantiateAbstractStatic */
 		$handler = new static();
 
@@ -102,7 +102,7 @@ abstract class TagHandler {
 	 * @param PPFrame $frame
 	 * @return string
 	 */
-	private function handle( $input, array $args, Parser $parser, PPFrame $frame ) {
+	private function handle( $input, array $args, Parser $parser, PPFrame $frame ): string {
 		$this->parser = $parser;
 		$this->frame = $frame;
 		$output = $parser->getOutput();
@@ -154,9 +154,8 @@ abstract class TagHandler {
 
 	/**
 	 * Parses tag attributes in $this->args
-	 * @return void
 	 */
-	protected function parseArgs() {
+	protected function parseArgs(): void {
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getMainConfig();
 
@@ -189,7 +188,7 @@ abstract class TagHandler {
 	 * When overridden in a descendant class, returns tag HTML
 	 * @return string
 	 */
-	abstract protected function render();
+	abstract protected function render(): string;
 
 	private function parseGroups() {
 		if ( !MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerWikivoyageMode' ) ) {
@@ -375,7 +374,7 @@ abstract class TagHandler {
 	 * @return string
 	 * @throws Exception
 	 */
-	private function reportError() {
+	private function reportError(): string {
 		$this->state->setBrokenTags();
 		$errors = array_merge( $this->status->getErrorsByType( 'error' ),
 			$this->status->getErrorsByType( 'warning' )
@@ -407,7 +406,7 @@ abstract class TagHandler {
 	/**
 	 * @return Language
 	 */
-	protected function getLanguage() {
+	protected function getLanguage(): Language {
 		return $this->parser->getTargetLanguage();
 	}
 }
