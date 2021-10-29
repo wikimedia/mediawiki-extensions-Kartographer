@@ -19,7 +19,7 @@ class ExternalLinksProvider {
 	/**
 	 * @param ResourceLoaderContext $context
 	 *
-	 * @return stdClass|array
+	 * @return stdClass
 	 */
 	public static function getData( ResourceLoaderContext $context ) {
 		$json = file_get_contents( __DIR__ . '/../externalLinks.json' );
