@@ -4,7 +4,6 @@ namespace Kartographer;
 
 use JsonSerializable;
 use ParserOutput;
-use stdClass;
 
 /**
  * Stores information about map tags on page in ParserOutput
@@ -39,7 +38,7 @@ class State implements JsonSerializable {
 	private $requestedGroups = [];
 
 	/**
-	 * @var stdClass|null
+	 * @var int[]|null
 	 */
 	private $counters;
 
@@ -171,16 +170,16 @@ class State implements JsonSerializable {
 	}
 
 	/**
-	 * @return stdClass
+	 * @return int[]
 	 */
-	public function getCounters() {
-		return $this->counters ?: (object)[];
+	public function getCounters(): array {
+		return $this->counters ?: [];
 	}
 
 	/**
-	 * @param stdClass $counters A JSON-serializable structure
+	 * @param int[] $counters A JSON-serializable structure
 	 */
-	public function setCounters( stdClass $counters ) {
+	public function setCounters( array $counters ) {
 		$this->counters = $counters;
 	}
 
@@ -215,7 +214,7 @@ class State implements JsonSerializable {
 			'mapframes' => $this->mapframes,
 			'interactiveGroups' => $this->interactiveGroups,
 			'requestedGroups' => $this->requestedGroups,
-			'counters' => $this->counters !== null ? (array)$this->counters : null,
+			'counters' => $this->counters,
 			'data' => $this->data,
 		];
 	}
@@ -233,7 +232,7 @@ class State implements JsonSerializable {
 		$status->mapframes = $data['mapframes'];
 		$status->interactiveGroups = $data['interactiveGroups'];
 		$status->requestedGroups = $data['requestedGroups'];
-		$status->counters = $data['counters'] !== null ? (object)$data['counters'] : null;
+		$status->counters = $data['counters'];
 		$status->data = $data['data'];
 
 		return $status;
