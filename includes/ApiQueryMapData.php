@@ -27,7 +27,7 @@ class ApiQueryMapData extends ApiQueryBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$limit = $params['limit'];
-		$groups = $params['groups'] === '' ? false : explode( '|', $params['groups'] );
+		$groupIds = $params['groups'] === '' ? false : explode( '|', $params['groups'] );
 		$titles = $this->getPageSet()->getGoodPages();
 		if ( !$titles ) {
 			return;
@@ -50,13 +50,13 @@ class ApiQueryMapData extends ApiQueryBase {
 			$data = $state->getData();
 
 			$result = [];
-			if ( $groups ) {
-				foreach ( $groups as $group ) {
-					if ( array_key_exists( $group, $data ) ) {
-						$result[$group] = $data[$group];
+			if ( $groupIds ) {
+				foreach ( $groupIds as $groupId ) {
+					if ( array_key_exists( $groupId, $data ) ) {
+						$result[$groupId] = $data[$groupId];
 					} else {
 						// Let the client know there is no data found for this group
-						$result[$group] = null;
+						$result[$groupId] = null;
 					}
 				}
 			} else {
