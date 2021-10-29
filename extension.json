@@ -532,7 +532,7 @@
 			"value": true
 		},
 		"KartographerUsePageLanguage": {
-			"description": "Use the language of the page instead of that of the interface",
+			"description": "Use the language of the page to render the map labels, instead of the language of the territory of the map (lang=local).",
 			"value": true
 		},
 		"KartographerFallbackZoom": {
