@@ -13,8 +13,7 @@ use MediaWiki\MediaWikiServices;
  */
 class MapLink extends TagHandler {
 
-	/** @inheritDoc */
-	protected $tag = 'maplink';
+	public const TAG = 'maplink';
 
 	/** @var string */
 	private $cssClass = '';
