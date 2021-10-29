@@ -54,7 +54,7 @@ class SimpleStyleParser {
 	 * @param string|null $input
 	 * @return Status
 	 */
-	public function parse( $input ) {
+	public function parse( $input ): Status {
 		$input = trim( $input );
 		$status = Status::newGood( [] );
 		if ( $input !== '' ) {
@@ -75,7 +75,7 @@ class SimpleStyleParser {
 	 * @param array|stdClass &$data
 	 * @return Status
 	 */
-	public function parseObject( &$data ) {
+	public function parseObject( &$data ): Status {
 		if ( !is_array( $data ) ) {
 			$data = [ $data ];
 		}
@@ -92,7 +92,7 @@ class SimpleStyleParser {
 	 * @param stdClass[]|stdClass &$data
 	 * @return Status
 	 */
-	public function normalizeAndSanitize( &$data ) {
+	public function normalizeAndSanitize( &$data ): Status {
 		$status = $this->normalize( $data );
 		$this->sanitize( $data );
 		return $status;
@@ -151,7 +151,7 @@ class SimpleStyleParser {
 	 * @param mixed $json
 	 * @return Status
 	 */
-	private function validateContent( $json ) {
+	private function validateContent( $json ): Status {
 		$schema = self::loadSchema();
 		$validator = new Validator();
 		$validator->check( $json, $schema );
@@ -201,7 +201,7 @@ class SimpleStyleParser {
 	 * @param stdClass[]|stdClass &$json
 	 * @return Status
 	 */
-	protected function normalize( &$json ) {
+	protected function normalize( &$json ): Status {
 		$status = Status::newGood();
 		if ( is_array( $json ) ) {
 			foreach ( $json as &$element ) {
@@ -221,7 +221,7 @@ class SimpleStyleParser {
 	 * @param stdClass &$object
 	 * @return Status
 	 */
-	private function normalizeExternalData( &$object ) {
+	private function normalizeExternalData( &$object ): Status {
 		$ret = (object)[
 			'type' => 'ExternalData',
 			'service' => $object->service,
@@ -321,7 +321,7 @@ class SimpleStyleParser {
 	 * @param string $text
 	 * @return string
 	 */
-	private function parseText( $text ) {
+	private function parseText( $text ): string {
 		$text = $this->parser->recursiveTagParseFully( $text, $this->frame ?: false );
 		return trim( Parser::stripOuterParagraph( $text ) );
 	}
@@ -329,7 +329,7 @@ class SimpleStyleParser {
 	/**
 	 * @return stdClass
 	 */
-	private static function loadSchema() {
+	private static function loadSchema(): stdClass {
 		static $schema;
 
 		if ( !$schema ) {

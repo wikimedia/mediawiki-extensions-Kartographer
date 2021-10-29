@@ -38,7 +38,7 @@ class MapFrame extends TagHandler {
 	/**
 	 * @inheritDoc
 	 */
-	protected function parseArgs() {
+	protected function parseArgs(): void {
 		parent::parseArgs();
 		$this->state->useMapframe();
 		// @todo: should these have defaults?
@@ -51,7 +51,7 @@ class MapFrame extends TagHandler {
 	/**
 	 * @return string
 	 */
-	protected function render() {
+	protected function render(): string {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$mapServer = $config->get( 'KartographerMapServer' );
 

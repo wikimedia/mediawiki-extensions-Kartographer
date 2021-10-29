@@ -54,7 +54,7 @@ class State implements JsonSerializable {
 	 * @param ParserOutput $output
 	 * @return self|null
 	 */
-	public static function getState( ParserOutput $output ) {
+	public static function getState( ParserOutput $output ): ?self {
 		// $state may be null or a JSON serializable array.
 		// When reading old cache entries, it may for a while still be a State object (T266260).
 		$state = $output->getExtensionData( self::DATA_KEY );
@@ -71,9 +71,9 @@ class State implements JsonSerializable {
 	 * otherwise creates a new instance.
 	 *
 	 * @param ParserOutput $output
-	 * @return State
+	 * @return self
 	 */
-	public static function getOrCreate( ParserOutput $output ) {
+	public static function getOrCreate( ParserOutput $output ): self {
 		$result = self::getState( $output );
 		if ( !$result ) {
 			$result = new self;
@@ -86,16 +86,16 @@ class State implements JsonSerializable {
 	 * Stores an instance of self in the ParserOutput.
 	 *
 	 * @param ParserOutput $output
-	 * @param State $state
+	 * @param self $state
 	 */
-	public static function setState( ParserOutput $output, State $state ) {
+	public static function setState( ParserOutput $output, self $state ) {
 		$output->setExtensionData( self::DATA_KEY, $state->jsonSerialize() );
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function hasValidTags() {
+	public function hasValidTags(): bool {
 		return $this->valid;
 	}
 
@@ -106,7 +106,7 @@ class State implements JsonSerializable {
 	/**
 	 * @return bool
 	 */
-	public function hasBrokenTags() {
+	public function hasBrokenTags(): bool {
 		return $this->broken;
 	}
 
@@ -124,7 +124,7 @@ class State implements JsonSerializable {
 	/**
 	 * @return int Number of maplinks.
 	 */
-	public function getMaplinks() {
+	public function getMaplinks(): int {
 		return $this->maplinks;
 	}
 
@@ -138,7 +138,7 @@ class State implements JsonSerializable {
 	/**
 	 * @return int Number of mapframes.
 	 */
-	public function getMapframes() {
+	public function getMapframes(): int {
 		return $this->mapframes;
 	}
 
@@ -152,7 +152,7 @@ class State implements JsonSerializable {
 	/**
 	 * @return string[]
 	 */
-	public function getInteractiveGroups() {
+	public function getInteractiveGroups(): array {
 		return array_keys( $this->interactiveGroups );
 	}
 
@@ -166,7 +166,7 @@ class State implements JsonSerializable {
 	/**
 	 * @return int[] Group name => original index map (flipped version of addRequestedGroups)
 	 */
-	public function getRequestedGroups() {
+	public function getRequestedGroups(): array {
 		return $this->requestedGroups;
 	}
 
@@ -199,7 +199,7 @@ class State implements JsonSerializable {
 	/**
 	 * @return array[] Associative key-value array, build up by {@see addData}
 	 */
-	public function getData() {
+	public function getData(): array {
 		return $this->data;
 	}
 
@@ -222,9 +222,9 @@ class State implements JsonSerializable {
 	/**
 	 * @param array $data A JSON serializable associative array, as returned by jsonSerialize()
 	 *
-	 * @return State
+	 * @return self
 	 */
-	public static function newFromJson( array $data ) {
+	public static function newFromJson( array $data ): self {
 		$status = new self();
 		$status->valid = $data['valid'];
 		$status->broken = $data['broken'];

@@ -110,7 +110,7 @@ class SpecialMap extends SpecialPage {
 	 * @param string $lang Optional language code. Defaults to 'local'
 	 * @return Title
 	 */
-	public static function link( $lat, $lon, $zoom, $lang = 'local' ) {
+	public static function link( $lat, $lon, $zoom, $lang = 'local' ): Title {
 		return SpecialPage::getTitleFor( 'Map', "$zoom/$lat/$lon/$lang" );
 	}
 }

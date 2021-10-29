@@ -22,7 +22,7 @@ class MapLink extends TagHandler {
 	/**
 	 * @inheritDoc
 	 */
-	protected function parseArgs() {
+	protected function parseArgs(): void {
 		$this->state->useMaplink();
 		parent::parseArgs();
 		$this->cssClass = $this->getText( 'class', '', '/^(|[a-zA-Z][-_a-zA-Z0-9]*)$/' );
@@ -31,7 +31,7 @@ class MapLink extends TagHandler {
 	/**
 	 * @inheritDoc
 	 */
-	protected function render() {
+	protected function render(): string {
 		$output = $this->parser->getOutput();
 		$output->addModules( 'ext.kartographer.link' );
 
@@ -80,7 +80,7 @@ class MapLink extends TagHandler {
 	 * Extracts CSS style to be used by the link from GeoJSON
 	 * @return string
 	 */
-	private function extractMarkerCss() {
+	private function extractMarkerCss(): string {
 		if ( MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerUseMarkerStyle' )
 			&& $this->markerProperties
 			&& property_exists( $this->markerProperties, 'marker-color' )
