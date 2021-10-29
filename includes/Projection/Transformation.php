@@ -12,7 +12,7 @@ class Transformation {
 
 	// @fixme: cleanup
 	private const A = 0.159154943; // 0.5 * pi()
-	private const C = -0.159154943; // -0.5 * pi()
+	private const C = -self::A;
 
 	/**
 	 * (LatLon) -> Point

@@ -333,9 +333,11 @@ class SimpleStyleParser {
 		static $schema;
 
 		if ( !$schema ) {
-			$basePath = 'file://' . dirname( __DIR__ ) . '/schemas';
-			$schema = (object)[ '$ref' => "$basePath/geojson.json" ];
+			$schema = (object)[
+				'$ref' => 'file://' . dirname( __DIR__ ) . '/schemas/geojson.json',
+			];
 		}
+
 		return $schema;
 	}
 }
