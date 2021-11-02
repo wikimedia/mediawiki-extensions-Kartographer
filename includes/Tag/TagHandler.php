@@ -39,16 +39,16 @@ abstract class TagHandler {
 	/** @var string[] */
 	private $args;
 
-	/** @var float */
+	/** @var float|null */
 	protected $lat;
 
-	/** @var float */
+	/** @var float|null */
 	protected $lon;
 
-	/** @var int */
+	/** @var int|null */
 	protected $zoom;
 
-	/** @var string */
+	/** @var string One of "osm-intl" or "osm" */
 	protected $mapStyle;
 
 	/** @var string|null */
@@ -57,10 +57,13 @@ abstract class TagHandler {
 	/** @var string */
 	protected $resolvedLangCode;
 
-	/** @var string|null name of the group, or null for private */
-	private $groupName;
+	/**
+	 * @var string|null Currently parsed group identifier from the group="…" attribute. Only allowed
+	 *  in …WikivoyageMode. Otherwise a private, auto-generated identifier starting with "_".
+	 */
+	private $groupId;
 
-	/** @var string[] list of groups to show */
+	/** @var string[] List of group identifiers to show */
 	protected $showGroups = [];
 
 	/** @var int|null */
@@ -196,7 +199,7 @@ abstract class TagHandler {
 			return;
 		}
 
-		$this->groupName = $this->getText( 'group', null, '/^[a-zA-Z0-9]+$/' );
+		$this->groupId = $this->getText( 'group', null, '/^[a-zA-Z0-9]+$/' );
 
 		$text = $this->getText( 'show', null, '/^(|[a-zA-Z0-9]+(\s*,\s*[a-zA-Z0-9]+)*)$/' );
 		if ( $text ) {
@@ -205,8 +208,8 @@ abstract class TagHandler {
 
 		// Make sure the current group is shown for this map, even if there is no geojson
 		// Private group will be added during the save, as it requires hash calculation
-		if ( $this->groupName !== null ) {
-			$this->showGroups[] = $this->groupName;
+		if ( $this->groupId !== null ) {
+			$this->showGroups[] = $this->groupId;
 		}
 
 		// Make sure there are no group name duplicates
@@ -284,16 +287,16 @@ abstract class TagHandler {
 		}
 		$this->state->setCounters( $counters );
 
-		if ( $this->groupName === null ) {
-			$group = '_' . sha1( FormatJson::encode( $this->geometries, false, FormatJson::ALL_OK ) );
-			$this->groupName = $group;
-			$this->showGroups[] = $group;
+		if ( $this->groupId === null ) {
+			$groupId = '_' . sha1( FormatJson::encode( $this->geometries, false, FormatJson::ALL_OK ) );
+			$this->groupId = $groupId;
+			$this->showGroups[] = $groupId;
 			// no need to array_unique() because it's impossible to manually add a private group
 		} else {
-			$group = $this->groupName;
+			$groupId = $this->groupId;
 		}
 
-		$this->state->addData( $group, $this->geometries );
+		$this->state->addData( $groupId, $this->geometries );
 	}
 
 	/**
@@ -339,9 +342,9 @@ abstract class TagHandler {
 				$liveData = array_intersect_key( $data, $interact );
 				$requested = array_unique( $requested );
 				// Prevent pointless API requests for missing groups
-				foreach ( $requested as $group ) {
-					if ( !isset( $data[$group] ) ) {
-						$liveData[$group] = [];
+				foreach ( $requested as $groupId ) {
+					if ( !isset( $data[$groupId] ) ) {
+						$liveData[$groupId] = [];
 					}
 				}
 				$output->addJsConfigVars( 'wgKartographerLiveData', (object)$liveData );

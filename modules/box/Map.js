@@ -464,14 +464,13 @@ KartographerMap = L.Map.extend( {
 	/**
 	 * Creates a new GeoJSON layer and adds it to the map.
 	 *
-	 * @param {string} groupName The layer name (id without special
-	 *   characters or spaces).
+	 * @param {string} groupId
 	 * @param {Object} geoJson Features
 	 * @param {Object} [options] Layer options
 	 * @return {L.mapbox.FeatureLayer|undefined} Added layer, or undefined in case e.g. the GeoJSON
 	 *   was invalid
 	 */
-	addGeoJSONLayer: function ( groupName, geoJson, options ) {
+	addGeoJSONLayer: function ( groupId, geoJson, options ) {
 		var layer;
 		try {
 			layer = L.mapbox.featureLayer( geoJson, $.extend( {}, dataLayerOpts, options ) ).addTo( this );
@@ -479,8 +478,8 @@ KartographerMap = L.Map.extend( {
 				return this.options.attribution;
 			};
 			this.attributionControl.addAttribution( layer.getAttribution() );
-			this.dataLayers[ groupName ] = layer;
-			layer.dataGroup = groupName;
+			this.dataLayers[ groupId ] = layer;
+			layer.dataGroup = groupId;
 			return layer;
 		} catch ( e ) {
 			mw.log( e );

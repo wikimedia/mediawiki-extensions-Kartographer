@@ -13,18 +13,18 @@ class State implements JsonSerializable {
 
 	public const DATA_KEY = 'kartographer';
 
-	/** @var bool */
+	/** @var bool If the page contains at least one valid <map…> tag */
 	private $valid = false;
-	/** @var bool */
+	/** @var bool If the page contains one or more invalid <map…> tags */
 	private $broken = false;
 
 	/**
-	 * @var int
+	 * @var int Total number of <maplink> tags on the page, to be stored as a page property
 	 */
 	private $maplinks = 0;
 
 	/**
-	 * @var int
+	 * @var int Total number of <mapframe> tags on the page, to be stored as a page property
 	 */
 	private $mapframes = 0;
 
@@ -143,10 +143,10 @@ class State implements JsonSerializable {
 	}
 
 	/**
-	 * @param string[] $groups
+	 * @param string[] $groupIds
 	 */
-	public function addInteractiveGroups( array $groups ) {
-		$this->interactiveGroups += array_flip( $groups );
+	public function addInteractiveGroups( array $groupIds ) {
+		$this->interactiveGroups += array_flip( $groupIds );
 	}
 
 	/**
@@ -157,14 +157,14 @@ class State implements JsonSerializable {
 	}
 
 	/**
-	 * @param string[] $groups
+	 * @param string[] $groupIds
 	 */
-	public function addRequestedGroups( array $groups ) {
-		$this->requestedGroups += array_flip( $groups );
+	public function addRequestedGroups( array $groupIds ) {
+		$this->requestedGroups += array_flip( $groupIds );
 	}
 
 	/**
-	 * @return int[] Group name => original index map (flipped version of addRequestedGroups)
+	 * @return int[] Group id => original index map (flipped version of addRequestedGroups)
 	 */
 	public function getRequestedGroups(): array {
 		return $this->requestedGroups;
@@ -185,14 +185,14 @@ class State implements JsonSerializable {
 	}
 
 	/**
-	 * @param string $key
+	 * @param string $groupId
 	 * @param array $data A JSON-serializable structure
 	 */
-	public function addData( $key, array $data ) {
-		if ( array_key_exists( $key, $this->data ) ) {
-			$this->data[$key] = array_merge( $this->data[$key], $data );
+	public function addData( $groupId, array $data ) {
+		if ( array_key_exists( $groupId, $this->data ) ) {
+			$this->data[$groupId] = array_merge( $this->data[$groupId], $data );
 		} else {
-			$this->data[$key] = $data;
+			$this->data[$groupId] = $data;
 		}
 	}
 
