@@ -25,8 +25,7 @@ class MapFrame extends TagHandler {
 		'none' => 'tnone',
 	];
 
-	/** @inheritDoc */
-	protected $tag = 'mapframe';
+	public const TAG = 'mapframe';
 
 	/** @var int|string either a number of pixels, a percentage (e.g. "100%"), or "full" */
 	private $width;

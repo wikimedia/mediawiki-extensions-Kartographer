@@ -28,8 +28,7 @@ use stdClass;
  */
 abstract class TagHandler {
 
-	/** @var string */
-	protected $tag;
+	public const TAG = null;
 
 	/** @var Status */
 	private $status;
@@ -400,7 +399,7 @@ abstract class TagHandler {
 			$errorText = '* ' . $errorText;
 		}
 		return Html::rawElement( 'div', [ 'class' => 'mw-kartographer-error' ],
-			wfMessage( $message, $this->tag, $errorText )->inLanguage( $this->getLanguage() )->parse() );
+			wfMessage( $message, static::TAG, $errorText )->inLanguage( $this->getLanguage() )->parse() );
 	}
 
 	/**
