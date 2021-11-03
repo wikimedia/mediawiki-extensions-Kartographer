@@ -18,6 +18,8 @@ class ApiQueryMapDataTest extends ApiTestCase {
 	// phpcs:disable Generic.Files.LineLength
 	private const MAPFRAME_CONTENT = '<mapframe latitude=0 longitude=0 width=1 height=1>{"type": "Feature","geometry": {"type": "Point","coordinates": [1, 2]}}</mapframe>';
 	private const MAPFRAME_JSON = [ '{"_1b3d2dce6411896528c219bf0af1e6c4c3985a1a":[{"type":"Feature","geometry":{"type":"Point","coordinates":[1,2]}}]}' ];
+	private const MAPFRAME_CONTENT_OTHER = '<mapframe latitude=0 longitude=0 width=1 height=1>{"type": "Feature","geometry": {"type": "Point","coordinates": [2, 1]}}</mapframe>';
+	private const MAPFRAME_JSON_OTHER = [ '{"_6602cbfa7dc93b2b4aa360dadf67eb61bf8792a4":[{"type":"Feature","geometry":{"type":"Point","coordinates":[2,1]}}]}' ];
 	// phpcs:enable
 
 	public function testExecuteMissingPage() {
@@ -54,25 +56,46 @@ class ApiQueryMapDataTest extends ApiTestCase {
 		];
 	}
 
-	public function testExecuteWithRevisionId() {
-		$page = $this->getExistingTestPage( __METHOD__ );
-		$prevRevision = $this->addRevision( $page, self::MAPFRAME_CONTENT );
-		$currentRevision = $this->addRevision( $page, '<mapframe latitude=0 longitude=0 width=1 height=1 />' );
+	public function testExecuteWithMultiple() {
+		$pageOne = $this->getExistingTestPage( __METHOD__ );
+		$oldRevPageOne = $this->addRevision( $pageOne, self::MAPFRAME_CONTENT_OTHER );
+		$currRevPageOne = $this->addRevision( $pageOne, self::MAPFRAME_CONTENT );
 
-		$apiResult = $this->doApiRequest( [
+		$pageTwo = $this->getExistingTestPage( __METHOD__ . '-2' );
+		$currRevPageTwo = $this->addRevision( $pageTwo, self::MAPFRAME_CONTENT_OTHER );
+
+		// query two different pages
+		$apiResultTitles = $this->doApiRequest( [
 			'action' => 'query',
 			'prop' => 'mapdata',
-			'revids' => $currentRevision->getId(),
+			'titles' => $pageOne->getDBkey() . '|' . $pageTwo->getDBkey(),
 		] );
-		$this->assertResult( [ [ '[]' ] ], $apiResult );
+		$this->assertResult( [ self::MAPFRAME_JSON, self::MAPFRAME_JSON_OTHER ], $apiResultTitles );
 
-		// using an old revision still just returns the data from the current revision
-		$apiResult = $this->doApiRequest( [
+		// query a single revision
+		$apiResultOneRevision = $this->doApiRequest( [
 			'action' => 'query',
 			'prop' => 'mapdata',
-			'revids' => $prevRevision->getId(),
+			'revids' => $currRevPageOne->getId(),
 		] );
-		$this->assertResult( [ [ '[]' ] ], $apiResult );
+		$this->assertResult( [ self::MAPFRAME_JSON ], $apiResultOneRevision );
+
+		// query two different revisions from two differrent pages
+		$apiResultRevisions = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'mapdata',
+			'revids' => $currRevPageOne->getId() . '|' . $currRevPageTwo->getId(),
+		] );
+		$this->assertResult( [ self::MAPFRAME_JSON, self::MAPFRAME_JSON_OTHER ], $apiResultRevisions );
+
+		// using an old revision from the same page still just returns the data from the latest revision
+		$apiResultOldRevision = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'mapdata',
+			'revids' => $oldRevPageOne->getId(),
+		] );
+		// with old revids working this should return `[ self::MAPFRAME_JSON_OTHER ]`
+		$this->assertResult( [ self::MAPFRAME_JSON ], $apiResultOldRevision );
 	}
 
 	private function addRevision( $page, $content ) {
