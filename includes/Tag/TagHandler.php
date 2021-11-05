@@ -78,7 +78,7 @@ abstract class TagHandler {
 	/** @var State */
 	protected $state;
 
-	/** @var stdClass */
+	/** @var stdClass|null */
 	protected $markerProperties;
 
 	/**

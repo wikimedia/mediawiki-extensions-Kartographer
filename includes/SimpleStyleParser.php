@@ -101,7 +101,7 @@ class SimpleStyleParser {
 	/**
 	 * @param stdClass[] $values
 	 * @param stdClass $counters counter-name -> integer
-	 * @return bool|array [ marker, marker properties ]
+	 * @return array|false [ string $markerSymbol, stdClass $markerProperties ]
 	 */
 	public static function doCountersRecursive( array $values, $counters ) {
 		$firstMarker = false;

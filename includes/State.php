@@ -44,7 +44,7 @@ class State implements JsonSerializable {
 	private $counters;
 
 	/**
-	 * @var array[]
+	 * @var array[] Indexed per group identifier
 	 */
 	private $data = [];
 
@@ -174,7 +174,7 @@ class State implements JsonSerializable {
 	 * @return stdClass
 	 */
 	public function getCounters() {
-		return $this->counters ?: new stdClass();
+		return $this->counters ?: (object)[];
 	}
 
 	/**
