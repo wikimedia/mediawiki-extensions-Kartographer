@@ -5,6 +5,7 @@ namespace Kartographer\Tag;
 use FormatJson;
 use Html;
 use Kartographer\SpecialMap;
+use MediaWiki\MediaWikiServices;
 
 /**
  * The <mapframe> tag inserts a map into wiki page
@@ -24,8 +25,7 @@ class MapFrame extends TagHandler {
 		'none' => 'tnone',
 	];
 
-	/** @inheritDoc */
-	protected $tag = 'mapframe';
+	public const TAG = 'mapframe';
 
 	/** @var int|string either a number of pixels, a percentage (e.g. "100%"), or "full" */
 	private $width;
@@ -37,7 +37,7 @@ class MapFrame extends TagHandler {
 	/**
 	 * @inheritDoc
 	 */
-	protected function parseArgs() {
+	protected function parseArgs(): void {
 		parent::parseArgs();
 		$this->state->useMapframe();
 		// @todo: should these have defaults?
@@ -50,12 +50,9 @@ class MapFrame extends TagHandler {
 	/**
 	 * @return string
 	 */
-	protected function render() {
-		global $wgKartographerMapServer,
-			$wgResponsiveImages,
-			$wgServerName,
-			$wgKartographerSrcsetScales,
-			$wgKartographerStaticMapframe;
+	protected function render(): string {
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$mapServer = $config->get( 'KartographerMapServer' );
 
 		$caption = $this->getText( 'text', null );
 		$framed = $caption !== null || $this->getText( 'frameless', null ) === null;
@@ -88,7 +85,7 @@ class MapFrame extends TagHandler {
 		// Should be fixed, especially considering VE in page editing etc...
 
 		$useSnapshot =
-			$wgKartographerStaticMapframe && !$options->getIsPreview() &&
+			$config->get( 'KartographerStaticMapframe' ) && !$options->getIsPreview() &&
 			!$options->getIsSectionPreview();
 
 		$output->addModules( $useSnapshot
@@ -146,13 +143,13 @@ class MapFrame extends TagHandler {
 		];
 		if ( $this->showGroups ) {
 			$imgUrlParams += [
-				'domain' => $wgServerName,
+				'domain' => $config->get( 'ServerName' ),
 				'title' => $this->parser->getTitle()->getPrefixedText(),
 				'revid' => $this->parser->getRevisionId(),
 				'groups' => implode( ',', $this->showGroups ),
 			];
 		}
-		$imgUrl = "{$wgKartographerMapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat}," .
+		$imgUrl = "{$mapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat}," .
 		"{$staticLon},{$staticWidth}x{$this->height}.png";
 		$imgUrl .= '?' . wfArrayToCgi( $imgUrlParams );
 		$imgAttrs = [
@@ -163,12 +160,13 @@ class MapFrame extends TagHandler {
 			'decoding' => 'async'
 		];
 
-		if ( $wgResponsiveImages && $wgKartographerSrcsetScales ) {
+		$srcSetScalesConfig = $config->get( 'KartographerSrcsetScales' );
+		if ( $config->get( 'ResponsiveImages' ) && $srcSetScalesConfig ) {
 			// For now only support 2x, not 1.5. Saves some bytes...
-			$srcSetScales = array_intersect( $wgKartographerSrcsetScales, [ 2 ] );
+			$srcSetScales = array_intersect( $srcSetScalesConfig, [ 2 ] );
 			$srcSets = [];
 			foreach ( $srcSetScales as $srcSetScale ) {
-				$scaledImgUrl = "{$wgKartographerMapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat}," .
+				$scaledImgUrl = "{$mapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat}," .
 				"{$staticLon},{$staticWidth}x{$this->height}@{$srcSetScale}x.png";
 				$scaledImgUrl .= '?' . wfArrayToCgi( $imgUrlParams );
 				$srcSets[] = "{$scaledImgUrl} {$srcSetScale}x";

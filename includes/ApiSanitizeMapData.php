@@ -15,7 +15,6 @@ use FormatJson;
 use MediaWiki\MediaWikiServices;
 use Parser;
 use ParserOptions;
-use stdClass;
 use Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -60,7 +59,7 @@ class ApiSanitizeMapData extends ApiBase {
 			$this->getResult()->addValue( null, $this->getModuleName(), [ 'error' => $error ] );
 		} else {
 			$data = $status->getValue();
-			$counters = new stdClass();
+			$counters = (object)[];
 			SimpleStyleParser::doCountersRecursive( $data, $counters );
 			$this->getResult()
 				->addValue( null,

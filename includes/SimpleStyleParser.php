@@ -54,7 +54,7 @@ class SimpleStyleParser {
 	 * @param string|null $input
 	 * @return Status
 	 */
-	public function parse( $input ) {
+	public function parse( $input ): Status {
 		$input = trim( $input );
 		$status = Status::newGood( [] );
 		if ( $input !== '' ) {
@@ -72,10 +72,10 @@ class SimpleStyleParser {
 	/**
 	 * Validate and sanitize a parsed GeoJSON data object
 	 *
-	 * @param array|\stdClass &$data
+	 * @param array|stdClass &$data
 	 * @return Status
 	 */
-	public function parseObject( &$data ) {
+	public function parseObject( &$data ): Status {
 		if ( !is_array( $data ) ) {
 			$data = [ $data ];
 		}
@@ -92,7 +92,7 @@ class SimpleStyleParser {
 	 * @param stdClass[]|stdClass &$data
 	 * @return Status
 	 */
-	public function normalizeAndSanitize( &$data ) {
+	public function normalizeAndSanitize( &$data ): Status {
 		$status = $this->normalize( $data );
 		$this->sanitize( $data );
 		return $status;
@@ -101,7 +101,7 @@ class SimpleStyleParser {
 	/**
 	 * @param stdClass[] $values
 	 * @param stdClass $counters counter-name -> integer
-	 * @return bool|array [ marker, marker properties ]
+	 * @return array|false [ string $markerSymbol, stdClass $markerProperties ]
 	 */
 	public static function doCountersRecursive( array $values, $counters ) {
 		$firstMarker = false;
@@ -151,7 +151,7 @@ class SimpleStyleParser {
 	 * @param mixed $json
 	 * @return Status
 	 */
-	private function validateContent( $json ) {
+	private function validateContent( $json ): Status {
 		$schema = self::loadSchema();
 		$validator = new Validator();
 		$validator->check( $json, $schema );
@@ -201,7 +201,7 @@ class SimpleStyleParser {
 	 * @param stdClass[]|stdClass &$json
 	 * @return Status
 	 */
-	protected function normalize( &$json ) {
+	protected function normalize( &$json ): Status {
 		$status = Status::newGood();
 		if ( is_array( $json ) ) {
 			foreach ( $json as &$element ) {
@@ -218,10 +218,10 @@ class SimpleStyleParser {
 	/**
 	 * Canonicalizes an ExternalData object
 	 *
-	 * @param \stdClass &$object
+	 * @param stdClass &$object
 	 * @return Status
 	 */
-	private function normalizeExternalData( &$object ) {
+	private function normalizeExternalData( &$object ): Status {
 		$ret = (object)[
 			'type' => 'ExternalData',
 			'service' => $object->service,
@@ -279,7 +279,7 @@ class SimpleStyleParser {
 	 *
 	 * HACK: this function supports JsonConfig-style localization that doesn't pass validation
 	 *
-	 * @param \stdClass $properties
+	 * @param stdClass $properties
 	 */
 	private function sanitizeProperties( $properties ) {
 		$saveUnparsed = $this->options['saveUnparsed'] ?? false;
@@ -321,7 +321,7 @@ class SimpleStyleParser {
 	 * @param string $text
 	 * @return string
 	 */
-	private function parseText( $text ) {
+	private function parseText( $text ): string {
 		$text = $this->parser->recursiveTagParseFully( $text, $this->frame ?: false );
 		return trim( Parser::stripOuterParagraph( $text ) );
 	}
@@ -329,13 +329,15 @@ class SimpleStyleParser {
 	/**
 	 * @return stdClass
 	 */
-	private static function loadSchema() {
+	private static function loadSchema(): stdClass {
 		static $schema;
 
 		if ( !$schema ) {
-			$basePath = 'file://' . dirname( __DIR__ ) . '/schemas';
-			$schema = (object)[ '$ref' => "$basePath/geojson.json" ];
+			$schema = (object)[
+				'$ref' => 'file://' . dirname( __DIR__ ) . '/schemas/geojson.json',
+			];
 		}
+
 		return $schema;
 	}
 }

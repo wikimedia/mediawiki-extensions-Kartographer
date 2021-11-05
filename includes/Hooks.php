@@ -24,9 +24,9 @@ class Hooks {
 	public static function onParserFirstCallInit( Parser $parser ) {
 		global $wgKartographerEnableMapFrame;
 
-		$parser->setHook( 'maplink', [ MapLink::class, 'entryPoint' ] );
+		$parser->setHook( MapLink::TAG, [ MapLink::class, 'entryPoint' ] );
 		if ( $wgKartographerEnableMapFrame ) {
-			$parser->setHook( 'mapframe', [ MapFrame::class, 'entryPoint' ] );
+			$parser->setHook( MapFrame::TAG, [ MapFrame::class, 'entryPoint' ] );
 		}
 	}
 
@@ -42,7 +42,7 @@ class Hooks {
 		if ( $state ) {
 			$options = $parser->getOptions();
 			$isPreview = $options->getIsPreview() || $options->getIsSectionPreview();
-			TagHandler::finalParseStep( $state, $output, $isPreview, $parser->getTitle() );
+			TagHandler::finalParseStep( $state, $output, $isPreview, $parser );
 		}
 	}
 

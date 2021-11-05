@@ -12,7 +12,7 @@ class Transformation {
 
 	// @fixme: cleanup
 	private const A = 0.159154943; // 0.5 * pi()
-	private const C = -0.159154943; // -0.5 * pi()
+	private const C = -self::A;
 
 	/**
 	 * (LatLon) -> Point
@@ -21,7 +21,7 @@ class Transformation {
 	 * @param int $scale
 	 * @return float[]
 	 */
-	public static function transform( $point, $scale ) {
+	public static function transform( $point, $scale ): array {
 		$x = $point[0];
 		$y = $point[1];
 
@@ -37,7 +37,7 @@ class Transformation {
 	 *
 	 * @return float[]
 	 */
-	public static function untransform( $point, $scale ) {
+	public static function untransform( $point, $scale ): array {
 		$x = $point[0];
 		$y = $point[1];
 

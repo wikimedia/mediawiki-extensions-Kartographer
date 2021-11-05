@@ -16,20 +16,19 @@ use Html;
 use Kartographer\SimpleStyleParser;
 use Kartographer\State;
 use Language;
+use MediaWiki\MediaWikiServices;
 use Parser;
 use ParserOutput;
 use PPFrame;
 use Status;
 use stdClass;
-use Title;
 
 /**
  * Base class for all <map...> tags
  */
 abstract class TagHandler {
 
-	/** @var string */
-	protected $tag;
+	public const TAG = null;
 
 	/** @var Status */
 	private $status;
@@ -40,16 +39,16 @@ abstract class TagHandler {
 	/** @var string[] */
 	private $args;
 
-	/** @var float */
+	/** @var float|null */
 	protected $lat;
 
-	/** @var float */
+	/** @var float|null */
 	protected $lon;
 
-	/** @var int */
+	/** @var int|null */
 	protected $zoom;
 
-	/** @var string */
+	/** @var string One of "osm-intl" or "osm" */
 	protected $mapStyle;
 
 	/** @var string|null */
@@ -58,10 +57,13 @@ abstract class TagHandler {
 	/** @var string */
 	protected $resolvedLangCode;
 
-	/** @var string|null name of the group, or null for private */
-	private $groupName;
+	/**
+	 * @var string|null Currently parsed group identifier from the group="…" attribute. Only allowed
+	 *  in …WikivoyageMode. Otherwise a private, auto-generated identifier starting with "_".
+	 */
+	private $groupId;
 
-	/** @var string[] list of groups to show */
+	/** @var string[] List of group identifiers to show */
 	protected $showGroups = [];
 
 	/** @var int|null */
@@ -76,7 +78,7 @@ abstract class TagHandler {
 	/** @var State */
 	protected $state;
 
-	/** @var stdClass */
+	/** @var stdClass|null */
 	protected $markerProperties;
 
 	/**
@@ -88,7 +90,7 @@ abstract class TagHandler {
 	 * @param PPFrame $frame
 	 * @return string
 	 */
-	public static function entryPoint( $input, array $args, Parser $parser, PPFrame $frame ) {
+	public static function entryPoint( $input, array $args, Parser $parser, PPFrame $frame ): string {
 		/** @phan-suppress-next-line PhanTypeInstantiateAbstractStatic */
 		$handler = new static();
 
@@ -102,14 +104,15 @@ abstract class TagHandler {
 	 * @param PPFrame $frame
 	 * @return string
 	 */
-	private function handle( $input, array $args, Parser $parser, PPFrame $frame ) {
-		global $wgKartographerMapServer;
-
+	private function handle( $input, array $args, Parser $parser, PPFrame $frame ): string {
 		$this->parser = $parser;
 		$this->frame = $frame;
 		$output = $parser->getOutput();
+
 		$output->addModuleStyles( 'ext.kartographer.style' );
-		$output->addExtraCSPDefaultSrc( $wgKartographerMapServer );
+		$output->addExtraCSPDefaultSrc(
+			MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerMapServer' )
+		);
 		$this->state = State::getOrCreate( $output );
 
 		$this->status = Status::newGood();
@@ -153,10 +156,10 @@ abstract class TagHandler {
 
 	/**
 	 * Parses tag attributes in $this->args
-	 * @return void
 	 */
-	protected function parseArgs() {
-		global $wgKartographerStyles, $wgKartographerDfltStyle, $wgKartographerUsePageLanguage;
+	protected function parseArgs(): void {
+		$services = MediaWikiServices::getInstance();
+		$config = $services->getMainConfig();
 
 		$this->lat = $this->getFloat( 'latitude', null );
 		$this->lon = $this->getFloat( 'longitude', null );
@@ -165,17 +168,17 @@ abstract class TagHandler {
 		}
 
 		$this->zoom = $this->getInt( 'zoom', null );
-		$regexp = '/^(' . implode( '|', $wgKartographerStyles ) . ')$/';
-		$this->mapStyle = $this->getText( 'mapstyle', $wgKartographerDfltStyle, $regexp );
+		$regexp = '/^(' . implode( '|', $config->get( 'KartographerStyles' ) ) . ')$/';
+		$this->mapStyle = $this->getText( 'mapstyle', $config->get( 'KartographerDfltStyle' ), $regexp );
 
-		$defaultLangCode = $wgKartographerUsePageLanguage ? $this->getLanguage()->getCode() : 'local';
+		$defaultLangCode = $config->get( 'KartographerUsePageLanguage' ) ? $this->getLanguage()->getCode() : 'local';
 		// Language code specified by the user (null if none)
 		$this->specifiedLangCode = $this->getText( 'lang', null );
 		// Language code we're going to use
 		$this->resolvedLangCode = $this->specifiedLangCode ?? $defaultLangCode;
 		// If the specified language code is invalid, behave as if no language was specified
 		if (
-			!Language::isKnownLanguageTag( $this->resolvedLangCode ) &&
+			!$services->getLanguageNameUtils()->isKnownLanguageTag( $this->resolvedLangCode ) &&
 			$this->resolvedLangCode !== 'local'
 		) {
 			$this->specifiedLangCode = null;
@@ -187,18 +190,16 @@ abstract class TagHandler {
 	 * When overridden in a descendant class, returns tag HTML
 	 * @return string
 	 */
-	abstract protected function render();
+	abstract protected function render(): string;
 
 	private function parseGroups() {
-		global $wgKartographerWikivoyageMode;
-
-		if ( !$wgKartographerWikivoyageMode ) {
+		if ( !MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerWikivoyageMode' ) ) {
 			// if we ignore all the 'group' and 'show' parameters,
 			// each tag stays private, and will be unable to share data
 			return;
 		}
 
-		$this->groupName = $this->getText( 'group', null, '/^[a-zA-Z0-9]+$/' );
+		$this->groupId = $this->getText( 'group', null, '/^[a-zA-Z0-9]+$/' );
 
 		$text = $this->getText( 'show', null, '/^(|[a-zA-Z0-9]+(\s*,\s*[a-zA-Z0-9]+)*)$/' );
 		if ( $text ) {
@@ -207,8 +208,8 @@ abstract class TagHandler {
 
 		// Make sure the current group is shown for this map, even if there is no geojson
 		// Private group will be added during the save, as it requires hash calculation
-		if ( $this->groupName !== null ) {
-			$this->showGroups[] = $this->groupName;
+		if ( $this->groupId !== null ) {
+			$this->showGroups[] = $this->groupId;
 		}
 
 		// Make sure there are no group name duplicates
@@ -286,16 +287,16 @@ abstract class TagHandler {
 		}
 		$this->state->setCounters( $counters );
 
-		if ( $this->groupName === null ) {
-			$group = '_' . sha1( FormatJson::encode( $this->geometries, false, FormatJson::ALL_OK ) );
-			$this->groupName = $group;
-			$this->showGroups[] = $group;
+		if ( $this->groupId === null ) {
+			$groupId = '_' . sha1( FormatJson::encode( $this->geometries, false, FormatJson::ALL_OK ) );
+			$this->groupId = $groupId;
+			$this->showGroups[] = $groupId;
 			// no need to array_unique() because it's impossible to manually add a private group
 		} else {
-			$group = $this->groupName;
+			$groupId = $this->groupId;
 		}
 
-		$this->state->addData( $group, $this->geometries );
+		$this->state->addData( $groupId, $this->geometries );
 	}
 
 	/**
@@ -303,16 +304,14 @@ abstract class TagHandler {
 	 * @param State $state
 	 * @param ParserOutput $output to exclusively write to; nothing is read from this object
 	 * @param bool $isPreview
-	 * @param Title $title required to properly add tracking categories
+	 * @param Parser $parser required to properly add tracking categories
 	 */
 	public static function finalParseStep(
 		State $state,
 		ParserOutput $output,
 		$isPreview,
-		Title $title
+		Parser $parser
 	) {
-		global $wgKartographerStaticMapframe;
-
 		if ( $state->getMaplinks() ) {
 			$output->setPageProperty( 'kartographer_links', $state->getMaplinks() );
 		}
@@ -321,17 +320,17 @@ abstract class TagHandler {
 		}
 
 		if ( $state->hasBrokenTags() ) {
-			self::addTrackingCategory( $output, 'kartographer-broken-category', $title );
+			self::addTrackingCategory( $parser, 'kartographer-broken-category' );
 		}
 		if ( $state->hasValidTags() ) {
-			self::addTrackingCategory( $output, 'kartographer-tracking-category', $title );
+			self::addTrackingCategory( $parser, 'kartographer-tracking-category' );
 		}
 
 		// https://phabricator.wikimedia.org/T145615 - include all data in previews
 		$data = $state->getData();
 		if ( $data && $isPreview ) {
 			$output->addJsConfigVars( 'wgKartographerLiveData', $data );
-			if ( $wgKartographerStaticMapframe ) {
+			if ( MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerStaticMapframe' ) ) {
 				// Preview generates HTML that is different from normal
 				$output->updateCacheExpiry( 0 );
 			}
@@ -343,9 +342,9 @@ abstract class TagHandler {
 				$liveData = array_intersect_key( $data, $interact );
 				$requested = array_unique( $requested );
 				// Prevent pointless API requests for missing groups
-				foreach ( $requested as $group ) {
-					if ( !isset( $data[$group] ) ) {
-						$liveData[$group] = [];
+				foreach ( $requested as $groupId ) {
+					if ( !isset( $data[$groupId] ) ) {
+						$liveData[$groupId] = [];
 					}
 				}
 				$output->addJsConfigVars( 'wgKartographerLiveData', (object)$liveData );
@@ -356,11 +355,10 @@ abstract class TagHandler {
 	/**
 	 * Adds tracking category with extra checks
 	 *
-	 * @param ParserOutput $output
+	 * @param Parser $parser
 	 * @param string $categoryMsg
-	 * @param Title $title
 	 */
-	private static function addTrackingCategory( ParserOutput $output, $categoryMsg, Title $title ) {
+	private static function addTrackingCategory( Parser $parser, $categoryMsg ) {
 		static $hasParserFunctions;
 
 		// Our tracking categories rely on ParserFunctions to differentiate per namespace,
@@ -370,7 +368,7 @@ abstract class TagHandler {
 		}
 
 		if ( $hasParserFunctions ) {
-			$output->addTrackingCategory( $categoryMsg, $title );
+			$parser->addTrackingCategory( $categoryMsg );
 		}
 	}
 
@@ -378,7 +376,7 @@ abstract class TagHandler {
 	 * @return string
 	 * @throws Exception
 	 */
-	private function reportError() {
+	private function reportError(): string {
 		$this->state->setBrokenTags();
 		$errors = array_merge( $this->status->getErrorsByType( 'error' ),
 			$this->status->getErrorsByType( 'warning' )
@@ -404,13 +402,13 @@ abstract class TagHandler {
 			$errorText = '* ' . $errorText;
 		}
 		return Html::rawElement( 'div', [ 'class' => 'mw-kartographer-error' ],
-			wfMessage( $message, $this->tag, $errorText )->inLanguage( $this->getLanguage() )->parse() );
+			wfMessage( $message, static::TAG, $errorText )->inLanguage( $this->getLanguage() )->parse() );
 	}
 
 	/**
 	 * @return Language
 	 */
-	protected function getLanguage() {
+	protected function getLanguage(): Language {
 		return $this->parser->getTargetLanguage();
 	}
 }
