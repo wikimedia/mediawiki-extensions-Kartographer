@@ -344,10 +344,6 @@ abstract class TagHandler {
 		$data = $state->getData();
 		if ( $data && $isPreview ) {
 			$parserOutput->setJsConfigVar( 'wgKartographerLiveData', $data );
-			if ( MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerStaticMapframe' ) ) {
-				// Preview generates HTML that is different from normal
-				$parserOutput->updateCacheExpiry( 0 );
-			}
 		} else {
 			$interact = $state->getInteractiveGroups();
 			$requested = array_keys( $state->getRequestedGroups() );
