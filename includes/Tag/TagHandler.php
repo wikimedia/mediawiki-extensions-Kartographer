@@ -281,7 +281,7 @@ abstract class TagHandler {
 		// For all GeoJSON items whose marker-symbol value begins with '-counter' and '-letter',
 		// recursively replace them with an automatically incremented marker icon.
 		$counters = $this->state->getCounters();
-		$marker = SimpleStyleParser::doCountersRecursive( $this->geometries, $counters );
+		$marker = SimpleStyleParser::updateMarkerSymbolCounters( $this->geometries, $counters );
 		if ( $marker ) {
 			list( $this->counter, $this->markerProperties ) = $marker;
 		}

@@ -100,10 +100,10 @@ class SimpleStyleParser {
 
 	/**
 	 * @param stdClass[] $values
-	 * @param stdClass $counters counter-name -> integer
+	 * @param int[] &$counters
 	 * @return array|false [ string $markerSymbol, stdClass $markerProperties ]
 	 */
-	public static function doCountersRecursive( array $values, $counters ) {
+	public static function updateMarkerSymbolCounters( array $values, array &$counters = [] ) {
 		$firstMarker = false;
 		foreach ( $values as $item ) {
 			if ( property_exists( $item, 'properties' ) &&
@@ -116,9 +116,9 @@ class SimpleStyleParser {
 				$isNumber = $type === '-number';
 				if ( $isNumber || $type === '-letter' ) {
 					// numbers 1..99 or letters a..z
-					$count = property_exists( $counters, $marker ) ? $counters->$marker : 0;
+					$count = $counters[$marker] ?? 0;
 					if ( $count < ( $isNumber ? 99 : 26 ) ) {
-						$counters->$marker = ++$count;
+						$counters[$marker] = ++$count;
 					}
 					$marker = $isNumber ? strval( $count ) : chr( ord( 'a' ) + $count - 1 );
 					$item->properties->{'marker-symbol'} = $marker;
@@ -133,12 +133,12 @@ class SimpleStyleParser {
 			}
 			$type = $item->type;
 			if ( $type === 'FeatureCollection' && property_exists( $item, 'features' ) ) {
-				$tmp = self::doCountersRecursive( $item->features, $counters );
+				$tmp = self::updateMarkerSymbolCounters( $item->features, $counters );
 				if ( $firstMarker === false ) {
 					$firstMarker = $tmp;
 				}
 			} elseif ( $type === 'GeometryCollection' && property_exists( $item, 'geometries' ) ) {
-				$tmp = self::doCountersRecursive( $item->geometries, $counters );
+				$tmp = self::updateMarkerSymbolCounters( $item->geometries, $counters );
 				if ( $firstMarker === false ) {
 					$firstMarker = $tmp;
 				}

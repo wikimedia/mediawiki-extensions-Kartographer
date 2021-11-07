@@ -74,13 +74,13 @@ class StateTest extends MediaWikiUnitTestCase {
 
 	public function testCounters() {
 		$state = new State();
-		$this->assertEquals( (object)[], $state->getCounters() );
+		$this->assertEquals( [], $state->getCounters() );
 
-		$state->setCounters( (object)[ 'a' => 11, 'b' => 22 ] );
-		$this->assertEquals( (object)[ 'a' => 11, 'b' => 22 ], $state->getCounters() );
+		$state->setCounters( [ 'a' => 11, 'b' => 22 ] );
+		$this->assertEquals( [ 'a' => 11, 'b' => 22 ], $state->getCounters() );
 
-		$state->setCounters( (object)[ 'b' => 33, 'c' => 55 ] );
-		$this->assertEquals( (object)[ 'b' => 33, 'c' => 55 ], $state->getCounters() );
+		$state->setCounters( [ 'b' => 33, 'c' => 55 ] );
+		$this->assertEquals( [ 'b' => 33, 'c' => 55 ], $state->getCounters() );
 	}
 
 	public function testData() {
@@ -146,7 +146,7 @@ class StateTest extends MediaWikiUnitTestCase {
 		yield 'with data' => [ $stateWithData ];
 
 		$stateWithCounters = new State();
-		$stateWithCounters->setCounters( (object)[ 'x' => 5, 'y' => 7 ] );
+		$stateWithCounters->setCounters( [ 'x' => 5, 'y' => 7 ] );
 		yield 'with counters' => [ $stateWithCounters ];
 
 		$stateWithGroups = new State();
