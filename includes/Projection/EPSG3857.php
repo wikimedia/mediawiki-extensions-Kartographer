@@ -2,73 +2,57 @@
 
 namespace Kartographer\Projection;
 
-/**
- * EPSG3857 (Spherical Mercator) is the most common CRS for web mapping
- * and is used by Leaflet by default.
- *
- * Converted to PHP from L.CRS.EPSG3857 (leaflet.js)
- */
 class EPSG3857 {
 
-	private const EARTH_RADIUS = 6378137;
+	private const MAX_LATITUDE = 85.0511287798;
+	private const A = 0.159154943;
 
 	/**
-	 * (LatLon) -> Point
+	 * EPSG3857 (Spherical Mercator) is the most common CRS for web mapping and is used by Leaflet
+	 * by default. Converted to PHP from L.CRS.EPSG3857 (leaflet.js)
 	 *
 	 * @param float[] $latLon Latitude (north–south) and longitude (east-west) in degree.
-	 * @return float[]
+	 * @return float[] Point (x, y)
 	 */
-	public static function project( $latLon ): array {
-		$projectedPoint = SphericalMercator::project( $latLon );
+	public static function latLonToPoint( array $latLon ): array {
+		$projectedPoint = self::projectToSphericalMercator( $latLon );
+		$scale = 256;
 
-		return [ $projectedPoint[0] * self::EARTH_RADIUS, $projectedPoint[1] * self::EARTH_RADIUS ];
+		return self::pointTransformation( $projectedPoint, $scale );
 	}
 
 	/**
-	 * (LatLon, Number) -> Point
+	 * Spherical Mercator is the most popular map projection, used by EPSG:3857 CRS. Converted to
+	 * PHP from L.Projection.SphericalMercator (leaflet.js)
 	 *
-	 * @param float[] $latLon Latitude (north–south) and longitude (east-west) in degree.
-	 * @param int $zoom
-	 * @return float[]
+	 * @param float[] $latLon Latitude (north–south) and longitude (east-west) in degree. Latitude
+	 *  is truncated between approx. -85.05° and 85.05°. Longitude should be -180 to 180°, but is
+	 *  not limited.
+	 * @return float[] Point (x, y)
 	 */
-	public static function latLonToPoint( $latLon, $zoom ): array {
-		$projectedPoint = SphericalMercator::project( $latLon );
-		$scale = self::scale( $zoom );
+	private static function projectToSphericalMercator( array $latLon ): array {
+		$lat = max( min( self::MAX_LATITUDE, $latLon[0] ), -self::MAX_LATITUDE );
+		$x = deg2rad( $latLon[1] );
+		$y = deg2rad( $lat );
 
-		return Transformation::transform( $projectedPoint, $scale );
+		$y = log( tan( ( pi() / 4 ) + ( $y / 2 ) ) );
+
+		return [ $x, $y ];
 	}
 
 	/**
-	 * (Point, Number[, Boolean]) -> LatLon
+	 * Performs a simple point transformation through a 2d-matrix. Converted to PHP from
+	 * L.Transformation (leaflet.js)
 	 *
 	 * @param float[] $point
-	 * @param int $zoom
-	 * @return float[] Latitude (north–south) and longitude (east-west) in degree.
+	 * @param int $scale
+	 * @return float[] Point (x, y)
 	 */
-	public static function pointToLatLon( $point, $zoom ): array {
-		$scale = self::scale( $zoom );
-		$untransformedPoint = Transformation::untransform( $point, $scale );
-
-		return SphericalMercator::unproject( $untransformedPoint );
+	private static function pointTransformation( array $point, int $scale ): array {
+		return [
+			$scale * ( self::A * $point[0] + 0.5 ),
+			$scale * ( -self::A * $point[1] + 0.5 )
+		];
 	}
 
-	/**
-	 * @param int $zoom
-	 *
-	 * @return int
-	 */
-	public static function scale( $zoom ) {
-		return 256 * pow( 2, $zoom );
-	}
-
-	/**
-	 * @param int $zoom
-	 *
-	 * @return int[]
-	 */
-	public static function getSize( $zoom ): array {
-		$size = self::scale( $zoom );
-
-		return [ $size, $size ];
-	}
 }

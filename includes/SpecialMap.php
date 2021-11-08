@@ -39,7 +39,7 @@ class SpecialMap extends SpecialPage {
 		} else {
 			[ 'lat' => $lat, 'lon' => $lon ] = $coord;
 			$coordText = CoordFormatter::format( $lat, $lon, $this->getLanguage() );
-			list( $x, $y ) = EPSG3857::latLonToPoint( [ $lat, $lon ], 0 );
+			list( $x, $y ) = EPSG3857::latLonToPoint( [ $lat, $lon ] );
 			$markerHtml = Html::element( 'div',
 				[
 					'id' => 'mw-specialMap-marker',
