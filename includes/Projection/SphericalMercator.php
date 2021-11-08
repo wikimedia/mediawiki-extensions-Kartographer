@@ -15,7 +15,9 @@ class SphericalMercator {
 	/**
 	 * (LatLon) -> Point
 	 *
-	 * @param float[] $latLon
+	 * @param float[] $latLon Latitude (north–south) and longitude (east-west) in degree. Latitude
+	 *  is truncated between approx. -85.05° and 85.05°. Longitude should be -180 to 180°, but is
+	 *  not limited.
 	 * @return float[]
 	 */
 	public static function project( $latLon ): array {
@@ -32,7 +34,7 @@ class SphericalMercator {
 	 * (Point, Boolean) -> LatLon
 	 *
 	 * @param float[] $point
-	 * @return float[]
+	 * @return float[] Latitude (north–south) and longitude (east-west) in degree.
 	 */
 	public static function unproject( $point ): array {
 		$lon = rad2deg( $point[0] );

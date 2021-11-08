@@ -15,7 +15,7 @@ class EPSG3857 {
 	/**
 	 * (LatLon) -> Point
 	 *
-	 * @param float[] $latLon
+	 * @param float[] $latLon Latitude (north–south) and longitude (east-west) in degree.
 	 * @return float[]
 	 */
 	public static function project( $latLon ): array {
@@ -27,7 +27,7 @@ class EPSG3857 {
 	/**
 	 * (LatLon, Number) -> Point
 	 *
-	 * @param float[] $latLon
+	 * @param float[] $latLon Latitude (north–south) and longitude (east-west) in degree.
 	 * @param int $zoom
 	 * @return float[]
 	 */
@@ -43,7 +43,7 @@ class EPSG3857 {
 	 *
 	 * @param float[] $point
 	 * @param int $zoom
-	 * @return float[]
+	 * @return float[] Latitude (north–south) and longitude (east-west) in degree.
 	 */
 	public static function pointToLatLon( $point, $zoom ): array {
 		$scale = self::scale( $zoom );
