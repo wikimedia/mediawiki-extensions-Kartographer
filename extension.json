@@ -500,7 +500,7 @@
 	},
 	"config": {
 		"KartographerStaticMapframe": {
-			"description": "Defines if the map will be a static image",
+			"description": "Disables the module that turns <mapframe> tags into interactive mini-maps that can be panned and zoomed without leaving the page. Static maps are recommended on high-traffic wikis where your KartographerMapServer couldn't keep up. Clicking <maplink> and <mapframe> tags to open a fullscreen interactive map is always possible.",
 			"value": false
 		},
 		"KartographerWikivoyageMode": {
@@ -512,23 +512,23 @@
 			"value": "osm-intl"
 		},
 		"KartographerStyles": {
-			"description": "Available map styles on KartographerMapServer",
+			"description": "Available map styles users can request from your KartographerMapServer via mapstyle=\"…\".",
 			"value": [ "osm-intl", "osm" ]
 		},
 		"KartographerSrcsetScales": {
-			"description": "Set of allowed hidpi pixelratios supported by the map tile server",
+			"description": "Set of allowed high-DPI pixelratios supported by your KartographerMapServer, to be used in <img srcset=\"…\"> and KartographerMapServer URLs. Must be in incremental order. Doesn't need to start with 1, this happens automatically.",
 			"value": [ 1.3, 1.5, 2, 2.6, 3 ]
 		},
 		"KartographerMapServer": {
-			"description": "Server providing the map tiles",
-			"value": false
+			"description": "Server providing the map tiles. This is the only setting that doesn't have a default. You must provide a value. Note that the Wikimedia tile server \"https://maps.wikimedia.org\" can't be used outside of the Wikimedia cluster.",
+			"value": null
 		},
 		"KartographerUseMarkerStyle": {
-			"description": "Allows Kartographer to extract CSS style to be used by the link from the GeoJSON",
+			"description": "Allows Kartographer to extract marker styles from the GeoJSON to style a <maplink> accordingly. Currently only the \"marker-color\" is considered.",
 			"value": false
 		},
 		"KartographerEnableMapFrame": {
-			"description": "Enables the tag <mapframe> to be used and create static or interactive maps.",
+			"description": "Enables the <mapframe> tag to embed mini-maps directly into pages. The <maplink> tag is always enabled.",
 			"value": true
 		},
 		"KartographerUsePageLanguage": {
@@ -536,7 +536,7 @@
 			"value": true
 		},
 		"KartographerFallbackZoom": {
-			"description": "Fallback zoom value when zoom is undefined",
+			"description": "Fallback zoom value when no zoom=\"…\" is given. Must be an integer between 0 (map shows the entire earth) and 19 (as close as possible). Currently only works with dynamic maps.",
 			"value": 13
 		}
 	},
