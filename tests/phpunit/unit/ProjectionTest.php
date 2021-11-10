@@ -38,11 +38,17 @@ class ProjectionTest extends MediaWikiUnitTestCase {
 
 	public function provideCoordinatesAndZoom() {
 		return [
-			[ [ 0, 0 ], [ 256, 256 ] ],
-			[ [ 1, 1 ], [ 257.422222221401, 254.577705567489 ] ],
-			[ [ 40, 0 ], [ 256, 193.832528799328 ] ],
-			[ [ 80, 180 ], [ 511.999999852186, 57.476811871679 ] ],
-			[ [ 0, 360 ], [ 767.999999704373, 256 ] ],
+			[ [ 0, 0 ], [ 128, 128 ] ],
+			[ [ 1, 1 ], [ 128.711111, 127.288852 ] ],
+			[ [ 40, 0 ], [ 128, 96.916264 ] ],
+			[ [ 80, 180 ], [ 256, 28.738405 ] ],
+			[ [ 0, 360 ], [ 384, 128 ] ],
+
+			[ [ 0, 0 ], [ 256, 256 ], 1 ],
+			[ [ 1, 1 ], [ 257.422222221401, 254.577705567489 ], 1 ],
+			[ [ 40, 0 ], [ 256, 193.832528799328 ], 1 ],
+			[ [ 80, 180 ], [ 511.999999852186, 57.476811871679 ], 1 ],
+			[ [ 0, 360 ], [ 767.999999704373, 256 ], 1 ],
 
 			[ [ 0, 0 ], [ 512, 512 ], 2 ],
 			[ [ 1, 1 ], [ 514.844444442802, 509.155411134978 ], 2 ],
@@ -55,7 +61,7 @@ class ProjectionTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideCoordinatesAndZoom
 	 */
-	public function testLatLonProjection( $latLon, $point, $zoom = 1 ) {
+	public function testLatLonProjection( $latLon, $point, $zoom = 0 ) {
 		$actual = EPSG3857::latLonToPoint( $latLon, $zoom );
 		$this->assertCount( 2, $actual );
 		$this->assertEqualsWithDelta( $point[0], $actual[0], self::DELTA, 'x' );
