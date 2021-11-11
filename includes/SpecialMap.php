@@ -55,7 +55,12 @@ class SpecialMap extends SpecialPage {
 			Html::rawElement( 'div', [ 'id' => 'mw-specialMap-container', 'class' => 'thumb' ],
 				Html::rawElement( 'div', [ 'class' => 'thumbinner' ],
 					Html::rawElement( 'div', [ 'id' => 'mw-specialMap-inner' ],
-						Html::element( 'div', [ 'id' => 'mw-specialMap-map' ] ) .
+						Html::element( 'img', [
+							'height' => 256,
+							'width' => 256,
+							'src' => $this->getWorldMapUrl(),
+							'srcset' => $this->getWorldMapSrcset()
+						] ) .
 						$markerHtml .
 						$attributions
 					) .
@@ -99,6 +104,36 @@ class SpecialMap extends SpecialPage {
 			'lon' => (float)$matches['lon'],
 			'lang' => $matches['lang'] ?? 'local',
 		];
+	}
+
+	/**
+	 * Return the image url for a world map
+	 * @param string $factor HiDPI image factor (example: @2x)
+	 * @return string
+	 */
+	private function getWorldMapUrl( string $factor = '' ): string {
+		return $this->getConfig()->get( 'KartographerMapServer' ) . '/' .
+			$this->getConfig()->get( 'KartographerDfltStyle' ) .
+			'/0/0/0' . $factor . '.png';
+	}
+
+	/**
+	 * Return srcset attribute value for world map image url
+	 * @return string|null
+	 */
+	private function getWorldMapSrcset(): ?string {
+		$srcSetScalesConfig = $this->getConfig()->get( 'KartographerSrcsetScales' );
+		if ( $this->getConfig()->get( 'ResponsiveImages' ) && $srcSetScalesConfig ) {
+			// For now only support 2x, not 1.5. Saves some bytes...
+			$srcSetScales = array_intersect( $srcSetScalesConfig, [ 2 ] );
+			$srcSets = [];
+			foreach ( $srcSetScales as $srcSetScale ) {
+				$scaledImgUrl = $this->getWorldMapUrl( "@{$srcSetScale}x" );
+				$srcSets[] = "{$scaledImgUrl} {$srcSetScale}x";
+			}
+			return implode( ', ', $srcSets );
+		}
+		return null;
 	}
 
 	/**
