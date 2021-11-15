@@ -15,7 +15,7 @@
 				},
 				{
 					"type": "satellite",
-					"url": "https://mapper.acme.com/?ll={latitude},{longitude}&z={zoom}&t=H&marker0={latitude},{longitude},{title}"
+					"url": "https://mapper.acme.com/?ll={latitude},{longitude}&z={zoom}&t=S&marker0={latitude},{longitude},{title}"
 				},
 				{
 					"type": "terrain",
