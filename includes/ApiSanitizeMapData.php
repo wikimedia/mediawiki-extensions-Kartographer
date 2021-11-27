@@ -11,8 +11,8 @@
 namespace Kartographer;
 
 use ApiBase;
+use ApiMain;
 use FormatJson;
-use MediaWiki\MediaWikiServices;
 use Parser;
 use ParserOptions;
 use Title;
@@ -24,6 +24,23 @@ use Wikimedia\ParamValidator\ParamValidator;
  * @package Kartographer
  */
 class ApiSanitizeMapData extends ApiBase {
+
+	/** @var Parser */
+	private $parser;
+
+	/**
+	 * @param ApiMain $main
+	 * @param string $action
+	 * @param Parser $parser
+	 */
+	public function __construct(
+		ApiMain $main,
+		$action,
+		Parser $parser
+	) {
+		parent::__construct( $main, $action );
+		$this->parser = $parser;
+	}
 
 	/**
 	 * @inheritDoc
@@ -47,12 +64,11 @@ class ApiSanitizeMapData extends ApiBase {
 	 * @param string $text
 	 */
 	private function sanitizeJson( Title $title, $text ) {
-		$parser = MediaWikiServices::getInstance()->getParser();
 		$parserOptions = new ParserOptions( $this->getUser() );
-		$parser->startExternalParse( $title, $parserOptions, Parser::OT_HTML );
-		$parser->setPage( $title );
-		$parser->clearState();
-		$simpleStyle = new SimpleStyleParser( $parser, null, [ 'saveUnparsed' => true ] );
+		$this->parser->startExternalParse( $title, $parserOptions, Parser::OT_HTML );
+		$this->parser->setPage( $title );
+		$this->parser->clearState();
+		$simpleStyle = new SimpleStyleParser( $this->parser, null, [ 'saveUnparsed' => true ] );
 		$status = $simpleStyle->parse( $text );
 		if ( !$status->isOK() ) {
 			$error = $status->getHTML( false, false, $this->getLanguage() );
