@@ -485,9 +485,14 @@
 		"remoteExtPath": "Kartographer"
 	},
 	"Hooks": {
-		"ParserTestGlobals": "Kartographer\\Hooks::onParserTestGlobals",
-		"ParserFirstCallInit": "Kartographer\\Hooks::onParserFirstCallInit",
-		"ParserAfterParse": "Kartographer\\Hooks::onParserAfterParse"
+		"ParserTestGlobals": "KartographerHooks",
+		"ParserFirstCallInit": "KartographerHooks",
+		"ParserAfterParse": "KartographerHooks"
+	},
+	"HookHandlers": {
+		"KartographerHooks": {
+			"class": "Kartographer\\Hooks"
+		}
 	},
 	"attributes": {
 		"VisualEditor": {
