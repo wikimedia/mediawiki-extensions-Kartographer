@@ -45,7 +45,12 @@
 		}
 	},
 	"APIPropModules": {
-		"mapdata": "Kartographer\\ApiQueryMapData"
+		"mapdata": {
+			"class": "Kartographer\\ApiQueryMapData",
+			"services": [
+				"WikiPageFactory"
+			]
+		}
 	},
 	"ResourceModules": {
 		"ext.kartographer": {
