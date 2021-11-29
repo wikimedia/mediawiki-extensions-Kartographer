@@ -9,6 +9,7 @@
 
 namespace Kartographer;
 
+use Config;
 use Kartographer\Tag\MapFrame;
 use Kartographer\Tag\MapLink;
 use Kartographer\Tag\TagHandler;
@@ -24,16 +25,26 @@ class Hooks implements
 	ParserTestGlobalsHook
 {
 
+	/** @var Config */
+	private $config;
+
+	/**
+	 * @param Config $config
+	 */
+	public function __construct(
+		Config $config
+	) {
+		$this->config = $config;
+	}
+
 	/**
 	 * ParserFirstCallInit hook handler
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ParserFirstCallInit
 	 * @param Parser $parser
 	 */
 	public function onParserFirstCallInit( $parser ) {
-		global $wgKartographerEnableMapFrame;
-
 		$parser->setHook( MapLink::TAG, [ MapLink::class, 'entryPoint' ] );
-		if ( $wgKartographerEnableMapFrame ) {
+		if ( $this->config->get( 'KartographerEnableMapFrame' ) ) {
 			$parser->setHook( MapFrame::TAG, [ MapFrame::class, 'entryPoint' ] );
 		}
 	}

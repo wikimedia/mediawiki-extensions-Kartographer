@@ -491,7 +491,10 @@
 	},
 	"HookHandlers": {
 		"KartographerHooks": {
-			"class": "Kartographer\\Hooks"
+			"class": "Kartographer\\Hooks",
+			"services": [
+				"MainConfig"
+			]
 		}
 	},
 	"attributes": {
