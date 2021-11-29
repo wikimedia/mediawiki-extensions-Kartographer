@@ -12,16 +12,24 @@ namespace Kartographer;
 use Kartographer\Tag\MapFrame;
 use Kartographer\Tag\MapLink;
 use Kartographer\Tag\TagHandler;
+use MediaWiki\Hook\ParserAfterParseHook;
+use MediaWiki\Hook\ParserFirstCallInitHook;
+use MediaWiki\Hook\ParserTestGlobalsHook;
 use Parser;
+use StripState;
 
-class Hooks {
+class Hooks implements
+	ParserFirstCallInitHook,
+	ParserAfterParseHook,
+	ParserTestGlobalsHook
+{
 
 	/**
 	 * ParserFirstCallInit hook handler
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ParserFirstCallInit
 	 * @param Parser $parser
 	 */
-	public static function onParserFirstCallInit( Parser $parser ) {
+	public function onParserFirstCallInit( $parser ) {
 		global $wgKartographerEnableMapFrame;
 
 		$parser->setHook( MapLink::TAG, [ MapLink::class, 'entryPoint' ] );
@@ -34,8 +42,10 @@ class Hooks {
 	 * ParserAfterParse hook handler
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ParserAfterParse
 	 * @param Parser $parser
+	 * @param string &$text Text being parsed
+	 * @param StripState $stripState StripState used
 	 */
-	public static function onParserAfterParse( Parser $parser ) {
+	public function onParserAfterParse( $parser, &$text, $stripState ) {
 		$output = $parser->getOutput();
 		$state = State::getState( $output );
 
@@ -49,7 +59,7 @@ class Hooks {
 	/**
 	 * @inheritDoc
 	 */
-	public static function onParserTestGlobals( array &$globals ) {
+	public function onParserTestGlobals( &$globals ) {
 		$globals['wgKartographerMapServer'] = 'https://maps.wikimedia.org';
 	}
 }
