@@ -6,7 +6,7 @@
 	"scripts": {
 		"doc": "jsduck",
 		"test": "grunt test",
-		"build-lib": ". ./bin/build.sh",
+		"build-lib": "./bin/build.sh",
 		"minify-svg": "svgo --config=.svgo.config.js -q -r -f styles/images/"
 	},
 	"devDependencies": {
