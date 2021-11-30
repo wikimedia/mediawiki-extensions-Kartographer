@@ -40,6 +40,18 @@ class ApiQueryMapData extends ApiQueryBase {
 			return;
 		}
 
+		$revIds = [];
+		// Temporary feature flag to control whether we support fetching mapdata from older revisions
+		if ( $this->getConfig()->get( 'KartographerVersionedMapdata' ) ) {
+			$revisionToPageMap = $this->getPageSet()->getLiveRevisionIDs();
+			$revIds = array_flip( $revisionToPageMap );
+			// Note: It's probably possible to merge data from multiple revisions of the same page
+			// because of the way group IDs are unique. Intentionally not implemented yet.
+			if ( count( $revisionToPageMap ) > count( $revIds ) ) {
+				$this->dieWithError( 'apierror-kartographer-conflicting-revids' );
+			}
+		}
+
 		$count = 0;
 		foreach ( $titles as $pageId => $title ) {
 			if ( ++$count > $limit ) {
@@ -47,8 +59,16 @@ class ApiQueryMapData extends ApiQueryBase {
 				break;
 			}
 
+			$revId = $revIds[$pageId] ?? null;
+			if ( $revId ) {
+				// This isn't strictly needed, but the only way a consumer can distinguish an
+				// endpoint that supports revids from an endpoint that doesn't
+				$this->getResult()->addValue( [ 'query', 'pages', $pageId ], 'revid', $revId );
+			}
+
 			$page = $this->pageFactory->newFromTitle( $title );
-			$parserOutput = $page->getParserOutput( ParserOptions::newCanonical( 'canonical' ) );
+			$parserOutput = $page->getParserOutput( ParserOptions::newCanonical( 'canonical' ),
+				$revId );
 			$state = $parserOutput ? State::getState( $parserOutput ) : null;
 			if ( !$state ) {
 				continue;

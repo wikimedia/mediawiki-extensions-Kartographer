@@ -4,6 +4,7 @@
 			"Yuri Astrakhan"
 		]
 	},
+	"apierror-kartographer-conflicting-revids": "Querying mapdata from multiple revisions of the same page in one request is not supported yet.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia maps] | Map data © [https://www.openstreetmap.org/copyright OpenStreetMap contributors]",
 	"kartographer-attribution-externaldata": "$1: $2",
 	"kartographer-attribution-short": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia] | © [https://www.openstreetmap.org/copyright OpenStreetMap]",

@@ -540,6 +540,10 @@
 			"description": "Server providing the map tiles. This is the only setting that doesn't have a default. You must provide a value. Note that the Wikimedia tile server \"https://maps.wikimedia.org\" can't be used outside of the Wikimedia cluster.",
 			"value": null
 		},
+		"KartographerVersionedMapdata": {
+			"description": "Temporary feature flag to disable serving versioned mapdata from the API.",
+			"value": false
+		},
 		"KartographerUseMarkerStyle": {
 			"description": "Allows Kartographer to extract marker styles from the GeoJSON to style a <maplink> accordingly. Currently only the \"marker-color\" is considered.",
 			"value": false

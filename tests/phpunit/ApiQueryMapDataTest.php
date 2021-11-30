@@ -3,6 +3,7 @@
 namespace Kartographer\Tests;
 
 use ApiTestCase;
+use ApiUsageException;
 use CommentStoreComment;
 use MediaWiki\Storage\SlotRecord;
 use WikiPage;
@@ -90,29 +91,48 @@ class ApiQueryMapDataTest extends ApiTestCase {
 		$this->assertResult( [ $expected, $expectedOther ], $apiResultTitles );
 
 		// query a single revision
-		[ $apiResultOneRevision ] = $this->doApiRequest( [
+		$params = [
 			'action' => 'query',
 			'prop' => 'mapdata',
 			'revids' => $currRevPageOne->getId(),
-		] );
+		];
+		[ $apiResultOneRevision ] = $this->doApiRequest( $params );
 		$this->assertResult( [ $expected ], $apiResultOneRevision );
 
 		// query two different revisions from two differrent pages
-		[ $apiResultRevisions ] = $this->doApiRequest( [
-			'action' => 'query',
-			'prop' => 'mapdata',
-			'revids' => $currRevPageOne->getId() . '|' . $currRevPageTwo->getId(),
-		] );
+		$params['revids'] .= '|' . $currRevPageTwo->getId();
+		[ $apiResultRevisions ] = $this->doApiRequest( $params );
 		$this->assertResult( [ $expected, $expectedOther ], $apiResultRevisions );
 
-		// using an old revision from the same page still just returns the data from the latest revision
-		[ $apiResultOldRevision ] = $this->doApiRequest( [
-			'action' => 'query',
-			'prop' => 'mapdata',
-			'revids' => $oldRevPageOne->getId(),
-		] );
-		// with old revids working this should return `[ $expectedOther ]`
+		// Requesting an old revision returns historical data
+		$this->setMwGlobals( 'wgKartographerVersionedMapdata', true );
+		$params['revids'] = $oldRevPageOne->getId();
+		[ $apiResultOldRevision ] = $this->doApiRequest( $params );
+		$this->assertResult( [ $expectedOther ], $apiResultOldRevision );
+		$this->assertSame(
+			[ $params['revids'] ],
+			array_column( $apiResultOldRevision['query']['pages'], 'revid' ),
+			'revid appears in API response'
+		);
+
+		// Legacy behavior is to always return data from the latest revision, no matter if the
+		// requested revision is a historical one
+		$this->setMwGlobals( 'wgKartographerVersionedMapdata', false );
+		[ $apiResultOldRevision ] = $this->doApiRequest( $params );
 		$this->assertResult( [ $expected ], $apiResultOldRevision );
+		$this->assertArrayNotHasKey( 'revid', reset( $apiResultOldRevision['query']['pages'] ),
+			'revid does not appear in legacy API response'
+		);
+
+		// Using multiple revision IDs in legacy mode doesn't make a difference
+		$params['revids'] .= '|' . $currRevPageOne->getId();
+		[ $apiResultOldRevision ] = $this->doApiRequest( $params );
+		$this->assertResult( [ $expected ], $apiResultOldRevision );
+
+		// Requesting multiple revisions from the same page is intentionally not supported
+		$this->setMwGlobals( 'wgKartographerVersionedMapdata', true );
+		$this->expectException( ApiUsageException::class );
+		$this->doApiRequest( $params );
 	}
 
 	private function addRevision( WikiPage $page, string $wikitext ) {
