@@ -6,19 +6,26 @@ use ApiBase;
 use ApiQuery;
 use ApiQueryBase;
 use FormatJson;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\WikiPageFactory;
 use ParserOptions;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 class ApiQueryMapData extends ApiQueryBase {
 
+	/** @var WikiPageFactory */
+	private $pageFactory;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
+	 * @param WikiPageFactory $pageFactory
 	 */
-	public function __construct( ApiQuery $query, $moduleName ) {
+	public function __construct( ApiQuery $query, $moduleName,
+		WikiPageFactory $pageFactory
+	) {
 		parent::__construct( $query, $moduleName, 'mpd' );
+		$this->pageFactory = $pageFactory;
 	}
 
 	/**
@@ -33,7 +40,6 @@ class ApiQueryMapData extends ApiQueryBase {
 			return;
 		}
 
-		$pageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
 		$count = 0;
 		foreach ( $titles as $pageId => $title ) {
 			if ( ++$count > $limit ) {
@@ -41,7 +47,7 @@ class ApiQueryMapData extends ApiQueryBase {
 				break;
 			}
 
-			$page = $pageFactory->newFromTitle( $title );
+			$page = $this->pageFactory->newFromTitle( $title );
 			$parserOutput = $page->getParserOutput( ParserOptions::newCanonical( 'canonical' ) );
 			$state = $parserOutput ? State::getState( $parserOutput ) : null;
 			if ( !$state ) {

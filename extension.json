@@ -37,10 +37,20 @@
 		"Kartographer\\Tests\\Mock\\": "tests/phpunit/Mock/"
 	},
 	"APIModules": {
-		"sanitize-mapdata": "Kartographer\\ApiSanitizeMapData"
+		"sanitize-mapdata": {
+			"class": "Kartographer\\ApiSanitizeMapData",
+			"services": [
+				"Parser"
+			]
+		}
 	},
 	"APIPropModules": {
-		"mapdata": "Kartographer\\ApiQueryMapData"
+		"mapdata": {
+			"class": "Kartographer\\ApiQueryMapData",
+			"services": [
+				"WikiPageFactory"
+			]
+		}
 	},
 	"ResourceModules": {
 		"ext.kartographer": {
