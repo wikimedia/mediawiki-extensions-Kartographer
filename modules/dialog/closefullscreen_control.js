@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 /**
  * # Control to close the full screen dialog.
  *
@@ -40,6 +39,7 @@ var CloseFullScreenControl = L.Control.extend( {
 	 */
 	closeFullScreen: function ( e ) {
 		L.DomEvent.stop( e );
+		// eslint-disable-next-line no-underscore-dangle
 		this._map.closeFullScreen();
 	}
 } );

@@ -208,9 +208,8 @@ MapDialog.prototype.updateHash = function () {
 
 	// Avoid extra operations
 	if ( this.lastHash !== hash ) {
-		/* eslint-disable no-underscore-dangle */
+		// eslint-disable-next-line no-underscore-dangle
 		this.map._updatingHash = true;
-		/* eslint-enable no-underscore-dangle */
 		router.navigate( hash );
 		this.lastHash = hash;
 	}
@@ -226,11 +225,10 @@ MapDialog.prototype.onMapMove = OO.ui.throttle( function () {
 	// Stop listening to `moveend` event while we're
 	// manually moving the map (updating from a hash),
 	// or if the map is not yet loaded.
-	/* eslint-disable no-underscore-dangle */
+	// eslint-disable-next-line no-underscore-dangle
 	if ( this.movingMap || !this.map || !this.map._loaded ) {
 		return false;
 	}
-	/* eslint-enable no-underscore-dangle */
 	this.updateHash();
 }, 250 );
 
