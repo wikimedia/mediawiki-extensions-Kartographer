@@ -93,7 +93,7 @@ Link.prototype.openFullScreen = function ( position ) {
 	/* eslint-disable no-underscore-dangle */
 	if ( map && map._updatingHash ) {
 		// Skip - there is nothing to do.
-		map._updatingHash = false;
+		delete map._updatingHash;
 		return;
 	}
 
