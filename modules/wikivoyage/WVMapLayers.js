@@ -9,7 +9,6 @@
 var wikivoyage = require( './wikivoyage.js' ),
 	ControlLayers = require( './ControlLayers.js' );
 
-/* eslint-disable no-underscore-dangle */
 function WVMapLayers( map ) {
 	this.map = map;
 	this.control = new ControlLayers();
@@ -31,6 +30,7 @@ function WVMapLayers( map ) {
  * @chainable
  */
 WVMapLayers.prototype.addLayer = function ( layer, name, overlay ) {
+	// eslint-disable-next-line no-underscore-dangle
 	this.control._addLayer( layer, name, overlay );
 	return this;
 };
@@ -41,6 +41,7 @@ WVMapLayers.prototype.addLayer = function ( layer, name, overlay ) {
  * @chainable
  */
 WVMapLayers.prototype.update = function () {
+	// eslint-disable-next-line no-underscore-dangle
 	this.control._update();
 	return this;
 };
