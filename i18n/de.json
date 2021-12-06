@@ -6,6 +6,7 @@
 			"Umherirrender"
 		]
 	},
+	"apierror-kartographer-conflicting-revids": "Die Abfrage von Kartendaten aus mehreren Versionen der gleichen Seite in einer Anfrage wird noch nicht unterstützt.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia Karten] | Kartendaten © [https://www.openstreetmap.org/copyright OpenStreetMap-Autoren]",
 	"kartographer-attribution-short": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia] | © [https://www.openstreetmap.org/copyright OpenStreetMap]",
 	"kartographer-broken-category": "Seiten mit defekten Karten",

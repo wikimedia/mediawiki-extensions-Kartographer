@@ -11,7 +11,7 @@
 			"Yuri Astrakhan"
 		]
 	},
-	"apierror-kartographer-conflicting-revids": "Error message when attempting to use the mapdata query API with multiple revision IDs that belong to the same page.",
+	"apierror-kartographer-conflicting-revids": "{{doc-apierror}}\nError message when attempting to use the mapdata query API with multiple revision IDs that belong to the same page.",
 	"kartographer-attribution": "Attribution text shown at the bottom of the map.",
 	"kartographer-attribution-externaldata": "{{optional}}\nFormats external data layer attribution: $1 is external data service (e.g. Wikidata), $2 is link to external data link (e.g. query).",
 	"kartographer-attribution-short": "{{optional}}\nShorter version of the attribution text shown at the bottom of the map, for static maps embedded in the article.",

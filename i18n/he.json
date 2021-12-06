@@ -5,6 +5,7 @@
 			"Guycn2"
 		]
 	},
+	"apierror-kartographer-conflicting-revids": "שליחת שאילתות ל־mapdata מגרסאות שונות של אותו דף עוד לא נתמכת.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use מפות ויקימדיה] | נתוני מפה © [https://www.openstreetmap.org/copyright תורמי OpenStreetMap]",
 	"kartographer-broken-category": "דפים עם מפות מקולקלות",
 	"kartographer-broken-category-desc": "הדף הזה מכיל שימוש בלתי־תקין במפה",

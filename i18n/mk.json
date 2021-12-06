@@ -4,6 +4,7 @@
 			"Bjankuloski06"
 		]
 	},
+	"apierror-kartographer-conflicting-revids": "Засега не е поддржано барањето на картографски податоци од повеќе преработки на истата страница во едно барање.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Викимедиини карти] | Карт. податоци © [https://www.openstreetmap.org/copyright учесници во OpenStreetMap]",
 	"kartographer-attribution-short": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Викимедија] | © [https://www.openstreetmap.org/copyright OpenStreetMap]",
 	"kartographer-broken-category": "Страници со неисправни карти",

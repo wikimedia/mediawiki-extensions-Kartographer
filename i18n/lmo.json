@@ -4,6 +4,7 @@
 			"Salvemm el lombard"
 		]
 	},
+	"apierror-kartographer-conflicting-revids": "L'interrogazion de mapdata de pussee revision de l'istessa pagina in un'unica domanda l'è nanamò suportada.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Mappe Wikimedia] | Dati mappa © [https://www.openstreetmap.org/copyright contributori OpenStreetMap]",
 	"kartographer-broken-category": "Pagine con di eror in di map",
 	"kartographer-broken-category-desc": "La pagina l'includ una mappa cont un uso minga valid",
