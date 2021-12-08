@@ -548,6 +548,10 @@
 			"description": "Temporary feature flag to disable serving versioned mapdata from the API.",
 			"value": false
 		},
+		"KartographerVersionedStaticMaps": {
+			"description": "Do not enable in production until varnish rules are merged. Temporary feature flag to allow Kartographer to render versioned mapframe images.",
+			"value": false
+		},
 		"KartographerUseMarkerStyle": {
 			"description": "Allows Kartographer to extract marker styles from the GeoJSON to style a <maplink> accordingly. Currently only the \"marker-color\" is considered.",
 			"value": false
