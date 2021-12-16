@@ -5,6 +5,8 @@ if ( $IP === false ) {
 }
 require_once "$IP/maintenance/Maintenance.php";
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Purges all pages that use <maplink> or <mapframe>, using the tracking category.
  */
@@ -42,13 +44,14 @@ class PurgeMapPages extends Maintenance {
 
 		$pages = 0;
 		$failures = 0;
+		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
 		foreach ( $iterator as $batch ) {
 			foreach ( $batch as $row ) {
 				$title = Title::newFromRow( $row );
 				if ( $dryRun ) {
 					$this->output( $title->getPrefixedText() . "\n" );
 				} else {
-					$page = WikiPage::factory( $title );
+					$page = $wikiPageFactory->newFromTitle( $title );
 					if ( $page->doPurge() ) {
 						$this->output( "Purged {$title->getPrefixedText()}\n" );
 					} else {
