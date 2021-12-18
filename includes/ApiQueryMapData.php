@@ -67,8 +67,7 @@ class ApiQueryMapData extends ApiQueryBase {
 			}
 
 			$page = $this->pageFactory->newFromTitle( $title );
-			$parserOutput = $page->getParserOutput( ParserOptions::newCanonical( 'canonical' ),
-				$revId );
+			$parserOutput = $page->getParserOutput( ParserOptions::newFromAnon(), $revId );
 			$state = $parserOutput ? State::getState( $parserOutput ) : null;
 			if ( !$state ) {
 				continue;
