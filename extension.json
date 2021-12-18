@@ -530,11 +530,13 @@
 		},
 		"KartographerStyles": {
 			"description": "Available map styles users can request from your KartographerMapServer via mapstyle=\"…\".",
-			"value": [ "osm-intl", "osm" ]
+			"value": [ "osm-intl", "osm" ],
+			"merge_strategy": "provide_default"
 		},
 		"KartographerSrcsetScales": {
 			"description": "Set of allowed high-DPI pixelratios supported by your KartographerMapServer, to be used in <img srcset=\"…\"> and KartographerMapServer URLs. Must be in incremental order. Doesn't need to start with 1, this happens automatically.",
-			"value": [ 1.3, 1.5, 2, 2.6, 3 ]
+			"value": [ 1.3, 1.5, 2, 2.6, 3 ],
+			"merge_strategy": "provide_default"
 		},
 		"KartographerMapServer": {
 			"description": "Server providing the map tiles. This is the only setting that doesn't have a default. You must provide a value. Note that the Wikimedia tile server \"https://maps.wikimedia.org\" can't be used outside of the Wikimedia cluster.",
@@ -567,6 +569,10 @@
 		"KartographerFallbackZoom": {
 			"description": "Fallback zoom value when no zoom=\"…\" is given. Must be an integer between 0 (map shows the entire earth) and 19 (as close as possible). Currently only works with dynamic maps.",
 			"value": 13
+		},
+		"KartographerSimpleStyleMarkers": {
+			"description": "Use an api to generate markers using the simplestyle-spec for features.",
+			"value": true
 		}
 	},
 	"TrackingCategories": [

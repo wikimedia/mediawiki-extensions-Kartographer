@@ -23,5 +23,13 @@ module.exports = {
 		config.FORCE_HTTPS = forceHttps;
 		config.HTTP_URL = forceHttps ? false : mapServer;
 		config.HTTPS_URL = !forceHttps ? false : mapServer;
+
+		// Disable hosted marker functionality
+		if ( !mw.config.get( 'wgKartographerSimpleStyleMarkers' ) ) {
+			L.Icon.Default.imagePath = mw.config.get( 'wgExtensionAssetsPath' ) + '/Kartographer/lib/external/mapbox/images/';
+			L.icon = function () {
+				return new L.Icon.Default();
+			};
+		}
 	}
 };

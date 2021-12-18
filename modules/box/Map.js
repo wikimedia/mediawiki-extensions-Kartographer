@@ -142,7 +142,7 @@ KartographerMap = L.Map.extend( {
 	 * @param {number|string} [options.zoom] **Initial map zoom.**
 	 * @param {string} [options.lang] Language for map labels
 	 * @param {string} [options.style] Map style. _Defaults to
-	 *  `mw.config.get( 'wgKartographerDfltStyle' )`, or `'osm-intl'`._
+	 *  `mw.config.get( 'wgKartographerDfltStyle' )`._
 	 * @param {Kartographer.Box.MapClass} [options.parentMap] Parent map
 	 *   _(internal, used by the full screen map to refer its parent map)_.
 	 * @param {boolean} [options.fullscreen=false] Whether the map is a map
@@ -154,7 +154,8 @@ KartographerMap = L.Map.extend( {
 	 */
 	initialize: function ( options ) {
 		var args,
-			style = options.style || mw.config.get( 'wgKartographerDfltStyle' ) || 'osm-intl',
+			defaultStyle = mw.config.get( 'wgKartographerDfltStyle' ),
+			style = options.style || defaultStyle,
 			map = this;
 
 		if ( options.center === 'auto' ) {
@@ -251,7 +252,7 @@ KartographerMap = L.Map.extend( {
 		 * @property {string} layerUrl Base URL for the tile layer
 		 * @protected
 		 */
-		this.layerUrl = mapServer + '/' + style + urlFormat;
+		this.layerUrl = mapServer + ( style ? '/' + style : '' ) + urlFormat;
 
 		/**
 		 * @property {L.TileLayer} wikimediaLayer Reference to `Wikimedia`
