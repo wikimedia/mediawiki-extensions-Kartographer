@@ -9,6 +9,7 @@
 
 namespace Kartographer\Tag;
 
+use Config;
 use Exception;
 use ExtensionRegistry;
 use FormatJson;
@@ -69,6 +70,9 @@ abstract class TagHandler {
 	/** @var int|null */
 	protected $counter = null;
 
+	/** @var Config */
+	protected $config;
+
 	/** @var Parser */
 	protected $parser;
 
@@ -105,13 +109,14 @@ abstract class TagHandler {
 	 * @return string
 	 */
 	private function handle( $input, array $args, Parser $parser, PPFrame $frame ): string {
+		$this->config = MediaWikiServices::getInstance()->getMainConfig();
 		$this->parser = $parser;
 		$this->frame = $frame;
 		$output = $parser->getOutput();
 
 		$output->addModuleStyles( 'ext.kartographer.style' );
 		$output->addExtraCSPDefaultSrc(
-			MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerMapServer' )
+			$this->config->get( 'KartographerMapServer' )
 		);
 		$this->state = State::getOrCreate( $output );
 
@@ -159,7 +164,6 @@ abstract class TagHandler {
 	 */
 	protected function parseArgs(): void {
 		$services = MediaWikiServices::getInstance();
-		$config = $services->getMainConfig();
 
 		$this->lat = $this->getFloat( 'latitude', null );
 		$this->lon = $this->getFloat( 'longitude', null );
@@ -168,10 +172,12 @@ abstract class TagHandler {
 		}
 
 		$this->zoom = $this->getInt( 'zoom', null );
-		$regexp = '/^(' . implode( '|', $config->get( 'KartographerStyles' ) ) . ')$/';
-		$this->mapStyle = $this->getText( 'mapstyle', $config->get( 'KartographerDfltStyle' ), $regexp );
+		$regexp = '/^(' . implode( '|', $this->config->get( 'KartographerStyles' ) ) . ')$/';
+		$this->mapStyle = $this->getText( 'mapstyle', $this->config->get( 'KartographerDfltStyle' ), $regexp );
 
-		$defaultLangCode = $config->get( 'KartographerUsePageLanguage' ) ? $this->getLanguage()->getCode() : 'local';
+		$defaultLangCode = $this->config->get( 'KartographerUsePageLanguage' ) ?
+			$this->getLanguage()->getCode() :
+			'local';
 		// Language code specified by the user (null if none)
 		$this->specifiedLangCode = $this->getText( 'lang', null );
 		// Language code we're going to use
@@ -193,7 +199,7 @@ abstract class TagHandler {
 	abstract protected function render(): string;
 
 	private function parseGroups() {
-		if ( !MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerWikivoyageMode' ) ) {
+		if ( !$this->config->get( 'KartographerWikivoyageMode' ) ) {
 			// if we ignore all the 'group' and 'show' parameters,
 			// each tag stays private, and will be unable to share data
 			return;

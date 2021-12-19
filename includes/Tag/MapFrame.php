@@ -5,7 +5,6 @@ namespace Kartographer\Tag;
 use FormatJson;
 use Html;
 use Kartographer\SpecialMap;
-use MediaWiki\MediaWikiServices;
 
 /**
  * The <mapframe> tag inserts a map into wiki page
@@ -51,8 +50,7 @@ class MapFrame extends TagHandler {
 	 * @return string
 	 */
 	protected function render(): string {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$mapServer = $config->get( 'KartographerMapServer' );
+		$mapServer = $this->config->get( 'KartographerMapServer' );
 
 		$caption = $this->getText( 'text', null );
 		$framed = $caption !== null || $this->getText( 'frameless', null ) === null;
@@ -85,7 +83,7 @@ class MapFrame extends TagHandler {
 		// Should be fixed, especially considering VE in page editing etc...
 
 		$useSnapshot =
-			$config->get( 'KartographerStaticMapframe' ) && !$options->getIsPreview() &&
+			$this->config->get( 'KartographerStaticMapframe' ) && !$options->getIsPreview() &&
 			!$options->getIsSectionPreview();
 
 		$output->addModules( $useSnapshot
@@ -147,14 +145,14 @@ class MapFrame extends TagHandler {
 			// Groups are not available to the static map renderer
 			// before the page was saved, can only be applied via JS
 			$imgUrlParams += [
-				'domain' => $config->get( 'ServerName' ),
+				'domain' => $this->config->get( 'ServerName' ),
 				'title' => $this->parser->getTitle()->getPrefixedText(),
 				'revid' => $this->parser->getRevisionId(),
 				'groups' => implode( ',', $this->showGroups ),
 			];
 
 			// Temporary feature flag to control whether static map thumbnails include the revision ID.
-			if ( !$config->get( 'KartographerVersionedStaticMaps' ) ) {
+			if ( !$this->config->get( 'KartographerVersionedStaticMaps' ) ) {
 				unset( $imgUrlParams['revid'] );
 			}
 		}
@@ -169,8 +167,8 @@ class MapFrame extends TagHandler {
 			'decoding' => 'async'
 		];
 
-		$srcSetScalesConfig = $config->get( 'KartographerSrcsetScales' );
-		if ( $config->get( 'ResponsiveImages' ) && $srcSetScalesConfig ) {
+		$srcSetScalesConfig = $this->config->get( 'KartographerSrcsetScales' );
+		if ( $this->config->get( 'ResponsiveImages' ) && $srcSetScalesConfig ) {
 			// For now only support 2x, not 1.5. Saves some bytes...
 			$srcSetScales = array_intersect( $srcSetScalesConfig, [ 2 ] );
 			$srcSets = [];
