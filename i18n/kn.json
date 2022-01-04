@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Omshivaprakash",
-			"Yogesh"
+			"Yogesh",
+			"ಮಲ್ನಾಡಾಚ್ ಕೊಂಕ್ಣೊ"
 		]
 	},
 	"kartographer-broken-category": "ಒಡಕಲು ನಕ್ಷೆಗಳಿರುವ ಪುಟಗಳು",
@@ -11,5 +12,6 @@
 	"kartographer-error-bad_attr": "ಗುಣವಿಶೇಷ '$1' ಅಮಾನ್ಯ ಮೌಲ್ಯವನ್ನು ಹೊಂದಿದೆ",
 	"kartographer-error-bad_data": "JSON ವಿಷಯವು ತಪ್ಪಾಗಿದೆ",
 	"kartographer-tracking-category": "ನಕ್ಷೆಗಳಿರುವ ಪುಟಗಳು",
-	"kartographer-tracking-category-desc": "ಈ ಪುಟವು ನಕ್ಷೆಯನ್ನು ಹೊಂದಿದೆ"
+	"kartographer-tracking-category-desc": "ಈ ಪುಟವು ನಕ್ಷೆಯನ್ನು ಹೊಂದಿದೆ",
+	"leafletdraw-edit-toolbar-actions-save-text": "ಉಳಿಸಿ"
 }
