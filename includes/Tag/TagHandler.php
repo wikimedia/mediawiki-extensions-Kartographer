@@ -112,13 +112,13 @@ abstract class TagHandler {
 		$this->config = MediaWikiServices::getInstance()->getMainConfig();
 		$this->parser = $parser;
 		$this->frame = $frame;
-		$output = $parser->getOutput();
+		$parserOutput = $parser->getOutput();
 
-		$output->addModuleStyles( 'ext.kartographer.style' );
-		$output->addExtraCSPDefaultSrc(
+		$parserOutput->addModuleStyles( [ 'ext.kartographer.style' ] );
+		$parserOutput->addExtraCSPDefaultSrc(
 			$this->config->get( 'KartographerMapServer' )
 		);
-		$this->state = State::getOrCreate( $output );
+		$this->state = State::getOrCreate( $parserOutput );
 
 		$this->status = Status::newGood();
 		$this->args = $args;
@@ -129,7 +129,7 @@ abstract class TagHandler {
 
 		if ( !$this->status->isGood() ) {
 			$result = $this->reportError();
-			State::setState( $output, $this->state );
+			State::setState( $parserOutput, $this->state );
 			return $result;
 		}
 
@@ -139,7 +139,7 @@ abstract class TagHandler {
 
 		$result = $this->render();
 
-		State::setState( $output, $this->state );
+		State::setState( $parserOutput, $this->state );
 		return $result;
 	}
 
@@ -308,21 +308,21 @@ abstract class TagHandler {
 	/**
 	 * Handles the last step of parse process
 	 * @param State $state
-	 * @param ParserOutput $output to exclusively write to; nothing is read from this object
+	 * @param ParserOutput $parserOutput to exclusively write to; nothing is read from this object
 	 * @param bool $isPreview
 	 * @param Parser $parser required to properly add tracking categories
 	 */
 	public static function finalParseStep(
 		State $state,
-		ParserOutput $output,
+		ParserOutput $parserOutput,
 		$isPreview,
 		Parser $parser
 	) {
 		if ( $state->getMaplinks() ) {
-			$output->setPageProperty( 'kartographer_links', $state->getMaplinks() );
+			$parserOutput->setPageProperty( 'kartographer_links', $state->getMaplinks() );
 		}
 		if ( $state->getMapframes() ) {
-			$output->setPageProperty( 'kartographer_frames', $state->getMapframes() );
+			$parserOutput->setPageProperty( 'kartographer_frames', $state->getMapframes() );
 		}
 
 		if ( $state->hasBrokenTags() ) {
@@ -335,10 +335,10 @@ abstract class TagHandler {
 		// https://phabricator.wikimedia.org/T145615 - include all data in previews
 		$data = $state->getData();
 		if ( $data && $isPreview ) {
-			$output->addJsConfigVars( 'wgKartographerLiveData', $data );
+			$parserOutput->addJsConfigVars( 'wgKartographerLiveData', $data );
 			if ( MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerStaticMapframe' ) ) {
 				// Preview generates HTML that is different from normal
-				$output->updateCacheExpiry( 0 );
+				$parserOutput->updateCacheExpiry( 0 );
 			}
 		} else {
 			$interact = $state->getInteractiveGroups();
@@ -353,7 +353,7 @@ abstract class TagHandler {
 						$liveData[$groupId] = [];
 					}
 				}
-				$output->addJsConfigVars( 'wgKartographerLiveData', (object)$liveData );
+				$parserOutput->addJsConfigVars( 'wgKartographerLiveData', (object)$liveData );
 			}
 		}
 	}

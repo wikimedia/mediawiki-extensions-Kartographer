@@ -55,7 +55,7 @@ class MapFrame extends TagHandler {
 		$caption = $this->getText( 'text', null );
 		$framed = $caption !== null || $this->getText( 'frameless', null ) === null;
 
-		$output = $this->parser->getOutput();
+		$parserOutput = $this->parser->getOutput();
 		$options = $this->parser->getOptions();
 
 		$width = is_numeric( $this->width ) ? "{$this->width}px" : $this->width;
@@ -86,9 +86,9 @@ class MapFrame extends TagHandler {
 			$this->config->get( 'KartographerStaticMapframe' ) && !$options->getIsPreview() &&
 			!$options->getIsSectionPreview();
 
-		$output->addModules( $useSnapshot
+		$parserOutput->addModules( [ $useSnapshot
 			? 'ext.kartographer.staticframe'
-			: 'ext.kartographer.frame' );
+			: 'ext.kartographer.frame' ] );
 
 		$attrs = [
 			'class' => 'mw-kartographer-map',
