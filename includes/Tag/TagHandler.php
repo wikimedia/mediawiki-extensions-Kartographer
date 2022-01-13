@@ -23,6 +23,7 @@ use ParserOutput;
 use PPFrame;
 use Status;
 use stdClass;
+use StubUserLang;
 
 /**
  * Base class for all <map...> tags
@@ -412,9 +413,9 @@ abstract class TagHandler {
 	}
 
 	/**
-	 * @return Language
+	 * @return Language|StubUserLang
 	 */
-	protected function getLanguage(): Language {
+	protected function getLanguage() {
 		return $this->parser->getTargetLanguage();
 	}
 }
