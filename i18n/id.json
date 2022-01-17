@@ -10,6 +10,7 @@
 			"William Surya Permana"
 		]
 	},
+	"apierror-kartographer-conflicting-revids": "Melakukan kueri data peta dari beberapa revisi halaman yang sama dalam satu permintaan belum bisa dilakukan.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Peta Wikimedia] | Data peta © [https://www.openstreetmap.org/copyright Kontributor OpenStreetMap]",
 	"kartographer-broken-category": "Halaman dengan peta rusak",
 	"kartographer-broken-category-desc": "Halaman yang menyertakan penggunaan peta yang tidak sah",
