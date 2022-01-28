@@ -336,7 +336,7 @@ abstract class TagHandler {
 		// https://phabricator.wikimedia.org/T145615 - include all data in previews
 		$data = $state->getData();
 		if ( $data && $isPreview ) {
-			$parserOutput->addJsConfigVars( 'wgKartographerLiveData', $data );
+			$parserOutput->setJsConfigVar( 'wgKartographerLiveData', $data );
 			if ( MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerStaticMapframe' ) ) {
 				// Preview generates HTML that is different from normal
 				$parserOutput->updateCacheExpiry( 0 );
@@ -354,7 +354,7 @@ abstract class TagHandler {
 						$liveData[$groupId] = [];
 					}
 				}
-				$parserOutput->addJsConfigVars( 'wgKartographerLiveData', (object)$liveData );
+				$parserOutput->setJsConfigVar( 'wgKartographerLiveData', (object)$liveData );
 			}
 		}
 	}

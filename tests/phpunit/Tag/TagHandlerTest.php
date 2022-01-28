@@ -21,7 +21,7 @@ trait TagHandlerTest {
 
 		$output = $this->createMock( \ParserOutput::class );
 		$output->expects( $this->once() )
-			->method( 'addJsConfigVars' )
+			->method( 'setJsConfigVar' )
 			->with(
 				'wgKartographerLiveData',
 				(object)[
