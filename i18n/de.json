@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Brettchenweber",
 			"Metalhead64",
 			"TMg",
 			"Umherirrender"
@@ -20,7 +21,7 @@
 	"kartographer-error-latlon": "Entweder sollten die Parameter „latitude“ und „longitude“ oder keiner der beiden angegeben werden.",
 	"kartographer-error-title": "Der Titel „$1“ ist keine gültige Kartendatenseite",
 	"kartographer-tracking-category": "Seiten mit Karten",
-	"kartographer-tracking-category-desc": "Die Seite enthält eine Karte",
+	"kartographer-tracking-category-desc": "Die Seite enthält eine Karte.",
 	"kartographer-specialmap-invalid-coordinates": "Ungültige Koordinaten angegeben",
 	"kartographer.css": "/* CSS an dieser Stelle wirkt sich auf alle Seiten mit Karten aus */",
 	"kartographer.js": "/* Jedes JavaScript an dieser Stelle wird für alle Benutzer auf Seiten geladen, die Karten enthalten */",

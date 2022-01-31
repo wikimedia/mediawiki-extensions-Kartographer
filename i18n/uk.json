@@ -9,6 +9,7 @@
 			"Ата"
 		]
 	},
+	"apierror-kartographer-conflicting-revids": "Запит картографічних даних з кількох версій однієї сторінки в одному запиті ще не підтримується.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Карти Вікімедіа] | Картографічні дані © [https://www.openstreetmap.org/copyright Дописувачі OpenStreetMap]",
 	"kartographer-attribution-externaldata": "$1: $2",
 	"kartographer-attribution-short": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Вікімедіа] | © [https://www.openstreetmap.org/copyright OpenStreetMap]",
