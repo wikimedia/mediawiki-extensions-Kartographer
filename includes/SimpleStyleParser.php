@@ -106,9 +106,12 @@ class SimpleStyleParser {
 	public static function updateMarkerSymbolCounters( array $values, array &$counters = [] ) {
 		$firstMarker = false;
 		foreach ( $values as $item ) {
-			if ( property_exists( $item, 'properties' ) &&
-				 property_exists( $item->properties, 'marker-symbol' )
-			) {
+			// While the input should be validated, it's still arbitrary user input.
+			if ( !( $item instanceof stdClass ) ) {
+				continue;
+			}
+
+			if ( isset( $item->properties->{'marker-symbol'} ) ) {
 				$marker = $item->properties->{'marker-symbol'};
 				// all special markers begin with a dash
 				// both 'number' and 'letter' have 6 symbols
@@ -128,16 +131,16 @@ class SimpleStyleParser {
 					}
 				}
 			}
-			if ( !property_exists( $item, 'type' ) ) {
+			if ( !isset( $item->type ) ) {
 				continue;
 			}
 			$type = $item->type;
-			if ( $type === 'FeatureCollection' && property_exists( $item, 'features' ) ) {
+			if ( $type === 'FeatureCollection' && isset( $item->features ) ) {
 				$tmp = self::updateMarkerSymbolCounters( $item->features, $counters );
 				if ( $firstMarker === false ) {
 					$firstMarker = $tmp;
 				}
-			} elseif ( $type === 'GeometryCollection' && property_exists( $item, 'geometries' ) ) {
+			} elseif ( $type === 'GeometryCollection' && isset( $item->geometries ) ) {
 				$tmp = self::updateMarkerSymbolCounters( $item->geometries, $counters );
 				if ( $firstMarker === false ) {
 					$firstMarker = $tmp;
@@ -232,12 +235,12 @@ class SimpleStyleParser {
 			case 'geoline':
 			case 'geomask':
 				$query = [ 'getgeojson' => 1 ];
-				if ( property_exists( $object, 'ids' ) ) {
+				if ( isset( $object->ids ) ) {
 					$query['ids'] =
 						is_array( $object->ids ) ? implode( ',', $object->ids )
 							: preg_replace( '/\s*,\s*/', ',', $object->ids );
 				}
-				if ( property_exists( $object, 'query' ) ) {
+				if ( isset( $object->query ) ) {
 					$query['query'] = $object->query;
 				}
 				// 'geomask' service is the same as inverted geoshape service
@@ -245,7 +248,7 @@ class SimpleStyleParser {
 				$service = $object->service === 'geomask' ? 'geoshape' : $object->service;
 
 				$ret->url = "{$this->mapService}/{$service}?" . wfArrayToCgi( $query );
-				if ( property_exists( $object, 'properties' ) ) {
+				if ( isset( $object->properties ) ) {
 					$ret->properties = $object->properties;
 				}
 				break;
