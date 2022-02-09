@@ -72,7 +72,10 @@ module.exports = defineConfig( [
 		extends: [ modulesConfig, wikimedia( 'qunit' ) ],
 		languageOptions: {
 			// wikimedia/qunit resets this to 'script'
-			sourceType: 'commonjs'
+			sourceType: 'commonjs',
+			globals: {
+				ve: 'readonly'
+			}
 		}
 	}
 ] );

@@ -462,10 +462,12 @@
 		"localBasePath": "tests/qunit",
 		"remoteExtPath": "Kartographer/tests/qunit",
 		"scripts": [
-			"nearby.test.js"
+			"nearby.test.js",
+			"ve.ui.MWMapsDialog.test.js"
 		],
 		"dependencies": [
-			"ext.kartographer.dialog"
+			"ext.kartographer.dialog",
+			"ext.kartographer.visualEditor"
 		]
 	},
 	"attributes": {

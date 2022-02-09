@@ -244,6 +244,40 @@ ve.ui.MWMapsDialog.prototype.onDimensionsChange = function () {
 };
 
 /**
+ * This code is shared with the UploadWizard extension. Please consider updating both when you touch
+ * this.
+ *
+ * @private
+ * @param {string} input
+ * @return {number|NaN} NaN when normalization was not possible
+ */
+ve.ui.MWMapsDialog.prototype.normalizeCoordinate = function ( input ) {
+	const sign = input.match( /[sw]/i ) ? -1 : 1;
+
+	// fix commonly used character alternatives
+	let value = input.trim()
+		.replace( /−/g, '-' )
+		.replace( /\s*[,.]\s*/g, '.' );
+
+	// convert degrees, minutes, seconds (or degrees & decimal minutes) to
+	// decimal degrees
+	// there can be a lot of variation in the notation, so let's only
+	// focus on "groups of digits" (and not whether e.g. ″ or " is used)
+	const parts = value.match( /^\D*(-?\d{1,3}\b[\d.]*)[^\d.]+(\d{1,2}\b[\d.]*)(?:[^\d.]+(\d{1,2}\b[\d.]*))?\D*$/ );
+	if ( parts ) {
+		value = parts[ 1 ] * 1 + parts[ 2 ] / 60 + ( parts[ 3 ] || 0 ) / 3600;
+	} else {
+		value = value.replace( /[^-\d.]+/g, '' ) * 1;
+		if ( Math.abs( value ) > 360 ) {
+			return NaN;
+		}
+	}
+
+	// Round to 6 decimal places, this approx. corresponds to a precision of 0.1 meter or less
+	return Math.round( sign * value * 1000000 ) / 1000000;
+};
+
+/**
  * Update the greyed out selected map area shown on the map
  */
 ve.ui.MWMapsDialog.prototype.updateMapArea = function () {
@@ -268,10 +302,18 @@ ve.ui.MWMapsDialog.prototype.updateMapArea = function () {
 		dimensions.height = initialDimensions.height || 300;
 	}
 	// The user input might be non-numeric, still try to visualize if possible
-	const centerCoord = [ parseFloat( this.latitude.getValue() ), parseFloat( this.longitude.getValue() ) ];
+	const lat = this.normalizeCoordinate( this.latitude.getValue() );
+	const lon = this.normalizeCoordinate( this.longitude.getValue() );
+
+	this.latitude.setIcon( isNaN( lat ) ? 'error' : null ).setFlags( { error: isNaN( lat ) } );
+	this.longitude.setIcon( isNaN( lon ) ? 'error' : null ).setFlags( { error: isNaN( lon ) } );
+	if ( isNaN( lat ) || isNaN( lon ) ) {
+		return;
+	}
+
 	const zoom = this.zoom.getValue();
 
-	const centerPoint = this.map.project( centerCoord, zoom );
+	const centerPoint = this.map.project( [ lat, lon ], zoom );
 	const boundPoints = [
 		centerPoint.add( [ dimensions.width / 2, dimensions.height / 2 ] ),
 		centerPoint.add( [ -dimensions.width / 2, -dimensions.height / 2 ] )
@@ -418,8 +460,8 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 		return;
 	}
 
-	const latitude = this.latitude.getValue();
-	const longitude = this.longitude.getValue();
+	const latitude = this.normalizeCoordinate( this.latitude.getValue() );
+	const longitude = this.normalizeCoordinate( this.longitude.getValue() );
 	const zoom = this.zoom.getValue();
 	const caption = this.caption.getValue();
 	const lang = this.language.getValue();
