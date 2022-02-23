@@ -70,6 +70,8 @@ class ApiQueryMapDataTest extends ApiTestCase {
 	}
 
 	public function testExecuteWithMultiple() {
+		$this->markTestSkipped( 'T302360' );
+
 		$hash = '_' . sha1( '[' . self::MAPFRAME_JSON . ']' );
 		$hashOther = '_' . sha1( '[' . self::MAPFRAME_JSON_OTHER . ']' );
 		$expected = [ '{"' . $hash . '":[' . self::MAPFRAME_JSON . ']}' ];
