@@ -237,13 +237,20 @@ class KartographerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideLiveData
 	 */
 	public function testLiveData(
-		$text, array $expected, $preview, $sectionPreview, $wikivoyageMode
+		$wikitext,
+		array $expected,
+		$isPreview = false,
+		$isSectionPreview = false,
+		$wikivoyageMode = false
 	) {
-		$this->setMwGlobals( 'wgKartographerWikivoyageMode', $wikivoyageMode );
-		$output = $this->parse( $text,
-			static function ( ParserOptions $options ) use ( $preview, $sectionPreview ) {
-				$options->setIsPreview( $preview );
-				$options->setIsSectionPreview( $sectionPreview );
+		$this->setMwGlobals( [
+			'wgKartographerWikivoyageMode' => $wikivoyageMode,
+		] );
+		$output = $this->parse(
+			$wikitext,
+			static function ( ParserOptions $options ) use ( $isPreview, $isSectionPreview ) {
+				$options->setIsPreview( $isPreview );
+				$options->setIsSectionPreview( $isSectionPreview );
 			}
 		);
 		$vars = $output->getJsConfigVars();
@@ -252,38 +259,44 @@ class KartographerTest extends MediaWikiLangTestCase {
 	}
 
 	public function provideLiveData() {
-		// phpcs:disable Generic.Files.LineLength
-		$frameAndLink =
-			<<<WIKITEXT
-			<maplink latitude=10 longitude=20 zoom=13>
-{
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [-122, 37]
-    }
-}
-</maplink>
-<mapframe width=200 height=200 latitude=10 longitude=20 zoom=13>
-{
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [10, 20]
-    }
-}
-</mapframe>
-WIKITEXT;
+		$maplinkJson = '{"type":"Feature","geometry":{"type":"Point","coordinates":[-122,37]}}';
+		$mapframeJson = '{"type":"Feature","geometry":{"type":"Point","coordinates":[10,20]}}';
+		$maplinkHash = '_' . sha1( "[$maplinkJson]" );
+		$mapframeHash = '_' . sha1( "[$mapframeJson]" );
+		$frameAndLink = "<maplink latitude=10 longitude=20 zoom=13>$maplinkJson</maplink>" .
+			"<mapframe width=200 height=200 latitude=10 longitude=20 zoom=13>$mapframeJson</mapframe>";
 		$wikivoyageMaps = '<mapframe show="foo, bar, baz" zoom=12 latitude=10 longitude=20 width=100 height=100 />';
+
 		return [
-			// text          expected                                        preview sectionPreview wikivoyageMode
-			[ $frameAndLink, [ '_5e4843908b3c3d3b11ac4321edadedde28882cc2' ], false, false, false ],
-			[ $frameAndLink, [ '_0616e83db3b0cc67d5f835eb765da7a1ca26f4ce', '_5e4843908b3c3d3b11ac4321edadedde28882cc2' ], true, false, false ],
-			[ $frameAndLink, [ '_0616e83db3b0cc67d5f835eb765da7a1ca26f4ce', '_5e4843908b3c3d3b11ac4321edadedde28882cc2' ], false, true, false ],
-			[ $frameAndLink, [ '_0616e83db3b0cc67d5f835eb765da7a1ca26f4ce', '_5e4843908b3c3d3b11ac4321edadedde28882cc2' ], true, true, false ],
-			[ $wikivoyageMaps, [ 'foo', 'bar', 'baz' ], false, false, true ],
+			[
+				'wikitext' => $frameAndLink,
+				'expected' => [ $mapframeHash ],
+			],
+			[
+				'wikitext' => $frameAndLink,
+				'expected' => [ $maplinkHash, $mapframeHash ],
+				'isPreview' => true,
+			],
+			[
+				'wikitext' => $frameAndLink,
+				'expected' => [ $maplinkHash, $mapframeHash ],
+				'isPreview' => false,
+				'isSectionPreview' => true,
+			],
+			[
+				'wikitext' => $frameAndLink,
+				'expected' => [ $maplinkHash, $mapframeHash ],
+				'isPreview' => true,
+				'isSectionPreview' => true,
+			],
+			[
+				'wikitext' => $wikivoyageMaps,
+				'expected' => [ 'foo', 'bar', 'baz' ],
+				'isPreview' => false,
+				'isSectionPreview' => false,
+				'wikivoyageMode' => true,
+			],
 		];
-		// phpcs:enable
 	}
 
 	/**
