@@ -6,6 +6,7 @@
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Викимедиан картанаш] | хаамаш © [https://www.openstreetmap.org/copyright OpenStreetMap декъашхой]",
 	"kartographer-broken-category": "Болх ца беш карташ долу {{#switch:{{NAMESPACE}}|{{ns:File}}=файлаш|#default=агӀонаш}}",
+	"kartographer-broken-category-desc": "ХӀокху агӀонгахь лело ца мега карта ду",
 	"kartographer-desc": "Вики-агӀонашна карташ тӀетоха таро ло.",
 	"kartographer-tracking-category": "Картанаш долу агӀонаш",
 	"kartographer-tracking-category-desc": "Карта долу агӀо",
