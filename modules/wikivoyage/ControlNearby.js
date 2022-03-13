@@ -27,7 +27,7 @@ function prepareMarker( marker, data ) {
 
 function createPopupHtml( wgPageName, thumbnail ) {
 	var img = mw.html.element( 'img', {
-			src: NearbyArticles.getConfig( 'thumbPath' ) + thumbnail + '/120px-' + thumbnail.substring( 5 )
+			src: NearbyArticles.getConfig( 'thumbPath' ) + thumbnail + '/120px-' + thumbnail.slice( 5 )
 		} ),
 		link = mw.html.element( 'a', {
 			href: mw.format( articlePath, wgPageName ),
