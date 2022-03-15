@@ -70,8 +70,8 @@ function updateKartographerLayer( map, geoJsonString ) {
 function restoreUnparsedText( geoJson ) {
 	var key, baseKey;
 	for ( key in geoJson ) {
-		if ( key.substring( 0, '_orig'.length ) === '_orig' ) {
-			baseKey = key.substring( '_orig'.length );
+		if ( key.slice( 0, '_orig'.length ) === '_orig' ) {
+			baseKey = key.slice( '_orig'.length );
 			// Copy the original value back, and delete the _orig key
 			geoJson[ baseKey ] = geoJson[ key ];
 			delete geoJson[ key ];

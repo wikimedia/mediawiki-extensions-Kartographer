@@ -46,7 +46,7 @@ function getMapData( element ) {
 /**
  * Attach the maplink handler.
  *
- * @param {jQuery} jQuery element with the content
+ * @param {jQuery} $content jQuery element with the content
  */
 function handleMapLinks( $content ) {
 	$content.find( '.mw-kartographer-maplink[data-mw="interface"]' ).each( function () {
