@@ -14,6 +14,7 @@
 			"Önni"
 		]
 	},
+	"apierror-kartographer-conflicting-revids": "A consulta de dados cartográficos de várias revisões da mesma página num único pedido ainda não é suportada.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Cartas geográficas da Wikimedia] | Dados cartográficos © [https://www.openstreetmap.org/copyright Contribuidores do OpenStreetMap]",
 	"kartographer-broken-category": "Páginas com mapas inválidos",
 	"kartographer-broken-category-desc": "A página inclui uma utilização inválida de mapas",
