@@ -2,14 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Higa4",
-			"Shirayuki"
+			"Shirayuki",
+			"Yamagata Yusuke"
 		]
 	},
 	"apihelp-sanitize-mapdata-description": "Kartographer拡張機能用のデータ検証を実施します",
 	"apihelp-sanitize-mapdata-param-title": "このGeoJSONが配置されていると思われるページのタイトル。タイトルが無い場合はダミーが使用されます。",
 	"apihelp-sanitize-mapdata-param-text": "サニタイズするGeoJSON",
 	"apihelp-sanitize-mapdata-example": "GeoJSON blobをサニタイズ",
-	"apihelp-query+mapdata-description": "<kbd>Metallica</kbd>ページから全ての地図データをリクエスト",
+	"apihelp-query+mapdata-description": "Kartographerの地図データを読みだしてください。",
 	"apihelp-query+mapdata-example-1": "全ての地図データを<kbd>Metallica</kbd>ページからリクエスト",
 	"apihelp-query+mapdata-example-2": "<kbd>Metallica</kbd>ページから<kbd>group1</kbd>と<kbd>group2</kbd>のグループ内にある地図データをリクエスト",
 	"apihelp-query+mapdata-param-continue": "結果を使った繰り返しを続けるにはこのパラメーターを使用",
