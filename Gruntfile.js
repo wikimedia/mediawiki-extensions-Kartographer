@@ -30,9 +30,6 @@ module.exports = function ( grunt ) {
 			tasks: 'test'
 		},
 		stylelint: {
-			options: {
-				syntax: 'less'
-			},
 			all: [
 				'**/*.{css,less}',
 				'!node_modules/**',
