@@ -56,11 +56,11 @@ module.exports = function ( grunt ) {
 			} else {
 				// Build the lib files and verify there isn't a difference
 				require( 'child_process' ).exec( 'npm run build-lib', function () {
-					require( 'child_process' ).exec( 'git ls-files lib/external --modified', function ( err, stdout, stderr ) {
-						var ret = err || stderr || stdout;
-						if ( ret ) {
+					require( 'child_process' ).exec( 'git ls-files lib/external --modified', function ( err2, stdout2, stderr2 ) {
+						var ret2 = err2 || stderr2 || stdout2;
+						if ( ret2 ) {
 							grunt.log.error( 'These library files were directly changed. Please change them upstream, instead:' );
-							grunt.log.error( ret );
+							grunt.log.error( ret2 );
 						} else {
 							grunt.log.ok( 'Library folder is synchronized with upstream libraries\' states.' );
 							done();

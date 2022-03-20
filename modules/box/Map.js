@@ -23,7 +23,7 @@ var util = require( 'ext.kartographer.util' ),
 	inlineDataLayerId = 0;
 
 function bracketDevicePixelRatio() {
-	var i, scale,
+	var i, scl,
 		brackets = mw.config.get( 'wgKartographerSrcsetScales' ),
 		baseRatio = window.devicePixelRatio || 1;
 	if ( !brackets ) {
@@ -31,9 +31,9 @@ function bracketDevicePixelRatio() {
 	}
 	brackets.unshift( 1 );
 	for ( i = 0; i < brackets.length; i++ ) {
-		scale = brackets[ i ];
-		if ( scale >= baseRatio || ( baseRatio - scale ) < 0.1 ) {
-			return scale;
+		scl = brackets[ i ];
+		if ( scl >= baseRatio || ( baseRatio - scl ) < 0.1 ) {
+			return scl;
 		}
 	}
 	return brackets[ brackets.length - 1 ];
@@ -319,7 +319,7 @@ KartographerMap = L.Map.extend( {
 			map.touchZoom.enable();
 			map.fire(
 				/**
-				 * @event
+				 * @event kartographerisready
 				 * Fired when the Kartographer Map object is ready.
 				 */
 				'kartographerisready' );
@@ -411,9 +411,9 @@ KartographerMap = L.Map.extend( {
 			return $.Deferred().resolve().promise();
 		}
 
-		return DataManager.loadGroups( dataGroups ).then( function ( dataGroups ) {
+		return DataManager.loadGroups( dataGroups ).then( function ( groups ) {
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( dataGroups, function ( key, group ) {
+			$.each( groups, function ( key, group ) {
 				var layerOptions = {
 					attribution: group.attribution
 				};
@@ -898,11 +898,9 @@ KartographerMap = L.Map.extend( {
 	}
 } );
 
-function map( options ) {
-	return new KartographerMap( options );
-}
-
 module.exports = {
 	Map: KartographerMap,
-	map: map
+	map: function ( options ) {
+		return new KartographerMap( options );
+	}
 };
