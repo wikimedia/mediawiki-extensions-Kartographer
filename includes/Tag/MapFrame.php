@@ -147,7 +147,7 @@ class MapFrame extends TagHandler {
 			// before the page was saved, can only be applied via JS
 			$imgUrlParams += [
 				'domain' => $this->config->get( 'KartographerMediaWikiInternalUrl' ) ??
-					$this->config->get( 'ServerName' ),
+					$this->config->get( 'Server' ),
 				'title' => $this->parser->getTitle()->getPrefixedText(),
 				'revid' => $this->parser->getRevisionId(),
 				'groups' => implode( ',', $this->showGroups ),
