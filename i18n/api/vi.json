@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Dinhxuanduyet"
+			"Dinhxuanduyet",
+			"NguoiDungKhongDinhDanh"
 		]
 	},
-	"apihelp-query+mapdata-param-limit": "Dữ liệu cho bao nhiêu trang trả về"
+	"apihelp-query+mapdata-param-limit": "Dữ liệu cho số trang trả về"
 }
