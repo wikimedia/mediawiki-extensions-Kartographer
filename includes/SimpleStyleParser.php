@@ -225,12 +225,13 @@ class SimpleStyleParser {
 	 * @return Status
 	 */
 	private function normalizeExternalData( &$object ): Status {
+		$service = $object->service ?? null;
 		$ret = (object)[
 			'type' => 'ExternalData',
-			'service' => $object->service,
+			'service' => $service,
 		];
 
-		switch ( $object->service ) {
+		switch ( $service ) {
 			case 'geoshape':
 			case 'geoline':
 			case 'geomask':
@@ -243,11 +244,11 @@ class SimpleStyleParser {
 				if ( isset( $object->query ) ) {
 					$query['query'] = $object->query;
 				}
-				// 'geomask' service is the same as inverted geoshape service
-				// Kartotherian does not support it, request it as geoshape
-				$service = $object->service === 'geomask' ? 'geoshape' : $object->service;
-
-				$ret->url = "{$this->mapService}/{$service}?" . wfArrayToCgi( $query );
+				$ret->url = $this->mapService . '/' .
+					// 'geomask' service is the same as inverted geoshape service
+					// Kartotherian does not support it, request it as geoshape
+					( $service === 'geomask' ? 'geoshape' : $service ) .
+					'?' . wfArrayToCgi( $query );
 				if ( isset( $object->properties ) ) {
 					$ret->properties = $object->properties;
 				}
@@ -270,7 +271,7 @@ class SimpleStyleParser {
 				break;
 
 			default:
-				throw new LogicException( "Unexpected service name '{$object->service}'" );
+				throw new LogicException( "Unexpected service name '$service'" );
 		}
 
 		$object = $ret;
