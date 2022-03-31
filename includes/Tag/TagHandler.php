@@ -320,10 +320,10 @@ abstract class TagHandler {
 		Parser $parser
 	) {
 		if ( $state->getMaplinks() ) {
-			$parserOutput->setPageProperty( 'kartographer_links', $state->getMaplinks() );
+			$parserOutput->setPageProperty( 'kartographer_links', (string)$state->getMaplinks() );
 		}
 		if ( $state->getMapframes() ) {
-			$parserOutput->setPageProperty( 'kartographer_frames', $state->getMapframes() );
+			$parserOutput->setPageProperty( 'kartographer_frames', (string)$state->getMapframes() );
 		}
 
 		if ( $state->hasBrokenTags() ) {
