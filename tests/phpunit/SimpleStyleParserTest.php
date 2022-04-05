@@ -3,6 +3,7 @@
 namespace Kartographer\Tests;
 
 use Kartographer\SimpleStyleParser;
+use LogicException;
 use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use Parser;
@@ -21,11 +22,8 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideExternalData
-	 * @param string $expected
-	 * @param string $input
-	 * @param string $message
 	 */
-	public function testExternalData( $expected, $input, $message = '' ) {
+	public function testExternalData( string $expected, string $input, string $message ) {
 		$expected = json_decode( $expected );
 
 		$options = ParserOptions::newFromAnon();
@@ -102,4 +100,89 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 			],
 		];
 	}
+
+	/**
+	 * @dataProvider provideDataToNormalizeAndSanitize
+	 */
+	public function testNormalizeAndSanitize( string $json, string $expected = null ) {
+		$parser = $this->createNoOpMock( Parser::class, [ 'recursiveTagParseFully' ] );
+		$parser->method( 'recursiveTagParseFully' )->willReturn( 'HTML' );
+		$ssp = new SimpleStyleParser( $parser );
+		$data = json_decode( $json );
+
+		if ( $expected && !str_starts_with( $expected, '{' ) && class_exists( $expected ) ) {
+			$this->expectException( $expected );
+		}
+
+		$status = $ssp->normalizeAndSanitize( $data );
+
+		$this->assertTrue( $status->isOK() );
+		$this->assertEquals( json_decode( $expected ?? $json ), $data );
+	}
+
+	public function provideDataToNormalizeAndSanitize() {
+		return [
+			[ 'null' ],
+			[ '[]' ],
+			[ '{}' ],
+			[ '{ "type": "…" }' ],
+			[ '{ "type": "ExternalData" }', LogicException::class ],
+			[ '{ "type": "ExternalData", "service": "…" }', LogicException::class ],
+			[
+				'{
+					"type": "ExternalData",
+					"service": "geoshape"
+				}',
+				'{
+					"type": "ExternalData",
+					"service": "geoshape",
+					"url": "https://maps.wikimedia.org/geoshape?getgeojson=1"
+				}',
+			],
+			[
+				'{
+					"type": "ExternalData",
+					"service": "geoshape",
+					"ids": "Q1, Q2",
+					"query": "foo",
+					"properties": "bar"
+				}',
+				'{
+					"type": "ExternalData",
+					"service": "geoshape",
+					"url": "https://maps.wikimedia.org/geoshape?getgeojson=1&ids=Q1%2CQ2&query=foo",
+					"properties": "bar"
+				}',
+			],
+			[
+				'{
+					"type": "ExternalData",
+					"service": "geomask",
+					"ids": [ "Q1", "Q2" ]
+				}',
+				'{
+					"type": "ExternalData",
+					"service": "geomask",
+					"url": "https://maps.wikimedia.org/geoshape?getgeojson=1&ids=Q1%2CQ2"
+				}',
+			],
+			// TODO: Cover "service": "page" as well
+
+			// Test cases specifically for SimpleStyleParser::sanitize()
+			[
+				'{ "_a": "…", "b": { "_c": "…", "d": "…" } }',
+				'{ "b": { "d": "…" } }',
+			],
+			[
+				'{ "properties": { "title": "…", "description": {} } }',
+				'{ "properties": { "title": "HTML" } }',
+			],
+			[
+				'{ "properties": { "title": { "en": "…", "de": null } } }',
+				'{ "properties": { "title": { "en": "HTML" } } }',
+			],
+			// TODO: Cover special cases with the "saveUnparsed" option set
+		];
+	}
+
 }
