@@ -2,15 +2,14 @@
 
 namespace Kartographer\Tag;
 
-use FormatJson;
 use Html;
 use Kartographer\CoordFormatter;
-use Kartographer\SpecialMap;
 
 /**
- * The <maplink> tag creates a link that, when clicked,
+ * The <maplink> tag creates a link that, when clicked, will open a dynamic map in Special:Map page
  */
 class MapLink extends TagHandler {
+	use MapLinkTrait;
 
 	public const TAG = 'maplink';
 
@@ -41,54 +40,18 @@ class MapLink extends TagHandler {
 		}
 		$text = $this->parser->recursiveTagParse( $text, $this->frame );
 
-		$attrs = [
-			'class' => 'mw-kartographer-maplink',
-			'data-mw' => 'interface',
-			'data-style' => $this->mapStyle,
-			'href' => SpecialMap::link( $this->lat, $this->lon, $this->zoom, $this->resolvedLangCode )
-				->getLocalURL()
-		];
+		$attrs = $this->prepareAttrs( [
+			'mapStyle' => $this->mapStyle,
+			'zoom' => $this->zoom,
+			'lat' => $this->lat,
+			'lon' => $this->lon,
+			'resolvedLangCode' => $this->resolvedLangCode,
+			'specifiedLangCode' => $this->specifiedLangCode,
+			'cssClass' => $this->cssClass,
+			'showGroups' => $this->showGroups,
+			'markerProperties' => $this->markerProperties
+		], $this->config );
 
-		if ( $this->zoom !== null ) {
-			$attrs['data-zoom'] = $this->zoom;
-		}
-		if ( $this->lat !== null && $this->lon !== null ) {
-			$attrs['data-lat'] = $this->lat;
-			$attrs['data-lon'] = $this->lon;
-		}
-		if ( $this->specifiedLangCode !== null ) {
-			$attrs['data-lang'] = $this->specifiedLangCode;
-		}
-		$style = $this->extractMarkerCss();
-		if ( $style ) {
-			$attrs['class'] .= ' mw-kartographer-autostyled';
-			$attrs['style'] = $style;
-		}
-		if ( $this->cssClass !== '' ) {
-			$attrs['class'] .= ' ' . $this->cssClass;
-		}
-		if ( $this->showGroups ) {
-			$attrs['data-overlays'] = FormatJson::encode( $this->showGroups, false,
-				FormatJson::ALL_OK );
-		}
 		return Html::rawElement( 'a', $attrs, $text );
-	}
-
-	/**
-	 * Extracts CSS style to be used by the link from GeoJSON
-	 * @return string
-	 */
-	private function extractMarkerCss(): string {
-		if ( $this->config->get( 'KartographerUseMarkerStyle' )
-			&& $this->markerProperties
-			&& isset( $this->markerProperties->{'marker-color'} )
-			// JsonSchema already validates this value for us, however this regex will also fail
-			// if the color is invalid
-			&& preg_match( '/^#?((?:[\da-f]{3}){1,2})$/i', $this->markerProperties->{'marker-color'}, $m )
-		) {
-			return "background: #{$m[1]};";
-		}
-
-		return '';
 	}
 }
