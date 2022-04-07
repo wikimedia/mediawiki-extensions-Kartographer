@@ -5,9 +5,16 @@ namespace Kartographer;
 use ApiBase;
 use ApiQuery;
 use ApiQueryBase;
+use ExtensionRegistry;
+use FlaggableWikiPage;
+use FlaggedRevs;
 use FormatJson;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use ParserOptions;
+use ParserOutput;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -66,8 +73,7 @@ class ApiQueryMapData extends ApiQueryBase {
 				$this->getResult()->addValue( [ 'query', 'pages', $pageId ], 'revid', $revId );
 			}
 
-			$page = $this->pageFactory->newFromTitle( $title );
-			$parserOutput = $page->getParserOutput( ParserOptions::newFromAnon(), $revId );
+			$parserOutput = $this->getParserOutput( $title, $revId );
 			$state = $parserOutput ? State::getState( $parserOutput ) : null;
 			if ( !$state ) {
 				continue;
@@ -143,4 +149,53 @@ class ApiQueryMapData extends ApiQueryBase {
 	public function isInternal() {
 		return true;
 	}
+
+	/**
+	 * Wrap parsing logic to accomplish a cache workaround
+	 *
+	 * FIXME: Once T304813 is resolved, MediaWiki core will be able to dynamically select the
+	 * correct cache.  Until then, we're explicitly using the FlaggedRevs stable-revision cache to
+	 * avoid an unnecessary parse, and to avoid polluting the RevisionOutputCache.
+	 *
+	 * @param PageIdentity $title
+	 * @param int|null $requestedRevId
+	 *
+	 * @return ParserOutput
+	 */
+	private function getParserOutput( PageIdentity $title, ?int $requestedRevId ): ParserOutput {
+		$parserOptions = ParserOptions::newFromAnon();
+
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'FlaggedRevs' ) ) {
+			$page = FlaggableWikiPage::newInstance( $title );
+			$isOldRev = $requestedRevId && $requestedRevId !== $page->getLatest();
+			$latestRevMayBeSpecial = FlaggedRevs::inclusionSetting() === FR_INCLUDES_STABLE;
+
+			if ( $isOldRev || $latestRevMayBeSpecial ) {
+				$requestedRevId = $requestedRevId ?: $page->getLatest();
+				if ( $requestedRevId === $page->getStable() ) {
+					// This is the stable revision, so we need to use the special FlaggedRevs cache.
+					/** @var \FlaggedRevsParserCache $stableParserCache */
+					$stableParserCache = MediaWikiServices::getInstance()->getService( 'FlaggedRevsParserCache' );
+					$parserOutput = $stableParserCache->get( $page, $parserOptions );
+					if ( $parserOutput ) {
+						return $parserOutput;
+					}
+
+					// Cache misses should be rare, since the main page has been recently viewed.
+					LoggerFactory::getInstance( 'Kartographer' )->notice( 'Stable cache miss' );
+				}
+			}
+		} else {
+			$page = $this->pageFactory->newFromTitle( $title );
+		}
+
+		// This is the line that will replace the whole function, once the workaround can be
+		// removed.
+		//
+		// Note: This might give slightly different results than a FlaggedRevs parse of the stable
+		// revision, for example a mapframe template will use its latest revision rather than the
+		// stable template revision.
+		return $page->getParserOutput( $parserOptions, $requestedRevId );
+	}
+
 }
