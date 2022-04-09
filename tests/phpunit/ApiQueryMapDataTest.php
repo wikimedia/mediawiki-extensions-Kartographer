@@ -5,7 +5,7 @@ namespace Kartographer\Tests;
 use ApiTestCase;
 use ApiUsageException;
 use CommentStoreComment;
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\SlotRecord;
 use WikiPage;
 use WikitextContent;
 
