@@ -9,6 +9,10 @@ var wikivoyage = require( './wikivoyage.js' ),
 	ControlNearby = require( './ControlNearby.js' );
 
 /* eslint-disable no-underscore-dangle */
+
+/**
+ * @param {L.Map} map
+ */
 function WVMap( map ) {
 	this.map = map;
 }

@@ -180,7 +180,6 @@ MapDialog.prototype.toggleSideBar = function ( open ) {
 	} );
 };
 
-// eslint-disable-next-line no-unused-vars
 MapDialog.prototype.toggleNearbyLayer = function ( showNearby ) {
 	this.map.showNearby( showNearby );
 };

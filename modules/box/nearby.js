@@ -45,7 +45,27 @@ module.exports = {
 			pithumbsize: '150',
 			pilimit: '50'
 		} );
-	}
+	},
 
-	// TODO: Convert the API results into something usable by Leaflet
+	/**
+	 * @param {Object} response Raw data returned by the geosearch API.
+	 * @return {Object[]} A list of GeoJSON features, one for each page.
+	 */
+	convertGeosearchToGeojson: function ( response ) {
+		return response.query.pages.map( function ( page ) {
+			return {
+				type: 'Feature',
+				geometry: {
+					type: 'Point',
+					coordinates: [
+						page.coordinates[ 0 ].lon,
+						page.coordinates[ 0 ].lat
+					]
+				},
+				properties: {
+					name: page.title
+				}
+			};
+		} );
+	}
 };

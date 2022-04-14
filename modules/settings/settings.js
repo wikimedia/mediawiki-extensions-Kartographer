@@ -16,7 +16,7 @@
 module.exports = {
 	configure: function () {
 		var mapServer = mw.config.get( 'wgKartographerMapServer' ),
-			forceHttps = mapServer[ 4 ] === 's',
+			forceHttps = mapServer && mapServer[ 4 ] === 's',
 			config = L.mapbox.config;
 
 		config.REQUIRE_ACCESS_TOKEN = false;
