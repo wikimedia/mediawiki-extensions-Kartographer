@@ -182,7 +182,7 @@ MapDialog.prototype.toggleSideBar = function ( open ) {
 
 // eslint-disable-next-line no-unused-vars
 MapDialog.prototype.toggleNearbyLayer = function ( showNearby ) {
-	// TODO: wire up handler.
+	this.map.showNearby( showNearby );
 };
 
 MapDialog.prototype.getActionProcess = function ( action ) {

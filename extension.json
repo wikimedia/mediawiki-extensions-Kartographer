@@ -199,7 +199,8 @@
 				"dataLayerOpts.js",
 				"data.js",
 				"Map.js",
-				"enablePreview.js"
+				"enablePreview.js",
+				"nearby.js"
 			],
 			"messages": [
 				"kartographer-attribution"

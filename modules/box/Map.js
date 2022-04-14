@@ -14,6 +14,7 @@ var util = require( 'ext.kartographer.util' ),
 	dataLayerOpts = require( './dataLayerOpts.js' ),
 	ScaleControl = require( './scale_control.js' ),
 	DataManager = require( './data.js' ),
+	nearby = require( './nearby.js' ),
 	scale, urlFormat,
 	mapServer = mw.config.get( 'wgKartographerMapServer' ),
 	worldLatLng = new L.LatLngBounds( [ -90, -180 ], [ 90, 180 ] ),
@@ -690,6 +691,19 @@ KartographerMap = L.Map.extend( {
 			}
 		}
 		return this;
+	},
+
+	/**
+	 * @param {boolean} show
+	 */
+	showNearby: function ( show ) {
+		if ( show ) {
+			// TODO: Add a layer using these results
+			// eslint-disable-next-line no-unused-vars
+			nearby.fetch( this.getBounds() ).then( function ( data ) {
+				// console.log( data );
+			} );
+		}
 	},
 
 	/**
