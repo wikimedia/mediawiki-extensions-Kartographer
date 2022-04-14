@@ -27,7 +27,10 @@ module.exports = {
 		return ( new mw.Api( {
 			/* ajax: {
 				// TODO: Temporary override for local testing
-				url: 'https://en.wikipedia.org/w/api.php'
+				url: 'https://en.wikipedia.org/w/api.php',
+				headers: {
+					'User-Agent': 'Kartographer - the WMF Content Transform Team (https://www.mediawiki.org/wiki/Content_Transform_Team)'
+				}
 			} */
 		} ) ).get( {
 			action: 'query',
