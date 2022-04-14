@@ -60,6 +60,7 @@
 	"kartographer-sidebar-latitude": "Latitude",
 	"kartographer-sidebar-longitude": "Longitude",
 	"kartographer-sidebar-mapdetails": "External maps",
+	"kartographer-sidebar-nearbybutton": "Show nearby articles",
 	"kartographer-sidebar-service": "Service",
 	"kartographer-sidebar-togglebutton": "External maps",
 	"leafletdraw-draw-handlers-circle-radius": "Radius",

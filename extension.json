@@ -255,6 +255,7 @@
 			],
 			"messages": [
 				"kartographer-fullscreen-close",
+				"kartographer-sidebar-nearbybutton",
 				"kartographer-sidebar-togglebutton"
 			],
 			"targets": [
@@ -573,6 +574,10 @@
 		"KartographerSimpleStyleMarkers": {
 			"description": "Use an api to generate markers using the simplestyle-spec for features.",
 			"value": true
+		},
+		"KartographerNearby": {
+			"description": "Enable a beta-quality \"nearby\" feature, currently in development.  Wikivoyage already has its own implementation which this feature may conflict with.",
+			"value": false
 		}
 	},
 	"TrackingCategories": [

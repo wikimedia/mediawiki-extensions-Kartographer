@@ -32,6 +32,7 @@ class DataModule extends ResourceLoaderModule {
 			'wgKartographerUsePageLanguage' => $config->get( 'KartographerUsePageLanguage' ),
 			'wgKartographerFallbackZoom' => $config->get( 'KartographerFallbackZoom' ),
 			'wgKartographerSimpleStyleMarkers' => $config->get( 'KartographerSimpleStyleMarkers' ),
+			'wgKartographerNearby' => $config->get( 'KartographerNearby' ),
 		] );
 	}
 

@@ -113,6 +113,13 @@ MapDialog.prototype.addFooterButton = function () {
 		} );
 		dialog.mapDetailsButton.connect( dialog, { change: 'toggleSideBar' } );
 	}
+	if ( !dialog.mapNearbyButton && mw.config.get( 'wgKartographerNearby' ) ) {
+		dialog.mapNearbyButton = new OO.ui.ToggleButtonWidget( {
+			label: mw.msg( 'kartographer-sidebar-nearbybutton' ),
+			title: mw.msg( 'kartographer-sidebar-nearbybutton' )
+		} );
+		dialog.mapNearbyButton.connect( dialog, { change: 'toggleNearbyLayer' } );
+	}
 
 	if ( !dialog.$captionContainer.length ) {
 		dialog.$captionContainer = $( '<div>' )
@@ -123,13 +130,17 @@ MapDialog.prototype.addFooterButton = function () {
 		$buttonContainer = $( '<div>' )
 			.addClass( 'mw-kartographer-buttonfoot' );
 	}
+	if ( dialog.mapNearbyButton ) {
+		$buttonContainer.append( dialog.mapNearbyButton.$element );
+	}
+	$buttonContainer.append( dialog.mapDetailsButton.$element );
 
 	if ( !$inlineContainer.length ) {
 		$inlineContainer = $( '<div>' )
 			.addClass( 'mw-kartographer-inlinefoot' );
 	}
 	$inlineContainer.append(
-		$buttonContainer.append( dialog.mapDetailsButton.$element ),
+		$buttonContainer,
 		dialog.$captionContainer
 	);
 
@@ -166,8 +177,12 @@ MapDialog.prototype.toggleSideBar = function ( open ) {
 		setTimeout( function () {
 			dialog.$body.toggleClass( 'mw-kartographer-mapDialog-sidebar-opened', open );
 		} );
-
 	} );
+};
+
+// eslint-disable-next-line no-unused-vars
+MapDialog.prototype.toggleNearbyLayer = function ( showNearby ) {
+	// TODO: wire up handler.
 };
 
 MapDialog.prototype.getActionProcess = function ( action ) {
