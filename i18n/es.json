@@ -3,6 +3,7 @@
 		"authors": [
 			"AlvaroMolina",
 			"Dgstranz",
+			"DiegoAmbrocio",
 			"Fitoschido",
 			"Macofe",
 			"MarcoAurelio",
@@ -41,6 +42,7 @@
 	"kartographer-sidebar-latitude": "Latitud",
 	"kartographer-sidebar-longitude": "Longitud",
 	"kartographer-sidebar-mapdetails": "Mapas externos",
+	"kartographer-sidebar-nearbybutton": "Mostrar artículos cercanos",
 	"kartographer-sidebar-service": "Servicio",
 	"kartographer-sidebar-togglebutton": "Mapas externos",
 	"leafletdraw-draw-handlers-circle-radius": "Radio",

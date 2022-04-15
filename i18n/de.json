@@ -54,6 +54,7 @@
 	"kartographer-sidebar-latitude": "Breitengrad",
 	"kartographer-sidebar-longitude": "Längengrad",
 	"kartographer-sidebar-mapdetails": "Externe Karten",
+	"kartographer-sidebar-nearbybutton": "Artikel in der Nähe anzeigen",
 	"kartographer-sidebar-service": "Dienst",
 	"kartographer-sidebar-togglebutton": "Externe Karten",
 	"leafletdraw-draw-handlers-circle-radius": "Radius",
