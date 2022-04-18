@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Anakmalaysia"
+			"Anakmalaysia",
+			"Tofeiku"
 		]
 	},
+	"kartographer-sidebar-nearbybutton": "Tunjuk rencana berdekatan",
 	"visualeditor-mwmapsdialog-language": "Bahasa"
 }

@@ -7,6 +7,7 @@
 			"JerryLiu",
 			"Liuxinyu970226",
 			"Shizhao",
+			"ZiqiLiang",
 			"予弦",
 			"神樂坂秀吉",
 			"铁桶"
@@ -49,6 +50,7 @@
 	"kartographer-sidebar-latitude": "纬度",
 	"kartographer-sidebar-longitude": "经度",
 	"kartographer-sidebar-mapdetails": "外部地图",
+	"kartographer-sidebar-nearbybutton": "显示附近条目",
 	"kartographer-sidebar-service": "服务",
 	"kartographer-sidebar-togglebutton": "外部地图",
 	"leafletdraw-draw-handlers-circle-radius": "半径",
