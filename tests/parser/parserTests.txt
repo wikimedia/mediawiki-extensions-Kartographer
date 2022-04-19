@@ -455,5 +455,5 @@ ExternalData errors
 ]
 </maplink>
 !! html
-<div class="mw-kartographer-error">&lt;maplink&gt;: The JSON content is not valid GeoJSON+simplestyle. The first validation error is on the element "/0/service": "Does not have a value in the enumeration ["geoshape","geoline","geomask"]".</div>
+<div class="mw-kartographer-error">&lt;maplink&gt;: The JSON content is not valid GeoJSON+simplestyle. The first validation error is on the element "/0/service": "Does not have a value in the enumeration ["geoshape","geoline","geopoint","geomask"]".</div>
 !! end

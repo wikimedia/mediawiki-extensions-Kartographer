@@ -233,6 +233,7 @@ class SimpleStyleParser {
 
 		switch ( $service ) {
 			case 'geoshape':
+			case 'geopoint':
 			case 'geoline':
 			case 'geomask':
 				$query = [ 'getgeojson' => 1 ];
