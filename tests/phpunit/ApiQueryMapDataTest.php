@@ -5,7 +5,11 @@ namespace Kartographer\Tests;
 use ApiTestCase;
 use ApiUsageException;
 use CommentStoreComment;
+use FlaggableWikiPage;
+use FlaggedRevs;
+use FlaggedRevsParserCache;
 use MediaWiki\Revision\SlotRecord;
+use ParserOptions;
 use WikiPage;
 use WikitextContent;
 
@@ -135,6 +139,59 @@ class ApiQueryMapDataTest extends ApiTestCase {
 		$this->setMwGlobals( 'wgKartographerVersionedMapdata', true );
 		$this->expectException( ApiUsageException::class );
 		$this->doApiRequest( $params );
+	}
+
+	public function testStableAndLatest() {
+		$this->markTestSkippedIfExtensionNotLoaded( 'FlaggedRevs' );
+
+		$this->setMwGlobals( [
+			'wgFlaggedRevsAutoReview' => FR_AUTOREVIEW_NONE,
+			'wgKartographerVersionedMapdata' => true,
+		] );
+
+		$hashLatest = '_' . sha1( '[' . self::MAPFRAME_JSON . ']' );
+		$hashStable = '_' . sha1( '[' . self::MAPFRAME_JSON_OTHER . ']' );
+		$expectedLatest = [ '{"' . $hashLatest . '":[' . self::MAPFRAME_JSON . ']}' ];
+		$expectedStable = [ '{"' . $hashStable . '":[' . self::MAPFRAME_JSON_OTHER . ']}' ];
+
+		$page = $this->getExistingTestPage( __METHOD__ );
+
+		$stableRevision = $this->addRevision( $page, self::MAPFRAME_CONTENT_OTHER );
+		FlaggedRevs::autoReviewEdit(
+		  $page,
+		  $this->getTestUser()->getUser(),
+		  $stableRevision
+		);
+
+		// Set up the latest revision
+		$this->addRevision( $page, self::MAPFRAME_CONTENT );
+
+		$cache = $this->createNoOpMock( FlaggedRevsParserCache::class, [ 'get' ] );
+		// Assert that the stable cache is only used once, i.e. not for the latest revision.
+		$cache->expects( $this->once() )
+			->method( 'get' )
+			->willReturn( $page->getParserOutput( ParserOptions::newFromAnon(), $stableRevision->getId() ) );
+		$this->setService( 'FlaggedRevsParserCache', $cache );
+
+		// Test the latest revision.
+		$params = [
+			'action' => 'query',
+			'prop' => 'mapdata',
+			'revids' => $page->getLatest(),
+		];
+		[ $apiResultLatestRevision ] = $this->doApiRequest( $params );
+		$this->assertResult( [ $expectedLatest ], $apiResultLatestRevision );
+
+		// Test the stable revision.
+		$frPage = FlaggableWikiPage::getTitleInstance( $page->getTitle() );
+		$srev = $frPage->getStableRev();
+		$params = [
+			'action' => 'query',
+			'prop' => 'mapdata',
+			'revids' => $srev->getRevId(),
+		];
+		[ $apiResultStableRevision ] = $this->doApiRequest( $params );
+		$this->assertResult( [ $expectedStable ], $apiResultStableRevision );
 	}
 
 	private function addRevision( WikiPage $page, string $wikitext ) {
