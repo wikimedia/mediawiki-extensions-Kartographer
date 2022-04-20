@@ -14,9 +14,8 @@ var util = require( 'ext.kartographer.util' ),
 	dataLayerOpts = require( './dataLayerOpts.js' ),
 	ScaleControl = require( './scale_control.js' ),
 	DataManager = require( './data.js' ),
-	nearby = require( './nearby.js' ),
+	Nearby = require( './nearby.js' ),
 	scale, urlFormat,
-	mapServer = mw.config.get( 'wgKartographerMapServer' ),
 	worldLatLng = new L.LatLngBounds( [ -90, -180 ], [ 90, 180 ] ),
 	KartographerMap,
 	precisionPerZoom = [ 0, 0, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5 ],
@@ -38,10 +37,6 @@ function bracketDevicePixelRatio() {
 		}
 	}
 	return brackets[ brackets.length - 1 ];
-}
-
-if ( !mapServer ) {
-	throw new Error( 'wgKartographerMapServer must be configured.' );
 }
 
 scale = bracketDevicePixelRatio();
@@ -155,9 +150,14 @@ KartographerMap = L.Map.extend( {
 	 */
 	initialize: function ( options ) {
 		var args,
+			mapServer = mw.config.get( 'wgKartographerMapServer' ),
 			defaultStyle = mw.config.get( 'wgKartographerDfltStyle' ),
 			style = options.style || defaultStyle,
 			map = this;
+
+		if ( !mapServer ) {
+			throw new Error( 'wgKartographerMapServer must be configured.' );
+		}
 
 		if ( options.center === 'auto' ) {
 			options.center = undefined;
@@ -697,12 +697,26 @@ KartographerMap = L.Map.extend( {
 	 * @param {boolean} show
 	 */
 	showNearby: function ( show ) {
-		if ( show ) {
-			// TODO: Add a layer using these results
-			// eslint-disable-next-line no-unused-vars
-			nearby.fetch( this.getBounds() ).then( function ( data ) {
-				// console.log( data );
+		if ( show && !this.nearbyLayer ) {
+			var map = this;
+			// TODO: Replace or merge nearby points when moving the viewport.
+			Nearby.fetch( this.getBounds() ).then( function ( data ) {
+				var markerStyle = {
+					// TODO: styles aren't applied yet
+					color: '#f00'
+				};
+				map.nearbyLayer = L.geoJSON(
+					Nearby.convertGeosearchToGeojson( data ),
+					{ style: markerStyle }
+				);
+
+				map.addLayer( map.nearbyLayer );
 			} );
+		} else if ( !show && this.nearbyLayer ) {
+			this.removeLayer( this.nearbyLayer );
+			// Allows the user to workaround the lack of scrolling.
+			// TODO: Don't throw away the data.
+			this.nearbyLayer = null;
 		}
 	},
 

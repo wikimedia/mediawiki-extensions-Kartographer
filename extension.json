@@ -509,6 +509,16 @@
 			]
 		}
 	},
+	"QUnitTestModule": {
+		"localBasePath": "tests/qunit",
+		"remoteExtPath": "Kartographer/tests/qunit",
+		"scripts": [
+			"box/nearby.test.js"
+		],
+		"dependencies": [
+			"ext.kartographer.box"
+		]
+	},
 	"attributes": {
 		"VisualEditor": {
 			"PluginModules": [

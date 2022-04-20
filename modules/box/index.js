@@ -34,5 +34,9 @@ L.kartographer = module.exports = {
 	 * @return {Kartographer.Box.MapClass}
 	 * @member Kartographer.Box
 	 */
-	map: require( './Map.js' ).map
+	map: require( './Map.js' ).map,
+
+	private: {
+		Nearby: require( './nearby.js' )
+	}
 };
