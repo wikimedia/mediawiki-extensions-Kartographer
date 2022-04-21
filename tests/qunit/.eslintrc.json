@@ -1,5 +1,6 @@
 {
 	"extends": [
-		"wikimedia/qunit"
+		"wikimedia/qunit",
+		"wikimedia/language/es6"
 	]
 }
