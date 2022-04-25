@@ -44,6 +44,20 @@
 					},
 					description: 'Ward of Monaco',
 					descriptionsource: 'local'
+				},
+				{
+					pageid: 675150,
+					ns: 0,
+					title: '2004 Monaco Grand Prix',
+					index: 1,
+					coordinates: [
+						{
+							lat: 43.73,
+							lon: 7.42,
+							primary: true,
+							globe: 'earth'
+						}
+					]
 				}
 			]
 		}
@@ -65,7 +79,7 @@
 		const bounds = L.latLngBounds( L.latLng( 40.712, -74.227 ), L.latLng( 40.774, -74.125 ) );
 		const done = assert.async();
 
-		const expectedApiUrl = mw.config.get( 'wgScriptPath' ) + '/api.php?action=query&format=json&formatversion=2&prop=coordinates%7Cpageprops%7Cpageimages%7Cdescription&colimit=max&generator=geosearch&ggsbbox=40.774%7C-74.227%7C40.712%7C-74.125&ggsnamespace=0&ggslimit=50&ppprop=displaytitle&piprop=thumbnail&pithumbsize=150&pilimit=50';
+		const expectedApiUrl = mw.config.get( 'wgScriptPath' ) + '/api.php?action=query&format=json&formatversion=2&prop=coordinates%7Cpageprops%7Cpageimages%7Cdescription&colimit=max&generator=geosearch&ggsbbox=40.774%7C-74.227%7C40.712%7C-74.125&ggsnamespace=0&ggslimit=50&ppprop=displaytitle&piprop=thumbnail&pithumbsize=300&pilimit=50';
 
 		Nearby.fetch( bounds ).then( ( nearbyResults ) => {
 			assert.deepEqual( nearbyResults, dummyGeosearchResponse );
@@ -89,7 +103,9 @@
 					type: 'Point'
 				},
 				properties: {
-					name: 'Monaco'
+					title: 'Monaco',
+					description: 'City-state and microstate on the French Riviera',
+					imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Flag_of_Monaco.svg/150px-Flag_of_Monaco.svg.png'
 				},
 				type: 'Feature'
 			},
@@ -102,7 +118,24 @@
 					type: 'Point'
 				},
 				properties: {
-					name: 'La Condamine'
+					title: 'La Condamine',
+					description: 'Ward of Monaco',
+					imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Monaco_-_Port_en_d%C3%A9cembre.jpg/150px-Monaco_-_Port_en_d%C3%A9cembre.jpg'
+				},
+				type: 'Feature'
+			},
+			{
+				geometry: {
+					coordinates: [
+						7.42,
+						43.73
+					],
+					type: 'Point'
+				},
+				properties: {
+					title: '2004 Monaco Grand Prix',
+					description: undefined,
+					imageUrl: undefined
 				},
 				type: 'Feature'
 			}

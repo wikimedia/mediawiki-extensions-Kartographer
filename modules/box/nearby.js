@@ -44,7 +44,7 @@ module.exports = {
 			ggslimit: '50',
 			ppprop: 'displaytitle',
 			piprop: 'thumbnail',
-			pithumbsize: '150',
+			pithumbsize: '300',
 			pilimit: '50'
 		} );
 	},
@@ -55,6 +55,7 @@ module.exports = {
 	 */
 	convertGeosearchToGeojson: function ( response ) {
 		return response.query.pages.map( function ( page ) {
+			var thumbnail = page.thumbnail;
 			return {
 				type: 'Feature',
 				geometry: {
@@ -65,9 +66,45 @@ module.exports = {
 					]
 				},
 				properties: {
-					name: page.title
+					title: page.title,
+					description: page.description,
+					imageUrl: thumbnail ? thumbnail.source : undefined
 				}
 			};
 		} );
+	},
+
+	/**
+	 * @param {string} title
+	 * @param {string|undefined} description
+	 * @param {string|undefined} imageUrl
+	 * @return {string}
+	 */
+	createPopupHtml: function ( title, description, imageUrl ) {
+		title = mw.Title.newFromText( title );
+
+		var linkHtml = mw.html.element( 'a', {
+				href: title.getUrl(),
+				target: '_blank'
+			}, title.getPrefixedText() ),
+			titleHtml = mw.html.element( 'div', {
+				class: 'marker-title'
+			}, new mw.html.Raw( linkHtml ) ),
+			contentHtml = '';
+
+		if ( description ) {
+			contentHtml += mw.html.element( 'span', {}, description );
+		}
+
+		if ( imageUrl ) {
+			contentHtml += mw.html.element( 'img', { src: imageUrl } );
+		}
+
+		if ( contentHtml ) {
+			return titleHtml + mw.html.element( 'div', {
+				class: 'marker-description'
+			}, new mw.html.Raw( contentHtml ) );
+		}
+		return titleHtml;
 	}
 };

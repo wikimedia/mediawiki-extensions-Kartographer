@@ -708,8 +708,13 @@ KartographerMap = L.Map.extend( {
 				map.nearbyLayer = L.geoJSON(
 					Nearby.convertGeosearchToGeojson( data ),
 					{ style: markerStyle }
-				);
-
+				).bindPopup( function ( layer ) {
+					return Nearby.createPopupHtml(
+						layer.feature.properties.title,
+						layer.feature.properties.description,
+						layer.feature.properties.imageUrl
+					);
+				} );
 				map.addLayer( map.nearbyLayer );
 			} );
 		} else if ( !show && this.nearbyLayer ) {
