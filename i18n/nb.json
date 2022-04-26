@@ -40,6 +40,7 @@
 	"kartographer-sidebar-latitude": "Breddegrad",
 	"kartographer-sidebar-longitude": "Lengdegrad",
 	"kartographer-sidebar-mapdetails": "Eksterne kart",
+	"kartographer-sidebar-nearbybutton": "Vis artikler i nærheten",
 	"kartographer-sidebar-service": "Tjeneste",
 	"kartographer-sidebar-togglebutton": "Eksterne kart",
 	"leafletdraw-draw-handlers-circle-radius": "Radius",
