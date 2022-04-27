@@ -79,7 +79,7 @@
 		const bounds = L.latLngBounds( L.latLng( 40.712, -74.227 ), L.latLng( 40.774, -74.125 ) );
 		const done = assert.async();
 
-		const expectedApiUrl = mw.config.get( 'wgScriptPath' ) + '/api.php?action=query&format=json&formatversion=2&prop=coordinates%7Cpageprops%7Cpageimages%7Cdescription&colimit=max&generator=geosearch&ggsbbox=40.774%7C-74.227%7C40.712%7C-74.125&ggsnamespace=0&ggslimit=50&ggssort=relevance&ppprop=displaytitle&piprop=thumbnail&pithumbsize=300&pilimit=50';
+		const expectedApiUrl = mw.config.get( 'wgScriptPath' ) + '/api.php?action=query&format=json&formatversion=2&prop=coordinates%7Cpageprops%7Cpageimages%7Cdescription&colimit=max&generator=search&gsrsearch=nearcoord%3A5500m%2C40.7430%2C-74.1760&gsrnamespace=0&gsrlimit=50&ppprop=displaytitle&piprop=thumbnail&pithumbsize=300&pilimit=50';
 
 		Nearby.fetch( bounds ).then( ( nearbyResults ) => {
 			assert.deepEqual( nearbyResults, dummyGeosearchResponse );

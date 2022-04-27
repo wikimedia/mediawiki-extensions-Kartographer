@@ -1,26 +1,37 @@
 /**
+ * Gets a radius from bounds in meters.
+ *
  * @private
- * @param {L.LatLng} coordinates
- * @return {string}
+ * @param {L.LatLngBounds} bounds
+ * @return {number}
  */
-function coordinatesToString( coordinates ) {
-	return coordinates.lat + '|' + coordinates.lng;
+function getRadiusFromBounds( bounds ) {
+	// This is currently drawing a circle around the whole box so that some
+	// results might be outside of the visible area.
+	return Math.floor( bounds.getCenter().distanceTo( bounds.getSouthWest() ) );
 }
 
 /**
+ * Building the search query. Includes calculations to debounce the input
+ * from the bounding box.
+ *
  * @private
- * @param {L.LatLng} northWest
- * @param {L.LatLng} southEast
+ * @param {L.LatLngBounds} bounds
  * @return {string}
  */
-function getBoundingBoxString( northWest, southEast ) {
-	return coordinatesToString( northWest ) + '|' + coordinatesToString( southEast );
+function getSearchQuery( bounds ) {
+	// TODO: Precision could be influenced by zoom factor
+	var lat = bounds.getCenter().lat.toFixed( 4 ), // cut to a precision of ~11m
+		lng = bounds.getCenter().lng.toFixed( 4 ), // cut to a precision of ~11m
+		radius = Math.floor( getRadiusFromBounds( bounds ) / 100 ) * 100; // cut to a precision of 100m steps
+
+	return 'nearcoord:' + radius + 'm,' + lat + ',' + lng;
 }
 
 module.exports = {
 	/**
 	 * @param {L.LatLngBounds} bounds
-	 * @return {Promise}
+	 * @return {jQuery.Promise}
 	 */
 	fetch: function ( bounds ) {
 		// TODO: Cache results if bounds remains unchanged
@@ -38,14 +49,15 @@ module.exports = {
 			formatversion: '2',
 			prop: 'coordinates|pageprops|pageimages|description',
 			colimit: 'max',
-			generator: 'geosearch',
-			ggsbbox: getBoundingBoxString( bounds.getNorthWest(), bounds.getSouthEast() ),
-			ggsnamespace: '0',
-			ggslimit: '50',
-			ggssort: 'relevance',
+			generator: 'search',
+			gsrsearch: getSearchQuery( bounds ),
+			gsrnamespace: '0',
+			// Set to the max thumbnail limit
+			gsrlimit: '50',
 			ppprop: 'displaytitle',
 			piprop: 'thumbnail',
 			pithumbsize: '300',
+			// The thumbnail limit is currently 50
 			pilimit: '50'
 		} );
 	},
