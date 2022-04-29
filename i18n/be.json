@@ -3,7 +3,8 @@
 		"authors": [
 			"Artsiom91",
 			"Chadyka",
-			"Maksim L."
+			"Maksim L.",
+			"No Sleep till Krupki"
 		]
 	},
 	"kartographer-broken-category-desc": "Старонка змяшчае няслушна ўжытыя карты",
@@ -19,12 +20,22 @@
 	"kartographer-linktype-satellite": "Спадарожнікавая",
 	"kartographer-linktype-topo": "Тапаграфічныя",
 	"kartographer-sidebar-coordinates": "Каардынаты",
+	"kartographer-sidebar-externalservices": "Сэрвісы мапаў",
+	"kartographer-sidebar-externalservices-show-featured": "Паказваць толькі выдатныя",
 	"kartographer-sidebar-externalservices-show-all": "Глядзець больш",
 	"kartographer-sidebar-latitude": "Шырата",
 	"kartographer-sidebar-longitude": "Даўгата",
+	"kartographer-sidebar-mapdetails": "Вонкавыя мапы",
 	"kartographer-sidebar-nearbybutton": "Паказаць артыкулы побач",
 	"kartographer-sidebar-service": "Сэрвіс",
+	"kartographer-sidebar-togglebutton": "Вонкавыя мапы",
 	"leafletdraw-draw-handlers-circle-radius": "Радыус",
+	"leafletdraw-draw-handlers-circle-tooltip-start": "Націсніце і перацягніце, каб намаляваць круг",
+	"leafletdraw-draw-handlers-marker-tooltip-start": "Націсніце мапу, каб паставіць маркер",
+	"leafletdraw-draw-handlers-circlemarker-tooltip-start": "Націсніце мапу, каб паставіць круглы маркер",
+	"leafletdraw-draw-handlers-polygon-tooltip-cont": "Націсніце, каб працягнуць маляванне гэтай фігуры",
+	"leafletdraw-draw-handlers-polygon-tooltip-end": "Націсніце першую кропку, каб закрыць гэтую фігуру",
+	"leafletdraw-draw-handlers-polygon-tooltip-start": "Націсніце, каб пачаць маляваць фігуру",
 	"leafletdraw-draw-toolbar-actions-text": "Адмена",
 	"leafletdraw-draw-toolbar-actions-title": "Адмяніць маляванне",
 	"leafletdraw-draw-toolbar-buttons-circle": "Намаляваць круг",
