@@ -153,7 +153,7 @@ class ApiQueryMapData extends ApiQueryBase {
 	/**
 	 * Wrap parsing logic to accomplish a cache workaround
 	 *
-	 * FIXME: Once T304813 is resolved, MediaWiki core will be able to dynamically select the
+	 * TODO: Once T307342 is resolved, MediaWiki core will be able to dynamically select the
 	 * correct cache.  Until then, we're explicitly using the FlaggedRevs stable-revision cache to
 	 * avoid an unnecessary parse, and to avoid polluting the RevisionOutputCache.
 	 *
