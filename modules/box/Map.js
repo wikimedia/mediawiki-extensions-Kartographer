@@ -13,7 +13,7 @@ var util = require( 'ext.kartographer.util' ),
 	OpenFullScreenControl = require( './openfullscreen_control.js' ),
 	dataLayerOpts = require( './dataLayerOpts.js' ),
 	ScaleControl = require( './scale_control.js' ),
-	DataManager = require( './data.js' ),
+	DataManagerFactory = require( './data.js' ),
 	Nearby = require( './nearby.js' ),
 	scale, urlFormat,
 	worldLatLng = new L.LatLngBounds( [ -90, -180 ], [ 90, 180 ] ),
@@ -412,7 +412,7 @@ KartographerMap = L.Map.extend( {
 			return $.Deferred().resolve().promise();
 		}
 
-		return DataManager.loadGroups( dataGroups ).then( function ( groups ) {
+		return DataManagerFactory().loadGroups( dataGroups ).then( function ( groups ) {
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( groups, function ( key, group ) {
 				var layerOptions = {
@@ -441,7 +441,7 @@ KartographerMap = L.Map.extend( {
 		var map = this;
 		options = options || {};
 
-		return DataManager.load( groupData ).then( function ( dataGroups ) {
+		return DataManagerFactory().load( groupData ).then( function ( dataGroups ) {
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( dataGroups, function ( key, group ) {
 				var groupId = inlineDataLayerKey + inlineDataLayerId++,
