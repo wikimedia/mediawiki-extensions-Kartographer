@@ -42,6 +42,7 @@ module.exports = {
 			ggsbbox: getBoundingBoxString( bounds.getNorthWest(), bounds.getSouthEast() ),
 			ggsnamespace: '0',
 			ggslimit: '50',
+			ggssort: 'relevance',
 			ppprop: 'displaytitle',
 			piprop: 'thumbnail',
 			pithumbsize: '300',

@@ -8,6 +8,7 @@
 
 namespace Kartographer;
 
+use ExtensionRegistry;
 use ResourceLoader;
 use ResourceLoaderContext;
 use ResourceLoaderModule;
@@ -32,7 +33,7 @@ class DataModule extends ResourceLoaderModule {
 			'wgKartographerUsePageLanguage' => $config->get( 'KartographerUsePageLanguage' ),
 			'wgKartographerFallbackZoom' => $config->get( 'KartographerFallbackZoom' ),
 			'wgKartographerSimpleStyleMarkers' => $config->get( 'KartographerSimpleStyleMarkers' ),
-			'wgKartographerNearby' => $config->get( 'KartographerNearby' ),
+			'wgKartographerNearby' => $this->canUseNearby(),
 		] );
 	}
 
@@ -51,5 +52,14 @@ class DataModule extends ResourceLoaderModule {
 	public function supportsURLLoading() {
 		// always use getScript() to acquire JavaScript (even in debug mode)
 		return false;
+	}
+
+	/**
+	 * @return bool
+	 */
+	private function canUseNearby() {
+		return $this->getConfig()->get( 'KartographerNearby' ) &&
+			ExtensionRegistry::getInstance()->isLoaded( 'GeoData' ) &&
+			ExtensionRegistry::getInstance()->isLoaded( 'CirrusSearch' );
 	}
 }
