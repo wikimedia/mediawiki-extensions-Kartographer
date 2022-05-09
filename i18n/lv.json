@@ -14,6 +14,8 @@
 	"kartographer-error-missing-attr": "Trūkst atribūts \"$1\"",
 	"kartographer-error-bad_attr": "Atribūts \"$1\" vērtība ir nederīga",
 	"kartographer-error-bad_data": "JSON saturs nav derīgs GeoJSON+simplestyle",
+	"kartographer-error-latlon": "Jānorāda vai nu abi vai neviens no parametriem \"latitude\" un \"longitude\"",
+	"kartographer-error-title": "Lapa \"$1\" nav derīga kartes datu lapa",
 	"kartographer-tracking-category": "Lapas ar kartēm",
 	"kartographer-tracking-category-desc": "Lapā ir karte",
 	"kartographer-specialmap-invalid-coordinates": "Norādītas nederīgas koordniātas",
