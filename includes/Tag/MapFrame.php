@@ -52,8 +52,8 @@ class MapFrame extends TagHandler {
 	protected function render(): string {
 		$mapServer = $this->config->get( 'KartographerMapServer' );
 
-		$caption = $this->getText( 'text', null );
-		$framed = $caption !== null || $this->getText( 'frameless', null ) === null;
+		$caption = (string)$this->getText( 'text', '' );
+		$framed = $caption !== '' || $this->getText( 'frameless', null ) === null;
 
 		$parserOutput = $this->parser->getOutput();
 		$options = $this->parser->getOptions();
@@ -188,15 +188,17 @@ class MapFrame extends TagHandler {
 
 		$containerClass .= ' thumb ' . self::THUMB_ALIGN_CLASSES[$this->align];
 
-		$captionFrame = Html::rawElement( 'div', [ 'class' => 'thumbcaption' ],
-			$caption ? $this->parser->recursiveTagParse( $caption ) : '' );
+		$html = Html::rawElement( 'a', $attrs, Html::rawElement( 'img', $imgAttrs ) );
 
-		$mapDiv = Html::rawElement( 'a', $attrs, Html::rawElement( 'img', $imgAttrs ) );
+		if ( $caption !== '' ) {
+			$html .= Html::rawElement( 'div', [ 'class' => 'thumbcaption' ],
+				$this->parser->recursiveTagParse( $caption ) );
+		}
 
 		return Html::rawElement( 'div', [ 'class' => $containerClass ],
 			Html::rawElement( 'div', [
 					'class' => 'thumbinner',
 					'style' => "width: {$width};",
-				], $mapDiv . $captionFrame ) );
+				], $html ) );
 	}
 }
