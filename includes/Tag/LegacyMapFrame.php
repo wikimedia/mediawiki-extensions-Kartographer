@@ -39,7 +39,6 @@ class LegacyMapFrame extends LegacyTagHandler {
 
 		if ( $this->args->width === 'full' ) {
 			$cssWidth = '100%';
-			$this->args->align = 'none';
 			$staticWidth = 800;
 		} else {
 			$cssWidth = $this->args->width . 'px';
@@ -119,13 +118,12 @@ class LegacyMapFrame extends LegacyTagHandler {
 			];
 		}
 		$imgUrl = "{$mapServer}/img/{$this->args->mapStyle},{$staticZoom},{$staticLat}," .
-		"{$staticLon},{$staticWidth}x{$this->args->height}.png";
-		$imgUrl .= '?' . wfArrayToCgi( $imgUrlParams );
+			"$staticLon,{$staticWidth}x{$this->args->height}";
 		$imgAttrs = [
-			'src' => $imgUrl,
+			'src' => "$imgUrl.png?" . wfArrayToCgi( $imgUrlParams ),
 			'alt' => '',
 			'width' => $staticWidth,
-			'height' => (int)$this->args->height,
+			'height' => $this->args->height,
 			'decoding' => 'async'
 		];
 
@@ -135,9 +133,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 			$srcSetScales = array_intersect( $srcSetScalesConfig, [ 2 ] );
 			$srcSets = [];
 			foreach ( $srcSetScales as $srcSetScale ) {
-				$scaledImgUrl = "{$mapServer}/img/{$this->args->mapStyle},{$staticZoom},{$staticLat}," .
-				"{$staticLon},{$staticWidth}x{$this->args->height}@{$srcSetScale}x.png";
-				$scaledImgUrl .= '?' . wfArrayToCgi( $imgUrlParams );
+				$scaledImgUrl = "$imgUrl@{$srcSetScale}x.png?" . wfArrayToCgi( $imgUrlParams );
 				$srcSets[] = "{$scaledImgUrl} {$srcSetScale}x";
 			}
 			$imgAttrs[ 'srcset' ] = implode( ', ', $srcSets );
@@ -150,7 +146,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 			// JavaScript is available.
 			$thumbnail = Html::element( 'div', [
 				'width' => $staticWidth,
-				'height' => (int)$this->args->height,
+				'height' => $this->args->height,
 			] );
 		} else {
 			$thumbnail = Html::element( 'img', $imgAttrs );
