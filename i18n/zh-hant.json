@@ -12,6 +12,7 @@
 			"烈羽"
 		]
 	},
+	"apierror-kartographer-conflicting-revids": "尚未支援在一次請求裡從同個頁面的多筆修訂中查詢地圖資料。",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use 維基媒體地圖] | 地圖資料 © [https://www.openstreetmap.org/copyright 開放街圖貢獻者]",
 	"kartographer-attribution-short": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use 維基媒體] | © [https://www.openstreetmap.org/copyright OpenStreetMap]",
 	"kartographer-broken-category": "有損壞地圖的頁面",
@@ -48,6 +49,7 @@
 	"kartographer-sidebar-latitude": "緯度",
 	"kartographer-sidebar-longitude": "經度",
 	"kartographer-sidebar-mapdetails": "外部地圖",
+	"kartographer-sidebar-nearbybutton": "顯示附近的條目",
 	"kartographer-sidebar-service": "服務",
 	"kartographer-sidebar-togglebutton": "外部地圖",
 	"leafletdraw-draw-handlers-circle-radius": "半徑",
