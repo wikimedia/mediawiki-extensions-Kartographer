@@ -181,8 +181,12 @@ class ApiQueryMapData extends ApiQueryBase {
 						return $parserOutput;
 					}
 
-					// Cache misses should be rare, since the main page has been recently viewed.
-					LoggerFactory::getInstance( 'Kartographer' )->notice( 'Stable cache miss' );
+					// A cache miss is expected in case everything is in sync. We just want to do
+					// this expensive check as late as possible.
+					if ( !$page->stableVersionIsSynced() ) {
+						// Cache misses should be rare, since the main page has been recently viewed.
+						LoggerFactory::getInstance( 'Kartographer' )->notice( 'Stable cache miss' );
+					}
 				}
 			}
 		} else {
