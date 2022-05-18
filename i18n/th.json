@@ -22,6 +22,7 @@
 	"kartographer-specialmap-invalid-coordinates": "การป้อนค่าพิกัดที่ไม่ถูกต้อง",
 	"kartographer-linktype-other": "อื่น ๆ",
 	"kartographer-linktype-satellite": "ดาวเทียม",
+	"kartographer-link-wikiminiatlas": "วิกิมินิแอตลาส",
 	"kartographer-sidebar-coordinates": "พิกัด",
 	"kartographer-sidebar-filterdropdown": "เลือกชนิดแผนที่",
 	"kartographer-sidebar-externalservices-show-all": "ดูเพิ่มเติม",
