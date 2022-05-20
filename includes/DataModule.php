@@ -9,11 +9,11 @@
 namespace Kartographer;
 
 use ExtensionRegistry;
-use ResourceLoader;
-use ResourceLoaderContext;
-use ResourceLoaderModule;
+// phpcs:disable MediaWiki.Classes.FullQualifiedClassName -- T308814
+use MediaWiki\ResourceLoader as RL;
+use MediaWiki\ResourceLoader\ResourceLoader;
 
-class DataModule extends ResourceLoaderModule {
+class DataModule extends RL\Module {
 
 	/** @inheritDoc */
 	protected $targets = [ 'desktop', 'mobile' ];
@@ -21,7 +21,7 @@ class DataModule extends ResourceLoaderModule {
 	/**
 	 * @inheritDoc
 	 */
-	public function getScript( ResourceLoaderContext $context ) {
+	public function getScript( RL\Context $context ) {
 		$config = $this->getConfig();
 		return ResourceLoader::makeConfigSetScript( [
 			'wgKartographerMapServer' => $config->get( 'KartographerMapServer' ),
@@ -45,7 +45,7 @@ class DataModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @see ResourceLoaderModule::supportsURLLoading
+	 * @see RL\Module::supportsURLLoading
 	 *
 	 * @return bool
 	 */
