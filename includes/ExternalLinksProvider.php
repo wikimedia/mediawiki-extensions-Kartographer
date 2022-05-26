@@ -10,18 +10,18 @@ namespace Kartographer;
 
 use Exception;
 use FormatJson;
-use ResourceLoaderContext;
+use MediaWiki\ResourceLoader\Context;
 use RuntimeException;
 use stdClass;
 
 class ExternalLinksProvider {
 
 	/**
-	 * @param ResourceLoaderContext $context
+	 * @param Context $context
 	 *
 	 * @return stdClass
 	 */
-	public static function getData( ResourceLoaderContext $context ) {
+	public static function getData( Context $context ) {
 		$json = file_get_contents( __DIR__ . '/../externalLinks.json' );
 		if ( !$json ) {
 			throw new RuntimeException( 'Error reading externalLinks.json' );
