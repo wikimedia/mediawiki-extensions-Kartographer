@@ -2,7 +2,9 @@
 
 namespace Kartographer\Tests;
 
+use Kartographer\MediaWikiWikitextParser;
 use Kartographer\SimpleStyleParser;
+use Kartographer\WikitextParser;
 use LogicException;
 use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
@@ -30,7 +32,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
 		$title = Title::newFromText( 'Test' );
 		$parser->startExternalParse( $title, $options, Parser::OT_HTML );
-		$ssp = new SimpleStyleParser( $parser );
+		$ssp = new SimpleStyleParser( new MediaWikiWikitextParser( $parser ) );
 
 		$status = $ssp->parse( $input );
 
@@ -105,8 +107,8 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideDataToNormalizeAndSanitize
 	 */
 	public function testNormalizeAndSanitize( string $json, string $expected = null ) {
-		$parser = $this->createNoOpMock( Parser::class, [ 'recursiveTagParseFully' ] );
-		$parser->method( 'recursiveTagParseFully' )->willReturn( 'HTML' );
+		$parser = $this->createMock( WikitextParser::class );
+		$parser->method( 'parseWikitext' )->willReturn( 'HTML' );
 		$ssp = new SimpleStyleParser( $parser );
 		$data = json_decode( $json );
 
