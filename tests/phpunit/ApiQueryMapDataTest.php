@@ -21,7 +21,7 @@ use WikitextContent;
  */
 class ApiQueryMapDataTest extends ApiTestCase {
 
-	private const MAPFRAME_JSON = '{"type":"Feature","geometry":{"type":"Point","coordinates":[1,2]}}';
+	private const MAPFRAME_JSON = '{"type":"Feature","geometry":{"type":"Point","coordinates":[1,2],"properties":{}}}';
 	private const MAPFRAME_CONTENT = '<mapframe latitude=0 longitude=0 width=1 height=1>' .
 		self::MAPFRAME_JSON . '</mapframe>';
 	private const MAPFRAME_JSON_OTHER = '{"type":"Feature","geometry":{"type":"Point","coordinates":[2,1]}}';

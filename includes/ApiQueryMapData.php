@@ -93,11 +93,33 @@ class ApiQueryMapData extends ApiQueryBase {
 			} else {
 				$result = $data;
 			}
+			$this->normalizeGeoJson( $result );
 			$result = FormatJson::encode( $result, false, FormatJson::ALL_OK );
 
 			$fit = $this->addPageSubItem( $pageId, $result );
 			if ( !$fit ) {
 				$this->setContinueEnumParameter( 'continue', $pageId );
+			}
+		}
+	}
+
+	/**
+	 * ExtensionData are stored as serialized JSON strings and deserialized with
+	 * {@see FormatJson::FORCE_ASSOC} set, see {@see JsonCodec::unserialize}. This means empty
+	 * objects are serialized as "{}" but deserialized as empty arrays. We need to revert this.
+	 * Luckily we know everything about the data that can end here: thanks to
+	 * {@see SimpleStyleParser} it's guaranteed to be valid GeoJSON.
+	 *
+	 * @param array &$data
+	 */
+	private function normalizeGeoJson( array &$data ): void {
+		foreach ( $data as $key => &$value ) {
+			// Properties that must be objects according to schemas/geojson.json
+			if ( $value === [] && ( $key === 'geometry' || $key === 'properties' ) ) {
+				$value = (object)[];
+			} elseif ( is_array( $value ) ) {
+				// Note: No need to dive deeper when objects are deserialized as objects.
+				$this->normalizeGeoJson( $value );
 			}
 		}
 	}

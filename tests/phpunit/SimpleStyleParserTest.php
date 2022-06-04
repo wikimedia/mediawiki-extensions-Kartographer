@@ -187,4 +187,18 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	public function testParseEmptyObjectsAsObjects() {
+		$ssp = new SimpleStyleParser( $this->createMock( WikitextParser::class ) );
+		$status = $ssp->parse( '[ {
+			"type": "ExternalData",
+			"service": "geoshape",
+			"query": "",
+			"properties": {}
+		} ]' );
+
+		$data = $status->getValue();
+		$this->assertIsObject( $data[0]->properties );
+		$this->assertSame( [], (array)$data[0]->properties );
+	}
+
 }
