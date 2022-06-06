@@ -67,7 +67,10 @@ class ApiSanitizeMapData extends ApiBase {
 		$parserOptions = new ParserOptions( $this->getUser() );
 		$this->parser->startExternalParse( $title, $parserOptions, Parser::OT_HTML );
 		$this->parser->setPage( $title );
-		$simpleStyle = new SimpleStyleParser( $this->parser->getFreshParser(), null, [ 'saveUnparsed' => true ] );
+		$simpleStyle = new SimpleStyleParser(
+			new MediaWikiWikitextParser( $this->parser->getFreshParser() ),
+			[ 'saveUnparsed' => true ]
+		);
 		$status = $simpleStyle->parse( $text );
 		if ( !$status->isOK() ) {
 			$error = $status->getHTML( false, false, $this->getLanguage() );
