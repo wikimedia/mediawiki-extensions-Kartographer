@@ -9,7 +9,7 @@
 	"kartographer-wv-layer-nearby-articles": "주변에 관한 문서",
 	"kartographer-wv-nearby-articles-control": "주변의 목적지 둘러보기",
 	"kartographer-wv-warning-external-source-title": "외부 데이터 출처",
-	"kartographer-wv-warning-external-source-message": "이 내용은 외부에서 제공되므로 이 기능을 활성화하면 당신의 정보를 다른 사이트와 공유하게 됩니다.",
-	"kartographer-wv-warning-external-source-agree": "괜찮습니다",
+	"kartographer-wv-warning-external-source-message": "이 내용은 외부에서 제공되므로 이 기능을 활성화하면 당신의 IP 주소와 기타 데이터를 지도 제공자와 공유하게 됩니다.",
+	"kartographer-wv-warning-external-source-agree": "이해합니다",
 	"kartographer-wv-warning-external-source-disagree": "취소"
 }
