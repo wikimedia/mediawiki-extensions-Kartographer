@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Aftabuzzaman",
+			"Yahya",
 			"আফতাবুজ্জামান"
 		]
 	},
@@ -11,6 +12,6 @@
 	"kartographer-wv-nearby-articles-control": "কাছাকাছি গন্তব্যস্থল অন্বেষণ করুন",
 	"kartographer-wv-warning-external-source-title": "বাহ্যিক উপাত্তের উৎস",
 	"kartographer-wv-warning-external-source-message": "এই বিষয়বস্তুর বাইরে হোস্ট করা হয়, তাই এটি সক্রিয় করলে আপনার উপাত্ত অন্যান্য সাইটের সঙ্গে ভাগ করা হবে।",
-	"kartographer-wv-warning-external-source-agree": "ঠিক আছে",
+	"kartographer-wv-warning-external-source-agree": "আমি বুঝেছি",
 	"kartographer-wv-warning-external-source-disagree": "বাতিল"
 }
