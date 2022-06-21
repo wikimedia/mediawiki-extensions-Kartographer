@@ -180,7 +180,7 @@ class SimpleStyleParser {
 		} elseif ( is_object( $json ) ) {
 			foreach ( array_keys( get_object_vars( $json ) ) as $prop ) {
 				// https://phabricator.wikimedia.org/T134719
-				if ( $prop[0] === '_' ) {
+				if ( str_starts_with( $prop, '_' ) ) {
 					unset( $json->$prop );
 				} else {
 					$this->sanitize( $json->$prop );
