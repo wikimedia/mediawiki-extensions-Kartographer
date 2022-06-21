@@ -106,13 +106,17 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideDataToNormalizeAndSanitize
 	 */
-	public function testNormalizeAndSanitize( string $json, string $expected = null ) {
+	public function testNormalizeAndSanitize(
+		string $json,
+		string $expected = null,
+		string $option = null
+	) {
 		$parser = $this->createMock( WikitextParser::class );
 		$parser->method( 'parseWikitext' )->willReturn( 'HTML' );
-		$ssp = new SimpleStyleParser( $parser );
+		$ssp = new SimpleStyleParser( $parser, [ $option => true ] );
 		$data = json_decode( $json );
 
-		if ( $expected && !str_starts_with( $expected, '{' ) && class_exists( $expected ) ) {
+		if ( $expected && ctype_alpha( $expected ) && class_exists( $expected ) ) {
 			$this->expectException( $expected );
 		}
 
@@ -180,6 +184,10 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 				'{ "b": { "d": "…" } }',
 			],
 			[
+				'{ "properties": { "title": { "en": null } } }',
+				'{ "properties": {} }',
+			],
+			[
 				'{ "properties": { "title": "…", "description": {} } }',
 				'{ "properties": { "title": "HTML" } }',
 			],
@@ -187,7 +195,16 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 				'{ "properties": { "title": { "en": "…", "de": null } } }',
 				'{ "properties": { "title": { "en": "HTML" } } }',
 			],
-			// TODO: Cover special cases with the "saveUnparsed" option set
+			[
+				'{ "properties": { "title": "…" } }',
+				'{ "properties": { "title": "HTML", "_origtitle": "…" } }',
+				'saveUnparsed'
+			],
+			[
+				'{ "properties": { "title": { "en": "…", "de": null } } }',
+				'{ "properties": { "title": { "en": "HTML" }, "_origtitle": { "en": "…" } } }',
+				'saveUnparsed'
+			],
 		];
 	}
 

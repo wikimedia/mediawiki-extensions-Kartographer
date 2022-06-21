@@ -283,35 +283,43 @@ class SimpleStyleParser {
 	 */
 	private function sanitizeProperties( $properties ) {
 		$saveUnparsed = $this->options['saveUnparsed'] ?? false;
-		foreach ( self::PARSED_PROPS as $prop ) {
-			if ( property_exists( $properties, $prop ) ) {
-				$property = &$properties->$prop;
 
-				if ( is_string( $property ) ) {
-					if ( $saveUnparsed ) {
-						$properties->{"_orig$prop"} = $property;
-					}
-					$property = $this->parser->parseWikitext( $property );
-				} elseif ( is_object( $property ) ) {
-					// Delete empty localizations
-					if ( !count( get_object_vars( $property ) ) ) {
-						unset( $properties->$prop );
+		foreach ( self::PARSED_PROPS as $prop ) {
+			if ( !property_exists( $properties, $prop ) ) {
+				continue;
+			}
+
+			$origProp = "_orig$prop";
+			$property = &$properties->$prop;
+
+			if ( is_string( $property ) ) {
+				if ( $saveUnparsed ) {
+					$properties->$origProp = $property;
+				}
+				$property = $this->parser->parseWikitext( $property );
+			} elseif ( is_object( $property ) ) {
+				if ( $saveUnparsed ) {
+					$properties->$origProp = (object)[];
+				}
+				foreach ( $property as $language => &$text ) {
+					if ( !is_string( $text ) ) {
+						unset( $property->$language );
 					} else {
 						if ( $saveUnparsed ) {
-							$properties->{"_orig$prop"} = $property;
+							$properties->$origProp->$language = $text;
 						}
-						foreach ( $property as $language => &$text ) {
-							if ( !is_string( $text ) ) {
-								unset( $property->$language );
-							} else {
-								$text = $this->parser->parseWikitext( $text );
-							}
-						}
+						$text = $this->parser->parseWikitext( $text );
 					}
-				} else {
-					// Dunno what the hell it is, ditch
-					unset( $properties->$prop );
 				}
+
+				// Delete empty localizations
+				if ( !get_object_vars( $property ) ) {
+					unset( $properties->$prop );
+					unset( $properties->$origProp );
+				}
+			} else {
+				// Dunno what the hell it is, ditch
+				unset( $properties->$prop );
 			}
 		}
 	}
