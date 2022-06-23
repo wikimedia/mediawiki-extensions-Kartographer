@@ -182,9 +182,9 @@ class ApiQueryMapData extends ApiQueryBase {
 	 * @param PageIdentity $title
 	 * @param int|null $requestedRevId
 	 *
-	 * @return ParserOutput
+	 * @return ParserOutput|false
 	 */
-	private function getParserOutput( PageIdentity $title, ?int $requestedRevId ): ParserOutput {
+	private function getParserOutput( PageIdentity $title, ?int $requestedRevId ) {
 		$parserOptions = ParserOptions::newFromAnon();
 
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'FlaggedRevs' ) ) {
