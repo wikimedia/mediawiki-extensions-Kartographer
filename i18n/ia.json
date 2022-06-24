@@ -4,6 +4,7 @@
 			"McDutchie"
 		]
 	},
+	"apierror-kartographer-conflicting-revids": "Le consulta de datos cartographic de plure versiones del mesme pagina in un requesta non es ancora possibile.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Cartas geographic de Wikimedia] | Datos cartographic © [https://www.openstreetmap.org/copyright Contributores de OpenStreetMap]",
 	"kartographer-broken-category": "Paginas con cartas rupte",
 	"kartographer-broken-category-desc": "Iste pagina contine un uso invalide de carta geographic",
@@ -32,6 +33,7 @@
 	"kartographer-sidebar-latitude": "Latitude",
 	"kartographer-sidebar-longitude": "Longitude",
 	"kartographer-sidebar-mapdetails": "Cartas externe",
+	"kartographer-sidebar-nearbybutton": "Monstrar articulos a proximitate",
 	"kartographer-sidebar-service": "Servicio",
 	"kartographer-sidebar-togglebutton": "Cartas externe",
 	"leafletdraw-draw-handlers-circle-radius": "Radio",

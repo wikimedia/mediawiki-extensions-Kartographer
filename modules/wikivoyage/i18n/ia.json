@@ -4,6 +4,10 @@
 			"McDutchie"
 		]
 	},
+	"kartographer-wv-group": "Gruppo:",
+	"kartographer-wv-layer-nearby-articles": "Articulos a proximitate",
+	"kartographer-wv-nearby-articles-control": "Explorar destinationes proxime",
+	"kartographer-wv-warning-external-source-title": "Fonte externe de datos",
 	"kartographer-wv-warning-external-source-agree": "Io comprende",
 	"kartographer-wv-warning-external-source-disagree": "Cancellar"
 }
