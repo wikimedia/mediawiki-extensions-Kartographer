@@ -4,5 +4,8 @@
 			"McDutchie"
 		]
 	},
+	"apihelp-sanitize-mapdata-description": "Exeque le validation de datos pro le extension Kartographer",
+	"apihelp-sanitize-mapdata-summary": "Exeque le validation de datos pro le extension Kartographer",
+	"apihelp-sanitize-mapdata-param-title": "Le titulo del pagina sur le qual iste GeoJSON deberea esser situate. Si nulle titulo es fornite, un titulo generic essera usate.",
 	"apihelp-query+mapdata-summary": "Requestar tote le datos cartographic de Kartographer pro le paginas indicate"
 }
