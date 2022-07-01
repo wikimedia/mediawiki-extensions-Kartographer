@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Evs"
+			"Evs",
+			"Pacha Tchernof"
 		]
 	},
 	"kartographer-wv-group": "Группа:",
@@ -10,6 +11,6 @@
 	"kartographer-wv-nearby-articles-control": "Исследовать близлежащие места",
 	"kartographer-wv-warning-external-source-title": "Внешний источник данных",
 	"kartographer-wv-warning-external-source-message": "Это содержимое размещается на внешнем сервере, что позволяет ему обмениваться данными с другими сайтами.",
-	"kartographer-wv-warning-external-source-agree": "Всё в порядке",
+	"kartographer-wv-warning-external-source-agree": "Я понимаю",
 	"kartographer-wv-warning-external-source-disagree": "Отмена"
 }
