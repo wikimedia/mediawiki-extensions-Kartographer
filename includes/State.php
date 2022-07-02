@@ -206,7 +206,7 @@ class State implements JsonSerializable {
 	/**
 	 * @return array A JSON serializable associative array
 	 */
-	public function jsonSerialize() {
+	public function jsonSerialize(): array {
 		return [
 			'valid' => $this->valid,
 			'broken' => $this->broken,
