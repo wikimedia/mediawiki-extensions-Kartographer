@@ -87,7 +87,7 @@
 	"leafletdraw-draw-toolbar-undo-text": "Delete last point",
 	"leafletdraw-draw-toolbar-undo-title": "Delete last point drawn",
 	"leafletdraw-edit-handlers-edit-tooltip-subtext": "Click cancel to undo changes",
-	"leafletdraw-edit-handlers-edit-tooltip-text": "Drag handles, or marker to edit feature",
+	"leafletdraw-edit-handlers-edit-tooltip-text": "Drag handles or marker to edit the feature",
 	"leafletdraw-edit-handlers-remove-tooltip-text": "Click on a feature to remove",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "Cancel",
 	"leafletdraw-edit-toolbar-actions-cancel-title": "Cancel editing, discards all changes",
