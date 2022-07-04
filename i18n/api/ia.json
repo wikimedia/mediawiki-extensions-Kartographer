@@ -4,5 +4,16 @@
 			"McDutchie"
 		]
 	},
-	"apihelp-query+mapdata-summary": "Requestar tote le datos cartographic de Kartographer pro le paginas indicate"
+	"apihelp-sanitize-mapdata-description": "Exeque le validation de datos pro le extension Kartographer",
+	"apihelp-sanitize-mapdata-summary": "Exeque le validation de datos pro le extension Kartographer",
+	"apihelp-sanitize-mapdata-param-title": "Le titulo del pagina sur le qual iste GeoJSON deberea esser situate. Si nulle titulo es fornite, un titulo generic essera usate.",
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON a validar",
+	"apihelp-sanitize-mapdata-example": "Validar un objecto binari GeoJSON",
+	"apihelp-query+mapdata-description": "Obtener datos cartographic de Kartographer",
+	"apihelp-query+mapdata-summary": "Requestar tote le datos cartographic de Kartographer pro le paginas indicate",
+	"apihelp-query+mapdata-example-1": "Requestar tote le datos cartographic del pagina <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-example-2": "Requestar datos cartographic del gruppos <kbd>group1</kbd> e <kbd>group2</kbd> del pagina <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-param-continue": "Usa iste parametro pro continuar a iterar per le resultatos",
+	"apihelp-query+mapdata-param-groups": "Gruppos, separate per barras vertical, pro le quales restituer datos",
+	"apihelp-query+mapdata-param-limit": "Datos pro le numero de paginas a restituer"
 }

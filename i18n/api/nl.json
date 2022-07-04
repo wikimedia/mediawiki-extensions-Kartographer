@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Huhbakker"
+			"Huhbakker",
+			"McDutchie"
 		]
 	},
-	"apihelp-query+mapdata-param-limit": "Gegevens voor hoeveel pagina ' s om terug te keren"
+	"apihelp-query+mapdata-param-limit": "Gegevens voor het aantal terug te sturen pagina's"
 }
