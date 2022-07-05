@@ -99,7 +99,7 @@
 	"leafletdraw-draw-toolbar-undo-text": "Supprimer le dernier point",
 	"leafletdraw-draw-toolbar-undo-title": "Supprimer le dernier point dessiné",
 	"leafletdraw-edit-handlers-edit-tooltip-subtext": "Cliquer sur annuler pour annuler les modifications",
-	"leafletdraw-edit-handlers-edit-tooltip-text": "Faire glisser les poignées ou le marqueur pour modifier la fonction",
+	"leafletdraw-edit-handlers-edit-tooltip-text": "Faites glisser les poignées ou le marqueur pour modifier la fonctionnalité",
 	"leafletdraw-edit-handlers-remove-tooltip-text": "Cliquer sur une fonction à supprimer",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "Annuler",
 	"leafletdraw-edit-toolbar-actions-cancel-title": "Annuler la modification, en ignorant tous les changements",
