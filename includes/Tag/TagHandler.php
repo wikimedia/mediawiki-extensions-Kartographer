@@ -18,6 +18,7 @@ use Kartographer\MediaWikiWikitextParser;
 use Kartographer\SimpleStyleParser;
 use Kartographer\State;
 use Language;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Parser;
 use ParserOutput;
@@ -416,6 +417,14 @@ abstract class TagHandler {
 	 * @return Language|StubUserLang
 	 */
 	protected function getLanguage() {
-		return $this->parser->getTargetLanguage();
+		// Log if the user language is different from the page language (T311592)
+		$pageLang = $this->parser->getTitle()->getPageLanguage();
+		$targetLanguage = $this->parser->getTargetLanguage();
+		if ( $targetLanguage->getCode() !== $pageLang->getCode() ) {
+			LoggerFactory::getInstance( 'Kartographer' )->notice( 'Target language (' .
+				$targetLanguage->getCode() . ') is different than page language (' .
+				$pageLang->getCode() . ') (T311592)' );
+		}
+		return $targetLanguage;
 	}
 }
