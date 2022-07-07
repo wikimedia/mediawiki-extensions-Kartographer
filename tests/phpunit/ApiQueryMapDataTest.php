@@ -142,6 +142,7 @@ class ApiQueryMapDataTest extends ApiTestCase {
 	}
 
 	public function testStableAndLatest() {
+		$this->markTestSkipped( 'T312517' );
 		$this->markTestSkippedIfExtensionNotLoaded( 'FlaggedRevs' );
 
 		$this->setMwGlobals( [
