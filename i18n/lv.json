@@ -13,7 +13,7 @@
 	"kartographer-error-json": "Nevarēja apstrādāt JSON: $1",
 	"kartographer-error-missing-attr": "Trūkst atribūts \"$1\"",
 	"kartographer-error-bad_attr": "Atribūts \"$1\" vērtība ir nederīga",
-	"kartographer-error-bad_data": "JSON saturs nav derīgs GeoJSON+simplestyle",
+	"kartographer-error-bad_data": "JSON saturs nav derīgs GeoJSON+simplestyle. Pirmā pārbaudes kļūda ir elementā \"$1\": \"$2\".",
 	"kartographer-error-latlon": "Jānorāda vai nu abi vai neviens no parametriem \"latitude\" un \"longitude\"",
 	"kartographer-error-title": "Lapa \"$1\" nav derīga kartes datu lapa",
 	"kartographer-tracking-category": "Lapas ar kartēm",
@@ -60,7 +60,10 @@
 	"leafletdraw-draw-toolbar-undo-text": "Dzēst pēdējo punktu",
 	"leafletdraw-draw-toolbar-undo-title": "Dzēst pēdējo zīmēto punktu",
 	"leafletdraw-edit-handlers-edit-tooltip-subtext": "Klikšķini atcet, lai atsauktu izmaiņas",
+	"leafletdraw-edit-handlers-edit-tooltip-text": "Velciet rokturus vai marķieri, lai labotu objektu",
+	"leafletdraw-edit-handlers-remove-tooltip-text": "Noklikšķiniet uz objekta, lai to noņemtu",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "Atcelt",
+	"leafletdraw-edit-toolbar-actions-cancel-title": "Atcelt labošanu, atmet visas izmaiņas",
 	"leafletdraw-edit-toolbar-actions-save-text": "Saglabāt",
 	"leafletdraw-edit-toolbar-actions-save-title": "Saglabāt izmaiņas",
 	"leafletdraw-edit-toolbar-actions-clearall-text": "Notīrīt visu",
@@ -88,5 +91,6 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Tālummaiņa",
 	"visualeditor-mwmapsdialog-size": "Izmērs",
 	"visualeditor-mwmapsdialog-title": "Karte",
+	"visualeditor-mwmapscontextitem-nosupport": "Šī karte satur dinamiskas iespējas un šobrīd to var labot tikai vikiteksta režīmā.",
 	"visualeditor-mwmapscontextitem-title": "Karte"
 }
