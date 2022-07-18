@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": [
+			"F Samaritani"
+		]
+	},
+	"kartographer-linktype-other": "Althru",
+	"kartographer-sidebar-latitude": "Latitùdini",
+	"kartographer-sidebar-longitude": "Longitùdini",
+	"leafletdraw-draw-toolbar-actions-text": "Canzillà",
+	"leafletdraw-edit-toolbar-actions-cancel-text": "Canzillà",
+	"leafletdraw-edit-toolbar-actions-save-text": "Saivva",
+	"leafletdraw-edit-toolbar-actions-save-title": "Saivvà li ciambamenti",
+	"leafletdraw-draw-toolbar-finish-text": "Accabaddu",
+	"visualeditor-mwmapsdialog-options": "Ozioni",
+	"visualeditor-mwmapsdialog-language": "Lìnga",
+	"visualeditor-mwmapsdialog-position-lat": "Latitùdini",
+	"visualeditor-mwmapsdialog-position-lon": "Longitùdini",
+	"visualeditor-mwmapsdialog-position-zoom": "Zoom",
+	"visualeditor-mwmapsdialog-size": "Misuri in byte",
+	"visualeditor-mwmapsdialog-title": "Mappa",
+	"visualeditor-mwmapscontextitem-title": "Mappa"
+}
