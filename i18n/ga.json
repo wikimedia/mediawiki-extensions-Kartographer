@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"VIGNERON"
+		]
+	},
+	"kartographer-coord-combined": "$1 $2",
+	"kartographer-coord-dms": "$1°$2′$3″",
+	"kartographer-coord-lat-positive": "$1T",
+	"kartographer-coord-lat-negative": "$1D",
+	"kartographer-coord-lon-positive": "$1I",
+	"kartographer-coord-lon-negative": "$1O"
+}
