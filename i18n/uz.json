@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Malikxan"
+		]
+	},
+	"kartographer-broken-category": "Buzuq xaritali sahifalar",
+	"kartographer-tracking-category": "Xaritali sahifalar",
+	"kartographer-linktype-map": "Standart xaritalar",
+	"kartographer-linktype-other": "Boshqa",
+	"leafletdraw-edit-toolbar-actions-cancel-text": "Bekor qilish",
+	"leafletdraw-edit-toolbar-actions-save-text": "Saqlash",
+	"leafletdraw-edit-toolbar-actions-save-title": "Oʻzgarishlarni saqlash",
+	"visualeditor-mwmapsdialog-language": "Til",
+	"visualeditor-mwmapsdialog-position-lat": "Kenglik",
+	"visualeditor-mwmapsdialog-position-lon": "Uzunlik",
+	"visualeditor-mwmapsdialog-size": "Oʻlchami",
+	"visualeditor-mwmapsdialog-title": "Xarita",
+	"visualeditor-mwmapscontextitem-title": "Xarita"
+}
