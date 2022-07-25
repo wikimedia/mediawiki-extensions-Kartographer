@@ -6,6 +6,7 @@
 			"Kizule",
 			"Milicevic01",
 			"Obsuser",
+			"Vlad5250",
 			"Zoranzoki21",
 			"Сербијана"
 		]
@@ -46,6 +47,7 @@
 	"kartographer-sidebar-latitude": "Географска ширина",
 	"kartographer-sidebar-longitude": "Географска дужина",
 	"kartographer-sidebar-mapdetails": "Спољашње мапе",
+	"kartographer-sidebar-nearbybutton": "Прикажи чланке у близини",
 	"kartographer-sidebar-service": "Услуга",
 	"kartographer-sidebar-togglebutton": "Спољашње мапе",
 	"leafletdraw-draw-handlers-circle-radius": "Полупречник",
