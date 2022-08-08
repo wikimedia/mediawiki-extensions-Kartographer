@@ -1,14 +1,38 @@
 /**
- * Gets a radius from bounds in meters.
- *
  * @private
  * @param {L.LatLngBounds} bounds
- * @return {number}
+ * @return {number} Radius in meter
  */
-function getRadiusFromBounds( bounds ) {
-	// This is currently drawing a circle around the whole box so that some
-	// results might be outside of the visible area.
-	return Math.floor( bounds.getCenter().distanceTo( bounds.getSouthWest() ) );
+function getDebouncedRadius( bounds ) {
+	// This corresponds to the smallest circle around the bounding rectangle, so some results will
+	// be outside that visible rectangle
+	var radius = Math.floor( bounds.getCenter().distanceTo( bounds.getSouthWest() ) );
+	// Rounding to 2 significant digits means we loose +/-5% in the absolute worst case
+	// eslint-disable-next-line no-bitwise
+	return radius.toPrecision( 2 ) | 0;
+}
+
+/**
+ * De-bounce point to a certain degree of accuracy depending on zoom factor.
+ *
+ * @private
+ * @param {L.LatLng} point
+ * @param {number} zoom Typically ranging from 0 (entire world) to 19 (nearest)
+ * @return {L.LatLng}
+ */
+function getDebouncedPoint( point, zoom ) {
+	// Higher numbers = less precision = larger grid size = better debounce
+	var looseness = 22;
+	// 4 decimal places correspond to ~11m, 3 to ~110m, and so on
+	var decimalPlaces = Math.max(
+		// Zoom changes with a factor of 2, lat/lng with a factor of 10 per decimal place
+		4 - Math.floor( ( looseness - zoom ) * Math.LN2 / Math.LN10 ),
+		0
+	);
+	return new L.LatLng(
+		point.lat.toFixed( decimalPlaces ),
+		point.lng.toFixed( decimalPlaces )
+	);
 }
 
 /**
@@ -17,17 +41,14 @@ function getRadiusFromBounds( bounds ) {
  *
  * @private
  * @param {L.LatLngBounds} bounds
+ * @param {number} zoom Typically ranging from 0 (entire world) to 19 (nearest)
  * @return {string}
  */
-function getSearchQuery( bounds ) {
-	// TODO: Precision could be influenced by zoom factor
-	// Absolute limitation of the center point's precision to ~11m
-	var lat = bounds.getCenter().lat.toFixed( 4 ),
-		lng = bounds.getCenter().lng.toFixed( 4 );
-	// Absolute limitation of the radius' precision to 100m
-	var radius = ( Math.floor( getRadiusFromBounds( bounds ) / 100 ) || 1 ) * 100;
-
-	return 'nearcoord:' + radius + 'm,' + lat + ',' + lng;
+function getSearchQuery( bounds, zoom ) {
+	var radius = getDebouncedRadius( bounds ),
+		center = getDebouncedPoint( bounds.getCenter(), zoom );
+	radius = radius % 1000 ? radius + 'm' : Math.round( radius / 1000 ) + 'km';
+	return 'nearcoord:' + radius + ',' + center.lat + ',' + center.lng;
 }
 
 /**
@@ -74,9 +95,10 @@ function createNearbyMarker( geoJson, latlng ) {
 module.exports = {
 	/**
 	 * @param {L.LatLngBounds} bounds
+	 * @param {number} zoom Typically ranging from 0 (entire world) to 19 (nearest)
 	 * @return {jQuery.Promise}
 	 */
-	fetch: function ( bounds ) {
+	fetch: function ( bounds, zoom ) {
 		// The maximum thumbnail limit is currently 50
 		var limit = 50;
 		// TODO: Cache results if bounds remains unchanged
@@ -97,7 +119,7 @@ module.exports = {
 			colimit: 'max',
 			generator: 'search',
 			// gsr… arguments belong to generator=search
-			gsrsearch: getSearchQuery( bounds ),
+			gsrsearch: getSearchQuery( bounds, zoom ),
 			gsrnamespace: 0,
 			gsrlimit: limit,
 			// pp… arguments belong to prop=pageprops

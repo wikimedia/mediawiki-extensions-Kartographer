@@ -700,7 +700,7 @@ KartographerMap = L.Map.extend( {
 		if ( show && !this.nearbyLayer ) {
 			var map = this;
 			// TODO: Replace or merge nearby points when moving the viewport.
-			Nearby.fetch( this.getBounds() ).then( function ( data ) {
+			Nearby.fetch( this.getBounds(), this.getZoom() ).then( function ( data ) {
 				map.nearbyLayer = Nearby.createNearbyLayer(
 					Nearby.convertGeosearchToGeojson( data )
 				);

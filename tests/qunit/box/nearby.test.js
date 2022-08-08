@@ -83,11 +83,12 @@
 
 		const Nearby = require( 'ext.kartographer.box' ).private.Nearby;
 		const bounds = L.latLngBounds( L.latLng( 40.712, -74.227 ), L.latLng( 40.774, -74.125 ) );
+		const zoom = 14;
 		const done = assert.async();
 
-		const expectedApiUrl = mw.config.get( 'wgScriptPath' ) + '/api.php?action=query&format=json&formatversion=2&prop=coordinates%7Cpageprops%7Cpageimages%7Cdescription&colimit=max&generator=search&gsrsearch=nearcoord%3A5500m%2C40.7430%2C-74.1760&gsrnamespace=0&gsrlimit=50&ppprop=displaytitle&piprop=thumbnail&pithumbsize=300&pilimit=50';
+		const expectedApiUrl = mw.config.get( 'wgScriptPath' ) + '/api.php?action=query&format=json&formatversion=2&prop=coordinates%7Cpageprops%7Cpageimages%7Cdescription&colimit=max&generator=search&gsrsearch=nearcoord%3A5500m%2C40.74%2C-74.18&gsrnamespace=0&gsrlimit=50&ppprop=displaytitle&piprop=thumbnail&pithumbsize=300&pilimit=50';
 
-		Nearby.fetch( bounds ).then( ( nearbyResults ) => {
+		Nearby.fetch( bounds, zoom ).then( ( nearbyResults ) => {
 			assert.deepEqual( nearbyResults, dummyGeosearchResponse );
 
 			const requests = this.server.requests;
