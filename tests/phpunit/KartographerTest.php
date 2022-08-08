@@ -74,7 +74,8 @@ class KartographerTest extends MediaWikiLangTestCase {
 			$message . ' No tracking category'
 		);
 
-		$expected = json_encode( json_decode( $expected ) ); // Normalize JSON
+		// Normalize JSON
+		$expected = json_encode( json_decode( $expected ) );
 
 		$this->assertEquals( $expected, json_encode( $state->getData() ), $message );
 	}

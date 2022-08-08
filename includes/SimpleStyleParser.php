@@ -309,7 +309,8 @@ class SimpleStyleParser {
 						}
 					}
 				} else {
-					unset( $properties->$prop ); // Dunno what the hell it is, ditch
+					// Dunno what the hell it is, ditch
+					unset( $properties->$prop );
 				}
 			}
 		}

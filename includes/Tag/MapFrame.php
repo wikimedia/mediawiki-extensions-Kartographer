@@ -66,7 +66,8 @@ class MapFrame extends TagHandler {
 				$staticWidth = 800;
 				$this->align = 'none';
 			} else {
-				$width = '300px'; // @todo: deprecate old syntax completely
+				// @todo: deprecate old syntax completely
+				$width = '300px';
 				$this->width = 300;
 				$staticWidth = 300;
 			}
