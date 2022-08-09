@@ -21,9 +21,11 @@ function getRadiusFromBounds( bounds ) {
  */
 function getSearchQuery( bounds ) {
 	// TODO: Precision could be influenced by zoom factor
-	var lat = bounds.getCenter().lat.toFixed( 4 ), // cut to a precision of ~11m
-		lng = bounds.getCenter().lng.toFixed( 4 ), // cut to a precision of ~11m
-		radius = Math.floor( getRadiusFromBounds( bounds ) / 100 ) * 100; // cut to a precision of 100m steps
+	// Absolute limitation of the center point's precision to ~11m
+	var lat = bounds.getCenter().lat.toFixed( 4 ),
+		lng = bounds.getCenter().lng.toFixed( 4 );
+	// Absolute limitation of the radius' precision to 100m
+	var radius = ( Math.floor( getRadiusFromBounds( bounds ) / 100 ) || 1 ) * 100;
 
 	return 'nearcoord:' + radius + 'm,' + lat + ',' + lng;
 }
@@ -34,6 +36,8 @@ module.exports = {
 	 * @return {jQuery.Promise}
 	 */
 	fetch: function ( bounds ) {
+		// The maximum thumbnail limit is currently 50
+		var limit = 50;
 		// TODO: Cache results if bounds remains unchanged
 		return ( new mw.Api( {
 			/* ajax: {
@@ -46,19 +50,21 @@ module.exports = {
 		} ) ).get( {
 			action: 'query',
 			format: 'json',
-			formatversion: '2',
+			formatversion: 2,
 			prop: 'coordinates|pageprops|pageimages|description',
+			// co… arguments belong to prop=coordinates
 			colimit: 'max',
 			generator: 'search',
+			// gsr… arguments belong to generator=search
 			gsrsearch: getSearchQuery( bounds ),
-			gsrnamespace: '0',
-			// Set to the max thumbnail limit
-			gsrlimit: '50',
+			gsrnamespace: 0,
+			gsrlimit: limit,
+			// pp… arguments belong to prop=pageprops
 			ppprop: 'displaytitle',
+			// pi… arguments belong to prop=pageimages
 			piprop: 'thumbnail',
-			pithumbsize: '300',
-			// The thumbnail limit is currently 50
-			pilimit: '50'
+			pithumbsize: 300,
+			pilimit: limit
 		} );
 	},
 
@@ -67,17 +73,13 @@ module.exports = {
 	 * @return {Object[]} A list of GeoJSON features, one for each page.
 	 */
 	convertGeosearchToGeojson: function ( response ) {
-		return response.query.pages.map( function ( page ) {
-			var thumbnail = page.thumbnail;
+		var pages = response.query && response.query.pages || [];
+		return pages.map( function ( page ) {
+			var thumbnail = page.thumbnail,
+				coordinates = page.coordinates[ 0 ];
 			return {
 				type: 'Feature',
-				geometry: {
-					type: 'Point',
-					coordinates: [
-						page.coordinates[ 0 ].lon,
-						page.coordinates[ 0 ].lat
-					]
-				},
+				geometry: { type: 'Point', coordinates: [ coordinates.lon, coordinates.lat ] },
 				properties: {
 					title: page.title,
 					description: page.description,
