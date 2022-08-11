@@ -76,9 +76,10 @@ module.exports = {
 		var pages = response.query && response.query.pages || [];
 
 		return pages.reduce( function ( result, page ) {
-			if ( page.coordinates && page.coordinates[ 0 ] ) {
-				var thumbnail = page.thumbnail,
-					coordinates = page.coordinates[ 0 ];
+			var coordinates = page.coordinates && page.coordinates[ 0 ];
+
+			if ( coordinates ) {
+				var thumbnail = page.thumbnail;
 
 				result.push( {
 					type: 'Feature',
