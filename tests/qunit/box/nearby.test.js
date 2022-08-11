@@ -58,6 +58,12 @@
 							globe: 'earth'
 						}
 					]
+				},
+				{
+					pageid: 123456,
+					ns: 0,
+					title: 'No Coordinates',
+					index: 1
 				}
 			]
 		}

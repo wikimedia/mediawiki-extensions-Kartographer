@@ -74,19 +74,25 @@ module.exports = {
 	 */
 	convertGeosearchToGeojson: function ( response ) {
 		var pages = response.query && response.query.pages || [];
-		return pages.map( function ( page ) {
-			var thumbnail = page.thumbnail,
-				coordinates = page.coordinates[ 0 ];
-			return {
-				type: 'Feature',
-				geometry: { type: 'Point', coordinates: [ coordinates.lon, coordinates.lat ] },
-				properties: {
-					title: page.title,
-					description: page.description,
-					imageUrl: thumbnail ? thumbnail.source : undefined
-				}
-			};
-		} );
+
+		return pages.reduce( function ( result, page ) {
+			if ( page.coordinates && page.coordinates[ 0 ] ) {
+				var thumbnail = page.thumbnail,
+					coordinates = page.coordinates[ 0 ];
+
+				result.push( {
+					type: 'Feature',
+					geometry: { type: 'Point', coordinates: [ coordinates.lon, coordinates.lat ] },
+					properties: {
+						title: page.title,
+						description: page.description,
+						imageUrl: thumbnail ? thumbnail.source : undefined
+					}
+				} );
+			}
+
+			return result;
+		}, [] );
 	},
 
 	/**
