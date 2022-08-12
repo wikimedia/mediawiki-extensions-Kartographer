@@ -701,23 +701,9 @@ KartographerMap = L.Map.extend( {
 			var map = this;
 			// TODO: Replace or merge nearby points when moving the viewport.
 			Nearby.fetch( this.getBounds() ).then( function ( data ) {
-				map.nearbyLayer = L.geoJSON(
+				map.nearbyLayer = Nearby.createNearbyLayer(
 					Nearby.convertGeosearchToGeojson( data )
-				).bindPopup( function ( layer ) {
-					return Nearby.createPopupHtml(
-						layer.feature.properties.title,
-						layer.feature.properties.description,
-						layer.feature.properties.imageUrl
-					);
-				} );
-
-				var icon = L.mapbox.marker.icon( {
-					'marker-color': 'a2a9b1'
-				} );
-				map.nearbyLayer.getLayers().forEach( function ( marker ) {
-					marker.setIcon( icon );
-				} );
-
+				);
 				map.addLayer( map.nearbyLayer );
 			} );
 		} else if ( !show && this.nearbyLayer ) {
