@@ -701,13 +701,8 @@ KartographerMap = L.Map.extend( {
 			var map = this;
 			// TODO: Replace or merge nearby points when moving the viewport.
 			Nearby.fetch( this.getBounds() ).then( function ( data ) {
-				var markerStyle = {
-					// TODO: styles aren't applied yet
-					color: '#f00'
-				};
 				map.nearbyLayer = L.geoJSON(
-					Nearby.convertGeosearchToGeojson( data ),
-					{ style: markerStyle }
+					Nearby.convertGeosearchToGeojson( data )
 				).bindPopup( function ( layer ) {
 					return Nearby.createPopupHtml(
 						layer.feature.properties.title,
@@ -715,6 +710,14 @@ KartographerMap = L.Map.extend( {
 						layer.feature.properties.imageUrl
 					);
 				} );
+
+				var icon = L.mapbox.marker.icon( {
+					'marker-color': 'a2a9b1'
+				} );
+				map.nearbyLayer.getLayers().forEach( function ( marker ) {
+					marker.setIcon( icon );
+				} );
+
 				map.addLayer( map.nearbyLayer );
 			} );
 		} else if ( !show && this.nearbyLayer ) {
