@@ -111,7 +111,8 @@
 				properties: {
 					title: 'Monaco',
 					description: 'City-state and microstate on the French Riviera',
-					imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Flag_of_Monaco.svg/150px-Flag_of_Monaco.svg.png'
+					imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Flag_of_Monaco.svg/150px-Flag_of_Monaco.svg.png',
+					'marker-color': '0000ff'
 				},
 				type: 'Feature'
 			},
@@ -126,7 +127,8 @@
 				properties: {
 					title: 'La Condamine',
 					description: 'Ward of Monaco',
-					imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Monaco_-_Port_en_d%C3%A9cembre.jpg/150px-Monaco_-_Port_en_d%C3%A9cembre.jpg'
+					imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Monaco_-_Port_en_d%C3%A9cembre.jpg/150px-Monaco_-_Port_en_d%C3%A9cembre.jpg',
+					'marker-color': '0000ff'
 				},
 				type: 'Feature'
 			},
@@ -141,7 +143,8 @@
 				properties: {
 					title: '2004 Monaco Grand Prix',
 					description: undefined,
-					imageUrl: undefined
+					imageUrl: undefined,
+					'marker-color': '0000ff'
 				},
 				type: 'Feature'
 			}

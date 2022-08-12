@@ -65,6 +65,12 @@ function createPopupHtml( title, description, imageUrl ) {
 	return titleHtml;
 }
 
+function createNearbyMarker( geoJson, latlng ) {
+	return L.marker( latlng, {
+		icon: L.mapbox.marker.icon( { 'marker-color': geoJson.properties[ 'marker-color' ] || 'a2a9b1' } )
+	} );
+}
+
 module.exports = {
 	/**
 	 * @param {L.LatLngBounds} bounds
@@ -122,7 +128,8 @@ module.exports = {
 					properties: {
 						title: page.title,
 						description: page.description,
-						imageUrl: thumbnail ? thumbnail.source : undefined
+						imageUrl: thumbnail ? thumbnail.source : undefined,
+						'marker-color': '0000ff'
 					}
 				} );
 			}
@@ -132,22 +139,16 @@ module.exports = {
 	},
 
 	createNearbyLayer: function ( geojson ) {
-		var nearbyLayer = L.geoJSON( geojson ).bindPopup( function ( layer ) {
+		return L.geoJSON(
+			geojson,
+			{ pointToLayer: createNearbyMarker }
+		).bindPopup( function ( layer ) {
 			return createPopupHtml(
 				layer.feature.properties.title,
 				layer.feature.properties.description,
 				layer.feature.properties.imageUrl
 			);
 		} );
-
-		var icon = L.mapbox.marker.icon( {
-			'marker-color': 'a2a9b1'
-		} );
-		nearbyLayer.getLayers().forEach( function ( marker ) {
-			marker.setIcon( icon );
-		} );
-
-		return nearbyLayer;
 	}
 
 };
