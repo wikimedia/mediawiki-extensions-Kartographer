@@ -30,6 +30,41 @@ function getSearchQuery( bounds ) {
 	return 'nearcoord:' + radius + 'm,' + lat + ',' + lng;
 }
 
+/**
+ * @private
+ * @param {string} title
+ * @param {string|undefined} description
+ * @param {string|undefined} imageUrl
+ * @return {string}
+ */
+function createPopupHtml( title, description, imageUrl ) {
+	title = mw.Title.newFromText( title );
+
+	var linkHtml = mw.html.element( 'a', {
+			href: title.getUrl(),
+			target: '_blank'
+		}, title.getPrefixedText() ),
+		titleHtml = mw.html.element( 'div', {
+			class: 'marker-title'
+		}, new mw.html.Raw( linkHtml ) ),
+		contentHtml = '';
+
+	if ( description ) {
+		contentHtml += mw.html.element( 'span', {}, description );
+	}
+
+	if ( imageUrl ) {
+		contentHtml += mw.html.element( 'img', { src: imageUrl } );
+	}
+
+	if ( contentHtml ) {
+		return titleHtml + mw.html.element( 'div', {
+			class: 'marker-description'
+		}, new mw.html.Raw( contentHtml ) );
+	}
+	return titleHtml;
+}
+
 module.exports = {
 	/**
 	 * @param {L.LatLngBounds} bounds
@@ -96,37 +131,23 @@ module.exports = {
 		}, [] );
 	},
 
-	/**
-	 * @param {string} title
-	 * @param {string|undefined} description
-	 * @param {string|undefined} imageUrl
-	 * @return {string}
-	 */
-	createPopupHtml: function ( title, description, imageUrl ) {
-		title = mw.Title.newFromText( title );
+	createNearbyLayer: function ( geojson ) {
+		var nearbyLayer = L.geoJSON( geojson ).bindPopup( function ( layer ) {
+			return createPopupHtml(
+				layer.feature.properties.title,
+				layer.feature.properties.description,
+				layer.feature.properties.imageUrl
+			);
+		} );
 
-		var linkHtml = mw.html.element( 'a', {
-				href: title.getUrl(),
-				target: '_blank'
-			}, title.getPrefixedText() ),
-			titleHtml = mw.html.element( 'div', {
-				class: 'marker-title'
-			}, new mw.html.Raw( linkHtml ) ),
-			contentHtml = '';
+		var icon = L.mapbox.marker.icon( {
+			'marker-color': 'a2a9b1'
+		} );
+		nearbyLayer.getLayers().forEach( function ( marker ) {
+			marker.setIcon( icon );
+		} );
 
-		if ( description ) {
-			contentHtml += mw.html.element( 'span', {}, description );
-		}
-
-		if ( imageUrl ) {
-			contentHtml += mw.html.element( 'img', { src: imageUrl } );
-		}
-
-		if ( contentHtml ) {
-			return titleHtml + mw.html.element( 'div', {
-				class: 'marker-description'
-			}, new mw.html.Raw( contentHtml ) );
-		}
-		return titleHtml;
+		return nearbyLayer;
 	}
+
 };
