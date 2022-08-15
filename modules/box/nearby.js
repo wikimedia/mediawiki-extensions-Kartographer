@@ -103,8 +103,16 @@ function filterDuplicatePoints( geoJSON ) {
  * @return {string}
  */
 function makeHash( coordinates ) {
-	// FIXME: Maybe find something that returns a unique number or even integer?
-	return coordinates.join( '|' );
+	// Maximum base using 0–9 and a–z as digits
+	var base = 36;
+	// Choosen so that the base-36 representation of [0…360[ is never longer than 5 characters,
+	// i.e. use the full range of what these 5 characters can represent. This corresponds to a
+	// precision of ~0.000006° or ~0.7m.
+	var precision = 167961;
+	/* eslint-disable no-bitwise */
+	return ( ( coordinates[ 0 ] * precision ) | 0 ).toString( base ) + ',' +
+		( ( coordinates[ 1 ] * precision ) | 0 ).toString( base );
+	/* eslint-enable no-bitwise */
 }
 
 /**
