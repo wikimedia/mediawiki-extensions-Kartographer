@@ -389,7 +389,7 @@ abstract class TagHandler {
 		$errors = array_merge( $this->status->getErrorsByType( 'error' ),
 			$this->status->getErrorsByType( 'warning' )
 		);
-		if ( !count( $errors ) ) {
+		if ( !$errors ) {
 			throw new Exception( __METHOD__ . '(): attempt to report error when none took place' );
 		}
 		$message = count( $errors ) > 1 ? 'kartographer-error-context-multi'
