@@ -697,21 +697,47 @@ KartographerMap = L.Map.extend( {
 	 * @param {boolean} show
 	 */
 	showNearby: function ( show ) {
-		if ( show && !this.nearbyLayer ) {
-			var map = this;
-			// TODO: Replace or merge nearby points when moving the viewport.
-			Nearby.fetch( this.getBounds(), this.getZoom() ).then( function ( data ) {
-				map.nearbyLayer = Nearby.createNearbyLayer(
-					Nearby.convertGeosearchToGeojson( data )
-				);
-				map.addLayer( map.nearbyLayer );
-			} );
-		} else if ( !show && this.nearbyLayer ) {
-			this.removeLayer( this.nearbyLayer );
-			// Allows the user to workaround the lack of scrolling.
+		if ( show ) {
+			this.fetchAndRecreateNearbyLayer();
+			this.on( {
+				moveend: this.onMapMoveOrZoomEnd,
+				zoomend: this.onMapMoveOrZoomEnd
+			}, this );
+		} else {
+			this.off( {
+				moveend: this.onMapMoveOrZoomEnd,
+				zoomend: this.onMapMoveOrZoomEnd
+			}, this );
+			if ( this.nearbyLayer ) {
+				this.removeLayer( this.nearbyLayer );
+			}
 			// TODO: Don't throw away the data.
 			this.nearbyLayer = null;
 		}
+	},
+
+	/**
+	 * @private
+	 */
+	onMapMoveOrZoomEnd: function () {
+		if ( this.fetchNearbyTimeout ) {
+			clearTimeout( this.fetchNearbyTimeout );
+		}
+		this.fetchNearbyTimeout = setTimeout( this.fetchAndRecreateNearbyLayer.bind( this ), 500 );
+	},
+
+	/**
+	 * @private
+	 */
+	fetchAndRecreateNearbyLayer: function () {
+		var map = this;
+		Nearby.fetch( this.getBounds(), this.getZoom() ).then( function ( data ) {
+			if ( map.nearbyLayer ) {
+				map.removeLayer( map.nearbyLayer );
+			}
+			map.nearbyLayer = Nearby.createNearbyLayer( Nearby.convertGeosearchToGeojson( data ) );
+			map.addLayer( map.nearbyLayer );
+		} );
 	},
 
 	/**
