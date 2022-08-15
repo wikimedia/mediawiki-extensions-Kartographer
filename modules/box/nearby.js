@@ -86,6 +86,27 @@ function createPopupHtml( title, description, imageUrl ) {
 	return titleHtml;
 }
 
+// FIXME: This grows the more the user moves/zooms the map; maybe drop old values?
+var knownPoints;
+
+function filterDuplicatePoints( geoJSON ) {
+	var hash = makeHash( geoJSON.geometry.coordinates ),
+		known = knownPoints.has( hash );
+	if ( !known ) {
+		knownPoints.add( hash );
+	}
+	return !known;
+}
+
+/**
+ * @param {number[]} coordinates
+ * @return {string}
+ */
+function makeHash( coordinates ) {
+	// FIXME: Maybe find something that returns a unique number or even integer?
+	return coordinates.join( '|' );
+}
+
 /**
  * @param {Object} geoJson
  * @param {L.LatLng} latlng
@@ -171,10 +192,12 @@ module.exports = {
 	 * @return {L.GeoJSON}
 	 */
 	createNearbyLayer: function ( geojson ) {
-		return L.geoJSON(
-			geojson,
-			{ pointToLayer: createNearbyMarker }
-		).bindPopup( function ( layer ) {
+		/* global Set */
+		knownPoints = new Set();
+		return L.geoJSON( geojson, {
+			filter: filterDuplicatePoints,
+			pointToLayer: createNearbyMarker
+		} ).bindPopup( function ( layer ) {
 			return createPopupHtml(
 				layer.feature.properties.title,
 				layer.feature.properties.description,

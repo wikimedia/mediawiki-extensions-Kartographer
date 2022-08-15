@@ -702,6 +702,7 @@ KartographerMap = L.Map.extend( {
 				zoomend: this.onMapMoveOrZoomEnd
 			}, this );
 		} else {
+			clearTimeout( this.fetchNearbyTimeout );
 			this.off( {
 				moveend: this.onMapMoveOrZoomEnd,
 				zoomend: this.onMapMoveOrZoomEnd
@@ -717,9 +718,7 @@ KartographerMap = L.Map.extend( {
 	 * @private
 	 */
 	onMapMoveOrZoomEnd: function () {
-		if ( this.fetchNearbyTimeout ) {
-			clearTimeout( this.fetchNearbyTimeout );
-		}
+		clearTimeout( this.fetchNearbyTimeout );
 		this.fetchNearbyTimeout = setTimeout( this.fetchAndRecreateNearbyLayer.bind( this ), 500 );
 	},
 
