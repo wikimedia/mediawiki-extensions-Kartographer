@@ -709,7 +709,6 @@ KartographerMap = L.Map.extend( {
 			if ( this.nearbyLayer ) {
 				this.removeLayer( this.nearbyLayer );
 			}
-			// TODO: Don't throw away the data.
 			this.nearbyLayer = null;
 		}
 	},
@@ -730,11 +729,14 @@ KartographerMap = L.Map.extend( {
 	fetchAndRecreateNearbyLayer: function () {
 		var map = this;
 		Nearby.fetch( this.getBounds(), this.getZoom() ).then( function ( data ) {
-			if ( map.nearbyLayer ) {
-				map.removeLayer( map.nearbyLayer );
+			var geoJSON = Nearby.convertGeosearchToGeojson( data );
+			if ( !map.nearbyLayer ) {
+				map.nearbyLayer = Nearby.createNearbyLayer( geoJSON );
+				map.addLayer( map.nearbyLayer );
+			} else {
+				// FIXME: This creates tons of duplicates, which slows down the client more and more
+				map.nearbyLayer.addData( geoJSON );
 			}
-			map.nearbyLayer = Nearby.createNearbyLayer( Nearby.convertGeosearchToGeojson( data ) );
-			map.addLayer( map.nearbyLayer );
 		} );
 	},
 
