@@ -71,7 +71,6 @@ MapDialog.prototype.setMap = function ( map ) {
 	);
 
 	dialog.$captionContainer
-		.attr( 'title', dialog.map.captionText )
 		.text( dialog.map.captionText );
 
 	// The button exists, the sidebar was open, call `tearDown` and reopen it.
@@ -108,15 +107,13 @@ MapDialog.prototype.addFooterButton = function () {
 	if ( !dialog.mapDetailsButton ) {
 		dialog.mapDetailsButton = new OO.ui.ToggleButtonWidget( {
 			label: mw.msg( 'kartographer-sidebar-togglebutton' ),
-			icon: 'newWindow',
-			title: mw.msg( 'kartographer-sidebar-togglebutton' )
+			icon: 'newWindow'
 		} );
 		dialog.mapDetailsButton.connect( dialog, { change: 'toggleSideBar' } );
 	}
 	if ( !dialog.mapNearbyButton && mw.config.get( 'wgKartographerNearby' ) ) {
 		dialog.mapNearbyButton = new OO.ui.ToggleButtonWidget( {
-			label: mw.msg( 'kartographer-sidebar-nearbybutton' ),
-			title: mw.msg( 'kartographer-sidebar-nearbybutton' )
+			label: mw.msg( 'kartographer-sidebar-nearbybutton' )
 		} );
 		dialog.mapNearbyButton.connect( dialog, { change: 'toggleNearbyLayer' } );
 	}
@@ -149,7 +146,6 @@ MapDialog.prototype.addFooterButton = function () {
 
 	if ( dialog.map ) {
 		dialog.$captionContainer
-			.attr( 'title', dialog.map.captionText )
 			.text( dialog.map.captionText );
 	}
 };
