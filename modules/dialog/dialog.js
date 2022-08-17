@@ -162,7 +162,7 @@ MapDialog.prototype.toggleSideBar = function ( open ) {
 			dialog.sideBar.toggle( true );
 		}
 
-		open = ( typeof open === 'undefined' ) ? !dialog.mapDetailsButton.value : open;
+		open = open === undefined ? !dialog.mapDetailsButton.value : open;
 
 		if ( dialog.mapDetailsButton.value !== open ) {
 			dialog.mapDetailsButton.setValue( open );
