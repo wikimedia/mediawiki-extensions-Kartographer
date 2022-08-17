@@ -23,15 +23,14 @@ var util = require( 'ext.kartographer.util' ),
 	inlineDataLayerId = 0;
 
 function bracketDevicePixelRatio() {
-	var i, scl,
-		brackets = mw.config.get( 'wgKartographerSrcsetScales' ),
+	var brackets = mw.config.get( 'wgKartographerSrcsetScales' ),
 		baseRatio = window.devicePixelRatio || 1;
 	if ( !brackets ) {
 		return 1;
 	}
 	brackets.unshift( 1 );
-	for ( i = 0; i < brackets.length; i++ ) {
-		scl = brackets[ i ];
+	for ( var i = 0; i < brackets.length; i++ ) {
+		var scl = brackets[ i ];
 		if ( scl >= baseRatio || ( baseRatio - scl ) < 0.1 ) {
 			return scl;
 		}
@@ -149,8 +148,7 @@ KartographerMap = L.Map.extend( {
 	 * @member Kartographer.Box.MapClass
 	 */
 	initialize: function ( options ) {
-		var args,
-			mapServer = mw.config.get( 'wgKartographerMapServer' ),
+		var mapServer = mw.config.get( 'wgKartographerMapServer' ),
 			defaultStyle = mw.config.get( 'wgKartographerDfltStyle' ),
 			style = options.style || defaultStyle,
 			map = this;
@@ -168,7 +166,7 @@ KartographerMap = L.Map.extend( {
 
 		$( options.container ).addClass( 'mw-kartographer-interactive' );
 
-		args = L.extend( {}, L.Map.prototype.options, options, {
+		var args = L.extend( {}, L.Map.prototype.options, options, {
 			// `center` and `zoom` are to undefined to avoid calling
 			// setView now. setView is called later when the data is
 			// loaded.
@@ -470,9 +468,8 @@ KartographerMap = L.Map.extend( {
 	 *   was invalid
 	 */
 	addGeoJSONLayer: function ( groupId, geoJson, options ) {
-		var layer;
 		try {
-			layer = L.mapbox.featureLayer( geoJson, $.extend( {}, dataLayerOpts, options ) ).addTo( this );
+			var layer = L.mapbox.featureLayer( geoJson, $.extend( {}, dataLayerOpts, options ) ).addTo( this );
 			layer.getAttribution = function () {
 				return this.options.attribution;
 			};
@@ -641,8 +638,7 @@ KartographerMap = L.Map.extend( {
 	 * @chainable
 	 */
 	setView: function ( center, zoom, options, save ) {
-		var maxBounds,
-			initial = this.getInitialMapPosition();
+		var initial = this.getInitialMapPosition();
 
 		if ( Array.isArray( center ) ) {
 			if ( !isNaN( center[ 0 ] ) && !isNaN( center[ 1 ] ) ) {
@@ -659,7 +655,7 @@ KartographerMap = L.Map.extend( {
 			// Bounds calulation depends on the size of the frame
 			// If the frame is not visible, there is no point in calculating
 			// You need to call invalidateSize when it becomes available again
-			maxBounds = getValidBounds( this );
+			var maxBounds = getValidBounds( this );
 
 			if ( maxBounds.isValid() ) {
 				this.fitBounds( maxBounds );
@@ -791,8 +787,6 @@ KartographerMap = L.Map.extend( {
 	 * @protected
 	 */
 	_fixMapSize: function () {
-		var width, height, $visibleParent;
-
 		if ( this.options.fullscreen ) {
 			this._size = new L.Point(
 				window.innerWidth,
@@ -803,11 +797,11 @@ KartographerMap = L.Map.extend( {
 		}
 
 		// eslint-disable-next-line no-jquery/no-sizzle
-		$visibleParent = this.$container.closest( ':visible' );
+		var $visibleParent = this.$container.closest( ':visible' );
 
 		// Try `max` properties.
-		width = $visibleParent.css( 'max-width' );
-		height = $visibleParent.css( 'max-height' );
+		var width = $visibleParent.css( 'max-width' ),
+			height = $visibleParent.css( 'max-height' );
 		width = ( !width || width === 'none' ) ? $visibleParent.width() : width;
 		height = ( !height || height === 'none' ) ? $visibleParent.height() : height;
 

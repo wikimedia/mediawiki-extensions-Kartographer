@@ -154,9 +154,8 @@ MapDialog.prototype.toggleSideBar = function ( open ) {
 	var dialog = this;
 
 	mw.loader.using( 'ext.kartographer.dialog.sidebar' ).then( function () {
-		var SideBar;
 		if ( !dialog.sideBar ) {
-			SideBar = require( 'ext.kartographer.dialog.sidebar' );
+			var SideBar = require( 'ext.kartographer.dialog.sidebar' );
 			dialog.sideBar = new SideBar( { dialog: dialog } );
 			dialog.sideBar.toggle( true );
 		}

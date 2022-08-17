@@ -17,8 +17,7 @@ module.exports = {
 	 *   articles.
 	 */
 	setConfig: function ( obj ) {
-		var key;
-		for ( key in obj ) {
+		for ( var key in obj ) {
 			config[ key ] = obj[ key ];
 		}
 	},

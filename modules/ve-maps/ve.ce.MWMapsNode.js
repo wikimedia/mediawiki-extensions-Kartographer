@@ -15,10 +15,6 @@
  * @param {Object} [config] Configuration options
  */
 ve.ce.MWMapsNode = function VeCeMWMaps( model, config ) {
-	var store, contents, $caption;
-
-	config = config || {};
-
 	this.$map = $( '<div>' ).addClass( 'mw-kartographer-map' );
 	this.$thumbinner = $( '<div>' ).addClass( 'thumbinner' );
 
@@ -43,9 +39,9 @@ ve.ce.MWMapsNode = function VeCeMWMaps( model, config ) {
 	mw.loader.load( 'ext.kartographer' );
 
 	// HACK: Copy caption from originalDomElements
-	store = this.model.doc.getStore();
-	contents = store.value( store.hashOfValue( null, OO.getHash( [ this.model.getHashObjectForRendering(), null ] ) ) );
-	$caption = $( contents ).find( '.thumbcaption' ).clone();
+	var store = this.model.doc.getStore(),
+		contents = store.value( store.hashOfValue( null, OO.getHash( [ this.model.getHashObjectForRendering(), null ] ) ) ),
+		$caption = $( contents ).find( '.thumbcaption' ).clone();
 
 	// DOM changes
 	this.$element
@@ -198,12 +194,12 @@ ve.ce.MWMapsNode.prototype.setupMap = function () {
  * Update the GeoJSON layer from the current model state
  */
 ve.ce.MWMapsNode.prototype.updateGeoJson = function () {
-	var mwData, geoJson;
 	if ( !this.model ) {
 		return;
 	}
-	mwData = this.model.getAttribute( 'mw' );
-	geoJson = ve.getProp( mwData, 'body', 'extsrc' );
+
+	var mwData = this.model.getAttribute( 'mw' ),
+		geoJson = ve.getProp( mwData, 'body', 'extsrc' );
 
 	if ( geoJson !== this.geoJson ) {
 		require( 'ext.kartographer.editing' ).updateKartographerLayer( this.map, geoJson ).then( this.updateMapPosition.bind( this ) );
@@ -215,18 +211,18 @@ ve.ce.MWMapsNode.prototype.updateGeoJson = function () {
  * Updates the map position (center and zoom) from the current model state.
  */
 ve.ce.MWMapsNode.prototype.updateMapPosition = function () {
-	var mwData, mapData, updatedData, current;
 	if ( !this.model ) {
 		return;
 	}
-	mwData = this.model.getAttribute( 'mw' );
-	mapData = this.mapData;
-	updatedData = mwData && mwData.attrs;
+
+	var mwData = this.model.getAttribute( 'mw' ),
+		mapData = this.mapData,
+		updatedData = mwData && mwData.attrs;
 
 	if ( !updatedData ) {
 		// auto calculate the position
 		this.map.setView( null, mapData.zoom );
-		current = this.map.getMapPosition();
+		var current = this.map.getMapPosition();
 		// update missing attributes with current position.
 		mwData.attrs.latitude = mapData.latitude = current.center.lat.toString();
 		mwData.attrs.longitude = mapData.longitude = current.center.lng.toString();
@@ -253,8 +249,6 @@ ve.ce.MWMapsNode.prototype.updateMapPosition = function () {
  * @param {number} [height]
  */
 ve.ce.MWMapsNode.prototype.updateStatic = function ( width, height ) {
-	var url, node = this;
-
 	if ( !this.model.getCurrentDimensions().width ) {
 		return;
 	}
@@ -264,7 +258,8 @@ ve.ce.MWMapsNode.prototype.updateStatic = function ( width, height ) {
 		this.$imageLoader = null;
 	}
 
-	url = this.model.getUrl( width, height );
+	var url = this.model.getUrl( width, height ),
+		node = this;
 
 	this.$imageLoader = $( '<img>' ).on( 'load', function () {
 		node.$map.css( 'backgroundImage', 'url(' + url + ')' );
