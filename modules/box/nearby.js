@@ -170,7 +170,7 @@ module.exports = {
 				layer.feature.properties.description,
 				layer.feature.properties.imageUrl
 			);
-		} );
+		}, { closeButton: false } );
 	}
 
 };
