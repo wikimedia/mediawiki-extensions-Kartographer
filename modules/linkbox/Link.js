@@ -80,7 +80,6 @@ function Link( options ) {
  * @member Kartographer.Linkbox.LinkClass
  */
 Link.prototype.openFullScreen = function ( position ) {
-
 	var link = this,
 		map = link.fullScreenMap,
 		mapObject,

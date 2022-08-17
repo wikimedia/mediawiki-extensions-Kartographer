@@ -831,7 +831,6 @@ KartographerMap = L.Map.extend( {
 	 * @protected
 	 */
 	_invalidateInteractive: function () {
-
 		// add Leaflet.Sleep when the map isn't full screen.
 		this.addHandler( 'sleep', L.Map.Sleep );
 

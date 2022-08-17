@@ -106,7 +106,6 @@ module.exports = {
 	 */
 	isAllowed: function ( layer ) {
 		return mw.loader.using( 'mediawiki.storage' ).then( function () {
-
 			if ( areExternalAllowed === undefined ) {
 				areExternalAllowed = mw.storage.get( STORAGE_KEY ) === '1';
 			}
@@ -123,6 +122,5 @@ module.exports = {
 				}
 			} );
 		} );
-
 	}
 };
