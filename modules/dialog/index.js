@@ -9,11 +9,17 @@ var Dialog = require( './dialog.js' ),
 	router = require( 'mediawiki.router' ),
 	windowManager, mapDialog, routerEnabled;
 
+/**
+ * @return {Kartographer.Dialog}
+ */
 function getMapDialog() {
 	mapDialog = mapDialog || new Dialog();
 	return mapDialog;
 }
 
+/**
+ * @return {OO.ui.WindowManager}
+ */
 function getWindowManager() {
 	if ( !windowManager ) {
 		windowManager = new OO.ui.WindowManager();

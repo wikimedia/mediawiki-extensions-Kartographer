@@ -86,6 +86,11 @@ function createPopupHtml( title, description, imageUrl ) {
 	return titleHtml;
 }
 
+/**
+ * @param {Object} geoJson
+ * @param {L.LatLng} latlng
+ * @return {L.Marker}
+ */
 function createNearbyMarker( geoJson, latlng ) {
 	return L.marker( latlng, {
 		icon: L.mapbox.marker.icon( { 'marker-color': geoJson.properties[ 'marker-color' ] || 'a2a9b1' } )
@@ -160,6 +165,10 @@ module.exports = {
 		}, [] );
 	},
 
+	/**
+	 * @param {Object[]} geojson
+	 * @return {L.GeoJSON}
+	 */
 	createNearbyLayer: function ( geojson ) {
 		return L.geoJSON(
 			geojson,

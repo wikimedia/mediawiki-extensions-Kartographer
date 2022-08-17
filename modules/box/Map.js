@@ -22,6 +22,9 @@ var util = require( 'ext.kartographer.util' ),
 	inlineDataLayerKey = 'kartographer-inline-data-layer',
 	inlineDataLayerId = 0;
 
+/**
+ * @return {number}
+ */
 function bracketDevicePixelRatio() {
 	var i, scl,
 		brackets = mw.config.get( 'wgKartographerSrcsetScales' ),
