@@ -266,7 +266,6 @@ MapDialog.prototype.getSetupProcess = function ( options ) {
 MapDialog.prototype.getReadyProcess = function ( data ) {
 	return MapDialog.super.prototype.getReadyProcess.call( this, data )
 		.next( function () {
-
 			if ( !this.map ) {
 				return;
 			}

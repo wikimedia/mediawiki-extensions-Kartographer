@@ -58,7 +58,6 @@ SideBar.prototype.formatLink = function ( url ) {
  * @chainable
  */
 SideBar.prototype.toggle = function ( open ) {
-
 	if ( this.$el ) {
 		this.tearDown();
 	}

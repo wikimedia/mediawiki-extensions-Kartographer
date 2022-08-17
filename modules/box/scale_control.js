@@ -17,7 +17,6 @@ var ScaleControl = L.Control.Scale.extend( {
 	 * @private
 	 */
 	_updateScales: function ( options, maxMeters ) {
-
 		L.Control.Scale.prototype._updateScales.call( this, options, maxMeters );
 
 		this._toggleScale();
