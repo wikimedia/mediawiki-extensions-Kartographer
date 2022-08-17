@@ -748,7 +748,7 @@ KartographerMap = L.Map.extend( {
 	 *   the longitude (string).
 	 */
 	getScaleLatLng: function ( lat, lng, zoom ) {
-		zoom = typeof zoom === 'undefined' ? this.getZoom() : zoom;
+		zoom = zoom === undefined ? this.getZoom() : zoom;
 
 		return [
 			lat.toFixed( precisionPerZoom[ zoom ] ),
