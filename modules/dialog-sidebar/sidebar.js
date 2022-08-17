@@ -61,11 +61,9 @@ SideBar.prototype.toggle = function ( open ) {
 	if ( this.$el ) {
 		this.tearDown();
 	}
-	if ( !open ) {
-		return;
+	if ( open ) {
+		this.render();
 	}
-
-	this.render();
 	return this;
 };
 
