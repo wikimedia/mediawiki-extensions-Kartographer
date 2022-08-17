@@ -358,8 +358,7 @@ SideBar.prototype.createFilterDropdown = function () {
 	items = $.map( this.metadata.types, function ( type ) {
 		return new OO.ui.MenuOptionWidget( {
 			data: type,
-			label: labels[ type ],
-			title: labels[ type ]
+			label: labels[ type ]
 		} );
 	} );
 
