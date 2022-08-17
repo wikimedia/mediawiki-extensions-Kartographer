@@ -113,7 +113,8 @@ MapDialog.prototype.addFooterButton = function () {
 	}
 	if ( !dialog.mapNearbyButton && mw.config.get( 'wgKartographerNearby' ) && !OO.ui.isMobile() ) {
 		dialog.mapNearbyButton = new OO.ui.ToggleButtonWidget( {
-			label: mw.msg( 'kartographer-sidebar-nearbybutton' )
+			label: mw.msg( 'kartographer-sidebar-nearbybutton' ),
+			icon: 'mapPin'
 		} );
 		dialog.mapNearbyButton.connect( dialog, { change: 'toggleNearbyLayer' } );
 	}
