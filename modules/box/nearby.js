@@ -108,13 +108,14 @@ module.exports = {
 		var limit = 50;
 		// TODO: Cache results if bounds remains unchanged
 		return ( new mw.Api( {
-			/* ajax: {
-				// TODO: Temporary override for local testing
+			/* TODO: Temporary override for local testing; remove when not needed any more *
+			ajax: {
 				url: 'https://en.wikipedia.org/w/api.php',
 				headers: {
 					'User-Agent': 'Kartographer - the WMF Content Transform Team (https://www.mediawiki.org/wiki/Content_Transform_Team)'
 				}
-			} */
+			}
+			/**/
 		} ) ).get( {
 			action: 'query',
 			format: 'json',
