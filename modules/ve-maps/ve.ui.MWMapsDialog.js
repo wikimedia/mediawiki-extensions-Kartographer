@@ -340,24 +340,23 @@ ve.ui.MWMapsDialog.prototype.insertOrUpdateNode = function () {
  * @inheritdoc ve.ui.MWExtensionWindow
  */
 ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
-	var latitude, longitude, zoom,
+	// Parent method
+	ve.ui.MWMapsDialog.super.prototype.updateMwData.call( this, mwData );
+
+	if ( !this.map ) {
+		// Map not loaded in insert, can't insert
+		return;
+	}
+
+	var latitude = this.latitude.getValue(),
+		longitude = this.longitude.getValue(),
+		zoom = this.zoom.getValue(),
 		lang = this.language.getLang(),
 		util = require( 'ext.kartographer.util' ),
 		dimensions = this.scalable.getBoundedDimensions(
 			this.dimensions.getDimensions()
 		);
 
-	// Parent method
-	ve.ui.MWMapsDialog.super.prototype.updateMwData.call( this, mwData );
-
-	if ( this.map ) {
-		latitude = this.latitude.getValue();
-		longitude = this.longitude.getValue();
-		zoom = this.zoom.getValue();
-	} else {
-		// Map not loaded in insert, can't insert
-		return;
-	}
 	mwData.attrs.latitude = latitude.toString();
 	mwData.attrs.longitude = longitude.toString();
 	mwData.attrs.zoom = zoom.toString();
@@ -566,11 +565,10 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 			} );
 
 			function update() {
-				var geoJson;
 				// Prevent circular update of map
 				dialog.updatingGeoJson = true;
 				try {
-					geoJson = geoJsonLayer.toGeoJSON();
+					var geoJson = geoJsonLayer.toGeoJSON();
 					// Undo the sanitization step's parsing of wikitext
 					editing.restoreUnparsedText( geoJson );
 					dialog.input.setValue( JSON.stringify( geoJson, null, '  ' ) );

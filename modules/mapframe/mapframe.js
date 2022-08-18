@@ -65,15 +65,13 @@ function getMapData( element ) {
  * @return {Object} map KartographerMap
  */
 function initMapBox( data, $container ) {
-	var map,
-		index = maps.length,
-		container = $container.get( 0 );
+	var index = maps.length;
 
 	data.enableFullScreenButton = true;
 
-	map = kartobox.map( {
+	var map = kartobox.map( {
 		featureType: 'mapframe',
-		container: container,
+		container: $container.get( 0 ),
 		center: [ data.latitude, data.longitude ],
 		zoom: data.zoom,
 		lang: data.lang,
@@ -127,12 +125,7 @@ function initMapBox( data, $container ) {
  * @param {HTMLElement} element Parsed <mapframe> element
  */
 function initMapframeFromElement( element ) {
-	var map,
-		container = element,
-		$container = $( element ),
-		data = getMapData( container );
-
-	map = initMapBox( data, $container );
+	var map = initMapBox( getMapData( element ), $( element ) );
 	mw.hook( 'wikipage.maps' ).fire( [ map ], false /* isFullScreen */ );
 }
 
@@ -152,12 +145,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 	// https://github.com/Leaflet/Leaflet/issues/4200
 	rAF( function () {
 		$content.find( '.mw-kartographer-map[data-mw="interface"]' ).each( function () {
-			var data,
-				container = this,
-				$container = $( this );
-
-			data = getMapData( container );
-			initMapBox( data, $container );
+			initMapBox( getMapData( this ), $( this ) );
 		} );
 
 		// Allow customizations of interactive maps in article.

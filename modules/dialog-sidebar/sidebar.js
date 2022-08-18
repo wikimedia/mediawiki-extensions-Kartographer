@@ -231,8 +231,7 @@ SideBar.prototype.renderExternalServices = function () {
 			sidebar.showAllServices = state !== undefined ? !!state : !sidebar.showAllServices;
 		},
 		populateListItems = function ( bypassAndShowAllServices ) {
-			var items,
-				featured = [],
+			var featured = [],
 				regular = [],
 				services = sidebar.byType[ selectedType ];
 
@@ -260,7 +259,7 @@ SideBar.prototype.renderExternalServices = function () {
 			} );
 
 			$list.empty();
-			items = ( bypassAndShowAllServices || sidebar.showAllServices ) ?
+			var items = ( bypassAndShowAllServices || sidebar.showAllServices ) ?
 				featured.concat( regular ) : featured;
 
 			// Update message
@@ -348,11 +347,10 @@ SideBar.prototype.parseExternalLinks = function () {
  * @return {OO.ui.DropdownWidget}
  */
 SideBar.prototype.createFilterDropdown = function () {
-	var items,
-		labels = this.metadata.localization;
+	var labels = this.metadata.localization;
 
 	// eslint-disable-next-line no-jquery/no-map-util
-	items = $.map( this.metadata.types, function ( type ) {
+	var items = $.map( this.metadata.types, function ( type ) {
 		return new OO.ui.MenuOptionWidget( {
 			data: type,
 			label: labels[ type ]

@@ -46,16 +46,14 @@ function updateKartographerLayer( map, geoJsonString ) {
 		text: geoJsonString,
 		title: mw.config.get( 'wgPageName' )
 	} ).then( function ( resp ) {
-		var geoJson, layer,
-			data = resp[ 'sanitize-mapdata' ],
+		var data = resp[ 'sanitize-mapdata' ],
 			sanitizedJsonString = data && data.sanitized;
 
 		if ( data.error || !sanitizedJsonString ) {
 			return $.Deferred().reject().promise();
 		}
-		geoJson = JSON.parse( sanitizedJsonString );
-		layer = getKartographerLayer( map );
-		layer.setGeoJSON( geoJson );
+		var layer = getKartographerLayer( map );
+		layer.setGeoJSON( JSON.parse( sanitizedJsonString ) );
 	} );
 }
 
@@ -68,10 +66,9 @@ function updateKartographerLayer( map, geoJsonString ) {
  * @param {Object} geoJson GeoJSON object, will be modified
  */
 function restoreUnparsedText( geoJson ) {
-	var key, baseKey;
-	for ( key in geoJson ) {
+	for ( var key in geoJson ) {
 		if ( key.slice( 0, '_orig'.length ) === '_orig' ) {
-			baseKey = key.slice( '_orig'.length );
+			var baseKey = key.slice( '_orig'.length );
 			// Copy the original value back, and delete the _orig key
 			geoJson[ baseKey ] = geoJson[ key ];
 			delete geoJson[ key ];
