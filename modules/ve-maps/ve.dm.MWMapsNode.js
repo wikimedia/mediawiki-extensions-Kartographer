@@ -39,6 +39,9 @@ ve.dm.MWMapsNode.static.matchTagNames = [ 'div' ];
 
 /* Static methods */
 
+/**
+ * @return {Object}
+ */
 ve.dm.MWMapsNode.static.toDataElement = function () {
 	var dataElement = ve.dm.MWMapsNode.super.static.toDataElement.apply( this, arguments );
 
@@ -69,6 +72,10 @@ ve.dm.MWMapsNode.static.getUrl = function ( dataElement, width, height ) {
 		'.jpeg?' + $.param( { lang: lang } );
 };
 
+/**
+ * @param {{width: number, height: number}} dimensions
+ * @return {ve.dm.Scalable}
+ */
 ve.dm.MWMapsNode.static.createScalable = function ( dimensions ) {
 	return new ve.dm.Scalable( {
 		fixedRatio: false,
@@ -87,6 +94,9 @@ ve.dm.MWMapsNode.static.createScalable = function ( dimensions ) {
 	} );
 };
 
+/**
+ * @return {{width: number, height: number}}
+ */
 ve.dm.MWMapsNode.prototype.getCurrentDimensions = function () {
 	return {
 		width: +this.getAttribute( 'mw' ).attrs.width,

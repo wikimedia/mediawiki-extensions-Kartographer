@@ -47,6 +47,9 @@ MapDialog.prototype.initialize = function () {
 	this.map = null;
 };
 
+/**
+ * @param {L.Map} map
+ */
 MapDialog.prototype.setMap = function ( map ) {
 	var dialog = this;
 	// remove older map
@@ -151,6 +154,9 @@ MapDialog.prototype.addFooterButton = function () {
 	}
 };
 
+/**
+ * @param {boolean} [open] If the sidebar should be shown or not, omit to toggle
+ */
 MapDialog.prototype.toggleSideBar = function ( open ) {
 	var dialog = this;
 
@@ -176,6 +182,9 @@ MapDialog.prototype.toggleSideBar = function ( open ) {
 	} );
 };
 
+/**
+ * @param {boolean} showNearby
+ */
 MapDialog.prototype.toggleNearbyLayer = function ( showNearby ) {
 	this.map.showNearby( showNearby );
 };

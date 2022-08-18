@@ -6,6 +6,9 @@
  * @singleton
  */
 module.exports = {
+	/**
+	 * @return {string}
+	 */
 	getDefaultLanguage: function () {
 		return mw.config.get( 'wgKartographerUsePageLanguage' ) ?
 			mw.config.get( 'wgPageContentLanguage' ) :
