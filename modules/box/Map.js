@@ -18,7 +18,6 @@ var util = require( 'ext.kartographer.util' ),
 	scale, urlFormat,
 	worldLatLng = new L.LatLngBounds( [ -90, -180 ], [ 90, 180 ] ),
 	KartographerMap,
-	precisionPerZoom = [ 0, 0, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5 ],
 	inlineDataLayerKey = 'kartographer-inline-data-layer',
 	inlineDataLayerId = 0;
 
@@ -740,16 +739,13 @@ KartographerMap = L.Map.extend( {
 	 * @param {number} lat
 	 * @param {number} lng
 	 * @param {number} [zoom]
-	 * @return {Array} Array with the zoom (number), the latitude (string) and
-	 *   the longitude (string).
+	 * @return {string[]}
 	 */
 	getScaleLatLng: function ( lat, lng, zoom ) {
 		zoom = zoom === undefined ? this.getZoom() : zoom;
 
-		return [
-			lat.toFixed( precisionPerZoom[ zoom ] ),
-			lng.toFixed( precisionPerZoom[ zoom ] )
-		];
+		var precision = zoom ? Math.ceil( Math.log( zoom ) / Math.LN2 ) : 0;
+		return [ lat.toFixed( precision ), lng.toFixed( precision ) ];
 	},
 
 	/**
