@@ -100,7 +100,7 @@
 
 	QUnit.test( 'Converts valid geosearch response', function ( assert ) {
 		const Nearby = require( 'ext.kartographer.box' ).private.Nearby;
-		const expectedGeojson = [
+		const expectedGeoJSON = [
 			{
 				geometry: {
 					coordinates: [
@@ -152,8 +152,8 @@
 		];
 
 		assert.deepEqual(
-			Nearby.convertGeosearchToGeojson( dummyGeosearchResponse ),
-			expectedGeojson
+			Nearby.convertGeosearchToGeoJSON( dummyGeosearchResponse ),
+			expectedGeoJSON
 		);
 	} );
 }() );

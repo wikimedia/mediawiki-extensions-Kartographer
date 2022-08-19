@@ -464,14 +464,14 @@ KartographerMap = L.Map.extend( {
 	 * Creates a new GeoJSON layer and adds it to the map.
 	 *
 	 * @param {string} groupId
-	 * @param {Object} geoJson Features
+	 * @param {Object} geoJSON Features
 	 * @param {Object} [options] Layer options
 	 * @return {L.mapbox.FeatureLayer|undefined} Added layer, or undefined in case e.g. the GeoJSON
 	 *   was invalid
 	 */
-	addGeoJSONLayer: function ( groupId, geoJson, options ) {
+	addGeoJSONLayer: function ( groupId, geoJSON, options ) {
 		try {
-			var layer = L.mapbox.featureLayer( geoJson, $.extend( {}, dataLayerOpts, options ) ).addTo( this );
+			var layer = L.mapbox.featureLayer( geoJSON, $.extend( {}, dataLayerOpts, options ) ).addTo( this );
 			layer.getAttribution = function () {
 				return this.options.attribution;
 			};
@@ -728,7 +728,7 @@ KartographerMap = L.Map.extend( {
 	fetchAndRecreateNearbyLayer: function () {
 		var map = this;
 		Nearby.fetch( this.getBounds(), this.getZoom() ).then( function ( data ) {
-			var geoJSON = Nearby.convertGeosearchToGeojson( data );
+			var geoJSON = Nearby.convertGeosearchToGeoJSON( data );
 			if ( !map.nearbyLayer ) {
 				map.nearbyLayer = Nearby.createNearbyLayer( geoJSON );
 				map.addLayer( map.nearbyLayer );

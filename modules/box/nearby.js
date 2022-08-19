@@ -116,13 +116,13 @@ function makeHash( coordinates ) {
 }
 
 /**
- * @param {Object} geoJson
+ * @param {Object} geoJSON
  * @param {L.LatLng} latlng
  * @return {L.Marker}
  */
-function createNearbyMarker( geoJson, latlng ) {
+function createNearbyMarker( geoJSON, latlng ) {
 	return L.marker( latlng, {
-		icon: L.mapbox.marker.icon( { 'marker-color': geoJson.properties[ 'marker-color' ] || 'a2a9b1' } )
+		icon: L.mapbox.marker.icon( { 'marker-color': geoJSON.properties[ 'marker-color' ] || 'a2a9b1' } )
 	} );
 }
 
@@ -170,7 +170,7 @@ module.exports = {
 	 * @param {Object} response Raw data returned by the geosearch API.
 	 * @return {Object[]} A list of GeoJSON features, one for each page.
 	 */
-	convertGeosearchToGeojson: function ( response ) {
+	convertGeosearchToGeoJSON: function ( response ) {
 		var pages = response.query && response.query.pages || [];
 
 		return pages.reduce( function ( result, page ) {
@@ -196,13 +196,13 @@ module.exports = {
 	},
 
 	/**
-	 * @param {Object[]} geojson
+	 * @param {Object[]} geoJSON
 	 * @return {L.GeoJSON}
 	 */
-	createNearbyLayer: function ( geojson ) {
+	createNearbyLayer: function ( geoJSON ) {
 		/* global Set */
 		knownPoints = new Set();
-		return L.geoJSON( geojson, {
+		return L.geoJSON( geoJSON, {
 			filter: filterDuplicatePoints,
 			pointToLayer: createNearbyMarker
 		} ).bindPopup( function ( layer ) {

@@ -8,7 +8,7 @@
  */
 
 /**
- * Get "editable" geojson layer for the map.
+ * Get "editable" GeoJSON layer for the map.
  *
  * If a layer doesn't exist, create and attach one.
  *

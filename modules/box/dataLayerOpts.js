@@ -21,10 +21,10 @@ module.exports = {
 	 * passed through Kartographer's internal sanitizer (avoids double
 	 * sanitization).
 	 *
-	 * @param {Object} geojson
+	 * @param {Object} geoJSON
 	 * @return {Object}
 	 */
-	sanitizer: function ( geojson ) {
-		return geojson;
+	sanitizer: function ( geoJSON ) {
+		return geoJSON;
 	}
 };
