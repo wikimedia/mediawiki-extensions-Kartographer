@@ -3,9 +3,12 @@
 		"authors": [
 			"Fulup",
 			"Y-M D",
-			"VIGNERON"
+			"VIGNERON",
+			"Huñvreüs"
 		]
 	},
+	"kartographer-broken-category": "Pajennoù gant kartennoù faziek",
+	"kartographer-tracking-category": "Pajennoù gant kartennoù",
 	"kartographer-coord-combined": "$1 $2",
 	"kartographer-coord-dms": "$1°$2′$3″",
 	"kartographer-coord-lat-positive": "$1N",
