@@ -89,6 +89,22 @@ function createPopupHtml( title, description, imageUrl ) {
 // FIXME: This grows the more the user moves/zooms the map; maybe drop old values?
 var knownPoints;
 
+function initializeKnownPoints( map ) {
+	/* global Set */
+	knownPoints = new Set();
+	map.eachLayer( function ( layer ) {
+		// Note: mapbox does simple checks like this in other places as well
+		if ( layer.getLatLng ) {
+			var latLng = layer.getLatLng();
+			knownPoints.add( makeHash( [ latLng.lng, latLng.lat ] ) );
+		}
+	} );
+}
+
+/**
+ * @param {Object} geoJSON
+ * @returns {boolean}
+ */
 function filterDuplicatePoints( geoJSON ) {
 	var hash = makeHash( geoJSON.geometry.coordinates ),
 		known = knownPoints.has( hash );
@@ -99,7 +115,7 @@ function filterDuplicatePoints( geoJSON ) {
 }
 
 /**
- * @param {number[]} coordinates
+ * @param {number[]} coordinates Longitude, latitude
  * @return {string}
  */
 function makeHash( coordinates ) {
@@ -127,7 +143,50 @@ function createNearbyMarker( geoJSON, latlng ) {
 }
 
 module.exports = {
+
 	/**
+	 * @param {L.Map} map
+	 * @param {boolean} show
+	 */
+	toggleNearbyLayer: function ( map, show ) {
+		if ( show ) {
+			this.fetchAndPopulateNearbyLayer( map );
+			map.on( {
+				moveend: this.onMapMoveOrZoomEnd.bind( this, map ),
+				zoomend: this.onMapMoveOrZoomEnd.bind( this, map )
+			}, this );
+		} else {
+			clearTimeout( this.fetchNearbyTimeout );
+			map.off( {
+				moveend: this.onMapMoveOrZoomEnd.bind( this, map ),
+				zoomend: this.onMapMoveOrZoomEnd.bind( this, map )
+			}, this );
+			if ( this.nearbyLayer ) {
+				map.removeLayer( this.nearbyLayer );
+			}
+			delete this.nearbyLayer;
+		}
+	},
+
+	/**
+	 * @private
+	 * @param {L.Map} map
+	 */
+	onMapMoveOrZoomEnd: function ( map ) {
+		clearTimeout( this.fetchNearbyTimeout );
+		this.fetchNearbyTimeout = setTimeout( this.fetchAndPopulateNearbyLayer.bind( this, map ), 500 );
+	},
+
+	/**
+	 * @private
+	 * @param {L.Map} map
+	 */
+	fetchAndPopulateNearbyLayer: function ( map ) {
+		this.fetch( map.getBounds(), map.getZoom() ).then( this.populateNearbyLayer.bind( this, map ) );
+	},
+
+	/**
+	 * @private
 	 * @param {L.LatLngBounds} bounds
 	 * @param {number} zoom Typically ranging from 0 (entire world) to 19 (nearest)
 	 * @return {jQuery.Promise}
@@ -167,6 +226,23 @@ module.exports = {
 	},
 
 	/**
+	 * @private
+	 * @param {L.Map} map
+	 * @param {Object} queryApiResponse
+	 */
+	populateNearbyLayer: function ( map, queryApiResponse ) {
+		var geoJSON = this.convertGeosearchToGeoJSON( queryApiResponse );
+		if ( !this.nearbyLayer ) {
+			initializeKnownPoints( map );
+			this.nearbyLayer = this.createNearbyLayer( geoJSON );
+			map.addLayer( this.nearbyLayer );
+		} else {
+			this.nearbyLayer.addData( geoJSON );
+		}
+	},
+
+	/**
+	 * @private
 	 * @param {Object} response Raw data returned by the geosearch API.
 	 * @return {Object[]} A list of GeoJSON features, one for each page.
 	 */
@@ -196,12 +272,11 @@ module.exports = {
 	},
 
 	/**
+	 * @private
 	 * @param {Object[]} geoJSON
 	 * @return {L.GeoJSON}
 	 */
 	createNearbyLayer: function ( geoJSON ) {
-		/* global Set */
-		knownPoints = new Set();
 		return L.geoJSON( geoJSON, {
 			filter: filterDuplicatePoints,
 			pointToLayer: createNearbyMarker

@@ -199,8 +199,7 @@
 				"dataLayerOpts.js",
 				"data.js",
 				"Map.js",
-				"enablePreview.js",
-				"nearby.js"
+				"enablePreview.js"
 			],
 			"messages": [
 				"kartographer-attribution"
@@ -250,7 +249,8 @@
 			"packageFiles": [
 				"index.js",
 				"dialog.js",
-				"closefullscreen_control.js"
+				"closefullscreen_control.js",
+				"nearby.js"
 			],
 			"styles": [
 				"dialog.less"
@@ -514,10 +514,10 @@
 		"localBasePath": "tests/qunit",
 		"remoteExtPath": "Kartographer/tests/qunit",
 		"scripts": [
-			"box/nearby.test.js"
+			"nearby.test.js"
 		],
 		"dependencies": [
-			"ext.kartographer.box"
+			"ext.kartographer.dialog"
 		]
 	},
 	"attributes": {

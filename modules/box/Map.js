@@ -14,7 +14,6 @@ var util = require( 'ext.kartographer.util' ),
 	dataLayerOpts = require( './dataLayerOpts.js' ),
 	ScaleControl = require( './scale_control.js' ),
 	DataManagerFactory = require( './data.js' ),
-	Nearby = require( './nearby.js' ),
 	scale, urlFormat,
 	worldLatLng = new L.LatLngBounds( [ -90, -180 ], [ 90, 180 ] ),
 	KartographerMap,
@@ -689,54 +688,6 @@ KartographerMap = L.Map.extend( {
 			}
 		}
 		return this;
-	},
-
-	/**
-	 * @param {boolean} show
-	 */
-	showNearby: function ( show ) {
-		if ( show ) {
-			this.fetchAndRecreateNearbyLayer();
-			this.on( {
-				moveend: this.onMapMoveOrZoomEnd,
-				zoomend: this.onMapMoveOrZoomEnd
-			}, this );
-		} else {
-			clearTimeout( this.fetchNearbyTimeout );
-			this.off( {
-				moveend: this.onMapMoveOrZoomEnd,
-				zoomend: this.onMapMoveOrZoomEnd
-			}, this );
-			if ( this.nearbyLayer ) {
-				this.removeLayer( this.nearbyLayer );
-			}
-			this.nearbyLayer = null;
-		}
-	},
-
-	/**
-	 * @private
-	 */
-	onMapMoveOrZoomEnd: function () {
-		clearTimeout( this.fetchNearbyTimeout );
-		this.fetchNearbyTimeout = setTimeout( this.fetchAndRecreateNearbyLayer.bind( this ), 500 );
-	},
-
-	/**
-	 * @private
-	 */
-	fetchAndRecreateNearbyLayer: function () {
-		var map = this;
-		Nearby.fetch( this.getBounds(), this.getZoom() ).then( function ( data ) {
-			var geoJSON = Nearby.convertGeosearchToGeoJSON( data );
-			if ( !map.nearbyLayer ) {
-				map.nearbyLayer = Nearby.createNearbyLayer( geoJSON );
-				map.addLayer( map.nearbyLayer );
-			} else {
-				// FIXME: This creates tons of duplicates, which slows down the client more and more
-				map.nearbyLayer.addData( geoJSON );
-			}
-		} );
 	},
 
 	/**

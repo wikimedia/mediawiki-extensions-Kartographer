@@ -69,7 +69,7 @@
 		}
 	};
 
-	QUnit.module( 'ext.kartographer.box.nearby', QUnit.newMwEnvironment( {
+	QUnit.module( 'ext.kartographer.dialog.nearby', QUnit.newMwEnvironment( {
 		beforeEach() {
 			this.server = this.sandbox.useFakeServer();
 			this.server.respondImmediately = true;
@@ -81,7 +81,7 @@
 			[ 200, { 'Content-Type': 'application/json' }, JSON.stringify( dummyGeosearchResponse ) ]
 		);
 
-		const Nearby = require( 'ext.kartographer.box' ).private.Nearby;
+		const Nearby = require( 'ext.kartographer.dialog' ).private.Nearby;
 		const bounds = L.latLngBounds( L.latLng( 40.712, -74.227 ), L.latLng( 40.774, -74.125 ) );
 		const zoom = 14;
 		const done = assert.async();
@@ -99,7 +99,7 @@
 	} );
 
 	QUnit.test( 'Converts valid geosearch response', function ( assert ) {
-		const Nearby = require( 'ext.kartographer.box' ).private.Nearby;
+		const Nearby = require( 'ext.kartographer.dialog' ).private.Nearby;
 		const expectedGeoJSON = [
 			{
 				geometry: {
