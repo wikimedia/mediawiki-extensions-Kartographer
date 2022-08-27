@@ -186,7 +186,9 @@ MapDialog.prototype.toggleSideBar = function ( open ) {
  * @param {boolean} showNearby
  */
 MapDialog.prototype.toggleNearbyLayer = function ( showNearby ) {
-	require( './nearby.js' ).toggleNearbyLayer( this.map, showNearby );
+	if ( this.map ) {
+		require( './nearby.js' ).toggleNearbyLayer( this.map, showNearby );
+	}
 };
 
 MapDialog.prototype.getActionProcess = function ( action ) {
@@ -297,6 +299,9 @@ MapDialog.prototype.getTeardownProcess = function ( data ) {
 				this.map = null;
 			}
 			this.$body.empty();
+			if ( this.mapNearbyButton ) {
+				this.mapNearbyButton.setValue( false );
+			}
 		}, this );
 };
 
