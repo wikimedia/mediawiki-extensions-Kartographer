@@ -196,8 +196,7 @@ MapDialog.prototype.getActionProcess = function ( action ) {
 		return new OO.ui.Process( function () {
 			if ( dialog.map ) {
 				dialog.map.closeFullScreen();
-				dialog.map.remove();
-				dialog.map = null;
+				// Will be destroyed later, {@see getTeardownProcess} below
 			}
 		} );
 	}
