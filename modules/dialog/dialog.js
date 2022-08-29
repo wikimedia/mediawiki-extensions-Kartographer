@@ -186,7 +186,7 @@ MapDialog.prototype.toggleSideBar = function ( open ) {
  * @param {boolean} showNearby
  */
 MapDialog.prototype.toggleNearbyLayer = function ( showNearby ) {
-	this.map.showNearby( showNearby );
+	require( './nearby.js' ).toggleNearbyLayer( this.map, showNearby );
 };
 
 MapDialog.prototype.getActionProcess = function ( action ) {

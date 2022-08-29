@@ -121,5 +121,9 @@ module.exports = {
 		} else {
 			close();
 		}
+	},
+
+	private: {
+		Nearby: require( './nearby.js' )
 	}
 };
