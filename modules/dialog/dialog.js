@@ -293,14 +293,14 @@ MapDialog.prototype.getReadyProcess = function ( data ) {
 MapDialog.prototype.getTeardownProcess = function ( data ) {
 	return MapDialog.super.prototype.getTeardownProcess.call( this, data )
 		.next( function () {
+			if ( this.mapNearbyButton ) {
+				this.mapNearbyButton.setValue( false );
+			}
 			if ( this.map ) {
 				this.map.remove();
 				this.map = null;
 			}
 			this.$body.empty();
-			if ( this.mapNearbyButton ) {
-				this.mapNearbyButton.setValue( false );
-			}
 		}, this );
 };
 

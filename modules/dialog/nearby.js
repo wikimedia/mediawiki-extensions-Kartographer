@@ -157,10 +157,7 @@ module.exports = {
 			}, this );
 		} else {
 			clearTimeout( this.fetchNearbyTimeout );
-			map.off( {
-				moveend: this.onMapMoveOrZoomEnd.bind( this, map ),
-				zoomend: this.onMapMoveOrZoomEnd.bind( this, map )
-			}, this );
+			map.off( 'moveend zoomend' );
 			if ( this.nearbyLayer ) {
 				map.removeLayer( this.nearbyLayer );
 			}
