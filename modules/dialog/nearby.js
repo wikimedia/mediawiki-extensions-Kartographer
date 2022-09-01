@@ -138,7 +138,11 @@ function makeHash( coordinates ) {
  */
 function createNearbyMarker( geoJSON, latlng ) {
 	return L.marker( latlng, {
-		icon: L.mapbox.marker.icon( { 'marker-color': geoJSON.properties[ 'marker-color' ] || 'a2a9b1' } )
+		icon: L.divIcon( {
+			iconSize: [ 32, 32 ],
+			popupAnchor: [ 0, -7 ],
+			className: 'nearby-icon'
+		} )
 	} );
 }
 
