@@ -146,7 +146,8 @@ class MapFrame extends TagHandler {
 			// Groups are not available to the static map renderer
 			// before the page was saved, can only be applied via JS
 			$imgUrlParams += [
-				'domain' => $this->config->get( 'ServerName' ),
+				'domain' => $this->config->get( 'KartographerMediaWikiInternalUrl' ) ??
+					$this->config->get( 'ServerName' ),
 				'title' => $this->parser->getTitle()->getPrefixedText(),
 				'revid' => $this->parser->getRevisionId(),
 				'groups' => implode( ',', $this->showGroups ),

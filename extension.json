@@ -590,6 +590,10 @@
 		"KartographerNearby": {
 			"description": "Enable a beta-quality \"nearby\" feature, currently in development.  Wikivoyage already has its own implementation which this feature may conflict with.",
 			"value": false
+		},
+		"KartographerMediaWikiInternalUrl": {
+			"description": "Development setting allowing kartotherian to call back to the mapdata API on either a different MediaWiki server or via a non-standard port. Passed as a URL, e.g. \"http://dev.wiki.local.wmftest.net:8080\". Defaults to $wgServerName if not set.",
+			"value": null
 		}
 	},
 	"TrackingCategories": [
