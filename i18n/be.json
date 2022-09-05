@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Artsiom91",
 			"Chadyka",
 			"Maksim L.",
@@ -9,7 +10,7 @@
 	},
 	"apierror-kartographer-conflicting-revids": "Запыт дадзеных мапы з некалькіх версій адной і той жа старонкі ў адным запыце пакуль не падтрымліваецца.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Мапы Вікімэдыі] | Звесткі мапаў © [https://www.openstreetmap.org/copyright Аўтары OpenStreetMap]",
-	"kartographer-broken-category": "Старонкі з сапсаванымі мапамі",
+	"kartographer-broken-category": "Старонкі з няслушна ўжытымі картамі",
 	"kartographer-broken-category-desc": "Старонка змяшчае няслушна ўжытыя карты",
 	"kartographer-desc": "Дазваляе дадаваць мапы на вікі-старонкі",
 	"kartographer-error-context-multi": "Праблемы з &lt;$1&gt;:\n$2",
@@ -19,7 +20,7 @@
 	"kartographer-error-bad_data": "Змест JSON — няслушны GeoJSON+simplestyle. Першая памылка праверкі на элеменце «$1»: «$2».",
 	"kartographer-error-latlon": "Павінны быць пададзены абодва параметры «latitude» і «longitude», або ні адзін з іх",
 	"kartographer-error-title": "Загаловак «$1» ­— не слушная старонка дадзеных мапы",
-	"kartographer-tracking-category": "Старонкі з мапамі",
+	"kartographer-tracking-category": "Старонкі з картамі",
 	"kartographer-tracking-category-desc": "Старонка змяшчае карты.",
 	"kartographer-specialmap-invalid-coordinates": "Уведзены няслушныя каардынаты",
 	"kartographer-linktype-aerial": "Паветраная",
