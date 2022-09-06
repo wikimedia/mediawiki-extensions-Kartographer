@@ -2,10 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Hello903hello",
-			"Moon0319"
+			"Moon0319",
+			"唐吉訶德的侍從"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use 維基媒體地圖] | 地圖資料 © [https://www.openstreetmap.org/copyright OpenStreetMap貢獻者]",
+	"kartographer-attribution-short": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use 維基媒體] | © [https://www.openstreetmap.org/copyright OpenStreetMap]",
 	"kartographer-broken-category-desc": "嗰版有無效嘅地圖用法",
 	"kartographer-error-context-multi": "&lt;$1&gt;個問題：\n$2",
 	"kartographer-error-json": "解析唔到JSON：$1",
