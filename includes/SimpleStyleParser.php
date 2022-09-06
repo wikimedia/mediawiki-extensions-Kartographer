@@ -146,13 +146,22 @@ class SimpleStyleParser {
 	}
 
 	/**
-	 * @param mixed $json
+	 * @param stdClass[] $data
 	 * @return Status
 	 */
-	private function validateContent( $json ): Status {
+	private function validateContent( array $data ): Status {
+		foreach ( $data as $geoJSON ) {
+			if ( !( $geoJSON instanceof stdClass ) ) {
+				return Status::newFatal( 'kartographer-error-json-object' );
+			}
+			if ( !isset( $geoJSON->type ) || !is_string( $geoJSON->type ) || !$geoJSON->type ) {
+				return Status::newFatal( 'kartographer-error-json-type' );
+			}
+		}
+
 		$schema = (object)[ '$ref' => 'file://' . dirname( __DIR__ ) . '/schemas/geojson.json' ];
 		$validator = new Validator();
-		$validator->check( $json, $schema );
+		$validator->check( $data, $schema );
 
 		if ( !$validator->isValid() ) {
 			$status = Status::newFatal( 'kartographer-error-bad_data' );
