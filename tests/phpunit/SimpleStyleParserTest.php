@@ -208,6 +208,76 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	/**
+	 * @dataProvider provideDataWithMarkerSymbolCounters
+	 */
+	public function testUpdateMarkerSymbolCounters(
+		string $data,
+		string $expectedData,
+		$expectedFirstMarker = false
+	) {
+		$data = json_decode( $data );
+		$firstMarker = SimpleStyleParser::updateMarkerSymbolCounters( $data );
+		$this->assertEquals( json_decode( $expectedData ), $data );
+		if ( $expectedFirstMarker ) {
+			$this->assertSame( $expectedFirstMarker, $firstMarker[0] );
+			$this->assertIsObject( $firstMarker[1] );
+		} else {
+			$this->assertFalse( $firstMarker );
+		}
+	}
+
+	public function provideDataWithMarkerSymbolCounters() {
+		return [
+			'bad data' => [ '[ null ]', '[ null ]' ],
+			'empty data' => [ '[ {} ]', '[ {} ]' ],
+			'number' => [
+				'[
+					{ "properties": { "marker-symbol": "-number" } },
+					{ "properties": { "marker-symbol": "-numberDifferent" } },
+					{ "properties": { "marker-symbol": "-number" } }
+				]',
+				'[
+					{ "properties": { "marker-symbol": "1" } },
+					{ "properties": { "marker-symbol": "1" } },
+					{ "properties": { "marker-symbol": "2" } }
+				]',
+				'1'
+			],
+			'letter' => [
+				'[
+					{ "properties": { "marker-symbol": "-letter" } },
+					{ "properties": { "marker-symbol": "-letterDifferent" } },
+					{ "properties": { "marker-symbol": "-letter" } }
+				]',
+				'[
+					{ "properties": { "marker-symbol": "a" } },
+					{ "properties": { "marker-symbol": "a" } },
+					{ "properties": { "marker-symbol": "b" } }
+				]',
+				'A'
+			],
+			'recursing into FeatureCollection' => [
+				'[ { "type": "FeatureCollection", "features": [
+					{ "properties": { "marker-symbol": "-number" } }
+				] } ]',
+				'[ { "type": "FeatureCollection", "features": [
+					{ "properties": { "marker-symbol": "1" } }
+				] } ]',
+				'1'
+			],
+			'recursing into GeometryCollection' => [
+				'[ { "type": "GeometryCollection", "geometries": [
+					{ "properties": { "marker-symbol": "-number" } }
+				] } ]',
+				'[ { "type": "GeometryCollection", "geometries": [
+					{ "properties": { "marker-symbol": "1" } }
+				] } ]',
+				'1'
+			],
+		];
+	}
+
 	public function testParseEmptyObjectsAsObjects() {
 		$ssp = new SimpleStyleParser( $this->createMock( WikitextParser::class ) );
 		$status = $ssp->parse( '[ {
