@@ -13,7 +13,7 @@
 	"kartographer-error-json": "JSON non analysabile: $1",
 	"kartographer-error-missing-attr": "Attributo \"$1\" manca",
 	"kartographer-error-bad_attr": "Attributo \"$1\" ha un valor non valide",
-	"kartographer-error-bad_data": "Le contento JSON non es GeoJSON+simplestyle valide. Le prime error de validation es sur le elemento \"$1\": \"$2\".",
+	"kartographer-error-bad_data": "Le contento JSON non es GeoJSON+simplestyle valide. Le lista sequente monstra tote le tentativas de interpretar lo. Non totes es errores.",
 	"kartographer-error-latlon": "Le duo parametros \"latitude\" e \"longitude\" debe esser fornite, o necun del duo",
 	"kartographer-error-title": "Le titulo \"$1\" non es un pagina de datos cartographic valide",
 	"kartographer-tracking-category": "Paginas con cartas",
