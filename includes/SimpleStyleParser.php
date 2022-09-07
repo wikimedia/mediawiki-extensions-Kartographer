@@ -150,7 +150,7 @@ class SimpleStyleParser {
 	 * @return Status
 	 */
 	private function validateContent( $json ): Status {
-		$schema = self::loadSchema();
+		$schema = (object)[ '$ref' => 'file://' . dirname( __DIR__ ) . '/schemas/geojson.json' ];
 		$validator = new Validator();
 		$validator->check( $json, $schema );
 
@@ -328,18 +328,4 @@ class SimpleStyleParser {
 		}
 	}
 
-	/**
-	 * @return stdClass
-	 */
-	private static function loadSchema(): stdClass {
-		static $schema;
-
-		if ( !$schema ) {
-			$schema = (object)[
-				'$ref' => 'file://' . dirname( __DIR__ ) . '/schemas/geojson.json',
-			];
-		}
-
-		return $schema;
-	}
 }
