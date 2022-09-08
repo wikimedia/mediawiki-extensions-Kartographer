@@ -116,7 +116,6 @@
 	"kartographer-fullscreen-close": "Title of the fullscreen close button\n{{Identical|Close}}",
 	"kartographer-fullscreen-collapse": "Title of the map details collapse button",
 	"kartographer-fullscreen-text": "Tooltip for a button that puts the map into full screen",
-	"kartographer-icon-docs-label": "Tooltip label for each icon in the [[mw:Module:Maki_icon_overview|Maki icon overview]] grid.\n\nParameters:\n* $1 - machine name for the icon, eg. \"animal-shelter\"",
 	"kartographer-icon-docs-table": "Label for the [[mw:Module:Maki_icon_overview|Maki icon overview]] table",
 	"kartographer-icon-docs-icon": "Label for the [[mw:Module:Maki_icon_overview|Maki icon overview]] table column showing the icon image",
 	"kartographer-icon-docs-key": "Label for the [[mw:Module:Maki_icon_overview|Maki icon overview]] table column with the icon's machine name",
