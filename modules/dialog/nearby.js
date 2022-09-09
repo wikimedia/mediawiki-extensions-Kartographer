@@ -1,5 +1,4 @@
-var currentZoom,
-	nearbyLayers = {},
+var nearbyLayers = {},
 	knownPoints = {};
 
 /**
@@ -103,17 +102,18 @@ function initializeKnownPoints( map ) {
 }
 
 /**
+ * @param {number} zoom
  * @param {Object} geoJSON
  * @returns {boolean}
  */
-function filterDuplicatePoints( geoJSON ) {
+function filterDuplicatePoints( zoom, geoJSON ) {
 	var hash = makeHash( geoJSON.geometry.coordinates );
 	for ( var i in knownPoints ) {
 		if ( knownPoints[ i ].has( hash ) ) {
 			return false;
 		}
 	}
-	knownPoints[ currentZoom ].add( hash );
+	knownPoints[ zoom ].add( hash );
 	return true;
 }
 
@@ -250,11 +250,9 @@ module.exports = {
 			}
 		}
 
-		// TODO: Is there a better way to pass this information to the filter callback?
-		currentZoom = zoom;
 		if ( !nearbyLayers[ zoom ] ) {
 			knownPoints[ zoom ] = new Set();
-			nearbyLayers[ zoom ] = this.createNearbyLayer( geoJSON );
+			nearbyLayers[ zoom ] = this.createNearbyLayer( zoom, geoJSON );
 			map.addLayer( nearbyLayers[ zoom ] );
 		} else {
 			nearbyLayers[ zoom ].addData( geoJSON );
@@ -293,12 +291,13 @@ module.exports = {
 
 	/**
 	 * @private
+	 * @param {number} zoom
 	 * @param {Object[]} geoJSON
 	 * @return {L.GeoJSON}
 	 */
-	createNearbyLayer: function ( geoJSON ) {
+	createNearbyLayer: function ( zoom, geoJSON ) {
 		return L.geoJSON( geoJSON, {
-			filter: filterDuplicatePoints,
+			filter: filterDuplicatePoints.bind( this, zoom ),
 			pointToLayer: createNearbyMarker
 		} ).bindPopup( function ( layer ) {
 			return createPopupHtml(
