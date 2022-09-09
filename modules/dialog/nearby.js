@@ -1,3 +1,7 @@
+var currentZoom,
+	nearbyLayers = {},
+	knownPoints = {};
+
 /**
  * @private
  * @param {L.LatLngBounds} bounds
@@ -86,17 +90,14 @@ function createPopupHtml( title, description, imageUrl ) {
 	return titleHtml;
 }
 
-// FIXME: This grows the more the user moves/zooms the map; maybe drop old values?
-var knownPoints;
-
 function initializeKnownPoints( map ) {
 	/* global Set */
-	knownPoints = new Set();
+	knownPoints.featureLayer = new Set();
 	map.eachLayer( function ( layer ) {
 		// Note: mapbox does simple checks like this in other places as well
 		if ( layer.getLatLng ) {
 			var latLng = layer.getLatLng();
-			knownPoints.add( makeHash( [ latLng.lng, latLng.lat ] ) );
+			knownPoints.featureLayer.add( makeHash( [ latLng.lng, latLng.lat ] ) );
 		}
 	} );
 }
@@ -106,12 +107,14 @@ function initializeKnownPoints( map ) {
  * @returns {boolean}
  */
 function filterDuplicatePoints( geoJSON ) {
-	var hash = makeHash( geoJSON.geometry.coordinates ),
-		known = knownPoints.has( hash );
-	if ( !known ) {
-		knownPoints.add( hash );
+	var hash = makeHash( geoJSON.geometry.coordinates );
+	for ( var i in knownPoints ) {
+		if ( knownPoints[ i ].has( hash ) ) {
+			return false;
+		}
 	}
-	return !known;
+	knownPoints[ currentZoom ].add( hash );
+	return true;
 }
 
 /**
@@ -154,18 +157,20 @@ module.exports = {
 	 */
 	toggleNearbyLayer: function ( map, show ) {
 		if ( show ) {
+			initializeKnownPoints( map );
 			this.fetchAndPopulateNearbyLayer( map );
 			map.on( {
 				moveend: this.onMapMoveOrZoomEnd.bind( this, map ),
 				zoomend: this.onMapMoveOrZoomEnd.bind( this, map )
-			}, this );
+			} );
 		} else {
 			clearTimeout( this.fetchNearbyTimeout );
 			map.off( 'moveend zoomend' );
-			if ( this.nearbyLayer ) {
-				map.removeLayer( this.nearbyLayer );
+			for ( var i in nearbyLayers ) {
+				map.removeLayer( nearbyLayers[ i ] );
+				delete nearbyLayers[ i ];
+				delete knownPoints[ i ];
 			}
-			delete this.nearbyLayer;
 		}
 	},
 
@@ -232,13 +237,27 @@ module.exports = {
 	 * @param {Object} queryApiResponse
 	 */
 	populateNearbyLayer: function ( map, queryApiResponse ) {
+		var zoom = map.getZoom();
 		var geoJSON = this.convertGeosearchToGeoJSON( queryApiResponse );
-		if ( !this.nearbyLayer ) {
-			initializeKnownPoints( map );
-			this.nearbyLayer = this.createNearbyLayer( geoJSON );
-			map.addLayer( this.nearbyLayer );
+
+		// Drop data from zoom levels that are too far away from the current zoom level
+		var keepDataZoomLimit = 3;
+		for ( var i in nearbyLayers ) {
+			if ( Math.abs( zoom - i ) > keepDataZoomLimit ) {
+				map.removeLayer( nearbyLayers[ i ] );
+				delete nearbyLayers[ i ];
+				delete knownPoints[ i ];
+			}
+		}
+
+		// TODO: Is there a better way to pass this information to the filter callback?
+		currentZoom = zoom;
+		if ( !nearbyLayers[ zoom ] ) {
+			knownPoints[ zoom ] = new Set();
+			nearbyLayers[ zoom ] = this.createNearbyLayer( geoJSON );
+			map.addLayer( nearbyLayers[ zoom ] );
 		} else {
-			this.nearbyLayer.addData( geoJSON );
+			nearbyLayers[ zoom ].addData( geoJSON );
 		}
 	},
 
