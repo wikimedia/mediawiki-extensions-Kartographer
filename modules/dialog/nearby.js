@@ -180,6 +180,7 @@ module.exports = {
 	 */
 	onMapMoveOrZoomEnd: function ( map ) {
 		clearTimeout( this.fetchNearbyTimeout );
+		this.dropForeignNearbyLayers( map );
 		this.fetchNearbyTimeout = setTimeout( this.fetchAndPopulateNearbyLayer.bind( this, map ), 500 );
 	},
 
@@ -234,14 +235,12 @@ module.exports = {
 	/**
 	 * @private
 	 * @param {L.Map} map
-	 * @param {Object} queryApiResponse
 	 */
-	populateNearbyLayer: function ( map, queryApiResponse ) {
+	dropForeignNearbyLayers: function ( map ) {
 		var zoom = map.getZoom();
-		var geoJSON = this.convertGeosearchToGeoJSON( queryApiResponse );
-
 		// Drop data from zoom levels that are too far away from the current zoom level
 		var keepDataZoomLimit = 3;
+
 		for ( var i in nearbyLayers ) {
 			if ( Math.abs( zoom - i ) > keepDataZoomLimit ) {
 				map.removeLayer( nearbyLayers[ i ] );
@@ -249,6 +248,16 @@ module.exports = {
 				delete knownPoints[ i ];
 			}
 		}
+	},
+
+	/**
+	 * @private
+	 * @param {L.Map} map
+	 * @param {Object} queryApiResponse
+	 */
+	populateNearbyLayer: function ( map, queryApiResponse ) {
+		var zoom = map.getZoom();
+		var geoJSON = this.convertGeosearchToGeoJSON( queryApiResponse );
 
 		// TODO: Is there a better way to pass this information to the filter callback?
 		currentZoom = zoom;
