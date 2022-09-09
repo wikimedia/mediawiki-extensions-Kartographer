@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Amire80",
-			"Guycn2"
+			"Guycn2",
+			"מקף"
 		]
 	},
 	"apierror-kartographer-conflicting-revids": "שליחת שאילתות ל־mapdata מגרסאות שונות של אותו דף עוד לא נתמכת.",
@@ -92,6 +93,10 @@
 	"kartographer-fullscreen-close": "סגירה",
 	"kartographer-fullscreen-collapse": "הסתרת פרטי מפה",
 	"kartographer-fullscreen-text": "הצגה במסך מלא",
+	"kartographer-icon-docs-table": "אייקוני מאקי",
+	"kartographer-icon-docs-icon": "אייקון",
+	"kartographer-icon-docs-key": "שם",
+	"kartographer-icon-docs-help": "תיאור",
 	"visualeditor-mwmapsdialog-area": "אזור המפה",
 	"visualeditor-mwmapsdialog-content": "תוכן המפה",
 	"visualeditor-mwmapsdialog-options": "אפשרויות",
