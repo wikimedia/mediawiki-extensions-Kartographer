@@ -7,7 +7,8 @@
 			"Movses",
 			"Piramidion",
 			"Vlad5250",
-			"Ата"
+			"Ата",
+			"Пан Хаунд"
 		]
 	},
 	"apierror-kartographer-conflicting-revids": "Запит картографічних даних з кількох версій однієї сторінки в одному запиті ще не підтримується.",
@@ -113,6 +114,8 @@
 	"kartographer-fullscreen-close": "Закрити",
 	"kartographer-fullscreen-collapse": "Сховати деталі мапи",
 	"kartographer-fullscreen-text": "Показати на весь екран",
+	"kartographer-icon-docs-icon": "Іконка",
+	"kartographer-icon-docs-help": "Опис",
 	"visualeditor-mwmapsdialog-area": "Область на мапі",
 	"visualeditor-mwmapsdialog-content": "Вміст мапи",
 	"visualeditor-mwmapsdialog-options": "Опції",
