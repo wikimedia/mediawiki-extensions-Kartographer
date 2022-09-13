@@ -407,7 +407,33 @@ abstract class TagHandler {
 			$msg = wfMessage( 'kartographer-error-context', static::TAG, $errorText );
 		}
 		return Html::rawElement( 'div', [ 'class' => 'mw-kartographer-error' ],
-			$msg->inLanguage( $this->getLanguage() )->escaped() );
+			$msg->inLanguage( $this->getLanguage() )->escaped() .
+			$this->getJSONValidatorLog( $this->status->getValue() )
+		);
+	}
+
+	/**
+	 * @param array[]|null $errors
+	 *
+	 * @return string HTML
+	 */
+	private function getJSONValidatorLog( $errors ): string {
+		if ( !is_array( $errors ) || !$errors ) {
+			return '';
+		}
+
+		$log = "\n";
+		/** These errors come from {@see \JsonSchema\Constraints\BaseConstraint::addError} */
+		foreach ( $errors as $error ) {
+			$log .= Html::element( 'li', [],
+				$error['pointer'] . wfMessage( 'colon-separator' )->text() . $error['message']
+			) . "\n";
+		}
+		return Html::rawElement( 'ul', [ 'class' => [
+			'mw-kartographer-error-log',
+			'mw-collapsible',
+			'mw-collapsed',
+		] ], $log );
 	}
 
 	/**

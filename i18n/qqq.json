@@ -24,7 +24,6 @@
 	"kartographer-error-json": "Error message preceding general JSON syntax errors.\n\nParameters:\n* $1 - underlying message from JSON parser",
 	"kartographer-error-json-object": "Error message shown when one of the top-level GeoJSON objects isn't even an object.",
 	"kartographer-error-json-type": "Error message shown when one of the top-level GeoJSON objects doesn't specify a type.",
-	"kartographer-error-json-schema-error": "List entry in a list of JSON schema validation errors.\n\nParameters:\n* $1 - location of the error in the JSON\n* $2 - message explaining the error",
 	"kartographer-error-missing-attr": "Error shown instead of a map when required parameter(s) is missing.\n\nParameters:\n* $1 - non-localized attribute name, such as 'height', 'latitude', etc",
 	"kartographer-error-bad_attr": "Error shown instead of a map in case of a problem with parameters.\n\nParameters:\n* $1 - non-localized attribute name, such as 'height', 'latitude', etc",
 	"kartographer-error-bad_data": "This error is shown if the content of the tag is syntactically valid JSON however it does not adhere to GeoJSON and simplestyle specifications.",

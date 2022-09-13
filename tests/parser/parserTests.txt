@@ -208,28 +208,29 @@ Error messages
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute &quot;width&quot; has an invalid value</div>
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute &quot;width&quot; has an invalid value</div>
 <div class="mw-kartographer-error">&lt;mapframe&gt; problems:
-<ul><li>The JSON content is not valid GeoJSON+simplestyle. The list below shows all attempts to interpret it. Not all are errors.</li>
-<li>Possible mistake on element /0/query: The property query is required</li>
-<li>Possible mistake on element /0/ids: The property ids is required</li>
-<li>Possible mistake on element /0: Failed to match at least one schema</li>
-<li>Possible mistake on element /0/title: The property title is required</li>
-<li>Possible mistake on element /0/service: The property service is required</li>
-<li>Possible mistake on element /0: Failed to match exactly one schema</li>
-<li>Possible mistake on element /0/type: Does not have a value in the enumeration ["ExternalData"]</li>
-<li>Possible mistake on element /0/properties/marker-color: Does not match the regex pattern ^#?([0-9a-fA-F]{3}){1,2}$</li>
-<li>Possible mistake on element /0/geometries: The property geometries is required</li>
-<li>Possible mistake on element /0/type: Does not have a value in the enumeration ["GeometryCollection"]</li>
-<li>Possible mistake on element /0/type: Does not have a value in the enumeration ["MultiPolygon"]</li>
-<li>Possible mistake on element /0/type: Does not have a value in the enumeration ["Point"]</li>
-<li>Possible mistake on element /0/type: Does not have a value in the enumeration ["MultiPoint"]</li>
-<li>Possible mistake on element /0/type: Does not have a value in the enumeration ["LineString"]</li>
-<li>Possible mistake on element /0/type: Does not have a value in the enumeration ["MultiLineString"]</li>
-<li>Possible mistake on element /0/type: Does not have a value in the enumeration ["Polygon"]</li>
-<li>Possible mistake on element /0/coordinates: The property coordinates is required</li>
-<li>Possible mistake on element /0/features: The property features is required</li>
-<li>Possible mistake on element /0/type: Does not have a value in the enumeration ["FeatureCollection"]</li>
+<ul><li>The JSON content is not valid GeoJSON+simplestyle. The list below shows all attempts to interpret it according to the JSON Schema. Not all are errors.</li>
 <li>Attribute "mapstyle" has an invalid value</li>
 <li>Attribute "align" has an invalid value</li>
+</ul><ul class="mw-kartographer-error-log mw-collapsible mw-collapsed">
+<li>/0/query: The property query is required</li>
+<li>/0/ids: The property ids is required</li>
+<li>/0: Failed to match at least one schema</li>
+<li>/0/title: The property title is required</li>
+<li>/0/service: The property service is required</li>
+<li>/0: Failed to match exactly one schema</li>
+<li>/0/type: Does not have a value in the enumeration ["ExternalData"]</li>
+<li>/0/properties/marker-color: Does not match the regex pattern ^#?([0-9a-fA-F]{3}){1,2}$</li>
+<li>/0/geometries: The property geometries is required</li>
+<li>/0/type: Does not have a value in the enumeration ["GeometryCollection"]</li>
+<li>/0/type: Does not have a value in the enumeration ["MultiPolygon"]</li>
+<li>/0/type: Does not have a value in the enumeration ["Point"]</li>
+<li>/0/type: Does not have a value in the enumeration ["MultiPoint"]</li>
+<li>/0/type: Does not have a value in the enumeration ["LineString"]</li>
+<li>/0/type: Does not have a value in the enumeration ["MultiLineString"]</li>
+<li>/0/type: Does not have a value in the enumeration ["Polygon"]</li>
+<li>/0/coordinates: The property coordinates is required</li>
+<li>/0/features: The property features is required</li>
+<li>/0/type: Does not have a value in the enumeration ["FeatureCollection"]</li>
 </ul></div>
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Either both &quot;latitude&quot; and &quot;longitude&quot; parameters should be supplied or neither of them</div>
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Either both &quot;latitude&quot; and &quot;longitude&quot; parameters should be supplied or neither of them</div>
@@ -474,41 +475,40 @@ ExternalData errors
 ]
 </maplink>
 !! html
-<div class="mw-kartographer-error">&lt;maplink&gt; problems:
-<ul><li>The JSON content is not valid GeoJSON+simplestyle. The list below shows all attempts to interpret it. Not all are errors.</li>
-<li>Possible mistake on element /0/service: Does not have a value in the enumeration ["geoshape","geoline","geopoint","geomask"]</li>
-<li>Possible mistake on element /0/title: The property title is required</li>
-<li>Possible mistake on element /0/service: Does not have a value in the enumeration ["page"]</li>
-<li>Possible mistake on element /0: Failed to match exactly one schema</li>
-<li>Possible mistake on element /0/geometries: The property geometries is required</li>
-<li>Possible mistake on element /0/type: Does not have a value in the enumeration ["GeometryCollection"]</li>
-<li>Possible mistake on element /0/type: Does not have a value in the enumeration ["MultiPolygon"]</li>
-<li>Possible mistake on element /0/type: Does not have a value in the enumeration ["Point"]</li>
-<li>Possible mistake on element /0/type: Does not have a value in the enumeration ["MultiPoint"]</li>
-<li>Possible mistake on element /0/type: Does not have a value in the enumeration ["LineString"]</li>
-<li>Possible mistake on element /0/type: Does not have a value in the enumeration ["MultiLineString"]</li>
-<li>Possible mistake on element /0/type: Does not have a value in the enumeration ["Polygon"]</li>
-<li>Possible mistake on element /0/coordinates: The property coordinates is required</li>
-<li>Possible mistake on element /0/geometry: The property geometry is required</li>
-<li>Possible mistake on element /0/type: Does not have a value in the enumeration ["Feature"]</li>
-<li>Possible mistake on element /0/features: The property features is required</li>
-<li>Possible mistake on element /0/type: Does not have a value in the enumeration ["FeatureCollection"]</li>
-<li>Possible mistake on element /1/service: Does not have a value in the enumeration ["geoshape","geoline","geopoint","geomask"]</li>
-<li>Possible mistake on element /1/title: The property title is required</li>
-<li>Possible mistake on element /1/service: Does not have a value in the enumeration ["page"]</li>
-<li>Possible mistake on element /1: Failed to match exactly one schema</li>
-<li>Possible mistake on element /1/geometries: The property geometries is required</li>
-<li>Possible mistake on element /1/type: Does not have a value in the enumeration ["GeometryCollection"]</li>
-<li>Possible mistake on element /1/type: Does not have a value in the enumeration ["MultiPolygon"]</li>
-<li>Possible mistake on element /1/type: Does not have a value in the enumeration ["Point"]</li>
-<li>Possible mistake on element /1/type: Does not have a value in the enumeration ["MultiPoint"]</li>
-<li>Possible mistake on element /1/type: Does not have a value in the enumeration ["LineString"]</li>
-<li>Possible mistake on element /1/type: Does not have a value in the enumeration ["MultiLineString"]</li>
-<li>Possible mistake on element /1/type: Does not have a value in the enumeration ["Polygon"]</li>
-<li>Possible mistake on element /1/coordinates: The property coordinates is required</li>
-<li>Possible mistake on element /1/geometry: The property geometry is required</li>
-<li>Possible mistake on element /1/type: Does not have a value in the enumeration ["Feature"]</li>
-<li>Possible mistake on element /1/features: The property features is required</li>
-<li>Possible mistake on element /1/type: Does not have a value in the enumeration ["FeatureCollection"]</li>
+<div class="mw-kartographer-error">&lt;maplink&gt;: The JSON content is not valid GeoJSON+simplestyle. The list below shows all attempts to interpret it according to the JSON Schema. Not all are errors.<ul class="mw-kartographer-error-log mw-collapsible mw-collapsed">
+<li>/0/service: Does not have a value in the enumeration ["geoshape","geoline","geopoint","geomask"]</li>
+<li>/0/title: The property title is required</li>
+<li>/0/service: Does not have a value in the enumeration ["page"]</li>
+<li>/0: Failed to match exactly one schema</li>
+<li>/0/geometries: The property geometries is required</li>
+<li>/0/type: Does not have a value in the enumeration ["GeometryCollection"]</li>
+<li>/0/type: Does not have a value in the enumeration ["MultiPolygon"]</li>
+<li>/0/type: Does not have a value in the enumeration ["Point"]</li>
+<li>/0/type: Does not have a value in the enumeration ["MultiPoint"]</li>
+<li>/0/type: Does not have a value in the enumeration ["LineString"]</li>
+<li>/0/type: Does not have a value in the enumeration ["MultiLineString"]</li>
+<li>/0/type: Does not have a value in the enumeration ["Polygon"]</li>
+<li>/0/coordinates: The property coordinates is required</li>
+<li>/0/geometry: The property geometry is required</li>
+<li>/0/type: Does not have a value in the enumeration ["Feature"]</li>
+<li>/0/features: The property features is required</li>
+<li>/0/type: Does not have a value in the enumeration ["FeatureCollection"]</li>
+<li>/1/service: Does not have a value in the enumeration ["geoshape","geoline","geopoint","geomask"]</li>
+<li>/1/title: The property title is required</li>
+<li>/1/service: Does not have a value in the enumeration ["page"]</li>
+<li>/1: Failed to match exactly one schema</li>
+<li>/1/geometries: The property geometries is required</li>
+<li>/1/type: Does not have a value in the enumeration ["GeometryCollection"]</li>
+<li>/1/type: Does not have a value in the enumeration ["MultiPolygon"]</li>
+<li>/1/type: Does not have a value in the enumeration ["Point"]</li>
+<li>/1/type: Does not have a value in the enumeration ["MultiPoint"]</li>
+<li>/1/type: Does not have a value in the enumeration ["LineString"]</li>
+<li>/1/type: Does not have a value in the enumeration ["MultiLineString"]</li>
+<li>/1/type: Does not have a value in the enumeration ["Polygon"]</li>
+<li>/1/coordinates: The property coordinates is required</li>
+<li>/1/geometry: The property geometry is required</li>
+<li>/1/type: Does not have a value in the enumeration ["Feature"]</li>
+<li>/1/features: The property features is required</li>
+<li>/1/type: Does not have a value in the enumeration ["FeatureCollection"]</li>
 </ul></div>
 !! end
