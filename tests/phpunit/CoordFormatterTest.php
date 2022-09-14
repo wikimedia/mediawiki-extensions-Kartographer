@@ -3,7 +3,6 @@
 namespace Kartographer\Tests;
 
 use Kartographer\CoordFormatter;
-use Language;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -16,7 +15,7 @@ class CoordFormatterTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideFormatter
 	 */
 	public function testFormatter( $expected, $lat, $lon ) {
-		$lang = Language::factory( 'en' );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$result = CoordFormatter::format( $lat, $lon, $lang );
 		$this->assertEquals( $expected, $result );
 	}
