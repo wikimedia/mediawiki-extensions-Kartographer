@@ -10,7 +10,7 @@
 	"kartographer-desc": "Erméiglecht et fir Kaarten op d'Wiki-Säiten derbäizesetzen.",
 	"kartographer-error-context-multi": "&lt;$1&gt;-Problemer:\n$2",
 	"kartographer-error-missing-attr": "Attribut \"$1\" feelt",
-	"kartographer-error-bad_data": "Den JSON-Inhalt ass kee valabelen GeoJSON+simplestyle. Den éischte Validatiounsfeeler ass um Element: \"$1\": \"$2\".",
+	"kartographer-error-bad_data": "Den JSON-Inhalt ass kee valabelen GeoJSON+simplestyle. D'Lëscht hei drënner weist all Versich fir en z'interpretéieren. Net all Feeler.",
 	"kartographer-error-title": "Den Titel \"$1\" ass keng valabel Kaartendatesäit",
 	"kartographer-tracking-category": "Säite  mat Kaarten",
 	"kartographer-tracking-category-desc": "An der Säit ass eng Kaart dran",
