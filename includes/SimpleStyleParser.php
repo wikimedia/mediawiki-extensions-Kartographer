@@ -159,8 +159,8 @@ class SimpleStyleParser {
 			foreach ( $validator->getErrors() as $error ) {
 				$status->fatal(
 					'kartographer-error-json-schema-error',
-					wfEscapeWikiText( $error['pointer'] ?? '' ),
-					wfEscapeWikiText( $error['message'] ?? '' )
+					$error['pointer'],
+					$error['message']
 				);
 			}
 			return $status;

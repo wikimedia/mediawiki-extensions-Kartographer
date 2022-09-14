@@ -392,25 +392,22 @@ abstract class TagHandler {
 		if ( !$errors ) {
 			throw new Exception( __METHOD__ . '(): attempt to report error when none took place' );
 		}
-		$message = count( $errors ) > 1 ? 'kartographer-error-context-multi'
-			: 'kartographer-error-context';
-		// Status sucks, redoing a bunch of its code here
-		$errorText = implode( "\n* ",
-			array_map(
-				function ( array $err ) {
-					return wfMessage( $err['message'] )
-						->params( $err['params'] )
-						->inLanguage( $this->getLanguage() )
-						->plain();
-				},
-				$errors
-			)
-		);
+
 		if ( count( $errors ) > 1 ) {
-			$errorText = '* ' . $errorText;
+			$html = '';
+			foreach ( $errors as $err ) {
+				$html .= Html::element( 'li', [], wfMessage( $err['message'], $err['params'] )
+					->inLanguage( $this->getLanguage() )->text() ) . "\n";
+			}
+			$msg = wfMessage( 'kartographer-error-context-multi', static::TAG )
+				->rawParams( Html::rawElement( 'ul', [], $html ) );
+		} else {
+			$errorText = wfMessage( $errors[0]['message'], $errors[0]['params'] )
+				->inLanguage( $this->getLanguage() )->text();
+			$msg = wfMessage( 'kartographer-error-context', static::TAG, $errorText );
 		}
 		return Html::rawElement( 'div', [ 'class' => 'mw-kartographer-error' ],
-			wfMessage( $message, static::TAG, $errorText )->inLanguage( $this->getLanguage() )->parse() );
+			$msg->inLanguage( $this->getLanguage() )->escaped() );
 	}
 
 	/**
