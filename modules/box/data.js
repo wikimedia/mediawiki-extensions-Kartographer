@@ -1,5 +1,14 @@
 var DataManager = require( 'ext.kartographer.data' );
 
+function handleLog( type, errorMessage ) {
+	var message = 'Kartographer mapdata: ' + errorMessage;
+	if ( type === 'error' ) {
+		mw.log.error( message );
+	} else {
+		mw.log.warn( message );
+	}
+}
+
 module.exports = function () {
 	return DataManager( {
 		createPromise: function ( callback ) {
@@ -46,6 +55,7 @@ module.exports = function () {
 		},
 		clientStore: mw.config.get( 'wgKartographerLiveData' ),
 		title: mw.config.get( 'wgPageName' ),
-		revid: mw.config.get( 'wgKartographerVersionedLiveMaps' ) && mw.config.get( 'wgRevisionId' )
+		revid: mw.config.get( 'wgKartographerVersionedLiveMaps' ) && mw.config.get( 'wgRevisionId' ),
+		log: handleLog
 	} );
 };
