@@ -1,19 +1,27 @@
-var nearbyLayers = {},
-	knownPoints = {};
+/**
+ * @class
+ * @constructor
+ * @property {Object} nearbyLayers
+ * @property {Object} knownPoints
+ */
+function Nearby() {
+	this.nearbyLayers = {};
+	this.knownPoints = {};
+}
 
 /**
  * @private
  * @param {L.LatLngBounds} bounds
  * @return {number} Radius in meter
  */
-function getDebouncedRadius( bounds ) {
+Nearby.prototype.getDebouncedRadius = function ( bounds ) {
 	// This corresponds to the smallest circle around the bounding rectangle, so some results will
 	// be outside that visible rectangle
 	var radius = Math.floor( bounds.getCenter().distanceTo( bounds.getSouthWest() ) );
 	// Rounding to 2 significant digits means we loose +/-5% in the absolute worst case
 	// eslint-disable-next-line no-bitwise
 	return radius.toPrecision( 2 ) | 0;
-}
+};
 
 /**
  * De-bounce point to a certain degree of accuracy depending on zoom factor.
@@ -23,7 +31,7 @@ function getDebouncedRadius( bounds ) {
  * @param {number} zoom Typically ranging from 0 (entire world) to 19 (nearest)
  * @return {L.LatLng}
  */
-function getDebouncedPoint( point, zoom ) {
+Nearby.prototype.getDebouncedPoint = function ( point, zoom ) {
 	// Higher numbers = less precision = larger grid size = better debounce
 	var looseness = 22;
 	// 4 decimal places correspond to ~11m, 3 to ~110m, and so on
@@ -36,7 +44,7 @@ function getDebouncedPoint( point, zoom ) {
 		point.lat.toFixed( decimalPlaces ),
 		point.lng.toFixed( decimalPlaces )
 	);
-}
+};
 
 /**
  * Building the search query. Includes calculations to debounce the input
@@ -47,12 +55,12 @@ function getDebouncedPoint( point, zoom ) {
  * @param {number} zoom Typically ranging from 0 (entire world) to 19 (nearest)
  * @return {string}
  */
-function getSearchQuery( bounds, zoom ) {
-	var radius = getDebouncedRadius( bounds ),
-		center = getDebouncedPoint( bounds.getCenter(), zoom );
+Nearby.prototype.getSearchQuery = function ( bounds, zoom ) {
+	var radius = this.getDebouncedRadius( bounds ),
+		center = this.getDebouncedPoint( bounds.getCenter(), zoom );
 	radius = radius % 1000 ? radius + 'm' : Math.round( radius / 1000 ) + 'km';
 	return 'nearcoord:' + radius + ',' + center.lat + ',' + center.lng;
-}
+};
 
 /**
  * @private
@@ -61,7 +69,7 @@ function getSearchQuery( bounds, zoom ) {
  * @param {string|undefined} imageUrl
  * @return {string}
  */
-function createPopupHtml( title, description, imageUrl ) {
+Nearby.prototype.createPopupHtml = function ( title, description, imageUrl ) {
 	title = mw.Title.newFromText( title );
 
 	var linkHtml = mw.html.element( 'a', {
@@ -87,41 +95,47 @@ function createPopupHtml( title, description, imageUrl ) {
 		}, new mw.html.Raw( contentHtml ) );
 	}
 	return titleHtml;
-}
+};
 
-function initializeKnownPoints( map ) {
+/**
+ * @private
+ * @param {L.Map} map
+ */
+Nearby.prototype.initializeKnownPoints = function ( map ) {
 	/* global Set */
-	knownPoints.featureLayer = new Set();
+	this.knownPoints.featureLayer = new Set();
 	map.eachLayer( function ( layer ) {
 		// Note: mapbox does simple checks like this in other places as well
 		if ( layer.getLatLng ) {
 			var latLng = layer.getLatLng();
-			knownPoints.featureLayer.add( makeHash( [ latLng.lng, latLng.lat ] ) );
+			this.knownPoints.featureLayer.add( this.makeHash( [ latLng.lng, latLng.lat ] ) );
 		}
-	} );
-}
+	}.bind( this ) );
+};
 
 /**
+ * @private
  * @param {number} zoom
  * @param {Object} geoJSON
  * @returns {boolean}
  */
-function filterDuplicatePoints( zoom, geoJSON ) {
-	var hash = makeHash( geoJSON.geometry.coordinates );
-	for ( var i in knownPoints ) {
-		if ( knownPoints[ i ].has( hash ) ) {
+Nearby.prototype.filterDuplicatePoints = function ( zoom, geoJSON ) {
+	var hash = this.makeHash( geoJSON.geometry.coordinates );
+	for ( var i in this.knownPoints ) {
+		if ( this.knownPoints[ i ].has( hash ) ) {
 			return false;
 		}
 	}
-	knownPoints[ zoom ].add( hash );
+	this.knownPoints[ zoom ].add( hash );
 	return true;
-}
+};
 
 /**
+ * @private
  * @param {number[]} coordinates Longitude, latitude
  * @return {string}
  */
-function makeHash( coordinates ) {
+Nearby.prototype.makeHash = function ( coordinates ) {
 	// Maximum base using 0–9 and a–z as digits
 	var base = 36;
 	// Choosen so that the base-36 representation of [0…360[ is never longer than 5 characters,
@@ -132,14 +146,15 @@ function makeHash( coordinates ) {
 	return ( ( coordinates[ 0 ] * precision ) | 0 ).toString( base ) + ',' +
 		( ( coordinates[ 1 ] * precision ) | 0 ).toString( base );
 	/* eslint-enable no-bitwise */
-}
+};
 
 /**
+ * @private
  * @param {Object} geoJSON
  * @param {L.LatLng} latlng
  * @return {L.Marker}
  */
-function createNearbyMarker( geoJSON, latlng ) {
+Nearby.prototype.createNearbyMarker = function ( geoJSON, latlng ) {
 	return L.marker( latlng, {
 		icon: L.divIcon( {
 			iconSize: [ 32, 32 ],
@@ -147,174 +162,172 @@ function createNearbyMarker( geoJSON, latlng ) {
 			className: 'nearby-icon'
 		} )
 	} );
-}
-
-module.exports = {
-
-	/**
-	 * @param {L.Map} map
-	 * @param {boolean} show
-	 */
-	toggleNearbyLayer: function ( map, show ) {
-		if ( show ) {
-			initializeKnownPoints( map );
-			this.fetchAndPopulateNearbyLayer( map );
-			map.on( {
-				moveend: this.onMapMoveOrZoomEnd.bind( this, map ),
-				zoomend: this.onMapMoveOrZoomEnd.bind( this, map )
-			} );
-		} else {
-			clearTimeout( this.fetchNearbyTimeout );
-			map.off( 'moveend zoomend' );
-			for ( var i in nearbyLayers ) {
-				map.removeLayer( nearbyLayers[ i ] );
-				delete nearbyLayers[ i ];
-				delete knownPoints[ i ];
-			}
-		}
-	},
-
-	/**
-	 * @private
-	 * @param {L.Map} map
-	 */
-	onMapMoveOrZoomEnd: function ( map ) {
-		clearTimeout( this.fetchNearbyTimeout );
-		this.dropForeignNearbyLayers( map );
-		this.fetchNearbyTimeout = setTimeout( this.fetchAndPopulateNearbyLayer.bind( this, map ), 500 );
-	},
-
-	/**
-	 * @private
-	 * @param {L.Map} map
-	 */
-	fetchAndPopulateNearbyLayer: function ( map ) {
-		this.fetch( map.getBounds(), map.getZoom() ).then( this.populateNearbyLayer.bind( this, map ) );
-	},
-
-	/**
-	 * @private
-	 * @param {L.LatLngBounds} bounds
-	 * @param {number} zoom Typically ranging from 0 (entire world) to 19 (nearest)
-	 * @return {jQuery.Promise}
-	 */
-	fetch: function ( bounds, zoom ) {
-		// The maximum thumbnail limit is currently 50
-		var limit = 50;
-		// TODO: Cache results if bounds remains unchanged
-		return ( new mw.Api( {
-			/* TODO: Temporary override for local testing; remove when not needed any more *
-			ajax: {
-				url: 'https://en.wikipedia.org/w/api.php',
-				headers: {
-					'User-Agent': 'Kartographer - the WMF Content Transform Team (https://www.mediawiki.org/wiki/Content_Transform_Team)'
-				}
-			}
-			/**/
-		} ) ).get( {
-			action: 'query',
-			format: 'json',
-			formatversion: 2,
-			prop: 'coordinates|pageprops|pageimages|description',
-			// co… arguments belong to prop=coordinates
-			colimit: 'max',
-			generator: 'search',
-			// gsr… arguments belong to generator=search
-			gsrsearch: getSearchQuery( bounds, zoom ),
-			gsrnamespace: 0,
-			gsrlimit: limit,
-			// pp… arguments belong to prop=pageprops
-			ppprop: 'displaytitle',
-			// pi… arguments belong to prop=pageimages
-			piprop: 'thumbnail',
-			pithumbsize: 300,
-			pilimit: limit
-		} );
-	},
-
-	/**
-	 * @private
-	 * @param {L.Map} map
-	 */
-	dropForeignNearbyLayers: function ( map ) {
-		var zoom = map.getZoom();
-		// Drop data from zoom levels that are too far away from the current zoom level
-		var keepDataZoomLimit = 3;
-
-		for ( var i in nearbyLayers ) {
-			if ( Math.abs( zoom - i ) > keepDataZoomLimit ) {
-				map.removeLayer( nearbyLayers[ i ] );
-				delete nearbyLayers[ i ];
-				delete knownPoints[ i ];
-			}
-		}
-	},
-
-	/**
-	 * @private
-	 * @param {L.Map} map
-	 * @param {Object} queryApiResponse
-	 */
-	populateNearbyLayer: function ( map, queryApiResponse ) {
-		var zoom = map.getZoom();
-		var geoJSON = this.convertGeosearchToGeoJSON( queryApiResponse );
-
-		if ( !nearbyLayers[ zoom ] ) {
-			knownPoints[ zoom ] = new Set();
-			nearbyLayers[ zoom ] = this.createNearbyLayer( zoom, geoJSON );
-			map.addLayer( nearbyLayers[ zoom ] );
-		} else {
-			nearbyLayers[ zoom ].addData( geoJSON );
-		}
-	},
-
-	/**
-	 * @private
-	 * @param {Object} response Raw data returned by the geosearch API.
-	 * @return {Object[]} A list of GeoJSON features, one for each page.
-	 */
-	convertGeosearchToGeoJSON: function ( response ) {
-		var pages = response.query && response.query.pages || [];
-
-		return pages.reduce( function ( result, page ) {
-			var coordinates = page.coordinates && page.coordinates[ 0 ];
-
-			if ( coordinates ) {
-				var thumbnail = page.thumbnail;
-
-				result.push( {
-					type: 'Feature',
-					geometry: { type: 'Point', coordinates: [ coordinates.lon, coordinates.lat ] },
-					properties: {
-						title: page.title,
-						description: page.description,
-						imageUrl: thumbnail ? thumbnail.source : undefined,
-						'marker-color': '0000ff'
-					}
-				} );
-			}
-
-			return result;
-		}, [] );
-	},
-
-	/**
-	 * @private
-	 * @param {number} zoom
-	 * @param {Object[]} geoJSON
-	 * @return {L.GeoJSON}
-	 */
-	createNearbyLayer: function ( zoom, geoJSON ) {
-		return L.geoJSON( geoJSON, {
-			filter: filterDuplicatePoints.bind( this, zoom ),
-			pointToLayer: createNearbyMarker
-		} ).bindPopup( function ( layer ) {
-			return createPopupHtml(
-				layer.feature.properties.title,
-				layer.feature.properties.description,
-				layer.feature.properties.imageUrl
-			);
-		}, { closeButton: false } );
-	}
-
 };
+
+/**
+ * @param {L.Map} map
+ * @param {boolean} show
+ */
+Nearby.prototype.toggleNearbyLayer = function ( map, show ) {
+	if ( show ) {
+		this.initializeKnownPoints( map );
+		this.fetchAndPopulateNearbyLayer( map );
+		map.on( {
+			moveend: this.onMapMoveOrZoomEnd.bind( this, map ),
+			zoomend: this.onMapMoveOrZoomEnd.bind( this, map )
+		} );
+	} else {
+		clearTimeout( this.fetchNearbyTimeout );
+		map.off( 'moveend zoomend' );
+		for ( var i in this.nearbyLayers ) {
+			map.removeLayer( this.nearbyLayers[ i ] );
+			delete this.nearbyLayers[ i ];
+			delete this.knownPoints[ i ];
+		}
+	}
+};
+
+/**
+ * @private
+ * @param {L.Map} map
+ */
+Nearby.prototype.onMapMoveOrZoomEnd = function ( map ) {
+	clearTimeout( this.fetchNearbyTimeout );
+	this.dropForeignNearbyLayers( map );
+	this.fetchNearbyTimeout = setTimeout( this.fetchAndPopulateNearbyLayer.bind( this, map ), 500 );
+};
+
+/**
+ * @private
+ * @param {L.Map} map
+ */
+Nearby.prototype.fetchAndPopulateNearbyLayer = function ( map ) {
+	this.fetch( map.getBounds(), map.getZoom() ).then( this.populateNearbyLayer.bind( this, map ) );
+};
+
+/**
+ * @private
+ * @param {L.LatLngBounds} bounds
+ * @param {number} zoom Typically ranging from 0 (entire world) to 19 (nearest)
+ * @return {jQuery.Promise}
+ */
+Nearby.prototype.fetch = function ( bounds, zoom ) {
+	// The maximum thumbnail limit is currently 50
+	var limit = 50;
+	// TODO: Cache results if bounds remains unchanged
+	return ( new mw.Api( {
+		/* TODO: Temporary override for local testing; remove when not needed any more *
+		ajax: {
+			url: 'https://en.wikipedia.org/w/api.php',
+			headers: {
+				'User-Agent': 'Kartographer - the WMF Content Transform Team (https://www.mediawiki.org/wiki/Content_Transform_Team)'
+			}
+		}
+		/**/
+	} ) ).get( {
+		action: 'query',
+		format: 'json',
+		formatversion: 2,
+		prop: 'coordinates|pageprops|pageimages|description',
+		// co… arguments belong to prop=coordinates
+		colimit: 'max',
+		generator: 'search',
+		// gsr… arguments belong to generator=search
+		gsrsearch: this.getSearchQuery( bounds, zoom ),
+		gsrnamespace: 0,
+		gsrlimit: limit,
+		// pp… arguments belong to prop=pageprops
+		ppprop: 'displaytitle',
+		// pi… arguments belong to prop=pageimages
+		piprop: 'thumbnail',
+		pithumbsize: 300,
+		pilimit: limit
+	} );
+};
+
+/**
+ * @private
+ * @param {L.Map} map
+ */
+Nearby.prototype.dropForeignNearbyLayers = function ( map ) {
+	var zoom = map.getZoom();
+	// Drop data from zoom levels that are too far away from the current zoom level
+	var keepDataZoomLimit = 3;
+
+	for ( var i in this.nearbyLayers ) {
+		if ( Math.abs( zoom - i ) > keepDataZoomLimit ) {
+			map.removeLayer( this.nearbyLayers[ i ] );
+			delete this.nearbyLayers[ i ];
+			delete this.knownPoints[ i ];
+		}
+	}
+};
+
+/**
+ * @private
+ * @param {L.Map} map
+ * @param {Object} queryApiResponse
+ */
+Nearby.prototype.populateNearbyLayer = function ( map, queryApiResponse ) {
+	var zoom = map.getZoom();
+	var geoJSON = this.convertGeosearchToGeoJSON( queryApiResponse );
+
+	if ( !this.nearbyLayers[ zoom ] ) {
+		this.knownPoints[ zoom ] = new Set();
+		this.nearbyLayers[ zoom ] = this.createNearbyLayer( zoom, geoJSON );
+		map.addLayer( this.nearbyLayers[ zoom ] );
+	} else {
+		this.nearbyLayers[ zoom ].addData( geoJSON );
+	}
+};
+
+/**
+ * @private
+ * @param {Object} response Raw data returned by the geosearch API.
+ * @return {Object[]} A list of GeoJSON features, one for each page.
+ */
+Nearby.prototype.convertGeosearchToGeoJSON = function ( response ) {
+	var pages = response.query && response.query.pages || [];
+
+	return pages.reduce( function ( result, page ) {
+		var coordinates = page.coordinates && page.coordinates[ 0 ];
+
+		if ( coordinates ) {
+			var thumbnail = page.thumbnail;
+
+			result.push( {
+				type: 'Feature',
+				geometry: { type: 'Point', coordinates: [ coordinates.lon, coordinates.lat ] },
+				properties: {
+					title: page.title,
+					description: page.description,
+					imageUrl: thumbnail ? thumbnail.source : undefined,
+					'marker-color': '0000ff'
+				}
+			} );
+		}
+
+		return result;
+	}, [] );
+};
+
+/**
+ * @private
+ * @param {number} zoom
+ * @param {Object[]} geoJSON
+ * @return {L.GeoJSON}
+ */
+Nearby.prototype.createNearbyLayer = function ( zoom, geoJSON ) {
+	return L.geoJSON( geoJSON, {
+		filter: this.filterDuplicatePoints.bind( this, zoom ),
+		pointToLayer: this.createNearbyMarker
+	} ).bindPopup( function ( layer ) {
+		return this.createPopupHtml(
+			layer.feature.properties.title,
+			layer.feature.properties.description,
+			layer.feature.properties.imageUrl
+		);
+	}, { closeButton: false } );
+};
+
+module.exports = Nearby;

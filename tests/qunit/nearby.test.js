@@ -88,7 +88,7 @@
 
 		const expectedApiUrl = mw.config.get( 'wgScriptPath' ) + '/api.php?action=query&format=json&formatversion=2&prop=coordinates%7Cpageprops%7Cpageimages%7Cdescription&colimit=max&generator=search&gsrsearch=nearcoord%3A5500m%2C40.74%2C-74.18&gsrnamespace=0&gsrlimit=50&ppprop=displaytitle&piprop=thumbnail&pithumbsize=300&pilimit=50';
 
-		Nearby.fetch( bounds, zoom ).then( ( nearbyResults ) => {
+		new Nearby().fetch( bounds, zoom ).then( ( nearbyResults ) => {
 			assert.deepEqual( nearbyResults, dummyGeosearchResponse );
 
 			const requests = this.server.requests;
@@ -152,7 +152,7 @@
 		];
 
 		assert.deepEqual(
-			Nearby.convertGeosearchToGeoJSON( dummyGeosearchResponse ),
+			new Nearby().convertGeosearchToGeoJSON( dummyGeosearchResponse ),
 			expectedGeoJSON
 		);
 	} );

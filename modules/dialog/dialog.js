@@ -187,7 +187,11 @@ MapDialog.prototype.toggleSideBar = function ( open ) {
  */
 MapDialog.prototype.toggleNearbyLayer = function ( showNearby ) {
 	if ( this.map ) {
-		require( './nearby.js' ).toggleNearbyLayer( this.map, showNearby );
+		if ( !this.nearby ) {
+			var Nearby = require( './nearby.js' );
+			this.nearby = new Nearby();
+		}
+		this.nearby.toggleNearbyLayer( this.map, showNearby );
 	}
 };
 
