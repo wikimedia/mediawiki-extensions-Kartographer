@@ -88,6 +88,11 @@ class ApiQueryMapData extends ApiQueryBase {
 					} else {
 						// Let the client know there is no data found for this group
 						$result[$groupId] = null;
+
+						// Temporary logging, remove when not needed any more
+						if ( $revId ) {
+							LoggerFactory::getInstance( 'Kartographer' )->notice( 'Group id not found in revision' );
+						}
 					}
 				}
 			} else {
