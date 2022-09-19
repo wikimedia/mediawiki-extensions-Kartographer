@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"McDutchie"
 		]
 	},
@@ -9,8 +10,11 @@
 	"kartographer-broken-category": "Paginas con cartas rupte",
 	"kartographer-broken-category-desc": "Iste pagina contine un uso invalide de carta geographic",
 	"kartographer-desc": "Permitte le addition de cartas geographic a paginas wiki",
-	"kartographer-error-context-multi": "Problemas de &lt;$1&gt;:\n$2",
+	"kartographer-error-context-multi": "Problemas de <$1>:\n$2",
 	"kartographer-error-json": "JSON non analysabile: $1",
+	"kartographer-error-json-object": "Iste contento debe esser un objecto GeoJSON+simplestyle valude o un array de tal objectos.",
+	"kartographer-error-json-type": "Cata objecto GeoJSON+simplestyle debe haber un typo non vacue, p.ex. <code>{ \"type\": \"Feature\" }</code>.",
+	"kartographer-error-json-schema-error": "Error possibile sur le elemento $1: $2",
 	"kartographer-error-missing-attr": "Attributo \"$1\" manca",
 	"kartographer-error-bad_attr": "Attributo \"$1\" ha un valor non valide",
 	"kartographer-error-bad_data": "Le contento JSON non es GeoJSON+simplestyle valide. Le lista sequente monstra tote le tentativas de interpretar lo. Non totes es errores.",
@@ -80,6 +84,10 @@
 	"kartographer-fullscreen-close": "Clauder",
 	"kartographer-fullscreen-collapse": "Celar detalios del carta",
 	"kartographer-fullscreen-text": "Monstrar in plen schermo",
+	"kartographer-icon-docs-table": "Icones Maki",
+	"kartographer-icon-docs-icon": "Icone",
+	"kartographer-icon-docs-key": "Nomine",
+	"kartographer-icon-docs-help": "Description",
 	"visualeditor-mwmapsdialog-area": "Area del carta",
 	"visualeditor-mwmapsdialog-content": "Contento del carta",
 	"visualeditor-mwmapsdialog-options": "Optiones",

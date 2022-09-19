@@ -2,7 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"Abuluntu",
+			"Amire80",
 			"Danmichaelo",
+			"EdoAug",
 			"Jeblad",
 			"Jon Harald Søby"
 		]
@@ -12,7 +14,7 @@
 	"kartographer-broken-category": "Sider med ødelagte kart",
 	"kartographer-broken-category-desc": "Siden inkluderer ugyldig kartbruk",
 	"kartographer-desc": "Lar kart legges til på wikisider",
-	"kartographer-error-context-multi": "&lt;$1&gt;-problemer:\n$2",
+	"kartographer-error-context-multi": "<$1>-problemer:\n$2",
 	"kartographer-error-json": "Kunne ikke parse JSON: $1",
 	"kartographer-error-missing-attr": "Attributtet «$1» mangler",
 	"kartographer-error-bad_attr": "Attributtet «$1» har en ugyldig verdi",
@@ -87,6 +89,7 @@
 	"kartographer-fullscreen-close": "Lukk",
 	"kartographer-fullscreen-collapse": "Skjul kartdetaljer",
 	"kartographer-fullscreen-text": "Vis i fullskjerm",
+	"kartographer-icon-docs-key": "Navn",
 	"visualeditor-mwmapsdialog-area": "Kartområde",
 	"visualeditor-mwmapsdialog-content": "Kartinnhold",
 	"visualeditor-mwmapsdialog-options": "Alternativer",

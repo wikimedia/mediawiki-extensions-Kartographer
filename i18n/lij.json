@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Giromin Cangiaxo"
 		]
 	},
@@ -8,7 +9,7 @@
 	"kartographer-broken-category": "Paggine co-e mappe rotte",
 	"kartographer-broken-category-desc": "A paggina a contegne 'na mappa con di ari de scintasci",
 	"kartographer-desc": "A permette d'azonze e mappe inte paggine wiki",
-	"kartographer-error-context-multi": "Problemi &lt;$1&gt;:\n$2",
+	"kartographer-error-context-multi": "Problemi <$1>:\n$2",
 	"kartographer-error-json": "O JSON o no poeu vese analizou: $1",
 	"kartographer-error-missing-attr": "Gh'amanca l'attributo \"$1\"",
 	"kartographer-error-bad_attr": "L'attributo '$1' o gh'ha 'n valô non vallido",

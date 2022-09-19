@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Xuacu"
 		]
 	},
@@ -8,7 +9,7 @@
 	"kartographer-broken-category": "Páxines con mapes frañaos",
 	"kartographer-broken-category-desc": "La páxina incluye un usu inválidu de mapa.",
 	"kartographer-desc": "Permite amestar mapes a les páxines wiki",
-	"kartographer-error-context-multi": "Problemes de &lt;$1&gt;:\n$2",
+	"kartographer-error-context-multi": "Problemes de <$1>:\n$2",
 	"kartographer-error-json": "Nun pudo analizase'l JSON: $1",
 	"kartographer-error-missing-attr": "Falta l'atributu \"$1\"",
 	"kartographer-error-bad_attr": "L'atributu '$1' tien un valor inválidu",

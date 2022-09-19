@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"AlvaroMolina",
+			"Amire80",
 			"Dgstranz",
 			"DiegoAmbrocio",
 			"Fitoschido",
@@ -17,7 +18,7 @@
 	"kartographer-broken-category": "Páginas con mapas rotos",
 	"kartographer-broken-category-desc": "La página incluye un uso no válido de mapas.",
 	"kartographer-desc": "Permite insertar mapas en una página wiki",
-	"kartographer-error-context-multi": "Problemas de &lt;$1&gt;:\n$2",
+	"kartographer-error-context-multi": "Problemas de <$1>:\n$2",
 	"kartographer-error-json": "No se pudo analizar el JSON: $1",
 	"kartographer-error-missing-attr": "Falta el atributo \"$1\"",
 	"kartographer-error-bad_attr": "El atributo '$1' tiene un valor no válido",

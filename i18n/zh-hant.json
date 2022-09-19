@@ -3,6 +3,7 @@
 		"authors": [
 			"1233thehongkonger",
 			"A2093064",
+			"Amire80",
 			"Cwlin0416",
 			"Kly",
 			"Liuxinyu970226",
@@ -18,7 +19,7 @@
 	"kartographer-broken-category": "有損壞地圖的頁面",
 	"kartographer-broken-category-desc": "有包含無效地圖用法的頁面",
 	"kartographer-desc": "允許將地圖新增至 wiki 頁面",
-	"kartographer-error-context-multi": "&lt;$1&gt; 問題：\n$2",
+	"kartographer-error-context-multi": "<$1> 問題：\n$2",
 	"kartographer-error-json": "無法解析 JSON：$1",
 	"kartographer-error-missing-attr": "遺失屬性 \"$1\"",
 	"kartographer-error-bad_attr": "屬性 \"$1\" 的值無效",

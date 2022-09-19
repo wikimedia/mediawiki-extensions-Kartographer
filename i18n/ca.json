@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Fitoschido",
 			"Jmarchn",
 			"Macofe",
@@ -12,7 +13,7 @@
 	"kartographer-broken-category": "Pàgines amb errors en els mapes",
 	"kartographer-broken-category-desc": "La pàgina inclou un mapa amb utilització no vàlida",
 	"kartographer-desc": "Permet afegir mapes en pàgines wiki",
-	"kartographer-error-context-multi": "problemes &lt;$1&gt;:\n$2",
+	"kartographer-error-context-multi": "Problemes amb <$1>:\n$2",
 	"kartographer-error-json": "No s'ha pogut analitzar el JSON: $1",
 	"kartographer-error-missing-attr": "Falta l'atribut «$1»",
 	"kartographer-error-bad_attr": "L'atribut «$1» té un valor no vàlid",

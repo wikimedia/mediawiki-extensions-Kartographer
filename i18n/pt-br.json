@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Eduardo Addad de Oliveira",
 			"Eduardoaddad",
 			"Felipe L. Ewald",
@@ -15,7 +16,7 @@
 	"kartographer-broken-category-desc": "A página inclui um uso de mapa inválido",
 	"kartographer-desc": "Permite que mapas sejam adicionados às páginas da wiki",
 	"kartographer-error-context": "&lt;$1&gt;: $2",
-	"kartographer-error-context-multi": "&lt;$1&gt; problemas:\n$2",
+	"kartographer-error-context-multi": "Problemas de <$1>:\n$2",
 	"kartographer-error-json": "Não foi possível analisar JSON: $1",
 	"kartographer-error-missing-attr": "O atributo \"$1\" está faltando",
 	"kartographer-error-bad_attr": "O atributo \"$1\" tem um valor inválido",

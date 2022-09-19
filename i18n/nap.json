@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"C.R.",
 			"Ruthven"
 		]
@@ -9,7 +10,7 @@
 	"kartographer-broken-category": "Paggene ch'errure dint' 'e mappe",
 	"kartographer-broken-category-desc": "'A paggena azzeccasse na mappa 'e uso invalido",
 	"kartographer-desc": "Premmettesse 'azzeccà mappe ncopp' 'e paggene wiki",
-	"kartographer-error-context-multi": "Probleme &lt;$1&gt; :\n$2",
+	"kartographer-error-context-multi": "Probleme <$1> :\n$2",
 	"kartographer-error-missing-attr": "Ll'attributo \"$1\" manca",
 	"kartographer-error-bad_attr": "'O valore 'e ll'attributo '$1' nun è buono",
 	"kartographer-error-bad_data": "'E cuntenute JSON nun so' currette",

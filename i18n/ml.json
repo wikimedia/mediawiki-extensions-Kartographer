@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Adithyak1997",
+			"Amire80",
 			"Praveenp"
 		]
 	},
@@ -9,7 +10,7 @@
 	"kartographer-broken-category": "പൊട്ടിയ ഭൂപടങ്ങളുള്ള താളുകൾ",
 	"kartographer-broken-category-desc": "ഈ താളിൽ അസാധുവായ ഭൂപട ഉപയോഗമുണ്ട്",
 	"kartographer-desc": "വിക്കി താളുകളിൽ ഭൂപടങ്ങൾ കൂട്ടിച്ചേർക്കാൻ സഹായിക്കുന്നു",
-	"kartographer-error-context-multi": "&lt;$1&gt; പ്രശ്നങ്ങൾ:\n$2",
+	"kartographer-error-context-multi": "<$1> പ്രശ്നങ്ങൾ:\n$2",
 	"kartographer-error-missing-attr": "\"$1\" പ്രതീകം നൽകിയിട്ടില്ല",
 	"kartographer-error-title": "\"$1\" എന്ന തലക്കെട്ട് സാധുവായ ഭൂപടവിവര താൾ അല്ല",
 	"kartographer-tracking-category": "ഭൂപടത്തോടു കൂടിയ താളുകൾ",

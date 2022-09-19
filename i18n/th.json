@@ -10,7 +10,7 @@
 	"kartographer-broken-category": "หน้าที่มีแผนที่เสีย",
 	"kartographer-broken-category-desc": "หน้าที่มีการใช้แผนที่ที่ใช้อย่างไม่ถูกต้อง",
 	"kartographer-desc": "ช่วยให้สามารถเพิ่มแผนที่ในหน้าวิกิได้",
-	"kartographer-error-context-multi": "เกิดปัญหากับ &lt;$1&gt;: $2",
+	"kartographer-error-context-multi": "เกิดปัญหากับ <$1>:\n$2",
 	"kartographer-error-json": "ไม่สามารถเรียกข้อมูลจาก JSON ได้: $1",
 	"kartographer-error-missing-attr": "แอตทริบิวต์ \"$1\" ขาดหายไป",
 	"kartographer-error-bad_attr": "แอตทริบิว \"$1\" มีค่าไม่ถูกต้อง",

@@ -14,7 +14,7 @@
 	"kartographer-broken-category": "Sidor med trasiga kartor",
 	"kartographer-broken-category-desc": "Sidan inkluderar taggen <code><nowiki><maps></nowiki></code> med felaktig användning.",
 	"kartographer-desc": "Tillåter kartor att läggas till i wikisidor",
-	"kartographer-error-context-multi": "&lt;$1&gt; problem:\n$2",
+	"kartographer-error-context-multi": "<$1> problem:\n$2",
 	"kartographer-error-json": "Kunde inte tolka JSON: $1",
 	"kartographer-error-missing-attr": "Attributen \"$1\" saknas",
 	"kartographer-error-bad_attr": "Attributen \"$1\" har ett ogiltigt värde",

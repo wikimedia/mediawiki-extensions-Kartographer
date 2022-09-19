@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"BaRaN6161 TURK",
 			"Hbseren",
 			"Hedda",
@@ -17,7 +18,7 @@
 	"kartographer-broken-category": "Haritaları bozuk sayfalar",
 	"kartographer-broken-category-desc": "Sayfa geçersiz bir harita kullanımını içeriyor",
 	"kartographer-desc": "Haritaların viki sayfalarına eklenmesine izin verir",
-	"kartographer-error-context-multi": "&lt;$1&gt; sorunları:\n$2",
+	"kartographer-error-context-multi": "<$1> sorunları:\n$2",
 	"kartographer-error-json": "JSON ayrıştırılamadı: $1",
 	"kartographer-error-missing-attr": "\"$1\" özelliği eksik",
 	"kartographer-error-bad_attr": "\"$1\" özelliği geçersiz bir değere sahip",

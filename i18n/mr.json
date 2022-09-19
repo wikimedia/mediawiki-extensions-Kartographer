@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Sureshkhole",
 			"Tiven2240",
 			"V.narsikar",
@@ -11,7 +12,7 @@
 	"kartographer-broken-category": "मोडके नकाशे असलेली पाने",
 	"kartographer-broken-category-desc": "या पानात नकाशाचा अवैध वापर अंतर्भूत आहे",
 	"kartographer-desc": "विकिपानावर नकाशे जोडण्यास परवानगी द्या",
-	"kartographer-error-context-multi": "&lt;$1&gt; समस्या:\n$2",
+	"kartographer-error-context-multi": "<$1> समस्या:\n$2",
 	"kartographer-error-json": "JSON: $1 पार्से करु शकत नाही",
 	"kartographer-error-missing-attr": "Attribute \"$1\" हे सापडत नाहीये",
 	"kartographer-error-bad_attr": "Attribute \"$1\" चे मूल्य अवैध आहे",

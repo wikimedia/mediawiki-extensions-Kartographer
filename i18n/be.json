@@ -5,7 +5,8 @@
 			"Artsiom91",
 			"Chadyka",
 			"Maksim L.",
-			"No Sleep till Krupki"
+			"No Sleep till Krupki",
+			"Tomato Cream"
 		]
 	},
 	"apierror-kartographer-conflicting-revids": "Запыт дадзеных мапы з некалькіх версій адной і той жа старонкі ў адным запыце пакуль не падтрымліваецца.",
@@ -13,8 +14,10 @@
 	"kartographer-broken-category": "Старонкі з няслушна ўжытымі картамі",
 	"kartographer-broken-category-desc": "Старонка змяшчае няслушна ўжытыя карты",
 	"kartographer-desc": "Дазваляе дадаваць мапы на вікі-старонкі",
-	"kartographer-error-context-multi": "Праблемы з &lt;$1&gt;:\n$2",
+	"kartographer-error-context-multi": "Праблемы з <$1>:\n$2",
 	"kartographer-error-json": "Не ўдалося прааналізаваць JSON: $1",
+	"kartographer-error-json-object": "Змест павінен быць слушным аб’ектам GeoJSON+simplestyle або масівам такіх аб’ектаў.",
+	"kartographer-error-json-type": "Кожны аб’ект GeoJSON+simplestyle павінен мець непусты тып, напрыклад, <code>{ \"type\": \"Feature\" }</code>.",
 	"kartographer-error-json-schema-error": "Магчымая памылка ў элеменце $1: $2",
 	"kartographer-error-missing-attr": "Атрыбут «$1» адсутнічае",
 	"kartographer-error-bad_attr": "Атрыбут «$1» мае няслушная значэнне",

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Chrumps",
 			"FunPL",
 			"Halibutt",
@@ -14,7 +15,7 @@
 	"kartographer-broken-category": "Strony z uszkodzonymi mapami",
 	"kartographer-broken-category-desc": "Strona zawiera nieprawidłowe zastosowanie mapy",
 	"kartographer-desc": "Pozwala na dodawanie map do stron wiki.",
-	"kartographer-error-context-multi": "&lt;$1&gt; problemy:\n$2",
+	"kartographer-error-context-multi": "Problemy z <$1>:\n$2",
 	"kartographer-error-json": "Nie udało się przeanalizować JSON: $1",
 	"kartographer-error-missing-attr": "Brak atrybutu „$1”",
 	"kartographer-error-bad_attr": "Atrybut '$1' ma niepoprawną wartość",

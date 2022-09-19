@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Geraki",
 			"Giannaras99",
 			"NikosLikomitros",
@@ -12,7 +13,7 @@
 	"kartographer-broken-category": "Σελίδες με σπασμένους χάρτες",
 	"kartographer-broken-category-desc": "Η σελίδα περιέχει μη έγκυρη χρήση χάρτη",
 	"kartographer-desc": "Επιτρέπει να προστεθούν χάρτες στο wiki",
-	"kartographer-error-context-multi": "&lt;$1&gt; προβλήματα:\n$2",
+	"kartographer-error-context-multi": "Προβλήματα στο <$1>:\n$2",
 	"kartographer-error-missing-attr": "Η παράμετρος \"$1\" λείπει",
 	"kartographer-error-bad_attr": "Η παράμετρος \"$1\" έχει μια μη έγκυρη τιμή",
 	"kartographer-error-bad_data": "Το περιεχόμενο JSON δεν είναι έγκυρο GeoJSON+simplestyle. Το πρώτο σφάλμα επικύρωσης είναι στο «$1»: «$2»",

@@ -8,7 +8,7 @@
 	"kartographer-broken-category": "Lapok hibás térképekkel",
 	"kartographer-broken-category-desc": "A lap érvénytelen térképhasználatot tartalmaz",
 	"kartographer-desc": "Lehetővé teszi térképek hozzáadását wikioldalakhoz",
-	"kartographer-error-context-multi": "&lt;$1&gt;-problémák:\n$2",
+	"kartographer-error-context-multi": "<$1>-problémák:\n$2",
 	"kartographer-error-json": "A JSON feldolgozása sikertelen: $1",
 	"kartographer-error-missing-attr": "A(z) „$1” attribútum hiányzik",
 	"kartographer-error-bad_attr": "A(z) „$1” attribútum értéke érvénytelen",

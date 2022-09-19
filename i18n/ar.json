@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Maroen1990",
 			"Meno25",
 			"Moud hosny",
@@ -14,7 +15,7 @@
 	"kartographer-broken-category": "صفحات مع خرائط معطوبة",
 	"kartographer-broken-category-desc": "هذه الصفحة تحتوي على استخدام خريطة غير صحيح",
 	"kartographer-desc": "يسمح بإضافة الخرائظ لصفحات الويكي",
-	"kartographer-error-context-multi": "&lt;$1&gt; مشاكل:\n$2",
+	"kartographer-error-context-multi": "مشاكل <$1>:\n$2",
 	"kartographer-error-json": "لم يمكن تحليل JSON: $1",
 	"kartographer-error-missing-attr": "السمة \"$1\" مفقودة",
 	"kartographer-error-bad_attr": "السمة \"$1\" لها قيمة غير صحيحة",
