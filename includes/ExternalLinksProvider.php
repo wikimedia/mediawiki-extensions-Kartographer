@@ -8,7 +8,6 @@
 
 namespace Kartographer;
 
-use Exception;
 use FormatJson;
 use MediaWiki\ResourceLoader\Context;
 use RuntimeException;
@@ -30,7 +29,7 @@ class ExternalLinksProvider {
 
 		if ( !$status->isOK() ) {
 			$message = $status->getMessage( false, false, 'en' )->text();
-			throw new Exception( "Unable to parse externalLinks.json: $message" );
+			throw new RuntimeException( "Unable to parse externalLinks.json: $message" );
 		}
 
 		$data = $status->getValue();
