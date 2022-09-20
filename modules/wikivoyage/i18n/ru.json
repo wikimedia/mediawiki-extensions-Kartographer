@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Evs",
+			"Okras",
 			"Pacha Tchernof"
 		]
 	},
@@ -10,7 +11,7 @@
 	"kartographer-wv-layer-wikimedia": "Фонд Викимедиа",
 	"kartographer-wv-nearby-articles-control": "Исследовать близлежащие места",
 	"kartographer-wv-warning-external-source-title": "Внешний источник данных",
-	"kartographer-wv-warning-external-source-message": "Это содержимое размещается на внешнем сервере, что позволяет ему обмениваться данными с другими сайтами.",
+	"kartographer-wv-warning-external-source-message": "Это содержимое размещается на внешнем сервере, поэтому его включение потребует передачи вашего IP-адреса и других данных поставщику карты.",
 	"kartographer-wv-warning-external-source-agree": "Я понимаю",
 	"kartographer-wv-warning-external-source-disagree": "Отмена"
 }

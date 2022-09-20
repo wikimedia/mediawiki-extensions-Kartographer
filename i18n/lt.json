@@ -4,6 +4,7 @@
 			"Eitvys200",
 			"Hugo.arg",
 			"Manvydasz",
+			"Pavel1513",
 			"Tomasdd",
 			"Zygimantus"
 		]
@@ -11,6 +12,8 @@
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Vikimedija žemėlapiai] | Žemėlapio duomenys © [https://www.openstreetmap.org/copyright OpenStreetMap autoriai]",
 	"kartographer-attribution-externaldata": "$1: $2",
 	"kartographer-broken-category": "Puslapiai su neveikiančiais žemėlapiais",
+	"kartographer-error-json-object": "Turinys turi būti galiojantis \"GeoJSON+simplestyle\" objektas arba tokių objektų masyvas.",
+	"kartographer-error-json-type": "Kiekvieno \"GeoJSON+simplestyle\" objekto tipas neturi būti tuščias, pavyzdžiui, <code>{ \"type\": \"Feature\" }</code>.",
 	"kartographer-error-bad_attr": "Atributas „$1“ turi neleistiną reikšmę",
 	"kartographer-tracking-category": "Puslapiai su žemėlapiais",
 	"kartographer-tracking-category-desc": "Puslapyje yra žemėlapis",
