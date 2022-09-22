@@ -90,7 +90,7 @@ class ApiQueryMapData extends ApiQueryBase {
 						$result[$groupId] = null;
 
 						// Temporary logging, remove when not needed any more
-						if ( $revId ) {
+						if ( $revId && str_starts_with( $groupId, '_' ) ) {
 							LoggerFactory::getInstance( 'Kartographer' )->notice( 'Group id not found in revision' );
 						}
 					}
