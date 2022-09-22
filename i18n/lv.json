@@ -13,7 +13,6 @@
 	"kartographer-desc": "Ļauj pievienot kartes viki lapām",
 	"kartographer-error-context-multi": "<$1> problēmas:\n$2",
 	"kartographer-error-json": "Nevarēja apstrādāt JSON: $1",
-	"kartographer-error-json-schema-error": "Iespējama kļūda elementā $1: $2",
 	"kartographer-error-missing-attr": "Trūkst atribūts \"$1\"",
 	"kartographer-error-bad_attr": "Atribūts \"$1\" vērtība ir nederīga",
 	"kartographer-error-bad_data": "JSON saturs nav derīgs GeoJSON+simplestyle. Zemāk redzamajā sarakstā redzami visi mēģinājumi to interpretēt. Ne visas ir kļūdas.",

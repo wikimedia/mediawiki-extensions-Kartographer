@@ -13,7 +13,6 @@
 	"kartographer-error-json": "JSON-sisu ei õnnestunud liigendada: $1",
 	"kartographer-error-json-object": "Sisu peab olema õige GeoJSON+simplestyle'i objekt või massiiv sellistest objektidest.",
 	"kartographer-error-json-type": "Igal GeoJSON+simplestyle'i objektil peab olema mittetühi tüüp, nt <code>{ \"type\": \"Feature\" }</code>.",
-	"kartographer-error-json-schema-error": "Võimalik viga elemendi $1 juures: $2",
 	"kartographer-error-missing-attr": "Atribuut \"$1\" puudub.",
 	"kartographer-error-bad_attr": "Atribuudi \"$1\" väärtus on vigane.",
 	"kartographer-error-bad_data": "See JSON-sisu pole õige GeoJSON+simplestyle. Järmises loendis on kõik selle tõlgendamiskatsed. Need kõik ei ole vead.",
