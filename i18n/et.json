@@ -32,6 +32,7 @@
 	"kartographer-sidebar-latitude": "Laius",
 	"kartographer-sidebar-longitude": "Pikkus",
 	"kartographer-sidebar-mapdetails": "Väliskaardid",
+	"kartographer-sidebar-nearbybutton": "Näita ümberkaudseid artikleid",
 	"kartographer-sidebar-service": "Teenus",
 	"kartographer-sidebar-togglebutton": "Väliskaardid",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Klõpsa kaardil, et marker paika panna.",

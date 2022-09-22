@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Papuass",
-			"Silraks"
+			"Silraks",
+			"Amire80"
 		]
 	},
+	"apierror-kartographer-conflicting-revids": "Kartes datu vaicājumi no vairākām tās pašas lapas versijām vienā pieprasījumā vēl netiek atbalstīti.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use ''Wikimedia'' kartes] | Kartes dati © [https://www.openstreetmap.org/copyright ''OpenStreetMap'' dalībnieki]",
 	"kartographer-broken-category": "Lapas ar bojātām kartēm",
 	"kartographer-broken-category-desc": "Šajā lapā karte izmantota nekorekti",
