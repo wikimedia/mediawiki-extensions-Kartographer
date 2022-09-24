@@ -34,21 +34,20 @@ class ExternalLinksProvider {
 		}
 
 		$data = $status->getValue();
-		$allTypes = [];
+		$usedTypes = [];
 
 		foreach ( $data->services as $service ) {
 			$service->name = $context->msg( 'kartographer-link-' . $service->id )->plain();
 
 			foreach ( $service->links as $link ) {
-				$allTypes[ $link->type ] = true;
+				$usedTypes[$link->type] = true;
 			}
 		}
 
-		$allTypes = array_keys( $allTypes );
-		$data->types = array_unique( array_merge( $data->types, $allTypes ) );
+		$data->types = array_keys( array_merge( array_flip( $data->types ), $usedTypes ) );
 
 		$data->localization = [];
-		foreach ( $allTypes as $type ) {
+		foreach ( $usedTypes as $type => $_ ) {
 			$data->localization[$type] = $context->msg( 'kartographer-linktype-' . $type )->plain();
 		}
 
