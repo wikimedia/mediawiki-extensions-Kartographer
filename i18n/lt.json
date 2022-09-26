@@ -15,6 +15,7 @@
 	"kartographer-error-json-object": "Turinys turi būti galiojantis \"GeoJSON+simplestyle\" objektas arba tokių objektų masyvas.",
 	"kartographer-error-json-type": "Kiekvieno \"GeoJSON+simplestyle\" objekto tipas neturi būti tuščias, pavyzdžiui, <code>{ \"type\": \"Feature\" }</code>.",
 	"kartographer-error-bad_attr": "Atributas „$1“ turi neleistiną reikšmę",
+	"kartographer-error-bad_data": "\"JSON\" turinis netinka \"GeoJSON+simplestyle\". Toliau pateiktame sąraše rodomi visi bandymai jį interpretuoti pagal \"JSON\" schemą. Iš jų, ne visi yra klaidos.",
 	"kartographer-tracking-category": "Puslapiai su žemėlapiais",
 	"kartographer-tracking-category-desc": "Puslapyje yra žemėlapis",
 	"kartographer-coord-combined": "$1 $2",

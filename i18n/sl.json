@@ -18,6 +18,7 @@
 	"kartographer-error-context-multi": "Problemi z <$1>:\n$2",
 	"kartographer-error-json": "Niza JSON ni mogoče razčleniti: $1",
 	"kartographer-error-json-object": "Vsebina mora biti veljaven objekt GeoJSON+simplestyle ali polje takšnih predmetov.",
+	"kartographer-error-json-type": "Vsak objekt GeoJSON+simplestyle mora imeti neprazen tip, npr. <code>{ \"type\": \"Feature\" }</code>.",
 	"kartographer-error-missing-attr": "Manjka atribut »$1«",
 	"kartographer-error-bad_attr": "Atribut »$1« ima neveljavno vrednost",
 	"kartographer-error-bad_data": "Vsebina JSON ni veljaven GeoJSON+simplestyle. Na spodnjem seznamu so navedeni vsi poskusi njegove razčlenitve v skladu s shemo JSON. Vsi niso napake.",
