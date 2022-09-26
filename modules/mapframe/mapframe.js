@@ -78,7 +78,8 @@ function initMapBox( data, $container ) {
 		fullScreenRoute: '/map/' + index,
 		allowFullScreen: true,
 		dataGroups: data.overlays,
-		captionText: data.captionText
+		captionText: data.captionText,
+		alwaysStatic: mw.config.get( 'wgKartographerStaticMapframePreview' )
 	} );
 
 	$container.removeAttr( 'href' );

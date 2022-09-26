@@ -82,14 +82,16 @@ class MapFrame extends TagHandler {
 		} else {
 			$staticWidth = $this->width;
 		}
+
 		// TODO if fullwidth, we really should use interactive mode..
 		// BUT not possible to use both modes at the same time right now. T248023
 		// Should be fixed, especially considering VE in page editing etc...
-
 		$isPreview = $options->getIsPreview() || $options->getIsSectionPreview();
-		$useSnapshot = $this->config->get( 'KartographerStaticMapframe' ) && !$isPreview;
-
-		$parserOutput->addModules( [ $useSnapshot
+		$staticMode = $this->config->get( 'KartographerStaticMapframe' );
+		if ( $staticMode && $isPreview ) {
+			$parserOutput->setJsConfigVar( 'wgKartographerStaticMapframePreview', true );
+		}
+		$parserOutput->addModules( [ $staticMode && !$isPreview
 			? 'ext.kartographer.staticframe'
 			: 'ext.kartographer.frame' ] );
 

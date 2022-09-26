@@ -151,6 +151,8 @@ KartographerMap = L.Map.extend( {
 	 *   fetchable from the server, to add as overlays onto the map.**
 	 * @param {Object|Array} [options.data] **Inline GeoJSON features to
 	 *   add to the map.**
+	 * @param {boolean} [options.alwaysStatic=false] If the dynamic map should
+	 *   behave like a static map
 	 * @param {boolean} [options.alwaysInteractive=false] Prevents the map
 	 *   from becoming static when the screen is too small.
 	 * @param {Array|L.LatLng|string} [options.center] **Initial map center.**
@@ -842,7 +844,7 @@ KartographerMap = L.Map.extend( {
 
 		// If the window is wide enough, make sure there is at least
 		// a 200px margin to scroll, otherwise make the map static.
-		staticMap = isSmallWindow || ( this.getSize().x + 200 ) > deviceWidth;
+		staticMap = this.options.alwaysStatic || isSmallWindow || ( this.getSize().x + 200 ) > deviceWidth;
 
 		// Skip if the map is already static
 		if ( this._static === staticMap ) {
