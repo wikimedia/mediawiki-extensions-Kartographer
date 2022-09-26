@@ -65,11 +65,14 @@ Nearby.prototype.getSearchQuery = function ( bounds, zoom ) {
 /**
  * @private
  * @param {string} title
- * @param {string|undefined} description
- * @param {string|undefined} imageUrl
+ * @param {string} [description]
+ * @param {Object} [thumbnail]
+ * @param {string} [thumbnail.source]
+ * @param {number} [thumbnail.width]
+ * @param {number} [thumbnail.height]
  * @return {string}
  */
-Nearby.prototype.createPopupHtml = function ( title, description, imageUrl ) {
+Nearby.prototype.createPopupHtml = function ( title, description, thumbnail ) {
 	title = mw.Title.newFromText( title );
 
 	var linkHtml = mw.html.element( 'a', {
@@ -86,8 +89,12 @@ Nearby.prototype.createPopupHtml = function ( title, description, imageUrl ) {
 		contentHtml += mw.html.element( 'span', {}, description );
 	}
 
-	if ( imageUrl ) {
-		contentHtml += mw.html.element( 'img', { src: imageUrl } );
+	if ( thumbnail && thumbnail.source ) {
+		contentHtml += mw.html.element( 'img', {
+			src: thumbnail.source,
+			width: thumbnail.width || '',
+			height: thumbnail.height || ''
+		} );
 	}
 
 	if ( contentHtml ) {
@@ -311,15 +318,13 @@ Nearby.prototype.convertGeosearchToGeoJSON = function ( response ) {
 		var coordinates = page.coordinates && page.coordinates[ 0 ];
 
 		if ( coordinates ) {
-			var thumbnail = page.thumbnail;
-
 			result.push( {
 				type: 'Feature',
 				geometry: { type: 'Point', coordinates: [ coordinates.lon, coordinates.lat ] },
 				properties: {
 					title: page.title,
 					description: page.description,
-					imageUrl: thumbnail ? thumbnail.source : undefined,
+					thumbnail: page.thumbnail,
 					'marker-color': '0000ff'
 				}
 			} );
@@ -344,7 +349,7 @@ Nearby.prototype.createNearbyLayer = function ( zoom, geoJSON ) {
 		return self.createPopupHtml(
 			layer.feature.properties.title,
 			layer.feature.properties.description,
-			layer.feature.properties.imageUrl
+			layer.feature.properties.thumbnail
 		);
 	}, { closeButton: false } ).on( 'popupopen', function ( event ) {
 		$( event.popup.getElement() ).find( '.nearby-article-link' )
