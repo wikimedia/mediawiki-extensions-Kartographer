@@ -33,6 +33,8 @@ class KartographerTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->setMwGlobals( [
+			'wgKartographerMapServer' => 'http://192.0.2.0',
+			'wgKartographerMediaWikiInternalUrl' => 'localhost',
 			'wgScriptPath' => '/w',
 			'wgScript' => '/w/index.php',
 		] );
@@ -212,7 +214,6 @@ class KartographerTest extends MediaWikiLangTestCase {
 		// Previews should not contain group data for the static image
 		$this->setMwGlobals( [
 			'wgKartographerStaticMapframe' => false,
-			'wgKartographerMapServer' => '',
 			'KartographerDfltStyle' => 'osm-intl',
 		] );
 		$input = '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37>' .

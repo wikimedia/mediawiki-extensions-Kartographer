@@ -113,14 +113,17 @@ abstract class TagHandler {
 	 */
 	private function handle( $input, array $args, Parser $parser, PPFrame $frame ): string {
 		$this->config = MediaWikiServices::getInstance()->getMainConfig();
+		$mapServer = $this->config->get( 'KartographerMapServer' );
+		if ( !$mapServer ) {
+			throw new \ConfigException( '$wgKartographerMapServer doesn\'t have a default, please set your own' );
+		}
+
 		$this->parser = $parser;
 		$this->frame = $frame;
 		$parserOutput = $parser->getOutput();
 
 		$parserOutput->addModuleStyles( [ 'ext.kartographer.style' ] );
-		$parserOutput->addExtraCSPDefaultSrc(
-			$this->config->get( 'KartographerMapServer' )
-		);
+		$parserOutput->addExtraCSPDefaultSrc( $mapServer );
 		$this->state = State::getOrCreate( $parserOutput );
 
 		$this->status = Status::newGood();

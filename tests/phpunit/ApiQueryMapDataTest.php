@@ -28,6 +28,11 @@ class ApiQueryMapDataTest extends ApiTestCase {
 	private const MAPFRAME_CONTENT_OTHER = '<mapframe latitude=0 longitude=0 width=1 height=1>' .
 		self::MAPFRAME_JSON_OTHER . '</mapframe>';
 
+	protected function setUp(): void {
+		parent::setUp();
+		$this->setMwGlobals( 'wgKartographerMapServer', 'http://192.0.2.0' );
+	}
+
 	public function testExecuteMissingPage() {
 		[ $apiResult ] = $this->doApiRequest( [
 			'action' => 'query',
