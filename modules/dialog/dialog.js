@@ -109,15 +109,13 @@ MapDialog.prototype.addFooterButton = function () {
 
 	if ( !dialog.mapDetailsButton ) {
 		dialog.mapDetailsButton = new OO.ui.ToggleButtonWidget( {
-			label: mw.msg( 'kartographer-sidebar-togglebutton' ),
-			icon: 'newWindow'
+			label: mw.msg( 'kartographer-sidebar-togglebutton' )
 		} );
 		dialog.mapDetailsButton.connect( dialog, { change: 'toggleSideBar' } );
 	}
 	if ( !dialog.mapNearbyButton && mw.config.get( 'wgKartographerNearby' ) && !OO.ui.isMobile() ) {
 		dialog.mapNearbyButton = new OO.ui.ToggleButtonWidget( {
-			label: mw.msg( 'kartographer-sidebar-nearbybutton' ),
-			icon: 'mapPin'
+			label: mw.msg( 'kartographer-sidebar-nearbybutton' )
 		} );
 		dialog.mapNearbyButton.connect( dialog, { change: 'toggleNearbyLayer' } );
 	}
