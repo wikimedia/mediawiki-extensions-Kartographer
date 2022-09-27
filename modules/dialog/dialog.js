@@ -192,6 +192,15 @@ MapDialog.prototype.toggleNearbyLayer = function ( showNearby ) {
 			this.nearby = new Nearby();
 		}
 		this.nearby.toggleNearbyLayer( this.map, showNearby );
+		if ( showNearby && !this.seenNearby ) {
+			if ( mw.eventLog ) {
+				mw.eventLog.submit( 'mediawiki.maps_interaction', {
+					$schema: '/analytics/mediawiki/maps/interaction/1.0.0',
+					action: 'nearby-show'
+				} );
+			}
+			this.seenNearby = true;
+		}
 	}
 };
 
@@ -276,6 +285,14 @@ MapDialog.prototype.getSetupProcess = function ( options ) {
 MapDialog.prototype.getReadyProcess = function ( data ) {
 	return MapDialog.super.prototype.getReadyProcess.call( this, data )
 		.next( function () {
+			if ( mw.eventLog ) {
+				mw.eventLog.submit( 'mediawiki.maps_interaction', {
+					$schema: '/analytics/mediawiki/maps/interaction/1.0.0',
+					action: 'fullscreen'
+				} );
+			}
+			this.seenNearby = false;
+
 			if ( !this.map ) {
 				return;
 			}
