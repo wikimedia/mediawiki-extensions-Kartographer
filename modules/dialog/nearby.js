@@ -74,6 +74,7 @@ Nearby.prototype.createPopupHtml = function ( title, description, imageUrl ) {
 
 	var linkHtml = mw.html.element( 'a', {
 			href: title.getUrl(),
+			class: 'nearby-article-link',
 			target: '_blank'
 		}, title.getPrefixedText() ),
 		titleHtml = mw.html.element( 'div', {
@@ -117,7 +118,7 @@ Nearby.prototype.initializeKnownPoints = function ( map ) {
  * @private
  * @param {number} zoom
  * @param {Object} geoJSON
- * @returns {boolean}
+ * @return {boolean}
  */
 Nearby.prototype.filterDuplicatePoints = function ( zoom, geoJSON ) {
 	var hash = this.makeHash( geoJSON.geometry.coordinates );
@@ -170,6 +171,9 @@ Nearby.prototype.createNearbyMarker = function ( geoJSON, latlng ) {
  */
 Nearby.prototype.toggleNearbyLayer = function ( map, show ) {
 	if ( show ) {
+		this.performanceStartTime = mw.now();
+		this.seenArticleLink = false;
+		this.seenMarkerPaint = false;
 		this.initializeKnownPoints( map );
 		this.fetchAndPopulateNearbyLayer( map );
 		map.on( {
@@ -202,7 +206,8 @@ Nearby.prototype.onMapMoveOrZoomEnd = function ( map ) {
  * @param {L.Map} map
  */
 Nearby.prototype.fetchAndPopulateNearbyLayer = function ( map ) {
-	this.fetch( map.getBounds(), map.getZoom() ).then( this.populateNearbyLayer.bind( this, map ) );
+	this.fetch( map.getBounds(), map.getZoom() )
+		.then( this.populateNearbyLayer.bind( this, map ) );
 };
 
 /**
@@ -279,6 +284,19 @@ Nearby.prototype.populateNearbyLayer = function ( map, queryApiResponse ) {
 	} else {
 		this.nearbyLayers[ zoom ].addData( geoJSON );
 	}
+
+	if ( !this.seenMarkerPaint && mw.eventLog ) {
+		var elapsedTime = Math.round( mw.now() - this.performanceStartTime );
+		mw.eventLog.submit( 'mediawiki.maps_interaction', {
+			$schema: '/analytics/mediawiki/maps/interaction/1.0.0',
+			action: 'nearby-marker-paint',
+			/* eslint-disable camelcase */
+			initial_marker_count: geoJSON.length,
+			initial_marker_time_ms: elapsedTime
+			/* eslint-enable camelcase */
+		} );
+		this.seenMarkerPaint = true;
+	}
 };
 
 /**
@@ -328,7 +346,20 @@ Nearby.prototype.createNearbyLayer = function ( zoom, geoJSON ) {
 			layer.feature.properties.description,
 			layer.feature.properties.imageUrl
 		);
-	}, { closeButton: false } );
+	}, { closeButton: false } ).on( 'popupopen', function ( event ) {
+		$( event.popup.getElement() ).find( '.nearby-article-link' )
+			.on( 'click', function () {
+				if ( !self.seenArticleLink ) {
+					if ( mw.eventLog ) {
+						mw.eventLog.submit( 'mediawiki.maps_interaction', {
+							$schema: '/analytics/mediawiki/maps/interaction/1.0.0',
+							action: 'nearby-link-click'
+						} );
+					}
+					self.seenArticleLink = true;
+				}
+			} );
+	} );
 };
 
 module.exports = Nearby;
