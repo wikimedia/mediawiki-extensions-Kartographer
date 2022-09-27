@@ -50,18 +50,16 @@ class SimpleStyleParser {
 	 * @return Status
 	 */
 	public function parse( $input ): Status {
-		$input = trim( $input );
-		$status = Status::newGood( [] );
-		if ( $input !== '' ) {
-			$status = FormatJson::parse( $input, FormatJson::TRY_FIXING | FormatJson::STRIP_COMMENTS );
-			if ( $status->isOK() ) {
-				$status = $this->parseObject( $status->value );
-			} else {
-				$status = Status::newFatal( 'kartographer-error-json', $status->getMessage() );
-			}
+		if ( !$input || trim( $input ) === '' ) {
+			return Status::newGood( [] );
 		}
 
-		return $status;
+		$status = FormatJson::parse( $input, FormatJson::TRY_FIXING | FormatJson::STRIP_COMMENTS );
+		if ( !$status->isOK() ) {
+			return Status::newFatal( 'kartographer-error-json', $status->getMessage() );
+		}
+
+		return $this->parseObject( $status->value );
 	}
 
 	/**
