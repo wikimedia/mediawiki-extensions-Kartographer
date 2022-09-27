@@ -318,11 +318,12 @@ Nearby.prototype.convertGeosearchToGeoJSON = function ( response ) {
  * @return {L.GeoJSON}
  */
 Nearby.prototype.createNearbyLayer = function ( zoom, geoJSON ) {
+	var self = this;
 	return L.geoJSON( geoJSON, {
 		filter: this.filterDuplicatePoints.bind( this, zoom ),
 		pointToLayer: this.createNearbyMarker
 	} ).bindPopup( function ( layer ) {
-		return this.createPopupHtml(
+		return self.createPopupHtml(
 			layer.feature.properties.title,
 			layer.feature.properties.description,
 			layer.feature.properties.imageUrl
