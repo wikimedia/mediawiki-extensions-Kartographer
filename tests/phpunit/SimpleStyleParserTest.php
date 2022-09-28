@@ -184,7 +184,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 				'{ "b": { "d": "…" } }',
 			],
 			[
-				'{ "properties": { "title": { "en": null } } }',
+				'{ "properties": { "title": { "en": null }, "description": "" } }',
 				'{ "properties": {} }',
 			],
 			[
@@ -192,7 +192,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 				'{ "properties": { "title": "HTML" } }',
 			],
 			[
-				'{ "properties": { "title": { "en": "…", "de": null } } }',
+				'{ "properties": { "title": { "en": "…", "de": null, "fr": "" } } }',
 				'{ "properties": { "title": { "en": "HTML" } } }',
 			],
 			[

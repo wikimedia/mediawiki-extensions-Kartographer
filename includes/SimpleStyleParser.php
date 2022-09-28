@@ -299,7 +299,7 @@ class SimpleStyleParser {
 			$origProp = "_orig$prop";
 			$property = &$properties->$prop;
 
-			if ( is_string( $property ) ) {
+			if ( is_string( $property ) && $property !== '' ) {
 				if ( $saveUnparsed ) {
 					$properties->$origProp = $property;
 				}
@@ -309,7 +309,7 @@ class SimpleStyleParser {
 					$properties->$origProp = (object)[];
 				}
 				foreach ( $property as $language => &$text ) {
-					if ( !is_string( $text ) ) {
+					if ( !is_string( $text ) || $text === '' ) {
 						unset( $property->$language );
 					} else {
 						if ( $saveUnparsed ) {
