@@ -13,7 +13,7 @@
 	"kartographer-attribution-short": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia] | © [https://www.openstreetmap.org/copyright OpenStreetMap]",
 	"kartographer-broken-category": "Strani z zemljevidi z napakami",
 	"kartographer-broken-category-desc": "Stran vključuje neveljavno skladnjo uporabe zemljevida",
-	"kartographer-desc": "Omogoča dodajanje zemljevidov na wikistrani",
+	"kartographer-desc": "Omogoča dodajanje zemljevidov na vikistrani",
 	"kartographer-error-context": "&lt;$1&gt;: $2",
 	"kartographer-error-context-multi": "Problemi z <$1>:\n$2",
 	"kartographer-error-json": "Niza JSON ni mogoče razčleniti: $1",
