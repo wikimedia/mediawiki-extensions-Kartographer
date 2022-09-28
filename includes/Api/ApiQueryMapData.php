@@ -1,6 +1,6 @@
 <?php
 
-namespace Kartographer;
+namespace Kartographer\Api;
 
 use ApiBase;
 use ApiQuery;
@@ -9,6 +9,7 @@ use ExtensionRegistry;
 use FlaggableWikiPage;
 use FlaggedRevs;
 use FormatJson;
+use Kartographer\State;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;

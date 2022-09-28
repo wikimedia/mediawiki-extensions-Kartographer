@@ -9,7 +9,7 @@ use MediaWikiIntegrationTestCase;
 use RequestContext;
 
 /**
- * @covers \Kartographer\ApiSanitizeMapData
+ * @covers \Kartographer\Api\ApiSanitizeMapData
  * @group Kartographer
  */
 class ApiSanitizeMapDataTest extends MediaWikiIntegrationTestCase {

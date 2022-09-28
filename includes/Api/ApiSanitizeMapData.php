@@ -8,11 +8,13 @@
  * @author Max Semenik
  */
 
-namespace Kartographer;
+namespace Kartographer\Api;
 
 use ApiBase;
 use ApiMain;
 use FormatJson;
+use Kartographer\MediaWikiWikitextParser;
+use Kartographer\SimpleStyleParser;
 use Parser;
 use ParserOptions;
 use Title;
