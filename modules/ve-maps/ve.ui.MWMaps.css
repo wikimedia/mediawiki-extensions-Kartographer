@@ -39,6 +39,14 @@
 	margin-right: auto;
 }
 
+.ve-ce-mwMapsNode .thumbcaption > p:first-child {
+	margin-top: 0;
+}
+
+.ve-ce-mwMapsNode .thumbcaption > p:last-child {
+	margin-bottom: 0;
+}
+
 .ve-ui-mwMapsContextItem-nosupport {
 	color: #72777d;
 	font-style: italic;
