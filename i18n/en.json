@@ -119,6 +119,7 @@
 	"visualeditor-mwmapsdialog-options": "Options",
 	"visualeditor-mwmapsdialog-align": "Display",
 	"visualeditor-mwmapsdialog-align-help": "Set the horizontal position of the map on the page. Other page content will only flow around the map if set to right or left, not center.",
+	"visualeditor-mwmapsdialog-frame": "Show frame",
 	"visualeditor-mwmapsdialog-caption": "Caption",
 	"visualeditor-mwmapsdialog-caption-help": "This caption will display below the map in the frame (same as image captions). Adding a caption forces the map to have a frame.\n\nWikitext formatting can be used here, for example for bolding, links, or references.",
 	"visualeditor-mwmapsdialog-geojson": "GeoJSON",

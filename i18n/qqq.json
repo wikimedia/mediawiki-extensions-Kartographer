@@ -127,6 +127,7 @@
 	"visualeditor-mwmapsdialog-options": "Label for a tab in the map editing dialog.",
 	"visualeditor-mwmapsdialog-align": "Label for setting how the map is displayed on the page, i.e. it's vertical alignment.",
 	"visualeditor-mwmapsdialog-align-help": "Longer help text that explains the alignment setting.",
+	"visualeditor-mwmapsdialog-frame": "Label for setting the mapframe's <code>frameless</code> option, i.e. if the map should have a frame similar to the frame thumbnail images have.\n{{Identical|Frame}}",
 	"visualeditor-mwmapsdialog-caption": "Label for setting the map's caption.\n{{Identical|Caption}}",
 	"visualeditor-mwmapsdialog-caption-help": "Help text for the caption.",
 	"visualeditor-mwmapsdialog-geojson": "{{optional}}\nLabel for map GeoJSON data",

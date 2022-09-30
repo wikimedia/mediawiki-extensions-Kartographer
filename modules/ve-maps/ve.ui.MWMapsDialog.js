@@ -153,6 +153,12 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		$overlay: this.$body
 	} );
 
+	this.frame = new OO.ui.ToggleSwitchWidget();
+	this.frameField = new OO.ui.FieldLayout( this.frame, {
+		align: 'left',
+		label: ve.msg( 'visualeditor-mwmapsdialog-frame' )
+	} );
+
 	// get languages and format them for combobox, initialize with the special `local` setting
 	var languages = ve.init.platform.getLanguageCodes()
 		.sort()
@@ -187,6 +193,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	this.optionsPanel.$element.append(
 		this.captionField.$element,
 		this.alignField.$element,
+		this.frameField.$element,
 		this.languageField.$element
 	);
 
@@ -335,6 +342,23 @@ ve.ui.MWMapsDialog.prototype.onIndexLayoutSet = function ( tabPanel ) {
 };
 
 /**
+ * @param {string} value
+ */
+ve.ui.MWMapsDialog.prototype.onCaptionChange = function ( value ) {
+	var canBeFrameless = !value;
+	if ( this.frame.isDisabled() === canBeFrameless ) {
+		var isFramed = true;
+		if ( canBeFrameless ) {
+			// Reset back to the original value before the dialog opened
+			var mwAttrs = this.selectedNode && this.selectedNode.getAttribute( 'mw' ).attrs;
+			isFramed = !( mwAttrs && 'frameless' in mwAttrs );
+		}
+		this.frame.setDisabled( !canBeFrameless ).setValue( isFramed );
+	}
+	this.updateActions();
+};
+
+/**
  * Handle language change events
  *
  * @param {string} lang
@@ -404,6 +428,13 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 		mwData.attrs.width = dimensions.width.toString();
 		mwData.attrs.height = dimensions.height.toString();
 		mwData.attrs.align = this.align.findSelectedItem().getData();
+		// Delete meaningless frameless attribute when there is a text
+		if ( this.frame.getValue() || mwData.attrs.text ) {
+			delete mwData.attrs.frameless;
+		// Keep whatever value was there before to not cause dirty diffs
+		} else if ( !( 'frameless' in mwData.attrs ) ) {
+			mwData.attrs.frameless = '1';
+		}
 	}
 };
 
@@ -428,6 +459,7 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 		.next( function () {
 			var inline = this.selectedNode instanceof ve.dm.MWInlineMapsNode,
 				mwAttrs = this.selectedNode && this.selectedNode.getAttribute( 'mw' ).attrs || {},
+				frameless = 'frameless' in mwAttrs && !mwAttrs.text,
 				mapPosition = this.getInitialMapPosition(),
 				util = require( 'ext.kartographer.util' ),
 				isReadOnly = this.isReadOnly();
@@ -458,8 +490,9 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 				resize: 'updateSize'
 			} );
 
-			this.caption.connect( this, { change: 'updateActions' } );
+			this.caption.connect( this, { change: 'onCaptionChange' } );
 			this.align.connect( this, { choose: 'updateActions' } );
+			this.frame.connect( this, { change: 'updateActions' } );
 			this.language.connect( this, { change: 'onLanguageChange' } );
 
 			// Initial values
@@ -474,6 +507,7 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 			this.caption.setValue( mwAttrs.text || '' );
 			// TODO: Support block/inline conversion
 			this.align.selectItemByData( mwAttrs.align || 'right' ).setDisabled( isReadOnly );
+			this.frame.setValue( !frameless ).setDisabled( isReadOnly || mwAttrs.text );
 			this.language.setValue( mwAttrs.lang || util.getDefaultLanguage() ).setReadOnly( isReadOnly );
 
 			this.updateActions();
@@ -711,6 +745,7 @@ ve.ui.MWMapsDialog.prototype.getTeardownProcess = function ( data ) {
 
 			this.caption.disconnect( this );
 			this.align.disconnect( this );
+			this.frame.disconnect( this );
 			this.language.disconnect( this );
 
 			if ( this.map ) {
