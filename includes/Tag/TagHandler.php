@@ -10,7 +10,6 @@
 namespace Kartographer\Tag;
 
 use Config;
-use Exception;
 use ExtensionRegistry;
 use FormatJson;
 use Html;
@@ -18,6 +17,7 @@ use Kartographer\MediaWikiWikitextParser;
 use Kartographer\SimpleStyleParser;
 use Kartographer\State;
 use Language;
+use LogicException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Parser;
@@ -382,7 +382,6 @@ abstract class TagHandler {
 
 	/**
 	 * @return string
-	 * @throws Exception
 	 */
 	private function reportError(): string {
 		$this->state->setBrokenTags();
@@ -390,7 +389,7 @@ abstract class TagHandler {
 			$this->status->getErrorsByType( 'warning' )
 		);
 		if ( !$errors ) {
-			throw new Exception( __METHOD__ . '(): attempt to report error when none took place' );
+			throw new LogicException( __METHOD__ . '(): attempt to report error when none took place' );
 		}
 
 		if ( count( $errors ) > 1 ) {
