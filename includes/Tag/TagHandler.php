@@ -91,7 +91,7 @@ abstract class TagHandler {
 	/**
 	 * Entry point for all tags
 	 *
-	 * @param string $input
+	 * @param string|null $input
 	 * @param array $args
 	 * @param Parser $parser
 	 * @param PPFrame $frame
@@ -105,7 +105,7 @@ abstract class TagHandler {
 	}
 
 	/**
-	 * @param string $input
+	 * @param string|null $input
 	 * @param array $args
 	 * @param Parser $parser
 	 * @param PPFrame $frame
@@ -149,7 +149,7 @@ abstract class TagHandler {
 	/**
 	 * Parses and sanitizes GeoJSON+simplestyle contained inside of tags
 	 *
-	 * @param string $input
+	 * @param string|null $input
 	 * @param Parser $parser
 	 * @param PPFrame $frame
 	 */
