@@ -8,6 +8,7 @@
 			"Rachmat.Wahidi",
 			"Rachmat04",
 			"Sumbukompor",
+			"Veracious",
 			"William Surya Permana"
 		]
 	},
@@ -16,7 +17,7 @@
 	"kartographer-broken-category": "Halaman dengan peta rusak",
 	"kartographer-broken-category-desc": "Halaman yang menyertakan penggunaan peta yang tidak sah",
 	"kartographer-desc": "Perbolehkan peta untuk ditambahkan pada halaman wiki",
-	"kartographer-error-context-multi": "Masalah <$1>:\n$2",
+	"kartographer-error-context-multi": "Galat <$1>:\n$2",
 	"kartographer-error-json": "Tidak dapat memilah JSON: $1",
 	"kartographer-error-missing-attr": "Atribut \"$1\" hilang",
 	"kartographer-error-bad_attr": "Atribut \"$1\" memiliki nilai yang tak sah",
@@ -91,6 +92,10 @@
 	"kartographer-fullscreen-close": "Tutup",
 	"kartographer-fullscreen-collapse": "Sembunyikan rincian peta",
 	"kartographer-fullscreen-text": "Tampilkan dalam layar penuh",
+	"kartographer-icon-docs-table": "ikon Maki",
+	"kartographer-icon-docs-icon": "Ikon",
+	"kartographer-icon-docs-key": "Nama",
+	"kartographer-icon-docs-help": "Deskripsi",
 	"visualeditor-mwmapsdialog-area": "Area peta",
 	"visualeditor-mwmapsdialog-content": "Isi peta",
 	"visualeditor-mwmapsdialog-options": "Opsi",
