@@ -70,7 +70,7 @@ trait MapLinkTrait {
 	private function extractMarkerCss( Config $configService, ?stdClass $markerProperties ): string {
 		if ( $configService->get( 'KartographerUseMarkerStyle' )
 			&& $markerProperties
-			&& property_exists( $markerProperties, 'marker-color' )
+			&& isset( $markerProperties->{'marker-color'} )
 			// JsonSchema already validates this value for us, however this regex will also fail
 			// if the color is invalid
 			&& preg_match( '/^#?((?:[\da-f]{3}){1,2})$/i', $markerProperties->{'marker-color'}, $m )
