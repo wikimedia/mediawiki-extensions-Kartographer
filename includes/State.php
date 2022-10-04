@@ -224,7 +224,7 @@ class State implements JsonSerializable {
 	 *
 	 * @return self
 	 */
-	public static function newFromJson( array $data ): self {
+	private static function newFromJson( array $data ): self {
 		$status = new self();
 		$status->valid = $data['valid'];
 		$status->broken = $data['broken'];

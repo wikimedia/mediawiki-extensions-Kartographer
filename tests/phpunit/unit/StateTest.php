@@ -5,6 +5,7 @@ namespace Kartographer\UnitTests;
 use Kartographer\State;
 use MediaWikiUnitTestCase;
 use ParserOutput;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \Kartographer\State
@@ -185,7 +186,9 @@ class StateTest extends MediaWikiUnitTestCase {
 		$this->assertIsString( $json );
 		$this->assertIsArray( json_decode( $json, true ) );
 
-		$decoded = State::newFromJson( $jsonData );
+		/** @var State $class */
+		$class = TestingAccessWrapper::newFromClass( State::class );
+		$decoded = $class->newFromJson( $jsonData );
 		$this->assertEquals( $state, $decoded );
 	}
 
