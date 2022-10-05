@@ -4,7 +4,8 @@
 			"Base",
 			"DDPAT",
 			"Ice bulldog",
-			"Ата"
+			"Ата",
+			"Пан Хаунд"
 		]
 	},
 	"kartographer-wv-group": "Група:",
@@ -13,6 +14,6 @@
 	"kartographer-wv-nearby-articles-control": "Оглянути місця неподалік",
 	"kartographer-wv-warning-external-source-title": "Зовнішнє джерело даних",
 	"kartographer-wv-warning-external-source-message": "Цей вміст зберігається на зовнішньму ресурсі, тож його увімкнення призведе до того, що Ваші дані будуть доступні іншим сайтам.",
-	"kartographer-wv-warning-external-source-agree": "Все добре",
+	"kartographer-wv-warning-external-source-agree": "Я розумію",
 	"kartographer-wv-warning-external-source-disagree": "Скасувати"
 }
