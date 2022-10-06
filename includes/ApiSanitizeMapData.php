@@ -76,7 +76,7 @@ class ApiSanitizeMapData extends ApiBase {
 			$error = $status->getHTML( false, false, $this->getLanguage() );
 			$this->getResult()->addValue( null, $this->getModuleName(), [ 'error' => $error ] );
 		} else {
-			$data = $status->getValue();
+			$data = $status->getValue()['data'];
 			SimpleStyleParser::updateMarkerSymbolCounters( $data );
 			$this->getResult()
 				->addValue( null,

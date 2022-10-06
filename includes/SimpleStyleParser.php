@@ -47,11 +47,11 @@ class SimpleStyleParser {
 	 * Parses string into JSON and performs validation/sanitization
 	 *
 	 * @param string|null $input
-	 * @return Status
+	 * @return Status with the value being [ 'data' => stdClass[], 'schema-errors' => array[] ]
 	 */
 	public function parse( $input ): Status {
 		if ( !$input || trim( $input ) === '' ) {
-			return Status::newGood( [] );
+			return Status::newGood( [ 'data' => [] ] );
 		}
 
 		$status = FormatJson::parse( $input, FormatJson::TRY_FIXING | FormatJson::STRIP_COMMENTS );
@@ -162,8 +162,9 @@ class SimpleStyleParser {
 		$validator->check( $data, $schema );
 
 		if ( !$validator->isValid() ) {
+			$errors = $validator->getErrors( Validator::ERROR_DOCUMENT_VALIDATION );
 			$status = Status::newFatal( 'kartographer-error-bad_data' );
-			$status->setResult( false, $validator->getErrors() );
+			$status->setResult( false, [ 'schema-errors' => $errors ] );
 			return $status;
 		}
 
@@ -213,7 +214,7 @@ class SimpleStyleParser {
 		} elseif ( is_object( $json ) && isset( $json->type ) && $json->type === 'ExternalData' ) {
 			$status->merge( $this->normalizeExternalData( $json ) );
 		}
-		$status->value = $json;
+		$status->value = [ 'data' => $json ];
 
 		return $status;
 	}

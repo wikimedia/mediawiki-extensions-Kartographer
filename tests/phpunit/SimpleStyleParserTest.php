@@ -44,7 +44,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $status->isOK(),
 			"Parse is expected to succeed, but encountered '{$status->getMessage()->text()}'"
 		);
-		$this->assertEquals( $expected, $status->getValue(), $message );
+		$this->assertEquals( $expected, $status->getValue()['data'], $message );
 	}
 
 	public function provideExternalData() {
@@ -133,7 +133,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 			$this->assertTrue( $status->hasMessage( $expectedError ), $status );
 		}
 		$this->assertEquals( json_decode( $expected ?? $json ), $data );
-		$this->assertSame( $data, $status->getValue() );
+		$this->assertSame( $data, $status->getValue()['data'] );
 	}
 
 	public function provideDataToNormalizeAndSanitize() {
@@ -319,9 +319,9 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 			"properties": {}
 		} ]' );
 
-		$data = $status->getValue();
-		$this->assertIsObject( $data[0]->properties );
-		$this->assertSame( [], (array)$data[0]->properties );
+		$geoJson = $status->getValue()['data'][0];
+		$this->assertIsObject( $geoJson->properties );
+		$this->assertSame( [], (array)$geoJson->properties );
 	}
 
 }

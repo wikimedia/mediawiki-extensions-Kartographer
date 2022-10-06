@@ -161,7 +161,7 @@ abstract class TagHandler {
 
 		$this->status = $simpleStyle->parse( $input );
 		if ( $this->status->isOK() ) {
-			$this->geometries = $this->status->getValue();
+			$this->geometries = $this->status->getValue()['data'];
 		}
 	}
 
@@ -410,28 +410,23 @@ abstract class TagHandler {
 		}
 		return Html::rawElement( 'div', [ 'class' => 'mw-kartographer-error' ],
 			$msg->inLanguage( $this->getLanguage() )->escaped() .
-			$this->getJSONValidatorLog( $this->status->getValue() )
+			$this->getJSONValidatorLog( $this->status->getValue()['schema-errors'] ?? [] )
 		);
 	}
 
 	/**
-	 * @param array[]|null $errors
+	 * @param array[] $errors
 	 *
 	 * @return string HTML
 	 */
-	private function getJSONValidatorLog( $errors ): string {
-		if ( !is_array( $errors ) || !$errors ) {
+	private function getJSONValidatorLog( array $errors ): string {
+		if ( !$errors ) {
 			return '';
 		}
 
 		$log = "\n";
 		/** These errors come from {@see \JsonSchema\Constraints\BaseConstraint::addError} */
 		foreach ( $errors as $error ) {
-			if ( !is_array( $error ) || !isset( $error['pointer'] ) || !isset( $error['message'] ) ) {
-				// Whoops, this was apparently not an array of errors but an array of GeoJSON objects
-				return '';
-			}
-
 			$log .= Html::element( 'li', [],
 				$error['pointer'] . wfMessage( 'colon-separator' )->text() . $error['message']
 			) . "\n";
