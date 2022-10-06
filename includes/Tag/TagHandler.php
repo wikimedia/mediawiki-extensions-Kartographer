@@ -424,6 +424,11 @@ abstract class TagHandler {
 		$log = "\n";
 		/** These errors come from {@see \JsonSchema\Constraints\BaseConstraint::addError} */
 		foreach ( $errors as $error ) {
+			if ( !is_array( $error ) || !isset( $error['pointer'] ) || !isset( $error['message'] ) ) {
+				// Whoops, this was apparently not an array of errors but an array of GeoJSON objects
+				return '';
+			}
+
 			$log .= Html::element( 'li', [],
 				$error['pointer'] . wfMessage( 'colon-separator' )->text() . $error['message']
 			) . "\n";

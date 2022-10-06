@@ -162,8 +162,8 @@ class SimpleStyleParser {
 		$validator->check( $data, $schema );
 
 		if ( !$validator->isValid() ) {
-			$status = Status::newGood( $validator->getErrors() );
-			$status->fatal( 'kartographer-error-bad_data' );
+			$status = Status::newFatal( 'kartographer-error-bad_data' );
+			$status->setResult( false, $validator->getErrors() );
 			return $status;
 		}
 
