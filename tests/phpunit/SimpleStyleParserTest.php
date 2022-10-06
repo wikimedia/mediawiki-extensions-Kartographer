@@ -2,6 +2,7 @@
 
 namespace Kartographer\Tests;
 
+use JsonConfig\JCMapDataContent;
 use Kartographer\MediaWikiWikitextParser;
 use Kartographer\SimpleStyleParser;
 use Kartographer\WikitextParser;
@@ -19,7 +20,11 @@ use Title;
 class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
-		$this->setMwGlobals( 'wgKartographerMapServer', 'https://maps.wikimedia.org' );
+		$this->setMwGlobals( [
+			'wgJsonConfigModels' => [ 'Map.JsonConfig' => [ 'class' => JCMapDataContent::class ] ],
+			'wgJsonConfigs' => [ 'Map.JsonConfig' => [ 'namespace' => 486, 'nsName' => 'Data' ] ],
+			'wgKartographerMapServer' => 'https://maps.wikimedia.org',
+		] );
 	}
 
 	/**
@@ -109,6 +114,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 	public function testNormalizeAndSanitize(
 		string $json,
 		string $expected = null,
+		string $expectedError = null,
 		string $option = null
 	) {
 		$parser = $this->createMock( WikitextParser::class );
@@ -122,8 +128,12 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 
 		$status = $ssp->normalizeAndSanitize( $data );
 
-		$this->assertTrue( $status->isOK() );
+		$this->assertSame( !$expectedError, $status->isOK() );
+		if ( $expectedError ) {
+			$this->assertTrue( $status->hasMessage( $expectedError ), $status );
+		}
 		$this->assertEquals( json_decode( $expected ?? $json ), $data );
+		$this->assertSame( $data, $status->getValue() );
 	}
 
 	public function provideDataToNormalizeAndSanitize() {
@@ -172,7 +182,27 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 					"url": "https://maps.wikimedia.org/geoshape?getgeojson=1&ids=Q1%2CQ2"
 				}',
 			],
-			// TODO: Cover "service": "page" as well
+			[
+				'{
+					"type": "ExternalData",
+					"service": "page",
+					"title": "Data:Germany.map"
+				}',
+				'{
+					"type": "ExternalData",
+					"service": "page",
+					"url": "/api.php?format=json&formatversion=2&action=jsondata&title=Data%3AGermany.map"
+				}',
+			],
+			[
+				'[ {
+					"type": "ExternalData",
+					"service": "page",
+					"title": ""
+				} ]',
+				null,
+				'kartographer-error-title',
+			],
 
 			// Test cases specifically for SimpleStyleParser::sanitize()
 			[
@@ -198,11 +228,13 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 			[
 				'{ "properties": { "title": "…" } }',
 				'{ "properties": { "title": "HTML", "_origtitle": "…" } }',
+				null,
 				'saveUnparsed'
 			],
 			[
 				'{ "properties": { "title": { "en": "…", "de": null } } }',
 				'{ "properties": { "title": { "en": "HTML" }, "_origtitle": { "en": "…" } } }',
+				null,
 				'saveUnparsed'
 			],
 		];

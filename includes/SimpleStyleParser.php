@@ -208,7 +208,7 @@ class SimpleStyleParser {
 		$status = Status::newGood();
 		if ( is_array( $json ) ) {
 			foreach ( $json as &$element ) {
-				$this->normalize( $element );
+				$status->merge( $this->normalize( $element ) );
 			}
 		} elseif ( is_object( $json ) && isset( $json->type ) && $json->type === 'ExternalData' ) {
 			$status->merge( $this->normalizeExternalData( $json ) );
