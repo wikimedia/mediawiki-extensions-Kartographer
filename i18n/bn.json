@@ -3,7 +3,9 @@
 		"authors": [
 			"Aftabuzzaman",
 			"Bodhisattwa",
-			"আফতাবুজ্জামান"
+			"আফতাবুজ্জামান",
+			"Meghmollar2017",
+			"ZI Jony"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use উইকিমিডিয়া মানচিত্র] | মানচিত্রের উপাত্ত © [https://www.openstreetmap.org/copyright ওপেনস্ট্রীটম্যাপের অবদানকারীগণ]",
@@ -32,6 +34,7 @@
 	"kartographer-linktype-satellite": "উপগ্রহ",
 	"kartographer-linktype-terrain": "ভূখণ্ড",
 	"kartographer-linktype-topo": "টপোগ্রাফিক",
+	"kartographer-link-acme-mapper": "ACME ম্যাপার",
 	"kartographer-link-apple-maps": "অ্যাপল মানচিত্র",
 	"kartographer-link-bing-maps": "বিং মানচিত্র",
 	"kartographer-link-blue-marble-navigator": "ব্লু মার্বেল ন্যাভিগেটর",
