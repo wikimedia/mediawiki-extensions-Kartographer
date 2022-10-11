@@ -34,6 +34,7 @@ class DataModule extends RL\Module {
 			'wgKartographerFallbackZoom' => $config->get( 'KartographerFallbackZoom' ),
 			'wgKartographerSimpleStyleMarkers' => $config->get( 'KartographerSimpleStyleMarkers' ),
 			'wgKartographerNearby' => $this->canUseNearby(),
+			'wgKartographerNearbyClustering' => $config->get( 'KartographerNearbyClustering' ),
 			'wgKartographerWikivoyageNearby' => $config->get( 'KartographerWikivoyageNearby' ),
 		] );
 	}

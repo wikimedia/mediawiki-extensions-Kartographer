@@ -417,6 +417,21 @@
 				"desktop"
 			]
 		},
+		"ext.kartographer.lib.leaflet.markercluster": {
+			"dependencies": [
+				"mapbox"
+			],
+			"scripts": [
+				"lib/external/leaflet.markercluster/leaflet.markercluster-src.js"
+			],
+			"styles": [
+				"lib/external/leaflet.markercluster/MarkerCluster.css",
+				"lib/external/leaflet.markercluster/MarkerCluster.Default.css"
+			],
+			"targets": [
+				"desktop"
+			]
+		},
 		"ext.kartographer.lib.prunecluster": {
 			"dependencies": [
 				"mapbox"
@@ -587,6 +602,10 @@
 		},
 		"KartographerNearby": {
 			"description": "Enable a beta-quality \"nearby\" feature, currently in development.  Wikivoyage already has its own implementation which this feature may conflict with.",
+			"value": false
+		},
+		"KartographerNearbyClustering": {
+			"description": "Feature flag used to enable cluserting in the KartographerNearby feature.",
 			"value": false
 		},
 		"KartographerWikivoyageNearby": {

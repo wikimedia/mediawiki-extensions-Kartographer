@@ -1,13 +1,31 @@
 /**
  * @class
  * @constructor
+ * @param {boolean} [enableClustering]
  * @property {Object} nearbyLayers
  * @property {Object} knownPoints
  */
-function Nearby() {
+function Nearby( enableClustering ) {
 	this.nearbyLayers = {};
 	this.knownPoints = {};
+	if ( enableClustering ) {
+		this.initClusterMarkers();
+	}
 }
+
+/**
+ * @private
+ */
+Nearby.prototype.initClusterMarkers = function () {
+	this.clusterMarkers = L.markerClusterGroup( {
+		spiderfyOnEveryZoom: false,
+		showCoverageOnHover: true,
+		zoomToBoundsOnClick: true,
+		removeOutsideVisibleBounds: true,
+		maxClusterRadius: 80,
+		spiderfyDistanceMultiplier: 1
+	} );
+};
 
 /**
  * @private
@@ -114,9 +132,8 @@ Nearby.prototype.initializeKnownPoints = function ( map ) {
 	this.knownPoints.featureLayer = new Set();
 	map.eachLayer( function ( layer ) {
 		// Note: mapbox does simple checks like this in other places as well
-		if ( layer.getLatLng ) {
-			var latLng = layer.getLatLng();
-			this.knownPoints.featureLayer.add( this.makeHash( [ latLng.lng, latLng.lat ] ) );
+		if ( layer.feature && layer.feature.properties ) {
+			this.knownPoints.featureLayer.add( layer.feature.properties.title );
 		}
 	}.bind( this ) );
 };
@@ -128,32 +145,13 @@ Nearby.prototype.initializeKnownPoints = function ( map ) {
  * @return {boolean}
  */
 Nearby.prototype.filterDuplicatePoints = function ( zoom, geoJSON ) {
-	var hash = this.makeHash( geoJSON.geometry.coordinates );
 	for ( var i in this.knownPoints ) {
-		if ( this.knownPoints[ i ].has( hash ) ) {
+		if ( this.knownPoints[ i ].has( geoJSON.properties.title ) ) {
 			return false;
 		}
 	}
-	this.knownPoints[ zoom ].add( hash );
+	this.knownPoints[ zoom ].add( geoJSON.properties.title );
 	return true;
-};
-
-/**
- * @private
- * @param {number[]} coordinates Longitude, latitude
- * @return {string}
- */
-Nearby.prototype.makeHash = function ( coordinates ) {
-	// Maximum base using 0–9 and a–z as digits
-	var base = 36;
-	// Choosen so that the base-36 representation of [0…360[ is never longer than 5 characters,
-	// i.e. use the full range of what these 5 characters can represent. This corresponds to a
-	// precision of ~0.000006° or ~0.7m.
-	var precision = 167961;
-	/* eslint-disable no-bitwise */
-	return ( ( coordinates[ 0 ] * precision ) | 0 ).toString( base ) + ',' +
-		( ( coordinates[ 1 ] * precision ) | 0 ).toString( base );
-	/* eslint-enable no-bitwise */
 };
 
 /**
@@ -187,13 +185,24 @@ Nearby.prototype.toggleNearbyLayer = function ( map, show ) {
 			moveend: this.onMapMoveOrZoomEnd.bind( this, map ),
 			zoomend: this.onMapMoveOrZoomEnd.bind( this, map )
 		} );
+
+		if ( this.clusterMarkers ) {
+			map.addLayer( this.clusterMarkers );
+		}
 	} else {
 		clearTimeout( this.fetchNearbyTimeout );
 		map.off( 'moveend zoomend' );
 		for ( var i in this.nearbyLayers ) {
-			map.removeLayer( this.nearbyLayers[ i ] );
+			if ( !this.clusterMarkers ) {
+				map.removeLayer( this.nearbyLayers[ i ] );
+			}
 			delete this.nearbyLayers[ i ];
 			delete this.knownPoints[ i ];
+		}
+
+		if ( this.clusterMarkers ) {
+			this.clusterMarkers.clearLayers();
+			map.removeLayer( this.clusterMarkers );
 		}
 	}
 };
@@ -268,7 +277,11 @@ Nearby.prototype.dropForeignNearbyLayers = function ( map ) {
 
 	for ( var i in this.nearbyLayers ) {
 		if ( Math.abs( zoom - i ) > keepDataZoomLimit ) {
-			map.removeLayer( this.nearbyLayers[ i ] );
+			if ( this.clusterMarkers ) {
+				this.clusterMarkers.removeLayers( this.nearbyLayers[ i ].getLayers() );
+			} else {
+				map.removeLayer( this.nearbyLayers[ i ] );
+			}
 			delete this.nearbyLayers[ i ];
 			delete this.knownPoints[ i ];
 		}
@@ -287,9 +300,18 @@ Nearby.prototype.populateNearbyLayer = function ( map, queryApiResponse ) {
 	if ( !this.nearbyLayers[ zoom ] ) {
 		this.knownPoints[ zoom ] = new Set();
 		this.nearbyLayers[ zoom ] = this.createNearbyLayer( zoom, geoJSON );
-		map.addLayer( this.nearbyLayers[ zoom ] );
+		if ( !this.clusterMarkers ) {
+			map.addLayer( this.nearbyLayers[ zoom ] );
+		}
 	} else {
+		if ( this.clusterMarkers ) {
+			this.clusterMarkers.removeLayers( this.nearbyLayers[ zoom ].getLayers() );
+		}
 		this.nearbyLayers[ zoom ].addData( geoJSON );
+	}
+
+	if ( this.clusterMarkers ) {
+		this.clusterMarkers.addLayers( this.nearbyLayers[ zoom ].getLayers() );
 	}
 
 	if ( !this.seenMarkerPaint && mw.eventLog ) {

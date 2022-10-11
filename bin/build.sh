@@ -14,4 +14,9 @@ cp -v node_modules/prunecluster/dist/PruneCluster.js \
     node_modules/prunecluster/dist/LeafletStyleSheet.css \
     lib/external/prunecluster/
 
+cp -v node_modules/leaflet.markercluster/dist/leaflet.markercluster-src.js \
+	node_modules/leaflet.markercluster/dist/MarkerCluster.css \
+	node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css \
+	lib/external/leaflet.markercluster/
+
 node_modules/.bin/rollup --config rollup.config.js

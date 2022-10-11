@@ -141,7 +141,7 @@ MapDialog.prototype.addFooterButton = function () {
 		dialog.mapNearbyButton = new OO.ui.ToggleButtonWidget( {
 			label: mw.msg( 'kartographer-sidebar-nearbybutton' )
 		} );
-		dialog.mapNearbyButton.connect( dialog, { change: 'toggleNearbyLayer' } );
+		dialog.mapNearbyButton.connect( dialog, { change: 'toggleNearbyLayerWrapper' } );
 	}
 
 	if ( !dialog.$captionContainer.length ) {
@@ -207,13 +207,27 @@ MapDialog.prototype.toggleSideBar = function ( open ) {
 /**
  * @param {boolean} showNearby
  */
-MapDialog.prototype.toggleNearbyLayer = function ( showNearby ) {
+MapDialog.prototype.toggleNearbyLayerWrapper = function ( showNearby ) {
+	if ( mw.config.get( 'wgKartographerNearbyClustering' ) ) {
+		mw.loader.using( 'ext.kartographer.lib.leaflet.markercluster' )
+			.then( this.toggleNearbyLayer.bind( this, showNearby, true ) );
+	} else {
+		this.toggleNearbyLayer( showNearby );
+	}
+};
+
+/**
+ * @param {boolean} showNearby
+ * @param {boolean} [enableClustering]
+ */
+MapDialog.prototype.toggleNearbyLayer = function ( showNearby, enableClustering ) {
 	if ( this.map ) {
 		if ( !this.nearby ) {
 			var Nearby = require( './nearby.js' );
-			this.nearby = new Nearby();
+			this.nearby = new Nearby( enableClustering );
 		}
 		this.nearby.toggleNearbyLayer( this.map, showNearby );
+
 		if ( showNearby && !this.seenNearby ) {
 			if ( mw.eventLog ) {
 				mw.eventLog.submit( 'mediawiki.maps_interaction', {
