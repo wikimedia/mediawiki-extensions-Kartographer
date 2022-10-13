@@ -4,5 +4,6 @@
 			"Omarov M."
 		]
 	},
+	"kartographer-tracking-category": "Картабигун {{#switch:{{NAMESPACE}}|{{ns:File}}=файлал|#default=гьумерал}}",
 	"kartographer-sidebar-nearbybutton": "Бищун гӀагардасел макъалаби рихьизаризе"
 }
