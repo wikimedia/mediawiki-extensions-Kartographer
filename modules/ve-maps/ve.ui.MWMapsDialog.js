@@ -143,9 +143,25 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		label: ve.msg( 'visualeditor-mwmapsdialog-align' )
 	} );
 
-	this.language = new ve.ui.LanguageInputWidget( {
-		classes: [ 've-ui-mwMapsDialog-languageInput' ],
-		dirInput: 'none'
+	// get languages and format them for combobox
+	var languages = [];
+	var languageCodes = ve.init.platform.getLanguageCodes().sort();
+
+	for ( var i = 0, l = languageCodes.length; i < l; i++ ) {
+		var languageCode = languageCodes[ i ];
+		languages.push(
+			{
+				data: languageCode,
+				label: ve.init.platform.getLanguageName( languageCode ) + ' (' + languageCode + ')'
+			}
+		);
+	}
+
+	this.language = new OO.ui.ComboBoxInputWidget( {
+		options: languages,
+		menu: {
+			filterFromInput: true
+		}
 	} );
 	this.languageField = new OO.ui.FieldLayout( this.language, {
 		align: 'top',
@@ -351,7 +367,7 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 	var latitude = this.latitude.getValue(),
 		longitude = this.longitude.getValue(),
 		zoom = this.zoom.getValue(),
-		lang = this.language.getLang(),
+		lang = this.language.getValue(),
 		util = require( 'ext.kartographer.util' ),
 		dimensions = this.scalable.getBoundedDimensions(
 			this.dimensions.getDimensions()
@@ -433,7 +449,7 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 
 			// TODO: Support block/inline conversion
 			this.align.selectItemByData( mwAttrs.align || 'right' ).setDisabled( isReadOnly );
-			this.language.setLangAndDir( mwAttrs.lang || util.getDefaultLanguage() ).setReadOnly( isReadOnly );
+			this.language.setValue( mwAttrs.lang || util.getDefaultLanguage() ).setReadOnly( isReadOnly );
 
 			this.updateActions();
 		}, this );
