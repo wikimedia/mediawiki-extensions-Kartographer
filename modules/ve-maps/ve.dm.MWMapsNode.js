@@ -5,7 +5,7 @@
  */
 
 /**
- * DataModel MW Maps node.
+ * DataModel node for a <mapframe> extension tag.
  *
  * @class
  * @extends ve.dm.MWBlockExtensionNode

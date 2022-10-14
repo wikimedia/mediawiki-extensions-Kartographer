@@ -119,7 +119,8 @@ ve.ce.MWMapsNode.prototype.update = function () {
 			left: 'floatleft',
 			center: 'center',
 			right: 'floatright'
-		};
+		},
+		frameless = 'frameless' in mwAttrs && !mwAttrs.text;
 
 	if ( requiresInteractive ) {
 		if ( !this.map && this.getRoot() ) {
@@ -176,9 +177,11 @@ ve.ce.MWMapsNode.prototype.update = function () {
 		}
 	}
 
+	this.$thumbinner.remove();
 	// Classes documented in removeClass
 	// eslint-disable-next-line mediawiki/class-doc
 	this.$element
+		.append( frameless ? this.$map : this.$thumbinner.prepend( this.$map ) )
 		.removeClass( 'floatleft center floatright' )
 		.addClass( alignClasses[ align ] );
 	this.$map

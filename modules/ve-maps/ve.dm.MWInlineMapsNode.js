@@ -5,7 +5,7 @@
  */
 
 /**
- * DataModel MW Maps node.
+ * DataModel node for an inline, text-only <maplink> extension tag.
  *
  * @class
  * @extends ve.dm.MWInlineExtensionNode
