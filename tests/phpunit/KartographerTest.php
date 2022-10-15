@@ -3,7 +3,6 @@ namespace Kartographer\Tests;
 
 use ExtensionRegistry;
 use Kartographer\State;
-use MediaWiki\MediaWikiServices;
 use MediaWikiLangTestCase;
 use ParserOptions;
 use ParserOutput;
@@ -372,7 +371,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 	 * @return ParserOutput
 	 */
 	private function parse( $text, callable $optionsCallback = null ) {
-		$parser = MediaWikiServices::getInstance()->getParserFactory()->create();
+		$parser = $this->getServiceContainer()->getParserFactory()->create();
 		$options = ParserOptions::newFromAnon();
 		if ( $optionsCallback ) {
 			$optionsCallback( $options );
