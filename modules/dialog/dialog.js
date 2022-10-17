@@ -96,10 +96,6 @@ MapDialog.prototype.setMap = function ( map ) {
 	if ( dialog.isOpened() ) {
 		mw.hook( 'wikipage.maps' ).fire( dialog.map, true /* isFullScreen */ );
 	}
-
-	dialog.map.$container.append(
-		$( '<div>' ).addClass( 'mw-kartographer-mapDialog-focusBox' )
-	);
 };
 
 MapDialog.prototype.addFooterButton = function () {
