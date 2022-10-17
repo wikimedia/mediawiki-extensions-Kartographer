@@ -59,23 +59,6 @@
 	}
 }
 
-.mw-kartographer-mapDialog-focusBox {
-	display: none;
-	position: absolute;
-	margin: auto;
-	max-width: 256px;
-	max-height: 256px;
-	top: 20px;
-	right: 20px;
-	bottom: 20px;
-	left: 20px;
-	border: #36c 2px solid;
-	border-radius: 2px;
-	pointer-events: none;
-	z-index: 1;
-	aspect-ratio: 1;
-}
-
 .mw-kartographer-mapDialog-map {
 	position: absolute;
 	top: 0;
@@ -83,10 +66,6 @@
 	left: 0;
 	right: 0;
 	z-index: 1;
-
-	&:focus .mw-kartographer-mapDialog-focusBox {
-		display: block;
-	}
 
 	.leaflet-right.leaflet-top,
 	.leaflet-right.leaflet-bottom {
