@@ -21,6 +21,7 @@
 			"Туллук"
 		]
 	},
+	"apierror-kartographer-conflicting-revids": "Запрос картографических данных из нескольких версий одной и той же страницы в одном запросе пока не поддерживается.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use карты Викимедиа] | данные © [https://www.openstreetmap.org/copyright участники OpenStreetMap]",
 	"kartographer-broken-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Файлы|#default=Страницы}} с некорректными картами",
 	"kartographer-broken-category-desc": "Эта страница содержит недопустимое использование карты",
@@ -52,6 +53,7 @@
 	"kartographer-sidebar-latitude": "Широта",
 	"kartographer-sidebar-longitude": "Долгота",
 	"kartographer-sidebar-mapdetails": "Внешние карты",
+	"kartographer-sidebar-nearbybutton": "Показать статьи поблизости",
 	"kartographer-sidebar-service": "Служба",
 	"kartographer-sidebar-togglebutton": "Внешние карты",
 	"leafletdraw-draw-handlers-circle-radius": "Радиус",

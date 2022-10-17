@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amadalvarez",
 			"Amire80",
 			"Fitoschido",
 			"Jmarchn",
@@ -15,6 +16,8 @@
 	"kartographer-desc": "Permet afegir mapes en pàgines wiki",
 	"kartographer-error-context-multi": "Problemes amb <$1>:\n$2",
 	"kartographer-error-json": "No s'ha pogut analitzar el JSON: $1",
+	"kartographer-error-json-object": "El contingut ha de ser un objecte GeoJSON+simplestyle vàlid o una matriu d'aquests objectes.",
+	"kartographer-error-json-type": "Cada objecte GeoJSON+simplestyle ha de tenir un tipus no buit, per exemple <code>{ \"type\": \"Feature\" }</code> .",
 	"kartographer-error-missing-attr": "Falta l'atribut «$1»",
 	"kartographer-error-bad_attr": "L'atribut «$1» té un valor no vàlid",
 	"kartographer-error-bad_data": "El contingut JSON no és vàlid per GeoJSON+simplestyle. El primer error de validació és a l'element \"$1\": \"$2\".",
@@ -32,9 +35,11 @@
 	"kartographer-sidebar-coordinates": "Coordenades",
 	"kartographer-sidebar-filterdropdown": "Seleccioneu un tipus de mapa",
 	"kartographer-sidebar-externalservices": "Serveis de mapes",
+	"kartographer-sidebar-externalservices-show-all": "Mostra'n més",
 	"kartographer-sidebar-latitude": "Latitud",
 	"kartographer-sidebar-longitude": "Longitud",
 	"kartographer-sidebar-mapdetails": "Mapes externs",
+	"kartographer-sidebar-nearbybutton": "Mostra llocs propers",
 	"kartographer-sidebar-service": "Servei",
 	"kartographer-sidebar-togglebutton": "Mapes externs",
 	"leafletdraw-draw-handlers-circle-radius": "Radi",
@@ -78,6 +83,8 @@
 	"mapbox-control-zoomout-title": "Allunya",
 	"kartographer-fullscreen-close": "Tanca",
 	"kartographer-fullscreen-text": "Mostra a pantalla completa",
+	"kartographer-icon-docs-key": "Nom",
+	"kartographer-icon-docs-help": "Descripció",
 	"visualeditor-mwmapsdialog-area": "Àrea del mapa",
 	"visualeditor-mwmapsdialog-content": "Continguts del mapa",
 	"visualeditor-mwmapsdialog-options": "Opcions",
@@ -88,5 +95,7 @@
 	"visualeditor-mwmapsdialog-position-lon": "Longitud",
 	"visualeditor-mwmapsdialog-position-zoom": "Zoom",
 	"visualeditor-mwmapsdialog-size": "Mida",
-	"visualeditor-mwmapsdialog-title": "Mapa"
+	"visualeditor-mwmapsdialog-title": "Mapa",
+	"visualeditor-mwmapscontextitem-nosupport": "Aquest mapa conté característiques dinàmiques i, de moment, només es pot editar en mode font.",
+	"visualeditor-mwmapscontextitem-title": "Mapa"
 }
