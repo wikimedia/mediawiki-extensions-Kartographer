@@ -73,6 +73,28 @@ MapDialog.prototype.setMap = function ( map ) {
 		dialog.map.$container.css( 'position', '' )
 	);
 
+	var $focusBox = $( '<div>' )
+		.addClass( 'mw-kartographer-mapDialog-focusBox' );
+
+	// Add focus frame and hide on mouse but show on keyboard navigation
+	dialog.map.$container
+		.append( $focusBox )
+		.on( 'mousedown', function () {
+			$focusBox.css( 'display', 'none' );
+		} )
+		.on( 'mouseup', function () {
+			// Keep focus in container to allow keyboard navigation
+			dialog.map.$container.trigger( 'focus' );
+		} )
+		.on( 'keydown', function ( e ) {
+			if ( e.which === OO.ui.Keys.TAB ||
+				e.which === OO.ui.Keys.UP || e.which === OO.ui.Keys.DOWN ||
+				e.which === OO.ui.Keys.LEFT || e.which === OO.ui.Keys.RIGHT
+			) {
+				$focusBox.removeAttr( 'style' );
+			}
+		} );
+
 	dialog.$captionContainer
 		.text( dialog.map.captionText );
 
