@@ -135,6 +135,14 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	);
 
 	// Options panel
+	this.caption = new ve.ui.WhitespacePreservingTextInputWidget( {
+		autosize: true
+	} );
+	this.captionField = new OO.ui.FieldLayout( this.caption, {
+		align: 'top',
+		label: ve.msg( 'visualeditor-mwmapsdialog-caption' )
+	} );
+
 	this.align = new ve.ui.AlignWidget( {
 		dir: this.getDir()
 	} );
@@ -153,6 +161,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	} );
 
 	this.optionsPanel.$element.append(
+		this.captionField.$element,
 		this.alignField.$element,
 		this.languageField.$element
 	);
@@ -352,6 +361,7 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 		longitude = this.longitude.getValue(),
 		zoom = this.zoom.getValue(),
 		lang = this.language.getLang(),
+		caption = this.caption.getValueAndWhitespace(),
 		util = require( 'ext.kartographer.util' ),
 		dimensions = this.scalable.getBoundedDimensions(
 			this.dimensions.getDimensions()
@@ -361,6 +371,7 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 	mwData.attrs.longitude = longitude.toString();
 	mwData.attrs.zoom = zoom.toString();
 	mwData.attrs.lang = ( lang && lang !== util.getDefaultLanguage() ) ? lang : undefined;
+	mwData.attrs.text = caption.toString();
 	if ( !( this.selectedNode instanceof ve.dm.MWInlineMapsNode ) ) {
 		mwData.attrs.width = dimensions.width.toString();
 		mwData.attrs.height = dimensions.height.toString();
@@ -421,6 +432,7 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 
 			this.align.connect( this, { choose: 'updateActions' } );
 			this.language.connect( this, { change: 'onLanguageChange' } );
+			this.caption.connect( this, { change: 'updateActions' } );
 
 			// Initial values
 			this.dimensionsField.toggle( !inline );
@@ -434,6 +446,7 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 			// TODO: Support block/inline conversion
 			this.align.selectItemByData( mwAttrs.align || 'right' ).setDisabled( isReadOnly );
 			this.language.setLangAndDir( mwAttrs.lang || util.getDefaultLanguage() ).setReadOnly( isReadOnly );
+			this.caption.setValue( mwAttrs.text );
 
 			this.updateActions();
 		}, this );

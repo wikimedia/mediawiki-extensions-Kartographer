@@ -125,6 +125,7 @@
 	"visualeditor-mwmapsdialog-content": "Label for a tab in the map editing dialog.\n\nMap 'contents' refers to the various features that can be drawn on top of the map, like markers and lines.",
 	"visualeditor-mwmapsdialog-options": "Label for a tab in the map editing dialog.",
 	"visualeditor-mwmapsdialog-align": "Label for setting the map's alignment\n{{Identical|Alignment}}",
+	"visualeditor-mwmapsdialog-caption": "Label for setting the map's caption\n{{Identical|Caption}}",
 	"visualeditor-mwmapsdialog-geojson": "{{optional}}\nLabel for map GeoJSON data",
 	"visualeditor-mwmapsdialog-language": "Label for setting the map's language\n{{Identical|Language}}",
 	"visualeditor-mwmapsdialog-help-title": "Title for the help button",
