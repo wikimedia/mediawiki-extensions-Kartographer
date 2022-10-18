@@ -23,6 +23,10 @@ function WVMap( map ) {
  * @return {Kartographer.Wikivoyage.ControlNearby}
  */
 WVMap.prototype.nearby = function () {
+	if ( mw.config.get( 'wgKartographerWikivoyageNearby' ) === false ) {
+		return;
+	}
+
 	var control = this._controlNearby;
 	if ( control ) {
 		return control;
