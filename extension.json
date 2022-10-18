@@ -38,7 +38,7 @@
 	},
 	"APIModules": {
 		"sanitize-mapdata": {
-			"class": "Kartographer\\ApiSanitizeMapData",
+			"class": "Kartographer\\Api\\ApiSanitizeMapData",
 			"services": [
 				"Parser"
 			]
@@ -46,7 +46,7 @@
 	},
 	"APIPropModules": {
 		"mapdata": {
-			"class": "Kartographer\\ApiQueryMapData",
+			"class": "Kartographer\\Api\\ApiQueryMapData",
 			"services": [
 				"WikiPageFactory"
 			]

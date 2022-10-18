@@ -17,7 +17,7 @@ use WikitextContent;
  * @group API
  * @group Database
  * @group medium
- * @covers \Kartographer\ApiQueryMapData
+ * @covers \Kartographer\Api\ApiQueryMapData
  */
 class ApiQueryMapDataTest extends ApiTestCase {
 
