@@ -5,7 +5,10 @@
 			"Maksim L.",
 			"Chadyka",
 			"No Sleep till Krupki",
-			"Amire80"
+			"Amire80",
+			"Plaga med",
+			"Tomato Cream",
+			"Tīgelika"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Мапы Вікімэдыі] | Звесткі мапаў © [https://www.openstreetmap.org/copyright Аўтары OpenStreetMap]",
@@ -32,7 +35,7 @@
 	"kartographer-sidebar-filterdropdown": "Выберыце тып мапы",
 	"kartographer-sidebar-externalservices": "Сэрвісы мапаў",
 	"kartographer-sidebar-externalservices-show-featured": "Паказваць толькі выдатныя",
-	"kartographer-sidebar-externalservices-show-all": "Глядзець больш",
+	"kartographer-sidebar-externalservices-show-all": "Праглядзець больш",
 	"kartographer-sidebar-latitude": "Шырата",
 	"kartographer-sidebar-longitude": "Даўгата",
 	"kartographer-sidebar-mapdetails": "Вонкавыя мапы",

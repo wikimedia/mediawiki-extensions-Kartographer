@@ -5,7 +5,9 @@
 			"Jmarchn",
 			"Macofe",
 			"Ssola",
-			"Vriullop"
+			"Vriullop",
+			"Amadalvarez",
+			"Amire80"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Mapes Wikimedia] | Mapatge © [https://www.openstreetmap.org/copyright OpenStreetMap - col·laboradors]",
@@ -31,6 +33,7 @@
 	"kartographer-sidebar-coordinates": "Coordenades",
 	"kartographer-sidebar-filterdropdown": "Seleccioneu un tipus de mapa",
 	"kartographer-sidebar-externalservices": "Serveis de mapes",
+	"kartographer-sidebar-externalservices-show-all": "Mostra'n més",
 	"kartographer-sidebar-latitude": "Latitud",
 	"kartographer-sidebar-longitude": "Longitud",
 	"kartographer-sidebar-mapdetails": "Mapes externs",
@@ -87,5 +90,7 @@
 	"visualeditor-mwmapsdialog-position-lon": "Longitud",
 	"visualeditor-mwmapsdialog-position-zoom": "Zoom",
 	"visualeditor-mwmapsdialog-size": "Mida",
-	"visualeditor-mwmapsdialog-title": "Mapa"
+	"visualeditor-mwmapsdialog-title": "Mapa",
+	"visualeditor-mwmapscontextitem-nosupport": "Aquest mapa conté característiques dinàmiques i, de moment, només es pot editar en mode font.",
+	"visualeditor-mwmapscontextitem-title": "Mapa"
 }
