@@ -17,7 +17,6 @@
 ve.ce.MWMapsNode = function VeCeMWMaps( model, config ) {
 	this.$map = $( '<div>' ).addClass( 'mw-kartographer-map' );
 	this.$thumbinner = $( '<div>' ).addClass( 'thumbinner' );
-	this.$caption = $( '<div>' ).addClass( 'thumbcaption' );
 
 	// Parent constructor
 	ve.ce.MWMapsNode.super.apply( this, arguments );
@@ -39,13 +38,18 @@ ve.ce.MWMapsNode = function VeCeMWMaps( model, config ) {
 	// Ensure we have the styles to render the map node
 	mw.loader.load( 'ext.kartographer' );
 
+	// HACK: Copy caption from originalDomElements
+	var store = this.model.doc.getStore(),
+		contents = store.value( store.hashOfValue( null, OO.getHash( [ this.model.getHashObjectForRendering(), null ] ) ) ),
+		$caption = $( contents ).find( '.thumbcaption' ).clone();
+
 	// DOM changes
 	this.$element
 		.empty()
 		.addClass( 've-ce-mwMapsNode mw-kartographer-container thumb' )
 		.append(
 			this.$thumbinner.append(
-				this.$map, this.$caption
+				this.$map, $caption
 			)
 		);
 };
@@ -104,8 +108,6 @@ ve.ce.MWMapsNode.prototype.onSetup = function () {
 /**
  * Update the map rendering
  */
-// TODO: investigate if this is connected to the superclass
-//  or a different function name would be better
 ve.ce.MWMapsNode.prototype.update = function () {
 	var requiresInteractive = this.requiresInteractive(),
 		align = ve.getProp( this.model.getAttribute( 'mw' ), 'attrs', 'align' ) ||
@@ -115,14 +117,6 @@ ve.ce.MWMapsNode.prototype.update = function () {
 			center: 'center',
 			right: 'floatright'
 		};
-
-	var captionWikitext = ve.getProp( this.model.getAttribute( 'mw' ), 'attrs', 'text' );
-	var $caption = this.$caption;
-
-	new mw.Api().parse( captionWikitext )
-		.done( function ( parsedCaption ) {
-			$caption.html( parsedCaption );
-		} );
 
 	if ( requiresInteractive ) {
 		if ( !this.map && this.getRoot() ) {
@@ -180,8 +174,7 @@ ve.ce.MWMapsNode.prototype.setupMap = function () {
 		container: this.$map[ 0 ],
 		center: [ +mwAttrs.latitude, +mwAttrs.longitude ],
 		zoom: +mwAttrs.zoom,
-		lang: mwAttrs.lang || util.getDefaultLanguage(),
-		caption: mwAttrs.text
+		lang: mwAttrs.lang || util.getDefaultLanguage()
 		// TODO: Support style editing
 	} );
 	this.map.on( 'layeradd', this.updateMapPosition, this );
