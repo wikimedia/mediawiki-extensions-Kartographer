@@ -140,7 +140,8 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	} );
 	this.alignField = new OO.ui.FieldLayout( this.align, {
 		align: 'top',
-		label: ve.msg( 'visualeditor-mwmapsdialog-align' )
+		label: ve.msg( 'visualeditor-mwmapsdialog-align' ),
+		help: ve.msg( 'visualeditor-mwmapsdialog-align-help' )
 	} );
 
 	this.language = new ve.ui.LanguageInputWidget( {
@@ -149,7 +150,8 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	} );
 	this.languageField = new OO.ui.FieldLayout( this.language, {
 		align: 'top',
-		label: ve.msg( 'visualeditor-mwmapsdialog-language' )
+		label: ve.msg( 'visualeditor-mwmapsdialog-language' ),
+		help: new OO.ui.HtmlSnippet( mw.message( 'visualeditor-mwmapsdialog-language-help' ).parse() )
 	} );
 
 	this.optionsPanel.$element.append(
