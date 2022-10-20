@@ -5,7 +5,10 @@
 			"Artsiom91",
 			"Chadyka",
 			"Maksim L.",
-			"No Sleep till Krupki"
+			"No Sleep till Krupki",
+			"Plaga med",
+			"Tomato Cream",
+			"Tīgelika"
 		]
 	},
 	"apierror-kartographer-conflicting-revids": "Запыт дадзеных мапы з некалькіх версій адной і той жа старонкі ў адным запыце пакуль не падтрымліваецца.",
@@ -33,7 +36,7 @@
 	"kartographer-sidebar-filterdropdown": "Выберыце тып мапы",
 	"kartographer-sidebar-externalservices": "Сэрвісы мапаў",
 	"kartographer-sidebar-externalservices-show-featured": "Паказваць толькі выдатныя",
-	"kartographer-sidebar-externalservices-show-all": "Глядзець больш",
+	"kartographer-sidebar-externalservices-show-all": "Праглядзець больш",
 	"kartographer-sidebar-latitude": "Шырата",
 	"kartographer-sidebar-longitude": "Даўгата",
 	"kartographer-sidebar-mapdetails": "Вонкавыя мапы",
