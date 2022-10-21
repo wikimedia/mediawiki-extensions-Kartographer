@@ -6,6 +6,11 @@
 */
 @sidebarWidth: 320px;
 
+.mw-kartographer-mapDialog-body.mw-kartographer-mapDialog-body {
+	// Ensure that offscreen sidebar doesn't add scrollbars
+	overflow: hidden;
+}
+
 /* Dialog footer */
 .mw-kartographer-mapDialog-foot {
 	/*
@@ -56,6 +61,14 @@
 	/* For MobileFrontend */
 	.skin-minerva & h2 {
 		margin-bottom: 0.6em;
+	}
+
+	/*
+		When hidden aria hidden takes effect, truly hide the sidebar,
+		instead of just translating it off screen.
+	*/
+	&[ aria-hidden='true' ] {
+		display: none;
 	}
 }
 
