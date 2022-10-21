@@ -22,8 +22,9 @@ var CloseFullScreenControl = L.Control.extend( {
 		var container = L.DomUtil.create( 'div', 'leaflet-bar' ),
 			link = L.DomUtil.create( 'a', 'oo-ui-icon-close', container );
 
-		link.href = '';
 		link.title = mw.msg( 'kartographer-fullscreen-close' );
+		link.role = 'button';
+		link.tabIndex = '0';
 
 		L.DomEvent.addListener( link, 'click', this.closeFullScreen, this );
 		L.DomEvent.disableClickPropagation( container );
