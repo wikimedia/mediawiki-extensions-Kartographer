@@ -55,6 +55,7 @@
 	"kartographer-link-wikiminiatlas": "WikiMiniAtlas",
 	"kartographer-link-yandex-maps": "Yandex.Maps",
 	"kartographer-sidebar-coordinates": "Coordinates",
+	"kartographer-sidebar-close-button": "Close external maps panel",
 	"kartographer-sidebar-filterdropdown": "Select a map type",
 	"kartographer-sidebar-externalservices": "Map services",
 	"kartographer-sidebar-externalservices-show-featured": "View featured only",
