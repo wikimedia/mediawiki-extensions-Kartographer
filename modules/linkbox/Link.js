@@ -90,12 +90,6 @@ Link.prototype.openFullScreen = function ( position ) {
 	position.zoom = typeof position.zoom === 'number' ? position.zoom : link.zoom;
 
 	/* eslint-disable no-underscore-dangle */
-	if ( map && map._updatingHash ) {
-		// Skip - there is nothing to do.
-		delete map._updatingHash;
-		return;
-	}
-
 	if ( map && map._container._leaflet_id ) {
 		map.setView(
 			position.center,

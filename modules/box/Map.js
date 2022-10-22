@@ -514,10 +514,6 @@ KartographerMap = L.Map.extend( {
 					this._initialPosition.zoom,
 					false
 				);
-			} else if ( map._updatingHash ) {
-				// Skip - there is nothing to do.
-				delete map._updatingHash;
-				return;
 			} else {
 				this.doWhenReady( function () {
 					map.setView(

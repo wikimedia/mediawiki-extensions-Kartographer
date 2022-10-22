@@ -8,7 +8,6 @@
  * @extends OO.ui.Dialog
  */
 var CloseFullScreenControl = require( './closefullscreen_control.js' ),
-	router = require( 'mediawiki.router' ),
 	// Opens the sidebar when the screen is wide enough (greater than 1024px)
 	FOOTER_HEIGHT = 63,
 	SIDEBAR_WIDTH = 320;
@@ -268,38 +267,6 @@ MapDialog.prototype.offsetMap = function ( isSidebarOpen ) {
 
 	map.setView( targetLatLng, map.getZoom() );
 };
-
-/**
- * Tells the router to navigate to the current full screen map route.
- */
-MapDialog.prototype.updateHash = function () {
-	var hash = this.map.getHash();
-
-	// Avoid extra operations
-	if ( this.lastHash !== hash ) {
-		// eslint-disable-next-line no-underscore-dangle
-		this.map._updatingHash = true;
-		router.navigate( hash );
-		this.lastHash = hash;
-	}
-};
-
-/**
- * Listens to `moveend` event and calls {@link #updateHash}.
- *
- * This method is throttled, meaning the method will be called at most once per
- * every 250 milliseconds.
- */
-MapDialog.prototype.onMapMove = OO.ui.throttle( function () {
-	// Stop listening to `moveend` event while we're
-	// manually moving the map (updating from a hash),
-	// or if the map is not yet loaded.
-	// eslint-disable-next-line no-underscore-dangle
-	if ( this.movingMap || !this.map || !this.map._loaded ) {
-		return false;
-	}
-	this.updateHash();
-}, 250 );
 
 MapDialog.prototype.getSetupProcess = function ( options ) {
 	return MapDialog.super.prototype.getSetupProcess.call( this, options )
