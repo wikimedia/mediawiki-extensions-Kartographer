@@ -23,6 +23,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 			'wgJsonConfigModels' => [ 'Map.JsonConfig' => [ 'class' => JCMapDataContent::class ] ],
 			'wgJsonConfigs' => [ 'Map.JsonConfig' => [ 'namespace' => 486, 'nsName' => 'Data' ] ],
 			'wgKartographerMapServer' => 'https://maps.wikimedia.org',
+			'wgScriptPath' => '',
 		] );
 	}
 
