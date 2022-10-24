@@ -4,5 +4,5 @@
 			"Omarov M."
 		]
 	},
-	"kartographer-tracking-category": "Картабигун {{#switch:{{NAMESPACE}}|{{ns:File}}=файлал|#default=гьумерал}}"
+	"kartographer-tracking-category": "Картабигун гьумерал"
 }
