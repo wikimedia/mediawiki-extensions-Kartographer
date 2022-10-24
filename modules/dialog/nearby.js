@@ -212,6 +212,10 @@ Nearby.prototype.toggleNearbyLayer = function ( map, show ) {
  * @param {L.Map} map
  */
 Nearby.prototype.onMapMoveOrZoomEnd = function ( map ) {
+	// FIXME: Debounce through a library like $.debounce.  We don't want to
+	// always wait 500ms from the last action: if user interaction happens at
+	// T+0ms and T+499ms, we want to update the points 1ms later at T+500ms, not
+	// at T+999ms.
 	clearTimeout( this.fetchNearbyTimeout );
 	this.dropForeignNearbyLayers( map );
 	this.fetchNearbyTimeout = setTimeout( this.fetchAndPopulateNearbyLayer.bind( this, map ), 500 );
