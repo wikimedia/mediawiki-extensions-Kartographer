@@ -3,11 +3,11 @@
  * @constructor
  * @param {boolean} [enableClustering]
  * @property {Object} nearbyLayers
- * @property {Object} knownPoints
+ * @property {Object} knownTitles
  */
 function Nearby( enableClustering ) {
 	this.nearbyLayers = {};
-	this.knownPoints = {};
+	this.knownTitles = {};
 	if ( enableClustering ) {
 		this.initClusterMarkers();
 	}
@@ -128,11 +128,11 @@ Nearby.prototype.createPopupHtml = function ( title, description, thumbnail ) {
  * @param {L.Map} map
  */
 Nearby.prototype.initializeKnownPoints = function ( map ) {
-	this.knownPoints.featureLayer = new Set();
+	this.knownTitles.featureLayer = new Set();
 	map.eachLayer( function ( layer ) {
 		// Note: mapbox does simple checks like this in other places as well
 		if ( layer.feature && layer.feature.properties ) {
-			this.knownPoints.featureLayer.add( layer.feature.properties.title );
+			this.knownTitles.featureLayer.add( layer.feature.properties.title );
 		}
 	}.bind( this ) );
 };
@@ -144,12 +144,12 @@ Nearby.prototype.initializeKnownPoints = function ( map ) {
  * @return {boolean}
  */
 Nearby.prototype.filterDuplicatePoints = function ( zoom, geoJSON ) {
-	for ( var i in this.knownPoints ) {
-		if ( this.knownPoints[ i ].has( geoJSON.properties.title ) ) {
+	for ( var i in this.knownTitles ) {
+		if ( this.knownTitles[ i ].has( geoJSON.properties.title ) ) {
 			return false;
 		}
 	}
-	this.knownPoints[ zoom ].add( geoJSON.properties.title );
+	this.knownTitles[ zoom ].add( geoJSON.properties.title );
 	return true;
 };
 
@@ -196,7 +196,7 @@ Nearby.prototype.toggleNearbyLayer = function ( map, show ) {
 				map.removeLayer( this.nearbyLayers[ i ] );
 			}
 			delete this.nearbyLayers[ i ];
-			delete this.knownPoints[ i ];
+			delete this.knownTitles[ i ];
 		}
 
 		if ( this.clusterMarkers ) {
@@ -286,7 +286,7 @@ Nearby.prototype.dropForeignNearbyLayers = function ( map ) {
 				map.removeLayer( this.nearbyLayers[ i ] );
 			}
 			delete this.nearbyLayers[ i ];
-			delete this.knownPoints[ i ];
+			delete this.knownTitles[ i ];
 		}
 	}
 };
@@ -301,7 +301,7 @@ Nearby.prototype.populateNearbyLayer = function ( map, queryApiResponse ) {
 	var geoJSON = this.convertGeosearchToGeoJSON( queryApiResponse );
 
 	if ( !this.nearbyLayers[ zoom ] ) {
-		this.knownPoints[ zoom ] = new Set();
+		this.knownTitles[ zoom ] = new Set();
 		this.nearbyLayers[ zoom ] = this.createNearbyLayer( zoom, geoJSON );
 		if ( !this.clusterMarkers ) {
 			map.addLayer( this.nearbyLayers[ zoom ] );
