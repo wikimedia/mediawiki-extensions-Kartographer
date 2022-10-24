@@ -12,6 +12,8 @@
 var wikivoyage = require( './wikivoyage.js' ),
 	NearbyArticles = require( './NearbyArticles.js' ),
 	pruneClusterLib = require( 'ext.kartographer.lib.prunecluster' ),
+	PruneCluster = pruneClusterLib.PruneCluster,
+	PruneClusterForLeaflet = pruneClusterLib.PruneClusterForLeaflet,
 	articlePath = mw.config.get( 'wgArticlePath' ),
 	ControlNearby;
 
@@ -62,7 +64,7 @@ function createPopupHtml( wgPageName, thumbnail ) {
  * @return {PruneCluster.Marker}
  */
 function createMarker( latitude, longitude, wgArticle, thumbnail ) {
-	return new pruneClusterLib.PruneCluster.Marker(
+	return new PruneCluster.Marker(
 		latitude,
 		longitude,
 		{
@@ -84,7 +86,7 @@ ControlNearby = L.Control.extend( {
 	onAdd: function ( map ) {
 		var container = L.DomUtil.create( 'div', 'leaflet-bar' ),
 			link = L.DomUtil.create( 'a', 'mw-kartographer-icon-nearby', container ),
-			pruneCluster = new pruneClusterLib.PruneClusterForLeaflet( 70 );
+			pruneCluster = new PruneClusterForLeaflet( 70 );
 
 		link.href = '#';
 		link.title = mw.msg( 'kartographer-wv-nearby-articles-control' );
