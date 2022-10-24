@@ -8,7 +8,8 @@
 	],
 	"globals": {
 		"L": "readonly",
-		"Kartographer": "readonly"
+		"Kartographer": "readonly",
+		"Set": "readonly"
 	},
 	"rules": {
 		"max-len": "off",

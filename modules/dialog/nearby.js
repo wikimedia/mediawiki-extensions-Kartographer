@@ -128,7 +128,6 @@ Nearby.prototype.createPopupHtml = function ( title, description, thumbnail ) {
  * @param {L.Map} map
  */
 Nearby.prototype.initializeKnownPoints = function ( map ) {
-	/* global Set */
 	this.knownPoints.featureLayer = new Set();
 	map.eachLayer( function ( layer ) {
 		// Note: mapbox does simple checks like this in other places as well
