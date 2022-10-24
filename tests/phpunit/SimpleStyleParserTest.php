@@ -110,6 +110,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideDataToNormalizeAndSanitize
+	 * phpcs:disable Squiz.WhiteSpace.FunctionSpacing.BeforeFirst
 	 */
 	public function testNormalizeAndSanitize(
 		string $json,
@@ -117,8 +118,11 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 		string $expectedError = null,
 		string $option = null
 	) {
-		$parser = $this->createMock( WikitextParser::class );
-		$parser->method( 'parseWikitext' )->willReturn( 'HTML' );
+		$parser = new class implements WikitextParser {
+			public function parseWikitext( string $wikiText ): string {
+				return 'HTML';
+			}
+		};
 		$ssp = new SimpleStyleParser( $parser, [ $option => true ] );
 		$data = json_decode( $json );
 

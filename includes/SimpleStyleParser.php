@@ -13,11 +13,12 @@ use Status;
 use stdClass;
 
 /**
- * Parses and sanitizes text properties of GeoJSON/simplestyle by putting them through parser
+ * Parses and sanitizes text properties of GeoJSON/simplestyle by putting them through the MediaWiki
+ * wikitext parser.
  */
 class SimpleStyleParser {
 
-	private const PARSED_PROPS = [ 'title', 'description' ];
+	private const WIKITEXT_PROPERTIES = [ 'title', 'description' ];
 
 	/** @var MediaWikiWikitextParser */
 	private $parser;
@@ -72,7 +73,7 @@ class SimpleStyleParser {
 		if ( !is_array( $data ) ) {
 			$data = [ $data ];
 		}
-		$status = $this->validateContent( $data );
+		$status = $this->validateGeoJSON( $data );
 		if ( $status->isOK() ) {
 			$status = $this->normalizeAndSanitize( $data );
 		}
@@ -80,14 +81,12 @@ class SimpleStyleParser {
 	}
 
 	/**
-	 * Normalize an object
-	 *
 	 * @param stdClass[]|stdClass &$data
 	 * @return Status
 	 */
 	public function normalizeAndSanitize( &$data ): Status {
-		$status = $this->normalize( $data );
-		$this->sanitize( $data );
+		$status = $this->recursivelyNormalizeExternalData( $data );
+		$this->recursivelySanitizeAndParseWikitext( $data );
 		return $status;
 	}
 
@@ -147,7 +146,9 @@ class SimpleStyleParser {
 	 * @param stdClass[] $data
 	 * @return Status
 	 */
-	private function validateContent( array $data ): Status {
+	private function validateGeoJSON( array $data ): Status {
+		// Basic top-level validation. The JSON schema validation below does this again, but gives
+		// terrible, very hard to understand error messages.
 		foreach ( $data as $geoJSON ) {
 			if ( !( $geoJSON instanceof stdClass ) ) {
 				return Status::newFatal( 'kartographer-error-json-object' );
@@ -178,10 +179,10 @@ class SimpleStyleParser {
 	 *
 	 * @param stdClass[]|stdClass &$json
 	 */
-	protected function sanitize( &$json ) {
+	private function recursivelySanitizeAndParseWikitext( &$json ) {
 		if ( is_array( $json ) ) {
 			foreach ( $json as &$element ) {
-				$this->sanitize( $element );
+				$this->recursivelySanitizeAndParseWikitext( $element );
 			}
 		} elseif ( is_object( $json ) ) {
 			foreach ( array_keys( get_object_vars( $json ) ) as $prop ) {
@@ -189,30 +190,28 @@ class SimpleStyleParser {
 				if ( str_starts_with( $prop, '_' ) ) {
 					unset( $json->$prop );
 				} else {
-					$this->sanitize( $json->$prop );
+					$this->recursivelySanitizeAndParseWikitext( $json->$prop );
 				}
 			}
 
 			if ( isset( $json->properties ) && is_object( $json->properties ) ) {
-				$this->sanitizeProperties( $json->properties );
+				$this->parseWikitextProperties( $json->properties );
 			}
 		}
 	}
 
 	/**
-	 * Normalizes JSON
-	 *
 	 * @param stdClass[]|stdClass &$json
 	 * @return Status
 	 */
-	protected function normalize( &$json ): Status {
+	private function recursivelyNormalizeExternalData( &$json ): Status {
 		$status = Status::newGood();
 		if ( is_array( $json ) ) {
 			foreach ( $json as &$element ) {
-				$status->merge( $this->normalize( $element ) );
+				$status->merge( $this->recursivelyNormalizeExternalData( $element ) );
 			}
 		} elseif ( is_object( $json ) && isset( $json->type ) && $json->type === 'ExternalData' ) {
-			$status->merge( $this->normalizeExternalData( $json ) );
+			$status->merge( $this->normalizeExternalDataServices( $json ) );
 		}
 		$status->value = [ 'data' => $json ];
 
@@ -225,7 +224,7 @@ class SimpleStyleParser {
 	 * @param stdClass &$object
 	 * @return Status
 	 */
-	private function normalizeExternalData( &$object ): Status {
+	private function normalizeExternalDataServices( &$object ): Status {
 		$service = $object->service ?? null;
 		$ret = (object)[
 			'type' => 'ExternalData',
@@ -281,16 +280,14 @@ class SimpleStyleParser {
 	}
 
 	/**
-	 * Sanitizes properties
-	 *
 	 * HACK: this function supports JsonConfig-style localization that doesn't pass validation
 	 *
 	 * @param stdClass $properties
 	 */
-	private function sanitizeProperties( $properties ) {
+	private function parseWikitextProperties( $properties ) {
 		$saveUnparsed = $this->options['saveUnparsed'] ?? false;
 
-		foreach ( self::PARSED_PROPS as $prop ) {
+		foreach ( self::WIKITEXT_PROPERTIES as $prop ) {
 			if ( !property_exists( $properties, $prop ) ) {
 				continue;
 			}
