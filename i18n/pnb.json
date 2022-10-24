@@ -1,11 +1,22 @@
 {
 	"@metadata": {
 		"authors": [
-			"Abbas dhothar"
+			"Abbas dhothar",
+			"Bgo eiu"
 		]
 	},
+	"apierror-kartographer-conflicting-revids": "حالاں اِک صفحے تے کئی ریویژن توں نقشے دے ڈیٹے لئی پرشان کر نہیں سکدے۔",
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use وِکیمیڈیا نقشے] | نقشے دا ڈیٹا © [https://www.openstreetmap.org/copyright اوپن‌سٹریٹ‌میپ دے لیکھک]",
+	"kartographer-attribution-short": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use وِکیمیڈیا] | © [https://www.openstreetmap.org/copyright اوپن‌سٹریٹ‌میپ]",
+	"kartographer-error-context-multi": "$1 نال مسئلے:\n$2",
+	"kartographer-tracking-category": "نقشیاں نال صفحے",
+	"kartographer-tracking-category-desc": "ایہہ صفحے تے نقشہ ویکھدا اے",
+	"kartographer-linktype-aerial": "ہوائی",
+	"kartographer-linktype-map": "معیاری نقشے",
+	"kartographer-linktype-other": "ہور",
 	"kartographer-sidebar-externalservices-show-all": "ہور دیکھو",
 	"leafletdraw-draw-toolbar-actions-text": "رد کرو",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "منسوخ کرو",
+	"leafletdraw-edit-toolbar-actions-save-text": "سامبھو",
 	"visualeditor-mwmapsdialog-language": "بولی"
 }
