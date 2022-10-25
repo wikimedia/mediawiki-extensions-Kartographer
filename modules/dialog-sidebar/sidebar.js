@@ -166,7 +166,9 @@ SideBar.prototype.renderMapDetails = function () {
 		this.closeButton = new OO.ui.ButtonWidget( {
 			framed: false,
 			classes: [ 'mw-kartographer-mapdetails-title-arrow' ],
-			icon: 'next'
+			icon: 'next',
+			invisibleLabel: true,
+			label: mw.msg( 'kartographer-sidebar-close-button' )
 		} );
 
 		// Event
