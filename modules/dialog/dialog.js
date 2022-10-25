@@ -39,6 +39,7 @@ MapDialog.prototype.initialize = function () {
 	MapDialog.super.prototype.initialize.apply( this, arguments );
 
 	this.$body
+		.addClass( 'mw-kartographer-mapDialog-body' )
 		.append( $( '<div>' ).addClass( 'kartographer-mapDialog-loading' ) );
 	this.$foot
 		.addClass( 'mw-kartographer-mapDialog-foot' );
@@ -196,9 +197,14 @@ MapDialog.prototype.toggleSideBar = function ( open ) {
 			return;
 		}
 
-		// dialog.sideBar.toggle( open );
+		// Animations only work if content is visible
+		dialog.sideBar.$el.attr( 'aria-hidden', null );
 		setTimeout( function () {
 			dialog.$body.toggleClass( 'mw-kartographer-mapDialog-sidebar-opened', open );
+			setTimeout( function () {
+				// Ensure proper hidden content after animation finishes
+				dialog.sideBar.$el.attr( 'aria-hidden', !open );
+			}, 100 /* Duration of the CSS animation */ );
 		} );
 	} );
 };
