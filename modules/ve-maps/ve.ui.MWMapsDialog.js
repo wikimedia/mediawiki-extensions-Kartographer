@@ -141,7 +141,8 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	this.alignField = new OO.ui.FieldLayout( this.align, {
 		align: 'top',
 		label: ve.msg( 'visualeditor-mwmapsdialog-align' ),
-		help: ve.msg( 'visualeditor-mwmapsdialog-align-help' )
+		help: ve.msg( 'visualeditor-mwmapsdialog-align-help' ),
+		$overlay: this.$body
 	} );
 
 	// get languages and format them for combobox
@@ -167,7 +168,9 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	this.languageField = new OO.ui.FieldLayout( this.language, {
 		align: 'top',
 		label: ve.msg( 'visualeditor-mwmapsdialog-language' ),
-		help: new OO.ui.HtmlSnippet( mw.message( 'visualeditor-mwmapsdialog-language-help' ).parse() )
+		help: new OO.ui.HtmlSnippet( mw.message( 'visualeditor-mwmapsdialog-language-help' ).parse() ),
+		// Allow the help popup to cover the entire dialog, not only the IndexLayout at the bottom
+		$overlay: this.$body
 	} );
 
 	this.optionsPanel.$element.append(
