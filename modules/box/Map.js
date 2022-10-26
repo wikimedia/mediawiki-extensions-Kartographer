@@ -715,13 +715,14 @@ KartographerMap = L.Map.extend( {
 	 *
 	 * @param {number} lat
 	 * @param {number} lng
-	 * @param {number} [zoom]
+	 * @param {number} [zoom] Typically ranging from 0 (entire world) to 19 (nearest)
 	 * @return {string[]}
 	 */
 	getScaleLatLng: function ( lat, lng, zoom ) {
 		zoom = zoom === undefined ? this.getZoom() : zoom;
 
-		var precision = zoom ? Math.ceil( Math.log( zoom ) / Math.LN2 ) : 0;
+		// T321603: It appears like zoom can be a bogus fractional value for unknown reasons
+		var precision = zoom > 1 ? Math.ceil( Math.log( zoom ) / Math.LN2 ) : 0;
 		return [ lat.toFixed( precision ), lng.toFixed( precision ) ];
 	},
 
