@@ -145,8 +145,11 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		$overlay: this.$body
 	} );
 
-	// get languages and format them for combobox
-	var languages = [];
+	// get languages and format them for combobox, initialize with the special `local` setting
+	var languages = [ {
+		data: 'local',
+		label: ve.msg( 'visualeditor-mwmapsdialog-language-local' )
+	} ];
 	var languageCodes = ve.init.platform.getLanguageCodes().sort();
 
 	for ( var i = 0, l = languageCodes.length; i < l; i++ ) {

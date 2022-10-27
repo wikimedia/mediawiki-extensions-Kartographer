@@ -130,6 +130,7 @@
 	"visualeditor-mwmapsdialog-geojson": "{{optional}}\nLabel for map GeoJSON data",
 	"visualeditor-mwmapsdialog-language": "Label for setting the map's language\n{{Identical|Language}}",
 	"visualeditor-mwmapsdialog-language-help": "Longer help text that explains the language setting.",
+	"visualeditor-mwmapsdialog-language-local": "Label for the <code>local</code> setting in the language setting selection.",
 	"visualeditor-mwmapsdialog-help-title": "Title for the help button",
 	"visualeditor-mwmapsdialog-position-lat": "Label for latitude within current position popup\n{{Identical|Latitude}}",
 	"visualeditor-mwmapsdialog-position-lon": "Label for longitude within current position popup\n{{Identical|Longitude}}",
