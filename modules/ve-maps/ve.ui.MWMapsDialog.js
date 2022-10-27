@@ -234,7 +234,8 @@ ve.ui.MWMapsDialog.prototype.updateMapArea = function () {
 	}
 
 	dimensions = this.dimensions.getDimensions();
-	centerCoord = [ this.latitude.getValue(), this.longitude.getValue() ];
+	// The user input might be non-numeric, still try to visualize if possible
+	centerCoord = [ parseFloat( this.latitude.getValue() ), parseFloat( this.longitude.getValue() ) ];
 	zoom = this.zoom.getValue();
 
 	centerPoint = this.map.project( centerCoord, zoom );
@@ -625,23 +626,23 @@ ve.ui.MWMapsDialog.prototype.getInitialMapPosition = function () {
 		mwAttrs = mwData && mwData.attrs;
 
 	if ( mwAttrs && mwAttrs.zoom ) {
-		latitude = +mwAttrs.latitude;
-		longitude = +mwAttrs.longitude;
-		zoom = +mwAttrs.zoom;
+		// The wikitext might contain non-numeric user input, still try to visualize if possible
+		latitude = parseFloat( mwAttrs.latitude );
+		longitude = parseFloat( mwAttrs.longitude );
+		zoom = parseInt( mwAttrs.zoom );
 	} else if ( pageCoords ) {
 		// Use page coordinates if Extension:GeoData is available
 		latitude = pageCoords.lat;
 		longitude = pageCoords.lon;
 		zoom = 5;
-	} else if ( !mwAttrs || !mwAttrs.extsrc ) {
-		latitude = 30;
-		longitude = 0;
-		zoom = 2;
 	}
 
 	return {
-		center: [ latitude, longitude ],
-		zoom: zoom
+		center: [
+			isFinite( latitude ) ? latitude : 30,
+			isFinite( longitude ) ? longitude : 0
+		],
+		zoom: isFinite( zoom ) ? zoom : 2
 	};
 };
 
