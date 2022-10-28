@@ -154,21 +154,21 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	} );
 
 	// get languages and format them for combobox, initialize with the special `local` setting
-	var languages = [ {
+	var languages = ve.init.platform.getLanguageCodes()
+		.sort()
+		.map( function ( languageCode ) {
+			return {
+				data: languageCode,
+				label: ve.msg( 'visualeditor-mwmapsdialog-language-option',
+					ve.init.platform.getLanguageName( languageCode ),
+					languageCode
+				)
+			};
+		} );
+	languages.unshift( {
 		data: 'local',
 		label: ve.msg( 'visualeditor-mwmapsdialog-language-local' )
-	} ];
-	var languageCodes = ve.init.platform.getLanguageCodes().sort();
-
-	for ( var i = 0, l = languageCodes.length; i < l; i++ ) {
-		var languageCode = languageCodes[ i ];
-		languages.push(
-			{
-				data: languageCode,
-				label: ve.init.platform.getLanguageName( languageCode ) + ' (' + languageCode + ')'
-			}
-		);
-	}
+	} );
 
 	this.language = new OO.ui.ComboBoxInputWidget( {
 		options: languages,
