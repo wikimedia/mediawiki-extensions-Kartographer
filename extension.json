@@ -383,6 +383,7 @@
 				"modules/ve-maps/ve.ce.MWInlineMapsNode.js",
 				"modules/ve-maps/ve.dm.MWMapsNode.js",
 				"modules/ve-maps/ve.ce.MWMapsNode.js",
+				"modules/ve-maps/ve.ui.MWMapsCaptionInputWidget.js",
 				"modules/ve-maps/ve.ui.MWMapsContextItem.js",
 				"modules/ve-maps/ve.ui.MWMapsDialog.js",
 				"modules/ve-maps/ve.ui.MWMapsTool.js"
@@ -398,6 +399,8 @@
 				"visualeditor-mwmapsdialog-options",
 				"visualeditor-mwmapsdialog-align",
 				"visualeditor-mwmapsdialog-align-help",
+				"visualeditor-mwmapsdialog-caption",
+				"visualeditor-mwmapsdialog-caption-help",
 				"visualeditor-mwmapsdialog-geojson",
 				"visualeditor-mwmapsdialog-language",
 				"visualeditor-mwmapsdialog-language-help",

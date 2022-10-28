@@ -119,6 +119,8 @@
 	"visualeditor-mwmapsdialog-options": "Options",
 	"visualeditor-mwmapsdialog-align": "Display",
 	"visualeditor-mwmapsdialog-align-help": "Set the horizontal position of the map on the page. Other page content will only flow around the map if set to right or left, not center.",
+	"visualeditor-mwmapsdialog-caption": "Caption",
+	"visualeditor-mwmapsdialog-caption-help": "This caption will display below the map in the frame (same as image captions). Adding a caption forces the map to have a frame.\n\nWikitext formatting can be used here, for example for bolding, links, or references.",
 	"visualeditor-mwmapsdialog-geojson": "GeoJSON",
 	"visualeditor-mwmapsdialog-language": "Language",
 	"visualeditor-mwmapsdialog-language-help": "Kartographer uses the content language of the wiki as the default for label language. This can be changed with this setting for just this map.\n\nUse <code>local</code> instead of a language name to show all labels in the language local to that location. For example, city names in Mexico would be displayed in Spanish, while city names in Japan would be displayed in Japanese.\n\nWhen labels are not available in the language chosen, Kartographer follows a fallback process. For more information on how this works see [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Extension:Kartographer#Languages_and_fallbacks the Kartographer help page].",

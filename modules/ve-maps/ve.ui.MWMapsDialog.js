@@ -135,6 +135,14 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	);
 
 	// Options panel
+	this.caption = new ve.ui.MWMapsCaptionInputWidget();
+	this.captionField = new OO.ui.FieldLayout( this.caption, {
+		align: 'top',
+		label: ve.msg( 'visualeditor-mwmapsdialog-caption' ),
+		help: ve.msg( 'visualeditor-mwmapsdialog-caption-help' ),
+		$overlay: this.$body
+	} );
+
 	this.align = new ve.ui.AlignWidget( {
 		dir: this.getDir()
 	} );
@@ -177,6 +185,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	} );
 
 	this.optionsPanel.$element.append(
+		this.captionField.$element,
 		this.alignField.$element,
 		this.languageField.$element
 	);
@@ -375,6 +384,7 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 	var latitude = this.latitude.getValue(),
 		longitude = this.longitude.getValue(),
 		zoom = this.zoom.getValue(),
+		caption = this.caption.getValue(),
 		lang = this.language.getValue(),
 		util = require( 'ext.kartographer.util' ),
 		dimensions = this.scalable.getBoundedDimensions(
@@ -384,6 +394,11 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 	mwData.attrs.latitude = latitude.toString();
 	mwData.attrs.longitude = longitude.toString();
 	mwData.attrs.zoom = zoom.toString();
+	if ( caption ) {
+		mwData.attrs.text = caption;
+	} else if ( mwData.attrs.text ) {
+		delete mwData.attrs.text;
+	}
 	mwData.attrs.lang = ( lang && lang !== util.getDefaultLanguage() ) ? lang : undefined;
 	if ( !( this.selectedNode instanceof ve.dm.MWInlineMapsNode ) ) {
 		mwData.attrs.width = dimensions.width.toString();
@@ -443,6 +458,7 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 				resize: 'updateSize'
 			} );
 
+			this.caption.connect( this, { change: 'updateActions' } );
 			this.align.connect( this, { choose: 'updateActions' } );
 			this.language.connect( this, { change: 'onLanguageChange' } );
 
@@ -455,6 +471,7 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 			this.zoom.setValue( String( mapPosition.zoom ) ).setReadOnly( isReadOnly );
 			this.dimensions.setDimensions( this.scalable.getCurrentDimensions() ).setReadOnly( isReadOnly );
 
+			this.caption.setValue( mwAttrs.text || '' );
 			// TODO: Support block/inline conversion
 			this.align.selectItemByData( mwAttrs.align || 'right' ).setDisabled( isReadOnly );
 			this.language.setValue( mwAttrs.lang || util.getDefaultLanguage() ).setReadOnly( isReadOnly );
@@ -692,6 +709,7 @@ ve.ui.MWMapsDialog.prototype.getTeardownProcess = function ( data ) {
 
 			this.input.disconnect( this );
 
+			this.caption.disconnect( this );
 			this.align.disconnect( this );
 			this.language.disconnect( this );
 

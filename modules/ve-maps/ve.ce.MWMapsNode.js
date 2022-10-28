@@ -18,6 +18,13 @@ ve.ce.MWMapsNode = function VeCeMWMaps( model, config ) {
 	this.$map = $( '<div>' ).addClass( 'mw-kartographer-map' );
 	this.$thumbinner = $( '<div>' ).addClass( 'thumbinner' );
 
+	// HACK: Copy caption from originalDomElements
+	var store = model.doc.getStore(),
+		contents = store.value( store.hashOfValue( null, OO.getHash( [ model.getHashObjectForRendering(), null ] ) ) ),
+		$caption = $( contents ).find( '.thumbcaption' );
+	this.$caption = $caption.length ? $caption.clone() : $( '<div>' ).addClass( 'thumbcaption' );
+	this.previewedCaption = model.getAttribute( 'mw' ).attrs.text;
+
 	// Parent constructor
 	ve.ce.MWMapsNode.super.apply( this, arguments );
 
@@ -38,18 +45,13 @@ ve.ce.MWMapsNode = function VeCeMWMaps( model, config ) {
 	// Ensure we have the styles to render the map node
 	mw.loader.load( 'ext.kartographer' );
 
-	// HACK: Copy caption from originalDomElements
-	var store = this.model.doc.getStore(),
-		contents = store.value( store.hashOfValue( null, OO.getHash( [ this.model.getHashObjectForRendering(), null ] ) ) ),
-		$caption = $( contents ).find( '.thumbcaption' ).clone();
-
 	// DOM changes
 	this.$element
 		.empty()
 		.addClass( 've-ce-mwMapsNode mw-kartographer-container thumb' )
 		.append(
 			this.$thumbinner.append(
-				this.$map, $caption
+				this.$map, this.$caption
 			)
 		);
 };
@@ -110,7 +112,8 @@ ve.ce.MWMapsNode.prototype.onSetup = function () {
  */
 ve.ce.MWMapsNode.prototype.update = function () {
 	var requiresInteractive = this.requiresInteractive(),
-		align = ve.getProp( this.model.getAttribute( 'mw' ), 'attrs', 'align' ) ||
+		mwAttrs = this.model.getAttribute( 'mw' ).attrs,
+		align = mwAttrs.align ||
 			( this.model.doc.getDir() === 'ltr' ? 'right' : 'left' ),
 		alignClasses = {
 			left: 'floatleft',
@@ -150,6 +153,29 @@ ve.ce.MWMapsNode.prototype.update = function () {
 			this.showHandles( [ 'sw', 'se' ] );
 			break;
 	}
+
+	if ( mwAttrs.text !== this.previewedCaption ) {
+		this.previewedCaption = mwAttrs.text;
+		// Same basic sanitization as in Sanitizer::decodeTagAttributes()
+		var caption = ( mwAttrs.text || '' ).trim().replace( /\s+/g, ' ' );
+		if ( !caption ) {
+			this.$caption.empty();
+		} else {
+			var $caption = this.$caption;
+			new mw.Api()
+				.parse( caption, {
+					// Minimize the JSON we get back
+					prop: 'text',
+					wrapoutputclass: '',
+					disablelimitreport: 1,
+					disabletoc: 1
+				} )
+				.done( function ( html ) {
+					$caption.html( html );
+				} );
+		}
+	}
+
 	// Classes documented in removeClass
 	// eslint-disable-next-line mediawiki/class-doc
 	this.$element
@@ -174,6 +200,7 @@ ve.ce.MWMapsNode.prototype.setupMap = function () {
 		container: this.$map[ 0 ],
 		center: [ +mwAttrs.latitude, +mwAttrs.longitude ],
 		zoom: +mwAttrs.zoom,
+		captionText: mwAttrs.text,
 		lang: mwAttrs.lang || util.getDefaultLanguage()
 		// TODO: Support style editing
 	} );
