@@ -146,10 +146,10 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	this.align = new ve.ui.AlignWidget( {
 		dir: this.getDir()
 	} );
-	this.alignField = new OO.ui.FieldLayout( this.align, {
+	this.displayField = new OO.ui.FieldLayout( this.align, {
 		align: 'top',
-		label: ve.msg( 'visualeditor-mwmapsdialog-align' ),
-		help: ve.msg( 'visualeditor-mwmapsdialog-align-help' ),
+		label: ve.msg( 'visualeditor-mwmapsdialog-display' ),
+		help: ve.msg( 'visualeditor-mwmapsdialog-display-help' ),
 		$overlay: this.$body
 	} );
 
@@ -192,7 +192,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 
 	this.optionsPanel.$element.append(
 		this.captionField.$element,
-		this.alignField.$element,
+		this.displayField.$element,
 		this.frameField.$element,
 		this.languageField.$element
 	);
@@ -498,7 +498,7 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 
 			// Initial values
 			this.dimensionsField.toggle( !inline );
-			this.alignField.toggle( !inline );
+			this.displayField.toggle( !inline );
 
 			this.latitude.setValue( String( mapPosition.center[ 0 ] ) ).setReadOnly( isReadOnly );
 			this.longitude.setValue( String( mapPosition.center[ 1 ] ) ).setReadOnly( isReadOnly );
