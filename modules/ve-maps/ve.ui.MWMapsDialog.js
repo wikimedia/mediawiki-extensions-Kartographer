@@ -75,7 +75,8 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	} );
 	this.optionsPanel = new OO.ui.TabPanelLayout( 'options', {
 		expanded: false,
-		label: ve.msg( 'visualeditor-mwmapsdialog-options' )
+		label: ve.msg( 'visualeditor-mwmapsdialog-options' ),
+		classes: [ 've-ui-mwMapsDialog-optionsPanel' ]
 	} );
 
 	// Map area panel
@@ -155,8 +156,8 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 
 	this.frame = new OO.ui.ToggleSwitchWidget();
 	this.frameField = new OO.ui.FieldLayout( this.frame, {
-		align: 'left',
-		label: ve.msg( 'visualeditor-mwmapsdialog-frame' )
+		label: ve.msg( 'visualeditor-mwmapsdialog-frame' ),
+		classes: [ 've-ui-mwMapsDialog-frameField' ]
 	} );
 
 	// get languages and format them for combobox, initialize with the special `local` setting

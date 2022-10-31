@@ -24,6 +24,19 @@
 	min-height: 210px;
 }
 
+.ve-ui-mwMapsDialog-optionsPanel .oo-ui-fieldLayout-header {
+	font-weight: bold;
+}
+
+.ve-ui-mwMapsDialog-frameField.oo-ui-fieldLayout.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
+	flex-grow: 0;
+	font-weight: normal;
+}
+
+.ve-ui-mwMapsDialog-frameField.oo-ui-fieldLayout.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header > .oo-ui-labelElement-label {
+	margin-right: 1em;
+}
+
 .ve-ui-mwMapsDialog-help {
 	position: absolute;
 	top: 0.714285em;
