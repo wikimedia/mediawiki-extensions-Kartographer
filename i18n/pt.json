@@ -101,6 +101,7 @@
 	"visualeditor-mwmapsdialog-content": "Conteúdo do mapa",
 	"visualeditor-mwmapsdialog-options": "Opções",
 	"visualeditor-mwmapsdialog-display": "Apresentação",
+	"visualeditor-mwmapsdialog-display-help": "Definir a posição horizontal do mapa na página. O restante conteúdo da página só fluirá em redor do mapa se a posição for definida como direita ou esquerda, não como centro.\n\nDesativar a moldura causa que o mapa embebido seja desenhado sem a moldura (borda), de forma semelhante às imagens sem moldura. Esta opção é desativada se o mapa tiver uma legenda.",
 	"visualeditor-mwmapsdialog-frame": "Mostrar moldura",
 	"visualeditor-mwmapsdialog-caption": "Legenda",
 	"visualeditor-mwmapsdialog-caption-help": "Esta legenda será apresentada abaixo do mapa na moldura (tal como as legendas das imagens). Adicionar uma legenda força o mapa a ter uma moldura.\n\nA formatação de texto wiki pode ser usada aqui, por exemplo, para criar negrito, hiperligações ou referências.",

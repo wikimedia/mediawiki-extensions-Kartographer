@@ -122,6 +122,7 @@
 	"visualeditor-mwmapsdialog-content": "Vsebina zemljevida",
 	"visualeditor-mwmapsdialog-options": "Možnosti",
 	"visualeditor-mwmapsdialog-display": "Prikaz",
+	"visualeditor-mwmapsdialog-display-help": "Nastavite vodoravni položaj zemljevida na strani. Druga vsebina strani bo potekala okoli zemljevida le, če je nastavljena desno ali levo, ne na sredino.\n\nIzklop okvirja povzroči, da bo vdelani zemljevid narisan brez okvirja (obrobe), podobno kot pri slikah brez okvirja. Ta možnost je onemogočena, če ima zemljevid napis.",
 	"visualeditor-mwmapsdialog-frame": "Prikaži okvir",
 	"visualeditor-mwmapsdialog-caption": "Napis",
 	"visualeditor-mwmapsdialog-caption-help": "Ta napis bo prikazan pod zemljevidom v okvirju (enako kot napisi slik). Če dodate napis, mora imeti zemljevid okvir.\n\nTu lahko uporabite oblikovanje vikibesedila, na primer za krepko pisavo, povezave ali reference.",

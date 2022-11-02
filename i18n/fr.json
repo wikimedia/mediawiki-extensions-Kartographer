@@ -131,6 +131,7 @@
 	"visualeditor-mwmapsdialog-content": "Contenu de la carte",
 	"visualeditor-mwmapsdialog-options": "Options",
 	"visualeditor-mwmapsdialog-display": "Affichage",
+	"visualeditor-mwmapsdialog-display-help": "Définissez la position horizontale de la carte sur la page. Le reste du contenu de la page ne se placera autour de la carte que s’il est défini à droite ou à gauche, et non au centre.\n\nLa désactivation du cadre entraîne l’affichage de la carte intégrée sans cadre (bordure), comme pour les images sans cadre. Cette option est désactivée si la carte a une légende.",
 	"visualeditor-mwmapsdialog-frame": "Afficher le cadre",
 	"visualeditor-mwmapsdialog-caption": "Légende",
 	"visualeditor-mwmapsdialog-caption-help": "Cette légende s’affichera sous la carte dans le cadre (identique aux légendes des images). L’ajout d’une légende force la carte à avoir un cadre.\n\nLe formatage du wikicode peut être utilisé ici, par exemple pour mettre en gras, ou ajouter des liens et des références.",

@@ -104,6 +104,8 @@
 	"visualeditor-mwmapsdialog-content": "Содржина на картата",
 	"visualeditor-mwmapsdialog-options": "Поставки",
 	"visualeditor-mwmapsdialog-display": "Приказ",
+	"visualeditor-mwmapsdialog-display-help": "Задајте ја хоризонталната положба на картата. Останатата содржина ќе оди околу картата само ако таа е поставена десно или лево, но не и по средината.\n\nИсклучувањето на рамката предизвикува вметнатата карта да се исцрта без рамка (граничник), слично како сликите без рамки. Оваа можност е исклучена ако картата има опис.",
+	"visualeditor-mwmapsdialog-frame": "Прикажи рамка",
 	"visualeditor-mwmapsdialog-caption": "Опис",
 	"visualeditor-mwmapsdialog-caption-help": "Овој опис ќе се прикажува пот картата во рамката (исто како описите на сликите). Додавањето на натпис ја принудува картата да има рамка.\n\nТука може да се користи форматирање на викитекст, на пример за задебелување, врски или наводи.",
 	"visualeditor-mwmapsdialog-geojson": "GeoJSON",
