@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Abbas dhothar"
+			"Abbas dhothar",
+			"Bgo eiu"
 		]
 	},
+	"kartographer-wv-layer-wikimedia": "وِکیمیڈیا",
 	"kartographer-wv-warning-external-source-disagree": "رد کرو"
 }
