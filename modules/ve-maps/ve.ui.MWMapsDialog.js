@@ -427,9 +427,16 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 	}
 	mwData.attrs.lang = ( lang && lang !== util.getDefaultLanguage() ) ? lang : undefined;
 	if ( !( this.selectedNode instanceof ve.dm.MWInlineMapsNode ) ) {
+		var contentDirection = this.getFragment().getDocument().getDir(),
+			defaultAlign = contentDirection === 'ltr' ? 'right' : 'left',
+			align = this.align.findSelectedItem().getData();
+
 		mwData.attrs.width = dimensions.width.toString();
 		mwData.attrs.height = dimensions.height.toString();
-		mwData.attrs.align = this.align.findSelectedItem().getData();
+		// Don't add the default align="…" to existing <mapframe> tags to avoid dirty diffs
+		if ( align !== defaultAlign || 'align' in mwData.attrs ) {
+			mwData.attrs.align = align;
+		}
 		// Delete meaningless frameless attribute when there is a text
 		if ( this.frame.getValue() || mwData.attrs.text ) {
 			delete mwData.attrs.frameless;
