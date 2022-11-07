@@ -92,6 +92,8 @@
 	"visualeditor-mwmapsdialog-content": "Contento del carta",
 	"visualeditor-mwmapsdialog-options": "Optiones",
 	"visualeditor-mwmapsdialog-display": "Aspecto",
+	"visualeditor-mwmapsdialog-display-help": "Definir le position horizontal del carta sur le pagina. Le resto del contento del pagina fluera circum le carta solmente si es mittite a dextra o a sinistra, non al centro.\n\nDisactivar le quadro causa que le carta incastrate appare sin quadro (bordo), de maniera similar al imagines sin quadro. Iste option es indisponibile si le carta ha un legenda.",
+	"visualeditor-mwmapsdialog-frame": "Monstrar quadro",
 	"visualeditor-mwmapsdialog-caption": "Legenda",
 	"visualeditor-mwmapsdialog-caption-help": "Iste legenda apparera infra le carta in le quadro (como le legendas de imagines). Adder un legenda fortia le carta a haber un quadro.\n\nLe formatation wikitexto pote esser usate hic, p.ex. pro litteras grasse, ligamines o referentias.",
 	"visualeditor-mwmapsdialog-language": "Lingua",
