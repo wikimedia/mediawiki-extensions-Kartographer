@@ -294,7 +294,7 @@ abstract class TagHandler {
 		$counters = $this->state->getCounters();
 		$marker = SimpleStyleParser::updateMarkerSymbolCounters( $this->geometries, $counters );
 		if ( $marker ) {
-			list( $this->counter, $this->markerProperties ) = $marker;
+			[ $this->counter, $this->markerProperties ] = $marker;
 		}
 		$this->state->setCounters( $counters );
 
