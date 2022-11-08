@@ -239,6 +239,7 @@
 		"ext.kartographer.dialog": {
 			"localBasePath": "modules/dialog",
 			"dependencies": [
+				"oojs-ui-core",
 				"oojs-ui-windows",
 				"oojs-ui-widgets",
 				"mediawiki.router",
