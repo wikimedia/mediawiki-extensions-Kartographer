@@ -174,7 +174,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		} );
 	languages.unshift( {
 		data: 'local',
-		label: ve.msg( 'visualeditor-mwmapsdialog-language-local' )
+		label: ve.msg( 'visualeditor-mwmapsdialog-language-local', 'local' )
 	} );
 
 	this.language = new OO.ui.ComboBoxInputWidget( {
