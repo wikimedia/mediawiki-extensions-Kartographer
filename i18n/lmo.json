@@ -58,7 +58,7 @@
 	"leafletdraw-draw-toolbar-buttons-polyline": "Disegna una polilinea",
 	"leafletdraw-draw-toolbar-buttons-rectangle": "Disegna un retangol",
 	"leafletdraw-draw-toolbar-undo-text": "Scancella l'ultim pont",
-	"leafletdraw-draw-toolbar-undo-title": "Scancela l'ultim pont disegnad",
+	"leafletdraw-draw-toolbar-undo-title": "Scancella l'ultim pont dissegnad",
 	"leafletdraw-edit-handlers-edit-tooltip-subtext": "Clica anula per tornà indree rispet ai ultime modifeghe",
 	"leafletdraw-edit-handlers-edit-tooltip-text": "Tira adree a i manili o un marcador per modifegà la carateristica",
 	"leafletdraw-edit-handlers-remove-tooltip-text": "Clica in su una carateristica per trouvela via",
