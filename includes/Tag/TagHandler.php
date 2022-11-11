@@ -13,6 +13,7 @@ use Config;
 use ExtensionRegistry;
 use FormatJson;
 use Html;
+use Kartographer\ExternalDataLoader;
 use Kartographer\MediaWikiWikitextParser;
 use Kartographer\SimpleStyleParser;
 use Kartographer\State;
@@ -165,6 +166,11 @@ abstract class TagHandler {
 		$this->status = $simpleStyle->parse( $input );
 		if ( $this->status->isOK() ) {
 			$this->geometries = $this->status->getValue()['data'];
+
+			if ( $this->config->get( 'KartographerExternalDataParseTimeFetch' ) ) {
+				$fetcher = new ExternalDataLoader();
+				$fetcher->parse( $this->geometries );
+			}
 		}
 	}
 
