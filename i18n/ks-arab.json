@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Iflaq"
+			"Iflaq",
+			"Tajamul9"
 		]
 	},
+	"visualeditor-mwmapsdialog-language-local": "$1 (ہر نقشہٕ علاقس کٕریٚو عام زبان استعمال)",
 	"visualeditor-mwmapsdialog-title": "نَقشہٕ"
 }

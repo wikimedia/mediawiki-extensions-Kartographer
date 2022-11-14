@@ -119,7 +119,7 @@
 	"visualeditor-mwmapsdialog-geojson": "GeoJSON",
 	"visualeditor-mwmapsdialog-language": "Sprache",
 	"visualeditor-mwmapsdialog-language-help": "Kartographer verwendet die Inhaltssprache des Wikis als Standard für die Beschriftungssprache. Dies kann mit dieser Einstellung nur für diese Karte geändert werden.\n\nVerwende <code>local</code> anstelle eines Sprachnamens, um alle Beschriftungen in der für diesen Ort lokalen Sprache anzuzeigen. Beispielsweise würden Städtenamen in Mexiko auf Spanisch angezeigt, während Städtenamen in Japan auf Japanisch angezeigt würden.\n\nWenn Beschriftungen in der ausgewählten Sprache nicht verfügbar sind, folgt Kartographer einem Fallback-Prozess. Weitere Informationen dazu, wie dies funktioniert, findest du auf der [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Extension:Kartographer#Languages_and_fallbacks Hilfeseite des Kartographers].",
-	"visualeditor-mwmapsdialog-language-local": "Lokal (lokale Sprache für jeden Kartenbereich verwenden)",
+	"visualeditor-mwmapsdialog-language-local": "$1 (lokale Sprache für jeden Kartenbereich verwenden)",
 	"visualeditor-mwmapsdialog-help-title": "Lerne die Erstellung und das Bearbeiten von Karten kennen.",
 	"visualeditor-mwmapsdialog-position-lat": "Breitengrad",
 	"visualeditor-mwmapsdialog-position-lon": "Längengrad",

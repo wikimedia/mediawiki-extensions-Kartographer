@@ -116,6 +116,7 @@
 	"visualeditor-mwmapsdialog-display": "Alinhamento",
 	"visualeditor-mwmapsdialog-geojson": "GeoJSON",
 	"visualeditor-mwmapsdialog-language": "Idioma",
+	"visualeditor-mwmapsdialog-language-local": "$1 (use o idioma local para cada área do mapa)",
 	"visualeditor-mwmapsdialog-help-title": "Saiba mais sobre a criação e edição de mapas.",
 	"visualeditor-mwmapsdialog-position-lat": "Latitude",
 	"visualeditor-mwmapsdialog-position-lon": "Longitude",
