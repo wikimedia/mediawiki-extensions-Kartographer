@@ -109,8 +109,8 @@ maplink
 <a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0">Whitespace only class - do nothing</a>
 <a class="mw-kartographer-maplink Valid-link_class_123" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0">Valid class</a>
 </p>
-<div class="mw-kartographer-error">&lt;maplink&gt;: Attribute &quot;class&quot; has an invalid value</div>
-<div class="mw-kartographer-error">&lt;maplink&gt;: Attribute &quot;class&quot; has an invalid value</div>
+<div class="mw-kartographer-error">&lt;maplink&gt;: Attribute "class" has an invalid value</div>
+<div class="mw-kartographer-error">&lt;maplink&gt;: Attribute "class" has an invalid value</div>
 !! end
 
 !! test
@@ -203,10 +203,10 @@ Error messages
 <ul><li>Attribute "mapstyle" has an invalid value</li>
 <li>Attribute "align" has an invalid value</li>
 </ul></div>
-<div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute &quot;width&quot; has an invalid value</div>
-<div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute &quot;width&quot; has an invalid value</div>
-<div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute &quot;width&quot; has an invalid value</div>
-<div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute &quot;width&quot; has an invalid value</div>
+<div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
+<div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
+<div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
+<div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
 <div class="mw-kartographer-error">&lt;mapframe&gt; problems:
 <ul><li>The JSON content is not valid GeoJSON+simplestyle. The list below shows all attempts to interpret it according to the JSON Schema. Not all are errors.</li>
 <li>Attribute "mapstyle" has an invalid value</li>
@@ -232,8 +232,8 @@ Error messages
 <li>/0/features: The property features is required</li>
 <li>/0/type: Does not have a value in the enumeration ["FeatureCollection"]</li>
 </ul></div>
-<div class="mw-kartographer-error">&lt;mapframe&gt;: Either both &quot;latitude&quot; and &quot;longitude&quot; parameters should be supplied or neither of them</div>
-<div class="mw-kartographer-error">&lt;mapframe&gt;: Either both &quot;latitude&quot; and &quot;longitude&quot; parameters should be supplied or neither of them</div>
+<div class="mw-kartographer-error">&lt;mapframe&gt;: Either both "latitude" and "longitude" parameters should be supplied or neither of them</div>
+<div class="mw-kartographer-error">&lt;mapframe&gt;: Either both "latitude" and "longitude" parameters should be supplied or neither of them</div>
 !! end
 
 !! test
@@ -451,8 +451,8 @@ wgKartographerWikivoyageMode=true
 <a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0">0°0′0″N 0°0′0″E</a>
 <a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0">0°0′0″N 0°0′0″E</a>
 </p>
-<div class="mw-kartographer-error">&lt;maplink&gt;: Attribute &quot;show&quot; has an invalid value</div>
-<div class="mw-kartographer-error">&lt;maplink&gt;: Attribute &quot;show&quot; has an invalid value</div>
+<div class="mw-kartographer-error">&lt;maplink&gt;: Attribute "show" has an invalid value</div>
+<div class="mw-kartographer-error">&lt;maplink&gt;: Attribute "show" has an invalid value</div>
 <p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;йа криветко&quot;]">0°0′0″N 0°0′0″E</a>
 </p>
 !! end
