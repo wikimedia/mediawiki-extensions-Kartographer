@@ -269,7 +269,7 @@ class SimpleStyleParser {
 					'action' => 'jsondata',
 					'title' => $jct->getText(),
 				];
-				$ret->url = wfScript( 'api' ) . '?' . wfArrayToCgi( $query );
+				$ret->url = wfExpandUrl( wfAppendQuery( wfScript( 'api' ), $query ) );
 				break;
 
 			default:
