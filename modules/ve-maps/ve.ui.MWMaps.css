@@ -3,9 +3,17 @@
 	background-repeat: no-repeat;
 }
 
+.ve-ui-mwMapsDialog > .oo-ui-window-body {
+	display: flex;
+	flex-flow: column;
+}
+
 .ve-ui-mwMapsDialog-mapWidget {
-	width: 100%;
-	height: 70%;
+	flex: auto;
+}
+
+.ve-ui-mwMapsDialog-indexLayout {
+	max-height: 50%;
 }
 
 .ve-ui-mwMapsDialog-mapWidget > div {

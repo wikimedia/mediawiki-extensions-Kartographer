@@ -18,6 +18,8 @@ ve.ui.MWMapsDialog = function VeUiMWMapsDialog() {
 	ve.ui.MWMapsDialog.super.apply( this, arguments );
 
 	this.updateMapContentsDebounced = OO.ui.debounce( this.updateMapContents.bind( this ), 300 );
+
+	this.$content.addClass( 've-ui-mwMapsDialog' );
 };
 
 /* Inheritance */
