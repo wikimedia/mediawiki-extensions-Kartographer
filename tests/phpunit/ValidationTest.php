@@ -2,11 +2,11 @@
 
 namespace Kartographer\Tests;
 
-use Kartographer\MediaWikiWikitextParser;
-use Kartographer\Tests\Mock\MockSimpleStyleParser;
+use Kartographer\SimpleStyleParser;
 use MediaWikiIntegrationTestCase;
 use Parser;
 use ParserOptions;
+use Status;
 use Title;
 
 /**
@@ -17,13 +17,21 @@ class ValidationTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideTestCases
+	 * phpcs:disable Squiz.WhiteSpace.FunctionSpacing.BeforeFirst
 	 */
 	public function testValidation( $file, $shouldFail ) {
 		$parser = $this->getServiceContainer()->getParserFactory()->create();
 		$options = ParserOptions::newFromAnon();
 		$title = Title::newMainPage();
 		$parser->startExternalParse( $title, $options, Parser::OT_HTML );
-		$validator = new MockSimpleStyleParser( new MediaWikiWikitextParser( $parser ) );
+		$validator = new class extends SimpleStyleParser {
+			public function __construct() {
+			}
+
+			public function normalizeAndSanitize( &$data ): Status {
+				return Status::newGood();
+			}
+		};
 
 		$content = file_get_contents( $file );
 		if ( $content === false ) {
