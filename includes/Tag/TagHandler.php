@@ -130,9 +130,11 @@ abstract class TagHandler {
 		$this->status = Status::newGood();
 		$this->args = $args;
 
-		$this->parseGeometries( $input, $parser, $frame );
-		$this->parseGroups();
 		$this->parseArgs();
+		$this->parseGroups();
+		if ( $this->status->isOK() ) {
+			$this->parseGeometries( $input, $parser, $frame );
+		}
 
 		if ( !$this->status->isGood() ) {
 			$result = $this->reportError();
