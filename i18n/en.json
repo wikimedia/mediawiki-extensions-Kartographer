@@ -18,7 +18,7 @@
 	"kartographer-error-json-type": "Each GeoJSON+simplestyle object must have a non-empty type, e.g. <code>{ \"type\": \"Feature\" }</code>.",
 	"kartographer-error-missing-attr": "Attribute \"$1\" is missing",
 	"kartographer-error-bad_attr": "Attribute \"$1\" has an invalid value",
-	"kartographer-error-bad_data": "The JSON content is not valid GeoJSON+simplestyle. The list below shows all attempts to interpret it according to the JSON Schema. Not all are errors.",
+	"kartographer-error-bad_data": "The JSON content is not valid GeoJSON+simplestyle. The list below shows all attempts to interpret it according to [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json the JSON Schema]. Not all are errors.",
 	"kartographer-error-latlon": "Either both \"latitude\" and \"longitude\" parameters should be supplied or neither of them",
 	"kartographer-error-title": "Title \"$1\" is not a valid map data page",
 	"kartographer-tracking-category": "Pages with maps",
