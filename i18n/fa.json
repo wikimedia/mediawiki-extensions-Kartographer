@@ -84,6 +84,7 @@
 	"visualeditor-mwmapsdialog-options": "گزینه‌ها",
 	"visualeditor-mwmapsdialog-display": "تراز",
 	"visualeditor-mwmapsdialog-language": "زبان",
+	"visualeditor-mwmapsdialog-language-local": "$1 (استفاده از زبان محلی برای هر منطقهٔ نقشه)",
 	"visualeditor-mwmapsdialog-help-title": "آموزش چگونگی ایجاد و ویرایش نشقه‌ها.",
 	"visualeditor-mwmapsdialog-position-lat": "عرض جغرافیایی",
 	"visualeditor-mwmapsdialog-position-lon": "طول جغرافیایی",
