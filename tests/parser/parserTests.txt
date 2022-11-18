@@ -195,10 +195,7 @@ Error messages
 <mapframe width=200 height=200 latitude=100/>
 <mapframe width=200 height=200 longitude=100/>
 !! html
-<div class="mw-kartographer-error">&lt;maplink&gt; problems:
-<ul><li>Couldn't parse JSON: Syntax error</li>
-<li>Attribute "longitude" has an invalid value</li>
-</ul></div>
+<div class="mw-kartographer-error">&lt;maplink&gt;: Attribute "longitude" has an invalid value</div>
 <div class="mw-kartographer-error">&lt;mapframe&gt; problems:
 <ul><li>Attribute "mapstyle" has an invalid value</li>
 <li>Attribute "align" has an invalid value</li>
@@ -208,29 +205,8 @@ Error messages
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
 <div class="mw-kartographer-error">&lt;mapframe&gt; problems:
-<ul><li>The JSON content is not valid GeoJSON+simplestyle. The list below shows all attempts to interpret it according to <a rel="nofollow" class="external text" href="https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json">the JSON Schema</a>. Not all are errors.</li>
-<li>Attribute "mapstyle" has an invalid value</li>
+<ul><li>Attribute "mapstyle" has an invalid value</li>
 <li>Attribute "align" has an invalid value</li>
-</ul><ul class="mw-kartographer-error-log mw-collapsible mw-collapsed">
-<li>/0/query: The property query is required</li>
-<li>/0/ids: The property ids is required</li>
-<li>/0: Failed to match at least one schema</li>
-<li>/0/title: The property title is required</li>
-<li>/0/service: The property service is required</li>
-<li>/0: Failed to match exactly one schema</li>
-<li>/0/type: Does not have a value in the enumeration ["ExternalData"]</li>
-<li>/0/properties/marker-color: Does not match the regex pattern ^#?([0-9a-fA-F]{3}){1,2}$</li>
-<li>/0/geometries: The property geometries is required</li>
-<li>/0/type: Does not have a value in the enumeration ["GeometryCollection"]</li>
-<li>/0/type: Does not have a value in the enumeration ["MultiPolygon"]</li>
-<li>/0/type: Does not have a value in the enumeration ["Point"]</li>
-<li>/0/type: Does not have a value in the enumeration ["MultiPoint"]</li>
-<li>/0/type: Does not have a value in the enumeration ["LineString"]</li>
-<li>/0/type: Does not have a value in the enumeration ["MultiLineString"]</li>
-<li>/0/type: Does not have a value in the enumeration ["Polygon"]</li>
-<li>/0/coordinates: The property coordinates is required</li>
-<li>/0/features: The property features is required</li>
-<li>/0/type: Does not have a value in the enumeration ["FeatureCollection"]</li>
 </ul></div>
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Either both "latitude" and "longitude" parameters should be supplied or neither of them</div>
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Either both "latitude" and "longitude" parameters should be supplied or neither of them</div>
