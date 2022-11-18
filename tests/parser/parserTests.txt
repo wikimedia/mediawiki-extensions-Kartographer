@@ -208,7 +208,7 @@ Error messages
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Attribute "width" has an invalid value</div>
 <div class="mw-kartographer-error">&lt;mapframe&gt; problems:
-<ul><li>The JSON content is not valid GeoJSON+simplestyle. The list below shows all attempts to interpret it according to the JSON Schema. Not all are errors.</li>
+<ul><li>The JSON content is not valid GeoJSON+simplestyle. The list below shows all attempts to interpret it according to <a rel="nofollow" class="external text" href="https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json">the JSON Schema</a>. Not all are errors.</li>
 <li>Attribute "mapstyle" has an invalid value</li>
 <li>Attribute "align" has an invalid value</li>
 </ul><ul class="mw-kartographer-error-log mw-collapsible mw-collapsed">
@@ -475,7 +475,7 @@ ExternalData errors
 ]
 </maplink>
 !! html
-<div class="mw-kartographer-error">&lt;maplink&gt;: The JSON content is not valid GeoJSON+simplestyle. The list below shows all attempts to interpret it according to the JSON Schema. Not all are errors.<ul class="mw-kartographer-error-log mw-collapsible mw-collapsed">
+<div class="mw-kartographer-error">&lt;maplink&gt;: The JSON content is not valid GeoJSON+simplestyle. The list below shows all attempts to interpret it according to <a rel="nofollow" class="external text" href="https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json">the JSON Schema</a>. Not all are errors.<ul class="mw-kartographer-error-log mw-collapsible mw-collapsed">
 <li>/0/service: Does not have a value in the enumeration ["geoshape","geoline","geopoint","geomask"]</li>
 <li>/0/title: The property title is required</li>
 <li>/0/service: Does not have a value in the enumeration ["page"]</li>
