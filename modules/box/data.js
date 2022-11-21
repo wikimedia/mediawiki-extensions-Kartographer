@@ -35,9 +35,6 @@ module.exports = function () {
 		getJSON: function () {
 			return $.getJSON.apply( $, arguments );
 		},
-		debounce: function () {
-			return mw.util.debounce.apply( mw.util, arguments );
-		},
 		bind: function () {
 			return $.proxy.apply( $, arguments );
 		},
