@@ -22,7 +22,7 @@
 	"kartographer-error-json-type": "Vsak objekt GeoJSON+simplestyle mora imeti neprazen tip, npr. <code>{ \"type\": \"Feature\" }</code>.",
 	"kartographer-error-missing-attr": "Manjka atribut »$1«",
 	"kartographer-error-bad_attr": "Atribut »$1« ima neveljavno vrednost",
-	"kartographer-error-bad_data": "Vsebina JSON ni veljaven GeoJSON+simplestyle. Na spodnjem seznamu so navedeni vsi poskusi njegove razčlenitve v skladu s shemo JSON. Vsi niso napake.",
+	"kartographer-error-bad_data": "Vsebina JSON ni veljaven GeoJSON+simplestyle. Na spodnjem seznamu so navedeni vsi poskusi njegove razčlenitve v skladu s [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json shemo JSON]. Vsi niso napake.",
 	"kartographer-error-latlon": "Treba je navesti parametra »latitude« in »longitude« ali nobenega od njiju",
 	"kartographer-error-title": "Naslov »$1« ni veljavna stran s podatki zemljevida",
 	"kartographer-tracking-category": "Strani z zemljevidi",

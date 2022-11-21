@@ -4,6 +4,7 @@
 			"Къарачайлы"
 		]
 	},
+	"kartographer-error-bad_data": "JSON ичерик GeoJSON+simplestyle бла келишмейди. Тюбюнде берлиген тизмеде [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json JSON схема бла] келишдирирге бютеу тырмашыула кёргюзюлгендиле. Барысы да халат тюлдюле.",
 	"kartographer-sidebar-close-button": "Тыш карталаны панелин джаб",
 	"visualeditor-mwmapsdialog-display": "Дисплей",
 	"visualeditor-mwmapsdialog-language-help": "Картограф викини ичиндеги тилни белгилени тилине тынгылау бла хайырланады. Аны бу джараштырыу бла къуру бу картагъа тюрлендирирге боллукъду. \n\nТилни орнуна <code>local</code> хайырлансагъыз, ол джерге локал болгъан тилде белгиле кёрюннюкдюле. Сёз ючюн, Мексикадагъы шахарланы атлары испан тилде кёрюннюкдю, Япониядагъы шахарланы атлары уа  — японча.\n\nСайланнган тилде белгиле къадама бола эселе, Картограф резерв процесс бла хайырланады. Бу къалай ишлегенин кёрюр ючюн къара — [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Extension:Kartographer#Languages_and_fallbacks Картографны билги берген бети].",
