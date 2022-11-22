@@ -9,7 +9,7 @@
 	"kartographer-wv-layer-nearby-articles": "Artigos próximos",
 	"kartographer-wv-nearby-articles-control": "Explorar destinos próximos",
 	"kartographer-wv-warning-external-source-title": "Fonte de dados externa",
-	"kartographer-wv-warning-external-source-message": "O conteúdo está alojado externamente, por isso ativar a fonte de dados partilha os seus dados com outros sítios da Internet.",
-	"kartographer-wv-warning-external-source-agree": "Continuar",
+	"kartographer-wv-warning-external-source-message": "O conteúdo está alojado externamente, por isso ativar a fonte de dados partilha o seu endereço IP e outros dados com o fornecedor do mapa.",
+	"kartographer-wv-warning-external-source-agree": "Compreendo",
 	"kartographer-wv-warning-external-source-disagree": "Cancelar"
 }

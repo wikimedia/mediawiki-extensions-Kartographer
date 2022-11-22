@@ -18,7 +18,7 @@
 	"kartographer-error-json-type": "לכל עצם GeoJSON+simplestyle חייב להיות סוג לא ריק, למשל <code dir=\"ltr\">{ \"type\": \"Feature\" }</code> .",
 	"kartographer-error-missing-attr": "המאפיין \"$1\" חסר",
 	"kartographer-error-bad_attr": "למאפיין \"$1\" יש ערך בלתי־תקין",
-	"kartographer-error-bad_data": "תוכן ה־JSON אינו GeoJSON+simplestyle תקין. הרשימה להלן מציגה את כל הניסיונות לפרש את זה בהתאם לסכמת JSON. לא כולם שגיאות.",
+	"kartographer-error-bad_data": "תוכן ה־JSON אינו GeoJSON+simplestyle תקין. הרשימה להלן מציגה את כל הניסיונות לפרש את זה בהתאם ל[https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json סכמת JSON]. לא כולם שגיאות.",
 	"kartographer-error-latlon": "יש לספק את שני הפרמטרים \"קו רוחב\" ו\"קו אורך\", או לא לספק אף אחד מהם",
 	"kartographer-error-title": "הכותרת \"$1\" אינה דף נתוני מפה תקין",
 	"kartographer-tracking-category": "דפים עם מפות",
