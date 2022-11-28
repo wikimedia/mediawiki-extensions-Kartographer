@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Aceman444",
 			"Amire80",
 			"Luky001"
 		]
@@ -13,7 +14,7 @@
 	"kartographer-error-json": "Nepodarilo sa analyzovať JSON: $1",
 	"kartographer-error-missing-attr": "Chýba atribút „$1“",
 	"kartographer-error-bad_attr": "Atribút „$1“ má neplatnú hodnotu",
-	"kartographer-error-bad_data": "JSON obsah nie je platný GeoJSON+simplestyle",
+	"kartographer-error-bad_data": "Obsah JSON nie je platný GeoJSON+simplestyle. Nižšie uvedený zoznam zobrazuje všetky pokusy o jeho interpretáciu podľa [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json schémy JSON]. Nie všetky sú chyby.",
 	"kartographer-error-latlon": "Zadané by mali byť buď oba parametre „zemepisná šírka“ a „zemepisná dĺžka“, alebo ani jeden",
 	"kartographer-error-title": "„$1“ nie je platný názov stránky s mapovými dátami",
 	"kartographer-tracking-category": "Stránky s mapami",
