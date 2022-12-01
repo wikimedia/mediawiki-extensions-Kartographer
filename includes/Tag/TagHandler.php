@@ -20,13 +20,13 @@ use Language;
 use LogicException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\StubObject\StubUserLang;
 use Message;
 use Parser;
 use ParserOutput;
 use PPFrame;
 use Status;
 use stdClass;
-use StubUserLang;
 
 /**
  * Base class for all <map...> tags
@@ -323,13 +323,13 @@ abstract class TagHandler {
 	 * @param State $state
 	 * @param ParserOutput $parserOutput to exclusively write to; nothing is read from this object
 	 * @param bool $isPreview
-	 * @param Parser $parser required to properly add tracking categories
+	 * @param ParserFunctionTracker $tracker
 	 */
 	public static function finalParseStep(
 		State $state,
 		ParserOutput $parserOutput,
 		$isPreview,
-		Parser $parser
+		ParserFunctionTracker $tracker
 	) {
 		if ( $state->getMaplinks() ) {
 			$parserOutput->setPageProperty( 'kartographer_links', (string)$state->getMaplinks() );
@@ -338,12 +338,10 @@ abstract class TagHandler {
 			$parserOutput->setPageProperty( 'kartographer_frames', (string)$state->getMapframes() );
 		}
 
-		if ( $state->hasBrokenTags() ) {
-			$parser->addTrackingCategory( 'kartographer-broken-category' );
-		}
-		if ( $state->hasValidTags() ) {
-			$parser->addTrackingCategory( 'kartographer-tracking-category' );
-		}
+		$tracker->addTrackingCategories( [
+			'kartographer-broken-category' => $state->hasBrokenTags(),
+			'kartographer-tracking-category' => $state->hasValidTags(),
+		] );
 
 		// https://phabricator.wikimedia.org/T145615 - include all data in previews
 		$data = $state->getData();
