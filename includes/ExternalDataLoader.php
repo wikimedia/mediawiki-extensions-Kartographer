@@ -3,14 +3,23 @@
 namespace Kartographer;
 
 use FormatJson;
+use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use stdClass;
 
 /**
  * Gets external data in GeoJSON on parse time
  */
 class ExternalDataLoader {
+	/** @var HttpRequestFactory */
+	private HttpRequestFactory $requestFactory;
+
+	/**
+	 * @param HttpRequestFactory $requestFactory
+	 */
+	public function __construct( HttpRequestFactory $requestFactory ) {
+		$this->requestFactory = $requestFactory;
+	}
 
 	/**
 	 * Parses external data in a GeoJSON
@@ -34,8 +43,7 @@ class ExternalDataLoader {
 			return $geoJson;
 		}
 
-		$request = MediaWikiServices::getInstance()->getHttpRequestFactory()
-			->create( $geoJson->url, [ 'method' => 'GET' ], __METHOD__ );
+		$request = $this->requestFactory->create( $geoJson->url, [ 'method' => 'GET' ], __METHOD__ );
 		$status = $request->execute();
 
 		if ( $status->isOK() ) {
@@ -51,8 +59,7 @@ class ExternalDataLoader {
 					'url' => $geoJson->url
 				] );
 
-			return $geoJson;
-
 		}
+		return $geoJson;
 	}
 }
