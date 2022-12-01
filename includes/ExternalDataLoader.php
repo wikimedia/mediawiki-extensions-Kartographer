@@ -42,6 +42,8 @@ class ExternalDataLoader {
 		if ( !isset( $geoJson->type ) || $geoJson->type !== 'ExternalData' ) {
 			return $geoJson;
 		}
+		$originalGeoJson = $geoJson;
+		$originalProperties = $geoJson->properties ?? [];
 
 		$request = $this->requestFactory->create( $geoJson->url, [ 'method' => 'GET' ], __METHOD__ );
 		$status = $request->execute();
@@ -49,17 +51,23 @@ class ExternalDataLoader {
 		if ( $status->isOK() ) {
 			$extendedGeoJson = FormatJson::decode( $request->getContent(), false );
 
-			if ( $extendedGeoJson !== null ) {
-				return $extendedGeoJson;
+			if ( (array)$originalProperties !== [] ) {
+				foreach ( $extendedGeoJson->features as $feature ) {
+
+					$feature->properties = empty( $feature->properties ) ? $originalProperties :
+						(object)array_merge( (array)$originalProperties, (array)$feature->properties );
+
+				}
 			}
 
-			LoggerFactory::getInstance( 'Kartographer' )->warning(
-				'Could not extend external data {url}',
-				[
-					'url' => $geoJson->url
-				] );
+			return (object)array_merge( (array)$originalGeoJson, (array)$extendedGeoJson );
 
 		}
+		LoggerFactory::getInstance( 'Kartographer' )->warning(
+			'Could not extend external data {url}',
+			[
+				'url' => $geoJson->url
+			] );
 		return $geoJson;
 	}
 }
