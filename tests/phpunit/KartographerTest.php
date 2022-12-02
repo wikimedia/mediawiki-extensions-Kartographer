@@ -1,7 +1,6 @@
 <?php
 namespace Kartographer\Tests;
 
-use ExtensionRegistry;
 use Kartographer\State;
 use MediaWikiLangTestCase;
 use ParserOptions;
@@ -40,13 +39,6 @@ class KartographerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @return bool
-	 */
-	private function hasParserFunctions() {
-		return ExtensionRegistry::getInstance()->isLoaded( 'ParserFunctions' );
-	}
-
-	/**
 	 * @dataProvider provideTagData
 	 */
 	public function testTagData( $expected, $input, $message, $wikivoyageMode = false ) {
@@ -56,13 +48,10 @@ class KartographerTest extends MediaWikiLangTestCase {
 
 		if ( $expected === false ) {
 			$this->assertTrue( $state->hasBrokenTags(), $message . ' Parse is expected to fail' );
-
-			if ( $this->hasParserFunctions() ) {
-				$this->assertTrue(
-					$this->hasTrackingCategory( $output, 'kartographer-broken-category' ),
-					$message . ' Category for failed maps should be added'
-				);
-			}
+			$this->assertTrue(
+				$this->hasTrackingCategory( $output, 'kartographer-broken-category' ),
+				$message . ' Category for failed maps should be added'
+			);
 			return;
 		}
 		$this->assertFalse( $state->hasBrokenTags(), $message . ' Parse is expected to succeed' );
