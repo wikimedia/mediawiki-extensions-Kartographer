@@ -25,7 +25,7 @@
 	"kartographer-error-json": "不能解析JSON：$1",
 	"kartographer-error-missing-attr": "属性“$1”丢失",
 	"kartographer-error-bad_attr": "属性“$1”有无效的值",
-	"kartographer-error-bad_data": "JSON 内容无效 GeoJSON+simplestyle。下面的列表显示了根据 JSON 模式解释它的所有尝试。并非所有都是错误。",
+	"kartographer-error-bad_data": "JSON 内容无效 GeoJSON+simplestyle。下面的列表显示了根据 [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json JSON 模式]解释它的所有尝试。并非所有都是错误。",
 	"kartographer-error-latlon": "“latitude”和“longitude”参数都应被提供，或都不提供",
 	"kartographer-error-title": "标题“$1”不是有效的地图数据页面",
 	"kartographer-tracking-category": "有地图的页面",
