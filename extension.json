@@ -32,9 +32,6 @@
 	"AutoloadNamespaces": {
 		"Kartographer\\": "includes/"
 	},
-	"TestAutoloadNamespaces": {
-		"Kartographer\\Tests\\Tag\\": "tests/phpunit/Tag/"
-	},
 	"APIModules": {
 		"sanitize-mapdata": {
 			"class": "Kartographer\\Api\\ApiSanitizeMapData",

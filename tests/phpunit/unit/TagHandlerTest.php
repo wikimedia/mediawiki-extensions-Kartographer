@@ -1,25 +1,22 @@
 <?php
 
-namespace Kartographer\Tests\Tag;
+namespace Kartographer\UnitTests;
 
 use Kartographer\State;
 use Kartographer\Tag\ParserFunctionTracker;
 use Kartographer\Tag\TagHandler;
+use MediaWikiUnitTestCase;
 use Parser;
 use stdClass;
 
 /**
  * @license MIT
  */
-trait TagHandlerTest {
+class TagHandlerTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @covers \Kartographer\Tag\TagHandler::finalParseStep
 	 * @dataProvider groupsProvider
-	 * @param array|null $data
-	 * @param string[][] $groupTypes
-	 * @param bool $isPreview
-	 * @param stdClass $expected
 	 */
 	public function testFinalParseStep( ?array $data, array $groupTypes, bool $isPreview, stdClass $expected ) {
 		$state = new State();
