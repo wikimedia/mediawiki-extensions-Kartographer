@@ -67,10 +67,10 @@ class StateTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [], $state->getRequestedGroups() );
 
 		$state->addRequestedGroups( [ 6 => 'a', 7 => 'b' ] );
-		$this->assertSame( [ 'a' => 6, 'b' => 7 ], $state->getRequestedGroups() );
+		$this->assertSame( [ 'a', 'b' ], $state->getRequestedGroups() );
 
 		$state->addRequestedGroups( [ 11 => 'b',  22 => 'c' ] );
-		$this->assertSame( [ 'a' => 6, 'b' => 7, 'c' => 22 ], $state->getRequestedGroups() );
+		$this->assertSame( [ 'a' , 'b', 'c' ], $state->getRequestedGroups() );
 	}
 
 	public function testCounters() {

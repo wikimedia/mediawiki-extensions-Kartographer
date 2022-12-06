@@ -149,7 +149,7 @@ class State implements JsonSerializable {
 	}
 
 	/**
-	 * @return string[]
+	 * @return string[] Group ids, guaranteed to be unique
 	 */
 	public function getInteractiveGroups(): array {
 		return array_keys( $this->interactiveGroups );
@@ -163,10 +163,10 @@ class State implements JsonSerializable {
 	}
 
 	/**
-	 * @return int[] Group id => original index map (flipped version of addRequestedGroups)
+	 * @return string[] Group ids, guaranteed to be unique
 	 */
 	public function getRequestedGroups(): array {
-		return $this->requestedGroups;
+		return array_keys( $this->requestedGroups );
 	}
 
 	/**
