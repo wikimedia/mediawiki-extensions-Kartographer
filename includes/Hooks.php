@@ -12,6 +12,7 @@ namespace Kartographer;
 use Config;
 use Kartographer\Tag\MapFrame;
 use Kartographer\Tag\MapLink;
+use Kartographer\Tag\ParserFunctionTracker;
 use Kartographer\Tag\TagHandler;
 use MediaWiki\Hook\ParserAfterParseHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
@@ -63,7 +64,8 @@ class Hooks implements
 		if ( $state ) {
 			$options = $parser->getOptions();
 			$isPreview = $options->getIsPreview() || $options->getIsSectionPreview();
-			TagHandler::finalParseStep( $state, $output, $isPreview, $parser );
+			$tracker = new ParserFunctionTracker( $parser );
+			TagHandler::finalParseStep( $state, $output, $isPreview, $tracker );
 		}
 	}
 

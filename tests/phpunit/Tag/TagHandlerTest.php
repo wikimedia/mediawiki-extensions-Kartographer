@@ -3,12 +3,13 @@
 namespace Kartographer\Tests\Tag;
 
 use Kartographer\State;
+use Kartographer\Tag\ParserFunctionTracker;
 use Kartographer\Tag\TagHandler;
+use Parser;
 use stdClass;
 
 /**
  * @license MIT
- * @author Thiemo Kreuz
  */
 trait TagHandlerTest {
 
@@ -49,7 +50,7 @@ trait TagHandlerTest {
 			$state,
 			$output,
 			$isPreview,
-			$this->createMock( \Parser::class )
+			new ParserFunctionTracker( $this->createMock( Parser::class ) )
 		);
 	}
 
