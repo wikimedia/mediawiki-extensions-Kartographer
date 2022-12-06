@@ -20,6 +20,9 @@ use MediaWiki\Hook\ParserTestGlobalsHook;
 use Parser;
 use StripState;
 
+/**
+ * @license MIT
+ */
 class Hooks implements
 	ParserFirstCallInitHook,
 	ParserAfterParseHook,

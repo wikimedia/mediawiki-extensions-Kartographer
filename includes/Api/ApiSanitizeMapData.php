@@ -23,7 +23,8 @@ use Wikimedia\ParamValidator\ParamValidator;
 /**
  * This class implements action=sanitize-mapdata API, validating and sanitizing user-entered
  * GeoJSON.
- * @package Kartographer
+ *
+ * @license MIT
  */
 class ApiSanitizeMapData extends ApiBase {
 

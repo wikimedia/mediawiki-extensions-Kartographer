@@ -8,6 +8,8 @@ use Kartographer\SpecialMap;
 
 /**
  * The <mapframe> tag inserts a map into wiki page
+ *
+ * @license MIT
  */
 class MapFrame extends TagHandler {
 

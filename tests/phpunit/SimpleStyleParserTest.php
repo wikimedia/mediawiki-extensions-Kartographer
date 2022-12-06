@@ -15,6 +15,7 @@ use Title;
 /**
  * @covers \Kartographer\SimpleStyleParser
  * @group Kartographer
+ * @license MIT
  */
 class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 

@@ -7,6 +7,9 @@ use FormatJson;
 use Kartographer\SpecialMap;
 use stdClass;
 
+/**
+ * @license MIT
+ */
 trait MapLinkTrait {
 
 	/**

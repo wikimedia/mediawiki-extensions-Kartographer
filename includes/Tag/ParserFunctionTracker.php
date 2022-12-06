@@ -5,6 +5,9 @@ namespace Kartographer\Tag;
 use InvalidArgumentException;
 use Parser;
 
+/**
+ * @license MIT
+ */
 class ParserFunctionTracker {
 
 	/** @var Parser */

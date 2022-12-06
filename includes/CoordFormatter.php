@@ -6,6 +6,8 @@ use Language;
 
 /**
  * Formats coordinates into human-readable strings
+ *
+ * @license MIT
  */
 class CoordFormatter {
 

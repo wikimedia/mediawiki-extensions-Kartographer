@@ -8,6 +8,7 @@ use MediaWiki\ResourceLoader\Context;
 /**
  * @covers \Kartographer\ExternalLinksProvider
  * @group Kartographer
+ * @license MIT
  */
 class ExternalLinksProviderTest extends \MediaWikiUnitTestCase {
 

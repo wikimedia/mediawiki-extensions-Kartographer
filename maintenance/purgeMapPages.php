@@ -9,6 +9,8 @@ use MediaWiki\MediaWikiServices;
 
 /**
  * Purges all pages that use <maplink> or <mapframe>, using the tracking category.
+ *
+ * @license MIT
  */
 class PurgeMapPages extends Maintenance {
 

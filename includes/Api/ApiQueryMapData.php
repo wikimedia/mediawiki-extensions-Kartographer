@@ -19,6 +19,9 @@ use ParserOutput;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
+/**
+ * @license MIT
+ */
 class ApiQueryMapData extends ApiQueryBase {
 
 	/** @var WikiPageFactory */

@@ -13,6 +13,9 @@ use ExtensionRegistry;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
 
+/**
+ * @license MIT
+ */
 class DataModule extends RL\Module {
 
 	/** @inheritDoc */

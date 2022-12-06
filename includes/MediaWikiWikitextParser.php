@@ -5,6 +5,9 @@ namespace Kartographer;
 use Parser;
 use PPFrame;
 
+/**
+ * @license MIT
+ */
 class MediaWikiWikitextParser implements WikitextParser {
 
 	/** @var Parser */

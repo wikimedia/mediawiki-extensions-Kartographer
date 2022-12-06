@@ -15,6 +15,8 @@ use stdClass;
 /**
  * Parses and sanitizes text properties of GeoJSON/simplestyle by putting them through the MediaWiki
  * wikitext parser.
+ *
+ * @license MIT
  */
 class SimpleStyleParser {
 

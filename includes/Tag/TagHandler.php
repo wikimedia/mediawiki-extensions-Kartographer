@@ -30,6 +30,8 @@ use stdClass;
 
 /**
  * Base class for all <map...> tags
+ *
+ * @license MIT
  */
 abstract class TagHandler {
 
