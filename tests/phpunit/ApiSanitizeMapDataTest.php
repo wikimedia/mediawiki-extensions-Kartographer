@@ -2,6 +2,7 @@
 namespace Kartographer\Tests;
 
 use ApiMain;
+use ApiResult;
 use ApiUsageException;
 use DerivativeContext;
 use FauxRequest;
@@ -25,7 +26,7 @@ class ApiSanitizeMapDataTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideTest
 	 */
-	public function test( $title, $json, $isValid, $text ) {
+	public function test( ?string $title, string $json, bool $isValid, string $text ) {
 		$result = $this->makeRequest( $title, $json );
 
 		$data = $result->getResultData();
@@ -46,12 +47,12 @@ class ApiSanitizeMapDataTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideErrors
 	 */
-	public function testErrors( $title, $json ) {
+	public function testErrors( string $title, string $json ) {
 		$this->expectException( ApiUsageException::class );
 		$this->makeRequest( $title, $json );
 	}
 
-	private static function normalizeJson( $json ) {
+	private static function normalizeJson( string $json ): string {
 		return json_encode( json_decode( $json ) );
 	}
 
@@ -97,7 +98,7 @@ class ApiSanitizeMapDataTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	private function makeRequest( $title, $text, $post = true ) {
+	private function makeRequest( ?string $title, string $text, bool $post = true ): ApiResult {
 		$params = [ 'action' => 'sanitize-mapdata', 'text' => $text ];
 		if ( $title !== null ) {
 			$params['title'] = $title;

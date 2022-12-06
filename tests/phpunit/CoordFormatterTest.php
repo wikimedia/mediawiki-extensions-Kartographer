@@ -14,7 +14,7 @@ class CoordFormatterTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideFormatter
 	 */
-	public function testFormatter( $expected, $lat, $lon ) {
+	public function testFormatter( string $expected, $lat, $lon ) {
 		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' );
 		$result = CoordFormatter::format( $lat, $lon, $lang );
 		$this->assertEquals( $expected, $result );
