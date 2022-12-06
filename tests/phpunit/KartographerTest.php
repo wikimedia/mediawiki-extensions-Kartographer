@@ -207,12 +207,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$input = '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37>' .
 				self::WIKITEXT_JSON .
 				'</mapframe>';
-		$output = $this->parse( $input,
-			static function ( ParserOptions $options ) {
-				$options->setIsPreview( true );
-				$options->setIsSectionPreview( true );
-			}
-		);
+		$output = $this->parse( $input, true, true );
 		// In preview mode, static maps get disabled and dynamic maps are used
 		// The embedded img url therefor cannot refer to any groups,
 		// because they might not yet exist when the renderer requests them.
@@ -236,13 +231,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( [
 			'wgKartographerWikivoyageMode' => $wikivoyageMode,
 		] );
-		$output = $this->parse(
-			$wikitext,
-			static function ( ParserOptions $options ) use ( $isPreview, $isSectionPreview ) {
-				$options->setIsPreview( $isPreview );
-				$options->setIsSectionPreview( $isSectionPreview );
-			}
-		);
+		$output = $this->parse( $wikitext, $isPreview, $isSectionPreview );
 		$vars = $output->getJsConfigVars();
 		$this->assertArrayHasKey( 'wgKartographerLiveData', $vars );
 		$this->assertArrayEquals( $expected, array_keys( (array)$vars['wgKartographerLiveData'] ) );
@@ -356,15 +345,15 @@ class KartographerTest extends MediaWikiLangTestCase {
 	/**
 	 * Parses wikitext
 	 * @param string $text
-	 * @param callable|null $optionsCallback
+	 * @param bool $isPreview
+	 * @param bool $isSectionPreview
 	 * @return ParserOutput
 	 */
-	private function parse( $text, callable $optionsCallback = null ) {
+	private function parse( $text, $isPreview = false, $isSectionPreview = false ) {
 		$parser = $this->getServiceContainer()->getParserFactory()->create();
 		$options = ParserOptions::newFromAnon();
-		if ( $optionsCallback ) {
-			$optionsCallback( $options );
-		}
+		$options->setIsPreview( $isPreview );
+		$options->setIsSectionPreview( $isSectionPreview );
 		$title = Title::newFromText( 'Test' );
 
 		return $parser->parse( $text, $title, $options );
