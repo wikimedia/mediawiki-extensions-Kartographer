@@ -1,15 +1,16 @@
 <?php
+
 namespace Kartographer\Tests;
 
 use Kartographer\ExternalDataLoader;
 use MediaWiki\Http\HttpRequestFactory;
-use MediaWikiIntegrationTestCase;
+use MediaWikiUnitTestCase;
 
 /**
  * @group Kartographer
  * @covers \Kartographer\ExternalDataLoader
  */
-class ExternalDataLoaderTest extends MediaWikiIntegrationTestCase {
+class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 
 	private const WIKITEXT_JSON = '{
     "type": "Feature",
