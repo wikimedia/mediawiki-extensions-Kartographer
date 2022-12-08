@@ -42,32 +42,34 @@ class ExternalDataLoader {
 		if ( !isset( $geoJson->type ) || $geoJson->type !== 'ExternalData' ) {
 			return $geoJson;
 		}
-		$originalGeoJson = $geoJson;
-		$originalProperties = $geoJson->properties ?? [];
 
 		$request = $this->requestFactory->create( $geoJson->url, [ 'method' => 'GET' ], __METHOD__ );
 		$status = $request->execute();
 
-		if ( $status->isOK() ) {
-			$extendedGeoJson = FormatJson::decode( $request->getContent(), false );
+		if ( !$status->isOK() ) {
+			LoggerFactory::getInstance( 'Kartographer' )->warning(
+				'Could not extend external data {url}',
+				[ 'url' => $geoJson->url ]
+			);
+			return $geoJson;
+		}
 
-			if ( (array)$originalProperties !== [] ) {
-				foreach ( $extendedGeoJson->features as $feature ) {
+		$extendedGeoJson = FormatJson::decode( $request->getContent() );
 
-					$feature->properties = empty( $feature->properties ) ? $originalProperties :
-						(object)array_merge( (array)$originalProperties, (array)$feature->properties );
-
+		if ( isset( $geoJson->properties ) ) {
+			foreach ( $extendedGeoJson->features as $feature ) {
+				if ( isset( $feature->properties ) ) {
+					$feature->properties = (object)array_merge(
+						(array)$geoJson->properties,
+						(array)$feature->properties
+					);
+				} else {
+					$feature->properties = $geoJson->properties;
 				}
 			}
-
-			return (object)array_merge( (array)$originalGeoJson, (array)$extendedGeoJson );
-
 		}
-		LoggerFactory::getInstance( 'Kartographer' )->warning(
-			'Could not extend external data {url}',
-			[
-				'url' => $geoJson->url
-			] );
-		return $geoJson;
+
+		return (object)array_merge( (array)$geoJson, (array)$extendedGeoJson );
 	}
+
 }
