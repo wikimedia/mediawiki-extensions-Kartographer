@@ -16,19 +16,6 @@ use stdClass;
  */
 class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 
-	private const WIKITEXT_JSON = '{
-    "type": "Feature",
-    "geometry": {
-      "type": "Point",
-      "coordinates": [-122, 37]
-    },
-    "properties": {
-      "title": "Test",
-      "description": "[[Link to nowhere]]",
-      "marker-symbol": "-number"
-    }
-  }';
-
 	private const JSON_EXTERNAL_LINK = '{
 	  "type": "ExternalData",
 	  "service": "geopoint",
@@ -155,14 +142,6 @@ class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 	  ]
 	}';
 
-	private const JSON_EXTERNAL_DATA_PAGE = '{
-	  "type": "ExternalData",
-	  "service": "page",
-	  "title": "Neighbourhoods/New York City.map",
-	  "url": "http://commons.test/w/api.php?format=json&formatversion=2&"
-		"action=jsondata&title=Neighbourhoods%2FNew+York+City.map"
-	}';
-
 	public function provideTestGeoMaskData() {
 		yield 'test with multi polygon' => [
 			'input' => (object)[
@@ -280,43 +259,27 @@ class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 			'input' => [ (object)[
 				'type' => 'ExternalData',
 				'service' => 'geomask',
+				'url' => '…',
 				'features' => []
 			] ],
-			'extendCount' => 1,
 			'maskGeoDataCount' => 1
 		];
 
 		yield 'test with geoline' => [
 			'input' => [ (object)[
 				'type' => 'ExternalData',
-				'service' => 'geoline'
+				'service' => 'geoline',
+				'url' => '…'
 			] ],
-			'extendCount' => 1,
 			'maskGeoDataCount' => 0
 		];
 
 		yield 'test with page' => [
 			'input' => [ (object)[
 				'type' => 'ExternalData',
-				'service' => 'page'
+				'service' => 'page',
+				'url' => '…'
 			] ],
-			'extendCount' => 1,
-			'maskGeoDataCount' => 0
-		];
-
-		yield 'test with missing service' => [
-			'input' => [ (object)[
-				'type' => 'ExternalData',
-			] ],
-			'extendCount' => 0,
-			'maskGeoDataCount' => 0
-		];
-
-		yield 'test with missing type' => [
-			'input' => [ (object)[
-				'service' => 'geomask'
-			] ],
-			'extendCount' => 0,
 			'maskGeoDataCount' => 0
 		];
 	}
@@ -324,13 +287,13 @@ class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideTestParseData
 	 */
-	public function testParse( array $input, $extendCount, $maskGeoDataCount ) {
+	public function testParse( array $input, $maskGeoDataCount ) {
 		$fetcher = $this->getMockBuilder( ExternalDataLoader::class )
 			->setConstructorArgs( [ $this->createMock( HttpRequestFactory::class ) ] )
 			->onlyMethods( [ 'extend', 'handleMaskGeoData' ] )
 			->getMock();
 
-		$fetcher->expects( $this->exactly( $extendCount ) )
+		$fetcher->expects( $this->once() )
 			->method( 'extend' )
 			->will( $this->returnValue( $input[0] ) );
 
@@ -340,13 +303,30 @@ class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 		$fetcher->parse( $input );
 	}
 
-	public function testParseWithoutExternalData() {
-		$geoJson = [ json_decode( self::WIKITEXT_JSON ) ];
+	public function provideGeoJsonWithoutExternalData() {
+		return [
+			'missing type' => [ '{ "service": "", "url": "…" }' ],
+			'missing service' => [ '{ "type": "ExternalData", "url": "…" }' ],
+			'missing url' => [ '{ "type": "ExternalData", "service": "" }' ],
+			'wrong type' => [ '{ "type": "Feature", "service": "", "url": "…" }' ],
+			'empty url' => [ '{ "type": "ExternalData", "service": "", "url": "" }' ],
+		];
+	}
 
-		$fetcher = new ExternalDataLoader( $this->createMock( HttpRequestFactory::class ) );
+	/**
+	 * @dataProvider provideGeoJsonWithoutExternalData
+	 */
+	public function testParseWithoutExternalData( string $input ) {
+		$geoJson = [ json_decode( $input ) ];
+
+		$requestFactory = $this->createMock( HttpRequestFactory::class );
+		$requestFactory->expects( $this->never() )
+			->method( 'create' );
+
+		$fetcher = new ExternalDataLoader( $requestFactory );
 		$fetcher->parse( $geoJson );
 
-		$this->assertEquals( json_decode( self::WIKITEXT_JSON ), $geoJson[0] );
+		$this->assertEquals( json_decode( $input ), $geoJson[0] );
 	}
 
 	public function testHttpRequestFails() {
