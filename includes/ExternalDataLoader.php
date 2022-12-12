@@ -28,7 +28,9 @@ class ExternalDataLoader {
 	 */
 	public function parse( array &$geoJson ) {
 		foreach ( $geoJson as &$element ) {
-			$element = $this->extend( $element );
+			if ( isset( $element->service ) && $element->service !== 'page' ) {
+				$element = $this->extend( $element );
+			}
 		}
 	}
 

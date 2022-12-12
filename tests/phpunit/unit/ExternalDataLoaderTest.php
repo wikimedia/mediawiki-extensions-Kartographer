@@ -151,6 +151,21 @@ class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 	  ]
 	}';
 
+	private const JSON_EXTERNAL_DATA_PAGE = '{
+	  "type": "ExternalData",
+	  "service": "page",
+	  "title": "Neighbourhoods/New York City.map"
+	}';
+
+	public function testExternalDataPage() {
+		$geoJson = [ json_decode( self::JSON_EXTERNAL_DATA_PAGE ) ];
+
+		$fetcher = new ExternalDataLoader( $this->createMock( HttpRequestFactory::class ) );
+		$fetcher->parse( $geoJson );
+
+		$this->assertEquals( json_decode( self::JSON_EXTERNAL_DATA_PAGE ), $geoJson[0] );
+	}
+
 	public function testParseWithoutExternalData() {
 		$geoJson = [ json_decode( self::WIKITEXT_JSON ) ];
 
