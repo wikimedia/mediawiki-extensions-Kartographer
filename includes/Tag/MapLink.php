@@ -7,6 +7,8 @@ use Kartographer\CoordFormatter;
 
 /**
  * The <maplink> tag creates a link that, when clicked, will open a dynamic map in Special:Map page
+ *
+ * @license MIT
  */
 class MapLink extends TagHandler {
 	use MapLinkTrait;

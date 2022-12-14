@@ -9,6 +9,7 @@ use Parser;
 /**
  * @covers \Kartographer\Tag\ParserFunctionTracker
  * @group Kartographer
+ * @license MIT
  */
 class ParserFunctionTrackerTest extends MediaWikiUnitTestCase {
 

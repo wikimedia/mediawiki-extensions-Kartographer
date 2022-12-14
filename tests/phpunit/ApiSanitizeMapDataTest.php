@@ -11,6 +11,7 @@ use RequestContext;
 /**
  * @covers \Kartographer\Api\ApiSanitizeMapData
  * @group Kartographer
+ * @license MIT
  */
 class ApiSanitizeMapDataTest extends MediaWikiIntegrationTestCase {
 

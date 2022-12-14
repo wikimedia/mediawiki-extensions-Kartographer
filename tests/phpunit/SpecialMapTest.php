@@ -11,6 +11,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers \Kartographer\SpecialMap
  * @group Kartographer
+ * @license MIT
  */
 class SpecialMapTest extends MediaWikiIntegrationTestCase {
 

@@ -9,6 +9,7 @@ use MediaWikiUnitTestCase;
 /**
  * @group Kartographer
  * @covers \Kartographer\ExternalDataLoader
+ * @license MIT
  */
 class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 

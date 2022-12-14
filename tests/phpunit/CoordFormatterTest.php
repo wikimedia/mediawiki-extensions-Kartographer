@@ -8,6 +8,7 @@ use MediaWikiIntegrationTestCase;
 /**
  * @covers \Kartographer\CoordFormatter
  * @group Kartographer
+ * @license MIT
  */
 class CoordFormatterTest extends MediaWikiIntegrationTestCase {
 

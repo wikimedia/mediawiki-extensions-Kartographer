@@ -12,6 +12,7 @@ use Title;
  * @covers \Kartographer\Tag\TagHandler
  * @covers \Kartographer\Tag\MapFrame
  * @covers \Kartographer\Tag\MapLink
+ * @license MIT
  */
 class KartographerTest extends MediaWikiLangTestCase {
 

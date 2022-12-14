@@ -8,6 +8,7 @@ use MediaWikiUnitTestCase;
 /**
  * @covers \Kartographer\Projection\EPSG3857
  * @group Kartographer
+ * @license MIT
  */
 class ProjectionTest extends MediaWikiUnitTestCase {
 

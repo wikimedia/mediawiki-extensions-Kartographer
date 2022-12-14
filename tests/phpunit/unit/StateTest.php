@@ -10,6 +10,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers \Kartographer\State
  * @group Kartographer
+ * @license MIT
  */
 class StateTest extends MediaWikiUnitTestCase {
 

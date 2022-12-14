@@ -7,6 +7,8 @@ use ParserOutput;
 
 /**
  * Stores information about map tags on page in ParserOutput
+ *
+ * @license MIT
  */
 class State implements JsonSerializable {
 

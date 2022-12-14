@@ -9,6 +9,8 @@ use stdClass;
 
 /**
  * Gets external data in GeoJSON on parse time
+ *
+ * @license MIT
  */
 class ExternalDataLoader {
 	/** @var HttpRequestFactory */

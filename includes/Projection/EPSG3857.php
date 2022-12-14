@@ -2,6 +2,9 @@
 
 namespace Kartographer\Projection;
 
+/**
+ * @license MIT
+ */
 class EPSG3857 {
 
 	private const MAX_LATITUDE = 85.0511287798;

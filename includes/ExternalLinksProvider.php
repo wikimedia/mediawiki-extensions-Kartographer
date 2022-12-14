@@ -13,6 +13,9 @@ use MediaWiki\ResourceLoader\Context;
 use RuntimeException;
 use stdClass;
 
+/**
+ * @license MIT
+ */
 class ExternalLinksProvider {
 
 	/**

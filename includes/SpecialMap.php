@@ -14,6 +14,8 @@ use UnlistedSpecialPage;
  * who click on map links. It displays a world map with a dot for the given location.
  * URL format: Special:Map/<zoom>/<lat>/<lon>
  * Zoom isn't used anywhere yet.
+ *
+ * @license MIT
  */
 class SpecialMap extends UnlistedSpecialPage {
 

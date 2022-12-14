@@ -2,6 +2,9 @@
 
 namespace Kartographer;
 
+/**
+ * @license MIT
+ */
 interface WikitextParser {
 
 	/**
