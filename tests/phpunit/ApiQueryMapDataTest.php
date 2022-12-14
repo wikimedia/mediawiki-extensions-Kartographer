@@ -8,6 +8,7 @@ use CommentStoreComment;
 use FlaggableWikiPage;
 use FlaggedRevs;
 use FlaggedRevsParserCache;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use ParserOptions;
 use WikiPage;
@@ -31,7 +32,13 @@ class ApiQueryMapDataTest extends ApiTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->setMwGlobals( 'wgKartographerMapServer', 'http://192.0.2.0' );
+		$this->setMwGlobals( [
+			'wgFlaggedRevsAutoReview' => 0,
+			'wgFlaggedRevsNamespaces' => [ NS_MAIN ],
+			'wgFlaggedRevsProtection' => false,
+			'wgKartographerMapServer' => 'http://192.0.2.0',
+			'wgKartographerVersionedMapdata' => true,
+		] );
 	}
 
 	public function testExecuteMissingPage() {
@@ -148,30 +155,24 @@ class ApiQueryMapDataTest extends ApiTestCase {
 	}
 
 	public function testStableAndLatest() {
-		$this->markTestSkipped( 'T312517' );
 		$this->markTestSkippedIfExtensionNotLoaded( 'FlaggedRevs' );
 
-		$this->setMwGlobals( [
-			'wgFlaggedRevsAutoReview' => FR_AUTOREVIEW_NONE,
-			'wgKartographerVersionedMapdata' => true,
-		] );
-
-		$hashLatest = '_' . sha1( '[' . self::MAPFRAME_JSON . ']' );
-		$hashStable = '_' . sha1( '[' . self::MAPFRAME_JSON_OTHER . ']' );
-		$expectedLatest = [ '{"' . $hashLatest . '":[' . self::MAPFRAME_JSON . ']}' ];
-		$expectedStable = [ '{"' . $hashStable . '":[' . self::MAPFRAME_JSON_OTHER . ']}' ];
+		$hashStable = '_' . sha1( '[' . self::MAPFRAME_JSON . ']' );
+		$hashLatest = '_' . sha1( '[' . self::MAPFRAME_JSON_OTHER . ']' );
+		$expectedStable = [ '{"' . $hashStable . '":[' . self::MAPFRAME_JSON . ']}' ];
+		$expectedLatest = [ '{"' . $hashLatest . '":[' . self::MAPFRAME_JSON_OTHER . ']}' ];
 
 		$page = $this->getExistingTestPage( __METHOD__ );
 
-		$stableRevision = $this->addRevision( $page, self::MAPFRAME_CONTENT_OTHER );
+		$stableRevision = $this->addRevision( $page, self::MAPFRAME_CONTENT );
 		FlaggedRevs::autoReviewEdit(
-		  $page,
-		  $this->getTestUser()->getUser(),
-		  $stableRevision
+			$page,
+			$this->getTestUser()->getUser(),
+			$stableRevision
 		);
 
 		// Set up the latest revision
-		$this->addRevision( $page, self::MAPFRAME_CONTENT );
+		$this->addRevision( $page, self::MAPFRAME_CONTENT_OTHER );
 
 		$cache = $this->createNoOpMock( FlaggedRevsParserCache::class, [ 'get' ] );
 		// Assert that the stable cache is only used once, i.e. not for the latest revision.
@@ -190,18 +191,20 @@ class ApiQueryMapDataTest extends ApiTestCase {
 		$this->assertResult( [ $expectedLatest ], $apiResultLatestRevision );
 
 		// Test the stable revision.
-		$frPage = FlaggableWikiPage::getTitleInstance( $page->getTitle() );
-		$srev = $frPage->getStableRev();
+		$flaggedRevision = FlaggableWikiPage::newInstance( $page )->getStableRev();
+		if ( !$flaggedRevision ) {
+			$this->markTestIncomplete( 'T312517' );
+		}
 		$params = [
 			'action' => 'query',
 			'prop' => 'mapdata',
-			'revids' => $srev->getRevId(),
+			'revids' => $flaggedRevision->getRevId(),
 		];
 		[ $apiResultStableRevision ] = $this->doApiRequest( $params );
 		$this->assertResult( [ $expectedStable ], $apiResultStableRevision );
 	}
 
-	private function addRevision( WikiPage $page, string $wikitext ) {
+	private function addRevision( WikiPage $page, string $wikitext ): ?RevisionRecord {
 		return $page->newPageUpdater( $this->getTestUser()->getUser() )
 			->setContent( SlotRecord::MAIN, new WikitextContent( $wikitext ) )
 			->saveRevision( CommentStoreComment::newUnsavedComment( __CLASS__ ) );
