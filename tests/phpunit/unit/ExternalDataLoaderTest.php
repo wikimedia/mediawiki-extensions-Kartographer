@@ -5,6 +5,8 @@ namespace Kartographer\Tests;
 use Kartographer\ExternalDataLoader;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWikiUnitTestCase;
+use MWHttpRequest;
+use Status;
 
 /**
  * @group Kartographer
@@ -174,6 +176,24 @@ class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 		$fetcher->parse( $geoJson );
 
 		$this->assertEquals( json_decode( self::WIKITEXT_JSON ), $geoJson[0] );
+	}
+
+	public function testHttpRequestFails() {
+		$request = $this->createMock( MWHttpRequest::class );
+		$request->method( 'execute' )
+			->willReturn( Status::newFatal( '' ) );
+		$request->expects( $this->never() )
+			->method( 'getContent' );
+
+		$factory = $this->createMock( HttpRequestFactory::class );
+		$factory->method( 'create' )
+			->willReturn( $request );
+
+		$geoJson = '{"type":"ExternalData","url":""}';
+		$extendedGeoJson = [ json_decode( $geoJson ) ];
+		( new ExternalDataLoader( $factory ) )->parse( $extendedGeoJson );
+
+		$this->assertSame( $geoJson, json_encode( $extendedGeoJson[0] ) );
 	}
 
 	public function testParseWithExternalData() {
