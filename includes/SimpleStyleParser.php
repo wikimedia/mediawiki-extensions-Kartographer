@@ -48,12 +48,13 @@ class SimpleStyleParser {
 	public static function newFromParser(
 		Parser $parser,
 		Config $config,
-		?PPFrame $frame = null
+		?PPFrame $frame = null,
+		array $options = []
 	): self {
 		return new self(
 			new MediaWikiWikitextParser( $parser, $frame ),
 			$config,
-			[]
+			$options
 		);
 	}
 
@@ -296,6 +297,7 @@ class SimpleStyleParser {
 					'formatversion' => '2',
 					'action' => 'jsondata',
 					'title' => $jct->getText(),
+					'uselang' => $this->options['uselang'] ?? null,
 				];
 				$ret->url = wfScript( 'api' ) . '?' . wfArrayToCgi( $query );
 				break;

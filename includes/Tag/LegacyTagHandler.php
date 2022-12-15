@@ -78,7 +78,9 @@ abstract class LegacyTagHandler {
 		$status = $this->args->status;
 		$geometries = [];
 		if ( $status->isOK() ) {
-			$status = SimpleStyleParser::newFromParser( $parser, $this->config, $frame )->parse( $input );
+			$status = SimpleStyleParser::newFromParser( $parser, $this->config, $frame,
+				[ 'uselang' => $this->parserContext->getTargetLanguage()->getCode() ]
+			)->parse( $input );
 			if ( $status->isOK() ) {
 				$geometries = $status->getValue()['data'];
 			}
