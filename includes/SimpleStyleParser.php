@@ -9,6 +9,7 @@ use JsonSchema\Validator;
 use LogicException;
 use MediaWiki\MediaWikiServices;
 use Parser;
+use PPFrame;
 use Status;
 use stdClass;
 
@@ -32,7 +33,16 @@ class SimpleStyleParser {
 	private $mapService;
 
 	/**
-	 * @param MediaWikiWikitextParser|Parser $parser
+	 * @param Parser $parser
+	 * @param PPFrame|null $frame
+	 * @return self
+	 */
+	public static function newFromParser( Parser $parser, PPFrame $frame = null ): self {
+		return new self( new MediaWikiWikitextParser( $parser, $frame ) );
+	}
+
+	/**
+	 * @param MediaWikiWikitextParser $parser
 	 * @param array $options Set ['saveUnparsed' => true] to back up the original values of title
 	 *                       and description in _origtitle and _origdescription
 	 */
