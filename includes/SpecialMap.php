@@ -33,7 +33,10 @@ class SpecialMap extends UnlistedSpecialPage {
 		$this->setHeaders();
 		$output = $this->getOutput();
 		$output->addModuleStyles( 'ext.kartographer.specialMap' );
-		$output->getCSP()->addDefaultSrc( $this->getConfig()->get( 'KartographerMapServer' ) );
+		$mapServer = $this->getConfig()->get( 'KartographerMapServer' );
+		if ( $mapServer !== null ) {
+			$output->getCSP()->addDefaultSrc( $mapServer );
+		}
 
 		$coord = $this->parseSubpage( $par );
 		if ( !$coord ) {
