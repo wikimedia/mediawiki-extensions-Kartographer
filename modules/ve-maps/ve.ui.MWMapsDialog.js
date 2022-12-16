@@ -47,7 +47,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	// Parent method
 	ve.ui.MWMapsDialog.super.prototype.initialize.call( this );
 
-	this.helpLink = new OO.ui.ButtonWidget( {
+	var helpLink = new OO.ui.ButtonWidget( {
 		icon: 'help',
 		classes: [ 've-ui-mwMapsDialog-help' ],
 		title: ve.msg( 'visualeditor-mwmapsdialog-help-title' ),
@@ -73,7 +73,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		expanded: false,
 		label: ve.msg( 'visualeditor-mwmapsdialog-content' )
 	} );
-	this.optionsPanel = new OO.ui.TabPanelLayout( 'options', {
+	var optionsPanel = new OO.ui.TabPanelLayout( 'options', {
 		expanded: false,
 		label: ve.msg( 'visualeditor-mwmapsdialog-options' ),
 		classes: [ 've-ui-mwMapsDialog-optionsPanel' ]
@@ -83,19 +83,19 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	this.scalable = null;
 
 	this.latitude = new OO.ui.TextInputWidget();
-	this.latitudeField = new OO.ui.FieldLayout( this.latitude, {
+	var latitudeField = new OO.ui.FieldLayout( this.latitude, {
 		align: 'left',
 		label: ve.msg( 'visualeditor-mwmapsdialog-position-lat' )
 	} );
 
 	this.longitude = new OO.ui.TextInputWidget();
-	this.longitudeField = new OO.ui.FieldLayout( this.longitude, {
+	var longitudeField = new OO.ui.FieldLayout( this.longitude, {
 		align: 'left',
 		label: ve.msg( 'visualeditor-mwmapsdialog-position-lon' )
 	} );
 
 	this.zoom = new OO.ui.NumberInputWidget( { min: 1, max: 19, step: 1 } );
-	this.zoomField = new OO.ui.FieldLayout( this.zoom, {
+	var zoomField = new OO.ui.FieldLayout( this.zoom, {
 		align: 'left',
 		label: ve.msg( 'visualeditor-mwmapsdialog-position-zoom' )
 	} );
@@ -108,9 +108,9 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 
 	this.areaPanel.$element.append(
 		this.$areaMap,
-		this.latitudeField.$element,
-		this.longitudeField.$element,
-		this.zoomField.$element,
+		latitudeField.$element,
+		longitudeField.$element,
+		zoomField.$element,
 		this.dimensionsField.$element
 	);
 
@@ -125,19 +125,19 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		.setLanguage( 'json' )
 		.toggleLineNumbers( false )
 		.setDir( 'ltr' );
-	this.geoJsonField = new OO.ui.FieldLayout( this.input, {
+	var geoJsonField = new OO.ui.FieldLayout( this.input, {
 		align: 'top',
 		label: ve.msg( 'visualeditor-mwmapsdialog-geojson' )
 	} );
 
 	this.contentPanel.$element.append(
 		this.$contentMap,
-		this.geoJsonField.$element
+		geoJsonField.$element
 	);
 
 	// Options panel
 	this.caption = new ve.ui.MWMapsCaptionInputWidget();
-	this.captionField = new OO.ui.FieldLayout( this.caption, {
+	var captionField = new OO.ui.FieldLayout( this.caption, {
 		align: 'top',
 		label: ve.msg( 'visualeditor-mwmapsdialog-caption' ),
 		help: ve.msg( 'visualeditor-mwmapsdialog-caption-help' ),
@@ -155,7 +155,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	} );
 
 	this.frame = new OO.ui.ToggleSwitchWidget();
-	this.frameField = new OO.ui.FieldLayout( this.frame, {
+	var frameField = new OO.ui.FieldLayout( this.frame, {
 		label: ve.msg( 'visualeditor-mwmapsdialog-frame' ),
 		classes: [ 've-ui-mwMapsDialog-frameField' ]
 	} );
@@ -183,7 +183,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 			filterFromInput: true
 		}
 	} );
-	this.languageField = new OO.ui.FieldLayout( this.language, {
+	var languageField = new OO.ui.FieldLayout( this.language, {
 		align: 'top',
 		label: ve.msg( 'visualeditor-mwmapsdialog-language' ),
 		help: new OO.ui.HtmlSnippet( mw.message( 'visualeditor-mwmapsdialog-language-help' ).parse() ),
@@ -191,23 +191,23 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		$overlay: this.$body
 	} );
 
-	this.optionsPanel.$element.append(
-		this.captionField.$element,
+	optionsPanel.$element.append(
+		captionField.$element,
 		this.displayField.$element,
-		this.frameField.$element,
-		this.languageField.$element
+		frameField.$element,
+		languageField.$element
 	);
 
 	// Initialize
 	this.indexLayout.addTabPanels( [
 		this.areaPanel,
 		this.contentPanel,
-		this.optionsPanel
+		optionsPanel
 	] );
 	this.$body.append(
 		this.$mapContainer,
 		this.indexLayout.$element,
-		this.helpLink.$element
+		helpLink.$element
 	);
 };
 
