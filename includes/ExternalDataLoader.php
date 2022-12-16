@@ -29,11 +29,64 @@ class ExternalDataLoader {
 	 * @param stdClass[] &$geoJson
 	 */
 	public function parse( array &$geoJson ) {
-		foreach ( $geoJson as &$element ) {
-			if ( isset( $element->service ) && $element->service !== 'page' ) {
-				$element = $this->extend( $element );
+		foreach ( $geoJson as &$data ) {
+			if ( !isset( $data->type ) || !isset( $data->service ) ||
+				$data->type !== 'ExternalData' ||
+				$data->service === 'page'
+			) {
+				continue;
+			}
+
+			$data = $this->extend( $data );
+			if ( $data->service === 'geomask' ) {
+				$data = $this->handleMaskGeoData( $data );
 			}
 		}
+	}
+
+	/**
+	 * Creates a mask out of a shape
+	 *
+	 * @param stdClass $data
+	 * @return stdClass
+	 */
+	public function handleMaskGeoData( stdClass $data ): stdClass {
+		// Mask-out the entire world 10 times east and west,
+		// and add each result geometry as a hole
+		$coordinates = [ [
+			[ 3600, -180 ],
+			[ 3600, 180 ],
+			[ -3600, 180 ],
+			[ -3600, -180 ]
+		] ];
+
+		for ( $i = 0; $i < count( $data->features ); $i++ ) {
+			$geometry = $data->features[ $i ]->geometry ?? null;
+			if ( !$geometry ) {
+				continue;
+			}
+
+			switch ( $geometry->type ) {
+				case 'Polygon':
+					array_push( $coordinates, $geometry->coordinates[ 0 ] );
+					break;
+				case 'MultiPolygon':
+					for ( $j = 0; $j < count( $geometry->coordinates ); $j++ ) {
+						array_push( $coordinates, $geometry->coordinates[ $j ][ 0 ] );
+					}
+					break;
+			}
+		}
+
+		unset( $data->features );
+
+		$data->type = 'Feature';
+		$data->geometry = [
+			'type' => 'Polygon',
+			'coordinates' => $coordinates
+		];
+
+		return $data;
 	}
 
 	/**
@@ -42,7 +95,7 @@ class ExternalDataLoader {
 	 * @param stdClass $geoJson
 	 * @return stdClass
 	 */
-	private function extend( stdClass $geoJson ): stdClass {
+	public function extend( stdClass $geoJson ): stdClass {
 		if ( !isset( $geoJson->type ) || $geoJson->type !== 'ExternalData' ) {
 			return $geoJson;
 		}

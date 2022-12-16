@@ -7,6 +7,7 @@ use MediaWiki\Http\HttpRequestFactory;
 use MediaWikiUnitTestCase;
 use MWHttpRequest;
 use Status;
+use stdClass;
 
 /**
  * @group Kartographer
@@ -159,6 +160,165 @@ class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 	  "service": "page",
 	  "title": "Neighbourhoods/New York City.map"
 	}';
+
+	public function provideTestGeoMaskData() {
+		yield 'test with multi polygon' => [
+			'input' => (object)[
+				'type' => 'Feature',
+				'features' => [
+					(object)[
+						'geometry' => (object)[
+							'type' => 'MultiPolygon',
+							'coordinates' => [
+								[ 1, 2 ],
+								[ 3, 4 ],
+								[ 5, 6 ]
+							]
+						]
+					]
+				]
+			],
+			'expected' => (object)[
+				'type' => 'Feature',
+				'geometry' => [
+					'type' => 'Polygon',
+					'coordinates' => [
+						[
+							[ 3600, -180 ],
+							[ 3600, 180 ],
+							[ -3600, 180 ],
+							[ -3600, -180 ]
+						],
+						1, 3, 5
+					]
+				]
+			]
+		];
+
+		yield 'test with single polygon' => [
+			'input' => (object)[
+				'type' => 'Feature',
+				'features' => [
+					(object)[
+						'geometry' => (object)[
+							'type' => 'Polygon',
+							'coordinates' => [
+								[ 1, 2 ]
+							]
+						]
+					]
+				]
+			],
+			'expected' => (object)[
+				'type' => 'Feature',
+				'geometry' => [
+					'type' => 'Polygon',
+					'coordinates' => [
+						[
+							[ 3600, -180 ],
+							[ 3600, 180 ],
+							[ -3600, 180 ],
+							[ -3600, -180 ]
+						],
+						[ 1, 2 ]
+					]
+				]
+			]
+		];
+
+		yield 'test with no geometry' => [
+			'input' => (object)[
+				'type' => 'Feature',
+				'features' => []
+			],
+			'expected' => (object)[
+				'type' => 'Feature',
+				'geometry' => [
+					'type' => 'Polygon',
+					'coordinates' => [
+						[
+							[ 3600, -180 ],
+							[ 3600, 180 ],
+							[ -3600, 180 ],
+							[ -3600, -180 ]
+						]
+					]
+				]
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideTestGeoMaskData
+	 */
+	public function testGeoMaskData( stdClass $input, stdClass $expected ) {
+		$fetcher = new ExternalDataLoader( $this->createMock( HttpRequestFactory::class ) );
+		$this->assertEquals( $expected, $fetcher->handleMaskGeoData( $input ) );
+	}
+
+	public function provideTestParseData() {
+		yield 'test with geomask' => [
+			'input' => [ (object)[
+				'type' => 'ExternalData',
+				'service' => 'geomask'
+			] ],
+			'extendCount' => 1,
+			'maskGeoDataCount' => 1
+		];
+
+		yield 'test with geoline' => [
+			'input' => [ (object)[
+				'type' => 'ExternalData',
+				'service' => 'geoline'
+			] ],
+			'extendCount' => 1,
+			'maskGeoDataCount' => 0
+		];
+
+		yield 'test with page' => [
+			'input' => [ (object)[
+				'type' => 'ExternalData',
+				'service' => 'page'
+			] ],
+			'extendCount' => 0,
+			'maskGeoDataCount' => 0
+		];
+
+		yield 'test with missing service' => [
+			'input' => [ (object)[
+				'type' => 'ExternalData',
+			] ],
+			'extendCount' => 0,
+			'maskGeoDataCount' => 0
+		];
+
+		yield 'test with missing type' => [
+			'input' => [ (object)[
+				'service' => 'geomask'
+			] ],
+			'extendCount' => 0,
+			'maskGeoDataCount' => 0
+		];
+	}
+
+	/**
+	 * @dataProvider provideTestParseData
+	 */
+	public function testParse( array $input, $extendCount, $maskGeoDataCount ) {
+		$fetcher = $this->getMockBuilder( ExternalDataLoader::class )
+			->setConstructorArgs( [ $this->createMock( HttpRequestFactory::class ) ] )
+			->onlyMethods( [ 'extend', 'handleMaskGeoData' ] )
+			->getMock();
+
+		$fetcher->expects( $this->exactly( $extendCount ) )
+			->method( 'extend' )
+			->will( $this->returnValue( $input[0] ) );
+
+		$fetcher->expects( $this->exactly( $maskGeoDataCount ) )
+			->method( 'handleMaskGeoData' );
+
+		$fetcher->parse( $input );
+	}
 
 	public function testExternalDataPage() {
 		$geoJson = [ json_decode( self::JSON_EXTERNAL_DATA_PAGE ) ];
