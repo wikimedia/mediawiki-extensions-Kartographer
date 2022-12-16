@@ -6,7 +6,6 @@ use Kartographer\State;
 use Kartographer\Tag\ParserFunctionTracker;
 use Kartographer\Tag\TagHandler;
 use MediaWikiUnitTestCase;
-use Parser;
 use stdClass;
 
 /**
@@ -38,17 +37,17 @@ class TagHandlerTest extends MediaWikiUnitTestCase {
 		$output = $this->createMock( \ParserOutput::class );
 		$output->expects( $this->once() )
 			->method( 'setJsConfigVar' )
-			->with(
-				'wgKartographerLiveData',
-				$expected
-			);
+			->with( 'wgKartographerLiveData', $expected );
 
-		TagHandler::finalParseStep(
-			$state,
-			$output,
-			$isPreview,
-			new ParserFunctionTracker( $this->createMock( Parser::class ) )
-		);
+		$tracker = $this->createMock( ParserFunctionTracker::class );
+		$tracker->expects( $this->once() )
+			->method( 'addTrackingCategories' )
+			->with( [
+				'kartographer-broken-category' => false,
+				'kartographer-tracking-category' => false,
+			] );
+
+		TagHandler::finalParseStep( $state, $output, $isPreview, $tracker );
 	}
 
 	public function groupsProvider() {
