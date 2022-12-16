@@ -99,7 +99,7 @@ class ApiSanitizeMapData extends ApiBase {
 				ParamValidator::PARAM_DEFAULT => 'Dummy title (called from ' . __CLASS__ . ')',
 			],
 			'text' => [
-				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'text',
 				ParamValidator::PARAM_REQUIRED => true,
 			]
 		];
