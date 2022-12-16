@@ -13,7 +13,6 @@ use Config;
 use FormatJson;
 use Html;
 use Kartographer\ExternalDataLoader;
-use Kartographer\MediaWikiWikitextParser;
 use Kartographer\SimpleStyleParser;
 use Kartographer\State;
 use Language;
@@ -162,7 +161,7 @@ abstract class TagHandler {
 	 * @param PPFrame $frame
 	 */
 	private function parseGeometries( $input, Parser $parser, PPFrame $frame ) {
-		$simpleStyle = new SimpleStyleParser( new MediaWikiWikitextParser( $parser, $frame ) );
+		$simpleStyle = SimpleStyleParser::newFromParser( $parser, $frame );
 
 		$this->status = $simpleStyle->parse( $input );
 		if ( $this->status->isOK() ) {

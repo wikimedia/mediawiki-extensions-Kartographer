@@ -3,7 +3,6 @@
 namespace Kartographer\Tests;
 
 use JsonConfig\JCMapDataContent;
-use Kartographer\MediaWikiWikitextParser;
 use Kartographer\SimpleStyleParser;
 use Kartographer\WikitextParser;
 use LogicException;
@@ -39,7 +38,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 		$parser = $this->getServiceContainer()->getParserFactory()->create();
 		$title = Title::newFromText( 'Test' );
 		$parser->startExternalParse( $title, $options, Parser::OT_HTML );
-		$ssp = new SimpleStyleParser( new MediaWikiWikitextParser( $parser ) );
+		$ssp = SimpleStyleParser::newFromParser( $parser );
 
 		$status = $ssp->parse( $input );
 
