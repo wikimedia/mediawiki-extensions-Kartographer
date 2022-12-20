@@ -3,6 +3,7 @@
 namespace Kartographer\Tests;
 
 use Kartographer\ExternalDataLoader;
+use Kartographer\Tag\ParserFunctionTracker;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWikiUnitTestCase;
 use MWHttpRequest;
@@ -323,7 +324,11 @@ class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 		$requestFactory->expects( $this->never() )
 			->method( 'create' );
 
-		$fetcher = new ExternalDataLoader( $requestFactory );
+		$tracker = $this->createMock( ParserFunctionTracker::class );
+		$tracker->expects( $this->never() )
+			->method( 'incrementExpensiveFunctionCount' );
+
+		$fetcher = new ExternalDataLoader( $requestFactory, $tracker );
 		$fetcher->parse( $geoJson );
 
 		$this->assertEquals( json_decode( $input ), $geoJson[0] );
@@ -360,10 +365,33 @@ class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 		$factory->method( 'create' )
 			->willReturn( $request );
 
-		$fetcher = new ExternalDataLoader( $factory );
+		$tracker = $this->createMock( ParserFunctionTracker::class );
+		$tracker->expects( $this->once() )
+			->method( 'incrementExpensiveFunctionCount' )
+			->willReturn( true );
+
+		$fetcher = new ExternalDataLoader( $factory, $tracker );
 		$fetcher->parse( $geoJson );
 
 		$this->assertEquals( json_decode( self::JSON_EXTENDED ), $geoJson[0] );
+	}
+
+	public function testExpensiveFunctionCountReached() {
+		$geoJson = [ json_decode( self::JSON_EXTERNAL_LINK ) ];
+
+		$factory = $this->createMock( HttpRequestFactory::class );
+		$factory->expects( $this->never() )
+			->method( 'create' );
+
+		$tracker = $this->createMock( ParserFunctionTracker::class );
+		$tracker->expects( $this->once() )
+			->method( 'incrementExpensiveFunctionCount' )
+			->willReturn( false );
+
+		$fetcher = new ExternalDataLoader( $factory, $tracker );
+		$fetcher->parse( $geoJson );
+
+		$this->assertEquals( json_decode( self::JSON_EXTERNAL_LINK ), $geoJson[0] );
 	}
 
 }

@@ -3,6 +3,7 @@
 namespace Kartographer;
 
 use FormatJson;
+use Kartographer\Tag\ParserFunctionTracker;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Logger\LoggerFactory;
 use stdClass;
@@ -13,14 +14,22 @@ use stdClass;
  * @license MIT
  */
 class ExternalDataLoader {
+
 	/** @var HttpRequestFactory */
 	private HttpRequestFactory $requestFactory;
+	/** @var ParserFunctionTracker|null */
+	private ?ParserFunctionTracker $tracker;
 
 	/**
 	 * @param HttpRequestFactory $requestFactory
+	 * @param ParserFunctionTracker|null $tracker
 	 */
-	public function __construct( HttpRequestFactory $requestFactory ) {
+	public function __construct(
+		HttpRequestFactory $requestFactory,
+		ParserFunctionTracker $tracker = null
+	) {
 		$this->requestFactory = $requestFactory;
+		$this->tracker = $tracker;
 	}
 
 	/**
@@ -35,6 +44,10 @@ class ExternalDataLoader {
 				$data->type !== 'ExternalData' ||
 				!$data->url
 			) {
+				continue;
+			}
+
+			if ( $this->tracker && !$this->tracker->incrementExpensiveFunctionCount() ) {
 				continue;
 			}
 

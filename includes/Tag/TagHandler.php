@@ -169,7 +169,10 @@ abstract class TagHandler {
 			$this->geometries = $this->status->getValue()['data'];
 
 			if ( $this->config->get( 'KartographerExternalDataParseTimeFetch' ) ) {
-				$fetcher = new ExternalDataLoader( MediaWikiServices::getInstance()->getHttpRequestFactory() );
+				$fetcher = new ExternalDataLoader(
+					MediaWikiServices::getInstance()->getHttpRequestFactory(),
+					new ParserFunctionTracker( $parser )
+				);
 				$fetcher->parse( $this->geometries );
 			}
 		}
