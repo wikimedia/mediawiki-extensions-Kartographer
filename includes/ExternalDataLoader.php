@@ -31,8 +31,7 @@ class ExternalDataLoader {
 	public function parse( array &$geoJson ) {
 		foreach ( $geoJson as &$data ) {
 			if ( !isset( $data->type ) || !isset( $data->service ) ||
-				$data->type !== 'ExternalData' ||
-				$data->service === 'page'
+				$data->type !== 'ExternalData'
 			) {
 				continue;
 			}
