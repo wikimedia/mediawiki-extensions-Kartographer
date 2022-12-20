@@ -314,12 +314,12 @@ class KartographerTest extends MediaWikiLangTestCase {
 	public function provideGroupNames() {
 		return [
 			[ [], '<maplink></maplink>' ],
-			[ [ 'a1' => 0 ], '<maplink show="a1"></maplink>' ],
-			[ [ 'a1' => 0, 'b1' => 1 ], '<maplink group="b1" show="a1"></maplink>' ],
-			[ [ 'a 1' => 0, 'b 1' => 1 ], '<maplink group="b 1" show="a 1"></maplink>' ],
-			[ [ 'a 1' => 0, 'b 1' => 1 ], '<maplink group="b 1" show="a 1, b 1"></maplink>' ],
-			[ [ 'cab 1' => 0, 'b 1' => 1 ], '<maplink group="b 1" show="cab 1, b 1"></maplink>' ],
-			[ [ 'שלום' => 0 ], '<maplink show="שלום"></maplink>' ],
+			[ [ 'a1' ], '<maplink show="a1"></maplink>' ],
+			[ [ 'a1', 'b1' ], '<maplink group="b1" show="a1"></maplink>' ],
+			[ [ 'a 1', 'b 1' ], '<maplink group="b 1" show="a 1"></maplink>' ],
+			[ [ 'a 1', 'b 1' ], '<maplink group="b 1" show="a 1, b 1"></maplink>' ],
+			[ [ 'cab 1', 'b 1' ], '<maplink group="b 1" show="cab 1, b 1"></maplink>' ],
+			[ [ 'שלום' ], '<maplink show="שלום"></maplink>' ],
 		];
 	}
 

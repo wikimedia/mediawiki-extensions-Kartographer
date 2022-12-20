@@ -350,11 +350,9 @@ abstract class TagHandler {
 			$parserOutput->setJsConfigVar( 'wgKartographerLiveData', $data );
 		} else {
 			$interact = $state->getInteractiveGroups();
-			$requested = array_keys( $state->getRequestedGroups() );
+			$requested = $state->getRequestedGroups();
 			if ( $interact || $requested ) {
-				$interact = array_flip( $interact );
-				$liveData = array_intersect_key( $data, $interact );
-				$requested = array_unique( $requested );
+				$liveData = array_intersect_key( $data, array_flip( $interact ) );
 				// Prevent pointless API requests for missing groups
 				foreach ( $requested as $groupId ) {
 					if ( !isset( $data[$groupId] ) ) {
