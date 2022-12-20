@@ -20,7 +20,7 @@ class ValidationTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideTestCases
 	 * phpcs:disable Squiz.WhiteSpace.FunctionSpacing.BeforeFirst
 	 */
-	public function testValidation( $file, $shouldFail ) {
+	public function testValidation( string $file, bool $shouldFail ) {
 		$parser = $this->getServiceContainer()->getParserFactory()->create();
 		$options = ParserOptions::newFromAnon();
 		$title = Title::newMainPage();

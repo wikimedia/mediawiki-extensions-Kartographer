@@ -42,7 +42,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideTagData
 	 */
-	public function testTagData( $expected, $input, $message, $wikivoyageMode = false ) {
+	public function testTagData( $expected, string $input, string $message, bool $wikivoyageMode = false ) {
 		$this->setMwGlobals( 'wgKartographerWikivoyageMode', $wikivoyageMode );
 		$output = $this->parse( $input );
 		$state = State::getState( $output );
@@ -167,7 +167,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideResourceModulesData
 	 */
-	public function testResourceModules( $input, array $expectedModules, array $expectedStyles ) {
+	public function testResourceModules( string $input, array $expectedModules, array $expectedStyles ) {
 		$this->setMwGlobals( 'wgKartographerStaticMapframe', false );
 		$output = $this->parse( $input );
 
@@ -223,11 +223,11 @@ class KartographerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideLiveData
 	 */
 	public function testLiveData(
-		$wikitext,
+		string $wikitext,
 		array $expected,
-		$isPreview = false,
-		$isSectionPreview = false,
-		$wikivoyageMode = false
+		bool $isPreview = false,
+		bool $isSectionPreview = false,
+		bool $wikivoyageMode = false
 	) {
 		$this->setMwGlobals( [
 			'wgKartographerWikivoyageMode' => $wikivoyageMode,
@@ -282,7 +282,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider providePageProps
 	 */
-	public function testPageProps( $text, $frames, $links ) {
+	public function testPageProps( string $text, ?int $frames, ?int $links ) {
 		$po = $this->parse( $text );
 		$this->assertEquals( $frames, $po->getPageProperty( 'kartographer_frames' ) );
 		$this->assertEquals( $links, $po->getPageProperty( 'kartographer_links' ) );
@@ -301,7 +301,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideGroupNames
 	 */
-	public function testGroupNames( $expected, $input ) {
+	public function testGroupNames( array $expected, string $input ) {
 		$this->setMwGlobals( 'wgKartographerWikivoyageMode', true );
 		$output = $this->parse( $input );
 		$state = State::getState( $output );
@@ -326,7 +326,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideInvalidGroupNames
 	 */
-	public function testInvalidGroupNames( $input ) {
+	public function testInvalidGroupNames( string $input ) {
 		$this->setMwGlobals( 'wgKartographerWikivoyageMode', true );
 		$output = $this->parse( $input );
 		$state = State::getState( $output );
@@ -350,7 +350,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 	 * @param bool $isSectionPreview
 	 * @return ParserOutput
 	 */
-	private function parse( $text, $isPreview = false, $isSectionPreview = false ) {
+	private function parse( string $text, bool $isPreview = false, bool $isSectionPreview = false ): ParserOutput {
 		$parser = $this->getServiceContainer()->getParserFactory()->create();
 		$options = ParserOptions::newFromAnon();
 		$options->setIsPreview( $isPreview );
@@ -360,7 +360,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 		return $parser->parse( $text, $title, $options );
 	}
 
-	private function hasTrackingCategory( ParserOutput $output, $key ) {
+	private function hasTrackingCategory( ParserOutput $output, string $key ): bool {
 		$cat = wfMessage( $key )->inContentLanguage()->text();
 		$title = Title::makeTitleSafe( NS_CATEGORY, $cat );
 		$cats = $output->getCategories();

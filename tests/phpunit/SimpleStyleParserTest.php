@@ -253,7 +253,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 	public function testUpdateMarkerSymbolCounters(
 		string $data,
 		string $expectedData,
-		$expectedFirstMarker = false
+		string $expectedFirstMarker = null
 	) {
 		$data = json_decode( $data );
 		$firstMarker = SimpleStyleParser::updateMarkerSymbolCounters( $data );

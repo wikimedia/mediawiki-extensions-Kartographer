@@ -19,7 +19,7 @@ class SpecialMapTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideParseSubpage
 	 */
 	public function testParseSubpage(
-		$par, $expectedLat = null, $expectedLon = null, $expectedLang = null
+		string $par, float $expectedLat = null, float $expectedLon = null, string $expectedLang = null
 	) {
 		/** @var SpecialMap $specialMap */
 		$specialMap = TestingAccessWrapper::newFromObject( new SpecialMap() );

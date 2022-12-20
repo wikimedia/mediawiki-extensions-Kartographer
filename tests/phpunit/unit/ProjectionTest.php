@@ -27,7 +27,7 @@ class ProjectionTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideCoordinatesAndZoom
 	 */
-	public function testLatLonProjection( $latLon, $point ) {
+	public function testLatLonProjection( array $latLon, array $point ) {
 		$actual = EPSG3857::latLonToPoint( $latLon );
 		$this->assertCount( 2, $actual );
 		$this->assertEqualsWithDelta( $point[0], $actual[0], self::DELTA, 'x' );
