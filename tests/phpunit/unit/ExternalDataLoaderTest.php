@@ -258,11 +258,29 @@ class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $expected, $fetcher->handleMaskGeoData( $input ) );
 	}
 
+	public function testGeoMaskWhenHttpRequestFails() {
+		$geoJson = json_decode( '[{"type":"ExternalData","service":"geomask","url":"…"}]' );
+
+		$request = $this->createMock( MWHttpRequest::class );
+		$request->method( 'execute' )
+			->willReturn( Status::newFatal( '' ) );
+
+		$factory = $this->createMock( HttpRequestFactory::class );
+		$factory->method( 'create' )
+			->willReturn( $request );
+
+		$fetcher = new ExternalDataLoader( $factory );
+		$fetcher->parse( $geoJson );
+
+		$this->assertSame( 'ExternalData', $geoJson[0]->type );
+	}
+
 	public function provideTestParseData() {
 		yield 'test with geomask' => [
 			'input' => [ (object)[
 				'type' => 'ExternalData',
-				'service' => 'geomask'
+				'service' => 'geomask',
+				'features' => []
 			] ],
 			'extendCount' => 1,
 			'maskGeoDataCount' => 1
