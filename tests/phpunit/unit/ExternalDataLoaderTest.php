@@ -158,7 +158,9 @@ class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 	private const JSON_EXTERNAL_DATA_PAGE = '{
 	  "type": "ExternalData",
 	  "service": "page",
-	  "title": "Neighbourhoods/New York City.map"
+	  "title": "Neighbourhoods/New York City.map",
+	  "url": "http://commons.test/w/api.php?format=json&formatversion=2&"
+		"action=jsondata&title=Neighbourhoods%2FNew+York+City.map"
 	}';
 
 	public function provideTestGeoMaskData() {
@@ -280,7 +282,7 @@ class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 				'type' => 'ExternalData',
 				'service' => 'page'
 			] ],
-			'extendCount' => 0,
+			'extendCount' => 1,
 			'maskGeoDataCount' => 0
 		];
 
@@ -318,15 +320,6 @@ class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 			->method( 'handleMaskGeoData' );
 
 		$fetcher->parse( $input );
-	}
-
-	public function testExternalDataPage() {
-		$geoJson = [ json_decode( self::JSON_EXTERNAL_DATA_PAGE ) ];
-
-		$fetcher = new ExternalDataLoader( $this->createMock( HttpRequestFactory::class ) );
-		$fetcher->parse( $geoJson );
-
-		$this->assertEquals( json_decode( self::JSON_EXTERNAL_DATA_PAGE ), $geoJson[0] );
 	}
 
 	public function testParseWithoutExternalData() {
