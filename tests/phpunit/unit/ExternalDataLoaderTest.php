@@ -9,6 +9,7 @@ use MediaWikiUnitTestCase;
 use MWHttpRequest;
 use Status;
 use stdClass;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Kartographer
@@ -235,6 +236,8 @@ class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGeoMaskData( stdClass $input, stdClass $expected ) {
 		$fetcher = new ExternalDataLoader( $this->createMock( HttpRequestFactory::class ) );
+		/** @var ExternalDataLoader $fetcher */
+		$fetcher = TestingAccessWrapper::newFromObject( $fetcher );
 		$this->assertEquals( $expected, $fetcher->handleMaskGeoData( $input ) );
 	}
 
@@ -289,19 +292,23 @@ class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideTestParseData
 	 */
 	public function testParse( array $input, $maskGeoDataCount ) {
-		$fetcher = $this->getMockBuilder( ExternalDataLoader::class )
-			->setConstructorArgs( [ $this->createMock( HttpRequestFactory::class ) ] )
-			->onlyMethods( [ 'extend', 'handleMaskGeoData' ] )
-			->getMock();
+		$request = $this->createMock( MWHttpRequest::class );
+		$request->method( 'execute' )
+			->willReturn( Status::newGood() );
+		$request->method( 'getContent' )
+			->willReturn( '{"features":[]}' );
 
-		$fetcher->expects( $this->once() )
-			->method( 'extend' )
-			->will( $this->returnValue( $input[0] ) );
+		$factory = $this->createMock( HttpRequestFactory::class );
+		$factory->expects( $this->once() )
+			->method( 'create' )
+			->willReturn( $request );
 
-		$fetcher->expects( $this->exactly( $maskGeoDataCount ) )
-			->method( 'handleMaskGeoData' );
-
+		$fetcher = new ExternalDataLoader( $factory );
 		$fetcher->parse( $input );
+		$this->assertSame(
+			$maskGeoDataCount ? 'Feature' : 'ExternalData',
+			$input[0]->type ?? 'ExternalData'
+		);
 	}
 
 	public function provideGeoJsonWithoutExternalData() {

@@ -64,7 +64,7 @@ class ExternalDataLoader {
 	 * @param stdClass $data
 	 * @return stdClass
 	 */
-	public function handleMaskGeoData( stdClass $data ): stdClass {
+	private function handleMaskGeoData( stdClass $data ): stdClass {
 		// Mask-out the entire world 10 times east and west,
 		// and add each result geometry as a hole
 		$coordinates = [ [
@@ -109,7 +109,7 @@ class ExternalDataLoader {
 	 * @param stdClass $geoJson
 	 * @return stdClass
 	 */
-	public function extend( stdClass $geoJson ): stdClass {
+	private function extend( stdClass $geoJson ): stdClass {
 		$request = $this->requestFactory->create( $geoJson->url, [ 'method' => 'GET' ], __METHOD__ );
 		$status = $request->execute();
 
