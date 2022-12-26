@@ -24,7 +24,7 @@
 	"kartographer-error-bad_attr": "Атрыбут «$1» мае няслушная значэнне",
 	"kartographer-error-bad_data": "Змест JSON — няслушны GeoJSON+simplestyle. Спіс ніжэй паказвае ўсё спробы яго інтэрпрэтаваць у адпаведнасці са схемай JSON. Не ўсе яны памылкі.",
 	"kartographer-error-latlon": "Павінны быць пададзены абодва параметры «latitude» і «longitude», або ні адзін з іх",
-	"kartographer-error-title": "Загаловак «$1» ­— не слушная старонка дадзеных мапы",
+	"kartographer-error-title": "Загаловак «$1» ­— не слушная старонка даных карты",
 	"kartographer-tracking-category": "Старонкі з картамі",
 	"kartographer-tracking-category-desc": "Старонка змяшчае карты.",
 	"kartographer-specialmap-invalid-coordinates": "Уведзены няслушныя каардынаты",
