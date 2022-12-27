@@ -16,6 +16,7 @@ use FormatJson;
 use Kartographer\MediaWikiWikitextParser;
 use Kartographer\SimpleStyleParser;
 use Parser;
+use ParserFactory;
 use ParserOptions;
 use Title;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -28,21 +29,21 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiSanitizeMapData extends ApiBase {
 
-	/** @var Parser */
-	private $parser;
+	/** @var ParserFactory */
+	private $parserFactory;
 
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
-	 * @param Parser $parser
+	 * @param ParserFactory $parserFactory
 	 */
 	public function __construct(
 		ApiMain $main,
 		$action,
-		Parser $parser
+		ParserFactory $parserFactory
 	) {
 		parent::__construct( $main, $action );
-		$this->parser = $parser;
+		$this->parserFactory = $parserFactory;
 	}
 
 	/**
@@ -68,10 +69,11 @@ class ApiSanitizeMapData extends ApiBase {
 	 */
 	private function sanitizeJson( Title $title, $text ) {
 		$parserOptions = new ParserOptions( $this->getUser() );
-		$this->parser->startExternalParse( $title, $parserOptions, Parser::OT_HTML );
-		$this->parser->setPage( $title );
+		$parser = $this->parserFactory->getInstance();
+		$parser->startExternalParse( $title, $parserOptions, Parser::OT_HTML );
+		$parser->setPage( $title );
 		$simpleStyle = new SimpleStyleParser(
-			new MediaWikiWikitextParser( $this->parser->getFreshParser() ),
+			new MediaWikiWikitextParser( $parser ),
 			[ 'saveUnparsed' => true ]
 		);
 		$status = $simpleStyle->parse( $text );
