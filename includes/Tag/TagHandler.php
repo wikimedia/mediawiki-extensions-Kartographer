@@ -26,6 +26,7 @@ use ParserOutput;
 use PPFrame;
 use Status;
 use stdClass;
+use Title;
 
 /**
  * Base class for all <map...> tags
@@ -424,12 +425,15 @@ abstract class TagHandler {
 	 */
 	protected function getLanguage() {
 		// Log if the user language is different from the page language (T311592)
-		$pageLang = $this->parser->getTitle()->getPageLanguage();
+		$page = $this->parser->getPage();
 		$targetLanguage = $this->parser->getTargetLanguage();
-		if ( $targetLanguage->getCode() !== $pageLang->getCode() ) {
-			LoggerFactory::getInstance( 'Kartographer' )->notice( 'Target language (' .
-				$targetLanguage->getCode() . ') is different than page language (' .
-				$pageLang->getCode() . ') (T311592)' );
+		if ( $page ) {
+			$pageLang = Title::castFromPageReference( $page )->getPageLanguage();
+			if ( $targetLanguage->getCode() !== $pageLang->getCode() ) {
+				LoggerFactory::getInstance( 'Kartographer' )->notice( 'Target language (' .
+					$targetLanguage->getCode() . ') is different than page language (' .
+					$pageLang->getCode() . ') (T311592)' );
+			}
 		}
 		return $targetLanguage;
 	}

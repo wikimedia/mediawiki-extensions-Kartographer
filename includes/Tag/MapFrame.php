@@ -5,6 +5,7 @@ namespace Kartographer\Tag;
 use FormatJson;
 use Html;
 use Kartographer\SpecialMap;
+use MediaWiki\MediaWikiServices;
 
 /**
  * The <mapframe> tag inserts a map into wiki page
@@ -145,12 +146,13 @@ class MapFrame extends TagHandler {
 		if ( $this->showGroups && !$options->getIsPreview() &&
 			!$options->getIsSectionPreview()
 		) {
+			$page = $this->parser->getPage();
 			// Groups are not available to the static map renderer
 			// before the page was saved, can only be applied via JS
 			$imgUrlParams += [
 				'domain' => $this->config->get( 'KartographerMediaWikiInternalUrl' ) ??
 					$this->config->get( 'Server' ),
-				'title' => $this->parser->getTitle()->getPrefixedText(),
+				'title' => $page ? MediaWikiServices::getInstance()->getTitleFormatter()->getPrefixedText( $page ) : '',
 				'revid' => $this->parser->getRevisionId(),
 				'groups' => implode( ',', $this->showGroups ),
 			];
