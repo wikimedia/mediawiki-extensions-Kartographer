@@ -37,7 +37,7 @@ class ExternalDataLoader {
 			}
 
 			$data = $this->extend( $data );
-			if ( $data->service === 'geomask' ) {
+			if ( $data->service === 'geomask' && isset( $data->features ) ) {
 				$data = $this->handleMaskGeoData( $data );
 			}
 		}
