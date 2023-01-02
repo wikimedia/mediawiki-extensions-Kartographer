@@ -95,10 +95,6 @@ class ExternalDataLoader {
 	 * @return stdClass
 	 */
 	public function extend( stdClass $geoJson ): stdClass {
-		if ( !isset( $geoJson->type ) || $geoJson->type !== 'ExternalData' ) {
-			return $geoJson;
-		}
-
 		$request = $this->requestFactory->create( $geoJson->url, [ 'method' => 'GET' ], __METHOD__ );
 		$status = $request->execute();
 
