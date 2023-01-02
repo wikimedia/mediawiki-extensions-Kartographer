@@ -12,6 +12,7 @@
 			"Susannaanas",
 			"Valtlai",
 			"Valtlait",
+			"Yupik",
 			"Zache"
 		]
 	},
@@ -84,6 +85,7 @@
 	"mapbox-control-zoomout-title": "Loitonna",
 	"kartographer-fullscreen-close": "Sulje",
 	"kartographer-fullscreen-text": "Näytä koko näytössä",
+	"kartographer-icon-docs-help": "Kuvaus",
 	"visualeditor-mwmapsdialog-options": "Asetukset",
 	"visualeditor-mwmapsdialog-display": "Tasaus",
 	"visualeditor-mwmapsdialog-language": "Kieli",
