@@ -34,7 +34,6 @@ MapDialog.static.size = 'full';
 
 MapDialog.prototype.initialize = function () {
 	this.mapDetailsButton = null;
-	this.windowFocused = false;
 
 	// Parent method
 	MapDialog.super.prototype.initialize.apply( this, arguments );
@@ -75,11 +74,9 @@ MapDialog.prototype.setMap = function ( map ) {
 	);
 
 	var $focusBox = $( '<div>' )
-		.addClass( [ 'mw-kartographer-mapDialog-focusBox' ] );
-
-	window.addEventListener( 'focus', function () {
-		dialog.windowFocused = true;
-	} );
+		.addClass( [
+			'mw-kartographer-mapDialog-focusBox', 'mw-kartographer-mapDialog-focusBox-available'
+		] );
 
 	// Add focus frame and hide on mouse but show on keyboard navigation
 	dialog.map.$container
@@ -89,35 +86,14 @@ MapDialog.prototype.setMap = function ( map ) {
 		} )
 		.on( 'mouseup', function () {
 			// Keep focus in container to allow keyboard navigation
-			dialog.map.$container.trigger( 'focus', 'hide-focus-box' );
+			dialog.map.$container.trigger( 'focus' );
 		} )
 		.on( 'keydown', function ( e ) {
 			if ( e.which === OO.ui.Keys.TAB ||
 				e.which === OO.ui.Keys.UP || e.which === OO.ui.Keys.DOWN ||
 				e.which === OO.ui.Keys.LEFT || e.which === OO.ui.Keys.RIGHT
 			) {
-				var isMap = e.target &&
-					e.target.classList.contains( 'mw-kartographer-mapDialog-map' );
-
-				if ( isMap ) {
-					$focusBox.addClass( 'mw-kartographer-mapDialog-focusBox-available' );
-				}
-			}
-		} )
-		.on( 'focus', function ( e, data ) {
-			var showFocusBox = data !== 'hide-focus-box' && !dialog.windowFocused;
-			dialog.windowFocused = false;
-
-			if ( showFocusBox ) {
 				$focusBox.addClass( 'mw-kartographer-mapDialog-focusBox-available' );
-			}
-		} )
-		.on( 'blur', function ( e ) {
-			var isZoomControl = e.relatedTarget &&
-				e.relatedTarget.parentNode.classList.contains( 'leaflet-control-zoom' );
-
-			if ( !isZoomControl ) {
-				$focusBox.removeClass( 'mw-kartographer-mapDialog-focusBox-available' );
 			}
 		} );
 
