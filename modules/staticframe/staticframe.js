@@ -67,33 +67,30 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 
 	$content.find( '.mw-kartographer-map[data-mw="interface"]' ).each( function ( index ) {
 		var container = this,
-			$container = $( container ),
-			link,
-			data;
+			$container = $( container );
 
 		mw.loader.using( 'oojs-ui', function () {
 			var button = new OO.ui.ButtonWidget( {
-					icon: 'fullScreen',
-					title: mw.msg( 'kartographer-fullscreen-text' ),
-					framed: true
-				} ),
-				$div = $( '<div>' ).addClass( 'mw-kartographer-fullScreen' ).append( button.$element );
+				icon: 'fullScreen',
+				title: mw.msg( 'kartographer-fullscreen-text' ),
+				framed: true
+			} );
 
-			$container.append( $div );
 			$container.append(
-				'<div class="mw-kartographer-attribution">' +
-				mw.message( 'kartographer-attribution-short' ).parse() +
-				'</div>'
+				$( '<div>' ).addClass( 'mw-kartographer-fullScreen' ).append( button.$element ),
+				$( '<div>' ).addClass( 'mw-kartographer-attribution' ).html(
+					mw.message( 'kartographer-attribution-short' ).parse()
+				)
 			);
 		} );
 
 		$container.attr( 'href', '#/map/' + index );
 
-		data = getMapData( container );
+		var data = getMapData( container );
 
 		data.enableFullScreenButton = true;
 
-		link = kartolink.link( {
+		maplinks[ index ] = kartolink.link( {
 			featureType: 'mapframe',
 			container: container,
 			center: [ data.latitude, data.longitude ],
@@ -103,8 +100,6 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 			captionText: data.captionText,
 			fullScreenRoute: '/map/' + index
 		} );
-
-		maplinks[ index ] = link;
 	} );
 
 	// Allow customizations of interactive maps in article.
