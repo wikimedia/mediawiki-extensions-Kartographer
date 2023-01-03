@@ -126,7 +126,7 @@
 	"visualeditor-mwmapsdialog-area": "Label for a tab in the map editing dialog.\n\nMap 'area' refers to the fragment of the world map which will be shown.",
 	"visualeditor-mwmapsdialog-content": "Label for a tab in the map editing dialog.\n\nMap 'contents' refers to the various features that can be drawn on top of the map, like markers and lines.",
 	"visualeditor-mwmapsdialog-options": "Label for a tab in the map editing dialog.",
-	"visualeditor-mwmapsdialog-display": "Label for setting how the map is displayed on the page, i.e. it's vertical alignment.",
+	"visualeditor-mwmapsdialog-display": "Label for setting how the map is displayed on the page, i.e. its horizontal and vertical positionning relative to other contents in the rendered document.\n{{Identical|Display}}",
 	"visualeditor-mwmapsdialog-display-help": "Longer help text that explains the alignment setting.",
 	"visualeditor-mwmapsdialog-frame": "Label for setting the mapframe's <code>frameless</code> option, i.e. if the map should have a frame similar to the frame thumbnail images have.\n{{Identical|Frame}}",
 	"visualeditor-mwmapsdialog-caption": "Label for setting the map's caption.\n{{Identical|Caption}}",
