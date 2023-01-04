@@ -137,7 +137,9 @@ MapDialog.prototype.addFooterButton = function () {
 		} );
 		dialog.mapDetailsButton.connect( dialog, { change: 'toggleSideBar' } );
 	}
-	if ( !dialog.mapNearbyButton && mw.config.get( 'wgKartographerNearby' ) && !OO.ui.isMobile() ) {
+	if ( !dialog.mapNearbyButton && mw.config.get( 'wgKartographerNearby' ) &&
+		( !OO.ui.isMobile() || mw.config.get( 'wgKartographerNearbyOnMobile' ) )
+	) {
 		dialog.mapNearbyButton = new OO.ui.ToggleButtonWidget( {
 			label: mw.msg( 'kartographer-sidebar-nearbybutton' )
 		} );
