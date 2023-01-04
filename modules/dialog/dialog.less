@@ -115,14 +115,18 @@
 		background-position: center;
 		background-repeat: no-repeat;
 
+		&:focus,
 		&:hover {
 			/* @embed */
 			background-image: url( ../../styles/images/nearby-icon-hover.svg );
 		}
 
-		&:focus {
+		&:active {
 			/* @embed */
 			background-image: url( ../../styles/images/nearby-icon-active.svg );
+		}
+
+		&:focus {
 			// Leaflet usually applies z-index between 0 and 1000
 			// stylelint-disable-next-line declaration-no-important
 			z-index: 9999 !important;
