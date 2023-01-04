@@ -73,10 +73,7 @@ MapDialog.prototype.setMap = function ( map ) {
 		dialog.map.$container.css( 'position', '' )
 	);
 
-	var $focusBox = $( '<div>' )
-		.addClass( [
-			'mw-kartographer-mapDialog-focusBox', 'mw-kartographer-mapDialog-focusBox-available'
-		] );
+	var $focusBox = $( '<div>' ).addClass( 'mw-kartographer-mapDialog-focusBox' );
 
 	// Add focus frame and hide on mouse but show on keyboard navigation
 	dialog.map.$container
@@ -88,12 +85,13 @@ MapDialog.prototype.setMap = function ( map ) {
 			// Keep focus in container to allow keyboard navigation
 			dialog.map.$container.trigger( 'focus' );
 		} )
-		.on( 'keydown', function ( e ) {
+		.on( 'keyup', function ( e ) {
 			if ( e.which === OO.ui.Keys.TAB ||
 				e.which === OO.ui.Keys.UP || e.which === OO.ui.Keys.DOWN ||
 				e.which === OO.ui.Keys.LEFT || e.which === OO.ui.Keys.RIGHT
 			) {
-				$focusBox.addClass( 'mw-kartographer-mapDialog-focusBox-available' );
+				var isMap = dialog.map.$container.is( e.target );
+				$focusBox.toggleClass( 'mw-kartographer-mapDialog-focusBox-available', isMap );
 			}
 		} );
 
