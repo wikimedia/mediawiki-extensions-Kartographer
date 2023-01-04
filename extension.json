@@ -437,6 +437,7 @@
 				"lib/external/leaflet.markercluster/MarkerCluster.Default.css"
 			],
 			"targets": [
+				"mobile",
 				"desktop"
 			]
 		},
@@ -614,6 +615,10 @@
 		},
 		"KartographerNearbyClustering": {
 			"description": "Feature flag used to enable cluserting in the KartographerNearby feature.",
+			"value": false
+		},
+		"KartographerNearbyOnMobile": {
+			"description": "Enable the \"nearby\" feature on mobile skins.",
 			"value": false
 		},
 		"KartographerWikivoyageNearby": {

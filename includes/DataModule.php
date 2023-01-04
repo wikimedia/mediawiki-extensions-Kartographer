@@ -38,6 +38,7 @@ class DataModule extends RL\Module {
 			'wgKartographerSimpleStyleMarkers' => $config->get( 'KartographerSimpleStyleMarkers' ),
 			'wgKartographerNearby' => $this->canUseNearby(),
 			'wgKartographerNearbyClustering' => $config->get( 'KartographerNearbyClustering' ),
+			'wgKartographerNearbyOnMobile' => $config->get( 'KartographerNearbyOnMobile' ),
 			'wgKartographerWikivoyageNearby' => $config->get( 'KartographerWikivoyageNearby' ),
 		] );
 	}
