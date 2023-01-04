@@ -108,11 +108,15 @@ Nearby.prototype.createPopupHtml = function ( title, description, thumbnail ) {
 	}
 
 	if ( thumbnail && thumbnail.source ) {
-		contentHtml += mw.html.element( 'img', {
+		var img = mw.html.element( 'img', {
 			src: thumbnail.source,
 			width: thumbnail.width || '',
 			height: thumbnail.height || ''
 		} );
+		contentHtml += mw.html.element( 'a', {
+			href: title.getUrl(),
+			target: '_blank'
+		}, new mw.html.Raw( img ) );
 	}
 
 	if ( contentHtml ) {

@@ -239,6 +239,7 @@
 				"oojs-ui-windows",
 				"oojs-ui-widgets",
 				"mediawiki.router",
+				"mediawiki.Title",
 				"mapbox"
 			],
 			"packageFiles": [
