@@ -63,8 +63,17 @@ class DataModule extends RL\Module {
 	 * @return bool
 	 */
 	private function canUseNearby() {
-		return $this->getConfig()->get( 'KartographerNearby' ) &&
-			ExtensionRegistry::getInstance()->isLoaded( 'GeoData' ) &&
-			ExtensionRegistry::getInstance()->isLoaded( 'CirrusSearch' );
+		if ( !$this->getConfig()->get( 'KartographerNearby' ) ) {
+			return false;
+		}
+
+		if ( !ExtensionRegistry::getInstance()->isLoaded( 'GeoData' ) ||
+			!ExtensionRegistry::getInstance()->isLoaded( 'CirrusSearch' )
+		) {
+			throw new \ConfigException( '$wgKartographerNearby requires GeoData and CirrusSearch extensions' );
+		}
+
+		return true;
 	}
+
 }
