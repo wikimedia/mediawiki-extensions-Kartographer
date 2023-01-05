@@ -18,12 +18,16 @@ function Nearby( enableClustering ) {
  */
 Nearby.prototype.initClusterMarkers = function () {
 	this.clusterMarkers = L.markerClusterGroup( {
-		spiderfyOnEveryZoom: false,
-		showCoverageOnHover: true,
-		zoomToBoundsOnClick: true,
-		removeOutsideVisibleBounds: true,
-		maxClusterRadius: 80,
-		spiderfyDistanceMultiplier: 1
+		// TODO: We could decrease this further, but it breaks edge cases with a lot of markers
+		spiderfyDistanceMultiplier: 0.8, // default: 1
+		spiderLegPolylineOptions: {
+			weight: 0, // default: 0.5
+			color: '#222',
+			opacity: 0.5
+		},
+		showCoverageOnHover: false, // default: true
+		zoomToBoundsOnClick: true, // default
+		maxClusterRadius: 15 // default: 80
 	} );
 };
 
