@@ -581,10 +581,6 @@
 			"description": "Allows Kartographer to extract marker styles from the GeoJSON to style a <maplink> accordingly. Currently only the \"marker-color\" is considered.",
 			"value": false
 		},
-		"KartographerEnableMapFrame": {
-			"description": "Enables the <mapframe> tag to embed mini-maps directly into pages. The <maplink> tag is always enabled.",
-			"value": true
-		},
 		"KartographerUsePageLanguage": {
 			"description": "Use the language of the page to render the map labels, instead of the language of the territory of the map (lang=local).",
 			"value": true

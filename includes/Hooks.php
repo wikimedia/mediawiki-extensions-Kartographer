@@ -48,9 +48,7 @@ class Hooks implements
 	 */
 	public function onParserFirstCallInit( $parser ) {
 		$parser->setHook( MapLink::TAG, [ MapLink::class, 'entryPoint' ] );
-		if ( $this->config->get( 'KartographerEnableMapFrame' ) ) {
-			$parser->setHook( MapFrame::TAG, [ MapFrame::class, 'entryPoint' ] );
-		}
+		$parser->setHook( MapFrame::TAG, [ MapFrame::class, 'entryPoint' ] );
 	}
 
 	/**

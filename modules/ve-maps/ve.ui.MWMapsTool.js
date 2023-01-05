@@ -31,17 +31,15 @@ ve.ui.MWMapsDialogTool.static.title = OO.ui.deferMsg( 'visualeditor-mwmapsdialog
 ve.ui.MWMapsDialogTool.static.modelClasses = [ ve.dm.MWMapsNode, ve.dm.MWInlineMapsNode ];
 ve.ui.MWMapsDialogTool.static.commandName = 'mwMaps';
 
-if ( mw.config.get( 'wgKartographerEnableMapFrame' ) ) {
-	/* Registration */
+/* Registration */
 
-	ve.ui.toolFactory.register( ve.ui.MWMapsDialogTool );
+ve.ui.toolFactory.register( ve.ui.MWMapsDialogTool );
 
-	/* Commands */
+/* Commands */
 
-	ve.ui.commandRegistry.register(
-		new ve.ui.Command(
-			'mwMaps', 'window', 'open',
-			{ args: [ 'mwMaps' ], supportedSelections: [ 'linear' ] }
-		)
-	);
-}
+ve.ui.commandRegistry.register(
+	new ve.ui.Command(
+		'mwMaps', 'window', 'open',
+		{ args: [ 'mwMaps' ], supportedSelections: [ 'linear' ] }
+	)
+);
