@@ -311,7 +311,7 @@ MapDialog.prototype.getReadyProcess = function ( data ) {
 				this.map.$container.find( '.leaflet-marker-icon' ).each( function () {
 					var height = $( this ).height();
 					$( this ).css( {
-						clip: 'rect(auto auto ' + ( ( height / 2 ) + 10 ) + 'px auto)'
+						clip: 'rect(auto auto ' + ( height * 0.6 ) + 'px auto)'
 					} );
 				} );
 
