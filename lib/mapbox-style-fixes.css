@@ -19,3 +19,7 @@ body.rtl .leaflet-image-layer,
 body.rtl .leaflet-layer {
   left: 0; right: auto;
 }
+
+.leaflet-interactive:focus {
+	outline: 2px solid #3366cc;
+}
