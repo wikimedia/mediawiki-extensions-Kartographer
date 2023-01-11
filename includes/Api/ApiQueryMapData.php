@@ -51,16 +51,12 @@ class ApiQueryMapData extends ApiQueryBase {
 			return;
 		}
 
-		$revIds = [];
-		// Temporary feature flag to control whether we support fetching mapdata from older revisions
-		if ( $this->getConfig()->get( 'KartographerVersionedMapdata' ) ) {
-			$revisionToPageMap = $this->getPageSet()->getLiveRevisionIDs();
-			$revIds = array_flip( $revisionToPageMap );
-			// Note: It's probably possible to merge data from multiple revisions of the same page
-			// because of the way group IDs are unique. Intentionally not implemented yet.
-			if ( count( $revisionToPageMap ) > count( $revIds ) ) {
-				$this->dieWithError( 'apierror-kartographer-conflicting-revids' );
-			}
+		$revisionToPageMap = $this->getPageSet()->getLiveRevisionIDs();
+		$revIds = array_flip( $revisionToPageMap );
+		// Note: It's probably possible to merge data from multiple revisions of the same page
+		// because of the way group IDs are unique. Intentionally not implemented yet.
+		if ( count( $revisionToPageMap ) > count( $revIds ) ) {
+			$this->dieWithError( 'apierror-kartographer-conflicting-revids' );
 		}
 
 		$count = 0;

@@ -37,7 +37,6 @@ class ApiQueryMapDataTest extends ApiTestCase {
 			'wgFlaggedRevsNamespaces' => [ NS_MAIN ],
 			'wgFlaggedRevsProtection' => false,
 			'wgKartographerMapServer' => 'http://192.0.2.0',
-			'wgKartographerVersionedMapdata' => true,
 		] );
 	}
 
@@ -124,7 +123,6 @@ class ApiQueryMapDataTest extends ApiTestCase {
 		$this->assertResult( [ $expected, $expectedOther ], $apiResultRevisions );
 
 		// Requesting an old revision returns historical data
-		$this->setMwGlobals( 'wgKartographerVersionedMapdata', true );
 		$params['revids'] = $oldRevPageOne->getId();
 		[ $apiResultOldRevision ] = $this->doApiRequest( $params );
 		$this->assertResult( [ $expectedOther ], $apiResultOldRevision );
@@ -134,23 +132,9 @@ class ApiQueryMapDataTest extends ApiTestCase {
 			'revid appears in API response'
 		);
 
-		// Legacy behavior is to always return data from the latest revision, no matter if the
-		// requested revision is a historical one
-		$this->setMwGlobals( 'wgKartographerVersionedMapdata', false );
-		[ $apiResultOldRevision ] = $this->doApiRequest( $params );
-		$this->assertResult( [ $expected ], $apiResultOldRevision );
-		$this->assertArrayNotHasKey( 'revid', reset( $apiResultOldRevision['query']['pages'] ),
-			'revid does not appear in legacy API response'
-		);
-
-		// Using multiple revision IDs in legacy mode doesn't make a difference
-		$params['revids'] .= '|' . $currRevPageOne->getId();
-		[ $apiResultOldRevision ] = $this->doApiRequest( $params );
-		$this->assertResult( [ $expected ], $apiResultOldRevision );
-
 		// Requesting multiple revisions from the same page is intentionally not supported
-		$this->setMwGlobals( 'wgKartographerVersionedMapdata', true );
 		$this->expectException( ApiUsageException::class );
+		$params['revids'] .= '|' . $currRevPageOne->getId();
 		$this->doApiRequest( $params );
 	}
 
