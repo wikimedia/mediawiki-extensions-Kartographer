@@ -4,14 +4,13 @@ namespace Kartographer\Tests;
 
 use ApiTestCase;
 use ApiUsageException;
-use CommentStoreComment;
 use FlaggableWikiPage;
 use FlaggedRevs;
 use FlaggedRevsParserCache;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Revision\SlotRecord;
 use ParserOptions;
-use WikiPage;
+use Title;
 use WikitextContent;
 
 /**
@@ -54,8 +53,8 @@ class ApiQueryMapDataTest extends ApiTestCase {
 	 * @dataProvider executeWithTitleProvider
 	 */
 	public function testExecuteWithTitle( string $content, array $expectedData ) {
-		$page = $this->getExistingTestPage( __METHOD__ );
-		$this->addRevision( $page, $content );
+		/** @var Title $page */
+		[ 'title' => $page ] = $this->insertPage( __METHOD__, $content );
 
 		[ $apiResult ] = $this->doApiRequest( [
 			'action' => 'query',
@@ -93,12 +92,14 @@ class ApiQueryMapDataTest extends ApiTestCase {
 		$expected = [ '{"' . $hash . '":[' . self::MAPFRAME_JSON . ']}' ];
 		$expectedOther = [ '{"' . $hashOther . '":[' . self::MAPFRAME_JSON_OTHER . ']}' ];
 
-		$pageOne = $this->getExistingTestPage( __METHOD__ );
-		$oldRevPageOne = $this->addRevision( $pageOne, self::MAPFRAME_CONTENT_OTHER );
+		/** @var Title $pageOne */
+		[ 'title' => $pageOne ] = $this->insertPage( __METHOD__, self::MAPFRAME_CONTENT_OTHER );
+		$oldRevId = $pageOne->getLatestRevID();
 		$currRevPageOne = $this->addRevision( $pageOne, self::MAPFRAME_CONTENT );
 
-		$pageTwo = $this->getExistingTestPage( __METHOD__ . '-2' );
-		$currRevPageTwo = $this->addRevision( $pageTwo, self::MAPFRAME_CONTENT_OTHER );
+		/** @var Title $pageTwo */
+		[ 'title' => $pageTwo ] = $this->insertPage( __METHOD__ . '-2', self::MAPFRAME_CONTENT_OTHER );
+		$pageTwoRevId = $pageTwo->getLatestRevID();
 
 		// query two different pages
 		[ $apiResultTitles ] = $this->doApiRequest( [
@@ -118,12 +119,12 @@ class ApiQueryMapDataTest extends ApiTestCase {
 		$this->assertResult( [ $expected ], $apiResultOneRevision );
 
 		// query two different revisions from two differrent pages
-		$params['revids'] .= '|' . $currRevPageTwo->getId();
+		$params['revids'] .= '|' . $pageTwoRevId;
 		[ $apiResultRevisions ] = $this->doApiRequest( $params );
 		$this->assertResult( [ $expected, $expectedOther ], $apiResultRevisions );
 
 		// Requesting an old revision returns historical data
-		$params['revids'] = $oldRevPageOne->getId();
+		$params['revids'] = $oldRevId;
 		[ $apiResultOldRevision ] = $this->doApiRequest( $params );
 		$this->assertResult( [ $expectedOther ], $apiResultOldRevision );
 		$this->assertSame(
@@ -188,10 +189,9 @@ class ApiQueryMapDataTest extends ApiTestCase {
 		$this->assertResult( [ $expectedStable ], $apiResultStableRevision );
 	}
 
-	private function addRevision( WikiPage $page, string $wikitext ): ?RevisionRecord {
-		return $page->newPageUpdater( $this->getTestUser()->getUser() )
-			->setContent( SlotRecord::MAIN, new WikitextContent( $wikitext ) )
-			->saveRevision( CommentStoreComment::newUnsavedComment( __CLASS__ ) );
+	private function addRevision( PageIdentity $page, string $wikitext ): ?RevisionRecord {
+		$status = $this->editPage( $page, new WikitextContent( $wikitext ) );
+		return $status->getValue()['revision-record'];
 	}
 
 	private function assertResult( array $expectedMapData, array $apiResult ) {
