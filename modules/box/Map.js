@@ -430,7 +430,7 @@ KartographerMap = L.Map.extend( {
 		}
 
 		var title = mw.config.get( 'wgPageName' );
-		var revid = mw.config.get( 'wgKartographerVersionedLiveMaps' ) && mw.config.get( 'wgRevisionId' );
+		var revid = mw.config.get( 'wgRevisionId' );
 		return DataManagerFactory().loadGroups( dataGroups, title, revid ).then( function ( groups ) {
 			groups.forEach( function ( group ) {
 				if ( group.failed ) {

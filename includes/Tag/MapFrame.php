@@ -156,11 +156,6 @@ class MapFrame extends TagHandler {
 				'revid' => $this->parser->getRevisionId(),
 				'groups' => implode( ',', $this->showGroups ),
 			];
-
-			// Temporary feature flag to control whether static map thumbnails include the revision ID.
-			if ( !$this->config->get( 'KartographerVersionedStaticMaps' ) ) {
-				unset( $imgUrlParams['revid'] );
-			}
 		}
 		$imgUrl = "{$mapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat}," .
 		"{$staticLon},{$staticWidth}x{$this->height}.png";

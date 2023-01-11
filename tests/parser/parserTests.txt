@@ -296,40 +296,9 @@ wgKartographerUseMarkerStyle=false
 !! end
 
 !! test
-Wikivoyage mode enabled, versioned maps disabled
+Wikivoyage mode enabled
 !! config
 wgKartographerWikivoyageMode=true
-wgKartographerVersionedStaticMaps=false
-!! wikitext
-<maplink zoom=0 latitude=0 longitude=0 group=ponies/>
-<maplink zoom=0 latitude=0 longitude=0 show="ponies,horses"/>
-<mapframe zoom=0 latitude=0 longitude=0 width=300 height=300 group=ponies>
-{
-"type": "Feature",
-	"geometry": {
-		"type": "Point",
-		"coordinates": [-122, 37]
-	},
-	"properties": {
-		"marker-symbol": "-letter",
-		"marker-color": "#abcdef"
-	}
-}
-</mapframe>
-<mapframe zoom=0 latitude=0 longitude=0 width=300 height=300 show="ponies,horses"/>
-!! html
-<p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;ponies&quot;]">0°0′0″N 0°0′0″E</a>
-<a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;ponies&quot;,&quot;horses&quot;]">0°0′0″N 0°0′0″E</a>
-</p>
-<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" style="width: 300px; height: 300px;" data-mw="interface" data-style="osm-intl" data-width="300" data-height="300" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;ponies&quot;]" href="/wiki/Special:Map/0/0/0/en"><img src="https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300.png?lang=en&amp;domain=http%3A%2F%2Fexample.org&amp;title=Parser+test&amp;groups=ponies" alt="" width="300" height="300" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300@2x.png?lang=en&amp;domain=http%3A%2F%2Fexample.org&amp;title=Parser+test&amp;groups=ponies 2x" /></a></div></div>
-<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" style="width: 300px; height: 300px;" data-mw="interface" data-style="osm-intl" data-width="300" data-height="300" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;ponies&quot;,&quot;horses&quot;]" href="/wiki/Special:Map/0/0/0/en"><img src="https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300.png?lang=en&amp;domain=http%3A%2F%2Fexample.org&amp;title=Parser+test&amp;groups=ponies%2Chorses" alt="" width="300" height="300" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300@2x.png?lang=en&amp;domain=http%3A%2F%2Fexample.org&amp;title=Parser+test&amp;groups=ponies%2Chorses 2x" /></a></div></div>
-!! end
-
-!! test
-Wikivoyage mode enabled, versioned maps enabled
-!! config
-wgKartographerWikivoyageMode=true
-wgKartographerVersionedStaticMaps=true
 !! wikitext
 <maplink zoom=0 latitude=0 longitude=0 group=ponies/>
 <maplink zoom=0 latitude=0 longitude=0 show="ponies,horses"/>
@@ -356,36 +325,9 @@ wgKartographerVersionedStaticMaps=true
 !! end
 
 !! test
-Wikivoyage mode disabled, versioned static maps disabled
+Wikivoyage mode disabled
 !! config
 wgKartographerWikivoyageMode=false
-wgKartographerVersionedStaticMaps=false
-!! wikitext
-<maplink zoom=0 latitude=0 longitude=0 group=ponies/>
-<mapframe zoom=0 latitude=0 longitude=0 width=300 height=300 group=ponies>
-{
-"type": "Feature",
-	"geometry": {
-		"type": "Point",
-		"coordinates": [-122, 37]
-	},
-	"properties": {
-		"marker-symbol": "-letter",
-		"marker-color": "#abcdef"
-	}
-}
-</mapframe>
-!! html
-<p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0">0°0′0″N 0°0′0″E</a>
-</p>
-<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 300px;"><a class="mw-kartographer-map" style="width: 300px; height: 300px;" data-mw="interface" data-style="osm-intl" data-width="300" data-height="300" data-zoom="0" data-lat="0" data-lon="0" data-overlays="[&quot;_6a13e7df56bf97361c4d92be23c3d6de3311e4c8&quot;]" href="/wiki/Special:Map/0/0/0/en"><img src="https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300.png?lang=en&amp;domain=http%3A%2F%2Fexample.org&amp;title=Parser+test&amp;groups=_6a13e7df56bf97361c4d92be23c3d6de3311e4c8" alt="" width="300" height="300" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,0,0,0,300x300@2x.png?lang=en&amp;domain=http%3A%2F%2Fexample.org&amp;title=Parser+test&amp;groups=_6a13e7df56bf97361c4d92be23c3d6de3311e4c8 2x" /></a></div></div>
-!! end
-
-!! test
-Wikivoyage mode disabled, versioned static maps enabled
-!! config
-wgKartographerWikivoyageMode=false
-wgKartographerVersionedStaticMaps=true
 !! wikitext
 <maplink zoom=0 latitude=0 longitude=0 group=ponies/>
 <mapframe zoom=0 latitude=0 longitude=0 width=300 height=300 group=ponies>
