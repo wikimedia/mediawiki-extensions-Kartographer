@@ -84,18 +84,15 @@ class ApiQueryMapDataTest extends ApiTestCase {
 		];
 	}
 
-	public function testExecuteWithMultiple() {
-		$this->markTestSkipped( 'T302360' );
-
+	public function testQueryFromMultiplePages() {
 		$hash = '_' . sha1( '[' . self::MAPFRAME_JSON . ']' );
 		$hashOther = '_' . sha1( '[' . self::MAPFRAME_JSON_OTHER . ']' );
 		$expected = [ '{"' . $hash . '":[' . self::MAPFRAME_JSON . ']}' ];
 		$expectedOther = [ '{"' . $hashOther . '":[' . self::MAPFRAME_JSON_OTHER . ']}' ];
 
 		/** @var Title $pageOne */
-		[ 'title' => $pageOne ] = $this->insertPage( __METHOD__, self::MAPFRAME_CONTENT_OTHER );
-		$oldRevId = $pageOne->getLatestRevID();
-		$currRevPageOne = $this->addRevision( $pageOne, self::MAPFRAME_CONTENT );
+		[ 'title' => $pageOne ] = $this->insertPage( __METHOD__, self::MAPFRAME_CONTENT );
+		$pageOneRevId = $pageOne->getLatestRevID();
 
 		/** @var Title $pageTwo */
 		[ 'title' => $pageTwo ] = $this->insertPage( __METHOD__ . '-2', self::MAPFRAME_CONTENT_OTHER );
@@ -113,7 +110,7 @@ class ApiQueryMapDataTest extends ApiTestCase {
 		$params = [
 			'action' => 'query',
 			'prop' => 'mapdata',
-			'revids' => $currRevPageOne->getId(),
+			'revids' => $pageOneRevId,
 		];
 		[ $apiResultOneRevision ] = $this->doApiRequest( $params );
 		$this->assertResult( [ $expected ], $apiResultOneRevision );
@@ -122,9 +119,24 @@ class ApiQueryMapDataTest extends ApiTestCase {
 		$params['revids'] .= '|' . $pageTwoRevId;
 		[ $apiResultRevisions ] = $this->doApiRequest( $params );
 		$this->assertResult( [ $expected, $expectedOther ], $apiResultRevisions );
+	}
+
+	public function testQueryFromOldRevision() {
+		$hashOther = '_' . sha1( '[' . self::MAPFRAME_JSON_OTHER . ']' );
+		$expectedOther = [ '{"' . $hashOther . '":[' . self::MAPFRAME_JSON_OTHER . ']}' ];
+
+		/** @var Title $page */
+		[ 'title' => $page ] = $this->insertPage( __METHOD__, self::MAPFRAME_CONTENT_OTHER );
+		$oldRevId = $page->getLatestRevID();
+		// Add a second revision to make the previous revision old
+		$this->addRevision( $page, self::MAPFRAME_CONTENT );
 
 		// Requesting an old revision returns historical data
-		$params['revids'] = $oldRevId;
+		$params = [
+			'action' => 'query',
+			'prop' => 'mapdata',
+			'revids' => $oldRevId,
+		];
 		[ $apiResultOldRevision ] = $this->doApiRequest( $params );
 		$this->assertResult( [ $expectedOther ], $apiResultOldRevision );
 		$this->assertSame(
@@ -132,10 +144,22 @@ class ApiQueryMapDataTest extends ApiTestCase {
 			array_column( $apiResultOldRevision['query']['pages'], 'revid' ),
 			'revid appears in API response'
 		);
+	}
+
+	public function testConflictingRevisionIds() {
+		/** @var Title $page */
+		[ 'title' => $page ] = $this->insertPage( __METHOD__, self::MAPFRAME_CONTENT_OTHER );
+		$oldRevId = $page->getLatestRevID();
+		$currRev = $this->addRevision( $page, self::MAPFRAME_CONTENT );
+
+		$params = [
+			'action' => 'query',
+			'prop' => 'mapdata',
+			'revids' => $oldRevId . '|' . $currRev->getId(),
+		];
 
 		// Requesting multiple revisions from the same page is intentionally not supported
 		$this->expectException( ApiUsageException::class );
-		$params['revids'] .= '|' . $currRevPageOne->getId();
 		$this->doApiRequest( $params );
 	}
 
