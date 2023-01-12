@@ -84,17 +84,6 @@ function initMapBox( data, $container ) {
 	$container.removeAttr( 'href' );
 	$container.find( 'img' ).remove();
 
-	map.doWhenReady( function () {
-		// T141750
-		// not needed in newer versions of leaflet ?
-		map.$container.find( '.leaflet-marker-icon' ).each( function () {
-			var height = $( this ).height();
-			$( this ).css( {
-				clip: 'rect(auto auto ' + ( height * 0.6 ) + 'px auto)'
-			} );
-		} );
-	} );
-
 	maps[ index ] = map;
 
 	// Special case for collapsed maps.

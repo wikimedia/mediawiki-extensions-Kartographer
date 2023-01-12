@@ -20,6 +20,12 @@ body.rtl .leaflet-layer {
   left: 0; right: auto;
 }
 
+img.leaflet-marker-icon {
+	/* T141750 */
+	clip-path: polygon( 0 0, 100% 0, 100% 60%, 0 60% );
+}
+
 .leaflet-interactive:focus {
+	clip-path: none;
 	outline: 2px solid #3366cc;
 }

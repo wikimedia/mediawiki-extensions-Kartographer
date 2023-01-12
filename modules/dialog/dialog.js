@@ -306,15 +306,6 @@ MapDialog.prototype.getReadyProcess = function ( data ) {
 				return;
 			}
 			this.map.doWhenReady( function () {
-				// T141750
-				// not needed in newer versions of leaflet ?
-				this.map.$container.find( '.leaflet-marker-icon' ).each( function () {
-					var height = $( this ).height();
-					$( this ).css( {
-						clip: 'rect(auto auto ' + ( height * 0.6 ) + 'px auto)'
-					} );
-				} );
-
 				mw.hook( 'wikipage.maps' ).fire( this.map, true /* isFullScreen */ );
 			}, this );
 		}, this );
