@@ -31,7 +31,6 @@ class DataModule extends RL\Module {
 			'wgKartographerSrcsetScales' => $config->get( 'KartographerSrcsetScales' ),
 			'wgKartographerStyles' => $config->get( 'KartographerStyles' ),
 			'wgKartographerDfltStyle' => $config->get( 'KartographerDfltStyle' ),
-			'wgKartographerEnableMapFrame' => $config->get( 'KartographerEnableMapFrame' ),
 			'wgKartographerUsePageLanguage' => $config->get( 'KartographerUsePageLanguage' ),
 			'wgKartographerFallbackZoom' => $config->get( 'KartographerFallbackZoom' ),
 			'wgKartographerSimpleStyleMarkers' => $config->get( 'KartographerSimpleStyleMarkers' ),
