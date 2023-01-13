@@ -42,10 +42,12 @@ img.leaflet-marker-icon {
 	/* marker-size "medium" */
 	img.leaflet-marker-icon:focus[ src*='/marker/pin-m' ] {
 		max-height: 42px;
+		outline-offset: 1px;
 	}
 
 	/* marker-size "small" */
 	img.leaflet-marker-icon:focus[ src*='/marker/pin-s' ] {
 		max-height: 30px;
+		outline-offset: 2px;
 	}
 }
