@@ -29,3 +29,23 @@ img.leaflet-marker-icon {
 	clip-path: none;
 	outline: 2px solid #3366cc;
 }
+
+/* Browser support for object-position is slightly worse than for object-fit */
+@supports ( object-position: top ) {
+	img.leaflet-marker-icon:focus {
+		/* Use the maximum as default so nothing bad happens when the selectors below fail */
+		max-height: 54px;
+		object-fit: none;
+		object-position: top;
+	}
+
+	/* marker-size "medium" */
+	img.leaflet-marker-icon:focus[ src*='/marker/pin-m' ] {
+		max-height: 42px;
+	}
+
+	/* marker-size "small" */
+	img.leaflet-marker-icon:focus[ src*='/marker/pin-s' ] {
+		max-height: 30px;
+	}
+}
