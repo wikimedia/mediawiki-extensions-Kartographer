@@ -35,7 +35,7 @@ img.leaflet-marker-icon {
 	img.leaflet-marker-icon:focus {
 		/* Use the maximum as default so nothing bad happens when the selectors below fail */
 		max-height: 54px;
-		object-fit: none;
+		object-fit: cover;
 		object-position: top;
 	}
 
