@@ -29,52 +29,32 @@ class LegacyMapFrame extends LegacyTagHandler {
 
 	public const TAG = 'mapframe';
 
-	/** @var string|null either a number of pixels, a percentage (e.g. "100%"), or "full" */
-	private $width;
-	/** @var int|null */
-	private $height;
-	/** @var string|null One of "left", "center", "right", or "none" */
-	private $align;
-
-	/**
-	 * @inheritDoc
-	 */
-	protected function parseArgs(): void {
-		parent::parseArgs();
-		$this->state->useMapframe();
-		// @todo: should these have defaults?
-		$this->width = $this->getText( 'width', false, '/^(\d+|([1-9]\d?|100)%|full)$/' );
-		$this->height = $this->getInt( 'height', false );
-		$defaultAlign = $this->alignEnd();
-		$this->align = $this->getText( 'align', $defaultAlign, '/^(left|center|right)$/' );
-	}
-
 	/**
 	 * @inheritDoc
 	 */
 	protected function render( bool $isPreview ): string {
 		$mapServer = $this->config->get( 'KartographerMapServer' );
 
-		$caption = (string)$this->getText( 'text', '' );
-		$framed = $caption !== '' || $this->getText( 'frameless', null ) === null;
+		$caption = (string)$this->args->text;
+		$framed = $caption !== '' || $this->args->frameless === null;
 
-		$cssWidth = is_numeric( $this->width ) ? "{$this->width}px" : $this->width;
+		$cssWidth = is_numeric( $this->args->width ) ? "{$this->args->width}px" : $this->args->width;
 		if ( preg_match( '/^\d+%$/', $cssWidth ) ) {
 			if ( $cssWidth === '100%' ) {
 				$staticWidth = 800;
-				$this->align = 'none';
+				$this->args->align = 'none';
 			} else {
 				// @todo: deprecate old syntax completely
 				$cssWidth = '300px';
-				$this->width = '300';
+				$this->args->width = '300';
 				$staticWidth = 300;
 			}
 		} elseif ( $cssWidth === 'full' ) {
 			$cssWidth = '100%';
-			$this->align = 'none';
+			$this->args->align = 'none';
 			$staticWidth = 800;
 		} else {
-			$staticWidth = $this->width;
+			$staticWidth = $this->args->width;
 		}
 
 		// TODO if fullwidth, we really should use interactive mode..
@@ -94,37 +74,37 @@ class LegacyMapFrame extends LegacyTagHandler {
 			// because an <img> element with permanent failing src has either:
 			// - intrinsic dimensions of 0x0, when alt=''
 			// - intrinsic dimensions of alt size
-			'style' => "width: $cssWidth; height: {$this->height}px;",
+			'style' => "width: $cssWidth; height: {$this->args->height}px;",
 			'data-mw' => 'interface',
-			'data-style' => $this->mapStyle,
-			'data-width' => $this->width,
-			'data-height' => $this->height,
+			'data-style' => $this->args->mapStyle,
+			'data-width' => $this->args->width,
+			'data-height' => $this->args->height,
 		];
-		if ( $this->zoom !== null ) {
-			$staticZoom = $this->zoom;
-			$attrs['data-zoom'] = $this->zoom;
+		if ( $this->args->zoom !== null ) {
+			$staticZoom = (int)$this->args->zoom;
+			$attrs['data-zoom'] = $this->args->zoom;
 		} else {
 			$staticZoom = 'a';
 		}
 
-		if ( $this->lat !== null && $this->lon !== null ) {
-			$attrs['data-lat'] = $this->lat;
-			$attrs['data-lon'] = $this->lon;
-			$staticLat = $this->lat;
-			$staticLon = $this->lon;
+		if ( $this->args->lat !== null && $this->args->lon !== null ) {
+			$attrs['data-lat'] = $this->args->lat;
+			$attrs['data-lon'] = $this->args->lon;
+			$staticLat = (float)$this->args->lat;
+			$staticLon = (float)$this->args->lon;
 		} else {
 			$staticLat = 'a';
 			$staticLon = 'a';
 		}
 
-		if ( $this->specifiedLangCode !== null ) {
-			$attrs['data-lang'] = $this->specifiedLangCode;
+		if ( $this->args->specifiedLangCode !== null ) {
+			$attrs['data-lang'] = $this->args->specifiedLangCode;
 		}
 
-		if ( $this->showGroups ) {
-			$attrs['data-overlays'] = FormatJson::encode( $this->showGroups, false,
+		if ( $this->args->showGroups ) {
+			$attrs['data-overlays'] = FormatJson::encode( $this->args->showGroups, false,
 				FormatJson::ALL_OK );
-			$this->state->addInteractiveGroups( $this->showGroups );
+			$this->state->addInteractiveGroups( $this->args->showGroups );
 		}
 
 		$containerClass = 'mw-kartographer-container';
@@ -132,12 +112,12 @@ class LegacyMapFrame extends LegacyTagHandler {
 			$containerClass .= ' mw-kartographer-full';
 		}
 
-		$attrs['href'] = SpecialMap::link( $staticLat, $staticLon, $staticZoom, $this->resolvedLangCode )
+		$attrs['href'] = SpecialMap::link( $staticLat, $staticLon, $staticZoom, $this->args->resolvedLangCode )
 			->getLocalURL();
 		$imgUrlParams = [
-			'lang' => $this->resolvedLangCode,
+			'lang' => $this->args->resolvedLangCode,
 		];
-		if ( $this->showGroups && !$isPreview ) {
+		if ( $this->args->showGroups && !$isPreview ) {
 			$page = $this->parser->getPage();
 			// Groups are not available to the static map renderer
 			// before the page was saved, can only be applied via JS
@@ -146,17 +126,17 @@ class LegacyMapFrame extends LegacyTagHandler {
 					$this->config->get( 'ServerName' ),
 				'title' => $page ? MediaWikiServices::getInstance()->getTitleFormatter()->getPrefixedText( $page ) : '',
 				'revid' => $this->parser->getRevisionId(),
-				'groups' => implode( ',', $this->showGroups ),
+				'groups' => implode( ',', $this->args->showGroups ),
 			];
 		}
-		$imgUrl = "{$mapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat}," .
-		"{$staticLon},{$staticWidth}x{$this->height}.png";
+		$imgUrl = "{$mapServer}/img/{$this->args->mapStyle},{$staticZoom},{$staticLat}," .
+		"{$staticLon},{$staticWidth}x{$this->args->height}.png";
 		$imgUrl .= '?' . wfArrayToCgi( $imgUrlParams );
 		$imgAttrs = [
 			'src' => $imgUrl,
 			'alt' => '',
 			'width' => (int)$staticWidth,
-			'height' => (int)$this->height,
+			'height' => (int)$this->args->height,
 			'decoding' => 'async'
 		];
 
@@ -166,8 +146,8 @@ class LegacyMapFrame extends LegacyTagHandler {
 			$srcSetScales = array_intersect( $srcSetScalesConfig, [ 2 ] );
 			$srcSets = [];
 			foreach ( $srcSetScales as $srcSetScale ) {
-				$scaledImgUrl = "{$mapServer}/img/{$this->mapStyle},{$staticZoom},{$staticLat}," .
-				"{$staticLon},{$staticWidth}x{$this->height}@{$srcSetScale}x.png";
+				$scaledImgUrl = "{$mapServer}/img/{$this->args->mapStyle},{$staticZoom},{$staticLat}," .
+				"{$staticLon},{$staticWidth}x{$this->args->height}@{$srcSetScale}x.png";
 				$scaledImgUrl .= '?' . wfArrayToCgi( $imgUrlParams );
 				$srcSets[] = "{$scaledImgUrl} {$srcSetScale}x";
 			}
@@ -175,11 +155,11 @@ class LegacyMapFrame extends LegacyTagHandler {
 		}
 
 		if ( !$framed ) {
-			$attrs['class'] .= ' ' . $containerClass . ' ' . self::ALIGN_CLASSES[$this->align];
+			$attrs['class'] .= ' ' . $containerClass . ' ' . self::ALIGN_CLASSES[$this->args->align];
 			return Html::rawElement( 'a', $attrs, Html::rawElement( 'img', $imgAttrs ) );
 		}
 
-		$containerClass .= ' thumb ' . self::THUMB_ALIGN_CLASSES[$this->align];
+		$containerClass .= ' thumb ' . self::THUMB_ALIGN_CLASSES[$this->args->align];
 
 		$html = Html::rawElement( 'a', $attrs, Html::rawElement( 'img', $imgAttrs ) );
 

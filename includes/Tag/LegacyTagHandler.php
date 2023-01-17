@@ -37,7 +37,7 @@ use Wikimedia\Parsoid\Core\ContentMetadataCollector;
  */
 abstract class LegacyTagHandler {
 
-	public const TAG = null;
+	public const TAG = '';
 
 	/** @var Status */
 	private $status;
@@ -45,35 +45,8 @@ abstract class LegacyTagHandler {
 	/** @var stdClass[] */
 	private $geometries = [];
 
-	/** @var string[] */
-	private $args;
-
-	/** @var float|null */
-	protected $lat;
-
-	/** @var float|null */
-	protected $lon;
-
-	/** @var int|null */
-	protected $zoom;
-
-	/** @var string|null One of "osm-intl" or "osm" */
-	protected $mapStyle;
-
-	/** @var string|null */
-	protected $specifiedLangCode;
-
-	/** @var string */
-	protected $resolvedLangCode;
-
-	/**
-	 * @var string|null Currently parsed group identifier from the group="…" attribute. Only allowed
-	 *  in …WikivoyageMode. Otherwise a private, auto-generated identifier starting with "_".
-	 */
-	private $groupId;
-
-	/** @var string[] List of group identifiers to show */
-	protected $showGroups = [];
+	/** @var MapTagArgumentValidator */
+	protected $args;
 
 	/** @var int|null */
 	protected $counter = null;
@@ -134,12 +107,18 @@ abstract class LegacyTagHandler {
 		$parserOutput->addModuleStyles( [ 'ext.kartographer.style' ] );
 		$parserOutput->addExtraCSPDefaultSrc( $mapServer );
 		$this->state = State::getOrCreate( $parserOutput );
+		// FIXME: Improve the State class so we don't need to hard-code this here
+		switch ( static::TAG ) {
+			case LegacyMapLink::TAG:
+				$this->state->useMaplink();
+				break;
+			case LegacyMapFrame::TAG:
+				$this->state->useMapframe();
+				break;
+		}
 
-		$this->status = Status::newGood();
-		$this->args = $args;
-
-		$this->parseArgs();
-		$this->parseGroups();
+		$this->args = new MapTagArgumentValidator( static::TAG, $args, $this->config, $this->getLanguage() );
+		$this->status = $this->args->status;
 		if ( $this->status->isOK() ) {
 			$this->parseGeometries( $input, $parser, $frame );
 		}
@@ -188,122 +167,14 @@ abstract class LegacyTagHandler {
 	}
 
 	/**
-	 * Parses tag attributes in $this->args
-	 */
-	protected function parseArgs(): void {
-		$services = MediaWikiServices::getInstance();
-
-		$this->lat = $this->getFloat( 'latitude' );
-		$this->lon = $this->getFloat( 'longitude' );
-		if ( $this->status->isOK() && ( ( $this->lat === null ) xor ( $this->lon === null ) ) ) {
-			$this->status->fatal( 'kartographer-error-latlon' );
-		}
-
-		$this->zoom = $this->getInt( 'zoom', null );
-		$regexp = '/^(' . implode( '|', $this->config->get( 'KartographerStyles' ) ) . ')$/';
-		$this->mapStyle = $this->getText( 'mapstyle', $this->config->get( 'KartographerDfltStyle' ), $regexp );
-
-		$defaultLangCode = $this->config->get( 'KartographerUsePageLanguage' ) ?
-			$this->getLanguageCode() :
-			'local';
-		// Language code specified by the user (null if none)
-		$this->specifiedLangCode = $this->getText( 'lang', null );
-		// Language code we're going to use
-		$this->resolvedLangCode = $this->specifiedLangCode ?? $defaultLangCode;
-		// If the specified language code is invalid, behave as if no language was specified
-		if (
-			!$services->getLanguageNameUtils()->isKnownLanguageTag( $this->resolvedLangCode ) &&
-			$this->resolvedLangCode !== 'local'
-		) {
-			$this->specifiedLangCode = null;
-			$this->resolvedLangCode = $defaultLangCode;
-		}
-	}
-
-	/**
 	 * When overridden in a descendant class, returns tag HTML
 	 * @param bool $isPreview
 	 * @return string
 	 */
 	abstract protected function render( bool $isPreview ): string;
 
-	private function parseGroups() {
-		if ( !$this->config->get( 'KartographerWikivoyageMode' ) ) {
-			// if we ignore all the 'group' and 'show' parameters,
-			// each tag stays private, and will be unable to share data
-			return;
-		}
-
-		$this->groupId = $this->getText( 'group', null, '/^(\w| )+$/u' );
-
-		$text = $this->getText( 'show', null, '/^(|(\w| )+(\s*,\s*(\w| )+)*)$/u' );
-		if ( $text ) {
-			$this->showGroups = array_map( 'trim', explode( ',', $text ) );
-		}
-
-		// Make sure the current group is shown for this map, even if there is no geojson
-		// Private group will be added during the save, as it requires hash calculation
-		if ( $this->groupId !== null ) {
-			$this->showGroups[] = $this->groupId;
-		}
-
-		// Make sure there are no group name duplicates
-		$this->showGroups = array_unique( $this->showGroups );
-	}
-
-	/**
-	 * @param string $name
-	 * @param string|false|null $default Default value or false to trigger error if absent
-	 * @return int|null
-	 */
-	protected function getInt( $name, $default ): ?int {
-		$value = $this->getText( $name, $default, '/^-?[0-9]+$/' );
-		if ( $value !== null ) {
-			$value = intval( $value );
-		}
-
-		return $value;
-	}
-
-	/**
-	 * @param string $name
-	 * @return float|null
-	 */
-	private function getFloat( $name ): ?float {
-		$value = $this->getText( $name, null, '/^-?[0-9]*\.?[0-9]+$/' );
-		if ( $value !== null ) {
-			$value = floatval( $value );
-		}
-
-		return $value;
-	}
-
-	/**
-	 * Returns value of a named tag attribute with optional validation
-	 *
-	 * @param string $name Attribute name
-	 * @param string|false|null $default Default value or false to trigger error if absent
-	 * @param string|false $regexp Regular expression to validate against or false to not validate
-	 * @return string|null
-	 */
-	protected function getText( $name, $default, $regexp = false ): ?string {
-		if ( !isset( $this->args[$name] ) ) {
-			if ( $default === false ) {
-				$this->status->fatal( 'kartographer-error-missing-attr', $name );
-			}
-			return $default === false ? null : $default;
-		}
-		$value = trim( $this->args[$name] );
-		if ( $regexp && !preg_match( $regexp, $value ) ) {
-			$value = null;
-			$this->status->fatal( 'kartographer-error-bad_attr', $name );
-		}
-
-		return $value;
-	}
-
 	private function saveData() {
-		$this->state->addRequestedGroups( $this->showGroups );
+		$this->state->addRequestedGroups( $this->args->showGroups );
 
 		if ( !$this->geometries ) {
 			return;
@@ -320,13 +191,13 @@ abstract class LegacyTagHandler {
 		}
 		$this->state->setCounters( $counters );
 
-		if ( $this->groupId === null ) {
+		if ( $this->args->groupId === null ) {
 			$groupId = '_' . sha1( FormatJson::encode( $this->geometries, false, FormatJson::ALL_OK ) );
-			$this->groupId = $groupId;
-			$this->showGroups[] = $groupId;
+			$this->args->groupId = $groupId;
+			$this->args->showGroups[] = $groupId;
 			// no need to array_unique() because it's impossible to manually add a private group
 		} else {
-			$groupId = $this->groupId;
+			$groupId = (string)$this->args->groupId;
 		}
 
 		$this->state->addData( $groupId, $this->geometries );
@@ -455,13 +326,6 @@ abstract class LegacyTagHandler {
 	 */
 	protected function getLanguageCode(): string {
 		return $this->getLanguage()->getCode();
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function alignEnd(): string {
-		return $this->getLanguage()->alignEnd();
 	}
 
 	/**
