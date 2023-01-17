@@ -86,10 +86,7 @@ MapDialog.prototype.setMap = function ( map ) {
 			dialog.map.$container.trigger( 'focus' );
 		} )
 		.on( 'keyup', function ( e ) {
-			if ( e.which === OO.ui.Keys.TAB ||
-				e.which === OO.ui.Keys.UP || e.which === OO.ui.Keys.DOWN ||
-				e.which === OO.ui.Keys.LEFT || e.which === OO.ui.Keys.RIGHT
-			) {
+			if ( e.which === OO.ui.Keys.TAB ) {
 				var isMap = dialog.map.$container.is( e.target );
 				$focusBox.toggleClass( 'mw-kartographer-mapDialog-focusBox-available', isMap );
 			}
