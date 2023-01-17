@@ -3,6 +3,8 @@
 namespace Kartographer\UnitTests;
 
 use Kartographer\State;
+use Kartographer\Tag\LegacyMapFrame;
+use Kartographer\Tag\LegacyMapLink;
 use MediaWikiUnitTestCase;
 use ParserOutput;
 use Wikimedia\TestingAccessWrapper;
@@ -32,24 +34,24 @@ class StateTest extends MediaWikiUnitTestCase {
 
 	public function testMapLinks() {
 		$state = new State();
-		$this->assertSame( 0, $state->getMaplinks() );
+		$this->assertSame( [], $state->getUsages() );
 
-		$state->useMaplink();
-		$this->assertSame( 1, $state->getMaplinks() );
+		$state->incrementUsage( LegacyMapLink::TAG );
+		$this->assertSame( 1, $state->getUsages()['maplinks'] );
 
-		$state->useMaplink();
-		$this->assertSame( 2, $state->getMaplinks() );
+		$state->incrementUsage( LegacyMapLink::TAG );
+		$this->assertSame( 2, $state->getUsages()['maplinks'] );
 	}
 
 	public function testMapframes() {
 		$state = new State();
-		$this->assertSame( 0, $state->getMapframes() );
+		$this->assertSame( [], $state->getUsages() );
 
-		$state->useMapframe();
-		$this->assertSame( 1, $state->getMapframes() );
+		$state->incrementUsage( LegacyMapFrame::TAG );
+		$this->assertSame( 1, $state->getUsages()['mapframes'] );
 
-		$state->useMapframe();
-		$this->assertSame( 2, $state->getMapframes() );
+		$state->incrementUsage( LegacyMapFrame::TAG );
+		$this->assertSame( 2, $state->getUsages()['mapframes'] );
 	}
 
 	public function testInteractiveGroups() {
@@ -159,11 +161,11 @@ class StateTest extends MediaWikiUnitTestCase {
 		$stateWithFlags = new State();
 		$stateWithFlags->setBrokenTags();
 		$stateWithFlags->setValidTags();
-		$stateWithFlags->useMapframe();
-		$stateWithFlags->useMapframe();
-		$stateWithFlags->useMaplink();
-		$stateWithFlags->useMaplink();
-		$stateWithFlags->useMaplink();
+		$stateWithFlags->incrementUsage( LegacyMapFrame::TAG );
+		$stateWithFlags->incrementUsage( LegacyMapFrame::TAG );
+		$stateWithFlags->incrementUsage( LegacyMapLink::TAG );
+		$stateWithFlags->incrementUsage( LegacyMapLink::TAG );
+		$stateWithFlags->incrementUsage( LegacyMapLink::TAG );
 		yield 'with flags' => [ $stateWithFlags ];
 	}
 
@@ -179,8 +181,8 @@ class StateTest extends MediaWikiUnitTestCase {
 
 	public function testJsonStability() {
 		$state = new State();
-		$state->useMaplink();
-		$state->useMapframe();
+		$state->incrementUsage( LegacyMapLink::TAG );
+		$state->incrementUsage( LegacyMapFrame::TAG );
 		$state->addInteractiveGroups( [ 'interactive' ] );
 		$state->addRequestedGroups( [ 'requested' ] );
 		// This intentionally breaks when unexpected changes are made to the JSON serialization
