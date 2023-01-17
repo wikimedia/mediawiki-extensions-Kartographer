@@ -14,6 +14,7 @@ use ExtensionRegistry;
 use FormatJson;
 use Html;
 use Kartographer\ExternalDataLoader;
+use Kartographer\PartialWikitextParser;
 use Kartographer\SimpleStyleParser;
 use Kartographer\State;
 use Language;
@@ -61,9 +62,6 @@ abstract class LegacyTagHandler {
 	/** @var Parser */
 	protected Parser $parser;
 
-	/** @var PPFrame */
-	protected PPFrame $frame;
-
 	/** @var Language|StubUserLang */
 	private $targetLanguage;
 
@@ -104,7 +102,6 @@ abstract class LegacyTagHandler {
 		}
 
 		$this->parser = $parser;
-		$this->frame = $frame;
 		$this->targetLanguage = $parser->getTargetLanguage();
 		$options = $parser->getOptions();
 		$isPreview = $options->getIsPreview() || $options->getIsSectionPreview();
@@ -131,7 +128,7 @@ abstract class LegacyTagHandler {
 
 		$this->state->setValidTags();
 
-		$result = $this->render( $isPreview );
+		$result = $this->render( new PartialWikitextParser( $parser, $frame ), $isPreview );
 
 		State::setState( $parserOutput, $this->state );
 		return $result;
@@ -165,10 +162,11 @@ abstract class LegacyTagHandler {
 
 	/**
 	 * When overridden in a descendant class, returns tag HTML
+	 * @param PartialWikitextParser $parser
 	 * @param bool $isPreview
 	 * @return string
 	 */
-	abstract protected function render( bool $isPreview ): string;
+	abstract protected function render( PartialWikitextParser $parser, bool $isPreview ): string;
 
 	private function saveData(): void {
 		$this->state->addRequestedGroups( $this->args->showGroups );

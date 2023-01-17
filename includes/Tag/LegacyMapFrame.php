@@ -4,6 +4,7 @@ namespace Kartographer\Tag;
 
 use FormatJson;
 use Html;
+use Kartographer\PartialWikitextParser;
 use Kartographer\SpecialMap;
 use MediaWiki\MediaWikiServices;
 
@@ -31,7 +32,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 	/**
 	 * @inheritDoc
 	 */
-	protected function render( bool $isPreview ): string {
+	protected function render( PartialWikitextParser $parser, bool $isPreview ): string {
 		$mapServer = $this->config->get( 'KartographerMapServer' );
 
 		$caption = (string)$this->args->text;
@@ -163,7 +164,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 
 		if ( $caption !== '' ) {
 			$html .= Html::rawElement( 'div', [ 'class' => 'thumbcaption' ],
-				$this->parser->recursiveTagParse( $caption ) );
+				$parser->halfParseWikitext( $caption ) );
 		}
 
 		return Html::rawElement( 'div', [ 'class' => $containerClass ],

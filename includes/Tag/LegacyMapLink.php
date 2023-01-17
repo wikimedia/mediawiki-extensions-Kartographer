@@ -4,6 +4,7 @@ namespace Kartographer\Tag;
 
 use Html;
 use Kartographer\CoordFormatter;
+use Kartographer\PartialWikitextParser;
 
 /**
  * The <maplink> tag creates a link that, when clicked, will open a dynamic map in Special:Map page
@@ -18,7 +19,7 @@ class LegacyMapLink extends LegacyTagHandler {
 	/**
 	 * @inheritDoc
 	 */
-	protected function render( bool $isPreview ): string {
+	protected function render( PartialWikitextParser $parser, bool $isPreview ): string {
 		$this->getOutput()->addModules( [ 'ext.kartographer.link' ] );
 
 		// @todo: Mapbox markers don't support localized numbers yet
@@ -27,7 +28,7 @@ class LegacyMapLink extends LegacyTagHandler {
 			$text = $this->counter ?: ( new CoordFormatter( $this->args->lat, $this->args->lon ) )
 				->format( $this->getLanguageCode() );
 		}
-		$text = $this->parser->recursiveTagParse( $text, $this->frame );
+		$text = $parser->halfParseWikitext( $text );
 
 		$attrs = $this->prepareAttrs( [
 			'mapStyle' => $this->args->mapStyle,
