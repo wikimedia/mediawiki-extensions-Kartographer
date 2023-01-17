@@ -444,6 +444,8 @@ KartographerMap = L.Map.extend( {
 					var attribution = buildAttribution( geoJSON.url );
 					layerOptions.name = attribution;
 					layerOptions.attribution = attribution;
+				} else if ( group.name ) {
+					layerOptions.name = group.name;
 				}
 				map.addGeoJSONLayer( geoJSON, layerOptions );
 			} );
