@@ -1,5 +1,14 @@
 var DataManager = require( 'ext.kartographer.data' );
 
+function handleLog( type, errorMessage ) {
+	var message = 'Kartographer mapdata: ' + errorMessage;
+	if ( type === 'error' ) {
+		mw.log.error( message );
+	} else {
+		mw.log.warn( message );
+	}
+}
+
 module.exports = function () {
 	return DataManager( {
 		createPromise: function ( callback ) {
@@ -12,10 +21,7 @@ module.exports = function () {
 			return promise;
 		},
 		whenAllPromises: function ( promises ) {
-			return $.when.apply( $, promises ).then( function () {
-				// Cast function parameters to an array of resolved values.
-				return Array.prototype.slice.call( arguments );
-			} );
+			return $.when.apply( $, promises );
 		},
 		isEmptyObject: function () {
 			return $.isEmptyObject.apply( $, arguments );
@@ -35,6 +41,18 @@ module.exports = function () {
 		mwApi: function ( data ) {
 			return ( new mw.Api() ).get( data );
 		},
-		clientStore: mw.config.get( 'wgKartographerLiveData' )
+		mwHtmlElement: function () {
+			return mw.html.element.apply( mw.html, arguments );
+		},
+		mwMsg: function () {
+			return mw.msg.apply( mw.msg, arguments );
+		},
+		mwUri: function ( data ) {
+			return new mw.Uri( data );
+		},
+		clientStore: mw.config.get( 'wgKartographerLiveData' ),
+		title: mw.config.get( 'wgPageName' ),
+		revid: mw.config.get( 'wgKartographerVersionedLiveMaps' ) && mw.config.get( 'wgRevisionId' ),
+		log: handleLog
 	} );
 };

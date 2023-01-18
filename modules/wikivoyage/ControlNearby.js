@@ -217,7 +217,8 @@ ControlNearby = L.Control.extend( {
 		// boolean is temporarily set.
 		control.map._preventTracking = true;
 
-		control.map.dataLayers.forEach( function ( layer ) {
+		// eslint-disable-next-line no-jquery/no-each-util
+		$.each( control.map.dataLayers, function ( group, layer ) {
 			control.map[ enabled ? 'addLayer' : 'removeLayer' ]( layer );
 		} );
 
