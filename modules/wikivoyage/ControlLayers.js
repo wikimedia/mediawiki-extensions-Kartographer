@@ -33,7 +33,7 @@ ControlLayers = L.Control.Layers.extend( {
 		if ( !obj.overlay && label.childNodes[ 0 ].childNodes[ 0 ].checked ) {
 			this._previousSelected = label.childNodes[ 0 ].childNodes[ 0 ];
 		}
-		if ( obj.layer.dataGroup ) {
+		if ( obj.layer.isDataGroup ) {
 			label.childNodes[ 0 ].className += ' leaflet-control-layers-data-layer';
 		}
 	},
