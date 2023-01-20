@@ -181,7 +181,7 @@ Nearby.prototype.toggleNearbyLayer = function ( map, show ) {
 		this.initializeKnownPoints( map );
 		this.fetchAndPopulateNearbyLayer( map );
 		map.on( {
-			moveend: this.onMapMoveOrZoomEnd.bind( this, map ),
+			move: this.onMapMoveOrZoomEnd.bind( this, map ),
 			zoomend: this.onMapMoveOrZoomEnd.bind( this, map )
 		} );
 
@@ -189,7 +189,7 @@ Nearby.prototype.toggleNearbyLayer = function ( map, show ) {
 			map.addLayer( this.clusterMarkers );
 		}
 	} else {
-		map.off( 'moveend zoomend' );
+		map.off( 'move zoomend' );
 		for ( var i in this.nearbyLayers ) {
 			if ( !this.clusterMarkers ) {
 				map.removeLayer( this.nearbyLayers[ i ] );
