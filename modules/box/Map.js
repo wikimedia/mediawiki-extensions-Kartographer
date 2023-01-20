@@ -16,9 +16,7 @@ var util = require( 'ext.kartographer.util' ),
 	DataManagerFactory = require( './data.js' ),
 	scale, urlFormat,
 	worldLatLng = new L.LatLngBounds( [ -90, -180 ], [ 90, 180 ] ),
-	KartographerMap,
-	inlineDataLayerKey = 'kartographer-inline-data-layer',
-	inlineDataLayerId = 0;
+	KartographerMap;
 
 /**
  * @return {number}
@@ -113,6 +111,27 @@ function getValidBounds( layer ) {
 		layerBounds.extend( validateBounds( layer ) );
 	}
 	return layerBounds;
+}
+
+/**
+ * @param {string} url ExternalData "page" URL
+ * @return {string} Attribution string
+ */
+function buildAttribution( url ) {
+	var uri = new mw.Uri( url );
+	var link = mw.html.element(
+		'a',
+		{
+			target: '_blank',
+			href: '//commons.wikimedia.org/wiki/Data:' + encodeURIComponent( uri.query.title )
+		},
+		uri.query.title
+	);
+	return mw.msg(
+		'kartographer-attribution-externaldata',
+		mw.msg( 'project-localized-name-commonswiki' ),
+		[ link ]
+	);
 }
 
 KartographerMap = L.Map.extend( {
@@ -241,10 +260,10 @@ KartographerMap = L.Map.extend( {
 		this.lang = options.lang || util.getDefaultLanguage();
 
 		/**
-		 * @property {Object} dataLayers References to the data layers.
+		 * @property {L.FeatureLayer[]} dataLayers References to the data layers.
 		 * @protected
 		 */
-		this.dataLayers = {};
+		this.dataLayers = [];
 
 		/* Add base layer */
 
@@ -326,9 +345,8 @@ KartographerMap = L.Map.extend( {
 		}
 
 		if ( this.parentMap ) {
-			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( this.parentMap.dataLayers, function ( groupId, layer ) {
-				map.addGeoJSONLayer( groupId, layer.getGeoJSON(), layer.options );
+			this.parentMap.dataLayers.forEach( function ( layer ) {
+				map.addGeoJSONLayer( layer.getGeoJSON(), layer.options );
 			} );
 			ready();
 			return;
@@ -411,75 +429,45 @@ KartographerMap = L.Map.extend( {
 			return $.Deferred().resolve().promise();
 		}
 
-		return DataManagerFactory().loadGroups( dataGroups ).then( function ( groups ) {
-			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( groups, function ( key, group ) {
-				var layerOptions = {
-					attribution: group.attribution
-				};
-				if ( group.isExternal ) {
-					layerOptions.name = group.attribution;
+		var title = mw.config.get( 'wgPageName' );
+		var revid = mw.config.get( 'wgRevisionId' );
+		return DataManagerFactory().loadGroups( dataGroups, title, revid ).then( function ( groups ) {
+			groups.forEach( function ( group ) {
+				if ( group.failed ) {
+					mw.log.warn( 'Layer not found or contains no data: ' + group.failureReason );
+					return;
 				}
-				if ( !$.isEmptyObject( group.getGeoJSON() ) ) {
-					map.addGeoJSONLayer( group.id, group.getGeoJSON(), layerOptions );
-				} else {
-					mw.log.warn( 'Layer not found or contains no data: "' + group.id + '"' );
+
+				var layerOptions = {};
+				var geoJSON = group.getGeoJSON();
+				if ( geoJSON.service === 'page' ) {
+					var attribution = buildAttribution( geoJSON.url );
+					layerOptions.name = attribution;
+					layerOptions.attribution = attribution;
 				}
+				map.addGeoJSONLayer( geoJSON, layerOptions );
 			} );
 		} );
 	},
 
 	/**
-	 * Creates a new GeoJSON layer and adds it to the map.
+	 * Creates a new GeoJSON layer and pushes onto the list of layers to be
+	 * added.
 	 *
-	 * @param {Object} groupData Features
-	 * @param {Object} [options] Layer options
-	 * @return {jQuery.Promise} Promise which resolves when the layer has been added
-	 */
-	addDataLayer: function ( groupData, options ) {
-		var map = this;
-		options = options || {};
-
-		return DataManagerFactory().load( groupData ).then( function ( dataGroups ) {
-			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( dataGroups, function ( key, group ) {
-				var groupId = inlineDataLayerKey + inlineDataLayerId++,
-					layerOptions = {
-						attribution: group.attribution || options.attribution
-					};
-				if ( group.isExternal ) {
-					layerOptions.name = group.attribution;
-				}
-				if ( !$.isEmptyObject( group.getGeoJSON() ) ) {
-					map.addGeoJSONLayer( groupId, group.getGeoJSON(), layerOptions );
-				} else {
-					mw.log.warn( 'Layer not found or contains no data: "' + groupId + '"' );
-				}
-			} );
-		} );
-	},
-
-	/**
-	 * Creates a new GeoJSON layer and adds it to the map.
-	 *
-	 * @param {string} groupId
 	 * @param {Object} geoJSON Features
 	 * @param {Object} [options] Layer options
-	 * @return {L.mapbox.FeatureLayer|undefined} Added layer, or undefined in case e.g. the GeoJSON
-	 *   was invalid
 	 */
-	addGeoJSONLayer: function ( groupId, geoJSON, options ) {
+	addGeoJSONLayer: function ( geoJSON, options ) {
 		try {
 			var layer = L.mapbox.featureLayer( geoJSON, $.extend( {}, dataLayerOpts, options ) ).addTo( this );
 			layer.getAttribution = function () {
 				return this.options.attribution;
 			};
 			this.attributionControl.addAttribution( layer.getAttribution() );
-			this.dataLayers[ groupId ] = layer;
-			layer.dataGroup = groupId;
-			return layer;
+			this.dataLayers.push( layer );
+			layer.isDataGroup = true;
 		} catch ( e ) {
-			mw.log( e );
+			mw.log.warn( e );
 		}
 	},
 
