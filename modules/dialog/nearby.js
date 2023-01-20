@@ -45,11 +45,11 @@ function fetchThumbnail( popup, title, description ) {
  * @class
  * @constructor
  * @param {boolean} [enableClustering]
- * @property {Object} nearbyLayers
+ * @property {L.GeoJSON|null} nearbyLayer
  * @property {Set} knownTitles
  */
 function Nearby( enableClustering ) {
-	this.nearbyLayers = {};
+	this.nearbyLayer = null;
 	this.knownTitles = new Set();
 	this.mapReloadNearbyButton = null;
 	if ( enableClustering ) {
@@ -247,12 +247,10 @@ Nearby.prototype.toggleNearbyLayer = function ( map, show ) {
 	} else {
 		map.off( 'move zoomend' );
 
-		for ( var i in this.nearbyLayers ) {
-			if ( !this.clusterMarkers ) {
-				map.removeLayer( this.nearbyLayers[ i ] );
-			}
-			delete this.nearbyLayers[ i ];
+		if ( this.nearbyLayer && !this.clusterMarkers ) {
+			map.removeLayer( this.nearbyLayer );
 		}
+		this.nearbyLayer = null;
 		this.knownTitles.clear();
 
 		if ( this.clusterMarkers ) {
@@ -342,23 +340,22 @@ Nearby.prototype.fetch = function ( bounds, zoom ) {
  * @param {Object} queryApiResponse
  */
 Nearby.prototype.populateNearbyLayer = function ( map, queryApiResponse ) {
-	var zoom = map.getZoom();
 	var geoJSON = this.convertGeosearchToGeoJSON( queryApiResponse );
 
-	if ( !this.nearbyLayers[ zoom ] ) {
-		this.nearbyLayers[ zoom ] = this.createNearbyLayer( geoJSON );
+	if ( !this.nearbyLayer ) {
+		this.nearbyLayer = this.createNearbyLayer( geoJSON );
 		if ( !this.clusterMarkers ) {
-			map.addLayer( this.nearbyLayers[ zoom ] );
+			map.addLayer( this.nearbyLayer );
 		}
 	} else {
 		if ( this.clusterMarkers ) {
-			this.clusterMarkers.removeLayers( this.nearbyLayers[ zoom ].getLayers() );
+			this.clusterMarkers.removeLayers( this.nearbyLayer.getLayers() );
 		}
-		this.nearbyLayers[ zoom ].addData( geoJSON );
+		this.nearbyLayer.addData( geoJSON );
 	}
 
 	if ( this.clusterMarkers ) {
-		this.clusterMarkers.addLayers( this.nearbyLayers[ zoom ].getLayers() );
+		this.clusterMarkers.addLayers( this.nearbyLayer.getLayers() );
 	}
 
 	if ( !this.seenMarkerPaint && mw.eventLog ) {
