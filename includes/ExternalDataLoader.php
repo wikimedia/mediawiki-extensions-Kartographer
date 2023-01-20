@@ -111,7 +111,16 @@ class ExternalDataLoader {
 	 */
 	private function extend( stdClass $geoJson ): stdClass {
 		$request = $this->requestFactory->create( $geoJson->url, [ 'method' => 'GET' ], __METHOD__ );
+		$startTime = microtime( true );
 		$status = $request->execute();
+
+		$elapsedTime = microtime( true ) - $startTime;
+		if ( $elapsedTime > 1 ) {
+			LoggerFactory::getInstance( 'Kartographer' )->warning(
+				'Took too long ({time} sec) to expand {url}',
+				[ 'time' => $elapsedTime, 'url' => $geoJson->url ]
+			);
+		}
 
 		if ( !$status->isOK() ) {
 			LoggerFactory::getInstance( 'Kartographer' )->warning(
