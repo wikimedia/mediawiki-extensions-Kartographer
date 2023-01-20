@@ -460,6 +460,14 @@ KartographerMap = L.Map.extend( {
 	 * @param {Object} [options] Layer options
 	 */
 	addGeoJSONLayer: function ( geoJSON, options ) {
+		if ( typeof geoJSON === 'string' ) {
+			mw.log.warn( 'Please update deprecated call to addGeoJSONLayer, see T327151' );
+			var name = geoJSON;
+			geoJSON = options;
+			options = arguments[ 2 ];
+			options.name = name;
+		}
+
 		try {
 			var layer = L.mapbox.featureLayer( geoJSON, $.extend( {}, dataLayerOpts, options ) ).addTo( this );
 			layer.getAttribution = function () {
