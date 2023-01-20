@@ -46,11 +46,11 @@ function fetchThumbnail( popup, title, description ) {
  * @constructor
  * @param {boolean} [enableClustering]
  * @property {Object} nearbyLayers
- * @property {Object} knownTitles
+ * @property {Set} knownTitles
  */
 function Nearby( enableClustering ) {
 	this.nearbyLayers = {};
-	this.knownTitles = {};
+	this.knownTitles = new Set();
 	this.mapReloadNearbyButton = null;
 	if ( enableClustering ) {
 		this.initClusterMarkers();
@@ -171,28 +171,24 @@ function createPopupHtml( title, description, thumbnail ) {
  * @param {L.Map} map
  */
 Nearby.prototype.initializeKnownPoints = function ( map ) {
-	this.knownTitles.featureLayer = new Set();
 	map.eachLayer( function ( layer ) {
 		// Note: mapbox does simple checks like this in other places as well
 		if ( layer.feature && layer.feature.properties && layer.feature.properties.title ) {
-			this.knownTitles.featureLayer.add( layer.feature.properties.title );
+			this.knownTitles.add( layer.feature.properties.title );
 		}
 	}.bind( this ) );
 };
 
 /**
  * @private
- * @param {number} zoom
  * @param {Object} geoJSON
  * @return {boolean}
  */
-Nearby.prototype.filterDuplicatePoints = function ( zoom, geoJSON ) {
-	for ( var i in this.knownTitles ) {
-		if ( this.knownTitles[ i ].has( geoJSON.properties.title ) ) {
-			return false;
-		}
+Nearby.prototype.filterDuplicatePoints = function ( geoJSON ) {
+	if ( this.knownTitles.has( geoJSON.properties.title ) ) {
+		return false;
 	}
-	this.knownTitles[ zoom ].add( geoJSON.properties.title );
+	this.knownTitles.add( geoJSON.properties.title );
 	return true;
 };
 
@@ -256,8 +252,8 @@ Nearby.prototype.toggleNearbyLayer = function ( map, show ) {
 				map.removeLayer( this.nearbyLayers[ i ] );
 			}
 			delete this.nearbyLayers[ i ];
-			delete this.knownTitles[ i ];
 		}
+		this.knownTitles.clear();
 
 		if ( this.clusterMarkers ) {
 			this.clusterMarkers.clearLayers();
@@ -350,8 +346,7 @@ Nearby.prototype.populateNearbyLayer = function ( map, queryApiResponse ) {
 	var geoJSON = this.convertGeosearchToGeoJSON( queryApiResponse );
 
 	if ( !this.nearbyLayers[ zoom ] ) {
-		this.knownTitles[ zoom ] = new Set();
-		this.nearbyLayers[ zoom ] = this.createNearbyLayer( zoom, geoJSON );
+		this.nearbyLayers[ zoom ] = this.createNearbyLayer( geoJSON );
 		if ( !this.clusterMarkers ) {
 			map.addLayer( this.nearbyLayers[ zoom ] );
 		}
@@ -409,14 +404,13 @@ Nearby.prototype.convertGeosearchToGeoJSON = function ( response ) {
 
 /**
  * @private
- * @param {number} zoom
  * @param {Object[]} geoJSON
  * @return {L.GeoJSON}
  */
-Nearby.prototype.createNearbyLayer = function ( zoom, geoJSON ) {
+Nearby.prototype.createNearbyLayer = function ( geoJSON ) {
 	var self = this;
 	return L.geoJSON( geoJSON, {
-		filter: this.filterDuplicatePoints.bind( this, zoom ),
+		filter: this.filterDuplicatePoints.bind( this ),
 		pointToLayer: this.createNearbyMarker,
 		onEachFeature: function ( feature, layer ) {
 			layer.bindPopup( function () {
