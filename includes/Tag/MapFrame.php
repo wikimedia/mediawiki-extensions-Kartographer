@@ -86,9 +86,8 @@ class MapFrame extends TagHandler {
 		// BUT not possible to use both modes at the same time right now. T248023
 		// Should be fixed, especially considering VE in page editing etc...
 
-		$useSnapshot =
-			$this->config->get( 'KartographerStaticMapframe' ) && !$options->getIsPreview() &&
-			!$options->getIsSectionPreview();
+		$isPreview = $options->getIsPreview() || $options->getIsSectionPreview();
+		$useSnapshot = $this->config->get( 'KartographerStaticMapframe' ) && !$isPreview;
 
 		$parserOutput->addModules( [ $useSnapshot
 			? 'ext.kartographer.staticframe'
@@ -143,9 +142,7 @@ class MapFrame extends TagHandler {
 		$imgUrlParams = [
 			'lang' => $this->resolvedLangCode,
 		];
-		if ( $this->showGroups && !$options->getIsPreview() &&
-			!$options->getIsSectionPreview()
-		) {
+		if ( $this->showGroups && !$isPreview ) {
 			$page = $this->parser->getPage();
 			// Groups are not available to the static map renderer
 			// before the page was saved, can only be applied via JS
