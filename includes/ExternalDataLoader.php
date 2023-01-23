@@ -129,9 +129,11 @@ class ExternalDataLoader {
 		}
 		if ( $this->isEventLogging ) {
 			$event = [
-				'$schema' => '/analytics/mediawiki/maps/externaldata_fetch/1.0.0',
+				'$schema' => '/analytics/mediawiki/maps/externaldata_fetch/1.1.0',
 				'expansion_duration_ms' => $elapsedTimeMs,
 				'url' => $geoJson->url,
+				'response_status' => $status->getValue(),
+				'response_length' => intval( $request->getResponseHeader( 'content-length' ) ),
 				// TODO: page ID, ...
 			];
 			// @phan-suppress-next-line PhanUndeclaredClassMethod
