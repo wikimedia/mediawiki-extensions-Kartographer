@@ -1,4 +1,21 @@
 /**
+ * @param {Object} parameters
+ * @return {jQuery.Promise}
+ */
+function mwApi( parameters ) {
+	return ( new mw.Api( {
+		/* TODO: Temporary override for local testing; remove when not needed any more *
+		ajax: {
+			url: 'https://en.wikipedia.org/w/api.php',
+			headers: {
+				'User-Agent': 'Kartographer - the WMF Content Transform Team (https://www.mediawiki.org/wiki/Content_Transform_Team)'
+			}
+		}
+		/**/
+	} ) ).get( parameters );
+}
+
+/**
  * @class
  * @constructor
  * @param {boolean} [enableClustering]
@@ -241,16 +258,7 @@ Nearby.prototype.fetch = function ( bounds, zoom ) {
 	// The maximum thumbnail limit is currently 50
 	var limit = 50;
 	// TODO: Cache results if bounds remains unchanged
-	return ( new mw.Api( {
-		/* TODO: Temporary override for local testing; remove when not needed any more *
-		ajax: {
-			url: 'https://en.wikipedia.org/w/api.php',
-			headers: {
-				'User-Agent': 'Kartographer - the WMF Content Transform Team (https://www.mediawiki.org/wiki/Content_Transform_Team)'
-			}
-		}
-		/**/
-	} ) ).get( {
+	return mwApi( {
 		action: 'query',
 		format: 'json',
 		formatversion: 2,
