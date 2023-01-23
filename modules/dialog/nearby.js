@@ -156,7 +156,7 @@ Nearby.prototype.initializeKnownPoints = function ( map ) {
 	this.knownTitles.featureLayer = new Set();
 	map.eachLayer( function ( layer ) {
 		// Note: mapbox does simple checks like this in other places as well
-		if ( layer.feature && layer.feature.properties ) {
+		if ( layer.feature && layer.feature.properties && layer.feature.properties.title ) {
 			this.knownTitles.featureLayer.add( layer.feature.properties.title );
 		}
 	}.bind( this ) );
