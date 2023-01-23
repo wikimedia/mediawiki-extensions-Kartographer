@@ -598,7 +598,7 @@
 			"value": false
 		},
 		"KartographerNearbyClustering": {
-			"description": "Feature flag used to enable cluserting in the KartographerNearby feature.",
+			"description": "Temporary feature flag used to enable point clustering in the $wgKartographerNearby feature.",
 			"value": false
 		},
 		"KartographerNearbyOnMobile": {
