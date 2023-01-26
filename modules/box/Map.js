@@ -334,8 +334,11 @@ KartographerMap = L.Map.extend( {
 
 		function ready() {
 			map.initView( options.center, options.zoom );
-			map.dragging.enable();
-			map.touchZoom.enable();
+			if ( !this._static ) {
+				map.dragging.enable();
+				map.touchZoom.enable();
+			}
+
 			map.fire(
 				/**
 				 * @event kartographerisready
