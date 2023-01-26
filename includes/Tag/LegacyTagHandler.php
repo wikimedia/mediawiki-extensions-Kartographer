@@ -14,7 +14,6 @@ use Kartographer\ParserFunctionTracker;
 use Kartographer\PartialWikitextParser;
 use Kartographer\SimpleStyleParser;
 use Kartographer\State;
-use Language;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Languages\LanguageNameUtils;
@@ -37,8 +36,8 @@ abstract class LegacyTagHandler {
 
 	protected MapTagArgumentValidator $args;
 	protected Config $config;
-	protected Parser $parser;
-	private Language $targetLanguage;
+	protected ParserContext $parserContext;
+	private ContentMetadataCollector $metadataCollector;
 	private LanguageNameUtils $languageCodeValidator;
 
 	public function __construct(
@@ -64,21 +63,19 @@ abstract class LegacyTagHandler {
 			throw new ConfigException( '$wgKartographerMapServer doesn\'t have a default, please set your own' );
 		}
 
-		$this->parser = $parser;
-		// Can only be StubUserLang on special pages, but these can't contain <map…> tags
-		$this->targetLanguage = $parser->getTargetLanguage();
+		$this->parserContext = new ParserContext( $parser );
+		$this->metadataCollector = $parser->getOutput();
 		$options = $parser->getOptions();
 		$isPreview = $options->getIsPreview() || $options->getIsSectionPreview();
-		$parserOutput = $parser->getOutput();
 
-		$parserOutput->addModuleStyles( [ 'ext.kartographer.style' ] );
-		$parserOutput->addExtraCSPDefaultSrc( $mapServer );
+		$this->metadataCollector->addModuleStyles( [ 'ext.kartographer.style' ] );
+		$parser->getOutput()->addExtraCSPDefaultSrc( $mapServer );
 
 		$this->args = new MapTagArgumentValidator(
 			static::TAG,
 			$args,
 			$this->config,
-			$this->targetLanguage,
+			$this->parserContext->getTargetLanguage(),
 			$this->languageCodeValidator
 		);
 		$status = $this->args->status;
@@ -90,7 +87,7 @@ abstract class LegacyTagHandler {
 			}
 		}
 
-		$state = State::getOrCreate( $parserOutput );
+		$state = State::getOrCreate( $parser->getOutput() );
 		$state->incrementUsage( static::TAG );
 
 		if ( $status->isGood() ) {
@@ -98,11 +95,11 @@ abstract class LegacyTagHandler {
 			$html = $this->render( new PartialWikitextParser( $parser, $frame ), !$isPreview );
 		} else {
 			$state->incrementBrokenTags();
-			$errorReporter = new ErrorReporter( $this->getTargetLanguageCode() );
+			$errorReporter = new ErrorReporter( $this->parserContext->getTargetLanguage() );
 			$html = $errorReporter->getHtml( $status, static::TAG );
 		}
 
-		State::saveState( $parserOutput, $state );
+		State::saveState( $this->metadataCollector, $state );
 		return $html;
 	}
 
@@ -192,12 +189,8 @@ abstract class LegacyTagHandler {
 		}
 	}
 
-	protected function getTargetLanguageCode(): string {
-		return $this->targetLanguage->getCode();
-	}
-
 	protected function getOutput(): ContentMetadataCollector {
-		return $this->parser->getOutput();
+		return $this->metadataCollector;
 	}
 
 }

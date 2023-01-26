@@ -26,7 +26,7 @@ class LegacyMapLink extends LegacyTagHandler {
 		$text = $this->args->getTextWithFallback();
 		if ( $text === null ) {
 			$formatter = new CoordFormatter( $this->args->lat, $this->args->lon );
-			$text = $formatter->format( $this->getTargetLanguageCode() );
+			$text = $formatter->format( $this->parserContext->getTargetLanguage() );
 		} else {
 			$text = $parser->halfParseWikitext( $text );
 		}

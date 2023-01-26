@@ -3,6 +3,7 @@
 namespace Kartographer\Tag;
 
 use InvalidArgumentException;
+use Language;
 use MediaWiki\Html\Html;
 use StatusValue;
 
@@ -11,9 +12,13 @@ use StatusValue;
  */
 class ErrorReporter {
 
-	private string $language;
+	/** @var Language|string */
+	private $language;
 
-	public function __construct( string $languageCode ) {
+	/**
+	 * @param Language|string $languageCode
+	 */
+	public function __construct( $languageCode ) {
 		$this->language = $languageCode;
 	}
 
