@@ -58,8 +58,6 @@ class MapFrame extends TagHandler {
 		$caption = (string)$this->getText( 'text', '' );
 		$framed = $caption !== '' || $this->getText( 'frameless', null ) === null;
 
-		$parserOutput = $this->parser->getOutput();
-
 		$cssWidth = is_numeric( $this->width ) ? "{$this->width}px" : $this->width;
 		if ( preg_match( '/^\d+%$/', $cssWidth ) ) {
 			if ( $cssWidth === '100%' ) {
@@ -84,9 +82,9 @@ class MapFrame extends TagHandler {
 		// Should be fixed, especially considering VE in page editing etc...
 		$staticMode = $this->config->get( 'KartographerStaticMapframe' );
 		if ( $staticMode && $isPreview ) {
-			$parserOutput->setJsConfigVar( 'wgKartographerStaticMapframePreview', true );
+			$this->getOutput()->setJsConfigVar( 'wgKartographerStaticMapframePreview', true );
 		}
-		$parserOutput->addModules( [ $staticMode && !$isPreview
+		$this->getOutput()->addModules( [ $staticMode && !$isPreview
 			? 'ext.kartographer.staticframe'
 			: 'ext.kartographer.frame' ] );
 

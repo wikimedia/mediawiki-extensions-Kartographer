@@ -31,8 +31,7 @@ class MapLink extends TagHandler {
 	 * @inheritDoc
 	 */
 	protected function render( bool $isPreview ): string {
-		$parserOutput = $this->parser->getOutput();
-		$parserOutput->addModules( [ 'ext.kartographer.link' ] );
+		$this->getOutput()->addModules( [ 'ext.kartographer.link' ] );
 
 		// @todo: Mapbox markers don't support localized numbers yet
 		$text = $this->getText( 'text', null, '/\S+/' );

@@ -28,6 +28,7 @@ use PPFrame;
 use Status;
 use stdClass;
 use Title;
+use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 
 /**
  * Base class for all <map...> tags
@@ -86,6 +87,9 @@ abstract class TagHandler {
 	/** @var PPFrame */
 	protected $frame;
 
+	/** @var Language|StubUserLang */
+	private $targetLanguage;
+
 	/** @var State */
 	protected $state;
 
@@ -124,6 +128,7 @@ abstract class TagHandler {
 
 		$this->parser = $parser;
 		$this->frame = $frame;
+		$this->targetLanguage = $parser->getTargetLanguage();
 		$parserOutput = $parser->getOutput();
 
 		$parserOutput->addModuleStyles( [ 'ext.kartographer.style' ] );
@@ -434,16 +439,16 @@ abstract class TagHandler {
 	private function getLanguage() {
 		// Log if the user language is different from the page language (T311592)
 		$page = $this->parser->getPage();
-		$targetLanguage = $this->parser->getTargetLanguage();
 		if ( $page ) {
 			$pageLang = Title::castFromPageReference( $page )->getPageLanguage();
-			if ( $targetLanguage->getCode() !== $pageLang->getCode() ) {
+			if ( $this->targetLanguage->getCode() !== $pageLang->getCode() ) {
 				LoggerFactory::getInstance( 'Kartographer' )->notice( 'Target language (' .
-					$targetLanguage->getCode() . ') is different than page language (' .
+					$this->targetLanguage->getCode() . ') is different than page language (' .
 					$pageLang->getCode() . ') (T311592)' );
 			}
 		}
-		return $targetLanguage;
+
+		return $this->targetLanguage;
 	}
 
 	/**
@@ -458,5 +463,12 @@ abstract class TagHandler {
 	 */
 	protected function alignEnd(): string {
 		return $this->getLanguage()->alignEnd();
+	}
+
+	/**
+	 * @return ContentMetadataCollector
+	 */
+	protected function getOutput(): ContentMetadataCollector {
+		return $this->parser->getOutput();
 	}
 }
