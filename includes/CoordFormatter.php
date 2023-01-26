@@ -16,10 +16,11 @@ class CoordFormatter {
 	 *
 	 * @param float $lat
 	 * @param float $lon
-	 * @param Language $language
+	 * @param Language|string $language
+	 *
 	 * @return string
 	 */
-	public static function format( $lat, $lon, Language $language ): string {
+	public static function format( $lat, $lon, $language ): string {
 		$latStr = self::formatOneCoord( $lat, 'lat', $language );
 		$lonStr = self::formatOneCoord( $lon, 'lon', $language );
 
@@ -32,10 +33,10 @@ class CoordFormatter {
 	/**
 	 * @param float $coord
 	 * @param string $latLon 'lat' or 'lon'
-	 * @param Language $language
+	 * @param Language|string $language
 	 * @return string
 	 */
-	private static function formatOneCoord( $coord, $latLon, Language $language ): string {
+	private static function formatOneCoord( $coord, $latLon, $language ): string {
 		$val = $sign = round( $coord * 3600 );
 		$val = abs( $val );
 		$degrees = floor( $val / 3600 );
