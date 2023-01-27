@@ -61,19 +61,19 @@ class MapFrame extends TagHandler {
 		$parserOutput = $this->parser->getOutput();
 		$options = $this->parser->getOptions();
 
-		$width = is_numeric( $this->width ) ? "{$this->width}px" : $this->width;
-		if ( preg_match( '/^\d+%$/', $width ) ) {
-			if ( $width === '100%' ) {
+		$cssWidth = is_numeric( $this->width ) ? "{$this->width}px" : $this->width;
+		if ( preg_match( '/^\d+%$/', $cssWidth ) ) {
+			if ( $cssWidth === '100%' ) {
 				$staticWidth = 800;
 				$this->align = 'none';
 			} else {
 				// @todo: deprecate old syntax completely
-				$width = '300px';
+				$cssWidth = '300px';
 				$this->width = 300;
 				$staticWidth = 300;
 			}
-		} elseif ( $width === 'full' ) {
-			$width = '100%';
+		} elseif ( $cssWidth === 'full' ) {
+			$cssWidth = '100%';
 			$this->align = 'none';
 			$staticWidth = 800;
 		} else {
@@ -98,7 +98,7 @@ class MapFrame extends TagHandler {
 			// because an <img> element with permanent failing src has either:
 			// - intrinsic dimensions of 0x0, when alt=''
 			// - intrinsic dimensions of alt size
-			'style' => "width: {$width}; height: {$this->height}px;",
+			'style' => "width: $cssWidth; height: {$this->height}px;",
 			'data-mw' => 'interface',
 			'data-style' => $this->mapStyle,
 			'data-width' => $this->width,
@@ -132,7 +132,7 @@ class MapFrame extends TagHandler {
 		}
 
 		$containerClass = 'mw-kartographer-container';
-		if ( $width === '100%' ) {
+		if ( $cssWidth === '100%' ) {
 			$containerClass .= ' mw-kartographer-full';
 		}
 
@@ -195,7 +195,7 @@ class MapFrame extends TagHandler {
 		return Html::rawElement( 'div', [ 'class' => $containerClass ],
 			Html::rawElement( 'div', [
 					'class' => 'thumbinner',
-					'style' => "width: {$width};",
+					'style' => "width: $cssWidth;",
 				], $html ) );
 	}
 }
