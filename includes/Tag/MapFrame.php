@@ -62,10 +62,8 @@ class MapFrame extends TagHandler {
 		$options = $this->parser->getOptions();
 
 		$width = is_numeric( $this->width ) ? "{$this->width}px" : $this->width;
-		$fullWidth = false;
 		if ( preg_match( '/^\d+%$/', $width ) ) {
 			if ( $width === '100%' ) {
-				$fullWidth = true;
 				$staticWidth = 800;
 				$this->align = 'none';
 			} else {
@@ -77,7 +75,6 @@ class MapFrame extends TagHandler {
 		} elseif ( $width === 'full' ) {
 			$width = '100%';
 			$this->align = 'none';
-			$fullWidth = true;
 			$staticWidth = 800;
 		} else {
 			$staticWidth = $this->width;
@@ -135,7 +132,7 @@ class MapFrame extends TagHandler {
 		}
 
 		$containerClass = 'mw-kartographer-container';
-		if ( $fullWidth ) {
+		if ( $width === '100%' ) {
 			$containerClass .= ' mw-kartographer-full';
 		}
 
