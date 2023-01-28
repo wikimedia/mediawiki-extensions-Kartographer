@@ -38,7 +38,7 @@ class MapLink extends TagHandler {
 		$text = $this->getText( 'text', null, '/\S+/' );
 		if ( $text === null ) {
 			$text = $this->counter
-				?: CoordFormatter::format( $this->lat, $this->lon, $this->getLanguage() );
+				?: CoordFormatter::format( $this->lat, $this->lon, $this->getLanguageCode() );
 		}
 		$text = $this->parser->recursiveTagParse( $text, $this->frame );
 

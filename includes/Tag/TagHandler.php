@@ -195,7 +195,7 @@ abstract class TagHandler {
 		$this->mapStyle = $this->getText( 'mapstyle', $this->config->get( 'KartographerDfltStyle' ), $regexp );
 
 		$defaultLangCode = $this->config->get( 'KartographerUsePageLanguage' ) ?
-			$this->getLanguage()->getCode() :
+			$this->getLanguageCode() :
 			'local';
 		// Language code specified by the user (null if none)
 		$this->specifiedLangCode = $this->getText( 'lang', null );
@@ -426,7 +426,7 @@ abstract class TagHandler {
 	/**
 	 * @return Language|StubUserLang
 	 */
-	protected function getLanguage() {
+	private function getLanguage() {
 		// Log if the user language is different from the page language (T311592)
 		$page = $this->parser->getPage();
 		$targetLanguage = $this->parser->getTargetLanguage();
@@ -439,5 +439,19 @@ abstract class TagHandler {
 			}
 		}
 		return $targetLanguage;
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getLanguageCode(): string {
+		return $this->getLanguage()->getCode();
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function alignEnd(): string {
+		return $this->getLanguage()->alignEnd();
 	}
 }
