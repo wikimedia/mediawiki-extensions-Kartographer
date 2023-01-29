@@ -10,6 +10,7 @@
 namespace Kartographer\Tag;
 
 use Config;
+use ExtensionRegistry;
 use FormatJson;
 use Html;
 use Kartographer\ExternalDataLoader;
@@ -171,7 +172,8 @@ abstract class TagHandler {
 			if ( $this->config->get( 'KartographerExternalDataParseTimeFetch' ) ) {
 				$fetcher = new ExternalDataLoader(
 					MediaWikiServices::getInstance()->getHttpRequestFactory(),
-					new ParserFunctionTracker( $parser )
+					new ParserFunctionTracker( $parser ),
+					ExtensionRegistry::getInstance()->isLoaded( 'EventLogging' )
 				);
 				$fetcher->parse( $this->geometries );
 			}

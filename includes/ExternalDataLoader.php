@@ -4,6 +4,7 @@ namespace Kartographer;
 
 use FormatJson;
 use Kartographer\Tag\ParserFunctionTracker;
+use MediaWiki\Extension\EventLogging\EventLogging;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Logger\LoggerFactory;
 use stdClass;
@@ -19,17 +20,22 @@ class ExternalDataLoader {
 	private HttpRequestFactory $requestFactory;
 	/** @var ParserFunctionTracker|null */
 	private ?ParserFunctionTracker $tracker;
+	/** @var bool */
+	private $isEventLogging;
 
 	/**
 	 * @param HttpRequestFactory $requestFactory
 	 * @param ParserFunctionTracker|null $tracker
+	 * @param bool $isEventLogging true if EventLogging is available
 	 */
 	public function __construct(
 		HttpRequestFactory $requestFactory,
-		ParserFunctionTracker $tracker = null
+		ParserFunctionTracker $tracker = null,
+		bool $isEventLogging = false
 	) {
 		$this->requestFactory = $requestFactory;
 		$this->tracker = $tracker;
+		$this->isEventLogging = $isEventLogging;
 	}
 
 	/**
@@ -114,12 +120,22 @@ class ExternalDataLoader {
 		$startTime = microtime( true );
 		$status = $request->execute();
 
-		$elapsedTime = microtime( true ) - $startTime;
-		if ( $elapsedTime > 1 ) {
+		$elapsedTimeMs = (int)( 1000 * ( microtime( true ) - $startTime ) );
+		if ( $elapsedTimeMs > 1000 ) {
 			LoggerFactory::getInstance( 'Kartographer' )->warning(
-				'Took too long ({time} sec) to expand {url}',
-				[ 'time' => $elapsedTime, 'url' => $geoJson->url ]
+				'Slow ExternalData expansion ({time} ms) for URL {url}',
+				[ 'time' => $elapsedTimeMs, 'url' => $geoJson->url ]
 			);
+		}
+		if ( $this->isEventLogging ) {
+			$event = [
+				'$schema' => '/analytics/mediawiki/maps/externaldata_fetch/1.0.0',
+				'expansion_duration_ms' => $elapsedTimeMs,
+				'url' => $geoJson->url,
+				// TODO: page ID, ...
+			];
+			// @phan-suppress-next-line PhanUndeclaredClassMethod
+			EventLogging::submit( 'mediawiki.maps.externaldata_fetch', $event );
 		}
 
 		if ( !$status->isOK() ) {
