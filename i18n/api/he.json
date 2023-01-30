@@ -14,6 +14,6 @@
 	"apihelp-query+mapdata-example-1": "בקשת כל נתוני המפה מהדף <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-example-2": "בקשת כל נתוני המפה בקבוצות <kbd>group1</kbd> ו־<kbd>group2</kbd> מהדף <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-param-continue": "יש להשתמש בפרמטר הזה כדי להמשיך לעבור על התוצאות",
-	"apihelp-query+mapdata-param-groups": "קבוצות מופרדות בפסיק להחזרת נתונים",
+	"apihelp-query+mapdata-param-groups": "קבוצות מופרדות בקו ניצב להחזרת נתונים",
 	"apihelp-query+mapdata-param-limit": "על כמה דפים להחזיר נתונים"
 }
