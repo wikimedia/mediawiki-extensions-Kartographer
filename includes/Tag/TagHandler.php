@@ -149,7 +149,9 @@ abstract class TagHandler {
 
 		$this->state->setValidTags();
 
-		$result = $this->render();
+		$options = $parser->getOptions();
+		$isPreview = $options->getIsPreview() || $options->getIsSectionPreview();
+		$result = $this->render( $isPreview );
 
 		State::setState( $parserOutput, $this->state );
 		return $result;
@@ -215,9 +217,10 @@ abstract class TagHandler {
 
 	/**
 	 * When overridden in a descendant class, returns tag HTML
+	 * @param bool $isPreview
 	 * @return string
 	 */
-	abstract protected function render(): string;
+	abstract protected function render( bool $isPreview ): string;
 
 	private function parseGroups() {
 		if ( !$this->config->get( 'KartographerWikivoyageMode' ) ) {

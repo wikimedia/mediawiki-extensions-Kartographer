@@ -30,7 +30,7 @@ class MapLink extends TagHandler {
 	/**
 	 * @inheritDoc
 	 */
-	protected function render(): string {
+	protected function render( bool $isPreview ): string {
 		$parserOutput = $this->parser->getOutput();
 		$parserOutput->addModules( [ 'ext.kartographer.link' ] );
 
