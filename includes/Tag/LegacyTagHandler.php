@@ -57,7 +57,7 @@ abstract class LegacyTagHandler {
 	/** @var int|null */
 	protected $zoom;
 
-	/** @var string One of "osm-intl" or "osm" */
+	/** @var string|null One of "osm-intl" or "osm" */
 	protected $mapStyle;
 
 	/** @var string|null */
@@ -193,9 +193,9 @@ abstract class LegacyTagHandler {
 	protected function parseArgs(): void {
 		$services = MediaWikiServices::getInstance();
 
-		$this->lat = $this->getFloat( 'latitude', null );
-		$this->lon = $this->getFloat( 'longitude', null );
-		if ( ( $this->lat === null ) xor ( $this->lon === null ) ) {
+		$this->lat = $this->getFloat( 'latitude' );
+		$this->lon = $this->getFloat( 'longitude' );
+		if ( $this->status->isOK() && ( ( $this->lat === null ) xor ( $this->lon === null ) ) ) {
 			$this->status->fatal( 'kartographer-error-latlon' );
 		}
 
@@ -253,12 +253,12 @@ abstract class LegacyTagHandler {
 
 	/**
 	 * @param string $name
-	 * @param string|false|null $default
-	 * @return int|false|null
+	 * @param string|false|null $default Default value or false to trigger error if absent
+	 * @return int|null
 	 */
-	protected function getInt( $name, $default = false ) {
+	protected function getInt( $name, $default ): ?int {
 		$value = $this->getText( $name, $default, '/^-?[0-9]+$/' );
-		if ( $value !== false && $value !== null ) {
+		if ( $value !== null ) {
 			$value = intval( $value );
 		}
 
@@ -267,12 +267,11 @@ abstract class LegacyTagHandler {
 
 	/**
 	 * @param string $name
-	 * @param string|false|null $default
-	 * @return float|false|null
+	 * @return float|null
 	 */
-	private function getFloat( $name, $default = false ) {
-		$value = $this->getText( $name, $default, '/^-?[0-9]*\.?[0-9]+$/' );
-		if ( $value !== false && $value !== null ) {
+	private function getFloat( $name ): ?float {
+		$value = $this->getText( $name, null, '/^-?[0-9]*\.?[0-9]+$/' );
+		if ( $value !== null ) {
 			$value = floatval( $value );
 		}
 
@@ -285,18 +284,18 @@ abstract class LegacyTagHandler {
 	 * @param string $name Attribute name
 	 * @param string|false|null $default Default value or false to trigger error if absent
 	 * @param string|false $regexp Regular expression to validate against or false to not validate
-	 * @return string|false|null
+	 * @return string|null
 	 */
-	protected function getText( $name, $default, $regexp = false ) {
+	protected function getText( $name, $default, $regexp = false ): ?string {
 		if ( !isset( $this->args[$name] ) ) {
 			if ( $default === false ) {
 				$this->status->fatal( 'kartographer-error-missing-attr', $name );
 			}
-			return $default;
+			return $default === false ? null : $default;
 		}
 		$value = trim( $this->args[$name] );
 		if ( $regexp && !preg_match( $regexp, $value ) ) {
-			$value = false;
+			$value = null;
 			$this->status->fatal( 'kartographer-error-bad_attr', $name );
 		}
 

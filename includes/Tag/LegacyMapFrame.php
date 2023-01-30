@@ -29,11 +29,11 @@ class LegacyMapFrame extends LegacyTagHandler {
 
 	public const TAG = 'mapframe';
 
-	/** @var int|string either a number of pixels, a percentage (e.g. "100%"), or "full" */
+	/** @var string|null either a number of pixels, a percentage (e.g. "100%"), or "full" */
 	private $width;
-	/** @var int */
+	/** @var int|null */
 	private $height;
-	/** @var string One of "left", "center", "right", or "none" */
+	/** @var string|null One of "left", "center", "right", or "none" */
 	private $align;
 
 	/**
@@ -44,7 +44,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 		$this->state->useMapframe();
 		// @todo: should these have defaults?
 		$this->width = $this->getText( 'width', false, '/^(\d+|([1-9]\d?|100)%|full)$/' );
-		$this->height = $this->getInt( 'height' );
+		$this->height = $this->getInt( 'height', false );
 		$defaultAlign = $this->alignEnd();
 		$this->align = $this->getText( 'align', $defaultAlign, '/^(left|center|right)$/' );
 	}
@@ -66,7 +66,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 			} else {
 				// @todo: deprecate old syntax completely
 				$cssWidth = '300px';
-				$this->width = 300;
+				$this->width = '300';
 				$staticWidth = 300;
 			}
 		} elseif ( $cssWidth === 'full' ) {

@@ -15,7 +15,7 @@ class LegacyMapLink extends LegacyTagHandler {
 
 	public const TAG = 'maplink';
 
-	/** @var string */
+	/** @var string|null */
 	private $cssClass = '';
 
 	/**
