@@ -12,7 +12,7 @@ use MediaWiki\MediaWikiServices;
  *
  * @license MIT
  */
-class MapFrame extends TagHandler {
+class LegacyMapFrame extends LegacyTagHandler {
 
 	private const ALIGN_CLASSES = [
 		'left' => 'floatleft',

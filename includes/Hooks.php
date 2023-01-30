@@ -10,10 +10,10 @@
 namespace Kartographer;
 
 use Config;
-use Kartographer\Tag\MapFrame;
-use Kartographer\Tag\MapLink;
+use Kartographer\Tag\LegacyMapFrame;
+use Kartographer\Tag\LegacyMapLink;
+use Kartographer\Tag\LegacyTagHandler;
 use Kartographer\Tag\ParserFunctionTracker;
-use Kartographer\Tag\TagHandler;
 use MediaWiki\Hook\ParserAfterParseHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Hook\ParserTestGlobalsHook;
@@ -47,8 +47,8 @@ class Hooks implements
 	 * @param Parser $parser
 	 */
 	public function onParserFirstCallInit( $parser ) {
-		$parser->setHook( MapLink::TAG, [ MapLink::class, 'entryPoint' ] );
-		$parser->setHook( MapFrame::TAG, [ MapFrame::class, 'entryPoint' ] );
+		$parser->setHook( LegacyMapLink::TAG, [ LegacyMapLink::class, 'entryPoint' ] );
+		$parser->setHook( LegacyMapFrame::TAG, [ LegacyMapFrame::class, 'entryPoint' ] );
 	}
 
 	/**
@@ -66,7 +66,7 @@ class Hooks implements
 			$options = $parser->getOptions();
 			$isPreview = $options->getIsPreview() || $options->getIsSectionPreview();
 			$tracker = new ParserFunctionTracker( $parser );
-			TagHandler::finalParseStep( $state, $output, $isPreview, $tracker );
+			LegacyTagHandler::finalParseStep( $state, $output, $isPreview, $tracker );
 		}
 	}
 

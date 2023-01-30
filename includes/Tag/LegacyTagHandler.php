@@ -35,7 +35,7 @@ use Wikimedia\Parsoid\Core\ContentMetadataCollector;
  *
  * @license MIT
  */
-abstract class TagHandler {
+abstract class LegacyTagHandler {
 
 	public const TAG = null;
 

@@ -3,18 +3,18 @@
 namespace Kartographer\UnitTests;
 
 use Kartographer\State;
+use Kartographer\Tag\LegacyTagHandler;
 use Kartographer\Tag\ParserFunctionTracker;
-use Kartographer\Tag\TagHandler;
 use MediaWikiUnitTestCase;
 use stdClass;
 
 /**
  * @license MIT
  */
-class TagHandlerTest extends MediaWikiUnitTestCase {
+class LegacyTagHandlerTest extends MediaWikiUnitTestCase {
 
 	/**
-	 * @covers \Kartographer\Tag\TagHandler::finalParseStep
+	 * @covers \Kartographer\Tag\LegacyTagHandler::finalParseStep
 	 * @dataProvider groupsProvider
 	 */
 	public function testFinalParseStep( ?array $data, array $groupTypes, bool $isPreview, stdClass $expected ) {
@@ -47,7 +47,7 @@ class TagHandlerTest extends MediaWikiUnitTestCase {
 				'kartographer-tracking-category' => false,
 			] );
 
-		TagHandler::finalParseStep( $state, $output, $isPreview, $tracker );
+		LegacyTagHandler::finalParseStep( $state, $output, $isPreview, $tracker );
 	}
 
 	public function groupsProvider() {

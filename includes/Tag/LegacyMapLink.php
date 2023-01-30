@@ -10,7 +10,7 @@ use Kartographer\CoordFormatter;
  *
  * @license MIT
  */
-class MapLink extends TagHandler {
+class LegacyMapLink extends LegacyTagHandler {
 	use MapLinkTrait;
 
 	public const TAG = 'maplink';

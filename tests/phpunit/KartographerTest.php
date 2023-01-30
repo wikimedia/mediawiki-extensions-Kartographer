@@ -9,9 +9,9 @@ use Title;
 
 /**
  * @group Kartographer
- * @covers \Kartographer\Tag\TagHandler
- * @covers \Kartographer\Tag\MapFrame
- * @covers \Kartographer\Tag\MapLink
+ * @covers \Kartographer\Tag\LegacyTagHandler
+ * @covers \Kartographer\Tag\LegacyMapFrame
+ * @covers \Kartographer\Tag\LegacyMapLink
  * @license MIT
  */
 class KartographerTest extends MediaWikiLangTestCase {
