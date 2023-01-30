@@ -21,7 +21,7 @@ class ExternalDataLoader {
 	/** @var ParserFunctionTracker|null */
 	private ?ParserFunctionTracker $tracker;
 	/** @var bool */
-	private $isEventLogging;
+	private bool $isEventLogging;
 
 	/**
 	 * @param HttpRequestFactory $requestFactory
@@ -43,7 +43,7 @@ class ExternalDataLoader {
 	 *
 	 * @param stdClass[] &$geoJson
 	 */
-	public function parse( array &$geoJson ) {
+	public function parse( array &$geoJson ): void {
 		foreach ( $geoJson as &$data ) {
 			if ( !isset( $data->type ) || !isset( $data->service ) ||
 				!isset( $data->url ) ||

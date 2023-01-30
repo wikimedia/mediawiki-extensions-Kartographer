@@ -11,7 +11,7 @@ use Parser;
 class ParserFunctionTracker {
 
 	/** @var Parser */
-	private $parser;
+	private Parser $parser;
 
 	/**
 	 * @param Parser $parser
@@ -30,7 +30,7 @@ class ParserFunctionTracker {
 	/**
 	 * @param array<string,bool> $messages
 	 */
-	public function addTrackingCategories( array $messages ) {
+	public function addTrackingCategories( array $messages ): void {
 		foreach ( $messages as $msg => $enabled ) {
 			if ( !is_bool( $enabled ) ) {
 				throw new InvalidArgumentException( '$messages must be an array mapping message keys to booleans' );

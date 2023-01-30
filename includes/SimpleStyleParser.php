@@ -24,10 +24,10 @@ class SimpleStyleParser {
 	private const WIKITEXT_PROPERTIES = [ 'title', 'description' ];
 
 	/** @var WikitextParser */
-	private $parser;
+	private WikitextParser $parser;
 
 	/** @var array */
-	private $options;
+	private array $options;
 
 	/** @var string */
 	private $mapServer;
@@ -46,7 +46,7 @@ class SimpleStyleParser {
 	 * @param array $options Set ['saveUnparsed' => true] to back up the original values of title
 	 *                       and description in _origtitle and _origdescription
 	 */
-	public function __construct( $parser, array $options = [] ) {
+	public function __construct( WikitextParser $parser, array $options = [] ) {
 		// TODO: Temporary compatibility, remove when not needed any more
 		$this->parser = $parser instanceof Parser ? new MediaWikiWikitextParser( $parser ) : $parser;
 		$this->options = $options;
@@ -62,7 +62,7 @@ class SimpleStyleParser {
 	 * @param string|null $input
 	 * @return Status with the value being [ 'data' => stdClass[], 'schema-errors' => array[] ]
 	 */
-	public function parse( $input ): Status {
+	public function parse( ?string $input ): Status {
 		if ( !$input || trim( $input ) === '' ) {
 			return Status::newGood( [ 'data' => [] ] );
 		}
@@ -191,7 +191,7 @@ class SimpleStyleParser {
 	 *
 	 * @param stdClass[]|stdClass &$json
 	 */
-	private function recursivelySanitizeAndParseWikitext( &$json ) {
+	private function recursivelySanitizeAndParseWikitext( &$json ): void {
 		if ( is_array( $json ) ) {
 			foreach ( $json as &$element ) {
 				$this->recursivelySanitizeAndParseWikitext( $element );
@@ -236,7 +236,7 @@ class SimpleStyleParser {
 	 * @param stdClass &$object
 	 * @return Status
 	 */
-	private function normalizeExternalDataServices( &$object ): Status {
+	private function normalizeExternalDataServices( stdClass &$object ): Status {
 		$service = $object->service ?? null;
 		$ret = (object)[
 			'type' => 'ExternalData',
@@ -296,7 +296,7 @@ class SimpleStyleParser {
 	 *
 	 * @param stdClass $properties
 	 */
-	private function parseWikitextProperties( $properties ) {
+	private function parseWikitextProperties( stdClass $properties ) {
 		$saveUnparsed = $this->options['saveUnparsed'] ?? false;
 
 		foreach ( self::WIKITEXT_PROPERTIES as $prop ) {

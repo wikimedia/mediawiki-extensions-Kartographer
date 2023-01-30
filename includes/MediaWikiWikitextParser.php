@@ -11,10 +11,10 @@ use PPFrame;
 class MediaWikiWikitextParser implements WikitextParser {
 
 	/** @var Parser */
-	private $parser;
+	private Parser $parser;
 
 	/** @var PPFrame|null */
-	private $frame;
+	private ?PPFrame $frame;
 
 	/**
 	 * @param Parser $parser

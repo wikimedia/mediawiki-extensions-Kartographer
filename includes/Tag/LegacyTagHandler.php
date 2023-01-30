@@ -40,31 +40,31 @@ abstract class LegacyTagHandler {
 	public const TAG = '';
 
 	/** @var Status */
-	private $status;
+	private Status $status;
 
 	/** @var stdClass[] */
-	private $geometries = [];
+	private array $geometries = [];
 
 	/** @var MapTagArgumentValidator */
-	protected $args;
+	protected MapTagArgumentValidator $args;
 
-	/** @var int|null */
-	protected $counter = null;
+	/** @var string|null */
+	protected ?string $counter = null;
 
 	/** @var Config */
-	protected $config;
+	protected Config $config;
 
 	/** @var Parser */
-	protected $parser;
+	protected Parser $parser;
 
 	/** @var PPFrame */
-	protected $frame;
+	protected PPFrame $frame;
 
 	/** @var Language|StubUserLang */
 	private $targetLanguage;
 
 	/** @var State */
-	protected $state;
+	protected State $state;
 
 	/** @var stdClass|null */
 	protected $markerProperties;
@@ -78,7 +78,7 @@ abstract class LegacyTagHandler {
 	 * @param PPFrame $frame
 	 * @return string
 	 */
-	public static function entryPoint( $input, array $args, Parser $parser, PPFrame $frame ): string {
+	public static function entryPoint( ?string $input, array $args, Parser $parser, PPFrame $frame ): string {
 		/** @phan-suppress-next-line PhanTypeInstantiateAbstractStatic */
 		$handler = new static();
 
@@ -92,7 +92,7 @@ abstract class LegacyTagHandler {
 	 * @param PPFrame $frame
 	 * @return string
 	 */
-	private function handle( $input, array $args, Parser $parser, PPFrame $frame ): string {
+	private function handle( ?string $input, array $args, Parser $parser, PPFrame $frame ): string {
 		$this->config = MediaWikiServices::getInstance()->getMainConfig();
 		$mapServer = $this->config->get( 'KartographerMapServer' );
 		if ( !$mapServer ) {
@@ -149,7 +149,7 @@ abstract class LegacyTagHandler {
 	 * @param PPFrame $frame
 	 * @param bool $isPreview
 	 */
-	private function parseGeometries( $input, Parser $parser, PPFrame $frame, bool $isPreview ): void {
+	private function parseGeometries( ?string $input, Parser $parser, PPFrame $frame, bool $isPreview ): void {
 		$simpleStyle = SimpleStyleParser::newFromParser( $parser, $frame );
 
 		$this->status = $simpleStyle->parse( $input );
@@ -174,7 +174,7 @@ abstract class LegacyTagHandler {
 	 */
 	abstract protected function render( bool $isPreview ): string;
 
-	private function saveData() {
+	private function saveData(): void {
 		$this->state->addRequestedGroups( $this->args->showGroups );
 
 		if ( !$this->geometries ) {
@@ -214,9 +214,9 @@ abstract class LegacyTagHandler {
 	public static function finalParseStep(
 		State $state,
 		ParserOutput $parserOutput,
-		$isPreview,
+		bool $isPreview,
 		ParserFunctionTracker $tracker
-	) {
+	): void {
 		if ( $state->getMaplinks() ) {
 			$parserOutput->setPageProperty( 'kartographer_links', (string)$state->getMaplinks() );
 		}

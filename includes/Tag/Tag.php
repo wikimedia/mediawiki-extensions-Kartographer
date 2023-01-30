@@ -13,11 +13,11 @@ use Status;
 class Tag {
 
 	/** @var string */
-	public $name;
+	public string $name;
 	/** @var string[] */
-	private $args;
+	private array $args;
 	/** @var Status */
-	public $status;
+	public Status $status;
 
 	/**
 	 * @param string $name
@@ -35,7 +35,7 @@ class Tag {
 	 * @param string|false|null $default
 	 * @return int|null
 	 */
-	public function getInt( $name, $default ) {
+	public function getInt( string $name, $default ): ?int {
 		$value = $this->getString( $name, $default, '/^-?[0-9]+$/' );
 		if ( $value !== null ) {
 			$value = intval( $value );
@@ -48,7 +48,7 @@ class Tag {
 	 * @param string $name
 	 * @return float|null
 	 */
-	public function getFloat( $name ) {
+	public function getFloat( string $name ): ?float {
 		$value = $this->getString( $name, null, '/^-?[0-9]*\.?[0-9]+$/' );
 		if ( $value !== null ) {
 			$value = floatval( $value );
@@ -65,7 +65,7 @@ class Tag {
 	 * @param string|false $regexp Regular expression to validate against or false to not validate
 	 * @return string|null
 	 */
-	public function getString( $name, $default, $regexp = false ) {
+	public function getString( string $name, $default, $regexp = false ): ?string {
 		if ( !isset( $this->args[$name] ) ) {
 			if ( $default === false ) {
 				$this->status->fatal( 'kartographer-error-missing-attr', $name );
