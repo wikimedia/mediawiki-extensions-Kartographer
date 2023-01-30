@@ -116,7 +116,7 @@ class StateTest extends MediaWikiUnitTestCase {
 	public function testParserOutputPersistenceForwardCompatibility() {
 		$output = new ParserOutput();
 
-		$state = new State( $output );
+		$state = new State();
 		$state->addData( 'test', [ 'foo' => 'bar' ] );
 
 		// Set JSONified state. Should work before we set JSON-serializable data,
@@ -130,7 +130,7 @@ class StateTest extends MediaWikiUnitTestCase {
 	public function testParserOutputPersistenceBackwardCompatibility() {
 		$output = new ParserOutput();
 
-		$state = new State( $output );
+		$state = new State();
 		$state->addData( 'test', [ 'foo' => 'bar' ] );
 
 		// Set the object directly. Should still work once we normally set JSON-serializable data.
