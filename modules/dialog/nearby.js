@@ -51,6 +51,7 @@ function fetchThumbnail( popup, title, description ) {
 function Nearby( enableClustering ) {
 	this.nearbyLayers = {};
 	this.knownTitles = {};
+	this.mapReloadNearbyButton = null;
 	if ( enableClustering ) {
 		this.initClusterMarkers();
 	}
@@ -230,12 +231,15 @@ Nearby.prototype.createNearbyClusterMarker = function ( cluster ) {
  * @param {boolean} show
  */
 Nearby.prototype.toggleNearbyLayer = function ( map, show ) {
+	this.map = map;
+
 	if ( show ) {
 		this.performanceStartTime = mw.now();
 		this.seenArticleLink = false;
 		this.seenMarkerPaint = false;
 		this.initializeKnownPoints( map );
 		this.fetchAndPopulateNearbyLayer( map );
+		this.createReloadButton( map );
 		map.on( {
 			move: this.onMapMoveOrZoomEnd.bind( this, map ),
 			zoomend: this.onMapMoveOrZoomEnd.bind( this, map )
@@ -246,6 +250,7 @@ Nearby.prototype.toggleNearbyLayer = function ( map, show ) {
 		}
 	} else {
 		map.off( 'move zoomend' );
+
 		for ( var i in this.nearbyLayers ) {
 			if ( !this.clusterMarkers ) {
 				map.removeLayer( this.nearbyLayers[ i ] );
@@ -258,17 +263,47 @@ Nearby.prototype.toggleNearbyLayer = function ( map, show ) {
 			this.clusterMarkers.clearLayers();
 			map.removeLayer( this.clusterMarkers );
 		}
+
+		this.mapReloadNearbyButton.$element.hide();
 	}
 };
 
 /**
- * @private
  * @param {L.Map} map
  */
-Nearby.prototype.onMapMoveOrZoomEnd = OO.ui.debounce( function ( map ) {
-	this.dropForeignNearbyLayers( map );
-	this.fetchAndPopulateNearbyLayer( map );
+Nearby.prototype.createReloadButton = function ( map ) {
+	if ( map.mapReloadNearbyButton ) {
+		return;
+	}
+
+	this.mapReloadNearbyButton = new OO.ui.ButtonWidget( {
+		label: mw.msg( 'kartographer-sidebar-reload-nearbybutton' ),
+		icon: 'reload',
+		classes: [ 'mw-kartographer-reload-nearbybutton' ]
+	} );
+
+	this.mapReloadNearbyButton.connect( this, { click: 'reloadNearbyLayer' } );
+	/* eslint-disable-next-line no-underscore-dangle */
+	$( map._controlContainer ).append( this.mapReloadNearbyButton.$element );
+	this.mapReloadNearbyButton.$element.hide();
+
+};
+
+/**
+ * @private
+ */
+Nearby.prototype.onMapMoveOrZoomEnd = OO.ui.debounce( function () {
+	this.mapReloadNearbyButton.$element.show();
 }, 500 );
+
+/**
+ * @private
+ */
+Nearby.prototype.reloadNearbyLayer = function () {
+	this.toggleNearbyLayer( this.map, false );
+	this.toggleNearbyLayer( this.map, true );
+	this.mapReloadNearbyButton.$element.hide();
+};
 
 /**
  * @private
@@ -303,28 +338,6 @@ Nearby.prototype.fetch = function ( bounds, zoom ) {
 		// pp… arguments belong to prop=pageprops
 		ppprop: 'displaytitle'
 	} );
-};
-
-/**
- * @private
- * @param {L.Map} map
- */
-Nearby.prototype.dropForeignNearbyLayers = function ( map ) {
-	var zoom = map.getZoom();
-	// Drop data from zoom levels that are too far away from the current zoom level
-	var keepDataZoomLimit = 3;
-
-	for ( var i in this.nearbyLayers ) {
-		if ( Math.abs( zoom - i ) > keepDataZoomLimit ) {
-			if ( this.clusterMarkers ) {
-				this.clusterMarkers.removeLayers( this.nearbyLayers[ i ].getLayers() );
-			} else {
-				map.removeLayer( this.nearbyLayers[ i ] );
-			}
-			delete this.nearbyLayers[ i ];
-			delete this.knownTitles[ i ];
-		}
-	}
 };
 
 /**

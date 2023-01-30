@@ -73,6 +73,7 @@
 	"kartographer-sidebar-longitude": "Full screen map info sidebar - Longitude label\n{{Identical|Longitude}}",
 	"kartographer-sidebar-mapdetails": "Full screen map info sidebar - External use heading label",
 	"kartographer-sidebar-nearbybutton": "Label for toggle button near a map to show nearby articles layer. It shows places nearby place shown on the map (not near the user).",
+	"kartographer-sidebar-reload-nearbybutton": "Label for reload nearby button",
 	"kartographer-sidebar-service": "Full screen map info sidebar - Service table column label\n{{Identical|Service}}",
 	"kartographer-sidebar-togglebutton": "Label for button to toggle full screen map info sidebar",
 	"leafletdraw-draw-handlers-circle-radius": "Label for circle radius\n{{Identical|Radius}}",

@@ -254,6 +254,7 @@
 			"messages": [
 				"kartographer-fullscreen-close",
 				"kartographer-sidebar-nearbybutton",
+				"kartographer-sidebar-reload-nearbybutton",
 				"kartographer-sidebar-togglebutton"
 			],
 			"targets": [
