@@ -23,7 +23,7 @@ class SimpleStyleParser {
 
 	private const WIKITEXT_PROPERTIES = [ 'title', 'description' ];
 
-	/** @var MediaWikiWikitextParser */
+	/** @var WikitextParser */
 	private $parser;
 
 	/** @var array */
@@ -42,7 +42,7 @@ class SimpleStyleParser {
 	}
 
 	/**
-	 * @param MediaWikiWikitextParser $parser
+	 * @param WikitextParser $parser
 	 * @param array $options Set ['saveUnparsed' => true] to back up the original values of title
 	 *                       and description in _origtitle and _origdescription
 	 */
