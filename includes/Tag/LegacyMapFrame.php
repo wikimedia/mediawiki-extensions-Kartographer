@@ -143,7 +143,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 			// before the page was saved, can only be applied via JS
 			$imgUrlParams += [
 				'domain' => $this->config->get( 'KartographerMediaWikiInternalUrl' ) ??
-					$this->config->get( 'Server' ),
+					$this->config->get( 'ServerName' ),
 				'title' => $page ? MediaWikiServices::getInstance()->getTitleFormatter()->getPrefixedText( $page ) : '',
 				'revid' => $this->parser->getRevisionId(),
 				'groups' => implode( ',', $this->showGroups ),
