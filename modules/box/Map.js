@@ -858,7 +858,9 @@ KartographerMap = L.Map.extend( {
 			this.sleep._sleepMap();
 			this.sleep.disable();
 			this.scrollWheelZoom.disable();
+			this.keyboard.disable();
 		} else {
+			this.keyboard.enable();
 			this.sleep.enable();
 		}
 		this.$container.toggleClass( 'mw-kartographer-static', staticMap );
