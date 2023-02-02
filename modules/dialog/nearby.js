@@ -16,10 +16,10 @@ function mwApi( parameters ) {
 }
 
 /**
- * @param {Element} element
+ * @param {L.Popup} popup
  * @param {string} title
  */
-function fetchThumbnail( element, title ) {
+function fetchThumbnail( popup, title ) {
 	mwApi( {
 		action: 'query',
 		titles: title,
@@ -31,11 +31,13 @@ function fetchThumbnail( element, title ) {
 	} ).then( function ( result ) {
 		var thumbnail = result.query.pages[ 0 ].thumbnail;
 		if ( thumbnail && thumbnail.source ) {
-			$( element ).find( '.marker-description' ).append( mw.html.element( 'img', {
+			$( popup.getElement() ).find( '.marker-description' ).append( mw.html.element( 'img', {
 				src: thumbnail.source,
 				width: thumbnail.width || '',
 				height: thumbnail.height || ''
 			} ) );
+			// eslint-disable-next-line no-underscore-dangle
+			popup._adjustPan();
 		}
 	} );
 }
@@ -402,7 +404,7 @@ Nearby.prototype.createNearbyLayer = function ( zoom, geoJSON ) {
 					feature.properties.description
 				);
 			}, { closeButton: false } ).on( 'popupopen', function ( event ) {
-				fetchThumbnail( event.popup.getElement(), feature.properties.title );
+				fetchThumbnail( event.popup, feature.properties.title );
 				$( event.popup.getElement() ).find( '.nearby-article-link' )
 					.on( 'click', function () {
 						if ( !self.seenArticleLink ) {
