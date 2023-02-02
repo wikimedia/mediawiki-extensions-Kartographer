@@ -24,7 +24,6 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 			'wgJsonConfigs' => [ 'Map.JsonConfig' => [ 'namespace' => 486, 'nsName' => 'Data' ] ],
 			'wgKartographerMapServer' => 'https://maps.wikimedia.org',
 			'wgScriptPath' => '',
-			'wgServer' => 'https://de.wikipedia.org',
 		] );
 	}
 
@@ -142,7 +141,6 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideDataToNormalizeAndSanitize() {
-		// phpcs:disable Generic.Files.LineLength
 		return [
 			[ 'null' ],
 			[ '[]' ],
@@ -197,7 +195,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 				'{
 					"type": "ExternalData",
 					"service": "page",
-					"url": "https://de.wikipedia.org/api.php?format=json&formatversion=2&action=jsondata&title=Data%3AGermany.map"
+					"url": "/api.php?format=json&formatversion=2&action=jsondata&title=Data%3AGermany.map"
 				}',
 			],
 			[
@@ -244,7 +242,6 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 				'saveUnparsed'
 			],
 		];
-		// phpcs:enable
 	}
 
 	/**
