@@ -63,7 +63,7 @@ module.exports = {
 		if ( !manager.getCurrentWindow() ) {
 			instance = manager.openWindow( dialog, { map: map } );
 			instance.closing.then( function () {
-				if ( map.parentMap ) {
+				if ( map.parentMap && !map.parentMap.options.alwaysStatic ) {
 					// FIXME we need to correct for the footerbar offset
 					map.parentMap.setView(
 						map.getCenter(),
