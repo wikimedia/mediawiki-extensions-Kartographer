@@ -336,6 +336,20 @@ KartographerMap = L.Map.extend( {
 
 		function ready() {
 			map.initView( options.center, options.zoom );
+
+			// Workaround to make interactive elements (especially geoshapes) reachable via tab
+			for ( var id in map.dataLayers ) {
+				map.dataLayers[ id ].eachLayer( function ( shape ) {
+					var el = shape.getElement();
+					if ( el.nodeName === 'path' &&
+						// FIXME: Should use .classList.contains() when we can drop IE11 support
+						/\bleaflet-interactive\b/.test( el.getAttribute( 'class' ) )
+					) {
+						el.tabIndex = 0;
+					}
+				} );
+			}
+
 			if ( !map._static ) {
 				map.dragging.enable();
 				map.touchZoom.enable();
