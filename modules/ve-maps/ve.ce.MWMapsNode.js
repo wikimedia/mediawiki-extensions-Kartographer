@@ -113,8 +113,9 @@ ve.ce.MWMapsNode.prototype.onSetup = function () {
 ve.ce.MWMapsNode.prototype.update = function () {
 	var requiresInteractive = this.requiresInteractive(),
 		mwAttrs = this.model.getAttribute( 'mw' ).attrs,
-		align = mwAttrs.align ||
-			( this.model.doc.getDir() === 'ltr' ? 'right' : 'left' ),
+		isFullWidth = mwAttrs.width === 'full' || mwAttrs.width === '100%',
+		align = !isFullWidth &&
+			( mwAttrs.align || ( this.model.doc.getDir() === 'ltr' ? 'right' : 'left' ) ),
 		alignClasses = {
 			left: 'floatleft',
 			center: 'center',
@@ -153,6 +154,8 @@ ve.ce.MWMapsNode.prototype.update = function () {
 		case 'center':
 			this.showHandles( [ 'sw', 'se' ] );
 			break;
+		default:
+			this.showHandles( [] );
 	}
 
 	if ( mwAttrs.text !== this.previewedCaption ) {
@@ -184,10 +187,14 @@ ve.ce.MWMapsNode.prototype.update = function () {
 		.append( frameless ? this.$map : this.$thumbinner.prepend( this.$map ) )
 		.removeClass( 'floatleft center floatright' )
 		.addClass( alignClasses[ align ] );
+	var dim = this.model.getCurrentDimensions();
+	if ( isFullWidth ) {
+		dim.width = '100%';
+	}
 	this.$map
-		.css( this.model.getCurrentDimensions() );
+		.css( dim );
 	this.$thumbinner
-		.css( 'width', this.model.getCurrentDimensions().width );
+		.css( 'width', dim.width );
 };
 
 /**

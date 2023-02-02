@@ -259,6 +259,16 @@ ve.ui.MWMapsDialog.prototype.updateMapArea = function () {
 	}
 
 	dimensions = this.dimensions.getDimensions();
+	var width = this.dimensions.getWidth(),
+		isFullWidth = width === 'full' || width === '100%',
+		initialDimensions = this.scalable.getCurrentDimensions();
+	if ( !isFinite( dimensions.width ) ) {
+		// Fullscreen width is hard-coded; otherwise reuse the initial values from getSetupProcess
+		dimensions.width = isFullWidth ? 800 : initialDimensions.width;
+	}
+	if ( !isFinite( dimensions.height ) ) {
+		dimensions.height = initialDimensions.height;
+	}
 	// The user input might be non-numeric, still try to visualize if possible
 	centerCoord = [ parseFloat( this.latitude.getValue() ), parseFloat( this.longitude.getValue() ) ];
 	zoom = this.zoom.getValue();
@@ -417,7 +427,9 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 		util = require( 'ext.kartographer.util' ),
 		dimensions = this.scalable.getBoundedDimensions(
 			this.dimensions.getDimensions()
-		);
+		),
+		width = this.dimensions.getWidth(),
+		isFullWidth = width === 'full' || width === '100%';
 
 	mwData.attrs.latitude = latitude.toString();
 	mwData.attrs.longitude = longitude.toString();
@@ -433,7 +445,7 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 			defaultAlign = contentDirection === 'ltr' ? 'right' : 'left',
 			align = this.align.findSelectedItem().getData();
 
-		mwData.attrs.width = dimensions.width.toString();
+		mwData.attrs.width = isFullWidth ? width : dimensions.width.toString();
 		mwData.attrs.height = dimensions.height.toString();
 		// Don't add the default align="…" to existing <mapframe> tags to avoid dirty diffs
 		if ( align !== defaultAlign || 'align' in mwData.attrs ) {
@@ -514,6 +526,11 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 			this.longitude.setValue( String( mapPosition.center[ 1 ] ) ).setReadOnly( isReadOnly );
 			this.zoom.setValue( String( mapPosition.zoom ) ).setReadOnly( isReadOnly );
 			this.dimensions.setDimensions( this.scalable.getCurrentDimensions() ).setReadOnly( isReadOnly );
+			var width = mwAttrs.width,
+				isFullWidth = width === 'full' || width === '100%';
+			if ( isFullWidth ) {
+				this.dimensions.setWidth( width );
+			}
 
 			this.caption.setValue( mwAttrs.text || '' );
 			// TODO: Support block/inline conversion

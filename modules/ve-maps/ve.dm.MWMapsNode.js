@@ -62,12 +62,17 @@ ve.dm.MWMapsNode.static.getUrl = function ( dataElement, width, height ) {
 		util = require( 'ext.kartographer.util' ),
 		lang = mwAttrs.lang || util.getDefaultLanguage();
 
+	width = width || mwAttrs.width;
+	if ( width === 'full' || width === '100%' ) {
+		width = 800;
+	}
+
 	return mw.config.get( 'wgKartographerMapServer' ) + '/img/' +
 		mw.config.get( 'wgKartographerDfltStyle' ) + ',' +
 		mwAttrs.zoom + ',' +
 		mwAttrs.latitude + ',' +
 		mwAttrs.longitude + ',' +
-		( width || mwAttrs.width ) + 'x' +
+		width + 'x' +
 		( height || mwAttrs.height ) +
 		'.jpeg?' + $.param( { lang: lang } );
 };
@@ -88,7 +93,7 @@ ve.dm.MWMapsNode.static.createScalable = function ( dimensions ) {
 			height: 100
 		},
 		maxDimensions: {
-			width: 1000,
+			width: 2000,
 			height: 1000
 		}
 	} );
@@ -98,9 +103,14 @@ ve.dm.MWMapsNode.static.createScalable = function ( dimensions ) {
  * @return {{width: number, height: number}}
  */
 ve.dm.MWMapsNode.prototype.getCurrentDimensions = function () {
+	var mwAttrs = this.getAttribute( 'mw' ).attrs,
+		width = mwAttrs.width;
+	if ( width === 'full' || width === '100%' ) {
+		width = 800;
+	}
 	return {
-		width: +this.getAttribute( 'mw' ).attrs.width,
-		height: +this.getAttribute( 'mw' ).attrs.height
+		width: +width,
+		height: +mwAttrs.height
 	};
 };
 
