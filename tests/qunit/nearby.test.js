@@ -16,11 +16,6 @@
 							globe: 'earth'
 						}
 					],
-					thumbnail: {
-						source: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Flag_of_Monaco.svg/150px-Flag_of_Monaco.svg.png',
-						width: 150,
-						height: 120
-					},
 					description: 'City-state and microstate on the French Riviera',
 					descriptionsource: 'local'
 				},
@@ -37,11 +32,6 @@
 							globe: 'earth'
 						}
 					],
-					thumbnail: {
-						source: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Monaco_-_Port_en_d%C3%A9cembre.jpg/150px-Monaco_-_Port_en_d%C3%A9cembre.jpg',
-						width: 150,
-						height: 100
-					},
 					description: 'Ward of Monaco',
 					descriptionsource: 'local'
 				},
@@ -86,7 +76,7 @@
 		const zoom = 14;
 		const done = assert.async();
 
-		const expectedApiUrl = mw.config.get( 'wgScriptPath' ) + '/api.php?action=query&format=json&formatversion=2&prop=coordinates%7Cpageprops%7Cpageimages%7Cdescription&colimit=max&generator=search&gsrsearch=nearcoord%3A5500m%2C40.74%2C-74.18&gsrnamespace=0&gsrlimit=50&ppprop=displaytitle&piprop=thumbnail&pithumbsize=300&pilimit=50';
+		const expectedApiUrl = mw.config.get( 'wgScriptPath' ) + '/api.php?action=query&format=json&formatversion=2&prop=coordinates%7Cpageprops%7Cdescription&colimit=max&generator=search&gsrsearch=nearcoord%3A5500m%2C40.74%2C-74.18&gsrnamespace=0&gsrlimit=100&ppprop=displaytitle';
 
 		new Nearby().fetch( bounds, zoom ).then( ( nearbyResults ) => {
 			assert.deepEqual( nearbyResults, dummyGeosearchResponse );
@@ -112,11 +102,6 @@
 				properties: {
 					title: 'Monaco',
 					description: 'City-state and microstate on the French Riviera',
-					thumbnail: {
-						source: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Flag_of_Monaco.svg/150px-Flag_of_Monaco.svg.png',
-						width: 150,
-						height: 120
-					},
 					'marker-color': '0000ff'
 				},
 				type: 'Feature'
@@ -132,11 +117,6 @@
 				properties: {
 					title: 'La Condamine',
 					description: 'Ward of Monaco',
-					thumbnail: {
-						source: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Monaco_-_Port_en_d%C3%A9cembre.jpg/150px-Monaco_-_Port_en_d%C3%A9cembre.jpg',
-						width: 150,
-						height: 100
-					},
 					'marker-color': '0000ff'
 				},
 				type: 'Feature'
@@ -152,7 +132,6 @@
 				properties: {
 					title: '2004 Monaco Grand Prix',
 					description: undefined,
-					thumbnail: undefined,
 					'marker-color': '0000ff'
 				},
 				type: 'Feature'

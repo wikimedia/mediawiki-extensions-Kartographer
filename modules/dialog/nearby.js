@@ -16,6 +16,31 @@ function mwApi( parameters ) {
 }
 
 /**
+ * @param {Element} element
+ * @param {string} title
+ */
+function fetchThumbnail( element, title ) {
+	mwApi( {
+		action: 'query',
+		titles: title,
+		format: 'json',
+		formatversion: 2,
+		prop: 'pageimages',
+		piprop: 'thumbnail',
+		pithumbsize: 300
+	} ).then( function ( result ) {
+		var thumbnail = result.query.pages[ 0 ].thumbnail;
+		if ( thumbnail && thumbnail.source ) {
+			$( element ).find( '.marker-description' ).append( mw.html.element( 'img', {
+				src: thumbnail.source,
+				width: thumbnail.width || '',
+				height: thumbnail.height || ''
+			} ) );
+		}
+	} );
+}
+
+/**
  * @class
  * @constructor
  * @param {boolean} [enableClustering]
@@ -106,13 +131,9 @@ Nearby.prototype.getSearchQuery = function ( bounds, zoom ) {
  * @private
  * @param {string} title
  * @param {string} [description]
- * @param {Object} [thumbnail]
- * @param {string} [thumbnail.source]
- * @param {number} [thumbnail.width]
- * @param {number} [thumbnail.height]
  * @return {string}
  */
-Nearby.prototype.createPopupHtml = function ( title, description, thumbnail ) {
+Nearby.prototype.createPopupHtml = function ( title, description ) {
 	title = mw.Title.newFromText( title );
 
 	var linkHtml = mw.html.element( 'a', {
@@ -129,24 +150,9 @@ Nearby.prototype.createPopupHtml = function ( title, description, thumbnail ) {
 		contentHtml += mw.html.element( 'span', {}, description );
 	}
 
-	if ( thumbnail && thumbnail.source ) {
-		var img = mw.html.element( 'img', {
-			src: thumbnail.source,
-			width: thumbnail.width || '',
-			height: thumbnail.height || ''
-		} );
-		contentHtml += mw.html.element( 'a', {
-			href: title.getUrl(),
-			target: '_blank'
-		}, new mw.html.Raw( img ) );
-	}
-
-	if ( contentHtml ) {
-		return titleHtml + mw.html.element( 'div', {
-			class: 'marker-description'
-		}, new mw.html.Raw( contentHtml ) );
-	}
-	return titleHtml;
+	return titleHtml + mw.html.element( 'div', {
+		class: 'marker-description'
+	}, new mw.html.Raw( contentHtml ) );
 };
 
 /**
@@ -270,14 +276,13 @@ Nearby.prototype.fetchAndPopulateNearbyLayer = function ( map ) {
  * @return {jQuery.Promise}
  */
 Nearby.prototype.fetch = function ( bounds, zoom ) {
-	// The maximum thumbnail limit is currently 50
-	var limit = 50;
+	var limit = 100;
 	// TODO: Cache results if bounds remains unchanged
 	return mwApi( {
 		action: 'query',
 		format: 'json',
 		formatversion: 2,
-		prop: 'coordinates|pageprops|pageimages|description',
+		prop: 'coordinates|pageprops|description',
 		// co… arguments belong to prop=coordinates
 		colimit: 'max',
 		generator: 'search',
@@ -286,11 +291,7 @@ Nearby.prototype.fetch = function ( bounds, zoom ) {
 		gsrnamespace: 0,
 		gsrlimit: limit,
 		// pp… arguments belong to prop=pageprops
-		ppprop: 'displaytitle',
-		// pi… arguments belong to prop=pageimages
-		piprop: 'thumbnail',
-		pithumbsize: 300,
-		pilimit: limit
+		ppprop: 'displaytitle'
 	} );
 };
 
@@ -374,7 +375,6 @@ Nearby.prototype.convertGeosearchToGeoJSON = function ( response ) {
 				properties: {
 					title: page.title,
 					description: page.description,
-					thumbnail: page.thumbnail,
 					'marker-color': '0000ff'
 				}
 			} );
@@ -399,10 +399,10 @@ Nearby.prototype.createNearbyLayer = function ( zoom, geoJSON ) {
 			layer.bindPopup( function () {
 				return self.createPopupHtml(
 					feature.properties.title,
-					feature.properties.description,
-					feature.properties.thumbnail
+					feature.properties.description
 				);
 			}, { closeButton: false } ).on( 'popupopen', function ( event ) {
+				fetchThumbnail( event.popup.getElement(), feature.properties.title );
 				$( event.popup.getElement() ).find( '.nearby-article-link' )
 					.on( 'click', function () {
 						if ( !self.seenArticleLink ) {
