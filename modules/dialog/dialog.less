@@ -110,26 +110,48 @@
 	}
 
 	.nearby-icon {
-		/* @embed */
-		background-image: url( ../../styles/images/nearby-icon-default.svg );
-		background-position: center;
-		background-repeat: no-repeat;
+		display: -ms-grid;
+		display: grid;
+		align-items: center;
+		justify-content: center;
+		color: @wmui-color-base10;
+		background-color: @wmui-color-base80;
+		border: 2px solid @wmui-color-base20;
+		border-radius: 50%;
+	}
 
-		&:focus,
-		&:hover {
-			/* @embed */
-			background-image: url( ../../styles/images/nearby-icon-hover.svg );
-		}
+	.nearby-marker .nearby-icon {
+		width: 20px;
+		height: 20px;
+	}
 
-		&:active {
-			/* @embed */
-			background-image: url( ../../styles/images/nearby-icon-active.svg );
-		}
+	.nearby-cluster .nearby-icon {
+		width: 32px;
+		height: 32px;
+	}
+
+	.nearby-marker,
+	.nearby-cluster {
+		display: -ms-grid;
+		display: grid;
+		align-items: center;
+		justify-content: center;
 
 		&:focus {
 			// Leaflet usually applies z-index between 0 and 1000
 			// stylelint-disable-next-line declaration-no-important
 			z-index: 9999 !important;
+		}
+
+		&:focus .nearby-icon,
+		&:hover .nearby-icon {
+			background-color: @wmui-color-base100;
+			border-width: 3px;
+		}
+
+		&:active .nearby-icon {
+			background-color: @wmui-color-base100;
+			border-width: 4px;
 		}
 	}
 }

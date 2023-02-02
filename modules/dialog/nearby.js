@@ -44,7 +44,8 @@ Nearby.prototype.initClusterMarkers = function () {
 		},
 		showCoverageOnHover: false, // default: true
 		zoomToBoundsOnClick: true, // default
-		maxClusterRadius: 15 // default: 80
+		maxClusterRadius: 15, // default: 80
+		iconCreateFunction: this.createNearbyClusterMarker
 	} );
 };
 
@@ -189,8 +190,22 @@ Nearby.prototype.createNearbyMarker = function ( geoJSON, latlng ) {
 		icon: L.divIcon( {
 			iconSize: [ 32, 32 ],
 			popupAnchor: [ 0, -7 ],
-			className: 'nearby-icon'
+			className: 'nearby-marker',
+			html: '<div class="nearby-icon"></div>'
 		} )
+	} );
+};
+
+/**
+ * @private
+ * @param {L.MarkerCluster} cluster
+ * @return {L.Marker}
+ */
+Nearby.prototype.createNearbyClusterMarker = function ( cluster ) {
+	return L.divIcon( {
+		iconSize: [ 40, 40 ],
+		className: 'nearby-cluster',
+		html: '<div class="nearby-icon">' + cluster.getChildCount() + '</div>'
 	} );
 };
 
