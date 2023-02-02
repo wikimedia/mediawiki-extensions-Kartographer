@@ -18,8 +18,9 @@ function mwApi( parameters ) {
 /**
  * @param {L.Popup} popup
  * @param {string} title
+ * @param {string} [description]
  */
-function fetchThumbnail( popup, title ) {
+function fetchThumbnail( popup, title, description ) {
 	mwApi( {
 		action: 'query',
 		titles: title,
@@ -31,13 +32,11 @@ function fetchThumbnail( popup, title ) {
 	} ).then( function ( result ) {
 		var thumbnail = result.query.pages[ 0 ].thumbnail;
 		if ( thumbnail && thumbnail.source ) {
-			$( popup.getElement() ).find( '.marker-description' ).append( mw.html.element( 'img', {
-				src: thumbnail.source,
-				width: thumbnail.width || '',
-				height: thumbnail.height || ''
-			} ) );
-			// eslint-disable-next-line no-underscore-dangle
-			popup._adjustPan();
+			popup.setContent( createPopupHtml(
+				title,
+				description,
+				thumbnail
+			) );
 		}
 	} );
 }
@@ -130,12 +129,12 @@ Nearby.prototype.getSearchQuery = function ( bounds, zoom ) {
 };
 
 /**
- * @private
  * @param {string} title
  * @param {string} [description]
+ * @param {Object} [thumbnail]
  * @return {string}
  */
-Nearby.prototype.createPopupHtml = function ( title, description ) {
+function createPopupHtml( title, description, thumbnail ) {
 	title = mw.Title.newFromText( title );
 
 	var linkHtml = mw.html.element( 'a', {
@@ -146,16 +145,25 @@ Nearby.prototype.createPopupHtml = function ( title, description ) {
 		titleHtml = mw.html.element( 'div', {
 			class: 'marker-title'
 		}, new mw.html.Raw( linkHtml ) ),
-		contentHtml = '';
+		contentHtml = '',
+		thumbnailHtml = '';
 
 	if ( description ) {
 		contentHtml += mw.html.element( 'span', {}, description );
 	}
 
+	if ( thumbnail ) {
+		thumbnailHtml += mw.html.element( 'img', {
+			src: thumbnail.source,
+			width: thumbnail.width || '',
+			height: thumbnail.height || ''
+		} );
+	}
+
 	return titleHtml + mw.html.element( 'div', {
 		class: 'marker-description'
-	}, new mw.html.Raw( contentHtml ) );
-};
+	}, new mw.html.Raw( contentHtml + thumbnailHtml ) );
+}
 
 /**
  * @private
@@ -399,12 +407,16 @@ Nearby.prototype.createNearbyLayer = function ( zoom, geoJSON ) {
 		pointToLayer: this.createNearbyMarker,
 		onEachFeature: function ( feature, layer ) {
 			layer.bindPopup( function () {
-				return self.createPopupHtml(
+				return createPopupHtml(
 					feature.properties.title,
 					feature.properties.description
 				);
 			}, { closeButton: false } ).on( 'popupopen', function ( event ) {
-				fetchThumbnail( event.popup, feature.properties.title );
+				fetchThumbnail(
+					event.popup,
+					feature.properties.title,
+					feature.properties.description
+				);
 				$( event.popup.getElement() ).find( '.nearby-article-link' )
 					.on( 'click', function () {
 						if ( !self.seenArticleLink ) {
