@@ -129,6 +129,8 @@ abstract class LegacyTagHandler {
 		$this->parser = $parser;
 		$this->frame = $frame;
 		$this->targetLanguage = $parser->getTargetLanguage();
+		$options = $parser->getOptions();
+		$isPreview = $options->getIsPreview() || $options->getIsSectionPreview();
 		$parserOutput = $parser->getOutput();
 
 		$parserOutput->addModuleStyles( [ 'ext.kartographer.style' ] );
@@ -141,7 +143,7 @@ abstract class LegacyTagHandler {
 		$this->parseArgs();
 		$this->parseGroups();
 		if ( $this->status->isOK() ) {
-			$this->parseGeometries( $input, $parser, $frame );
+			$this->parseGeometries( $input, $parser, $frame, $isPreview );
 		}
 
 		if ( !$this->status->isGood() ) {
@@ -154,8 +156,6 @@ abstract class LegacyTagHandler {
 
 		$this->state->setValidTags();
 
-		$options = $parser->getOptions();
-		$isPreview = $options->getIsPreview() || $options->getIsSectionPreview();
 		$result = $this->render( $isPreview );
 
 		State::setState( $parserOutput, $this->state );
@@ -168,15 +168,16 @@ abstract class LegacyTagHandler {
 	 * @param string|null $input
 	 * @param Parser $parser
 	 * @param PPFrame $frame
+	 * @param bool $isPreview
 	 */
-	private function parseGeometries( $input, Parser $parser, PPFrame $frame ) {
+	private function parseGeometries( $input, Parser $parser, PPFrame $frame, bool $isPreview ): void {
 		$simpleStyle = SimpleStyleParser::newFromParser( $parser, $frame );
 
 		$this->status = $simpleStyle->parse( $input );
 		if ( $this->status->isOK() ) {
 			$this->geometries = $this->status->getValue()['data'];
 
-			if ( $this->config->get( 'KartographerExternalDataParseTimeFetch' ) ) {
+			if ( !$isPreview && $this->config->get( 'KartographerExternalDataParseTimeFetch' ) ) {
 				$fetcher = new ExternalDataLoader(
 					MediaWikiServices::getInstance()->getHttpRequestFactory(),
 					new ParserFunctionTracker( $parser ),
