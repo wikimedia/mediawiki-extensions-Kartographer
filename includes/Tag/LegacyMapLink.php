@@ -34,7 +34,7 @@ class LegacyMapLink extends LegacyTagHandler {
 		$this->getOutput()->addModules( [ 'ext.kartographer.link' ] );
 
 		// @todo: Mapbox markers don't support localized numbers yet
-		$text = $this->getText( 'text', null, '/\S+/' );
+		$text = $this->getText( 'text', null );
 		if ( $text === null ) {
 			$text = $this->counter
 				?: CoordFormatter::format( $this->lat, $this->lon, $this->getLanguageCode() );
