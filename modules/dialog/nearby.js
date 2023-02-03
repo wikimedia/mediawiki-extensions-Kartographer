@@ -227,8 +227,6 @@ Nearby.prototype.createNearbyClusterMarker = function ( cluster ) {
  * @param {boolean} show
  */
 Nearby.prototype.toggleNearbyLayer = function ( map, show ) {
-	this.map = map;
-
 	if ( show ) {
 		this.performanceStartTime = mw.now();
 		this.seenArticleLink = false;
@@ -276,11 +274,10 @@ Nearby.prototype.createReloadButton = function ( map ) {
 		classes: [ 'mw-kartographer-reload-nearbybutton' ]
 	} );
 
-	this.mapReloadNearbyButton.connect( this, { click: 'reloadNearbyLayer' } );
-	/* eslint-disable-next-line no-underscore-dangle */
-	$( map._controlContainer ).append( this.mapReloadNearbyButton.$element );
-	this.mapReloadNearbyButton.$element.hide();
-
+	this.mapReloadNearbyButton.connect( this, { click: this.reloadNearbyLayer.bind( this, map ) } );
+	this.mapReloadNearbyButton.$element.hide()
+		/* eslint-disable-next-line no-underscore-dangle */
+		.appendTo( map._controlContainer );
 };
 
 /**
@@ -292,10 +289,11 @@ Nearby.prototype.onMapMoveOrZoomEnd = OO.ui.debounce( function () {
 
 /**
  * @private
+ * @param {L.Map} map
  */
-Nearby.prototype.reloadNearbyLayer = function () {
-	this.toggleNearbyLayer( this.map, false );
-	this.toggleNearbyLayer( this.map, true );
+Nearby.prototype.reloadNearbyLayer = function ( map ) {
+	this.toggleNearbyLayer( map, false );
+	this.toggleNearbyLayer( map, true );
 	this.mapReloadNearbyButton.$element.hide();
 };
 
