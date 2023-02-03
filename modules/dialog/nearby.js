@@ -28,7 +28,7 @@ function fetchThumbnail( popup, title, description ) {
 		formatversion: 2,
 		prop: 'pageimages',
 		piprop: 'thumbnail',
-		pithumbsize: 300
+		pithumbsize: 250
 	} ).then( function ( result ) {
 		var thumbnail = result.query.pages[ 0 ].thumbnail;
 		if ( thumbnail && thumbnail.source ) {
