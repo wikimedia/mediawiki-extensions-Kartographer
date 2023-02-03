@@ -383,6 +383,29 @@ class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( json_decode( self::JSON_EXTENDED ), $geoJson[0] );
 	}
 
+	public function testJsonDataApiIntegration() {
+		$geoJson = [ json_decode( '{ "type": "ExternalData", "service": "page", "url": "…", "properties": {} }' ) ];
+
+		$request = $this->createMock( \MWHttpRequest::class );
+		$request->method( 'execute' )
+			->willReturn( Status::newGood() );
+		$request->method( 'getContent' )
+			->willReturn( '{ "jsondata": { "data": { "type": "FeatureCollection", "features": [ {} ] } } }' );
+
+		$factory = $this->createMock( HttpRequestFactory::class );
+		$factory->method( 'create' )
+			->willReturn( $request );
+
+		$fetcher = new ExternalDataLoader( $factory );
+		$fetcher->parse( $geoJson );
+
+		// Make sure the JSON returned by the jsondata API is resolved and not used as is
+		$this->assertObjectNotHasAttribute( 'jsondata', $geoJson[0] );
+		$this->assertSame( 'FeatureCollection', $geoJson[0]->type );
+		// Merging properties back into the "page" GeoJSON is currently not supported
+		$this->assertObjectNotHasAttribute( 'properties', $geoJson[0]->features[0] );
+	}
+
 	public function testExpensiveFunctionCountReached() {
 		$geoJson = [ json_decode( self::JSON_EXTERNAL_LINK ) ];
 
