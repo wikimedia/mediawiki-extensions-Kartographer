@@ -154,14 +154,27 @@ class LegacyMapFrame extends LegacyTagHandler {
 			$imgAttrs[ 'srcset' ] = implode( ', ', $srcSets );
 		}
 
+		$usesAutoPosition = $staticZoom === 'a' || $staticLat === 'a' || $staticLon === 'a';
+		if ( $isPreview && $usesAutoPosition ) {
+			// The static thumbnail cannot be rendered at all, so show a blank
+			// div instead.  This will be replaced by a dynamic thumbnail when
+			// JavaScript is available.
+			$thumbnail = Html::element( 'div', [
+				'width' => (int)$staticWidth,
+				'height' => (int)$this->args->height,
+			] );
+		} else {
+			$thumbnail = Html::element( 'img', $imgAttrs );
+		}
+
 		if ( !$framed ) {
 			$attrs['class'] .= ' ' . $containerClass . ' ' . self::ALIGN_CLASSES[$this->args->align];
-			return Html::rawElement( 'a', $attrs, Html::rawElement( 'img', $imgAttrs ) );
+			return Html::rawElement( 'a', $attrs, $thumbnail );
 		}
 
 		$containerClass .= ' thumb ' . self::THUMB_ALIGN_CLASSES[$this->args->align];
 
-		$html = Html::rawElement( 'a', $attrs, Html::rawElement( 'img', $imgAttrs ) );
+		$html = Html::rawElement( 'a', $attrs, $thumbnail );
 
 		if ( $caption !== '' ) {
 			$html .= Html::rawElement( 'div', [ 'class' => 'thumbcaption' ],
