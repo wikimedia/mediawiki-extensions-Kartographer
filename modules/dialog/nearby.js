@@ -1,3 +1,6 @@
+/** @var {Object.<string,{source: string, [width]: number, [height]: number}>} */
+var thumbnailCache = {};
+
 /**
  * @param {Object} parameters
  * @return {jQuery.Promise}
@@ -21,6 +24,11 @@ function mwApi( parameters ) {
  * @param {string} [description]
  */
 function fetchThumbnail( popup, title, description ) {
+	if ( title in thumbnailCache ) {
+		addThumbnail( popup, title, description );
+		return;
+	}
+
 	mwApi( {
 		action: 'query',
 		titles: title,
@@ -30,15 +38,30 @@ function fetchThumbnail( popup, title, description ) {
 		piprop: 'thumbnail',
 		pithumbsize: 250
 	} ).then( function ( result ) {
-		var thumbnail = result.query.pages[ 0 ].thumbnail;
-		if ( thumbnail && thumbnail.source ) {
-			popup.setContent( createPopupHtml(
-				title,
-				description,
-				thumbnail
-			) );
-		}
+
+		var pages = result.query.pages || [];
+		pages.forEach( function ( page ) {
+			thumbnailCache[ page.title ] = page.thumbnail;
+		} );
+		addThumbnail( popup, title, description );
 	} );
+}
+
+/**
+ * @param {L.Popup} popup
+ * @param {string} title
+ * @param {string} [description]
+ */
+function addThumbnail( popup, title, description ) {
+	if ( !thumbnailCache[ title ] || !thumbnailCache[ title ].source ) {
+		return;
+	}
+
+	popup.setContent( createPopupHtml(
+		title,
+		description,
+		thumbnailCache[ title ]
+	) );
 }
 
 /**
