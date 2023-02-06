@@ -490,6 +490,21 @@ KartographerMap = L.Map.extend( {
 		}
 
 		try {
+			// T326790 make sure that only points triggering popups are rendered interactive
+			options.pointToLayer = function ( feature, latlon ) {
+				var interactive = false;
+				if ( feature.properties && ( feature.properties.title || feature.properties.description ) ) {
+					interactive = true;
+				}
+				var title = L.mapbox.sanitize( ( feature.properties && feature.properties.title ) || '' ).replace( /<[^<]+>/g, '' );
+
+				return L.marker( latlon, {
+					icon: L.mapbox.marker.icon( feature.properties, options ),
+					title: title,
+					interactive: interactive,
+					keyboard: interactive
+				} );
+			};
 			var layer = L.mapbox.featureLayer( geoJSON, $.extend( {}, dataLayerOpts, options ) ).addTo( this );
 			layer.getAttribution = function () {
 				return this.options.attribution;
