@@ -6,7 +6,8 @@
 			"Eduardoaddad",
 			"Felipe L. Ewald",
 			"Luk3",
-			"Opraco"
+			"Opraco",
+			"Robertpontes"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Mapas Wikimedia] | Map data © [https://www.openstreetmap.org/copyright Contribuidores do OpenStreetMap]",
@@ -64,6 +65,7 @@
 	"kartographer-sidebar-latitude": "Latitude",
 	"kartographer-sidebar-longitude": "Longitude",
 	"kartographer-sidebar-mapdetails": "Mapas externos",
+	"kartographer-sidebar-reload-nearbybutton": "Recarregar resultados",
 	"kartographer-sidebar-service": "Serviço",
 	"kartographer-sidebar-togglebutton": "Mapas externos",
 	"leafletdraw-draw-handlers-circle-radius": "Raio",

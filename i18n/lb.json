@@ -37,6 +37,7 @@
 	"kartographer-sidebar-latitude": "Geografesch Breet",
 	"kartographer-sidebar-longitude": "Geografesch Längt",
 	"kartographer-sidebar-mapdetails": "Extern Kaarten",
+	"kartographer-sidebar-reload-nearbybutton": "Resultater nei lueden",
 	"kartographer-sidebar-service": "Service",
 	"kartographer-sidebar-togglebutton": "Extern Kaarten",
 	"leafletdraw-draw-handlers-circle-radius": "Radius",

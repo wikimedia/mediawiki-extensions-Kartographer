@@ -62,6 +62,7 @@
 	"kartographer-sidebar-longitude": "خط الطول",
 	"kartographer-sidebar-mapdetails": "خرائط خارجية",
 	"kartographer-sidebar-nearbybutton": "أظهر المقالات القريبة",
+	"kartographer-sidebar-reload-nearbybutton": "أعد تحميل النتائج",
 	"kartographer-sidebar-service": "الخدمة",
 	"kartographer-sidebar-togglebutton": "خرائط خارجية",
 	"leafletdraw-draw-handlers-circle-radius": "نصف القطر",
