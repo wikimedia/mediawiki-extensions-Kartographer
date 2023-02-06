@@ -149,8 +149,19 @@ class ExternalDataLoader {
 		}
 
 		$extendedGeoJson = FormatJson::decode( $request->getContent() );
+		$mergeProperties = isset( $geoJson->properties );
 
-		if ( isset( $geoJson->properties ) ) {
+		if ( $geoJson->service === 'page' ) {
+			// We know "page" means we just called the jsondata API; this is the format it returns
+			if ( !isset( $extendedGeoJson->jsondata ) ) {
+				// Stop processing when there is no valid GeoJSON in the API response
+				return $geoJson;
+			}
+			$extendedGeoJson = $extendedGeoJson->jsondata->data;
+			$mergeProperties = false;
+		}
+
+		if ( $mergeProperties ) {
 			foreach ( $extendedGeoJson->features as $feature ) {
 				if ( isset( $feature->properties ) ) {
 					$feature->properties = (object)array_merge(
