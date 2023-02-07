@@ -22,6 +22,7 @@ var util = require( 'ext.kartographer.util' ),
 
 /**
  * @return {number}
+ * @private
  */
 function bracketDevicePixelRatio() {
 	var brackets = mw.config.get( 'wgKartographerSrcsetScales' ),
@@ -118,6 +119,7 @@ function getValidBounds( layer ) {
 /**
  * @param {string} url ExternalData "page" URL
  * @return {string} Attribution string
+ * @private
  */
 function buildAttribution( url ) {
 	var uri = new mw.Uri( url );
@@ -170,6 +172,7 @@ KartographerMap = L.Map.extend( {
 	 * @param {string} [options.fullScreenRoute] Route associated to this map
 	 *   _(internal, used by "`<maplink>`" and "`<mapframe>`")_.
 	 * @member Kartographer.Box.MapClass
+	 * @public
 	 */
 	initialize: function ( options ) {
 		var mapServer = mw.config.get( 'wgKartographerMapServer' ),
@@ -435,41 +438,63 @@ KartographerMap = L.Map.extend( {
 	},
 
 	/**
+	 * Iterate and add each group to the map
+	 *
+	 * Internal helper function, assumes that the groups have already been expanded.
+	 *
+	 * @param {Kartographer.Data.Group[]} groups
+	 * @private
+	 */
+	addGeoJSONGroups: function ( groups ) {
+		var map = this;
+		groups.forEach( function ( group ) {
+			if ( group.failed ) {
+				mw.log.warn( 'Layer not found or contains no data: ' + group.failureReason );
+				return;
+			}
+
+			var layerOptions = {};
+			var geoJSON = group.getGeoJSON();
+			if ( geoJSON.service === 'page' ) {
+				var attribution = buildAttribution( geoJSON.url );
+				layerOptions.name = attribution;
+				layerOptions.attribution = attribution;
+			} else if ( group.name ) {
+				layerOptions.name = group.name;
+			}
+			map.addGeoJSONLayer( geoJSON, layerOptions );
+		} );
+	},
+
+	/**
 	 * Gets and adds known data groups as layers onto the map.
 	 *
 	 * The data is loaded from the server if not found in memory.
 	 *
 	 * @param {string[]} dataGroups
 	 * @return {jQuery.Promise}
+	 * @public
 	 */
 	addDataGroups: function ( dataGroups ) {
-		var map = this;
-
 		if ( !dataGroups || !dataGroups.length ) {
 			return $.Deferred().resolve().promise();
 		}
 
 		var title = mw.config.get( 'wgPageName' );
 		var revid = mw.config.get( 'wgRevisionId' );
-		return DataManagerFactory().loadGroups( dataGroups, title, revid ).then( function ( groups ) {
-			groups.forEach( function ( group ) {
-				if ( group.failed ) {
-					mw.log.warn( 'Layer not found or contains no data: ' + group.failureReason );
-					return;
-				}
+		return DataManagerFactory().loadGroups( dataGroups, title, revid )
+			.then( this.addGeoJSONGroups.bind( this ) );
+	},
 
-				var layerOptions = {};
-				var geoJSON = group.getGeoJSON();
-				if ( geoJSON.service === 'page' ) {
-					var attribution = buildAttribution( geoJSON.url );
-					layerOptions.name = attribution;
-					layerOptions.attribution = attribution;
-				} else if ( group.name ) {
-					layerOptions.name = group.name;
-				}
-				map.addGeoJSONLayer( geoJSON, layerOptions );
-			} );
-		} );
+	/**
+	 * Create a new layer from literal GeoJSON
+	 *
+	 * @param {Object|Object[]} groupData
+	 * @public
+	 */
+	addDataLayer: function ( groupData ) {
+		return DataManagerFactory().loadExternalData( groupData )
+			.then( this.addGeoJSONGroups.bind( this ) );
 	},
 
 	/**
@@ -478,6 +503,7 @@ KartographerMap = L.Map.extend( {
 	 *
 	 * @param {Object} geoJSON Features
 	 * @param {Object} [options] Layer options
+	 * @public
 	 */
 	addGeoJSONLayer: function ( geoJSON, options ) {
 		if ( typeof geoJSON === 'string' ) {
