@@ -3,7 +3,9 @@
  *
  * Creates a map with layers, markers, and interactivity.
  *
- * Avoid creating a local variable "Map" as this is a native function in ES6.
+ * Avoid creating a local variable "Map" as this is a native function in ES6. Also note that some
+ * methods have dependants outside of this codebase. Especially tools and gadgets around maps for
+ * Wikimedia wikis. Be extra careful when changing these.
  *
  * @alternateClassName KartographerMap
  * @class Kartographer.Box.MapClass

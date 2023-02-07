@@ -25,3 +25,10 @@ See https://wiki.openstreetmap.org/wiki/Tile_servers
 * VE – VisualEditor
 * [Wikivoyage](https://www.wikivoyage.org/) – …
 * WV – Wikivoyage
+
+## Developer info
+
+Many parts of the JavaScript that builds the dynamic maps and provides the GeoJSON might be used by tools and Gadgets
+outside of the Wikimedia extension realm so dependencies and requirements on this interface may be hard to discover. Be
+extra careful changing these without notice if they're not explicitly marked private and especially if they are marked
+public.
