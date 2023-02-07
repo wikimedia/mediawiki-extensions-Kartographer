@@ -15,18 +15,6 @@ class LegacyMapLink extends LegacyTagHandler {
 
 	public const TAG = 'maplink';
 
-	/** @var string|null */
-	private $cssClass = '';
-
-	/**
-	 * @inheritDoc
-	 */
-	protected function parseArgs(): void {
-		$this->state->useMaplink();
-		parent::parseArgs();
-		$this->cssClass = $this->getText( 'class', '', '/^(|[a-zA-Z][-_a-zA-Z0-9]*)$/' );
-	}
-
 	/**
 	 * @inheritDoc
 	 */
@@ -34,22 +22,22 @@ class LegacyMapLink extends LegacyTagHandler {
 		$this->getOutput()->addModules( [ 'ext.kartographer.link' ] );
 
 		// @todo: Mapbox markers don't support localized numbers yet
-		$text = $this->getText( 'text', null );
+		$text = $this->args->text;
 		if ( $text === null ) {
 			$text = $this->counter
-				?: CoordFormatter::format( $this->lat, $this->lon, $this->getLanguageCode() );
+				?: CoordFormatter::format( $this->args->lat, $this->args->lon, $this->getLanguageCode() );
 		}
 		$text = $this->parser->recursiveTagParse( $text, $this->frame );
 
 		$attrs = $this->prepareAttrs( [
-			'mapStyle' => $this->mapStyle,
-			'zoom' => $this->zoom,
-			'lat' => $this->lat,
-			'lon' => $this->lon,
-			'resolvedLangCode' => $this->resolvedLangCode,
-			'specifiedLangCode' => $this->specifiedLangCode,
-			'cssClass' => $this->cssClass,
-			'showGroups' => $this->showGroups,
+			'mapStyle' => $this->args->mapStyle,
+			'zoom' => $this->args->zoom,
+			'lat' => $this->args->lat,
+			'lon' => $this->args->lon,
+			'resolvedLangCode' => $this->args->resolvedLangCode,
+			'specifiedLangCode' => $this->args->specifiedLangCode,
+			'cssClass' => $this->args->cssClass,
+			'showGroups' => $this->args->showGroups,
 			'markerProperties' => $this->markerProperties
 		], $this->config );
 
