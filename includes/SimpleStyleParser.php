@@ -30,7 +30,7 @@ class SimpleStyleParser {
 	private $options;
 
 	/** @var string */
-	private $mapService;
+	private $mapServer;
 
 	/**
 	 * @param Parser $parser
@@ -51,7 +51,7 @@ class SimpleStyleParser {
 		$this->parser = $parser instanceof Parser ? new MediaWikiWikitextParser( $parser ) : $parser;
 		$this->options = $options;
 		// @fixme: More precise config?
-		$this->mapService = MediaWikiServices::getInstance()
+		$this->mapServer = MediaWikiServices::getInstance()
 			->getMainConfig()
 			->get( 'KartographerMapServer' );
 	}
@@ -257,7 +257,7 @@ class SimpleStyleParser {
 				if ( isset( $object->query ) ) {
 					$query['query'] = $object->query;
 				}
-				$ret->url = $this->mapService . '/' .
+				$ret->url = $this->mapServer . '/' .
 					// 'geomask' service is the same as inverted geoshape service
 					// Kartotherian does not support it, request it as geoshape
 					( $service === 'geomask' ? 'geoshape' : $service ) .
