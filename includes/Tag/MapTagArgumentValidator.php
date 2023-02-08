@@ -35,7 +35,7 @@ class MapTagArgumentValidator {
 	public $zoom;
 	/** @var string|null One of "osm-intl" or "osm" */
 	public $mapStyle;
-	/** @var string|null either a number of pixels, a percentage (e.g. "100%"), or "full" */
+	/** @var string|null Number of pixels (without a unit) or "full" */
 	public $width;
 	/** @var int|null */
 	public $height;
@@ -91,6 +91,11 @@ class MapTagArgumentValidator {
 			// @todo: should these have defaults?
 			$this->width = $this->args->getText( 'width', false, '/^(\d+|([1-9]\d?|100)%|full)$/' );
 			$this->height = $this->args->getInt( 'height', false );
+
+			// @todo: deprecate old syntax completely
+			if ( $this->width && str_ends_with( $this->width, '%' ) ) {
+				$this->width = $this->width === '100%' ? 'full' : '300';
+			}
 		}
 
 		// Arguments valid for both <mapframe> and <maplink>

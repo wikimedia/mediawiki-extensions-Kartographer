@@ -38,23 +38,13 @@ class LegacyMapFrame extends LegacyTagHandler {
 		$caption = (string)$this->args->text;
 		$framed = $caption !== '' || $this->args->frameless === null;
 
-		$cssWidth = is_numeric( $this->args->width ) ? "{$this->args->width}px" : $this->args->width;
-		if ( preg_match( '/^\d+%$/', $cssWidth ) ) {
-			if ( $cssWidth === '100%' ) {
-				$staticWidth = 800;
-				$this->args->align = 'none';
-			} else {
-				// @todo: deprecate old syntax completely
-				$cssWidth = '300px';
-				$this->args->width = '300';
-				$staticWidth = 300;
-			}
-		} elseif ( $cssWidth === 'full' ) {
+		if ( $this->args->width === 'full' ) {
 			$cssWidth = '100%';
 			$this->args->align = 'none';
 			$staticWidth = 800;
 		} else {
-			$staticWidth = $this->args->width;
+			$cssWidth = $this->args->width . 'px';
+			$staticWidth = (int)$this->args->width;
 		}
 
 		// TODO if fullwidth, we really should use interactive mode..
@@ -108,7 +98,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 		}
 
 		$containerClass = 'mw-kartographer-container';
-		if ( $cssWidth === '100%' ) {
+		if ( $this->args->width === 'full' ) {
 			$containerClass .= ' mw-kartographer-full';
 		}
 
@@ -135,7 +125,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 		$imgAttrs = [
 			'src' => $imgUrl,
 			'alt' => '',
-			'width' => (int)$staticWidth,
+			'width' => $staticWidth,
 			'height' => (int)$this->args->height,
 			'decoding' => 'async'
 		];
@@ -160,7 +150,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 			// div instead.  This will be replaced by a dynamic thumbnail when
 			// JavaScript is available.
 			$thumbnail = Html::element( 'div', [
-				'width' => (int)$staticWidth,
+				'width' => $staticWidth,
 				'height' => (int)$this->args->height,
 			] );
 		} else {
