@@ -71,6 +71,8 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 
 		mw.loader.using( 'oojs-ui', function () {
 			var button = new OO.ui.ButtonWidget( {
+				// In static mode this button is just a visual hint but doesn't have its own action
+				tabIndex: -1,
 				icon: 'fullScreen',
 				title: mw.msg( 'kartographer-fullscreen-text' ),
 				framed: true
