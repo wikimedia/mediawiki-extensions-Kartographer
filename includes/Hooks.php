@@ -9,7 +9,6 @@
 
 namespace Kartographer;
 
-use Config;
 use Kartographer\Tag\LegacyMapFrame;
 use Kartographer\Tag\LegacyMapLink;
 use Kartographer\Tag\LegacyTagHandler;
@@ -28,18 +27,6 @@ class Hooks implements
 	ParserAfterParseHook,
 	ParserTestGlobalsHook
 {
-
-	/** @var Config */
-	private $config;
-
-	/**
-	 * @param Config $config
-	 */
-	public function __construct(
-		Config $config
-	) {
-		$this->config = $config;
-	}
 
 	/**
 	 * ParserFirstCallInit hook handler

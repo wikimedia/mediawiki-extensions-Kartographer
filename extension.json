@@ -528,10 +528,7 @@
 	},
 	"HookHandlers": {
 		"KartographerHooks": {
-			"class": "Kartographer\\Hooks",
-			"services": [
-				"MainConfig"
-			]
+			"class": "Kartographer\\Hooks"
 		}
 	},
 	"QUnitTestModule": {
