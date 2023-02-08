@@ -297,7 +297,7 @@ ve.ce.MWMapsNode.prototype.updateStatic = function ( width, height ) {
 };
 
 /**
- * @inheritdoc ve.ce.ResizableNode
+ * @extends ve.ce.ResizableNode
  */
 ve.ce.MWMapsNode.prototype.onResizableResizing = function () {
 	// Mixin method
@@ -311,7 +311,7 @@ ve.ce.MWMapsNode.prototype.onResizableResizing = function () {
 };
 
 /**
- * @inheritdoc ve.ce.ResizableNode
+ * @extends ve.ce.ResizableNode
  */
 ve.ce.MWMapsNode.prototype.getAttributeChanges = function ( width, height ) {
 	var mwData = ve.copy( this.model.getAttribute( 'mw' ) );
