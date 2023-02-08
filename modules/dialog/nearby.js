@@ -284,6 +284,7 @@ Nearby.prototype.toggleNearbyLayer = function ( map, show ) {
 };
 
 /**
+ * @private
  * @param {L.Map} map
  */
 Nearby.prototype.createReloadButton = function ( map ) {
