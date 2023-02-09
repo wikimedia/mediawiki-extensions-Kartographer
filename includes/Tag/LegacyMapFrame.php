@@ -18,7 +18,6 @@ class LegacyMapFrame extends LegacyTagHandler {
 		'left' => 'floatleft',
 		'center' => 'center',
 		'right' => 'floatright',
-		'none' => '',
 	];
 	private const THUMB_ALIGN_CLASSES = [
 		'left' => 'tleft',
@@ -36,7 +35,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 		$mapServer = $this->config->get( 'KartographerMapServer' );
 
 		$caption = (string)$this->args->text;
-		$framed = $caption !== '' || $this->args->frameless === null;
+		$framed = $caption !== '' || !$this->args->frameless;
 
 		if ( $this->args->width === 'full' ) {
 			$cssWidth = '100%';
@@ -158,7 +157,8 @@ class LegacyMapFrame extends LegacyTagHandler {
 		}
 
 		if ( !$framed ) {
-			$attrs['class'] .= ' ' . $containerClass . ' ' . self::ALIGN_CLASSES[$this->args->align];
+			$attrs['class'] .= ' ' . $containerClass . ' ' .
+				( self::ALIGN_CLASSES[$this->args->align] ?? '' );
 			return Html::rawElement( 'a', $attrs, $thumbnail );
 		}
 

@@ -31,7 +31,7 @@ class MapTagArgumentValidator {
 	public ?float $lat;
 	/** @var float|null */
 	public ?float $lon;
-	/** @var int|null */
+	/** @var int|null Typically a number from 0 to 19 */
 	public ?int $zoom;
 	/** @var string|null One of "osm-intl" or "osm" */
 	public ?string $mapStyle;
@@ -41,8 +41,8 @@ class MapTagArgumentValidator {
 	public ?int $height;
 	/** @var string|null One of "left", "center", "right", or "none" */
 	public ?string $align;
-	/** @var string|null */
-	public ?string $frameless;
+	/** @var bool */
+	public bool $frameless;
 	/** @var string|null */
 	public ?string $cssClass;
 	/** @var string|null */
@@ -129,7 +129,7 @@ class MapTagArgumentValidator {
 		// Arguments valid only for one of the two tags, but all optional anyway
 		$defaultAlign = $this->language->alignEnd();
 		$this->align = $this->args->getString( 'align', $defaultAlign, '/^(left|center|right)$/' );
-		$this->frameless = $this->args->getString( 'frameless', null );
+		$this->frameless = $this->args->getString( 'frameless', null ) !== null;
 		$this->cssClass = $this->args->getString( 'class', '', '/^(|[a-zA-Z][-_a-zA-Z0-9]*)$/' );
 	}
 
