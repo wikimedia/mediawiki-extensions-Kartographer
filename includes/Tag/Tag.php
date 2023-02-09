@@ -36,7 +36,7 @@ class Tag {
 	 * @return int|null
 	 */
 	public function getInt( $name, $default ) {
-		$value = $this->getText( $name, $default, '/^-?[0-9]+$/' );
+		$value = $this->getString( $name, $default, '/^-?[0-9]+$/' );
 		if ( $value !== null ) {
 			$value = intval( $value );
 		}
@@ -49,7 +49,7 @@ class Tag {
 	 * @return float|null
 	 */
 	public function getFloat( $name ) {
-		$value = $this->getText( $name, null, '/^-?[0-9]*\.?[0-9]+$/' );
+		$value = $this->getString( $name, null, '/^-?[0-9]*\.?[0-9]+$/' );
 		if ( $value !== null ) {
 			$value = floatval( $value );
 		}
@@ -65,7 +65,7 @@ class Tag {
 	 * @param string|false $regexp Regular expression to validate against or false to not validate
 	 * @return string|null
 	 */
-	public function getText( $name, $default, $regexp = false ) {
+	public function getString( $name, $default, $regexp = false ) {
 		if ( !isset( $this->args[$name] ) ) {
 			if ( $default === false ) {
 				$this->status->fatal( 'kartographer-error-missing-attr', $name );
