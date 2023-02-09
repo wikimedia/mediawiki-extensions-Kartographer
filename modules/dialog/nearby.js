@@ -295,6 +295,7 @@ Nearby.prototype.createReloadButton = function ( map ) {
 	this.mapReloadNearbyButton = new OO.ui.ButtonWidget( {
 		label: mw.msg( 'kartographer-sidebar-reload-nearbybutton' ),
 		icon: 'reload',
+		flags: 'progressive',
 		classes: [ 'mw-kartographer-reload-nearbybutton' ]
 	} );
 
