@@ -2,7 +2,7 @@
 	"name": "Kartographer",
 	"private": true,
 	"scripts": {
-		"doc": "jsdoc -c jsdoc.json",
+		"doc": "jsduck",
 		"test": "grunt test",
 		"build-lib": "./bin/build.sh",
 		"minify-svg": "svgo --config=.svgo.config.js --quiet --recursive --folder styles/images/"
@@ -25,8 +25,6 @@
 	"dependencies": {
 		"@wikimedia/leaflet-sleep": "^0.5.1",
 		"@wikimedia/mapdata": "^0.8.1",
-		"jsdoc": "^4.0.0",
-		"jsdoc-wmf-theme": "^0.0.5",
 		"mapbox.js": "3.3.1",
 		"wikimedia-ui-base": "0.18.1"
 	}
