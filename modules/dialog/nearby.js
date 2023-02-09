@@ -94,7 +94,7 @@ Nearby.prototype.initClusterMarkers = function () {
 		},
 		showCoverageOnHover: false, // default: true
 		zoomToBoundsOnClick: true, // default
-		maxClusterRadius: 15, // default: 80
+		maxClusterRadius: 40, // default: 80
 		iconCreateFunction: this.createNearbyClusterMarker
 	} );
 };
@@ -337,7 +337,7 @@ Nearby.prototype.fetchAndPopulateNearbyLayer = function ( map ) {
  * @return {jQuery.Promise}
  */
 Nearby.prototype.fetch = function ( bounds, zoom ) {
-	var limit = 100;
+	var limit = 300;
 	// TODO: Cache results if bounds remains unchanged
 	return mwApi( {
 		action: 'query',
