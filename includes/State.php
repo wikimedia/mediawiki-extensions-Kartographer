@@ -15,29 +15,29 @@ class State implements JsonSerializable {
 	public const DATA_KEY = 'kartographer';
 
 	/** @var bool If the page contains at least one valid <map…> tag */
-	private $valid = false;
+	private bool $valid = false;
 	/** @var bool If the page contains one or more invalid <map…> tags */
-	private $broken = false;
+	private bool $broken = false;
 
 	/**
 	 * @var int Total number of <maplink> tags on the page, to be stored as a page property
 	 */
-	private $maplinks = 0;
+	private int $maplinks = 0;
 
 	/**
 	 * @var int Total number of <mapframe> tags on the page, to be stored as a page property
 	 */
-	private $mapframes = 0;
+	private int $mapframes = 0;
 
 	/**
 	 * @var int[]
 	 */
-	private $interactiveGroups = [];
+	private array $interactiveGroups = [];
 
 	/**
 	 * @var int[]
 	 */
-	private $requestedGroups = [];
+	private array $requestedGroups = [];
 
 	/**
 	 * @var int[]|null
@@ -47,7 +47,7 @@ class State implements JsonSerializable {
 	/**
 	 * @var array[] Indexed per group identifier
 	 */
-	private $data = [];
+	private array $data = [];
 
 	/**
 	 * Retrieves an instance of self from ParserOutput, if present
@@ -89,7 +89,7 @@ class State implements JsonSerializable {
 	 * @param ParserOutput $output
 	 * @param self $state
 	 */
-	public static function setState( ParserOutput $output, self $state ) {
+	public static function setState( ParserOutput $output, self $state ): void {
 		$output->setExtensionData( self::DATA_KEY, $state->jsonSerialize() );
 	}
 
@@ -100,7 +100,7 @@ class State implements JsonSerializable {
 		return $this->valid;
 	}
 
-	public function setValidTags() {
+	public function setValidTags(): void {
 		$this->valid = true;
 	}
 
@@ -111,14 +111,14 @@ class State implements JsonSerializable {
 		return $this->broken;
 	}
 
-	public function setBrokenTags() {
+	public function setBrokenTags(): void {
 		$this->broken = true;
 	}
 
 	/**
 	 * Increment the number of maplinks by one.
 	 */
-	public function useMaplink() {
+	public function useMaplink(): void {
 		$this->maplinks++;
 	}
 
@@ -132,7 +132,7 @@ class State implements JsonSerializable {
 	/**
 	 * Increment the number of mapframes by one.
 	 */
-	public function useMapframe() {
+	public function useMapframe(): void {
 		$this->mapframes++;
 	}
 
@@ -146,7 +146,7 @@ class State implements JsonSerializable {
 	/**
 	 * @param string[] $groupIds
 	 */
-	public function addInteractiveGroups( array $groupIds ) {
+	public function addInteractiveGroups( array $groupIds ): void {
 		$this->interactiveGroups += array_flip( $groupIds );
 	}
 
@@ -160,7 +160,7 @@ class State implements JsonSerializable {
 	/**
 	 * @param string[] $groupIds
 	 */
-	public function addRequestedGroups( array $groupIds ) {
+	public function addRequestedGroups( array $groupIds ): void {
 		$this->requestedGroups += array_flip( $groupIds );
 	}
 
@@ -181,7 +181,7 @@ class State implements JsonSerializable {
 	/**
 	 * @param int[] $counters A JSON-serializable structure
 	 */
-	public function setCounters( array $counters ) {
+	public function setCounters( array $counters ): void {
 		$this->counters = $counters;
 	}
 
@@ -189,7 +189,7 @@ class State implements JsonSerializable {
 	 * @param string $groupId
 	 * @param array $data A JSON-serializable structure
 	 */
-	public function addData( $groupId, array $data ) {
+	public function addData( $groupId, array $data ): void {
 		// There is no way to ever add anything to a private group starting with `_`
 		if ( isset( $this->data[$groupId] ) && !str_starts_with( $groupId, '_' ) ) {
 			$this->data[$groupId] = array_merge( $this->data[$groupId], $data );

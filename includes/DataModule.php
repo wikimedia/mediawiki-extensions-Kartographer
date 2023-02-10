@@ -61,7 +61,7 @@ class DataModule extends RL\Module {
 	/**
 	 * @return bool
 	 */
-	private function canUseNearby() {
+	private function canUseNearby(): bool {
 		if ( !$this->getConfig()->get( 'KartographerNearby' ) ) {
 			return false;
 		}

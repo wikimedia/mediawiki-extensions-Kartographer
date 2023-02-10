@@ -25,7 +25,7 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 class ApiQueryMapData extends ApiQueryBase {
 
 	/** @var WikiPageFactory */
-	private $pageFactory;
+	private WikiPageFactory $pageFactory;
 
 	/**
 	 * @param ApiQuery $query

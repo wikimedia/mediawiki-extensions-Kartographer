@@ -17,40 +17,40 @@ use Status;
 class MapTagArgumentValidator {
 
 	/** @var Status */
-	public $status;
+	public Status $status;
 	/** @var Tag */
-	private $args;
+	private Tag $args;
 	/** @var Config */
-	private $config;
+	private Config $config;
 	/** @var Language */
 	private Language $language;
 	/** @var LanguageNameUtils */
-	private $languageNameUtils;
+	private LanguageNameUtils $languageNameUtils;
 
 	/** @var float|null */
-	public $lat;
+	public ?float $lat;
 	/** @var float|null */
-	public $lon;
+	public ?float $lon;
 	/** @var int|null */
-	public $zoom;
+	public ?int $zoom;
 	/** @var string|null One of "osm-intl" or "osm" */
-	public $mapStyle;
+	public ?string $mapStyle;
 	/** @var string|null Number of pixels (without a unit) or "full" */
-	public $width;
+	public ?string $width;
 	/** @var int|null */
-	public $height;
+	public ?int $height;
 	/** @var string|null One of "left", "center", "right", or "none" */
-	public $align;
+	public ?string $align;
 	/** @var string|null */
-	public $frameless;
+	public ?string $frameless;
 	/** @var string|null */
-	public $cssClass;
+	public ?string $cssClass;
 	/** @var string|null */
-	public $specifiedLangCode;
+	public ?string $specifiedLangCode;
 	/** @var string */
-	public $resolvedLangCode;
+	public string $resolvedLangCode;
 	/** @var string|null */
-	public $text;
+	public ?string $text;
 
 	/**
 	 * @var string|null Currently parsed group identifier from the group="…" attribute. Only allowed
@@ -58,7 +58,7 @@ class MapTagArgumentValidator {
 	 */
 	public $groupId;
 	/** @var string[] List of group identifiers to show */
-	public $showGroups = [];
+	public array $showGroups = [];
 
 	/**
 	 * @param string $tag
@@ -133,7 +133,7 @@ class MapTagArgumentValidator {
 		$this->cssClass = $this->args->getString( 'class', '', '/^(|[a-zA-Z][-_a-zA-Z0-9]*)$/' );
 	}
 
-	private function parseGroups() {
+	private function parseGroups(): void {
 		$this->groupId = $this->args->getString( 'group', null, '/^(\w| )+$/u' );
 
 		$show = $this->args->getString( 'show', null, '/^(|(\w| )+(\s*,\s*(\w| )+)*)$/u' );

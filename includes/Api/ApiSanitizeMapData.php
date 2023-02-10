@@ -30,7 +30,7 @@ use Wikimedia\ParamValidator\ParamValidator;
 class ApiSanitizeMapData extends ApiBase {
 
 	/** @var ParserFactory */
-	private $parserFactory;
+	private ParserFactory $parserFactory;
 
 	/**
 	 * @param ApiMain $main
@@ -67,7 +67,7 @@ class ApiSanitizeMapData extends ApiBase {
 	 * @param Title $title
 	 * @param string $text
 	 */
-	private function sanitizeJson( Title $title, $text ) {
+	private function sanitizeJson( Title $title, string $text ): void {
 		$parserOptions = new ParserOptions( $this->getUser() );
 		$parser = $this->parserFactory->getInstance();
 		$parser->startExternalParse( $title, $parserOptions, Parser::OT_HTML );

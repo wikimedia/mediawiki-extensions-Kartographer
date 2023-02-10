@@ -83,10 +83,10 @@ class SpecialMap extends UnlistedSpecialPage {
 	/**
 	 * Parses subpage parameter to this special page into zoom / lat /lon
 	 *
-	 * @param string $par
+	 * @param string|null $par
 	 * @return array|false
 	 */
-	private function parseSubpage( $par ) {
+	private function parseSubpage( ?string $par ) {
 		if ( !preg_match(
 				'#^(?<zoom>\d+)/(?<lat>-?\d+(\.\d+)?)/(?<lon>-?\d+(\.\d+)?)(/(?<lang>[a-zA-Z0-9-]+))?$#',
 				$par,

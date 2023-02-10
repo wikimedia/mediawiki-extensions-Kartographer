@@ -291,7 +291,7 @@ class ExternalDataLoaderTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideTestParseData
 	 */
-	public function testParse( array $input, $maskGeoDataCount ) {
+	public function testParse( array $input, int $maskGeoDataCount ) {
 		$request = $this->createMock( MWHttpRequest::class );
 		$request->method( 'execute' )
 			->willReturn( Status::newGood() );

@@ -36,7 +36,7 @@ class CoordFormatter {
 	 * @param Language|string $language
 	 * @return string
 	 */
-	private static function formatOneCoord( $coord, $latLon, $language ): string {
+	private static function formatOneCoord( $coord, string $latLon, $language ): string {
 		$val = $sign = round( $coord * 3600 );
 		$val = abs( $val );
 		$degrees = floor( $val / 3600 );
