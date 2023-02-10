@@ -17,6 +17,7 @@
 		"grunt-stylelint": "0.18.0",
 		"leaflet.markercluster": "^1.5.3",
 		"prunecluster": "2.1.0",
+		"replace-in-files-cli": "^2.0.0",
 		"rollup": "^0.36.1",
 		"rollup-plugin-commonjs": "^5.0.4",
 		"stylelint-config-wikimedia": "0.13.0",
