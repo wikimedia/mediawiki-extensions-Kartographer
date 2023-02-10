@@ -28,6 +28,8 @@ class ApiQueryMapDataTest extends ApiTestCase {
 	private const MAPFRAME_JSON_OTHER = '{"type":"Feature","geometry":{"type":"Point","coordinates":[2,1]}}';
 	private const MAPFRAME_CONTENT_OTHER = '<mapframe latitude=0 longitude=0 width=1 height=1>' .
 		self::MAPFRAME_JSON_OTHER . '</mapframe>';
+	private const MAPFRAME_NAMED_GROUP = '<mapframe group="foo" latitude=0 longitude=0 width=1 height=1>' .
+		self::MAPFRAME_JSON . '</mapframe>';
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -36,6 +38,7 @@ class ApiQueryMapDataTest extends ApiTestCase {
 			'wgFlaggedRevsNamespaces' => [ NS_MAIN ],
 			'wgFlaggedRevsProtection' => false,
 			'wgKartographerMapServer' => 'http://192.0.2.0',
+			'wgKartographerWikivoyageMode' => true,
 		] );
 	}
 
@@ -81,7 +84,48 @@ class ApiQueryMapDataTest extends ApiTestCase {
 				self::MAPFRAME_CONTENT,
 				[ [ '{"' . $hash . '":[' . self::MAPFRAME_JSON . ']}' ] ]
 			],
+			'Map with named group' => [
+				self::MAPFRAME_NAMED_GROUP,
+				[ [ '{"foo":[' . self::MAPFRAME_JSON . ']}' ] ]
+			],
 		];
+	}
+
+	public function provideGroupRequests() {
+		return [
+			'Test filtering by group' => [
+				self::MAPFRAME_NAMED_GROUP,
+				'foo',
+				[ [ '{"foo":[' . self::MAPFRAME_JSON . ']}' ] ],
+			],
+			'Test filtering by missing group' => [
+				self::MAPFRAME_NAMED_GROUP,
+				'missing',
+				[ [ '{"missing":null}' ] ],
+			],
+		];
+	}
+
+	/**
+	 * Tests the "mpdgroups" parameter.
+	 *
+	 * @dataProvider provideGroupRequests
+	 * @param string $content page content
+	 * @param string $groupId filter by this ID
+	 * @param array $expected API results
+	 */
+	public function testGroupFiltering( string $content, string $groupId, array $expected ) {
+		/** @var Title $page */
+		[ 'title' => $page ] = $this->insertPage( __METHOD__, $content );
+		$revId = $page->getLatestRevID();
+
+		[ $result ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'mapdata',
+			'revids' => $revId,
+			'mpdgroups' => $groupId,
+		] );
+		$this->assertResult( $expected, $result );
 	}
 
 	public function testQueryFromMultiplePages() {
