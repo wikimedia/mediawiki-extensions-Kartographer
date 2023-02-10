@@ -45,7 +45,7 @@ class ApiQueryMapData extends ApiQueryBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$limit = $params['limit'];
-		$groupIds = $params['groups'] === '' ? false : explode( '|', $params['groups'] );
+		$groupIds = $params['groups'] === '' ? [] : explode( '|', $params['groups'] );
 		$titles = $this->getPageSet()->getGoodPages();
 		if ( !$titles ) {
 			return;
@@ -80,24 +80,7 @@ class ApiQueryMapData extends ApiQueryBase {
 			}
 			$data = $state->getData();
 
-			$result = [];
-			if ( $groupIds ) {
-				foreach ( $groupIds as $groupId ) {
-					if ( array_key_exists( $groupId, $data ) ) {
-						$result[$groupId] = $data[$groupId];
-					} else {
-						// Let the client know there is no data found for this group
-						$result[$groupId] = null;
-
-						// Temporary logging, remove when not needed any more
-						if ( $revId && str_starts_with( $groupId, '_' ) ) {
-							LoggerFactory::getInstance( 'Kartographer' )->notice( 'Group id not found in revision' );
-						}
-					}
-				}
-			} else {
-				$result = $data;
-			}
+			$result = $this->filterGroups( $data, $groupIds, $revId !== null );
 			$this->normalizeGeoJson( $result );
 			$result = FormatJson::encode( $result, false, FormatJson::ALL_OK );
 
@@ -106,6 +89,33 @@ class ApiQueryMapData extends ApiQueryBase {
 				$this->setContinueEnumParameter( 'continue', $pageId );
 			}
 		}
+	}
+
+	/**
+	 * @param array[] $data All groups
+	 * @param string[] $groupIds requested groups or empty to disable filtering
+	 * @param bool $isStrict If true, log missing groups
+	 * @return array[] Filtered groups, with the same keys as $data
+	 */
+	private function filterGroups( array $data, array $groupIds, bool $isStrict ): array {
+		if ( !$groupIds ) {
+			return $data;
+		}
+		return array_reduce( $groupIds,
+			static function ( $result, $groupId ) use ( $data, $isStrict ) {
+				if ( array_key_exists( $groupId, $data ) ) {
+					$result[$groupId] = $data[$groupId];
+				} else {
+					// Temporary logging, remove when not needed any more
+					if ( $isStrict && str_starts_with( $groupId, '_' ) ) {
+						LoggerFactory::getInstance( 'Kartographer' )->notice( 'Group id not found in revision' );
+					}
+
+					// Let the client know there is no data found for this group
+					$result[$groupId] = null;
+				}
+				return $result;
+			}, [] );
 	}
 
 	/**
