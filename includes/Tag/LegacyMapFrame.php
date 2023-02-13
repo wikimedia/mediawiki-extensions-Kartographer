@@ -141,13 +141,9 @@ class LegacyMapFrame extends LegacyTagHandler {
 
 		$usesAutoPosition = $staticZoom === 'a' || $staticLat === 'a' || $staticLon === 'a';
 		if ( $isPreview && $usesAutoPosition ) {
-			// The static thumbnail cannot be rendered at all, so show a blank
-			// div instead.  This will be replaced by a dynamic thumbnail when
-			// JavaScript is available.
-			$thumbnail = Html::element( 'div', [
-				'width' => $staticWidth,
-				'height' => $this->args->height,
-			] );
+			// Impossible to render .png thumbnails that depend on unsaved ExternalData. Preview
+			// will replace this with a dynamic map anyway when JavaScript is available.
+			$thumbnail = '';
 		} else {
 			$thumbnail = Html::element( 'img', $imgAttrs );
 		}
