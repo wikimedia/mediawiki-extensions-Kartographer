@@ -177,11 +177,15 @@ function createPopupHtml( title, description, thumbnail ) {
 	}
 
 	if ( thumbnail ) {
-		thumbnailHtml += mw.html.element( 'img', {
+		var imgHtml = mw.html.element( 'img', {
 			src: thumbnail.source,
 			width: thumbnail.width || '',
 			height: thumbnail.height || ''
 		} );
+		thumbnailHtml += mw.html.element( 'a', {
+			href: title.getUrl(),
+			target: '_blank'
+		}, new mw.html.Raw( imgHtml ) );
 	}
 
 	return titleHtml + mw.html.element( 'div', {
