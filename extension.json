@@ -11,7 +11,7 @@
 	"license-name": "MIT",
 	"type": "parserhook",
 	"requires": {
-		"MediaWiki": ">= 1.39.0",
+		"MediaWiki": ">= 1.40.0",
 		"extensions": {
 			"JsonConfig": "*"
 		}
@@ -64,11 +64,7 @@
 				"minerva": [
 					"styles/skins.minerva.kartographer.less"
 				]
-			},
-			"targets": [
-				"mobile",
-				"desktop"
-			]
+			}
 		},
 		"ext.kartographer.site": {
 			"class": "ResourceLoaderWikiModule",
@@ -77,10 +73,6 @@
 			],
 			"styles": [
 				"MediaWiki:Kartographer.css"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"mapbox": {
@@ -96,10 +88,6 @@
 				"kartographer-fullscreen-text",
 				"mapbox-control-zoomin-title",
 				"mapbox-control-zoomout-title"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"leaflet.draw": {
@@ -152,10 +140,6 @@
 				"leafletdraw-edit-toolbar-buttons-removedisabled",
 				"leafletdraw-draw-toolbar-finish-text",
 				"leafletdraw-draw-toolbar-finish-title"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.kartographer.link": {
@@ -165,10 +149,6 @@
 			],
 			"packageFiles": [
 				"modules/maplink/maplink.js"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.kartographer.box": {
@@ -199,10 +179,6 @@
 			],
 			"messages": [
 				"kartographer-attribution"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.kartographer.linkbox": {
@@ -213,10 +189,6 @@
 			],
 			"dependencies": [
 				"ext.kartographer.util"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.kartographer.data": {
@@ -226,10 +198,6 @@
 			"messages": [
 				"kartographer-attribution-externaldata",
 				"project-localized-name-commonswiki"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.kartographer.dialog": {
@@ -256,10 +224,6 @@
 				"kartographer-sidebar-nearbybutton",
 				"kartographer-sidebar-reload-nearbybutton",
 				"kartographer-sidebar-togglebutton"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.kartographer.dialog.sidebar": {
@@ -289,10 +253,6 @@
 				"kartographer-sidebar-longitude",
 				"kartographer-sidebar-mapdetails",
 				"kartographer-sidebar-service"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.kartographer.util": {
@@ -301,10 +261,6 @@
 			],
 			"dependencies": [
 				"ext.kartographer"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.kartographer.frame": {
@@ -315,10 +271,6 @@
 			],
 			"packageFiles": [
 				"modules/mapframe/mapframe.js"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.kartographer.staticframe": {
@@ -334,10 +286,6 @@
 			"messages": [
 				"kartographer-attribution-short",
 				"kartographer-fullscreen-text"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.kartographer.preview": {
@@ -348,10 +296,6 @@
 				"visualeditor-mwmapsdialog-position-lat",
 				"visualeditor-mwmapsdialog-position-lon",
 				"visualeditor-mwmapsdialog-position-zoom"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.kartographer.editing": {
@@ -360,20 +304,12 @@
 			],
 			"packageFiles": [
 				"modules/editing/editing.js"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.kartographer.editor": {
 			"dependencies": [
 				"leaflet.draw",
 				"ext.kartographer.box"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.kartographer.visualEditor": {
@@ -421,10 +357,6 @@
 				"ext.visualEditor.mwcore",
 				"ext.kartographer",
 				"ext.kartographer.util"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.kartographer.lib.leaflet.markercluster": {
@@ -437,10 +369,6 @@
 			"styles": [
 				"lib/external/leaflet.markercluster/MarkerCluster.css",
 				"lib/external/leaflet.markercluster/MarkerCluster.Default.css"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.kartographer.lib.prunecluster": {
@@ -453,10 +381,6 @@
 			],
 			"styles": [
 				"lib/external/prunecluster/LeafletStyleSheet.css"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.kartographer.lib.topojson": {
@@ -466,10 +390,6 @@
 			"scripts": [
 				"lib/topojson/topojson.js",
 				"lib/topojson/loader.js"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.kartographer.wv": {
@@ -501,19 +421,11 @@
 				"kartographer-wv-warning-external-source-message",
 				"kartographer-wv-warning-external-source-agree",
 				"kartographer-wv-warning-external-source-disagree"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		},
 		"ext.kartographer.specialMap": {
 			"styles": [
 				"styles/specialMap.less"
-			],
-			"targets": [
-				"mobile",
-				"desktop"
 			]
 		}
 	},
