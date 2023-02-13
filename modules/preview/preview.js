@@ -39,8 +39,10 @@
 					.openOn( map );
 			}
 
-			// on right click, add a little popup with the coordinates.
-			map.on( 'contextmenu', onMapMenu );
+			if ( !map.isStatic() ) {
+				// on right click, add a little popup with the coordinates.
+				map.on( 'contextmenu', onMapMenu );
+			}
 		} );
 	} );
 

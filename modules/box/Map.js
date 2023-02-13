@@ -352,7 +352,7 @@ KartographerMap = L.Map.extend( {
 				} );
 			}
 
-			if ( !map._static ) {
+			if ( !map.isStatic() ) {
 				map.dragging.enable();
 				map.touchZoom.enable();
 			}
@@ -855,6 +855,13 @@ KartographerMap = L.Map.extend( {
 		this.toggleStaticState = L.Util.bind( this.toggleStaticState, this );
 		this.toggleStaticState();
 		return this;
+	},
+
+	/**
+	 * Returns true if the map should behave like a static snapshot
+	 */
+	isStatic: function () {
+		return this._static;
 	},
 
 	/**
