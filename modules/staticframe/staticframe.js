@@ -74,7 +74,6 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 				// In static mode this button is just a visual hint but doesn't have its own action
 				tabIndex: -1,
 				icon: 'fullScreen',
-				title: mw.msg( 'kartographer-fullscreen-text' ),
 				framed: true
 			} );
 
@@ -86,7 +85,10 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 			);
 		} );
 
-		$container.attr( 'href', '#/map/' + index );
+		$container.attr( {
+			title: mw.msg( 'kartographer-fullscreen-text' ),
+			href: '#/map/' + index
+		} );
 
 		var data = getMapData( container );
 
