@@ -36,7 +36,7 @@ class MapTagArgumentValidator {
 	/** @var string|null One of "osm-intl" or "osm" */
 	public ?string $mapStyle;
 	/** @var string|null Number of pixels (without a unit) or "full" */
-	public ?string $width;
+	public ?string $width = null;
 	/** @var int|null */
 	public ?int $height;
 	/** @var string|null One of "left", "center", "right", or "none" */
@@ -127,8 +127,12 @@ class MapTagArgumentValidator {
 		}
 
 		// Arguments valid only for one of the two tags, but all optional anyway
-		$defaultAlign = $this->language->alignEnd();
-		$this->align = $this->args->getString( 'align', $defaultAlign, '/^(left|center|right)$/' );
+		if ( $this->width === 'full' ) {
+			$this->align = 'none';
+		} elseif ( $this->width !== null ) {
+			$defaultAlign = $this->language->alignEnd();
+			$this->align = $this->args->getString( 'align', $defaultAlign, '/^(left|center|right)$/' );
+		}
 		$this->frameless = $this->args->getString( 'frameless', null ) !== null;
 		$this->cssClass = $this->args->getString( 'class', '', '/^(|[a-zA-Z][-_a-zA-Z0-9]*)$/' );
 	}
