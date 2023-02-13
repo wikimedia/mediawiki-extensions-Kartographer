@@ -442,7 +442,11 @@ Nearby.prototype.createNearbyLayer = function ( geoJSON ) {
 					feature.properties.title,
 					feature.properties.description
 				);
-			}, { closeButton: false } ).on( 'popupopen', function ( event ) {
+			}, {
+				// Same minWidth as in the Map class; maxWidth defaults to 300
+				minWidth: 160,
+				closeButton: false
+			} ).on( 'popupopen', function ( event ) {
 				fetchThumbnail(
 					event.popup,
 					feature.properties.title,
