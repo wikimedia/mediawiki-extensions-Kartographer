@@ -10,7 +10,7 @@ maplink
 <maplink />
 <maplink latitude=10 longitude=20 zoom=13 text='Foo &amp; bar'/>
 !! html
-<p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map////en">0°0′0″N 0°0′0″E</a>
+<p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en">0°0′0″N 0°0′0″E</a>
 <a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20">Foo &amp; bar</a>
 </p>
 !! end
@@ -94,8 +94,8 @@ maplink
 <maplink text="" />
 !! html
 <p><a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20">10°0′0″N 20°0′0″E</a>
-<a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map////en">0°0′0″N 0°0′0″E</a>
-<a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map////en"></a>
+<a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en">0°0′0″N 0°0′0″E</a>
+<a class="mw-kartographer-maplink" data-mw="interface" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en"></a>
 </p>
 !! end
 
