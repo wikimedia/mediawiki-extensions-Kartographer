@@ -343,11 +343,10 @@ KartographerMap = L.Map.extend( {
 			for ( var id in map.dataLayers ) {
 				map.dataLayers[ id ].eachLayer( function ( shape ) {
 					var el = shape.getElement();
-					if ( el.nodeName === 'path' &&
-						// FIXME: Should use .classList.contains() when we can drop IE11 support
-						/\bleaflet-interactive\b/.test( el.getAttribute( 'class' ) )
-					) {
+					if ( shape.getPopup() ) {
 						el.tabIndex = 0;
+					} else {
+						$( el ).removeClass( 'leaflet-interactive' );
 					}
 				} );
 			}
