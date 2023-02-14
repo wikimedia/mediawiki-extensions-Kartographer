@@ -69,14 +69,26 @@ class SpecialMapTest extends MediaWikiIntegrationTestCase {
 		return $tests;
 	}
 
-	public function testLink() {
+	/**
+	 * @dataProvider provideLinks
+	 */
+	public function testLink( string $expected, ?float $lat, ?float $lon, int $zoom = null, string $lang = 'local' ) {
 		$this->setMwGlobals( 'wgArticlePath', '/wiki/$1' );
-		$title = SpecialMap::link( 12, -34.5, 6 );
+		$title = SpecialMap::link( $lat, $lon, $zoom, $lang );
 		$this->assertInstanceOf( Title::class, $title );
-		$this->assertEquals( '/wiki/Special:Map/6/12/-34.5/local', $title->getLocalURL() );
-
-		$title = SpecialMap::link( 12, -34.5, 6, 'zh' );
-		$this->assertInstanceOf( Title::class, $title );
-		$this->assertEquals( '/wiki/Special:Map/6/12/-34.5/zh', $title->getLocalURL() );
+		$this->assertSame( $expected, $title->getLocalURL() );
 	}
+
+	public function provideLinks() {
+		return [
+			[ '/wiki/Special:Map/6/12/-34.5/local', 12, -34.5, 6 ],
+			[ '/wiki/Special:Map/6/12/-34.5/zh', 12, -34.5, 6, 'zh' ],
+			[ '/wiki/Special:Map/6/12/34/local', 12, 34, 6, 'local' ],
+			[ '/wiki/Special:Map//12/34/', 12, 34, null, '' ],
+			[ '/wiki/Special:Map//-12/34/local', -12, 34 ],
+			[ '/wiki/Special:Map//12//local', 12, null ],
+			[ '/wiki/Special:Map////local', null, null ],
+		];
+	}
+
 }
