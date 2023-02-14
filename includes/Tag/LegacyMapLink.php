@@ -24,8 +24,8 @@ class LegacyMapLink extends LegacyTagHandler {
 		// @todo: Mapbox markers don't support localized numbers yet
 		$text = $this->args->text;
 		if ( $text === null ) {
-			$text = $this->counter
-				?: CoordFormatter::format( $this->args->lat, $this->args->lon, $this->getLanguageCode() );
+			$text = $this->counter ?: ( new CoordFormatter( $this->args->lat, $this->args->lon ) )
+				->format( $this->getLanguageCode() );
 		}
 		$text = $this->parser->recursiveTagParse( $text, $this->frame );
 

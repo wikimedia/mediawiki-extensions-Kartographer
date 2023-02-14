@@ -3,6 +3,9 @@
 namespace Kartographer;
 
 use Language;
+use Wikimedia\Bcp47Code\Bcp47CodeValue;
+use Wikimedia\Parsoid\DOM\DocumentFragment;
+use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
 
 /**
  * Formats coordinates into human-readable strings
@@ -11,51 +14,83 @@ use Language;
  */
 class CoordFormatter {
 
+	/** @var int */
+	private int $degreesLat;
+	/** @var int */
+	private int $minutesLat;
+	/** @var int */
+	private int $secondsLat;
+	/** @var int */
+	private int $degreesLon;
+	/** @var int */
+	private int $minutesLon;
+	/** @var int */
+	private int $secondsLon;
+	/** @var string */
+	private string $msgKey;
+
 	/**
-	 * Formats coordinates
-	 *
 	 * @param float $lat
 	 * @param float $lon
-	 * @param Language|string $language
-	 *
-	 * @return string
 	 */
-	public static function format( $lat, $lon, $language ): string {
-		$latStr = self::formatOneCoord( $lat, 'lat', $language );
-		$lonStr = self::formatOneCoord( $lon, 'lon', $language );
-
-		return wfMessage( 'kartographer-coord-combined' )
-			->params( $latStr, $lonStr )
-			->inLanguage( $language )
-			->plain();
+	public function __construct( $lat, $lon ) {
+		[ $signLat, $this->degreesLat, $this->minutesLat, $this->secondsLat ] = $this->convertCoord( $lat );
+		[ $signLon, $this->degreesLon, $this->minutesLon, $this->secondsLon ] = $this->convertCoord( $lon );
+		$plusMinusLat = $signLat < 0 ? 'neg' : 'pos';
+		$plusMinusLon = $signLon < 0 ? 'neg' : 'pos';
+		$this->msgKey = "kartographer-coord-lat-$plusMinusLat-lon-$plusMinusLon";
 	}
 
 	/**
-	 * @param float $coord
-	 * @param string $latLon 'lat' or 'lon'
-	 * @param Language|string $language
-	 * @return string
+	 * Convert coordinates to degrees, minutes, seconds
+	 *
+	 * @param ?float $coord
+	 * @return int[]
 	 */
-	private static function formatOneCoord( $coord, string $latLon, $language ): string {
+	private function convertCoord( ?float $coord ): array {
 		$val = $sign = round( $coord * 3600 );
 		$val = abs( $val );
 		$degrees = floor( $val / 3600 );
 		$minutes = floor( ( $val - $degrees * 3600 ) / 60 );
 		$seconds = $val - $degrees * 3600 - $minutes * 60;
-		$plusMinus = $sign < 0 ? 'negative' : 'positive';
-		$text = wfMessage( 'kartographer-coord-dms' )
-			->numParams( $degrees, $minutes, round( $seconds ) )
-			->inLanguage( $language )
-			->plain();
 
-		// Messages that can be used here:
-		// * kartographer-coord-lat-positive
-		// * kartographer-coord-lat-negative
-		// * kartographer-coord-lon-positive
-		// * kartographer-coord-lon-negative
-		return wfMessage( "kartographer-coord-$latLon-$plusMinus" )
-			->params( $text )
+		return [ (int)$sign, (int)$degrees, (int)$minutes, (int)$seconds ];
+	}
+
+	/**
+	 * Formats coordinates
+	 * @param Language|string $language
+	 *
+	 * @return string
+	 */
+	public function format( $language ): string {
+		return wfMessage( $this->msgKey )
+			->numParams( $this->degreesLat, $this->minutesLat, $this->secondsLat, $this->degreesLon,
+				$this->minutesLon, $this->secondsLon )
 			->inLanguage( $language )
 			->plain();
+	}
+
+	/**
+	 * Formats coordinates as a Parsoid i18n span. This method should not be used to generate
+	 * content that is added to a tag attribute.
+	 * @param ParsoidExtensionAPI $extAPI
+	 * @param string|null $language
+	 * @return DocumentFragment
+	 */
+	public function formatParsoidSpan( ParsoidExtensionAPI $extAPI, ?string $language ): DocumentFragment {
+		if ( $language === null ) {
+			return $extAPI->createInterfaceI18nFragment( $this->msgKey,
+				[
+					$this->degreesLat, $this->minutesLat, $this->secondsLat,
+					$this->degreesLon, $this->minutesLon, $this->secondsLon
+				] );
+		} else {
+			return $extAPI->createLangI18nFragment( new Bcp47CodeValue( $language ), $this->msgKey,
+				[
+					$this->degreesLat, $this->minutesLat, $this->secondsLat,
+					$this->degreesLon, $this->minutesLon, $this->secondsLon
+				] );
+		}
 	}
 }
