@@ -55,6 +55,7 @@ class SpecialMapTest extends MediaWikiIntegrationTestCase {
 			[ '18/89.9/179.9', 89.9, 179.9, 'local' ],
 			[ '18/-89.9/-179.9', -89.9, -179.9, 'local' ],
 			[ '18/90/-180', 90.0, -180.0, 'local' ],
+			[ '/1/2', 1.0, 2.0, 'local' ],
 		];
 
 		if ( class_exists( Globe::class ) ) {
