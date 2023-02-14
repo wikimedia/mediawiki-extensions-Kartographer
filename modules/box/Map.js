@@ -492,18 +492,13 @@ KartographerMap = L.Map.extend( {
 		try {
 			// T326790 make sure that only points triggering popups are rendered interactive
 			options.pointToLayer = function ( feature, latlon ) {
-				var interactive = false;
-				if ( feature.properties && ( feature.properties.title || feature.properties.description ) ) {
-					interactive = true;
-				}
-				var title = L.mapbox.sanitize( ( feature.properties && feature.properties.title ) || '' ).replace( /<[^<]+>/g, '' );
-
-				return L.marker( latlon, {
-					icon: L.mapbox.marker.icon( feature.properties, options ),
-					title: title,
-					interactive: interactive,
-					keyboard: interactive
-				} );
+				var props = feature.properties,
+					interactive = !!( props && ( props.title || props.description ) );
+				// Note: This is the same call as in the default pointToLayer function.
+				var marker = L.mapbox.marker.style( feature, latlon );
+				marker.options.interactive = interactive;
+				marker.options.keyboard = interactive;
+				return marker;
 			};
 			var layer = L.mapbox.featureLayer( geoJSON, $.extend( {}, dataLayerOpts, options ) ).addTo( this );
 			layer.getAttribution = function () {
