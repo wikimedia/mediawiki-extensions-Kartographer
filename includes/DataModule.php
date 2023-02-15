@@ -59,11 +59,12 @@ class DataModule extends RL\Module {
 	}
 
 	/**
-	 * @return bool
+	 * @return int Number of points to load, 0 when the feature is disabled
 	 */
-	private function canUseNearby(): bool {
-		if ( !$this->getConfig()->get( 'KartographerNearby' ) ) {
-			return false;
+	private function canUseNearby(): int {
+		$limit = $this->getConfig()->get( 'KartographerNearby' );
+		if ( !$limit ) {
+			return 0;
 		}
 
 		if ( !ExtensionRegistry::getInstance()->isLoaded( 'GeoData' ) ||
@@ -72,7 +73,7 @@ class DataModule extends RL\Module {
 			throw new \ConfigException( '$wgKartographerNearby requires GeoData and CirrusSearch extensions' );
 		}
 
-		return true;
+		return $limit === true ? 300 : (int)$limit;
 	}
 
 }
