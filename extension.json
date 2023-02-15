@@ -510,7 +510,7 @@
 		},
 		"KartographerNearbyClustering": {
 			"description": "Temporary feature flag used to enable point clustering in the $wgKartographerNearby feature.",
-			"value": false
+			"value": true
 		},
 		"KartographerNearbyOnMobile": {
 			"description": "Enable the \"nearby\" feature on mobile skins.",
