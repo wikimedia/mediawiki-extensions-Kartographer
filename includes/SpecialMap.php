@@ -145,13 +145,17 @@ class SpecialMap extends UnlistedSpecialPage {
 	/**
 	 * Returns a Title for a link to the coordinates provided
 	 *
-	 * @param float $lat
-	 * @param float $lon
-	 * @param int $zoom
+	 * @param float|null $lat
+	 * @param float|null $lon
+	 * @param int|null $zoom
 	 * @param string $lang Optional language code. Defaults to 'local'
 	 * @return Title
 	 */
 	public static function link( $lat, $lon, $zoom, $lang = 'local' ): Title {
-		return SpecialPage::getTitleFor( 'Map', "$zoom/$lat/$lon/$lang" );
+		$subpage = (int)$zoom . '/' . (float)$lat . '/' . (float)$lon;
+		if ( $lang && $lang !== 'local' ) {
+			$subpage .= '/' . $lang;
+		}
+		return SpecialPage::getTitleFor( 'Map', $subpage );
 	}
 }

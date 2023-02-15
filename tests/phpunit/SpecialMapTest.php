@@ -81,13 +81,13 @@ class SpecialMapTest extends MediaWikiIntegrationTestCase {
 
 	public function provideLinks() {
 		return [
-			[ '/wiki/Special:Map/6/12/-34.5/local', 12, -34.5, 6 ],
+			[ '/wiki/Special:Map/6/12/-34.5', 12, -34.5, 6 ],
 			[ '/wiki/Special:Map/6/12/-34.5/zh', 12, -34.5, 6, 'zh' ],
-			[ '/wiki/Special:Map/6/12/34/local', 12, 34, 6, 'local' ],
-			[ '/wiki/Special:Map//12/34/', 12, 34, null, '' ],
-			[ '/wiki/Special:Map//-12/34/local', -12, 34 ],
-			[ '/wiki/Special:Map//12//local', 12, null ],
-			[ '/wiki/Special:Map////local', null, null ],
+			[ '/wiki/Special:Map/6/12/34', 12, 34, 6, 'local' ],
+			[ '/wiki/Special:Map/0/12/34', 12, 34, null, '' ],
+			[ '/wiki/Special:Map/0/-12/34', -12, 34 ],
+			[ '/wiki/Special:Map/0/12/0', 12, null ],
+			[ '/wiki/Special:Map/0/0/0', null, null ],
 		];
 	}
 
