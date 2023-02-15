@@ -6,7 +6,6 @@ use GeoData\Globe;
 use Html;
 use Kartographer\Projection\EPSG3857;
 use SpecialPage;
-use Title;
 use UnlistedSpecialPage;
 
 /**
@@ -142,19 +141,21 @@ class SpecialMap extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * Returns a Title for a link to the coordinates provided
-	 *
-	 * @param float|null $lat
-	 * @param float|null $lon
-	 * @param int|null $zoom
+	 * @param float|string|null $lat Can be "a" for auto-positioning, null on error
+	 * @param float|string|null $lon Can be "a", null on error
+	 * @param int|string|null $zoom Can be "a", null on error; defaults to 0
 	 * @param string $lang Optional language code. Defaults to 'local'
-	 * @return Title
+	 * @return string|null
 	 */
-	public static function link( $lat, $lon, $zoom, $lang = 'local' ): Title {
+	public static function link( $lat, $lon, $zoom, $lang = 'local' ): ?string {
+		if ( $lat === 'a' || $lon === 'a' ) {
+			return null;
+		}
+
 		$subpage = (int)$zoom . '/' . (float)$lat . '/' . (float)$lon;
 		if ( $lang && $lang !== 'local' ) {
 			$subpage .= '/' . $lang;
 		}
-		return SpecialPage::getTitleFor( 'Map', $subpage );
+		return SpecialPage::getTitleFor( 'Map', $subpage )->getLocalURL();
 	}
 }

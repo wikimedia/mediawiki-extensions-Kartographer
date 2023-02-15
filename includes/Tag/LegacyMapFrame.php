@@ -97,8 +97,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 			$this->state->addInteractiveGroups( $this->args->showGroups );
 		}
 
-		$attrs['href'] = SpecialMap::link( $staticLat, $staticLon, $staticZoom, $this->args->resolvedLangCode )
-			->getLocalURL();
+		$attrs['href'] = SpecialMap::link( $staticLat, $staticLon, $staticZoom, $this->args->resolvedLangCode );
 		$imgUrlParams = [
 			'lang' => $this->args->resolvedLangCode,
 		];

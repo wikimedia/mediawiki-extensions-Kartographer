@@ -29,7 +29,6 @@ trait MapLinkTrait {
 					$options['zoom'],
 					$options['resolvedLangCode']
 				)
-				->getLocalURL()
 		];
 
 		if ( $options['zoom'] !== null ) {

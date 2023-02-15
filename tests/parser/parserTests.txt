@@ -99,6 +99,13 @@ maplink
 </p>
 !! end
 
+!! test
+<mapframe> auto-positioning
+!! wikitext
+<mapframe width="full" height="200">{"type":"Feature","geometry":{"type":"Point","coordinates":[1,2]}}</mapframe>
+!! html
+<div class="mw-kartographer-container mw-kartographer-full thumb tnone"><div class="thumbinner" style="width: 100%;"><a class="mw-kartographer-map" style="width: 100%; height: 200px;" data-mw="interface" data-style="osm-intl" data-width="full" data-height="200" data-overlays="[&quot;_1b3d2dce6411896528c219bf0af1e6c4c3985a1a&quot;]"><img src="https://maps.wikimedia.org/img/osm-intl,a,a,a,800x200.png?lang=en&amp;domain=example.org&amp;title=Parser+test&amp;revid=1337&amp;groups=_1b3d2dce6411896528c219bf0af1e6c4c3985a1a" alt="Map" width="800" height="200" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,a,a,a,800x200@2x.png?lang=en&amp;domain=example.org&amp;title=Parser+test&amp;revid=1337&amp;groups=_1b3d2dce6411896528c219bf0af1e6c4c3985a1a 2x" /></a></div></div>
+!! end
 
 !! test
 <maplink> - class parameter

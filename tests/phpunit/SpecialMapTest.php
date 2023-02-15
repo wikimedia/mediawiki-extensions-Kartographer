@@ -5,7 +5,6 @@ namespace Kartographer\Tests;
 use GeoData\Globe;
 use Kartographer\SpecialMap;
 use MediaWikiIntegrationTestCase;
-use Title;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -75,9 +74,7 @@ class SpecialMapTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testLink( string $expected, ?float $lat, ?float $lon, int $zoom = null, string $lang = 'local' ) {
 		$this->setMwGlobals( 'wgArticlePath', '/wiki/$1' );
-		$title = SpecialMap::link( $lat, $lon, $zoom, $lang );
-		$this->assertInstanceOf( Title::class, $title );
-		$this->assertSame( $expected, $title->getLocalURL() );
+		$this->assertSame( $expected, SpecialMap::link( $lat, $lon, $zoom, $lang ) );
 	}
 
 	public function provideLinks() {
