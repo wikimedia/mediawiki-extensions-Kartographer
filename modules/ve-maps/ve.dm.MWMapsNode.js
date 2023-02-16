@@ -65,6 +65,9 @@ ve.dm.MWMapsNode.static.getUrl = function ( dataElement, width, height ) {
 	width = width || mwAttrs.width;
 	if ( width === 'full' || width === '100%' ) {
 		width = 800;
+	} else if ( !isFinite( width ) ) {
+		// This fallback for deprecated percentages other than 100% is hard-coded in the backend
+		width = 300;
 	}
 
 	return mw.config.get( 'wgKartographerMapServer' ) + '/img/' +
@@ -107,6 +110,9 @@ ve.dm.MWMapsNode.prototype.getCurrentDimensions = function () {
 		width = mwAttrs.width;
 	if ( width === 'full' || width === '100%' ) {
 		width = 800;
+	} else if ( !isFinite( width ) ) {
+		// This fallback for deprecated percentages other than 100% is hard-coded in the backend
+		width = 300;
 	}
 	return {
 		width: +width,
