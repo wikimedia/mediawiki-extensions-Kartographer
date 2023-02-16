@@ -4,6 +4,7 @@ namespace Kartographer;
 
 use JsonSerializable;
 use ParserOutput;
+use UnexpectedValueException;
 
 /**
  * Stores information about map tags on page in ParserOutput
@@ -20,14 +21,10 @@ class State implements JsonSerializable {
 	private bool $broken = false;
 
 	/**
-	 * @var int Total number of <maplink> tags on the page, to be stored as a page property
+	 * @var array<string,int> Total number of <maplink> and <mapframe> tags on the page, to be
+	 *  stored as a page property
 	 */
-	private int $maplinks = 0;
-
-	/**
-	 * @var int Total number of <mapframe> tags on the page, to be stored as a page property
-	 */
-	private int $mapframes = 0;
+	private array $usages = [];
 
 	/**
 	 * @var int[]
@@ -116,31 +113,22 @@ class State implements JsonSerializable {
 	}
 
 	/**
-	 * Increment the number of maplinks by one.
+	 * @param string $tag
 	 */
-	public function useMaplink(): void {
-		$this->maplinks++;
+	public function incrementUsage( string $tag ): void {
+		if ( !str_starts_with( $tag, 'map' ) ) {
+			throw new UnexpectedValueException( 'Unsupported tag name' );
+		}
+		// Resulting keys will be "maplinks" and "mapframes"
+		$key = "${tag}s";
+		$this->usages[$key] = ( $this->usages[$key] ?? 0 ) + 1;
 	}
 
 	/**
-	 * @return int Number of maplinks.
+	 * @return array<string,int>
 	 */
-	public function getMaplinks(): int {
-		return $this->maplinks;
-	}
-
-	/**
-	 * Increment the number of mapframes by one.
-	 */
-	public function useMapframe(): void {
-		$this->mapframes++;
-	}
-
-	/**
-	 * @return int Number of mapframes.
-	 */
-	public function getMapframes(): int {
-		return $this->mapframes;
+	public function getUsages(): array {
+		return $this->usages;
 	}
 
 	/**
@@ -209,16 +197,15 @@ class State implements JsonSerializable {
 	 * @return array A JSON serializable associative array
 	 */
 	public function jsonSerialize(): array {
-		return [
+		// TODO: Replace with the ...$this->usages syntax when we can use PHP 8.1
+		return array_merge( [
 			'valid' => $this->valid,
 			'broken' => $this->broken,
-			'maplinks' => $this->maplinks,
-			'mapframes' => $this->mapframes,
 			'interactiveGroups' => $this->interactiveGroups,
 			'requestedGroups' => $this->requestedGroups,
 			'counters' => $this->counters,
 			'data' => $this->data,
-		];
+		], $this->usages );
 	}
 
 	/**
@@ -230,8 +217,9 @@ class State implements JsonSerializable {
 		$status = new self();
 		$status->valid = $data['valid'];
 		$status->broken = $data['broken'];
-		$status->maplinks = $data['maplinks'];
-		$status->mapframes = $data['mapframes'];
+		$status->usages = array_filter( $data, static function ( $count, $key ) {
+			return is_int( $count ) && $count > 0 && str_starts_with( $key, 'map' );
+		}, ARRAY_FILTER_USE_BOTH );
 		$status->interactiveGroups = $data['interactiveGroups'];
 		$status->requestedGroups = $data['requestedGroups'];
 		$status->counters = $data['counters'];

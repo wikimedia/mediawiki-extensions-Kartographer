@@ -37,6 +37,10 @@ use Wikimedia\Parsoid\Core\ContentMetadataCollector;
  */
 abstract class LegacyTagHandler {
 
+	/**
+	 * Lower case name of the XML-style parser tag, e.g. "mapframe". Currently expected to start
+	 * with "map…" by the {@see State} class.
+	 */
 	public const TAG = '';
 
 	/** @var Status */
@@ -109,15 +113,7 @@ abstract class LegacyTagHandler {
 		$parserOutput->addModuleStyles( [ 'ext.kartographer.style' ] );
 		$parserOutput->addExtraCSPDefaultSrc( $mapServer );
 		$this->state = State::getOrCreate( $parserOutput );
-		// FIXME: Improve the State class so we don't need to hard-code this here
-		switch ( static::TAG ) {
-			case LegacyMapLink::TAG:
-				$this->state->useMaplink();
-				break;
-			case LegacyMapFrame::TAG:
-				$this->state->useMapframe();
-				break;
-		}
+		$this->state->incrementUsage( static::TAG );
 
 		$this->args = new MapTagArgumentValidator( static::TAG, $args, $this->config, $this->getLanguage() );
 		$this->status = $this->args->status;
@@ -217,11 +213,12 @@ abstract class LegacyTagHandler {
 		bool $isPreview,
 		ParserFunctionTracker $tracker
 	): void {
-		if ( $state->getMaplinks() ) {
-			$parserOutput->setPageProperty( 'kartographer_links', (string)$state->getMaplinks() );
-		}
-		if ( $state->getMapframes() ) {
-			$parserOutput->setPageProperty( 'kartographer_frames', (string)$state->getMapframes() );
+		foreach ( $state->getUsages() as $key => $count ) {
+			if ( $count ) {
+				// Resulting page property names are "kartographer_links" and "kartographer_frames"
+				$name = 'kartographer_' . preg_replace( '/^map/', '', $key );
+				$parserOutput->setPageProperty( $name, (string)$count );
+			}
 		}
 
 		$tracker->addTrackingCategories( [
