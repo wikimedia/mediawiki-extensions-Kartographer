@@ -172,14 +172,14 @@ class State implements JsonSerializable {
 	}
 
 	/**
-	 * @return int[]
+	 * @return array<string,int>
 	 */
 	public function getCounters(): array {
 		return $this->counters ?: [];
 	}
 
 	/**
-	 * @param int[] $counters A JSON-serializable structure
+	 * @param array<string,int> $counters A JSON-serializable structure
 	 */
 	public function setCounters( array $counters ): void {
 		$this->counters = $counters;
