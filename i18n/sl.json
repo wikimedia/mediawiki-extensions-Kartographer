@@ -15,7 +15,7 @@
 	"kartographer-desc": "Omogoča dodajanje zemljevidov na vikistrani",
 	"kartographer-error-context-multi": "Problemi z <$1>:\n$2",
 	"kartographer-error-json": "Niza JSON ni mogoče razčleniti: $1",
-	"kartographer-error-json-object": "Vsebina mora biti veljaven objekt GeoJSON+simplestyle ali polje takšnih predmetov.",
+	"kartographer-error-json-object": "Vsebina mora biti veljaven GeoJSON+simplestyle objekt ali matrika takih objektov.",
 	"kartographer-error-json-type": "Vsak objekt GeoJSON+simplestyle mora imeti neprazen tip, npr. <code>{ \"type\": \"Feature\" }</code>.",
 	"kartographer-error-missing-attr": "Manjka atribut »$1«",
 	"kartographer-error-bad_attr": "Atribut »$1« ima neveljavno vrednost",
