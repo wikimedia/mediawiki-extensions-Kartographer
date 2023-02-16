@@ -177,6 +177,25 @@ class StateTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $state, State::getState( $output ) );
 	}
 
+	public function testJsonStability() {
+		$state = new State();
+		$state->useMaplink();
+		$state->useMapframe();
+		$state->addInteractiveGroups( [ 'interactive' ] );
+		$state->addRequestedGroups( [ 'requested' ] );
+		// This intentionally breaks when unexpected changes are made to the JSON serialization
+		$this->assertEquals( [
+			'valid' => false,
+			'broken' => false,
+			'maplinks' => 1,
+			'mapframes' => 1,
+			'interactiveGroups' => [ 'interactive' => 0 ],
+			'requestedGroups' => [ 'requested' => 0 ],
+			'counters' => null,
+			'data' => [],
+		], $state->jsonSerialize() );
+	}
+
 	/**
 	 * @dataProvider provideStates
 	 */
