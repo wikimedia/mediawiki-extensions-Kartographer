@@ -30,6 +30,8 @@
 	"kartographer-coord-lon-positive": "$1E",
 	"kartographer-coord-lon-negative": "$1W",
 	"kartographer-specialmap-invalid-coordinates": "Invalid coordinates supplied",
+	"kartographer-specialmap-world": "World map",
+	"kartographer-static-mapframe-alt": "Map",
 	"kartographer.css": "/* CSS placed here will be applied to all pages with maps */",
 	"kartographer.js": "/* Any JavaScript here will be loaded for all users on load of the map-containing pages */",
 	"kartographer-linktype-aerial": "Aerial",

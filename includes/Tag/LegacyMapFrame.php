@@ -121,7 +121,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 			"$staticLon,{$staticWidth}x{$this->args->height}";
 		$imgAttrs = [
 			'src' => "$imgUrl.png?" . wfArrayToCgi( $imgUrlParams ),
-			'alt' => '',
+			'alt' => wfMessage( 'kartographer-static-mapframe-alt' )->text(),
 			'width' => $staticWidth,
 			'height' => $this->args->height,
 			'decoding' => 'async'

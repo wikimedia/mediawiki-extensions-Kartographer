@@ -39,6 +39,8 @@
 	"kartographer-coord-lon-positive": "{{optional}}\nEast longitude suffix for geographical coordinates.\n\nParameters:\n* $1 - value in degrees/minutes/seconds, see {{msg-mw|kartographer-coord-dms}}",
 	"kartographer-coord-lon-negative": "{{optional}}\nWest longitude suffix for geographical coordinates.\n\nParameters:\n* $1 - value in degrees/minutes/seconds, see {{msg-mw|kartographer-coord-dms}}",
 	"kartographer-specialmap-invalid-coordinates": "Displayed by Special:Map when no valid coordinates are supplied",
+	"kartographer-specialmap-world": "Alternative text describing an image that shows the entire world on a small scale on the Special:Map special page.",
+	"kartographer-static-mapframe-alt": "Basic alternative text for a static, non-interactive &lt;mapframe> image. A user-provided caption under the image will describe the map's content.",
 	"kartographer.css": "{{optional}}",
 	"kartographer.js": "{{optional}}",
 	"kartographer-linktype-aerial": "Appears on the sidebar of the full screen map. A plural adjective, as in \"aerial (maps)\".\n\n{{Identical|Aerial}}",
