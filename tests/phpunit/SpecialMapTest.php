@@ -25,7 +25,7 @@ class SpecialMapTest extends MediaWikiIntegrationTestCase {
 		$specialMap = TestingAccessWrapper::newFromObject( new SpecialMap() );
 		$res = $specialMap->parseSubpage( $par );
 		if ( $expectedLat === null || $expectedLon === null ) {
-			$this->assertFalse( $res, 'Parsing is expected to fail' );
+			$this->assertNull( $res, 'Parsing is expected to fail' );
 		} else {
 			[ 'lat' => $lat, 'lon' => $lon, 'lang' => $lang ] = $res;
 			$this->assertSame( $expectedLat, $lat, 'Comparing latitudes' );
