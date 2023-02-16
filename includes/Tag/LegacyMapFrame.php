@@ -146,6 +146,9 @@ class LegacyMapFrame extends LegacyTagHandler {
 			$thumbnail = '';
 		} else {
 			$thumbnail = Html::element( 'img', $imgAttrs );
+			if ( $isPreview ) {
+				$thumbnail = Html::rawElement( 'noscript', [], $thumbnail );
+			}
 		}
 
 		if ( !$framed ) {
