@@ -505,7 +505,7 @@
 			"value": true
 		},
 		"KartographerNearby": {
-			"description": "Enable a beta-quality \"nearby\" feature, currently in development.  Wikivoyage already has its own implementation which this feature may conflict with.",
+			"description": "Number of nearby articles to load via the coordinates API. A number between 100 and 500 is recommended. Requires the GeoData and CirrusSearch extensions to be installed. Set to 0 to disable the feature.",
 			"value": false
 		},
 		"KartographerNearbyClustering": {

@@ -342,7 +342,7 @@ Nearby.prototype.fetchAndPopulateNearbyLayer = function ( map ) {
  * @return {jQuery.Promise}
  */
 Nearby.prototype.fetch = function ( bounds, zoom ) {
-	var limit = 300;
+	var limit = mw.config.get( 'wgKartographerNearby' );
 	// TODO: Cache results if bounds remains unchanged
 	return mwApi( {
 		action: 'query',

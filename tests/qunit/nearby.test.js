@@ -67,6 +67,8 @@
 	} ) );
 
 	QUnit.test( 'Executes a valid geosearch request', function ( assert ) {
+		mw.config.set( 'wgKartographerNearby', 300 );
+
 		this.server.respond(
 			[ 200, { 'Content-Type': 'application/json' }, JSON.stringify( dummyGeosearchResponse ) ]
 		);
