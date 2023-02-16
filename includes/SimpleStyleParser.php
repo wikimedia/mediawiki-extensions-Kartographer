@@ -47,8 +47,7 @@ class SimpleStyleParser {
 	 *                       and description in _origtitle and _origdescription
 	 */
 	public function __construct( WikitextParser $parser, array $options = [] ) {
-		// TODO: Temporary compatibility, remove when not needed any more
-		$this->parser = $parser instanceof Parser ? new MediaWikiWikitextParser( $parser ) : $parser;
+		$this->parser = $parser;
 		$this->options = $options;
 		// @fixme: More precise config?
 		$this->mapServer = MediaWikiServices::getInstance()
