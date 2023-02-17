@@ -99,8 +99,9 @@ MapDialog.prototype.setMap = function ( map ) {
 	if ( dialog.sideBar ) {
 		dialog.sideBar.tearDown();
 		dialog.map.doWhenReady( function () {
-			dialog.offsetMap( true );
-			dialog.toggleSideBar( true );
+			var open = dialog.mapDetailsButton.getValue();
+			dialog.offsetMap( open );
+			dialog.toggleSideBar( open );
 		} );
 	} else {
 		// The button exists, the sidebar was not open, simply run `offsetMap`
@@ -186,9 +187,9 @@ MapDialog.prototype.toggleSideBar = function ( open ) {
 			dialog.sideBar.toggle( true );
 		}
 
-		open = open === undefined ? !dialog.mapDetailsButton.value : open;
+		open = open === undefined ? !dialog.mapDetailsButton.getValue() : open;
 
-		if ( dialog.mapDetailsButton.value !== open ) {
+		if ( dialog.mapDetailsButton.getValue() !== open ) {
 			dialog.mapDetailsButton.setValue( open );
 			// This `change` event callback is fired again, so skip here.
 			return;
