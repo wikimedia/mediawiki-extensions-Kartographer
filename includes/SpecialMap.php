@@ -84,23 +84,21 @@ class SpecialMap extends UnlistedSpecialPage {
 	 * Parses subpage parameter to this special page into zoom / lat /lon
 	 *
 	 * @param string|null $par
-	 * @return array|false
+	 * @return array|null
 	 */
-	private function parseSubpage( ?string $par ) {
-		if ( !preg_match(
-				'#^(?<zoom>\d+)/(?<lat>-?\d+(\.\d+)?)/(?<lon>-?\d+(\.\d+)?)(/(?<lang>[a-zA-Z0-9-]+))?$#',
-				$par,
-				$matches
-			)
-		) {
-			return false;
+	private function parseSubpage( ?string $par ): ?array {
+		if ( !$par || !preg_match(
+			'#^(?<zoom>\d+)/(?<lat>-?\d+(\.\d+)?)/(?<lon>-?\d+(\.\d+)?)(/(?<lang>[a-zA-Z0-9-]+))?$#',
+			$par,
+			$matches
+		) ) {
+			return null;
 		}
 
 		if ( class_exists( Globe::class ) ) {
 			$globe = new Globe( 'earth' );
-
 			if ( !$globe->coordinatesAreValid( $matches['lat'], $matches['lon'] ) ) {
-				return false;
+				return null;
 			}
 		}
 
