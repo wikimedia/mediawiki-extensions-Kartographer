@@ -119,8 +119,8 @@ class MapTagArgumentValidator {
 		$this->resolvedLangCode = $this->specifiedLangCode ?? $defaultLangCode;
 		// If the specified language code is invalid, behave as if no language was specified
 		if (
-			!$this->languageNameUtils->isKnownLanguageTag( $this->resolvedLangCode ) &&
-			$this->resolvedLangCode !== 'local'
+			$this->resolvedLangCode !== 'local' &&
+			!$this->languageNameUtils->isKnownLanguageTag( $this->resolvedLangCode )
 		) {
 			$this->specifiedLangCode = null;
 			$this->resolvedLangCode = $defaultLangCode;
