@@ -94,6 +94,8 @@
 	"visualeditor-mwmapsdialog-options": "Iespējas",
 	"visualeditor-mwmapsdialog-display": "Attēlošana",
 	"visualeditor-mwmapsdialog-frame": "Rādīt rāmi",
+	"visualeditor-mwmapsdialog-caption": "Paraksts",
+	"visualeditor-mwmapsdialog-caption-help": "Šis paraksts tiks parādīts zem kartes rāmītī (tā pat kā attēlu paraksti). Parakstu pievienošana kartei izveidos rāmīti.\n\nŠeit var izmantot vikiteksta formatējumu, piemēram, treknrakstu, saites vai atsauces.",
 	"visualeditor-mwmapsdialog-language": "Valoda",
 	"visualeditor-mwmapsdialog-help-title": "Uzzini vairāk par karšu rediģēšanu.",
 	"visualeditor-mwmapsdialog-position-lat": "Ģeogrāfiskais platums",
