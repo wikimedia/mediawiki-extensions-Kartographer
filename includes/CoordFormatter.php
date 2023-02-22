@@ -14,47 +14,43 @@ use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
  */
 class CoordFormatter {
 
-	/** @var int */
-	private int $degreesLat;
-	/** @var int */
-	private int $minutesLat;
-	/** @var int */
-	private int $secondsLat;
-	/** @var int */
-	private int $degreesLon;
-	/** @var int */
-	private int $minutesLon;
-	/** @var int */
-	private int $secondsLon;
+	/** @var int[] */
+	private array $lat;
+	/** @var int[] */
+	private array $lon;
 	/** @var string */
 	private string $msgKey;
 
 	/**
-	 * @param float $lat
-	 * @param float $lon
+	 * @param float|null $lat
+	 * @param float|null $lon
 	 */
-	public function __construct( $lat, $lon ) {
-		[ $signLat, $this->degreesLat, $this->minutesLat, $this->secondsLat ] = $this->convertCoord( $lat );
-		[ $signLon, $this->degreesLon, $this->minutesLon, $this->secondsLon ] = $this->convertCoord( $lon );
-		$plusMinusLat = $signLat < 0 ? 'neg' : 'pos';
-		$plusMinusLon = $signLon < 0 ? 'neg' : 'pos';
+	public function __construct( ?float $lat, ?float $lon ) {
+		[ $plusMinusLat, $this->lat ] = $this->convertCoord( $lat );
+		[ $plusMinusLon, $this->lon ] = $this->convertCoord( $lon );
+		// Messages used here:
+		// * kartographer-coord-lat-pos-lon-pos
+		// * kartographer-coord-lat-pos-lon-neg
+		// * kartographer-coord-lat-neg-lon-pos
+		// * kartographer-coord-lat-neg-lon-neg
 		$this->msgKey = "kartographer-coord-lat-$plusMinusLat-lon-$plusMinusLon";
 	}
 
 	/**
 	 * Convert coordinates to degrees, minutes, seconds
 	 *
-	 * @param ?float $coord
-	 * @return int[]
+	 * @param float|null $coord
+	 * @return array
 	 */
 	private function convertCoord( ?float $coord ): array {
-		$val = $sign = round( $coord * 3600 );
+		$val = round( (float)$coord * 3600 );
+		$sign = $val < 0 ? 'neg' : 'pos';
 		$val = abs( $val );
 		$degrees = floor( $val / 3600 );
 		$minutes = floor( ( $val - $degrees * 3600 ) / 60 );
 		$seconds = $val - $degrees * 3600 - $minutes * 60;
 
-		return [ (int)$sign, (int)$degrees, (int)$minutes, (int)$seconds ];
+		return [ $sign, [ (int)$degrees, (int)$minutes, (int)$seconds ] ];
 	}
 
 	/**
@@ -65,8 +61,7 @@ class CoordFormatter {
 	 */
 	public function format( $language ): string {
 		return wfMessage( $this->msgKey )
-			->numParams( $this->degreesLat, $this->minutesLat, $this->secondsLat, $this->degreesLon,
-				$this->minutesLon, $this->secondsLon )
+			->numParams( ...$this->lat, ...$this->lon )
 			->inLanguage( $language )
 			->plain();
 	}
@@ -81,16 +76,11 @@ class CoordFormatter {
 	public function formatParsoidSpan( ParsoidExtensionAPI $extAPI, ?string $language ): DocumentFragment {
 		if ( $language === null ) {
 			return $extAPI->createInterfaceI18nFragment( $this->msgKey,
-				[
-					$this->degreesLat, $this->minutesLat, $this->secondsLat,
-					$this->degreesLon, $this->minutesLon, $this->secondsLon
-				] );
+				[ ...$this->lat, ...$this->lon ] );
 		} else {
 			return $extAPI->createLangI18nFragment( new Bcp47CodeValue( $language ), $this->msgKey,
-				[
-					$this->degreesLat, $this->minutesLat, $this->secondsLat,
-					$this->degreesLon, $this->minutesLon, $this->secondsLon
-				] );
+				[ ...$this->lat, ...$this->lon ] );
 		}
 	}
+
 }
