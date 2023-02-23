@@ -44,7 +44,7 @@ class SpecialMap extends UnlistedSpecialPage {
 			$markerHtml = '';
 		} else {
 			[ 'lat' => $lat, 'lon' => $lon ] = $coord;
-			$coordText = CoordFormatter::format( $lat, $lon, $this->getLanguage() );
+			$coordText = ( new CoordFormatter( $lat, $lon ) )->format( $this->getLanguage() );
 			[ $x, $y ] = EPSG3857::latLonToPoint( [ $lat, $lon ] );
 			$markerHtml = Html::element( 'div',
 				[
