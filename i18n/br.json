@@ -9,10 +9,6 @@
 	},
 	"kartographer-broken-category": "Pajennoù gant kartennoù faziek",
 	"kartographer-tracking-category": "Pajennoù gant kartennoù",
-	"kartographer-coord-lat-positive": "$1N",
-	"kartographer-coord-lat-negative": "$1S",
-	"kartographer-coord-lon-positive": "$1K",
-	"kartographer-coord-lon-negative": "$1R",
 	"kartographer-fullscreen-collapse": "Kuzhat munudoù ar gartenn",
 	"visualeditor-mwmapsdialog-title": "Kartenn",
 	"visualeditor-mwmapscontextitem-title": "Kartenn"

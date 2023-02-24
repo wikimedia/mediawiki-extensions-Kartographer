@@ -6,10 +6,6 @@
 		]
 	},
 	"kartographer-tracking-category": "Síður með landakortum",
-	"kartographer-coord-lat-positive": "$1N",
-	"kartographer-coord-lat-negative": "$1S",
-	"kartographer-coord-lon-positive": "$1A",
-	"kartographer-coord-lon-negative": "$1V",
 	"kartographer-linktype-map": "Stöðluð landakort",
 	"kartographer-linktype-other": "Annað",
 	"kartographer-linktype-satellite": "Gervitungl",

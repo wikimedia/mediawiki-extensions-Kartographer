@@ -25,8 +25,6 @@
 	"kartographer-error-title": "Tittelen «$1» er ikke en gyldig kartdataside",
 	"kartographer-tracking-category": "Sider med kart",
 	"kartographer-tracking-category-desc": "Denne siden inneholder et kart",
-	"kartographer-coord-lon-positive": "$1Ø",
-	"kartographer-coord-lon-negative": "$1V",
 	"kartographer-specialmap-invalid-coordinates": "Ugyldige koordinater er angitt",
 	"kartographer.css": "/* CSS plassert i denne fila vil gjelde for alle sider med kart */",
 	"kartographer.js": "/* JavaScript her lastes for alle rukere når sider med kart lastes */",
