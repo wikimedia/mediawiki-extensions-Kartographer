@@ -13,12 +13,13 @@
 			"Wladek92",
 			"Zarisi",
 			"Verdy p",
-			"Urhixidur"
+			"Urhixidur",
+			"DavidL"
 		]
 	},
-	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia maps] | Données de carte © [https://www.openstreetmap.org/copyright Contributeurs d’OpenStreetMap]",
+	"kartographer-attribution": "[https://meta.wikimedia.org/wiki/Maps_Terms_of_Use/fr Cartes Wikimedia] | Données de carte © [https://www.openstreetmap.org/copyright Contributeurs d’OpenStreetMap]",
 	"kartographer-attribution-externaldata": "$1 : $2",
-	"kartographer-attribution-short": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia] | © [https://www.openstreetmap.org/copyright OpenStreetMap]",
+	"kartographer-attribution-short": "[https://meta.wikimedia.org/wiki/Maps_Terms_of_Use/fr Wikimedia] | © [https://www.openstreetmap.org/copyright OpenStreetMap]",
 	"kartographer-broken-category": "Pages avec des cartes contenant des erreurs",
 	"kartographer-broken-category-desc": "La page inclut une carte utilisée de façon incorrecte.",
 	"kartographer-desc": "Permet l’ajout de cartes géographiques aux pages wiki",
