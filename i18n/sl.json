@@ -10,6 +10,7 @@
 	},
 	"apierror-kartographer-conflicting-revids": "Poizvedovanje po podatkih zemljevidov iz več redakcij iste strani v enem zahtevku še ni podprto.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Zemljevidi Wikimedie] | Podatki zemljevida © [https://www.openstreetmap.org/copyright Sodelavci OpenStreetMap]",
+	"kartographer-attribution-externaldata": "$1: $2",
 	"kartographer-broken-category": "Strani z zemljevidi z napakami",
 	"kartographer-broken-category-desc": "Stran vključuje neveljavno označevanje za uporabo zemljevida",
 	"kartographer-desc": "Omogoča dodajanje zemljevidov na vikistrani",
