@@ -191,6 +191,7 @@ class StateTest extends MediaWikiUnitTestCase {
 			'broken' => false,
 			'maplinks' => 1,
 			'mapframes' => 1,
+			// FIXME: Why do we store flipped arrays with meaningless values in the parser cache?
 			'interactiveGroups' => [ 'interactive' => 0 ],
 			'requestedGroups' => [ 'requested' => 0 ],
 			'counters' => null,

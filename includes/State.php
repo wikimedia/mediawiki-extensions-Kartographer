@@ -26,9 +26,9 @@ class State implements JsonSerializable {
 	 */
 	private array $usages = [];
 
-	/** @var int[] */
+	/** @var array<string,int> */
 	private array $interactiveGroups = [];
-	/** @var int[] */
+	/** @var array<string,int> */
 	private array $requestedGroups = [];
 	/** @var int[]|null */
 	private ?array $counters = null;
@@ -188,6 +188,7 @@ class State implements JsonSerializable {
 		return array_merge( [
 			'valid' => $this->valid,
 			'broken' => $this->broken,
+			// FIXME: Why do we store flipped arrays with meaningless values in the parser cache?
 			'interactiveGroups' => $this->interactiveGroups,
 			'requestedGroups' => $this->requestedGroups,
 			'counters' => $this->counters,
