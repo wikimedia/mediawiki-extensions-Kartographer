@@ -20,7 +20,7 @@ class StateTest extends MediaWikiUnitTestCase {
 		$state = new State();
 		$this->assertFalse( $state->hasValidTags() );
 
-		$state->setValidTags();
+		$state->incrementUsage( LegacyMapLink::TAG );
 		$this->assertTrue( $state->hasValidTags() );
 	}
 
@@ -28,7 +28,7 @@ class StateTest extends MediaWikiUnitTestCase {
 		$state = new State();
 		$this->assertFalse( $state->hasBrokenTags() );
 
-		$state->setBrokenTags();
+		$state->incrementBrokenTags();
 		$this->assertTrue( $state->hasBrokenTags() );
 	}
 
@@ -159,8 +159,7 @@ class StateTest extends MediaWikiUnitTestCase {
 		yield 'with groups' => [ $stateWithGroups ];
 
 		$stateWithFlags = new State();
-		$stateWithFlags->setBrokenTags();
-		$stateWithFlags->setValidTags();
+		$stateWithFlags->incrementBrokenTags();
 		$stateWithFlags->incrementUsage( LegacyMapFrame::TAG );
 		$stateWithFlags->incrementUsage( LegacyMapFrame::TAG );
 		$stateWithFlags->incrementUsage( LegacyMapLink::TAG );
@@ -187,8 +186,7 @@ class StateTest extends MediaWikiUnitTestCase {
 		$state->addRequestedGroups( [ 'requested' ] );
 		// This intentionally breaks when unexpected changes are made to the JSON serialization
 		$this->assertEquals( [
-			'valid' => false,
-			'broken' => false,
+			'broken' => 0,
 			'maplinks' => 1,
 			'mapframes' => 1,
 			// FIXME: Why do we store flipped arrays with meaningless values in the parser cache?
