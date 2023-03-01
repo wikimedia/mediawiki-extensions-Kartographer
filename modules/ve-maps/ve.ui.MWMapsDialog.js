@@ -393,7 +393,7 @@ ve.ui.MWMapsDialog.prototype.onLanguageChange = function ( lang ) {
 };
 
 /**
- * @extends ve.ui.MWExtensionWindow
+ * @see ve.ui.MWExtensionWindow.insertOrUpdateNode
  */
 ve.ui.MWMapsDialog.prototype.insertOrUpdateNode = function () {
 	// Parent method
@@ -408,7 +408,8 @@ ve.ui.MWMapsDialog.prototype.insertOrUpdateNode = function () {
 };
 
 /**
- * @extends ve.ui.MWExtensionWindow
+ * @see ve.ui.MWExtensionWindow.updateMwData
+ * @param {Object} mwData
  */
 ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 	// Parent method
