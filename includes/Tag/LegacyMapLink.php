@@ -27,8 +27,9 @@ class LegacyMapLink extends LegacyTagHandler {
 		if ( $text === null ) {
 			$text = $this->counter ?: ( new CoordFormatter( $this->args->lat, $this->args->lon ) )
 				->format( $this->getLanguageCode() );
+		} elseif ( $text !== '' ) {
+			$text = $parser->halfParseWikitext( $text );
 		}
-		$text = $parser->halfParseWikitext( $text );
 
 		$attrs = $this->prepareAttrs( [
 			'mapStyle' => $this->args->mapStyle,
