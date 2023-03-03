@@ -88,9 +88,15 @@ class MapTagArgumentValidator {
 	private function parseArgs(): void {
 		// Required arguments
 		if ( $this->args->name === LegacyMapFrame::TAG ) {
+			foreach ( [ 'width', 'height' ] as $required ) {
+				if ( !$this->args->has( $required ) ) {
+					$this->status->fatal( 'kartographer-error-missing-attr', $required );
+				}
+			}
+
 			// @todo: should these have defaults?
-			$this->width = $this->args->getString( 'width', false, '/^(\d+|([1-9]\d?|100)%|full)$/' );
-			$this->height = $this->args->getInt( 'height', false );
+			$this->width = $this->args->getString( 'width', '/^(\d+|([1-9]\d?|100)%|full)$/' );
+			$this->height = $this->args->getInt( 'height' );
 
 			// @todo: deprecate old syntax completely
 			if ( $this->width && str_ends_with( $this->width, '%' ) ) {
@@ -107,17 +113,17 @@ class MapTagArgumentValidator {
 			$this->status->fatal( 'kartographer-error-latlon' );
 		}
 
-		$this->zoom = $this->args->getInt( 'zoom', null );
+		$this->zoom = $this->args->getInt( 'zoom' );
 		$regexp = '/^(' . implode( '|', $this->config->get( 'KartographerStyles' ) ) . ')$/';
 		$defaultStyle = $this->config->get( 'KartographerDfltStyle' );
-		$this->mapStyle = $this->args->getString( 'mapstyle', null, $regexp ) ?? $defaultStyle;
-		$this->text = $this->args->getString( 'text', null );
+		$this->mapStyle = $this->args->getString( 'mapstyle', $regexp ) ?? $defaultStyle;
+		$this->text = $this->args->getString( 'text' );
 
 		$defaultLangCode = $this->config->get( 'KartographerUsePageLanguage' ) ?
 			$this->language->getCode() :
 			'local';
 		// Language code specified by the user (null if none)
-		$this->specifiedLangCode = $this->args->getString( 'lang', null );
+		$this->specifiedLangCode = $this->args->getString( 'lang' );
 		// Language code we're going to use
 		$this->resolvedLangCode = $this->specifiedLangCode ?? $defaultLangCode;
 		// If the specified language code is invalid, behave as if no language was specified
@@ -134,17 +140,17 @@ class MapTagArgumentValidator {
 			$this->align = 'none';
 		} elseif ( $this->width !== null ) {
 			$defaultAlign = $this->language->alignEnd();
-			$this->align = $this->args->getString( 'align', null, '/^(left|center|right)$/' ) ?? $defaultAlign;
+			$this->align = $this->args->getString( 'align', '/^(left|center|right)$/' ) ?? $defaultAlign;
 		}
 		$this->frameless = ( $this->text === null || $this->text === '' ) &&
-			$this->args->getString( 'frameless', null ) !== null;
-		$this->cssClass = $this->args->getString( 'class', null, '/^(|[a-zA-Z][-_a-zA-Z0-9]*)$/' ) ?? '';
+			$this->args->getString( 'frameless' ) !== null;
+		$this->cssClass = $this->args->getString( 'class', '/^(|[a-zA-Z][-_a-zA-Z0-9]*)$/' ) ?? '';
 	}
 
 	private function parseGroups(): void {
-		$this->groupId = $this->args->getString( 'group', null, '/^(\w| )+$/u' );
+		$this->groupId = $this->args->getString( 'group', '/^(\w| )+$/u' );
 
-		$show = $this->args->getString( 'show', null, '/^(|(\w| )+(\s*,\s*(\w| )+)*)$/u' );
+		$show = $this->args->getString( 'show', '/^(|(\w| )+(\s*,\s*(\w| )+)*)$/u' );
 		if ( $show ) {
 			$this->showGroups = array_map( 'trim', explode( ',', $show ) );
 		}
