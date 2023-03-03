@@ -15,7 +15,7 @@
 	"kartographer-error-json-type": "Igal GeoJSON+simplestyle'i objektil peab olema mittetühi tüüp, nt <code>{ \"type\": \"Feature\" }</code>.",
 	"kartographer-error-missing-attr": "Atribuut \"$1\" puudub.",
 	"kartographer-error-bad_attr": "Atribuudi \"$1\" väärtus on vigane.",
-	"kartographer-error-bad_data": "See JSON-sisu pole õige GeoJSON+simplestyle. Järmises loendis on kõik katsed tõlgendada seda vastavalt [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json JSON-skeemile]. Need kõik ei ole vead.",
+	"kartographer-error-bad_data": "See JSON-sisu pole õige GeoJSON+simplestyle. Järgmises loendis on kõik katsed tõlgendada seda vastavalt [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json JSON-skeemile]. Need kõik ei ole vead.",
 	"kartographer-error-latlon": "Ära peab olema toodud nii \"latitude\" kui ka \"longitude\" või mitte kumbki.",
 	"kartographer-error-title": "Pealkiri \"$1\" ei vasta sobivale kaardiandmete leheküljele.",
 	"kartographer-tracking-category": "Kaartidega leheküljed",
