@@ -19,6 +19,8 @@
 	"kartographer-tracking-category": "Kaartidega leheküljed",
 	"kartographer-tracking-category-desc": "Sellel leheküljel on kaart.",
 	"kartographer-specialmap-invalid-coordinates": "Ette antud vigased koordinaadid",
+	"kartographer.css": "/* Siin asuv kaskaadilaadistik laaditakse kõigil kaartidega lehekülgedel. */",
+	"kartographer.js": "/* Siin asuv JavaScript laaditakse kõigi kasutajate jaoks kõigil kaartidega lehekülgedel. */",
 	"kartographer-linktype-aerial": "Aerofoto",
 	"kartographer-linktype-map": "Tavakaardid",
 	"kartographer-linktype-other": "Muu",
