@@ -36,6 +36,7 @@
 	"kartographer-error-title": "Le titre « $1 » n’est pas une page de données de carte valide.",
 	"kartographer-tracking-category": "Pages avec des cartes",
 	"kartographer-tracking-category-desc": "La page inclut une carte",
+	"kartographer-coord-lat-pos-lon-pos": "$1°$2′$3″N $4°$5′$6″E",
 	"kartographer-coord-lat-pos-lon-neg": "$1°$2′$3″N $4°$5′$6″O",
 	"kartographer-coord-lat-neg-lon-pos": "$1°$2′$3″S $4°$5′$6″E",
 	"kartographer-coord-lat-neg-lon-neg": "$1°$2′$3″S $4°$5′$6″O",
