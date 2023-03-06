@@ -309,6 +309,15 @@ MapDialog.prototype.getReadyProcess = function ( data ) {
 		}, this );
 };
 
+MapDialog.prototype.getHoldProcess = function ( data ) {
+	return MapDialog.super.prototype.getHoldProcess.call( this, data )
+		.next( function () {
+			// T297519: Disable touch/mouse early to not cause chaos on "dragend" and such
+			this.map.dragging.disable();
+			this.map.touchZoom.disable();
+		}, this );
+};
+
 MapDialog.prototype.getTeardownProcess = function ( data ) {
 	return MapDialog.super.prototype.getTeardownProcess.call( this, data )
 		.next( function () {
