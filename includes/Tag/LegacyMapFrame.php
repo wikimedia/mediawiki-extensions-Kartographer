@@ -6,6 +6,7 @@ use FormatJson;
 use Html;
 use Kartographer\PartialWikitextParser;
 use Kartographer\SpecialMap;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -107,7 +108,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 			// before the page was saved, can only be applied via JS
 			$imgUrlParams += [
 				'domain' => $this->config->get( 'KartographerMediaWikiInternalUrl' ) ??
-					$this->config->get( 'ServerName' ),
+					$this->config->get( MainConfigNames::ServerName ),
 				'title' => $page ? MediaWikiServices::getInstance()->getTitleFormatter()->getPrefixedText( $page ) : '',
 				'revid' => $this->parser->getRevisionId(),
 				'groups' => implode( ',', $this->args->showGroups ),
@@ -124,7 +125,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 		];
 
 		$srcSetScalesConfig = $this->config->get( 'KartographerSrcsetScales' );
-		if ( $this->config->get( 'ResponsiveImages' ) && $srcSetScalesConfig ) {
+		if ( $this->config->get( MainConfigNames::ResponsiveImages ) && $srcSetScalesConfig ) {
 			// For now only support 2x, not 1.5. Saves some bytes...
 			$srcSetScales = array_intersect( $srcSetScalesConfig, [ 2 ] );
 			$srcSets = [];
