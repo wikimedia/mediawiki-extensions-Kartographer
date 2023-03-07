@@ -58,7 +58,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 			: 'ext.kartographer.frame' ] );
 
 		$attrs = [
-			'class' => 'mw-kartographer-map',
+			'class' => [ 'mw-kartographer-map' ],
 			// We need dimensions for when there is no img (editpreview or no staticmap)
 			// because an <img> element with permanent failing src has either:
 			// - intrinsic dimensions of 0x0, when alt=''
@@ -94,11 +94,6 @@ class LegacyMapFrame extends LegacyTagHandler {
 			$attrs['data-overlays'] = FormatJson::encode( $this->args->showGroups, false,
 				FormatJson::ALL_OK );
 			$this->state->addInteractiveGroups( $this->args->showGroups );
-		}
-
-		$containerClass = 'mw-kartographer-container';
-		if ( $this->args->width === 'full' ) {
-			$containerClass .= ' mw-kartographer-full';
 		}
 
 		$attrs['href'] = SpecialMap::link( $staticLat, $staticLon, $staticZoom, $this->args->resolvedLangCode )
@@ -140,34 +135,41 @@ class LegacyMapFrame extends LegacyTagHandler {
 			$imgAttrs[ 'srcset' ] = implode( ', ', $srcSets );
 		}
 
-		$usesAutoPosition = $staticZoom === 'a' || $staticLat === 'a' || $staticLon === 'a';
-		if ( $isPreview && $usesAutoPosition ) {
-			// Impossible to render .png thumbnails that depend on unsaved ExternalData. Preview
-			// will replace this with a dynamic map anyway when JavaScript is available.
-			$thumbnail = '';
-		} else {
-			$thumbnail = Html::element( 'img', $imgAttrs );
-			if ( $isPreview ) {
-				$thumbnail = Html::rawElement( 'noscript', [], $thumbnail );
+		$thumbnail = Html::element( 'img', $imgAttrs );
+		if ( $isPreview ) {
+			$thumbnail = Html::rawElement( 'noscript', [], $thumbnail );
+			$usesAutoPosition = $staticZoom === 'a' || $staticLat === 'a' || $staticLon === 'a';
+			if ( $usesAutoPosition ) {
+				// Impossible to render .png thumbnails that depend on unsaved ExternalData. Preview
+				// will replace this with a dynamic map anyway when JavaScript is available.
+				$thumbnail = '';
 			}
 		}
 
+		$containerClass = [ 'mw-kartographer-container' ];
+		if ( $this->args->width === 'full' ) {
+			$containerClass[] = 'mw-kartographer-full';
+		}
+
 		if ( !$framed ) {
-			$attrs['class'] .= ' ' . $containerClass . ' ' .
-				( self::ALIGN_CLASSES[$this->args->align] ?? '' );
+			array_push( $attrs['class'], ...$containerClass );
+			if ( isset( self::ALIGN_CLASSES[$this->args->align] ) ) {
+				$attrs['class'][] = self::ALIGN_CLASSES[$this->args->align];
+			}
 			return Html::rawElement( 'a', $attrs, $thumbnail );
 		}
 
-		$containerClass .= ' thumb ' . self::THUMB_ALIGN_CLASSES[$this->args->align];
-
 		$html = Html::rawElement( 'a', $attrs, $thumbnail );
-
 		if ( $caption !== '' ) {
 			$html .= Html::rawElement( 'div', [ 'class' => 'thumbcaption' ],
 				$parser->halfParseWikitext( $caption ) );
 		}
 
-		return Html::rawElement( 'div', [ 'class' => $containerClass ],
+		return Html::rawElement( 'div', [ 'class' => [
+				...$containerClass,
+				'thumb',
+				self::THUMB_ALIGN_CLASSES[$this->args->align],
+			] ],
 			Html::rawElement( 'div', [
 					'class' => 'thumbinner',
 					'style' => "width: $cssWidth;",
