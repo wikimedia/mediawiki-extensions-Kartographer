@@ -6,7 +6,7 @@ use Config;
 use Language;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
-use Status;
+use StatusValue;
 
 /**
  * Validator and preprocessor for all arguments that can be used in <mapframe> and <maplink> tags.
@@ -16,8 +16,8 @@ use Status;
  */
 class MapTagArgumentValidator {
 
-	/** @var Status */
-	public Status $status;
+	/** @var StatusValue */
+	public StatusValue $status;
 	/** @var Tag */
 	private Tag $args;
 	/** @var Config */
@@ -72,7 +72,7 @@ class MapTagArgumentValidator {
 		Config $config,
 		Language $language
 	) {
-		$this->status = Status::newGood();
+		$this->status = StatusValue::newGood();
 		$this->args = new Tag( $tag, $args, $this->status );
 		$this->config = $config;
 		$this->language = $language;

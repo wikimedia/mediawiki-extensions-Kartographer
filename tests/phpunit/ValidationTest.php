@@ -6,7 +6,7 @@ use Kartographer\SimpleStyleParser;
 use MediaWikiIntegrationTestCase;
 use Parser;
 use ParserOptions;
-use Status;
+use StatusValue;
 use Title;
 
 /**
@@ -29,8 +29,8 @@ class ValidationTest extends MediaWikiIntegrationTestCase {
 			public function __construct() {
 			}
 
-			public function normalizeAndSanitize( &$data ): Status {
-				return Status::newGood();
+			public function normalizeAndSanitize( &$data ): StatusValue {
+				return StatusValue::newGood();
 			}
 		};
 

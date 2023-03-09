@@ -2,7 +2,7 @@
 
 namespace Kartographer\Tag;
 
-use Status;
+use StatusValue;
 
 /**
  * Generic handler to validate and preprocess the arguments of an XML-style parser tag. This class
@@ -16,15 +16,15 @@ class Tag {
 	public string $name;
 	/** @var string[] */
 	private array $args;
-	/** @var Status */
-	public Status $status;
+	/** @var StatusValue */
+	public StatusValue $status;
 
 	/**
 	 * @param string $name
 	 * @param string[] $args
-	 * @param Status $status
+	 * @param StatusValue $status
 	 */
-	public function __construct( string $name, array $args, Status $status ) {
+	public function __construct( string $name, array $args, StatusValue $status ) {
 		$this->name = $name;
 		$this->args = $args;
 		$this->status = $status;

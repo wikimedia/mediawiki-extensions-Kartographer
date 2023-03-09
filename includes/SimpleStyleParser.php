@@ -10,7 +10,7 @@ use LogicException;
 use MediaWiki\MediaWikiServices;
 use Parser;
 use PPFrame;
-use Status;
+use StatusValue;
 use stdClass;
 
 /**
@@ -59,16 +59,16 @@ class SimpleStyleParser {
 	 * Parses string into JSON and performs validation/sanitization
 	 *
 	 * @param string|null $input
-	 * @return Status with the value being [ 'data' => stdClass[], 'schema-errors' => array[] ]
+	 * @return StatusValue with the value being [ 'data' => stdClass[], 'schema-errors' => array[] ]
 	 */
-	public function parse( ?string $input ): Status {
+	public function parse( ?string $input ): StatusValue {
 		if ( !$input || trim( $input ) === '' ) {
-			return Status::newGood( [ 'data' => [] ] );
+			return StatusValue::newGood( [ 'data' => [] ] );
 		}
 
 		$status = FormatJson::parse( $input, FormatJson::TRY_FIXING | FormatJson::STRIP_COMMENTS );
 		if ( !$status->isOK() ) {
-			return Status::newFatal( 'kartographer-error-json', $status->getMessage() );
+			return StatusValue::newFatal( 'kartographer-error-json', $status->getMessage() );
 		}
 
 		return $this->parseObject( $status->value );
@@ -78,9 +78,9 @@ class SimpleStyleParser {
 	 * Validate and sanitize a parsed GeoJSON data object
 	 *
 	 * @param array|stdClass &$data
-	 * @return Status
+	 * @return StatusValue
 	 */
-	public function parseObject( &$data ): Status {
+	public function parseObject( &$data ): StatusValue {
 		if ( !is_array( $data ) ) {
 			$data = [ $data ];
 		}
@@ -93,9 +93,9 @@ class SimpleStyleParser {
 
 	/**
 	 * @param stdClass[]|stdClass &$data
-	 * @return Status
+	 * @return StatusValue
 	 */
-	public function normalizeAndSanitize( &$data ): Status {
+	public function normalizeAndSanitize( &$data ): StatusValue {
 		$status = $this->recursivelyNormalizeExternalData( $data );
 		$this->recursivelySanitizeAndParseWikitext( $data );
 		return $status;
@@ -174,17 +174,17 @@ class SimpleStyleParser {
 
 	/**
 	 * @param stdClass[] $data
-	 * @return Status
+	 * @return StatusValue
 	 */
-	private function validateGeoJSON( array $data ): Status {
+	private function validateGeoJSON( array $data ): StatusValue {
 		// Basic top-level validation. The JSON schema validation below does this again, but gives
 		// terrible, very hard to understand error messages.
 		foreach ( $data as $geoJSON ) {
 			if ( !( $geoJSON instanceof stdClass ) ) {
-				return Status::newFatal( 'kartographer-error-json-object' );
+				return StatusValue::newFatal( 'kartographer-error-json-object' );
 			}
 			if ( !isset( $geoJSON->type ) || !is_string( $geoJSON->type ) || !$geoJSON->type ) {
-				return Status::newFatal( 'kartographer-error-json-type' );
+				return StatusValue::newFatal( 'kartographer-error-json-type' );
 			}
 		}
 
@@ -194,12 +194,12 @@ class SimpleStyleParser {
 
 		if ( !$validator->isValid() ) {
 			$errors = $validator->getErrors( Validator::ERROR_DOCUMENT_VALIDATION );
-			$status = Status::newFatal( 'kartographer-error-bad_data' );
+			$status = StatusValue::newFatal( 'kartographer-error-bad_data' );
 			$status->setResult( false, [ 'schema-errors' => $errors ] );
 			return $status;
 		}
 
-		return Status::newGood();
+		return StatusValue::newGood();
 	}
 
 	/**
@@ -232,10 +232,10 @@ class SimpleStyleParser {
 
 	/**
 	 * @param stdClass[]|stdClass &$json
-	 * @return Status
+	 * @return StatusValue
 	 */
-	private function recursivelyNormalizeExternalData( &$json ): Status {
-		$status = Status::newGood();
+	private function recursivelyNormalizeExternalData( &$json ): StatusValue {
+		$status = StatusValue::newGood();
 		if ( is_array( $json ) ) {
 			foreach ( $json as &$element ) {
 				$status->merge( $this->recursivelyNormalizeExternalData( $element ) );
@@ -252,9 +252,9 @@ class SimpleStyleParser {
 	 * Canonicalizes an ExternalData object
 	 *
 	 * @param stdClass &$object
-	 * @return Status
+	 * @return StatusValue
 	 */
-	private function normalizeExternalDataServices( stdClass &$object ): Status {
+	private function normalizeExternalDataServices( stdClass &$object ): StatusValue {
 		$service = $object->service ?? null;
 		$ret = (object)[
 			'type' => 'ExternalData',
@@ -290,7 +290,7 @@ class SimpleStyleParser {
 				if ( !$jct || JCSingleton::getContentClass( $jct->getConfig()->model ) !==
 							  JCMapDataContent::class
 				) {
-					return Status::newFatal( 'kartographer-error-title', $object->title );
+					return StatusValue::newFatal( 'kartographer-error-title', $object->title );
 				}
 				$query = [
 					'format' => 'json',
@@ -306,7 +306,7 @@ class SimpleStyleParser {
 		}
 
 		$object = $ret;
-		return Status::newGood();
+		return StatusValue::newGood();
 	}
 
 	/**

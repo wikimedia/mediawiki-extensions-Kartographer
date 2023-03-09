@@ -18,6 +18,7 @@ use Kartographer\SimpleStyleParser;
 use Parser;
 use ParserFactory;
 use ParserOptions;
+use Status;
 use Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -78,7 +79,7 @@ class ApiSanitizeMapData extends ApiBase {
 		);
 		$status = $simpleStyle->parse( $text );
 		if ( !$status->isOK() ) {
-			$error = $status->getHTML( false, false, $this->getLanguage() );
+			$error = Status::wrap( $status )->getHTML( false, false, $this->getLanguage() );
 			$this->getResult()->addValue( null, $this->getModuleName(), [ 'error' => $error ] );
 		} else {
 			$data = $status->getValue()['data'];
