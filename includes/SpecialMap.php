@@ -62,6 +62,7 @@ class SpecialMap extends UnlistedSpecialPage {
 				Html::rawElement( 'div', [ 'class' => 'thumbinner' ],
 					Html::rawElement( 'div', [ 'id' => 'mw-specialMap-inner' ],
 						Html::element( 'img', [
+							'alt' => $this->msg( 'kartographer-specialmap-world' ),
 							'height' => 256,
 							'width' => 256,
 							'src' => $this->getWorldMapUrl(),
