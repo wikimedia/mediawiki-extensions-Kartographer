@@ -89,7 +89,7 @@ class SpecialMap extends UnlistedSpecialPage {
 	 */
 	private function parseSubpage( ?string $par ): ?array {
 		if ( !$par || !preg_match(
-			'#^(?<zoom>\d+)/(?<lat>-?\d+(\.\d+)?)/(?<lon>-?\d+(\.\d+)?)(/(?<lang>[a-zA-Z0-9-]+))?$#',
+			'#^(?<zoom>\d*)/(?<lat>-?\d+(\.\d+)?)/(?<lon>-?\d+(\.\d+)?)(/(?<lang>[a-zA-Z\d-]+))?$#',
 			$par,
 			$matches
 		) ) {
