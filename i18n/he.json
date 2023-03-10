@@ -24,6 +24,8 @@
 	"kartographer-tracking-category": "דפים עם מפות",
 	"kartographer-tracking-category-desc": "הדף הזה מכיל מפה",
 	"kartographer-specialmap-invalid-coordinates": "הקואורדינטות שסופקו אינן תקינות",
+	"kartographer-specialmap-world": "מפת העולם",
+	"kartographer-static-mapframe-alt": "מפה",
 	"kartographer.css": "/* הסגנונות הנכתבים כאן ישפיעו על כל הדפים שמכילים מפות */",
 	"kartographer.js": "/* כל הסקריפטים הנכתבים כאן ייטענו בכל הדפים שמכילים מפות */",
 	"kartographer-linktype-aerial": "אוויריות",

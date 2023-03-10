@@ -22,6 +22,8 @@
 	"kartographer-tracking-category": "Страници со карти",
 	"kartographer-tracking-category-desc": "Оваа страница содржи карта",
 	"kartographer-specialmap-invalid-coordinates": "Укажани се неважечки координати",
+	"kartographer-specialmap-world": "Светска карта",
+	"kartographer-static-mapframe-alt": "Карта",
 	"kartographer.css": "/* Тука поставениот CSS ќе се применува врз сите карти */",
 	"kartographer.js": "/* Тука поставениот JavaScript ќе им се вчитува на сите корисници при отворање на страниците што содржат карти */",
 	"kartographer-linktype-aerial": "Воздушна",

@@ -26,6 +26,8 @@
 	"kartographer-coord-lat-pos-lon-pos": "$1°$2′$3″N $4°$5′$6″O",
 	"kartographer-coord-lat-neg-lon-pos": "$1°$2′$3″S $4°$5′$6″O",
 	"kartographer-specialmap-invalid-coordinates": "Ungültige Koordinaten angegeben",
+	"kartographer-specialmap-world": "Weltkarte",
+	"kartographer-static-mapframe-alt": "Karte",
 	"kartographer.css": "/* CSS an dieser Stelle wirkt sich auf alle Seiten mit Karten aus */",
 	"kartographer.js": "/* Jedes JavaScript an dieser Stelle wird für alle Benutzer auf Seiten geladen, die Karten enthalten */",
 	"kartographer-linktype-aerial": "Luft",

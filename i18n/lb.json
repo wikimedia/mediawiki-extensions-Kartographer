@@ -3,7 +3,8 @@
 		"authors": [
 			"Amire80",
 			"Les Meloures",
-			"Robby"
+			"Robby",
+			"Volvox"
 		]
 	},
 	"kartographer-broken-category": "Säite mat futtisse Kaarten",
@@ -16,6 +17,8 @@
 	"kartographer-tracking-category": "Säite  mat Kaarten",
 	"kartographer-tracking-category-desc": "An der Säit ass eng Kaart dran",
 	"kartographer-specialmap-invalid-coordinates": "Net valabel Koordinaten uginn",
+	"kartographer-specialmap-world": "Weltkaart",
+	"kartographer-static-mapframe-alt": "Kaart",
 	"kartographer-linktype-aerial": "Loft",
 	"kartographer-linktype-map": "Standard-Kaarten",
 	"kartographer-linktype-other": "Anerer",

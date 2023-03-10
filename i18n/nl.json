@@ -28,6 +28,8 @@
 	"kartographer-tracking-category": "Pagina's met kaarten",
 	"kartographer-tracking-category-desc": "De pagina bevat een kaart",
 	"kartographer-specialmap-invalid-coordinates": "Ongeldige coördinaten opgegeven",
+	"kartographer-specialmap-world": "Wereldkaart",
+	"kartographer-static-mapframe-alt": "Kaart",
 	"kartographer-linktype-aerial": "Luchtfoto's",
 	"kartographer-linktype-map": "Standaard kaarten",
 	"kartographer-linktype-other": "Anders",

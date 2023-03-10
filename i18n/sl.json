@@ -26,6 +26,8 @@
 	"kartographer-tracking-category": "Strani z zemljevidi",
 	"kartographer-tracking-category-desc": "Stran vključuje zemljevid",
 	"kartographer-specialmap-invalid-coordinates": "Navedene koordinate so neveljavne",
+	"kartographer-specialmap-world": "Zemljevid sveta",
+	"kartographer-static-mapframe-alt": "Zemljevid",
 	"kartographer.css": "/* Tu postavljeni CSS se bo uporabljal na vseh straneh z zemljevidi */",
 	"kartographer.js": "/* Kateri koli tu postavljeni JavaScript se bo naložil pri vsakem uporabniku strani z zemljevidi */",
 	"kartographer-linktype-aerial": "Zračni",
