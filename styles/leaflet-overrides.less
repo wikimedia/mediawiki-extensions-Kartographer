@@ -10,13 +10,30 @@
 		font-size: 14px;
 		font-family: @font-family-base;
 
-		.marker-description img {
-			display: block;
-			max-width: 250px;
-			height: auto;
-			max-height: 250px;
-			margin: @padding-vertical-base auto 0 auto;
-			object-fit: cover;
+		.marker-description {
+			img {
+				display: block;
+				max-width: 250px;
+				height: auto;
+				max-height: 250px;
+				margin: @padding-vertical-base auto 0 auto;
+				object-fit: cover;
+			}
+
+			.tleft,
+			.tright {
+				float: none;
+				margin: 0;
+			}
+
+			.thumbinner {
+				width: auto !important; /* stylelint-disable-line declaration-no-important */
+
+				img {
+					max-width: 100%;
+					margin-top: 0;
+				}
+			}
 		}
 
 		.leaflet-map-pane a {
