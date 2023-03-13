@@ -29,6 +29,8 @@
 	"kartographer-tracking-category": "Páginas con mapas",
 	"kartographer-tracking-category-desc": "La página incluye un mapa",
 	"kartographer-specialmap-invalid-coordinates": "Las coordenadas suministradas no son válidas",
+	"kartographer-specialmap-world": "Mapamundi",
+	"kartographer-static-mapframe-alt": "Mapa",
 	"kartographer.css": "/* Los estilos CSS colocados aquí se aplicarán a todas las páginas con mapas */",
 	"kartographer-linktype-aerial": "Aéreo",
 	"kartographer-linktype-map": "Mapas estándares",

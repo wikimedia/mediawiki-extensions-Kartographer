@@ -13,7 +13,7 @@
 	"kartographer-error-json": "JSON ߕߍ߫ ߛߐ߲߬ ߛߍ߯ߛߍ߯ ߟߊ߫: $1",
 	"kartographer-error-missing-attr": "ߟߊ߬ߘߏ߲߬ߠߌ߲߫ \"$1\" ߞߐߢߌ߬ߣߊ߬ߣߍ߲߫",
 	"kartographer-error-bad_attr": "ߡߐ߬ߟߐ߲߫ ߓߍ߲߬ߓߊߟߌ ߦߋ߫ ߟߊ߬ߘߏ߲߬ߠߌ߲ \"$1\" ߟߊ߫",
-	"kartographer-error-bad_data": "JSON ߞߣߐߘߐ ߓߍ߲߬ߣߍ߲߫ ߕߍ߫ geoJSON+simple style.ߟߊ߬ߘߤߊ߬ߟߌ ߝߎ߬ߕߎ߲߬ߕߌ ߦߋ߫ ߝߌ߬ߛߌ߫ \"$1\": \"$2\" ߟߎ߫ ߟߊ߫.",
+	"kartographer-error-bad_data": "JSON ߞߣߐߘߐ ߓߍ߲߬ߣߍ߲߫ ߕߍ߫ geoJSON+simple style ߟߊ߫. ߛߙߍߘߍ ߡߍ߲ ߦߋ߫ ߘߎ߰ߟߊ߫߸ ߏ߬ ߦߋ߫ ߝߍ߬ߙߍ ߓߍ߯ ߦߌ߬ߘߊ߬ ߟߊ߫ ߞߊ߬ ߛߴߊ߬ ߘߟߊߡߌ߬ߘߊ߬ ߟߊ߫߸ ߞߊ߬ ߓߍ߲߬ [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json the JSON Schema] ߡߊ߬. ߏ߬ ߘߏ߲߬ ߓߍ߯ ߕߍ߫ ߝߎ߬ߕߎ߲߬ߕߌ߬ ߘߌ߫.",
 	"kartographer-error-latlon": "ߕߎ߬ߡߊ߬ߘߐ߫ \"latitude\" ߣߌ߫ \"longitude\" ߟߎ߫ ߝߌ߬ߟߊ ߢߊߓߐߟߌ ߟߎ߫ ߟߋ߬ ߞߊߡߊ߲߫ ߦߋ߫ ߞߊ߬ ߡߊߛߐ߫ ߥߟߴߊ߬ߟߎ߫ ߝߌ߬ߟߊ ߛߌ߫ ߞߊ߫ ߞߍ߫.",
 	"kartographer-error-title": "ߞߎ߲߬ߕߐ߮ \"$1\" ߕߍ߫ ߔߊ߬ߔߘߊ ߟߐ߲ߕߊ߫ ߞߐߜߍ߫ ߓߍ߲߬ߣߍ߲߫ ߘߌ߫",
 	"kartographer-tracking-category": "ߔߊ߬ߔߘߊ ߦߋ߫ ߞߐߜߍ ߡߍ߲ ߠߎ߬ ߟߊ߫",
