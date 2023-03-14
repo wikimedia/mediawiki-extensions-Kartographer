@@ -315,6 +315,9 @@ MapDialog.prototype.getHoldProcess = function ( data ) {
 			// T297519: Disable touch/mouse early to not cause chaos on "dragend" and such
 			this.map.dragging.disable();
 			this.map.touchZoom.disable();
+			this.map.doubleClickZoom.disable();
+			this.map.scrollWheelZoom.disable();
+			this.map.keyboard.disable();
 		}, this );
 };
 
