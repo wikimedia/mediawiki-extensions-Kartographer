@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Lancine.kounfantoh.fofana"
+			"Lancine.kounfantoh.fofana",
+			"Amire80"
 		]
 	},
 	"kartographer-attribution": "[Https://foundation.wikimedia.org/wiki/ߔߊ߬ߔߘߊ_ߥߞߌߡߋߘߌߦߊ ߟߊߓߊ߯ߙߊ߫_ߛߙߊߕߌ] | ߔߊ߬ߔߘߊ ߟߐ߲ߕߊ © [Https://www.openstreetmap.org/copyright ߏߔߌ߲ߛߑߙߌߕߑߡߊߔ ߓߟߏߡߊߜߍ߲ߠߊ]",
@@ -23,6 +24,7 @@
 	"kartographer-linktype-other": "ߘߏ߫ ߜߘߍ",
 	"kartographer-linktype-satellite": "ߞߐߓߌߟߊ",
 	"kartographer-linktype-terrain": "ߘߎ߰ߞߟߏ",
+	"kartographer-linktype-topo": "ߦߌߟߡߊߛߙߋߡߊ",
 	"kartographer-sidebar-coordinates": "ߘߏ߲߬ߖߟߎ߬ߡߊ߬ߟߌ",
 	"kartographer-sidebar-filterdropdown": "ߔߊ߬ߔߘߊ ߛߎ߯ߦߊ ߘߏ߫ ߓߊߕߐ߬ߡߐ߲߫",
 	"kartographer-sidebar-externalservices": "ߔߊ߬ߔߘߊ ߗߋߘߊ ߟߎ߬",
@@ -69,6 +71,7 @@
 	"leafletdraw-edit-toolbar-buttons-edit": "ߝߋ߲ ߡߊߦߟߍ߬ߡߊ߲߫",
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "ߝߋ߲߫ ߡߊߦߟߍ߬ߡߊ߲߬ߕߊ߫ ߛߌ߫ ߕߴߦߋ߲߬",
 	"leafletdraw-edit-toolbar-buttons-remove": "ߝߋ߲ ߖߏ߰ߛߌ߫",
+	"leafletdraw-edit-toolbar-buttons-removedisabled": "ߝߋ߲߫ ߖߏ߰ߛߌ߬ߕߊ߫ ߕߍ߫ ߦߊ߲߬",
 	"leafletdraw-draw-toolbar-finish-text": "ߊ߬ ߓߘߊ߫ ߓߊ߲߫",
 	"leafletdraw-draw-toolbar-finish-title": "ߊ߬ ߛߐ߲߬ߞߌ߲߫ ߞߊ߬ ߛߊߥߎߙߊ ߟߊߓߊ߲߫",
 	"map": "ߘߏ߲߬ߖߟߎ߬ߡߊ߬ߟߌ ߞߎ߲߬ߠߊ߬ߝߏߣߌ߲",

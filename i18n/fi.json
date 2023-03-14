@@ -10,7 +10,10 @@
 			"Surjection",
 			"Susannaanas",
 			"Valtlait",
-			"Zache"
+			"Zache",
+			"Amire80",
+			"Valtlai",
+			"Yupik"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia-kartat] | Karttatiedot © [https://www.openstreetmap.org/copyright OpenStreetMapin tekijät]",
@@ -75,8 +78,8 @@
 	"leafletdraw-edit-toolbar-actions-clearall-text": "Tyhjennä kaikki",
 	"leafletdraw-edit-toolbar-buttons-edit": "Muokkaa tasoja",
 	"leafletdraw-edit-toolbar-buttons-editdisabled": "Ei muokattavia tasoja",
-	"leafletdraw-edit-toolbar-buttons-remove": "Poista tasot",
-	"leafletdraw-edit-toolbar-buttons-removedisabled": "Ei poistettavia tasoja",
+	"leafletdraw-edit-toolbar-buttons-remove": "Poista objektit",
+	"leafletdraw-edit-toolbar-buttons-removedisabled": "Ei poistettavia objekteja",
 	"map": "Koordinaattien tiedot",
 	"mapbox-control-zoomin-title": "Lähennä",
 	"mapbox-control-zoomout-title": "Loitonna",

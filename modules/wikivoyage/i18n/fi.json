@@ -1,13 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
-			"MITO"
+			"MITO",
+			"Pyscowicz"
 		]
 	},
 	"kartographer-wv-group": "Ryhmä:",
 	"kartographer-wv-layer-nearby-articles": "Lähistöllä olevat artikkelit",
 	"kartographer-wv-nearby-articles-control": "Tutustu lähistöllä oleviin kohteisiin",
 	"kartographer-wv-warning-external-source-title": "Ulkoinen tietolähde",
-	"kartographer-wv-warning-external-source-agree": "Okei",
+	"kartographer-wv-warning-external-source-agree": "Ymmärrän",
 	"kartographer-wv-warning-external-source-disagree": "Peruuta"
 }

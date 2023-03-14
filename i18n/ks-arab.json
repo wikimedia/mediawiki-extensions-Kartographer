@@ -1,8 +1,22 @@
 {
 	"@metadata": {
 		"authors": [
-			"Iflaq"
+			"Iflaq",
+			"Tajamul9"
 		]
 	},
+	"kartographer-tracking-category": "صَفہٕ یِمَن مَنٛز نَقشہٕ چھِ",
+	"kartographer-linktype-other": "باقٕے",
+	"kartographer-linktype-satellite": "سیٹلایِٹ",
+	"kartographer-link-google-maps": "گوٗگٕل نَقشہٕ",
+	"kartographer-sidebar-externalservices-show-all": "بییہٚ وُچُھو",
+	"leafletdraw-draw-toolbar-actions-text": "مَنسوٗخ",
+	"leafletdraw-edit-toolbar-actions-cancel-text": "مَنسوٗخ",
+	"leafletdraw-edit-toolbar-actions-save-text": "مَحفوٗظ",
+	"leafletdraw-edit-toolbar-actions-save-title": "تَبدیٖلی کٔرِو مَحفوٗظ",
+	"mapbox-control-zoomin-title": "بڈاوُن",
+	"mapbox-control-zoomout-title": "دوٗر",
+	"kartographer-fullscreen-close": "بَنٛد",
+	"visualeditor-mwmapsdialog-language": "زَبان",
 	"visualeditor-mwmapsdialog-title": "نَقشہٕ"
 }
