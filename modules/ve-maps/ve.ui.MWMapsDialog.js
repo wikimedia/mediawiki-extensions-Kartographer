@@ -264,10 +264,10 @@ ve.ui.MWMapsDialog.prototype.updateMapArea = function () {
 		initialDimensions = this.scalable.getCurrentDimensions();
 	if ( !isFinite( dimensions.width ) ) {
 		// Fullscreen width is hard-coded; otherwise reuse the initial values from getSetupProcess
-		dimensions.width = isFullWidth ? 800 : initialDimensions.width;
+		dimensions.width = isFullWidth ? 800 : ( initialDimensions.width || 300 );
 	}
 	if ( !isFinite( dimensions.height ) ) {
-		dimensions.height = initialDimensions.height;
+		dimensions.height = initialDimensions.height || 300;
 	}
 	// The user input might be non-numeric, still try to visualize if possible
 	centerCoord = [ parseFloat( this.latitude.getValue() ), parseFloat( this.longitude.getValue() ) ];
@@ -446,8 +446,17 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 			defaultAlign = contentDirection === 'ltr' ? 'right' : 'left',
 			align = this.align.findSelectedItem().getData();
 
-		mwData.attrs.width = isFullWidth ? width : dimensions.width.toString();
-		mwData.attrs.height = dimensions.height.toString();
+		if ( isFullWidth ) {
+			// Keep the original width="full" or width="100%" in the wikitext
+			mwData.attrs.width = width;
+		} else if ( dimensions.width ) {
+			// Never write NaN to the wikitext
+			mwData.attrs.width = dimensions.width.toString();
+		}
+		if ( dimensions.height ) {
+			// Never write NaN to the wikitext
+			mwData.attrs.height = dimensions.height.toString();
+		}
 		// Don't add the default align="…" to existing <mapframe> tags to avoid dirty diffs
 		if ( align !== defaultAlign || 'align' in mwData.attrs ) {
 			mwData.attrs.align = align;
