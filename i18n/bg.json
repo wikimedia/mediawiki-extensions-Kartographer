@@ -3,6 +3,7 @@
 		"authors": [
 			"Amire80",
 			"Iliev",
+			"Kareyac",
 			"StanProg",
 			"Ted Masters"
 		]
@@ -14,6 +15,8 @@
 	"kartographer-tracking-category": "Страници с карти",
 	"kartographer-tracking-category-desc": "Тази страница съдържа карта",
 	"kartographer-specialmap-invalid-coordinates": "Указани са невалидни координати",
+	"kartographer-specialmap-world": "Карта на света",
+	"kartographer-static-mapframe-alt": "Карта",
 	"kartographer-linktype-aerial": "Въздушна",
 	"kartographer-linktype-map": "Стандартни карти",
 	"kartographer-linktype-other": "Други",
