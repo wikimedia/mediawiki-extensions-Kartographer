@@ -30,7 +30,7 @@ class SimpleStyleParser {
 	private array $options;
 
 	/** @var string */
-	private $mapServer;
+	private string $mapServer;
 
 	/**
 	 * @param Parser $parser

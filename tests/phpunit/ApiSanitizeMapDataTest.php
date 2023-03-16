@@ -19,6 +19,7 @@ class ApiSanitizeMapDataTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->setMwGlobals( [
+			'wgKartographerMapServer' => 'http://192.0.2.0',
 			'wgScriptPath' => '/w',
 			'wgScript' => '/w/index.php',
 		] );

@@ -56,7 +56,7 @@ class MapTagArgumentValidator {
 	 * @var string|null Currently parsed group identifier from the group="…" attribute. Only allowed
 	 *  in …WikivoyageMode. Otherwise a private, auto-generated identifier starting with "_".
 	 */
-	public $groupId;
+	public ?string $groupId = null;
 	/** @var string[] List of group identifiers to show */
 	public array $showGroups = [];
 
