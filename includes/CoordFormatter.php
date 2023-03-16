@@ -3,7 +3,6 @@
 namespace Kartographer;
 
 use Language;
-use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
 
@@ -74,13 +73,8 @@ class CoordFormatter {
 	 * @return DocumentFragment
 	 */
 	public function formatParsoidSpan( ParsoidExtensionAPI $extAPI, ?string $language ): DocumentFragment {
-		if ( $language === null ) {
-			return $extAPI->createInterfaceI18nFragment( $this->msgKey,
-				[ ...$this->lat, ...$this->lon ] );
-		} else {
-			return $extAPI->createLangI18nFragment( new Bcp47CodeValue( $language ), $this->msgKey,
-				[ ...$this->lat, ...$this->lon ] );
-		}
+		$params = [ ...$this->lat, ...$this->lon ];
+		return ParsoidUtils::createLangFragment( $this->msgKey, $params, $extAPI, $language );
 	}
 
 }
