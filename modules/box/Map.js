@@ -61,7 +61,7 @@ L.Map.mergeOptions( {
 L.Popup.mergeOptions( {
 	minWidth: 160,
 	maxWidth: 300,
-	autoPanPadding: [ 40, 55 ]
+	autoPanPadding: [ 12, 12 ]
 } );
 
 /* eslint-disable no-underscore-dangle */
