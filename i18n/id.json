@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Agam Riyandana",
 			"Amire80",
 			"Daud I.F. Argana",
 			"Diki Ananta",
@@ -27,7 +28,7 @@
 	"kartographer-tracking-category": "Halaman dengan peta",
 	"kartographer-tracking-category-desc": "Halaman yang menyertakan peta",
 	"kartographer-specialmap-invalid-coordinates": "Koordinat yang diberikan tak sah",
-	"kartographer-specialmap-world": "Peta dunia",
+	"kartographer-specialmap-world": "Peta Dunia",
 	"kartographer-static-mapframe-alt": "Peta",
 	"kartographer-linktype-aerial": "Aerial",
 	"kartographer-linktype-map": "Peta standar",
