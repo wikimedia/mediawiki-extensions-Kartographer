@@ -263,6 +263,25 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
+	/**
+	 * @dataProvider provideDataWithoutMarkerSymbolCounters
+	 */
+	public function testFindMarkerSymbolCounters(
+		string $data,
+		string $expectedFirstMarker = null
+	) {
+		$expectedData = json_decode( $data );
+		$data = json_decode( $data );
+		$firstMarker = SimpleStyleParser::findFirstMarkerSymbol( $data );
+		$this->assertEquals( $expectedData, $data );
+		if ( $expectedFirstMarker ) {
+			$this->assertSame( $expectedFirstMarker, $firstMarker[0] );
+			$this->assertIsObject( $firstMarker[1] );
+		} else {
+			$this->assertNull( $firstMarker );
+		}
+	}
+
 	public function provideDataWithMarkerSymbolCounters() {
 		return [
 			'bad data' => [ '[ null ]', '[ null ]' ],
@@ -310,6 +329,39 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 					{ "properties": { "marker-symbol": "1" } }
 				] } ]',
 				'1'
+			],
+		];
+	}
+
+	public function provideDataWithoutMarkerSymbolCounters() {
+		return [
+			'bad data' => [ '[ null ]' ],
+			'empty data' => [ '[ {} ]' ],
+			'number' => [
+				'[
+					{ "properties": { "marker-symbol": "-number-monument" } },
+					{ "properties": { "marker-symbol": "-number-park" } }
+				]',
+				'-number-monument'
+			],
+			'letter' => [
+				'[
+					{ "properties": { "marker-symbol": "-letter-monument" } },
+					{ "properties": { "marker-symbol": "-letter-park" } }
+				]',
+				'-letter-monument'
+			],
+			'recursing into FeatureCollection' => [
+				'[ { "type": "FeatureCollection", "features": [
+					{ "properties": { "marker-symbol": "-number" } }
+				] } ]',
+				'-number'
+			],
+			'recursing into GeometryCollection' => [
+				'[ { "type": "GeometryCollection", "geometries": [
+					{ "properties": { "marker-symbol": "-number" } }
+				] } ]',
+				'-number'
 			],
 		];
 	}

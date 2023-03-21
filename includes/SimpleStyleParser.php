@@ -154,6 +154,46 @@ class SimpleStyleParser {
 	}
 
 	/**
+	 * @param stdClass[] $values
+	 * @return array|null Same as {@see updateMarkerSymbolCounters}, but with the $markerSymbol
+	 *  name not updated
+	 */
+	public static function findFirstMarkerSymbol( array $values ): ?array {
+		foreach ( $values as $item ) {
+			// While the input should be validated, it's still arbitrary user input.
+			if ( !( $item instanceof stdClass ) ) {
+				continue;
+			}
+
+			if ( isset( $item->properties->{'marker-symbol'} ) ) {
+				$marker = $item->properties->{'marker-symbol'};
+				if ( str_starts_with( $marker, '-number' ) || str_starts_with( $marker, '-letter' ) ) {
+					return [ $marker, $item->properties ];
+				}
+			}
+
+			if ( !isset( $item->type ) ) {
+				continue;
+			}
+
+			$type = $item->type;
+			if ( $type === 'FeatureCollection' && isset( $item->features ) ) {
+				$found = self::findFirstMarkerSymbol( $item->features );
+				if ( $found ) {
+					return $found;
+				}
+			} elseif ( $item->type === 'GeometryCollection' && isset( $item->geometries ) ) {
+				$found = self::findFirstMarkerSymbol( $item->geometries );
+				if ( $found ) {
+					return $found;
+				}
+			}
+		}
+
+		return null;
+	}
+
+	/**
 	 * @param stdClass[] $data
 	 * @return Status
 	 */
