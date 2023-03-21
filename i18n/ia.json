@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"McDutchie"
+			"McDutchie",
+			"Amire80"
 		]
 	},
 	"apierror-kartographer-conflicting-revids": "Le consulta de datos cartographic de plure versiones del mesme pagina in un requesta non es ancora possibile.",
@@ -19,6 +20,8 @@
 	"kartographer-tracking-category": "Paginas con cartas",
 	"kartographer-tracking-category-desc": "Le pagina include un carta",
 	"kartographer-specialmap-invalid-coordinates": "Coordinatas non valide fornite",
+	"kartographer.css": "/* Le codice CSS placiate hic se applicara a tote le paginas con cartas */",
+	"kartographer.js": "/* Le codice JavaScript placiate hic essera cargate pro tote le usatores quando se carga paginas con cartas */",
 	"kartographer-linktype-aerial": "Aeree",
 	"kartographer-linktype-map": "Cartas standard",
 	"kartographer-linktype-other": "Altere",
