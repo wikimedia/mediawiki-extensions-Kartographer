@@ -104,49 +104,38 @@ class SimpleStyleParser {
 	/**
 	 * @param stdClass[] $values
 	 * @param int[] &$counters
-	 * @return array|false [ string $markerSymbol, stdClass $markerProperties ]
+	 * @return array|null [ string $markerSymbol, stdClass $markerProperties ]
 	 */
-	public static function updateMarkerSymbolCounters( array $values, array &$counters = [] ) {
-		$firstMarker = false;
+	public static function updateMarkerSymbolCounters( array $values, array &$counters = [] ): ?array {
+		$firstMarker = null;
 		foreach ( $values as $item ) {
 			// While the input should be validated, it's still arbitrary user input.
 			if ( !( $item instanceof stdClass ) ) {
 				continue;
 			}
 
-			if ( isset( $item->properties->{'marker-symbol'} ) ) {
-				$marker = $item->properties->{'marker-symbol'};
-				// all special markers begin with a dash
-				// both 'number' and 'letter' have 6 symbols
-				$type = substr( $marker, 0, 7 );
-				$isNumber = $type === '-number';
-				if ( $isNumber || $type === '-letter' ) {
-					// numbers 1..99 or letters a..z
-					$count = $counters[$marker] ?? 0;
-					if ( $count < ( $isNumber ? 99 : 26 ) ) {
-						$counters[$marker] = ++$count;
-					}
-					$marker = $isNumber ? strval( $count ) : chr( ord( 'a' ) + $count - 1 );
-					$item->properties->{'marker-symbol'} = $marker;
-					if ( $firstMarker === false ) {
-						// GeoJSON is in lowercase, but the letter is shown as uppercase
-						$firstMarker = [ mb_strtoupper( $marker ), $item->properties ];
-					}
+			$marker = $item->properties->{'marker-symbol'} ?? '';
+			$isNumber = str_starts_with( $marker, '-number' );
+			if ( $isNumber || str_starts_with( $marker, '-letter' ) ) {
+				// numbers 1..99 or letters a..z
+				$count = $counters[$marker] ?? 0;
+				if ( $count < ( $isNumber ? 99 : 26 ) ) {
+					$counters[$marker] = ++$count;
+				}
+				$marker = $isNumber ? strval( $count ) : chr( ord( 'a' ) + $count - 1 );
+				$item->properties->{'marker-symbol'} = $marker;
+				if ( !$firstMarker ) {
+					// GeoJSON is in lowercase, but the letter is shown as uppercase
+					$firstMarker = [ mb_strtoupper( $marker ), $item->properties ];
 				}
 			}
-			if ( !isset( $item->type ) ) {
-				continue;
-			}
-			$type = $item->type;
-			if ( $type === 'FeatureCollection' && isset( $item->features ) ) {
-				$tmp = self::updateMarkerSymbolCounters( $item->features, $counters );
-				if ( $firstMarker === false ) {
-					$firstMarker = $tmp;
-				}
-			} elseif ( $type === 'GeometryCollection' && isset( $item->geometries ) ) {
-				$tmp = self::updateMarkerSymbolCounters( $item->geometries, $counters );
-				if ( $firstMarker === false ) {
-					$firstMarker = $tmp;
+
+			// Recurse into FeatureCollection and GeometryCollection
+			$features = $item->features ?? $item->geometries ?? null;
+			if ( $features ) {
+				$found = self::updateMarkerSymbolCounters( $features, $counters );
+				if ( !$firstMarker ) {
+					$firstMarker = $found;
 				}
 			}
 		}
@@ -165,25 +154,15 @@ class SimpleStyleParser {
 				continue;
 			}
 
-			if ( isset( $item->properties->{'marker-symbol'} ) ) {
-				$marker = $item->properties->{'marker-symbol'};
-				if ( str_starts_with( $marker, '-number' ) || str_starts_with( $marker, '-letter' ) ) {
-					return [ $marker, $item->properties ];
-				}
+			$marker = $item->properties->{'marker-symbol'} ?? '';
+			if ( str_starts_with( $marker, '-number' ) || str_starts_with( $marker, '-letter' ) ) {
+				return [ $marker, $item->properties ];
 			}
 
-			if ( !isset( $item->type ) ) {
-				continue;
-			}
-
-			$type = $item->type;
-			if ( $type === 'FeatureCollection' && isset( $item->features ) ) {
-				$found = self::findFirstMarkerSymbol( $item->features );
-				if ( $found ) {
-					return $found;
-				}
-			} elseif ( $item->type === 'GeometryCollection' && isset( $item->geometries ) ) {
-				$found = self::findFirstMarkerSymbol( $item->geometries );
+			// Recurse into FeatureCollection and GeometryCollection
+			$features = $item->features ?? $item->geometries ?? null;
+			if ( $features ) {
+				$found = self::findFirstMarkerSymbol( $features );
 				if ( $found ) {
 					return $found;
 				}

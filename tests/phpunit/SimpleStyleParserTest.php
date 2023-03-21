@@ -259,7 +259,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 			$this->assertSame( $expectedFirstMarker, $firstMarker[0] );
 			$this->assertIsObject( $firstMarker[1] );
 		} else {
-			$this->assertFalse( $firstMarker );
+			$this->assertNull( $firstMarker );
 		}
 	}
 
