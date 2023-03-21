@@ -23,6 +23,8 @@
 	"kartographer-tracking-category": "মানচিত্রসহ পাতা",
 	"kartographer-tracking-category-desc": "পাতাটি একটি মানচিত্র অন্তর্ভুক্ত করে",
 	"kartographer-specialmap-invalid-coordinates": "সরবরাহকৃত স্থানাঙ্ক অবৈধ",
+	"kartographer-specialmap-world": "বিশ্ব মানচিত্র",
+	"kartographer-static-mapframe-alt": "মানচিত্র",
 	"kartographer.css": "/* এখানে সিএসএস স্থাপিত করা হলে তা মানচিত্রসহ সব পাতায় প্রয়োগ করা হবে */",
 	"kartographer-linktype-aerial": "বায়বীয়",
 	"kartographer-linktype-map": "মানক মানচিত্র",
