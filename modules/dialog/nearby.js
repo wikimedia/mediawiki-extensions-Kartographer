@@ -445,6 +445,7 @@ Nearby.prototype.createNearbyLayer = function ( geoJSON ) {
 			}, {
 				// Same minWidth as in the Map class; maxWidth defaults to 300
 				minWidth: 160,
+				autoPanPadding: [ 40, 55 ],
 				closeButton: false
 			} ).on( 'popupopen', function ( event ) {
 				fetchThumbnail(
