@@ -49,10 +49,8 @@ class KartographerTest extends MediaWikiLangTestCase {
 
 		if ( $expected === false ) {
 			$this->assertTrue( $state->hasBrokenTags(), $message . ' Parse is expected to fail' );
-			$this->assertTrue(
-				$this->hasTrackingCategory( $output, 'kartographer-broken-category' ),
-				$message . ' Category for failed maps should be added'
-			);
+			$this->assertTrackingCategory( 'kartographer-broken-category', $output );
+			$this->assertNotTrackingCategory( 'kartographer-tracking-category', $output );
 			return;
 		}
 		$this->assertFalse( $state->hasBrokenTags(), $message . ' Parse is expected to succeed' );
@@ -60,10 +58,8 @@ class KartographerTest extends MediaWikiLangTestCase {
 			$state->hasValidTags(),
 			$message . ' State is expected to have valid tags'
 		);
-		$this->assertFalse(
-			$this->hasTrackingCategory( $output, 'kartographer-broken-category' ),
-			$message . ' No tracking category'
-		);
+		$this->assertNotTrackingCategory( 'kartographer-broken-category', $output );
+		$this->assertTrackingCategory( 'kartographer-tracking-category', $output );
 
 		// Normalize JSON
 		$expected = json_encode( json_decode( $expected ) );
@@ -162,6 +158,20 @@ class KartographerTest extends MediaWikiLangTestCase {
 			[ '[]', '<mapframe show="foo, bar, baz" zoom=12 latitude=10 longitude=20 width=100 height=100 />', 'T148971 - weird LiveData', true ],
 		];
 		// phpcs:enable
+	}
+
+	public function testBothTrackingCategories() {
+		// An invalid and a valid mapframe
+		$wikitext = '<mapframe /><mapframe width="1" height="1" />';
+		$output = $this->parse( $wikitext );
+		$this->assertTrackingCategory( 'kartographer-broken-category', $output );
+		$this->assertTrackingCategory( 'kartographer-tracking-category', $output );
+	}
+
+	public function testNoTrackingCategories() {
+		$output = $this->parse( '' );
+		$this->assertNotTrackingCategory( 'kartographer-broken-category', $output );
+		$this->assertNotTrackingCategory( 'kartographer-tracking-category', $output );
 	}
 
 	/**
@@ -360,10 +370,25 @@ class KartographerTest extends MediaWikiLangTestCase {
 		return $parser->parse( $text, $title, $options );
 	}
 
-	private function hasTrackingCategory( ParserOutput $output, string $key ): bool {
+	private function assertTrackingCategory( string $expected, ParserOutput $output ): void {
+		$this->assertHasTrackingCategory( true, $expected, $output,
+			"Expected tracking category $expected" );
+	}
+
+	private function assertNotTrackingCategory( string $expected, ParserOutput $output ): void {
+		$this->assertHasTrackingCategory( false, $expected, $output,
+			"Unexpected tracking category $expected" );
+	}
+
+	private function assertHasTrackingCategory(
+		bool $expected,
+		string $key,
+		ParserOutput $output,
+		string $message
+	): void {
 		$cat = wfMessage( $key )->inContentLanguage()->text();
 		$title = Title::makeTitleSafe( NS_CATEGORY, $cat );
 		$cats = $output->getCategories();
-		return isset( $cats[$title->getDBkey()] );
+		$this->assertSame( $expected, isset( $cats[$title->getDBkey()] ), $message );
 	}
 }
