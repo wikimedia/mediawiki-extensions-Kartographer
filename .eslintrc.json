@@ -17,6 +17,8 @@
 		"mediawiki/valid-package-file-require": "warn",
 		"prefer-regex-literals": "warn",
 		"no-shadow": "warn",
-		"no-loss-of-precision": "warn"
+		"no-loss-of-precision": "warn",
+		"es-x/no-block-scoped-variables": "warn",
+		"es-x/no-set": "warn"
 	}
 }
