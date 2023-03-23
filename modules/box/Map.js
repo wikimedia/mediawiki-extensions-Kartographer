@@ -455,7 +455,10 @@ KartographerMap = L.Map.extend( {
 
 			var layerOptions = {};
 			var geoJSON = group.getGeoJSON();
-			if ( geoJSON.service === 'page' ) {
+
+			if ( !geoJSON.length ) {
+				return;
+			} else if ( geoJSON.service === 'page' ) {
 				var attribution = buildAttribution( geoJSON.url );
 				layerOptions.name = attribution;
 				layerOptions.attribution = attribution;
