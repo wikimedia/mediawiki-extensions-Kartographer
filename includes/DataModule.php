@@ -34,7 +34,7 @@ class DataModule extends RL\Module {
 			'wgKartographerUsePageLanguage' => $config->get( 'KartographerUsePageLanguage' ),
 			'wgKartographerFallbackZoom' => $config->get( 'KartographerFallbackZoom' ),
 			'wgKartographerSimpleStyleMarkers' => $config->get( 'KartographerSimpleStyleMarkers' ),
-			'wgKartographerNearby' => $this->canUseNearby(),
+			'wgKartographerNearby' => $this->numberOfNearbyPoints(),
 			'wgKartographerNearbyClustering' => $config->get( 'KartographerNearbyClustering' ),
 			'wgKartographerNearbyOnMobile' => $config->get( 'KartographerNearbyOnMobile' ),
 			'wgKartographerWikivoyageNearby' => $config->get( 'KartographerWikivoyageNearby' ),
@@ -61,7 +61,7 @@ class DataModule extends RL\Module {
 	/**
 	 * @return int Number of points to load, 0 when the feature is disabled
 	 */
-	private function canUseNearby(): int {
+	private function numberOfNearbyPoints(): int {
 		$limit = $this->getConfig()->get( 'KartographerNearby' );
 		if ( !$limit ) {
 			return 0;

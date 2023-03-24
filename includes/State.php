@@ -72,12 +72,7 @@ class State implements JsonSerializable {
 	 * @return self
 	 */
 	public static function getOrCreate( ParserOutput $output ): self {
-		$result = self::getState( $output );
-		if ( !$result ) {
-			$result = new self;
-		}
-
-		return $result;
+		return self::getState( $output ) ?? new self();
 	}
 
 	/**

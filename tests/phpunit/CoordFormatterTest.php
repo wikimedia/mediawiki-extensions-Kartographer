@@ -41,6 +41,7 @@ class CoordFormatterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @group Parsoid
 	 * @dataProvider provideParsoidFormatter
 	 */
 	public function testParsoidFormatter( string $expected, float $lat, float $lon ) {
