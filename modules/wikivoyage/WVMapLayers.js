@@ -30,6 +30,11 @@ function WVMapLayers( map ) {
  * @chainable
  */
 WVMapLayers.prototype.addLayer = function ( layer, name, overlay ) {
+	// Don't add controls for unnamed groups
+	if ( name && name.charAt( 0 ) === '_' ) {
+		return;
+	}
+
 	// eslint-disable-next-line no-underscore-dangle
 	this.control._addLayer( layer, name, overlay );
 	return this;
