@@ -313,6 +313,10 @@ MapDialog.prototype.getHoldProcess = function ( data ) {
 	return MapDialog.super.prototype.getHoldProcess.call( this, data )
 		.next( function () {
 			// T297519: Disable touch/mouse early to not cause chaos on "dragend" and such
+			this.map.boxZoom.disable();
+			// T297848: The L.Handler.BoxZoom.removeHooks implementation is incomplete
+			/* eslint-disable-next-line no-underscore-dangle */
+			this.map.boxZoom._moved = false;
 			this.map.dragging.disable();
 			this.map.touchZoom.disable();
 			this.map.doubleClickZoom.disable();
