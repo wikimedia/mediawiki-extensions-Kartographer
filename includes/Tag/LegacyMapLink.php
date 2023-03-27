@@ -12,7 +12,6 @@ use Kartographer\PartialWikitextParser;
  * @license MIT
  */
 class LegacyMapLink extends LegacyTagHandler {
-	use MapLinkTrait;
 
 	public const TAG = 'maplink';
 
@@ -31,17 +30,8 @@ class LegacyMapLink extends LegacyTagHandler {
 			$text = $parser->halfParseWikitext( $text );
 		}
 
-		$attrs = $this->prepareAttrs( [
-			'mapStyle' => $this->args->mapStyle,
-			'zoom' => $this->args->zoom,
-			'lat' => $this->args->lat,
-			'lon' => $this->args->lon,
-			'resolvedLangCode' => $this->args->resolvedLangCode,
-			'specifiedLangCode' => $this->args->specifiedLangCode,
-			'cssClass' => $this->args->cssClass,
-			'showGroups' => $this->args->showGroups,
-			'markerProperties' => $this->markerProperties
-		], $this->config );
+		$gen = new MapLinkAttributeGenerator( $this->args, $this->config, $this->markerProperties );
+		$attrs = $gen->prepareAttrs();
 
 		return Html::rawElement( 'a', $attrs, $text );
 	}
