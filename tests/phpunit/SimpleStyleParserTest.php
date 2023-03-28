@@ -118,11 +118,9 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 		string $expectedError = null,
 		string $option = null
 	) {
-		$parser = new class implements WikitextParser {
-			public function parseWikitext( string $wikiText ): string {
-				return 'HTML';
-			}
-		};
+		$parser = $this->createMock( WikitextParser::class );
+		$parser->method( 'parseWikitext' )
+			->willReturn( 'HTML' );
 		$ssp = new SimpleStyleParser( $parser, [ $option => true ] );
 		$data = json_decode( $json );
 
