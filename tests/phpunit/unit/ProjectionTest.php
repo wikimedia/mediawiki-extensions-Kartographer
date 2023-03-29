@@ -2,11 +2,11 @@
 
 namespace Kartographer\UnitTests;
 
-use Kartographer\Projection\EPSG3857;
+use Kartographer\Special\EPSG3857;
 use MediaWikiUnitTestCase;
 
 /**
- * @covers \Kartographer\Projection\EPSG3857
+ * @covers \Kartographer\Special\EPSG3857
  * @group Kartographer
  * @license MIT
  */

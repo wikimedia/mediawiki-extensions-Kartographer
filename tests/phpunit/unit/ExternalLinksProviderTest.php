@@ -2,11 +2,11 @@
 
 namespace Kartographer\UnitTests;
 
-use Kartographer\ExternalLinksProvider;
+use Kartographer\Modules\ExternalLinksProvider;
 use MediaWiki\ResourceLoader\Context;
 
 /**
- * @covers \Kartographer\ExternalLinksProvider
+ * @covers \Kartographer\Modules\ExternalLinksProvider
  * @group Kartographer
  * @license MIT
  */

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kartographer\Projection;
+namespace Kartographer\Special;
 
 /**
  * @license MIT
