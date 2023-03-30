@@ -141,18 +141,18 @@ class SpecialMap extends UnlistedSpecialPage {
 	}
 
 	/**
-	 * @param float|string|null $lat Can be "a" for auto-positioning, null on error
-	 * @param float|string|null $lon Can be "a", null on error
-	 * @param int|string|null $zoom Can be "a", null on error; defaults to 0
+	 * @param float|null $lat
+	 * @param float|null $lon
+	 * @param int|null $zoom
 	 * @param string $lang Optional language code. Defaults to 'local'
 	 * @return string|null
 	 */
-	public static function link( $lat, $lon, $zoom, $lang = 'local' ): ?string {
-		if ( $lat === 'a' || $lon === 'a' ) {
+	public static function link( ?float $lat, ?float $lon, ?int $zoom, $lang = 'local' ): ?string {
+		if ( $lat === null || $lon === null ) {
 			return null;
 		}
 
-		$subpage = (int)$zoom . '/' . (float)$lat . '/' . (float)$lon;
+		$subpage = (int)$zoom . '/' . $lat . '/' . $lon;
 		if ( $lang && $lang !== 'local' ) {
 			$subpage .= '/' . $lang;
 		}

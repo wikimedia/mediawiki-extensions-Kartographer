@@ -72,7 +72,7 @@ class SpecialMapTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideLinks
 	 */
-	public function testLink( string $expected, ?float $lat, ?float $lon, int $zoom = null, string $lang = 'local' ) {
+	public function testLink( ?string $expected, ?float $lat, ?float $lon, int $zoom = null, string $lang = 'local' ) {
 		$this->setMwGlobals( 'wgArticlePath', '/wiki/$1' );
 		$this->assertSame( $expected, SpecialMap::link( $lat, $lon, $zoom, $lang ) );
 	}
@@ -84,8 +84,8 @@ class SpecialMapTest extends MediaWikiIntegrationTestCase {
 			[ '/wiki/Special:Map/6/12/34', 12, 34, 6, 'local' ],
 			[ '/wiki/Special:Map/0/12/34', 12, 34, null, '' ],
 			[ '/wiki/Special:Map/0/-12/34', -12, 34 ],
-			[ '/wiki/Special:Map/0/12/0', 12, null ],
-			[ '/wiki/Special:Map/0/0/0', null, null ],
+			[ null, 12, null ],
+			[ null, null, null ],
 		];
 	}
 

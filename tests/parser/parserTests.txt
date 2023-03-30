@@ -14,11 +14,11 @@ maplink
 <maplink />
 <maplink latitude=10 longitude=20 zoom=13 text='Foo &amp; bar'/>
 !! html/php
-<p><a class="mw-kartographer-maplink" data-mw-kartographer="" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en">0°0′0″N 0°0′0″E</a>
+<p><a class="mw-kartographer-maplink" data-mw-kartographer="" data-style="osm-intl">0°0′0″N 0°0′0″E</a>
 <a class="mw-kartographer-maplink" data-mw-kartographer="" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20">Foo &amp; bar</a>
 </p>
 !! html/parsoid
-<p><a class="mw-kartographer-maplink" data-mw-kartographer="" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" typeof="mw:Extension/maplink" about="#mwt2" data-mw='{"name":"maplink","attrs":{}}'>0°0′0″N 0°0′0″E</a>
+<p><a class="mw-kartographer-maplink" data-mw-kartographer="" data-style="osm-intl" typeof="mw:Extension/maplink" about="#mwt2" data-mw='{"name":"maplink","attrs":{}}'>0°0′0″N 0°0′0″E</a>
 <a class="mw-kartographer-maplink" data-mw-kartographer="" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" typeof="mw:Extension/maplink" about="#mwt4" data-mw='{"name":"maplink","attrs":{"latitude":"10","longitude":"20","zoom":"13","text":"Foo &amp; bar"}}'>Foo &amp; bar</a></p>
 !! end
 
@@ -111,13 +111,13 @@ maplink
 <maplink text="" />
 !! html/php
 <p><a class="mw-kartographer-maplink" data-mw-kartographer="" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20">10°0′0″N 20°0′0″E</a>
-<a class="mw-kartographer-maplink" data-mw-kartographer="" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en">0°0′0″N 0°0′0″E</a>
-<a class="mw-kartographer-maplink" data-mw-kartographer="" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en"></a>
+<a class="mw-kartographer-maplink" data-mw-kartographer="" data-style="osm-intl">0°0′0″N 0°0′0″E</a>
+<a class="mw-kartographer-maplink" data-mw-kartographer="" data-style="osm-intl"></a>
 </p>
 !! html/parsoid
 <p><a class="mw-kartographer-maplink" data-mw-kartographer="" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" typeof="mw:Extension/maplink" about="#mwt2" data-mw='{"name":"maplink","attrs":{"latitude":"10","longitude":"20","zoom":"13"}}'>10°0′0″N 20°0′0″E</a>
-<a class="mw-kartographer-maplink" data-mw-kartographer="" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" typeof="mw:Extension/maplink" about="#mwt4" data-mw='{"name":"maplink","attrs":{}}'>0°0′0″N 0°0′0″E</a>
-<a class="mw-kartographer-maplink" data-mw-kartographer="" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" typeof="mw:Extension/maplink" about="#mwt6" data-mw='{"name":"maplink","attrs":{"text":""}}'></a></p>
+<a class="mw-kartographer-maplink" data-mw-kartographer="" data-style="osm-intl" typeof="mw:Extension/maplink" about="#mwt4" data-mw='{"name":"maplink","attrs":{}}'>0°0′0″N 0°0′0″E</a>
+<a class="mw-kartographer-maplink" data-mw-kartographer="" data-style="osm-intl" typeof="mw:Extension/maplink" about="#mwt6" data-mw='{"name":"maplink","attrs":{"text":""}}'></a></p>
 !! end
 
 !! test

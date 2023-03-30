@@ -102,6 +102,8 @@ class MapTagArgumentValidator {
 		$this->lat = $this->args->getFloat( 'latitude' );
 		$this->lon = $this->args->getFloat( 'longitude' );
 		if ( $this->status->isOK() && ( ( $this->lat === null ) xor ( $this->lon === null ) ) ) {
+			$this->lat = null;
+			$this->lon = null;
 			$this->status->fatal( 'kartographer-error-latlon' );
 		}
 
