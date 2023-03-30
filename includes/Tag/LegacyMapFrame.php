@@ -60,9 +60,6 @@ class LegacyMapFrame extends LegacyTagHandler {
 			}
 		}
 
-		$containerClass = $attrs['containerClass'];
-		unset( $attrs['containerClass'] );
-
 		if ( $this->args->frameless ) {
 			return Html::rawElement( 'a', $attrs, $thumbnail );
 		}
@@ -75,7 +72,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 		}
 
 		return Html::rawElement( 'div', [ 'class' => [
-				...$containerClass,
+				...$gen->getContainerClasses(),
 				'thumb',
 				self::THUMB_ALIGN_CLASSES[$this->args->align],
 			] ],

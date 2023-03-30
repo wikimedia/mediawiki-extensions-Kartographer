@@ -40,6 +40,17 @@ class MapFrameAttributeGenerator {
 	}
 
 	/**
+	 * @return string[]
+	 */
+	public function getContainerClasses(): array {
+		$classes = [ 'mw-kartographer-container' ];
+		if ( $this->args->width === 'full' ) {
+			$classes[] = 'mw-kartographer-full';
+		}
+		return $classes;
+	}
+
+	/**
 	 * @return array
 	 */
 	public function prepareAttrs(): array {
@@ -82,14 +93,8 @@ class MapFrameAttributeGenerator {
 		$attrs['href'] = SpecialMap::link( $this->args->lat, $this->args->lon, $this->args->zoom,
 			$this->args->resolvedLangCode );
 
-		$containerClass = [ 'mw-kartographer-container' ];
-		if ( $this->args->width === 'full' ) {
-			$containerClass[] = 'mw-kartographer-full';
-		}
-		$attrs['containerClass'] = $containerClass;
-
 		if ( $this->args->frameless ) {
-			array_push( $attrs['class'], ...$containerClass );
+			array_push( $attrs['class'], ...$this->getContainerClasses() );
 			if ( isset( self::ALIGN_CLASSES[$this->args->align] ) ) {
 				$attrs['class'][] = self::ALIGN_CLASSES[$this->args->align];
 			}
