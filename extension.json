@@ -533,6 +533,9 @@
 		"kartographer-tracking-category",
 		"kartographer-broken-category"
 	],
+	"ParsoidModules": [
+		"Kartographer\\Tag\\ParsoidKartographerConfig"
+	],
 	"load_composer_autoloader": true,
 	"manifest_version": 2
 }
