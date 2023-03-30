@@ -133,7 +133,8 @@ class MapTagArgumentValidator {
 			$defaultAlign = $this->language->alignEnd();
 			$this->align = $this->args->getString( 'align', $defaultAlign, '/^(left|center|right)$/' );
 		}
-		$this->frameless = $this->args->getString( 'frameless', null ) !== null;
+		$this->frameless = ( $this->text === null || $this->text === '' ) &&
+			$this->args->getString( 'frameless', null ) !== null;
 		$this->cssClass = $this->args->getString( 'class', '', '/^(|[a-zA-Z][-_a-zA-Z0-9]*)$/' );
 	}
 
@@ -153,6 +154,13 @@ class MapTagArgumentValidator {
 
 		// Make sure there are no group name duplicates
 		$this->showGroups = array_unique( $this->showGroups );
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function usesAutoPosition(): bool {
+		return $this->zoom === null || $this->lat === null || $this->lon === null;
 	}
 
 }
