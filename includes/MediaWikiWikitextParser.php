@@ -8,7 +8,7 @@ use PPFrame;
 /**
  * @license MIT
  */
-class MediaWikiWikitextParser implements WikitextParser {
+class MediaWikiWikitextParser extends WikitextParser {
 
 	/** @var Parser */
 	private Parser $parser;
@@ -27,11 +27,7 @@ class MediaWikiWikitextParser implements WikitextParser {
 
 	/** @inheritDoc */
 	public function parseWikitext( string $wikiText ): string {
-		// Skip expensive parser calls when there is no wikitext syntax to parse. This is not
-		// uncommon in this context. wfEscapeWikiText() is ~400 times faster than the parser, which
-		// means 1 non-wikitext string in 400 is already worth the extra check. Still escaping
-		// becomes expensive the longer the string is. Assume long strings are wikitext.
-		if ( strlen( $wikiText ) < 65536 && wfEscapeWikiText( $wikiText ) === $wikiText ) {
+		if ( !$this->needsParsing( $wikiText ) ) {
 			return $wikiText;
 		}
 
