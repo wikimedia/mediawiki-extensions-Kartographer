@@ -48,17 +48,12 @@ class LegacyMapFrame extends LegacyTagHandler {
 			MediaWikiServices::getInstance()->getTitleFormatter()->getPrefixedText( $page ) : '';
 		$revisionId = $this->parser->getRevisionId();
 		$imgAttrs = $gen->prepareImgAttrs( $isPreview, $pageTitle, $revisionId );
-
-		unset( $imgAttrs['imgUrl'] );
-		unset( $imgAttrs['imgUrlParams'] );
 		$imgAttrs['alt'] = wfMessage( 'kartographer-static-mapframe-alt' )->text();
 
 		$thumbnail = Html::element( 'img', $imgAttrs );
 		if ( $isPreview ) {
 			$thumbnail = Html::rawElement( 'noscript', [], $thumbnail );
-			$usesAutoPosition = $gen->staticZoom === 'a' || $gen->staticLat === 'a' ||
-				$gen->staticLon	===	'a';
-			if ( $usesAutoPosition ) {
+			if ( $this->args->usesAutoPosition() ) {
 				// Impossible to render .png thumbnails that depend on unsaved ExternalData. Preview
 				// will replace this with a dynamic map anyway when JavaScript is available.
 				$thumbnail = '';
@@ -68,7 +63,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 		$containerClass = $attrs['containerClass'];
 		unset( $attrs['containerClass'] );
 
-		if ( !$gen->framed ) {
+		if ( $this->args->frameless ) {
 			return Html::rawElement( 'a', $attrs, $thumbnail );
 		}
 

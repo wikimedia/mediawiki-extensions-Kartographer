@@ -22,19 +22,15 @@ class MapFrameAttributeGenerator {
 	/** @var Config */
 	private Config $config;
 	/** @var string */
-	private string $mapServer;
-	/** @var string */
 	public string $cssWidth;
 	/** @var int */
 	private int $staticWidth;
-	/** @var int|float|string */
-	public $staticLon;
-	/** @var float|string */
-	public $staticLat;
 	/** @var int|string */
-	public $staticZoom;
-	/** @var bool */
-	public bool $framed;
+	private $staticZoom;
+	/** @var float|string */
+	private $staticLat;
+	/** @var float|string */
+	private $staticLon;
 
 	/**
 	 * @param MapTagArgumentValidator $args
@@ -43,7 +39,6 @@ class MapFrameAttributeGenerator {
 	public function __construct( MapTagArgumentValidator $args, Config $config ) {
 		$this->args = $args;
 		$this->config = $config;
-		$this->mapServer = $this->config->get( 'KartographerMapServer' );
 
 		if ( $this->args->width === 'full' ) {
 			$this->cssWidth = '100%';
@@ -65,8 +60,6 @@ class MapFrameAttributeGenerator {
 		} else {
 			$this->staticZoom = 'a';
 		}
-		$caption = (string)$this->args->text;
-		$this->framed = $caption !== '' || !$this->args->frameless;
 	}
 
 	/**
@@ -118,7 +111,7 @@ class MapFrameAttributeGenerator {
 		}
 		$attrs['containerClass'] = $containerClass;
 
-		if ( !$this->framed ) {
+		if ( $this->args->frameless ) {
 			array_push( $attrs['class'], ...$containerClass );
 			if ( isset( self::ALIGN_CLASSES[$this->args->align] ) ) {
 				$attrs['class'][] = self::ALIGN_CLASSES[$this->args->align];
@@ -134,6 +127,8 @@ class MapFrameAttributeGenerator {
 	 * @return array
 	 */
 	public function prepareImgAttrs( bool $isPreview, string $pagetitle, ?int $revisionId ): array {
+		$mapServer = $this->config->get( 'KartographerMapServer' );
+
 		$imgUrlParams = [
 			'lang' => $this->args->resolvedLangCode,
 		];
@@ -148,7 +143,7 @@ class MapFrameAttributeGenerator {
 				'groups' => implode( ',', $this->args->showGroups ),
 			];
 		}
-		$imgUrl = "{$this->mapServer}/img/{$this->args->mapStyle},$this->staticZoom,$this->staticLat," .
+		$imgUrl = "$mapServer/img/{$this->args->mapStyle},$this->staticZoom,$this->staticLat," .
 			"$this->staticLon,{$this->staticWidth}x{$this->args->height}";
 		$imgAttrs = [
 			'src' => "$imgUrl.png?" . wfArrayToCgi( $imgUrlParams ),
