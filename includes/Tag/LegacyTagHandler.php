@@ -10,10 +10,8 @@
 namespace Kartographer\Tag;
 
 use Config;
-use ExtensionRegistry;
 use FormatJson;
 use Html;
-use Kartographer\ExternalDataLoader;
 use Kartographer\PartialWikitextParser;
 use Kartographer\SimpleStyleParser;
 use Kartographer\State;
@@ -107,7 +105,7 @@ abstract class LegacyTagHandler {
 		$this->args = new MapTagArgumentValidator( static::TAG, $args, $this->config, $this->getLanguage() );
 		$this->status = $this->args->status;
 		if ( $this->status->isOK() ) {
-			$this->parseGeometries( $input, $parser, $frame, $isPreview );
+			$this->parseGeometries( $input, $parser, $frame );
 		}
 
 		if ( !$this->status->isGood() ) {
@@ -132,23 +130,13 @@ abstract class LegacyTagHandler {
 	 * @param string|null $input
 	 * @param Parser $parser
 	 * @param PPFrame $frame
-	 * @param bool $isPreview
 	 */
-	private function parseGeometries( ?string $input, Parser $parser, PPFrame $frame, bool $isPreview ): void {
+	private function parseGeometries( ?string $input, Parser $parser, PPFrame $frame ): void {
 		$simpleStyle = SimpleStyleParser::newFromParser( $parser, $frame );
 
 		$this->status = $simpleStyle->parse( $input );
 		if ( $this->status->isOK() ) {
 			$this->geometries = $this->status->getValue()['data'];
-
-			if ( !$isPreview && $this->config->get( 'KartographerExternalDataParseTimeFetch' ) ) {
-				$fetcher = new ExternalDataLoader(
-					MediaWikiServices::getInstance()->getHttpRequestFactory(),
-					new ParserFunctionTracker( $parser ),
-					ExtensionRegistry::getInstance()->isLoaded( 'EventLogging' )
-				);
-				$fetcher->parse( $this->geometries );
-			}
 		}
 	}
 
