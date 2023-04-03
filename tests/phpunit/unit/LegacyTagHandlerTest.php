@@ -2,9 +2,9 @@
 
 namespace Kartographer\UnitTests;
 
+use Kartographer\ParserFunctionTracker;
 use Kartographer\State;
 use Kartographer\Tag\LegacyTagHandler;
-use Kartographer\Tag\ParserFunctionTracker;
 use MediaWikiUnitTestCase;
 use stdClass;
 

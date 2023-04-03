@@ -12,7 +12,6 @@ namespace Kartographer;
 use Kartographer\Tag\LegacyMapFrame;
 use Kartographer\Tag\LegacyMapLink;
 use Kartographer\Tag\LegacyTagHandler;
-use Kartographer\Tag\ParserFunctionTracker;
 use MediaWiki\Hook\ParserAfterParseHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Hook\ParserTestGlobalsHook;
