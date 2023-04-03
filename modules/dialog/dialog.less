@@ -1,4 +1,4 @@
-@import '../../lib/external/wikimedia-ui-base';
+@import 'mediawiki.skin.variables.less';
 
 // Anyone who changes the width of the sidebar should update Kartographer.Dialog.DialogClass
 // `SIDEBAR_WIDTH` accordingly
@@ -24,7 +24,7 @@
 	height: @footerHeight;
 	font-size: 14px; // same as font-size of .mw-kartographer-interactive.leaflet-container
 	background-color: @background-color-base;
-	border-top: @border-base;
+	border-top: @border-width-base @border-style-base @border-color-base;
 }
 
 .mw-kartographer-captionfoot {
@@ -47,14 +47,14 @@
 	top: 0;
 	bottom: @footerHeight;
 	z-index: 2;
-	border-left: @border-base;
-	width: @sidebarWidth + 1px; /* 320+1 so border is hidden on common 320px wide mobile devices */
+	border-left: @border-width-base @border-style-base @border-color-base;
+	width: @sidebarWidth + @border-width-base; /* 320+1 so border is hidden on common 320px wide mobile devices */
 	max-width: 100vw;
 	box-sizing: border-box;
 	background-color: @background-color-base;
 	overflow-y: auto;
 	transform: translateX( 100% );
-	transition: transform 100ms ease-out;
+	transition: transform @transition-duration-base @transition-timing-function-user;
 	/* don't use padding on this object, because then it will retain height after being pushed off screen */
 
 	/* For MobileFrontend */
@@ -77,11 +77,11 @@
 	margin: auto;
 	max-width: 256px;
 	max-height: 256px;
-	top: 20px;
-	right: 20px;
-	bottom: 20px;
-	left: 20px;
-	border: @color-primary 2px solid;
+	top: @spacing-125;
+	right: @spacing-125;
+	bottom: @spacing-125;
+	left: @spacing-125;
+	border: @border-width-thick @border-style-base @border-color-progressive;
 	border-radius: @border-radius-base;
 	z-index: 1;
 	aspect-ratio: 1;
@@ -101,11 +101,11 @@
 
 	.leaflet-right.leaflet-top,
 	.leaflet-right.leaflet-bottom {
-		transition: right 100ms ease-out;
+		transition: right @transition-duration-base @transition-timing-function-user;
 	}
 
 	.leaflet-right.leaflet-top .leaflet-bar.leaflet-control {
-		transition: margin 100ms ease-out;
+		transition: margin @transition-duration-base @transition-timing-function-user;
 	}
 
 	.nearby-icon {
@@ -114,19 +114,19 @@
 		align-items: center;
 		justify-content: center;
 		color: @color-base;
-		background-color: @wmui-color-base80;
-		border: 2px solid @wmui-color-base20;
-		border-radius: @border-radius-round;
+		background-color: @background-color-interactive;
+		border: @border-width-thick @border-style-base @color-subtle;
+		border-radius: @border-radius-circle;
 	}
 
 	.nearby-marker .nearby-icon {
-		width: @size-icon;
-		height: @size-icon;
+		width: @min-size-icon-medium;
+		height: @min-size-icon-medium;
 	}
 
 	.nearby-cluster .nearby-icon {
-		width: @size-base;
-		height: @size-base;
+		width: @min-size-base;
+		height: @min-size-base;
 	}
 
 	.nearby-marker,
@@ -145,12 +145,12 @@
 		&:focus .nearby-icon,
 		&:hover .nearby-icon {
 			background-color: @background-color-base;
-			border-width: 3px;
+			border-width: @border-width-thick * 1.5;
 		}
 
 		&:active .nearby-icon {
 			background-color: @background-color-base;
-			border-width: 4px;
+			border-width: @border-width-thick * 2;
 		}
 	}
 
@@ -178,7 +178,7 @@
 
 .mw-kartographer-mapdetails {
 	margin: 1.5em 0;
-	padding: 0 16px;
+	padding: 0 @spacing-100;
 
 	.geo {
 		white-space: nowrap;
@@ -203,7 +203,7 @@
 
 		&-latlon {
 			display: block;
-			color: #54595d; // Base20
+			color: @color-subtle;
 			margin-top: 0.5em;
 		}
 	}
@@ -211,7 +211,7 @@
 
 .mw-kartographer-filterservices {
 	margin: 1em 0;
-	padding: 0 16px;
+	padding: 0 @spacing-100;
 
 	&-title {
 		margin-bottom: 1em;
@@ -219,7 +219,7 @@
 	}
 
 	&-toggleButton {
-		margin-left: 16px;
+		margin-left: @spacing-100;
 	}
 
 	&-list {
@@ -232,7 +232,7 @@
 				box-sizing: border-box;
 
 				&:hover {
-					background-color: @background-color-primary;
+					background-color: @background-color-progressive-subtle;
 				}
 
 				.oo-ui-buttonElement-button {
