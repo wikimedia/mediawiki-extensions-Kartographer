@@ -12,6 +12,7 @@ namespace Kartographer\Tag;
 use Config;
 use FormatJson;
 use Html;
+use Kartographer\ParserFunctionTracker;
 use Kartographer\PartialWikitextParser;
 use Kartographer\SimpleStyleParser;
 use Kartographer\State;

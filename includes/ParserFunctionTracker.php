@@ -1,6 +1,6 @@
 <?php
 
-namespace Kartographer\Tag;
+namespace Kartographer;
 
 use InvalidArgumentException;
 use Parser;
@@ -18,13 +18,6 @@ class ParserFunctionTracker {
 	 */
 	public function __construct( Parser $parser ) {
 		$this->parser = $parser;
-	}
-
-	/**
-	 * @return bool False if the limit has been exceeded
-	 */
-	public function incrementExpensiveFunctionCount(): bool {
-		return $this->parser->incrementExpensiveFunctionCount();
 	}
 
 	/**
