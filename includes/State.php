@@ -26,20 +26,12 @@ class State implements JsonSerializable {
 	 */
 	private array $usages = [];
 
-	/**
-	 * @var int[]
-	 */
+	/** @var int[] */
 	private array $interactiveGroups = [];
-
-	/**
-	 * @var int[]
-	 */
+	/** @var int[] */
 	private array $requestedGroups = [];
-
-	/**
-	 * @var int[]|null
-	 */
-	private $counters;
+	/** @var int[]|null */
+	private ?array $counters = null;
 
 	/**
 	 * @var array[] Indexed per group identifier
@@ -158,7 +150,7 @@ class State implements JsonSerializable {
 	 * @return array<string,int>
 	 */
 	public function getCounters(): array {
-		return $this->counters ?: [];
+		return $this->counters ?? [];
 	}
 
 	/**

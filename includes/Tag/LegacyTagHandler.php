@@ -21,7 +21,6 @@ use Language;
 use LogicException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\StubObject\StubUserLang;
 use Message;
 use Parser;
 use ParserOutput;
@@ -46,30 +45,22 @@ abstract class LegacyTagHandler {
 
 	/** @var Status */
 	private Status $status;
-
 	/** @var stdClass[] */
 	private array $geometries = [];
-
 	/** @var MapTagArgumentValidator */
 	protected MapTagArgumentValidator $args;
-
 	/** @var string|null */
 	protected ?string $counter = null;
-
 	/** @var Config */
 	protected Config $config;
-
 	/** @var Parser */
 	protected Parser $parser;
-
-	/** @var Language|StubUserLang */
-	private $targetLanguage;
-
+	/** @var Language */
+	private Language $targetLanguage;
 	/** @var State */
 	protected State $state;
-
 	/** @var stdClass|null */
-	protected $markerProperties;
+	protected ?stdClass $markerProperties = null;
 
 	/**
 	 * Entry point for all tags
@@ -102,6 +93,7 @@ abstract class LegacyTagHandler {
 		}
 
 		$this->parser = $parser;
+		// Can only be StubUserLang on special pages, but these can't contain <map…> tags
 		$this->targetLanguage = $parser->getTargetLanguage();
 		$options = $parser->getOptions();
 		$isPreview = $options->getIsPreview() || $options->getIsSectionPreview();
@@ -300,9 +292,9 @@ abstract class LegacyTagHandler {
 	}
 
 	/**
-	 * @return Language|StubUserLang
+	 * @return Language
 	 */
-	private function getLanguage() {
+	private function getLanguage(): Language {
 		// Log if the user language is different from the page language (T311592)
 		$page = $this->parser->getPage();
 		if ( $page ) {
