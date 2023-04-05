@@ -3,13 +3,18 @@
 // Anyone who changes the width of the sidebar should update Kartographer.Dialog.DialogClass
 // `SIDEBAR_WIDTH` accordingly
 @sidebarWidth: 320px;
-// Anyone who changes the height of the footer should update Kartographer.Dialog.DialogClass
-// `FOOTER_HEIGHT` accordingly
-@footerHeight: 4.5em;
 
-.mw-kartographer-mapDialog-body.mw-kartographer-mapDialog-body {
-	// Ensure that offscreen sidebar doesn't add scrollbars
-	overflow: hidden;
+.mw-kartographer-mapDialog-body {
+	height: 100%;
+	display: grid;
+	-ms-grid-columns: 1fr;
+	grid-template-columns: 1fr;
+	-ms-grid-rows: auto min-content;
+	grid-template-rows: auto min-content;
+}
+
+.mw-kartographer-map-body {
+	position: relative;
 }
 
 .mw-kartographer-reload-nearbybutton {
@@ -19,9 +24,9 @@
 }
 
 /* Dialog footer */
-.mw-kartographer-mapDialog-foot {
+.mw-kartographer-map-foot {
+	overflow: hidden;
 	padding: 1em;
-	height: @footerHeight;
 	font-size: 14px; // same as font-size of .mw-kartographer-interactive.leaflet-container
 	background-color: @background-color-base;
 	border-top: @border-width-base @border-style-base @border-color-base;
@@ -45,7 +50,7 @@
 	position: absolute;
 	right: 0;
 	top: 0;
-	bottom: @footerHeight;
+	bottom: 0;
 	z-index: 2;
 	border-left: @border-width-base @border-style-base @border-color-base;
 	width: @sidebarWidth + @border-width-base; /* 320+1 so border is hidden on common 320px wide mobile devices */
@@ -90,7 +95,7 @@
 .mw-kartographer-mapDialog-map {
 	position: absolute;
 	top: 0;
-	bottom: @footerHeight;
+	bottom: 0;
 	left: 0;
 	right: 0;
 	z-index: 1;
