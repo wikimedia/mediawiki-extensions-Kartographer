@@ -9,7 +9,8 @@
 			"Rachmat04",
 			"Sumbukompor",
 			"Veracious",
-			"William Surya Permana"
+			"William Surya Permana",
+			"Agam Riyandana"
 		]
 	},
 	"apierror-kartographer-conflicting-revids": "Melakukan kueri data peta dari beberapa revisi halaman yang sama dalam satu permintaan belum bisa dilakukan.",
@@ -21,12 +22,14 @@
 	"kartographer-error-json": "Tidak dapat memilah JSON: $1",
 	"kartographer-error-missing-attr": "Atribut \"$1\" hilang",
 	"kartographer-error-bad_attr": "Atribut \"$1\" memiliki nilai yang tak sah",
-	"kartographer-error-bad_data": "Isi JSON bukan merupakan GeoJSON+simplestyle yang sah. Galat validasi pertama terletak di elemen \"$1\": \"$2\".",
+	"kartographer-error-bad_data": "Isi JSON bukan GeoJSON+simplestyle yang sah. Daftar ini menunjukkan semua upaya untuk menafsirkannya menurut [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json Skema JSON]. Tidak semuanya merupakan galat.",
 	"kartographer-error-latlon": "Kedua parameter baik \"latitude\" dan \"longitude\" harus disediakan, atau salah satu dari keduanya",
 	"kartographer-error-title": "Judul \"$1\" bukan merupakan halaman data peta yang sah",
 	"kartographer-tracking-category": "Halaman dengan peta",
 	"kartographer-tracking-category-desc": "Halaman yang menyertakan peta",
 	"kartographer-specialmap-invalid-coordinates": "Koordinat yang diberikan tak sah",
+	"kartographer-specialmap-world": "Peta Dunia",
+	"kartographer-static-mapframe-alt": "Peta",
 	"kartographer-linktype-aerial": "Aerial",
 	"kartographer-linktype-map": "Peta standar",
 	"kartographer-linktype-other": "Lainnya",

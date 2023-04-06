@@ -2,9 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Chaduvari",
-			"Veeven"
+			"Veeven",
+			"V Bhavya"
 		]
 	},
+	"kartographer-specialmap-world": "ప్రపంచ పటం",
+	"kartographer-static-mapframe-alt": "పటం",
 	"kartographer-sidebar-nearbybutton": "సమీపంలో ఉన్న వ్యాసాలను చూపించు",
 	"kartographer-fullscreen-collapse": "పటం వివరాలను దాచు",
 	"visualeditor-mwmapsdialog-title": "పటం",

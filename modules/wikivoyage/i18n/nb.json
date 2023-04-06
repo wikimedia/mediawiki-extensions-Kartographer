@@ -1,14 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jon Harald Søby"
+			"Jon Harald Søby",
+			"EdoAug"
 		]
 	},
 	"kartographer-wv-group": "Gruppe:",
 	"kartographer-wv-layer-nearby-articles": "Artikler i nærheten",
 	"kartographer-wv-nearby-articles-control": "Utforsk steder i nærheten",
 	"kartographer-wv-warning-external-source-title": "Ekstern datakilde",
-	"kartographer-wv-warning-external-source-message": "Dette innholdet ligger eksternt, så å aktivere den vil føre til at dine data deles med andre nettsteder.",
-	"kartographer-wv-warning-external-source-agree": "Det er greit",
+	"kartographer-wv-warning-external-source-message": "Dette innholdet ligger eksternt, så å aktivere den vil føre til at IP-adressa di og andre data deles med kartleverandøren.",
+	"kartographer-wv-warning-external-source-agree": "Jeg forstår",
 	"kartographer-wv-warning-external-source-disagree": "Avbryt"
 }

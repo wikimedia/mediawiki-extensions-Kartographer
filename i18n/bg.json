@@ -4,7 +4,8 @@
 			"Amire80",
 			"Iliev",
 			"StanProg",
-			"Ted Masters"
+			"Ted Masters",
+			"Kareyac"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Карти на Уикимедия] | Карт. данни © [https://www.openstreetmap.org/copyright Редактори в OpenStreetMap]",
@@ -14,6 +15,8 @@
 	"kartographer-tracking-category": "Страници с карти",
 	"kartographer-tracking-category-desc": "Тази страница съдържа карта",
 	"kartographer-specialmap-invalid-coordinates": "Указани са невалидни координати",
+	"kartographer-specialmap-world": "Карта на света",
+	"kartographer-static-mapframe-alt": "Карта",
 	"kartographer-linktype-aerial": "Въздушна",
 	"kartographer-linktype-map": "Стандартни карти",
 	"kartographer-linktype-other": "Други",

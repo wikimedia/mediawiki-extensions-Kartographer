@@ -22,6 +22,8 @@
 	"kartographer-tracking-category": "Lapas ar kartēm",
 	"kartographer-tracking-category-desc": "Lapā ir karte",
 	"kartographer-specialmap-invalid-coordinates": "Norādītas nederīgas koordniātas",
+	"kartographer-specialmap-world": "Pasaules karte",
+	"kartographer-static-mapframe-alt": "Karte",
 	"kartographer-linktype-aerial": "Aero",
 	"kartographer-linktype-map": "Standarta kartes",
 	"kartographer-linktype-other": "Citas",
