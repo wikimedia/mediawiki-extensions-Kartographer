@@ -60,11 +60,11 @@ class LegacyMapFrame extends LegacyTagHandler {
 			}
 		}
 
+		$html = Html::rawElement( 'a', $attrs, $thumbnail );
 		if ( $this->args->frameless ) {
-			return Html::rawElement( 'a', $attrs, $thumbnail );
+			return $html;
 		}
 
-		$html = Html::rawElement( 'a', $attrs, $thumbnail );
 		$caption = (string)$this->args->text;
 		if ( $caption !== '' ) {
 			$html .= Html::rawElement( 'div', [ 'class' => 'thumbcaption' ],
