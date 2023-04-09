@@ -433,6 +433,9 @@
 		"localBasePath": "",
 		"remoteExtPath": "Kartographer"
 	},
+	"LateJSConfigVarNames": [
+		"wgKartographerLiveData"
+	],
 	"Hooks": {
 		"ParserTestGlobals": "KartographerHooks",
 		"ParserFirstCallInit": "KartographerHooks",
