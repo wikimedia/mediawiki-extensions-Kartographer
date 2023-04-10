@@ -202,6 +202,7 @@
 		},
 		"ext.kartographer.dialog": {
 			"localBasePath": "modules/dialog",
+			"remoteExtPath": "Kartographer/modules/dialog",
 			"dependencies": [
 				"oojs-ui-core",
 				"oojs-ui-windows",
