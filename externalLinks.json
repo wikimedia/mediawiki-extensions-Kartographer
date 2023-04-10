@@ -86,7 +86,7 @@
 			"links": [
 				{
 					"type": "map",
-					"url": "https://tools.wmflabs.org/geohack/geohack.php?language={language}&pagename={title}&params={latitude}_N_{longitude}_E_scale:{scale}"
+					"url": "https://geohack.toolforge.org/geohack.php?language={language}&pagename={title}&params={latitude}_N_{longitude}_E_scale:{scale}"
 				}
 			]
 		},
@@ -193,7 +193,7 @@
 			"links": [
 				{
 					"type": "map",
-					"url": "https://wma.wmflabs.org/iframe.html?wma={latitude}_{longitude}_700_500_{language}_{zoom}_en&globe=Earth&lang={language}&page={title}"
+					"url": "https://wma.wmcloud.org/iframe.html?wma={latitude}_{longitude}_700_500_{language}_{zoom}_en&globe=Earth&lang={language}&page={title}"
 				}
 			]
 		},
