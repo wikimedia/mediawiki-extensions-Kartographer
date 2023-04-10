@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Jon Harald Søby (WMNO)",
+			"Kimberli Mäkäräinen (WMNO)",
 			"Yupik"
 		]
 	},
@@ -10,6 +11,7 @@
 	"leafletdraw-edit-toolbar-actions-save-text": "Vurke",
 	"kartographer-fullscreen-close": "Gidde",
 	"kartographer-icon-docs-help": "Govvádus",
+	"visualeditor-mwmapsdialog-caption": "Govvateaksta",
 	"visualeditor-mwmapsdialog-language": "Giella",
 	"visualeditor-mwmapsdialog-title": "Kárta"
 }
