@@ -10,7 +10,9 @@
 			"Mgpena",
 			"Rafael.minuesa",
 			"Rubentl134",
-			"YoViajo"
+			"YoViajo",
+			"Amire80",
+			"La Mantis"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Mapas de Wikimedia] | Datos del mapa © [https://www.openstreetmap.org/copyright Colaboradores de OpenStreetMap]",
@@ -23,7 +25,7 @@
 	"kartographer-error-bad_attr": "El atributo '$1' tiene un valor no válido",
 	"kartographer-error-bad_data": "El contenido JSON no es GeoJSON+simplestyle válido",
 	"kartographer-error-latlon": "Se deben proporcionar o bien ambos parámetros de \"latitud\" y \"longitud\" o bien ninguno de ellos",
-	"kartographer-error-title": "El título \"$1\" no es una página de datos de mapa válida",
+	"kartographer-error-title": "El título «$1» no es una página de datos cartográficos válida",
 	"kartographer-tracking-category": "Páginas con mapas",
 	"kartographer-tracking-category-desc": "La página incluye un mapa",
 	"kartographer-specialmap-invalid-coordinates": "Las coordenadas suministradas no son válidas",
