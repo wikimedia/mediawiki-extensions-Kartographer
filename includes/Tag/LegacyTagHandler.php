@@ -24,7 +24,7 @@ use Message;
 use Parser;
 use ParserOutput;
 use PPFrame;
-use Status;
+use StatusValue;
 use stdClass;
 use Title;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
@@ -42,8 +42,6 @@ abstract class LegacyTagHandler {
 	 */
 	public const TAG = '';
 
-	/** @var Status */
-	private Status $status;
 	/** @var stdClass[] */
 	private array $geometries = [];
 	/** @var MapTagArgumentValidator */
@@ -104,13 +102,16 @@ abstract class LegacyTagHandler {
 		$this->state->incrementUsage( static::TAG );
 
 		$this->args = new MapTagArgumentValidator( static::TAG, $args, $this->config, $this->getLanguage() );
-		$this->status = $this->args->status;
-		if ( $this->status->isOK() ) {
-			$this->parseGeometries( $input, $parser, $frame );
+		$status = $this->args->status;
+		if ( $status->isOK() ) {
+			$status = SimpleStyleParser::newFromParser( $parser, $frame )->parse( $input );
+			if ( $status->isOK() ) {
+				$this->geometries = $status->getValue()['data'];
+			}
 		}
 
-		if ( !$this->status->isGood() ) {
-			$result = $this->reportError();
+		if ( !$status->isGood() ) {
+			$result = $this->reportError( $status );
 			State::setState( $parserOutput, $this->state );
 			return $result;
 		}
@@ -123,22 +124,6 @@ abstract class LegacyTagHandler {
 
 		State::setState( $parserOutput, $this->state );
 		return $result;
-	}
-
-	/**
-	 * Parses and sanitizes GeoJSON+simplestyle contained inside of tags
-	 *
-	 * @param string|null $input
-	 * @param Parser $parser
-	 * @param PPFrame $frame
-	 */
-	private function parseGeometries( ?string $input, Parser $parser, PPFrame $frame ): void {
-		$simpleStyle = SimpleStyleParser::newFromParser( $parser, $frame );
-
-		$this->status = $simpleStyle->parse( $input );
-		if ( $this->status->isOK() ) {
-			$this->geometries = $this->status->getValue()['data'];
-		}
 	}
 
 	/**
@@ -228,10 +213,10 @@ abstract class LegacyTagHandler {
 	/**
 	 * @return string
 	 */
-	private function reportError(): string {
+	private function reportError( StatusValue $status ): string {
 		$this->state->setBrokenTags();
-		$errors = array_merge( $this->status->getErrorsByType( 'error' ),
-			$this->status->getErrorsByType( 'warning' )
+		$errors = array_merge( $status->getErrorsByType( 'error' ),
+			$status->getErrorsByType( 'warning' )
 		);
 		if ( !$errors ) {
 			throw new LogicException( __METHOD__ . '(): attempt to report error when none took place' );
@@ -252,7 +237,7 @@ abstract class LegacyTagHandler {
 		}
 		return Html::rawElement( 'div', [ 'class' => 'mw-kartographer-error' ],
 			$msg->inLanguage( $this->getLanguage() )->escaped() .
-			$this->getJSONValidatorLog( $this->status->getValue()['schema-errors'] ?? [] )
+			$this->getJSONValidatorLog( $status->getValue()['schema-errors'] ?? [] )
 		);
 	}
 
