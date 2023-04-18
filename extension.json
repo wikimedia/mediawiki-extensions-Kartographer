@@ -11,7 +11,7 @@
 	"license-name": "MIT",
 	"type": "parserhook",
 	"requires": {
-		"MediaWiki": ">= 1.40.0",
+		"MediaWiki": ">= 1.41.0",
 		"extensions": {
 			"JsonConfig": "*"
 		}
