@@ -50,6 +50,7 @@
 	"kartographer-sidebar-latitude": "위도",
 	"kartographer-sidebar-longitude": "경도",
 	"kartographer-sidebar-mapdetails": "외부 지도",
+	"kartographer-sidebar-nearbybutton": "주변 문서 보기",
 	"kartographer-sidebar-service": "서비스",
 	"kartographer-sidebar-togglebutton": "외부 지도",
 	"leafletdraw-draw-handlers-circle-radius": "반경",
