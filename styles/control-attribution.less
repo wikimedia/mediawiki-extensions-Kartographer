@@ -1,5 +1,5 @@
 /* == Attribution control == */
-@import '../lib/external/wikimedia-ui-base';
+@import 'mediawiki.skin.variables.less';
 
 /* Static snapshot */
 .mw-kartographer-attribution {
@@ -22,7 +22,7 @@
 /* Interactive */
 .leaflet-right.leaflet-bottom .leaflet-control.leaflet-control-attribution {
 	/** Override initial properties */
-	background-color: transparent;
+	background-color: @background-color-transparent;
 	float: none;
 	clear: none;
 }
@@ -31,7 +31,7 @@
 .mw-kartographer-attribution,
 .leaflet-right.leaflet-bottom .leaflet-control.leaflet-control-attribution {
 	font-size: 10px;
-	font-family: sans-serif;
+	font-family: @font-family-base;
 	line-height: 1.6;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -46,7 +46,7 @@
 	}
 
 	a {
-		color: @color-primary;
+		color: @color-link;
 	}
 }
 

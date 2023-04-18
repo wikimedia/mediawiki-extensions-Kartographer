@@ -9,7 +9,6 @@ cp -rv node_modules/mapbox.js/dist/mapbox.css lib/external/mapbox/mapbox.css
 rm lib/external/mapbox/images/render.sh
 
 cp -v node_modules/@wikimedia/leaflet-sleep/Leaflet.Sleep.js lib/external/leaflet.sleep.js
-cp -v node_modules/wikimedia-ui-base/wikimedia-ui-base.less lib/external/wikimedia-ui-base.less
 
 cp -v node_modules/prunecluster/dist/PruneCluster.js \
     node_modules/prunecluster/dist/LeafletStyleSheet.css \
