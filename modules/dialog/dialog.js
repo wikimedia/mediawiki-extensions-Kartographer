@@ -9,7 +9,6 @@
  */
 var CloseFullScreenControl = require( './closefullscreen_control.js' ),
 	// Opens the sidebar when the screen is wide enough (greater than 1024px)
-	FOOTER_HEIGHT = 63,
 	SIDEBAR_WIDTH = 320;
 
 /**
@@ -38,10 +37,13 @@ MapDialog.prototype.initialize = function () {
 	// Parent method
 	MapDialog.super.prototype.initialize.apply( this, arguments );
 
+	this.$mapBody = $( '<div>' ).addClass( 'mw-kartographer-map-body' )
+		.append( $( '<div>' ).addClass( 'kartographer-mapDialog-loading' ) );
+	this.$mapFooter = $( '<div>' ).addClass( 'mw-kartographer-map-foot' );
+
 	this.$body
-		.addClass( 'mw-kartographer-mapDialog-body' );
-	this.$foot
-		.addClass( 'mw-kartographer-mapDialog-foot' );
+		.addClass( 'mw-kartographer-mapDialog-body' )
+		.append( this.$mapBody, this.$mapFooter );
 
 	this.map = null;
 };
@@ -68,7 +70,7 @@ MapDialog.prototype.setMap = function ( map ) {
 			.addTo( dialog.map );
 	}
 
-	dialog.$body.append(
+	dialog.$mapBody.append(
 		dialog.map.$container.css( 'position', '' )
 	);
 
@@ -119,12 +121,10 @@ MapDialog.prototype.setMap = function ( map ) {
 
 MapDialog.prototype.addFooterButton = function () {
 	var dialog = this,
-		$buttonContainer, $inlineContainer;
+		$buttonContainer;
 
-	// Create footer toggle button
 	dialog.$captionContainer = dialog.$element.find( '.mw-kartographer-captionfoot' );
 	$buttonContainer = dialog.$element.find( '.mw-kartographer-buttonfoot' );
-	$inlineContainer = dialog.$element.find( '.mw-kartographer-inlinefoot' );
 
 	if ( !dialog.mapDetailsButton ) {
 		dialog.mapDetailsButton = new OO.ui.ToggleButtonWidget( {
@@ -155,17 +155,10 @@ MapDialog.prototype.addFooterButton = function () {
 	}
 	$buttonContainer.append( dialog.mapDetailsButton.$element );
 
-	if ( !$inlineContainer.length ) {
-		$inlineContainer = $( '<div>' )
-			.addClass( 'mw-kartographer-inlinefoot' );
-	}
-	$inlineContainer.append(
+	dialog.$mapFooter.append(
 		$buttonContainer,
 		dialog.$captionContainer
 	);
-
-	// Add the button to the footer
-	dialog.$foot.append( $inlineContainer );
 
 	if ( dialog.map ) {
 		dialog.$captionContainer
@@ -197,7 +190,7 @@ MapDialog.prototype.toggleSideBar = function ( open ) {
 		// Animations only work if content is visible
 		dialog.sideBar.$el.attr( 'aria-hidden', null );
 		setTimeout( function () {
-			dialog.$body.toggleClass( 'mw-kartographer-mapDialog-sidebar-opened', open );
+			dialog.$mapBody.toggleClass( 'mw-kartographer-mapDialog-sidebar-opened', open );
 			setTimeout( function () {
 				// Ensure proper hidden content after animation finishes
 				dialog.sideBar.$el.attr( 'aria-hidden', !open );
@@ -264,7 +257,7 @@ MapDialog.prototype.getActionProcess = function ( action ) {
 MapDialog.prototype.offsetMap = function ( isSidebarOpen ) {
 	var map = this.map,
 		offsetX = isSidebarOpen ? SIDEBAR_WIDTH / -2 : 0,
-		offsetY = FOOTER_HEIGHT / -2,
+		offsetY = this.$mapFooter.outerHeight() / -2,
 		targetPoint = map.project( map.getCenter(), map.getZoom() ).subtract( [ offsetX, offsetY ] ),
 		targetLatLng = map.unproject( targetPoint, map.getZoom() );
 

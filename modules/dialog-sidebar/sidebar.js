@@ -105,7 +105,7 @@ SideBar.prototype.render = function () {
 	sidebar.renderTypeFilter();
 	sidebar.renderExternalServices();
 
-	$container.appendTo( sidebar.dialog.$body );
+	$container.appendTo( sidebar.dialog.$mapBody );
 
 	map.on( 'move', sidebar.onMapMove, sidebar );
 
