@@ -156,8 +156,8 @@ MapDialog.prototype.addFooterButton = function () {
 	$buttonContainer.append( dialog.mapDetailsButton.$element );
 
 	dialog.$mapFooter.append(
-		$buttonContainer,
-		dialog.$captionContainer
+		dialog.$captionContainer,
+		$buttonContainer
 	);
 
 	if ( dialog.map ) {
