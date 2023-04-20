@@ -25,7 +25,7 @@
 	"kartographer-error-bad_attr": "El atributo '$1' tiene un valor no válido",
 	"kartographer-error-bad_data": "El contenido JSON no es un estilo GeoJSON+simplestyle válido. La lista más abajo muestra todos los intentos de interpretarlo conforme al [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json esquema JSON]. No todos son errores.",
 	"kartographer-error-latlon": "Se deben proporcionar o bien ambos parámetros de \"latitud\" y \"longitud\" o bien ninguno de ellos",
-	"kartographer-error-title": "El título \"$1\" no es una página de datos de mapa válida",
+	"kartographer-error-title": "El título «$1» no es una página de datos cartográficos válida",
 	"kartographer-tracking-category": "Páginas con mapas",
 	"kartographer-tracking-category-desc": "La página incluye un mapa",
 	"kartographer-specialmap-invalid-coordinates": "Las coordenadas suministradas no son válidas",

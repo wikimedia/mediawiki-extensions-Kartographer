@@ -8,7 +8,8 @@
 			"Kocio",
 			"Matma Rex",
 			"Rail",
-			"Railfail536"
+			"Railfail536",
+			"Woytecr"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Mapy Wikimedia] | Dane kartograficzne © [https://www.openstreetmap.org/copyright Twórcy projektu OpenStreetMap]",
@@ -39,6 +40,7 @@
 	"kartographer-sidebar-latitude": "Szerokość geograficzna",
 	"kartographer-sidebar-longitude": "Długość geograficzna",
 	"kartographer-sidebar-mapdetails": "Zewnętrzne mapy",
+	"kartographer-sidebar-nearbybutton": "Pokaż artykuły o miejscach w pobliżu",
 	"kartographer-sidebar-service": "Usługa",
 	"kartographer-sidebar-togglebutton": "Zewnętrzne mapy",
 	"leafletdraw-draw-handlers-circle-radius": "Promień",
