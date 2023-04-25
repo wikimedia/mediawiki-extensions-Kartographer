@@ -4,10 +4,12 @@
 			"Abuluntu",
 			"Danmichaelo",
 			"Jeblad",
-			"Jon Harald Søby"
+			"Jon Harald Søby",
+			"Amire80",
+			"EdoAug"
 		]
 	},
-	"apierror-kartographer-conflicting-revids": "Spørringer om kartdata fra flere revisjoner av samme side i én forespørsel støttes ikke ennå.",
+	"apierror-kartographer-conflicting-revids": "Spørringer om kartdata fra flere sideversjoner av samme side i én forespørsel støttes ikke ennå.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia-kart] | Kartdata © [https://www.openstreetmap.org/copyright OpenStreetMaps bidragsytere]",
 	"kartographer-broken-category": "Sider med ødelagte kart",
 	"kartographer-broken-category-desc": "Siden inkluderer ugyldig kartbruk",

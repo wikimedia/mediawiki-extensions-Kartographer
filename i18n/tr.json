@@ -10,9 +10,12 @@
 			"SaldırganSincap",
 			"Sayginer",
 			"TmY e12",
-			"ToprakM"
+			"ToprakM",
+			"Amire80",
+			"Joseph"
 		]
 	},
+	"apierror-kartographer-conflicting-revids": "Aynı sayfanın birden fazla sürümünün harita verilerinin tek bir istekte sorgulanması henüz desteklenmemektedir.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia haritaları] | Harita verisi © [https://www.openstreetmap.org/copyright OpenStreetMap katkıları]",
 	"kartographer-broken-category": "Haritaları bozuk sayfalar",
 	"kartographer-broken-category-desc": "Sayfa geçersiz bir harita kullanımını içeriyor",
@@ -41,6 +44,7 @@
 	"kartographer-sidebar-latitude": "Enlem",
 	"kartographer-sidebar-longitude": "Boylam",
 	"kartographer-sidebar-mapdetails": "Harici haritalar",
+	"kartographer-sidebar-nearbybutton": "Yakındaki maddeleri göster",
 	"kartographer-sidebar-service": "Hizmet",
 	"kartographer-sidebar-togglebutton": "Harici haritalar",
 	"leafletdraw-draw-handlers-circle-radius": "Yarıçap",

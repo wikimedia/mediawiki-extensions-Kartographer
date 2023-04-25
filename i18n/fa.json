@@ -9,7 +9,8 @@
 			"Jeeputer",
 			"Ladsgroup",
 			"Reza1615",
-			"درفش کاویانی"
+			"درفش کاویانی",
+			"Amire80"
 		]
 	},
 	"kartographer-attribution": "[https://meta.wikimedia.org/wiki/Maps_Terms_of_Use/fa نقشه‌های ویکی‌مدیا] | داده‌های نقشه © [https://www.openstreetmap.org/copyright مشارکت‌کنندگان اوپن‌استریت‌مپ]",
@@ -36,6 +37,7 @@
 	"kartographer-sidebar-latitude": "عرض جغرافیایی",
 	"kartographer-sidebar-longitude": "طول جغرافیایی",
 	"kartographer-sidebar-mapdetails": "نقشه‌های خارجی",
+	"kartographer-sidebar-nearbybutton": "نمایش مقاله‌های اماکن نزدیک",
 	"kartographer-sidebar-service": "سرویس",
 	"kartographer-sidebar-togglebutton": "نقشه‌های خارجی",
 	"leafletdraw-draw-handlers-circle-radius": "شعاع",

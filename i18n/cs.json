@@ -5,7 +5,8 @@
 			"Dvorapa",
 			"Kvetoslav47",
 			"Matěj Suchánek",
-			"Mormegil"
+			"Mormegil",
+			"Amire80"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Mapy Wikimedia] | Mapová data © [https://www.openstreetmap.org/copyright přispěvatelé OpenStreetMap]",
@@ -38,6 +39,7 @@
 	"kartographer-sidebar-latitude": "Šířka",
 	"kartographer-sidebar-longitude": "Délka",
 	"kartographer-sidebar-mapdetails": "Externí mapy",
+	"kartographer-sidebar-nearbybutton": "Zobrazit články v okolí",
 	"kartographer-sidebar-service": "Služba",
 	"kartographer-sidebar-togglebutton": "Externí mapy",
 	"leafletdraw-draw-handlers-circle-radius": "Poloměr",
@@ -80,6 +82,8 @@
 	"visualeditor-mwmapsdialog-align": "Zarovnání",
 	"visualeditor-mwmapsdialog-language": "Jazyk",
 	"visualeditor-mwmapsdialog-help-title": "Více informací o vytváření a editaci map.",
+	"visualeditor-mwmapsdialog-position-lat": "Zeměpisná šířka",
+	"visualeditor-mwmapsdialog-position-lon": "Zeměpisná délka",
 	"visualeditor-mwmapsdialog-position-zoom": "Přiblížení",
 	"visualeditor-mwmapsdialog-size": "Velikost",
 	"visualeditor-mwmapsdialog-title": "Mapa",
