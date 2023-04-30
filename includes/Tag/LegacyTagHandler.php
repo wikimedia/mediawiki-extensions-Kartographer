@@ -211,7 +211,8 @@ abstract class LegacyTagHandler {
 	}
 
 	/**
-	 * @return string
+	 * @param StatusValue $status
+	 * @return string HTML
 	 */
 	private function reportError( StatusValue $status ): string {
 		$this->state->setBrokenTags();

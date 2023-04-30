@@ -9,6 +9,7 @@ use LogicException;
 use MediaWikiIntegrationTestCase;
 use Parser;
 use ParserOptions;
+use Status;
 use Title;
 
 /**
@@ -41,9 +42,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 
 		$status = $ssp->parse( $input );
 
-		$this->assertTrue( $status->isOK(),
-			"Parse is expected to succeed, but encountered '{$status->getMessage()->text()}'"
-		);
+		$this->assertTrue( $status->isOK(), Status::wrap( $status )->getMessage()->text() );
 		$this->assertEquals( $expected, $status->getValue()['data'], $message );
 	}
 
