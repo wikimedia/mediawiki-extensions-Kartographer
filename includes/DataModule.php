@@ -18,9 +18,6 @@ use MediaWiki\ResourceLoader\ResourceLoader;
  */
 class DataModule extends RL\Module {
 
-	/** @inheritDoc */
-	protected $targets = [ 'desktop', 'mobile' ];
-
 	/**
 	 * @inheritDoc
 	 */

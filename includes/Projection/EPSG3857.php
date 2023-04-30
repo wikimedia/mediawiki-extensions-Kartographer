@@ -38,7 +38,7 @@ class EPSG3857 {
 		$x = deg2rad( $latLon[1] );
 		$y = deg2rad( $lat );
 
-		$y = log( tan( ( pi() / 4 ) + ( $y / 2 ) ) );
+		$y = log( tan( ( M_PI / 4 ) + ( $y / 2 ) ) );
 
 		return [ $x, $y ];
 	}

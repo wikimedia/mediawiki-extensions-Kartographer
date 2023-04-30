@@ -240,6 +240,7 @@ class SimpleStyleParser {
 			foreach ( $json as &$element ) {
 				$status->merge( $this->recursivelyNormalizeExternalData( $element ) );
 			}
+			unset( $element );
 		} elseif ( is_object( $json ) && isset( $json->type ) && $json->type === 'ExternalData' ) {
 			$status->merge( $this->normalizeExternalDataServices( $json ) );
 		}
@@ -344,6 +345,7 @@ class SimpleStyleParser {
 						$text = $this->parser->parseWikitext( $text );
 					}
 				}
+				unset( $text );
 
 				// Delete empty localizations
 				if ( !get_object_vars( $property ) ) {
