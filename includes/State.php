@@ -107,7 +107,7 @@ class State implements JsonSerializable {
 			throw new UnexpectedValueException( 'Unsupported tag name' );
 		}
 		// Resulting keys will be "maplinks" and "mapframes"
-		$key = "${tag}s";
+		$key = "{$tag}s";
 		$this->usages[$key] = ( $this->usages[$key] ?? 0 ) + 1;
 	}
 
