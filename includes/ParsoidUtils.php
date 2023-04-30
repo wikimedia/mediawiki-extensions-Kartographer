@@ -25,8 +25,7 @@ class ParsoidUtils {
 	): DocumentFragment {
 		if ( $language === null ) {
 			return $extApi->createInterfaceI18nFragment( $msgKey, $params );
-		} else {
-			return $extApi->createLangI18nFragment( new Bcp47CodeValue( $language ), $msgKey, $params );
 		}
+		return $extApi->createLangI18nFragment( new Bcp47CodeValue( $language ), $msgKey, $params );
 	}
 }
