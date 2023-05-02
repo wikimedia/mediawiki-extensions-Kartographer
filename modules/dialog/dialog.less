@@ -37,9 +37,13 @@
 .mw-kartographer-captionfoot {
 	float: left;
 	padding-bottom: 14px;
-	font-size: 20px;
+	font-size: 16px;
 	line-height: 1.55;
 	word-break: break-word;
+
+	@media screen and ( min-width: @min-width-breakpoint-tablet ) {
+		font-size: 20px;
+	}
 }
 
 .mw-kartographer-buttonfoot {
