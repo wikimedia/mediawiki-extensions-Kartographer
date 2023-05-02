@@ -56,7 +56,7 @@ MapDialog.prototype.setMap = function ( map ) {
 	// remove older map
 	if ( dialog.map ) {
 		dialog.map.remove();
-		dialog.$body.empty();
+		dialog.$mapBody.empty();
 	}
 	// set new map
 	dialog.map = map;
@@ -327,7 +327,7 @@ MapDialog.prototype.getTeardownProcess = function ( data ) {
 				this.map.remove();
 				this.map = null;
 			}
-			this.$body.empty();
+			this.$mapBody.empty();
 		}, this );
 };
 
