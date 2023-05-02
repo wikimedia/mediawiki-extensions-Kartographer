@@ -70,6 +70,22 @@
 	transition: transform @transition-duration-base @transition-timing-function-user;
 	/* don't use padding on this object, because then it will retain height after being pushed off screen */
 
+	&-opened & {
+		transform: translateX( 0 );
+	}
+
+	&-opened {
+		.leaflet-right.leaflet-top .leaflet-bar.leaflet-control {
+			// Match the margin with the text inside the sidebar
+			margin-top: 1em;
+		}
+
+		.leaflet-right.leaflet-top,
+		.leaflet-right.leaflet-bottom {
+			right: @width-kartographer-sidebar;
+		}
+	}
+
 	/* For MobileFrontend */
 	.skin-minerva & h2 {
 		margin-bottom: 0.6em;
@@ -171,22 +187,6 @@
 	// T308227: The center of a cluster is pointless when expanded, hide it
 	.nearby-cluster[ style*='opacity:\ 0.3' ] {
 		display: none;
-	}
-}
-
-.mw-kartographer-mapDialog-sidebar-opened {
-	.mw-kartographer-mapDialog-sidebar {
-		transform: translateX( 0 );
-	}
-
-	.leaflet-right.leaflet-top .leaflet-bar.leaflet-control {
-		// Match the margin with the text inside the sidebar
-		margin-top: 1em;
-	}
-
-	.leaflet-right.leaflet-top,
-	.leaflet-right.leaflet-bottom {
-		right: @width-kartographer-sidebar;
 	}
 }
 
