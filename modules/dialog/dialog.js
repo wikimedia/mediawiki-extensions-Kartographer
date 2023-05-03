@@ -70,9 +70,8 @@ MapDialog.prototype.setMap = function ( map ) {
 			.addTo( dialog.map );
 	}
 
-	dialog.$mapBody.append(
-		dialog.map.$container.css( 'position', '' )
-	);
+	dialog.$captionContainer.text( dialog.map.captionText );
+	dialog.$mapBody.append( dialog.map.$container.css( 'position', '' ) );
 
 	var $focusBox = $( '<div>' ).addClass( 'mw-kartographer-mapDialog-focusBox' );
 
@@ -92,9 +91,6 @@ MapDialog.prototype.setMap = function ( map ) {
 				$focusBox.toggleClass( 'mw-kartographer-mapDialog-focusBox-available', isMap );
 			}
 		} );
-
-	dialog.$captionContainer
-		.text( dialog.map.captionText );
 
 	// The button exists, the sidebar was open, call `tearDown` and reopen it.
 	if ( dialog.sideBar ) {

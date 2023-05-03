@@ -4,17 +4,16 @@
 // `SIDEBAR_WIDTH` accordingly
 @width-kartographer-sidebar: 320px;
 
-.mw-kartographer-mapDialog-body {
-	height: 100%;
-	display: grid;
-	-ms-grid-columns: 1fr;
-	grid-template-columns: 1fr;
-	-ms-grid-rows: auto min-content;
-	grid-template-rows: auto min-content;
+.oo-ui-window-body.mw-kartographer-mapDialog-body {
+	display: flex;
+	flex-direction: column;
+	// We never want scrollbars that cover the entire dialog, not even temporarily
+	overflow: hidden;
 }
 
 .mw-kartographer-map-body {
 	position: relative;
+	flex-grow: 1;
 }
 
 .mw-kartographer-reload-nearbybutton {
