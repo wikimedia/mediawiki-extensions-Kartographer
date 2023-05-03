@@ -261,7 +261,7 @@ MapDialog.prototype.offsetMap = function ( isSidebarOpen ) {
 		targetPoint = map.project( map.getCenter(), map.getZoom() ).subtract( [ offsetX, offsetY ] ),
 		targetLatLng = map.unproject( targetPoint, map.getZoom() );
 
-	map.setView( targetLatLng, map.getZoom() );
+	map.setView( targetLatLng, map.getZoom(), { animate: false } );
 };
 
 MapDialog.prototype.getSetupProcess = function ( options ) {
