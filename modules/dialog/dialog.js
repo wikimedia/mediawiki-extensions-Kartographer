@@ -46,6 +46,7 @@ MapDialog.prototype.initialize = function () {
 		.append( this.$mapBody, this.$mapFooter );
 
 	this.map = null;
+	this.offset = [ 0, 0 ];
 };
 
 /**
@@ -251,10 +252,12 @@ MapDialog.prototype.getActionProcess = function ( action ) {
  * @param {boolean} isSidebarOpen Whether the sidebar is open.
  */
 MapDialog.prototype.offsetMap = function ( isSidebarOpen ) {
-	var map = this.map,
-		offsetX = isSidebarOpen ? SIDEBAR_WIDTH / -2 : 0,
-		offsetY = this.$mapFooter.outerHeight() / -2,
-		targetPoint = map.project( map.getCenter(), map.getZoom() ).subtract( [ offsetX, offsetY ] ),
+	var map = this.map;
+	this.offset = [
+		isSidebarOpen ? SIDEBAR_WIDTH / 2 : 0,
+		this.$mapFooter.outerHeight() / 2
+	];
+	var targetPoint = map.project( map.getCenter(), map.getZoom() ).add( this.offset ),
 		targetLatLng = map.unproject( targetPoint, map.getZoom() );
 
 	map.setView( targetLatLng, map.getZoom(), { animate: false } );
