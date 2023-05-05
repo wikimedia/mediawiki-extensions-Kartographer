@@ -449,7 +449,9 @@ KartographerMap = L.Map.extend( {
 		var map = this;
 		groups.forEach( function ( group ) {
 			if ( group.failed ) {
-				mw.log.warn( 'Layer not found or contains no data: ' + group.failureReason );
+				if ( group.name && group.name.slice( 0, 1 ) === '_' && group.failureReason ) {
+					mw.log.warn( 'Layer ' + group.name + ' not found or contains no data: ' + group.failureReason );
+				}
 				return;
 			}
 
@@ -458,6 +460,7 @@ KartographerMap = L.Map.extend( {
 
 			if ( !geoJSON.length ) {
 				return;
+			// FIXME: How can it be an array (with .length) and GeoJSON object the same time?
 			} else if ( geoJSON.service === 'page' ) {
 				var attribution = buildAttribution( geoJSON.url );
 				layerOptions.name = attribution;
