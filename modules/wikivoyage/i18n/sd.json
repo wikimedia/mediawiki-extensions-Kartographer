@@ -5,5 +5,9 @@
 		]
 	},
 	"kartographer-wv-group": "گروھ:",
-	"kartographer-wv-layer-wikimedia": "وڪيميڊيا"
+	"kartographer-wv-layer-nearby-articles": "ويجها مضمون",
+	"kartographer-wv-layer-wikimedia": "وڪيميڊيا",
+	"kartographer-wv-nearby-articles-control": "ويجها ھنڌ کوجيو",
+	"kartographer-wv-warning-external-source-title": "خارجي ڊيٽا جو ذريعو",
+	"kartographer-wv-warning-external-source-disagree": "رد ڪريو"
 }
