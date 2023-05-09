@@ -6,7 +6,7 @@
  * @ingroup Extensions
  */
 
-namespace Kartographer;
+namespace Kartographer\Modules;
 
 use ExtensionRegistry;
 // phpcs:disable MediaWiki.Classes.FullQualifiedClassName -- T308814

@@ -27,7 +27,7 @@
 		"KartographerAliases": "Kartographer.alias.php"
 	},
 	"SpecialPages": {
-		"Map": "Kartographer\\SpecialMap"
+		"Map": "Kartographer\\Special\\SpecialMap"
 	},
 	"AutoloadNamespaces": {
 		"Kartographer\\": "includes/"
@@ -50,7 +50,7 @@
 	},
 	"ResourceModules": {
 		"ext.kartographer": {
-			"class": "Kartographer\\DataModule"
+			"class": "Kartographer\\Modules\\DataModule"
 		},
 		"ext.kartographer.style": {
 			"styles": [
@@ -238,7 +238,7 @@
 				"sidebar.js",
 				{
 					"name": "externalLinks.json",
-					"callback": "Kartographer\\ExternalLinksProvider::getData"
+					"callback": "Kartographer\\Modules\\ExternalLinksProvider::getData"
 				}
 			],
 			"messages": [

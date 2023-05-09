@@ -3,12 +3,12 @@
 namespace Kartographer\Tests;
 
 use GeoData\Globe;
-use Kartographer\SpecialMap;
+use Kartographer\Special\SpecialMap;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \Kartographer\SpecialMap
+ * @covers \Kartographer\Special\SpecialMap
  * @group Kartographer
  * @license MIT
  */

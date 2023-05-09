@@ -1,10 +1,10 @@
 <?php
 
-namespace Kartographer;
+namespace Kartographer\Special;
 
 use GeoData\Globe;
 use Html;
-use Kartographer\Projection\EPSG3857;
+use Kartographer\CoordFormatter;
 use SpecialPage;
 use UnlistedSpecialPage;
 

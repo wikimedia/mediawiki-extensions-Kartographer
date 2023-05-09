@@ -4,7 +4,7 @@ namespace Kartographer\Tag;
 
 use Config;
 use FormatJson;
-use Kartographer\SpecialMap;
+use Kartographer\Special\SpecialMap;
 use MediaWiki\MainConfigNames;
 
 /**

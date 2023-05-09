@@ -6,7 +6,7 @@
  * @ingroup Extensions
  */
 
-namespace Kartographer;
+namespace Kartographer\Modules;
 
 use FormatJson;
 use MediaWiki\ResourceLoader\Context;
@@ -24,7 +24,7 @@ class ExternalLinksProvider {
 	 * @return stdClass
 	 */
 	public static function getData( Context $context ) {
-		$json = file_get_contents( __DIR__ . '/../externalLinks.json' );
+		$json = file_get_contents( __DIR__ . '/../../externalLinks.json' );
 		if ( !$json ) {
 			throw new RuntimeException( 'Error reading externalLinks.json' );
 		}
