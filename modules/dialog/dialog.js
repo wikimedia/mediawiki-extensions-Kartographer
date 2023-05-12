@@ -50,7 +50,7 @@ MapDialog.prototype.initialize = function () {
 };
 
 /**
- * @param {L.Map} map
+ * @param {L.Map|null} map
  */
 MapDialog.prototype.setMap = function ( map ) {
 	var dialog = this;
@@ -253,14 +253,11 @@ MapDialog.prototype.getActionProcess = function ( action ) {
  */
 MapDialog.prototype.offsetMap = function ( isSidebarOpen ) {
 	var map = this.map;
-	this.offset = [
-		isSidebarOpen ? SIDEBAR_WIDTH / 2 : 0,
-		this.$mapFooter.outerHeight() / 2
-	];
+	this.offset = [ isSidebarOpen ? SIDEBAR_WIDTH / 2 : 0, 0 ];
 	var targetPoint = map.project( map.getCenter(), map.getZoom() ).add( this.offset ),
 		targetLatLng = map.unproject( targetPoint, map.getZoom() );
 
-	map.setView( targetLatLng, map.getZoom(), { animate: false } );
+	map.setView( targetLatLng, map.getZoom(), { animate: false } ).invalidateSize();
 };
 
 MapDialog.prototype.getSetupProcess = function ( options ) {
@@ -274,14 +271,14 @@ MapDialog.prototype.getSetupProcess = function ( options ) {
 				dialog.addFooterButton();
 			}
 
-			if ( options.map && options.map !== dialog.map ) {
-				this.setMap( options.map );
+			if ( options.map !== dialog.map ) {
+				this.setMap( null );
 			}
 		}, this );
 };
 
-MapDialog.prototype.getReadyProcess = function ( data ) {
-	return MapDialog.super.prototype.getReadyProcess.call( this, data )
+MapDialog.prototype.getReadyProcess = function ( options ) {
+	return MapDialog.super.prototype.getReadyProcess.call( this, options )
 		.next( function () {
 			if ( mw.eventLog ) {
 				mw.eventLog.submit( 'mediawiki.maps_interaction', {
@@ -291,12 +288,12 @@ MapDialog.prototype.getReadyProcess = function ( data ) {
 			}
 			this.seenNearby = false;
 
-			if ( !this.map ) {
-				return;
+			if ( options.map ) {
+				this.setMap( options.map );
+				this.map.doWhenReady( function () {
+					mw.hook( 'wikipage.maps' ).fire( this.map, true /* isFullScreen */ );
+				}, this );
 			}
-			this.map.doWhenReady( function () {
-				mw.hook( 'wikipage.maps' ).fire( this.map, true /* isFullScreen */ );
-			}, this );
 		}, this );
 };
 
