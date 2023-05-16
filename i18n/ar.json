@@ -6,9 +6,12 @@
 			"Moud hosny",
 			"بدارين",
 			"ديفيد",
-			"محمد أحمد عبد الفتاح"
+			"محمد أحمد عبد الفتاح",
+			"Alshamiri1",
+			"Amire80"
 		]
 	},
+	"apierror-kartographer-conflicting-revids": "لم يتم دعم الاستعلام عن بيانات الخرائط من مراجعات متعددة لنفس الصفحة في طلب واحد حتى الآن.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia maps] | بيانات الخرائط © [https://www.openstreetmap.org/copyright مساهمو OpenStreetMap]",
 	"kartographer-attribution-short": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use ويكيميديا] | © [https://www.openstreetmap.org/copyright خريطة الشارع المفتوحة]",
 	"kartographer-broken-category": "صفحات مع خرائط معطوبة",
