@@ -116,51 +116,36 @@ MapDialog.prototype.setMap = function ( map ) {
 	}
 };
 
-MapDialog.prototype.addFooterButton = function () {
+MapDialog.prototype.setupFooter = function () {
 	var dialog = this,
-		$buttonContainer;
+		$buttonContainer = $( '<div>' ).addClass( 'mw-kartographer-buttonfoot' );
 
-	dialog.$captionContainer = dialog.$element.find( '.mw-kartographer-captionfoot' );
-	$buttonContainer = dialog.$element.find( '.mw-kartographer-buttonfoot' );
-
-	if ( !dialog.mapDetailsButton ) {
-		dialog.mapDetailsButton = new OO.ui.ToggleButtonWidget( {
-			label: mw.msg( 'kartographer-sidebar-togglebutton' )
-		} );
-		dialog.mapDetailsButton.connect( dialog, { change: 'toggleSideBar' } );
-	}
-	if ( !dialog.mapNearbyButton && mw.config.get( 'wgKartographerNearby' ) &&
+	// Add nearby button
+	if ( mw.config.get( 'wgKartographerNearby' ) &&
 		( !OO.ui.isMobile() || mw.config.get( 'wgKartographerNearbyOnMobile' ) )
 	) {
 		dialog.mapNearbyButton = new OO.ui.ToggleButtonWidget( {
 			label: mw.msg( 'kartographer-sidebar-nearbybutton' )
 		} );
 		dialog.mapNearbyButton.connect( dialog, { change: 'toggleNearbyLayerWrapper' } );
-	}
-
-	if ( !dialog.$captionContainer.length ) {
-		dialog.$captionContainer = $( '<div>' )
-			.addClass( 'mw-kartographer-captionfoot' );
-	}
-
-	if ( !$buttonContainer.length ) {
-		$buttonContainer = $( '<div>' )
-			.addClass( 'mw-kartographer-buttonfoot' );
-	}
-	if ( dialog.mapNearbyButton ) {
 		$buttonContainer.append( dialog.mapNearbyButton.$element );
 	}
+
+	// Add sidbar button
+	dialog.mapDetailsButton = new OO.ui.ToggleButtonWidget( {
+		label: mw.msg( 'kartographer-sidebar-togglebutton' )
+	} );
+	dialog.mapDetailsButton.connect( dialog, { change: 'toggleSideBar' } );
 	$buttonContainer.append( dialog.mapDetailsButton.$element );
+
+	// Add caption
+	dialog.$captionContainer = $( '<div>' )
+		.addClass( 'mw-kartographer-captionfoot' );
 
 	dialog.$mapFooter.append(
 		dialog.$captionContainer,
 		$buttonContainer
 	);
-
-	if ( dialog.map ) {
-		dialog.$captionContainer
-			.text( dialog.map.captionText );
-	}
 };
 
 /**
@@ -267,8 +252,7 @@ MapDialog.prototype.getSetupProcess = function ( options ) {
 				isFirstTimeOpen = !dialog.mapDetailsButton;
 
 			if ( isFirstTimeOpen ) {
-				// The button does not exist yet, add it
-				dialog.addFooterButton();
+				dialog.setupFooter();
 			}
 
 			if ( options.map !== dialog.map ) {
