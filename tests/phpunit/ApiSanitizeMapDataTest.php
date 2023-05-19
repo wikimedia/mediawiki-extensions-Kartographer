@@ -5,7 +5,7 @@ use ApiMain;
 use ApiResult;
 use ApiUsageException;
 use DerivativeContext;
-use FauxRequest;
+use MediaWiki\Request\FauxRequest;
 use MediaWikiIntegrationTestCase;
 use RequestContext;
 
