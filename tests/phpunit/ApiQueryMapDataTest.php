@@ -68,7 +68,7 @@ class ApiQueryMapDataTest extends ApiTestCase {
 		$this->assertResult( $expectedData, $apiResult );
 	}
 
-	public function executeWithTitleProvider() {
+	public static function executeWithTitleProvider() {
 		$hash = '_' . sha1( '[' . self::MAPFRAME_JSON . ']' );
 
 		return [
@@ -91,7 +91,7 @@ class ApiQueryMapDataTest extends ApiTestCase {
 		];
 	}
 
-	public function provideGroupRequests() {
+	public static function provideGroupRequests() {
 		return [
 			'Test filtering by group' => [
 				self::MAPFRAME_NAMED_GROUP,

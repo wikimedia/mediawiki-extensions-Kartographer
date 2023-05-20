@@ -50,7 +50,7 @@ class LegacyTagHandlerTest extends MediaWikiUnitTestCase {
 		LegacyTagHandler::finalParseStep( $state, $output, $isPreview, $tracker );
 	}
 
-	public function groupsProvider() {
+	public static function groupsProvider() {
 		yield 'test requested groups with isPreview false' => [
 				'data' => null,
 				'groups' => [

@@ -142,7 +142,7 @@ class StateTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $state, $retrieved );
 	}
 
-	public function provideStates() {
+	public static function provideStates() {
 		yield 'empty' => [ new State() ];
 
 		$stateWithData = new State();

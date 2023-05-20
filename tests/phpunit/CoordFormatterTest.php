@@ -25,7 +25,7 @@ class CoordFormatterTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $result );
 	}
 
-	public function provideFormatter() {
+	public static function provideFormatter() {
 		return [
 			[ '0°0′0″N 0°0′0″E', 0, 0 ],
 			[ '0°0′0″N 0°0′0″E', -0.000000000001, 0.000000000001 ],
@@ -55,7 +55,7 @@ class CoordFormatterTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $result );
 	}
 
-	public function provideParsoidFormatter() {
+	public static function provideParsoidFormatter() {
 		return [
 			[ '<span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"en","key":' .
 				'"kartographer-coord-lat-pos-lon-pos","params":[0,0,0,0,0,0]}}\'></span>', 0, 0 ],

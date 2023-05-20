@@ -67,7 +67,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $expected, json_encode( $state->getData() ), $message );
 	}
 
-	public function provideTagData() {
+	public static function provideTagData() {
 		// phpcs:disable Generic.Files.LineLength
 		$validJson = '{
     "type": "Feature",
@@ -189,7 +189,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function provideResourceModulesData() {
+	public static function provideResourceModulesData() {
 		$mapframe = '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37/>';
 		$maplink = '<maplink width=700 height=400 zoom=13 longitude=-122 latitude=37/>';
 
@@ -248,7 +248,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$this->assertArrayEquals( $expected, array_keys( (array)$vars['wgKartographerLiveData'] ) );
 	}
 
-	public function provideLiveData() {
+	public static function provideLiveData() {
 		$maplinkJson = '{"type":"Feature","geometry":{"type":"Point","coordinates":[-122,37]}}';
 		$mapframeJson = '{"type":"Feature","geometry":{"type":"Point","coordinates":[10,20]}}';
 		$maplinkHash = '_' . sha1( "[$maplinkJson]" );
@@ -298,7 +298,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $links, $po->getPageProperty( 'kartographer_links' ) );
 	}
 
-	public function providePageProps() {
+	public static function providePageProps() {
 		return [
 			[ '', null, null ],
 			[ '<foo>', null, null ],
@@ -321,7 +321,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$this->assertSame( $expected, $state->getRequestedGroups() );
 	}
 
-	public function provideGroupNames() {
+	public static function provideGroupNames() {
 		return [
 			[ [], '<maplink></maplink>' ],
 			[ [ 'a1' ], '<maplink show="a1"></maplink>' ],
@@ -345,7 +345,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $state->hasBrokenTags() );
 	}
 
-	public function provideInvalidGroupNames() {
+	public static function provideInvalidGroupNames() {
 		return [
 			[ '<maplink show="test😂"></maplink>' ],
 			[ '<maplink show="hell.o"></maplink>' ],

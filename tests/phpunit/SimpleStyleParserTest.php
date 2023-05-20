@@ -46,7 +46,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $status->getValue()['data'], $message );
 	}
 
-	public function provideExternalData() {
+	public static function provideExternalData() {
 		return [
 			[
 				'[
@@ -137,7 +137,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $data, $status->getValue()['data'] );
 	}
 
-	public function provideDataToNormalizeAndSanitize() {
+	public static function provideDataToNormalizeAndSanitize() {
 		return [
 			[ 'null' ],
 			[ '[]' ],
@@ -279,7 +279,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideDataWithMarkerSymbolCounters() {
+	public static function provideDataWithMarkerSymbolCounters() {
 		return [
 			'bad data' => [ '[ null ]', '[ null ]' ],
 			'empty data' => [ '[ {} ]', '[ {} ]' ],
@@ -330,7 +330,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function provideDataWithoutMarkerSymbolCounters() {
+	public static function provideDataWithoutMarkerSymbolCounters() {
 		return [
 			'bad data' => [ '[ null ]' ],
 			'empty data' => [ '[ {} ]' ],

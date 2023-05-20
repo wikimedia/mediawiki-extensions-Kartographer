@@ -58,7 +58,7 @@ class ApiSanitizeMapDataTest extends MediaWikiIntegrationTestCase {
 		return json_encode( json_decode( $json ) );
 	}
 
-	public function provideTest() {
+	public static function provideTest() {
 		// phpcs:disable Generic.Files.LineLength
 		return [
 			[ 'Foo', '{', false, '<p>Couldn\'t parse JSON: Syntax error
@@ -93,7 +93,7 @@ class ApiSanitizeMapDataTest extends MediaWikiIntegrationTestCase {
 		// phpcs:enable
 	}
 
-	public function provideErrors() {
+	public static function provideErrors() {
 		return [
 			[ '[]', '[]' ],
 			[ '', '[]' ]

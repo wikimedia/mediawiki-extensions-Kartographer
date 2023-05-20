@@ -48,7 +48,7 @@ class ValidationTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideTestCases() {
+	public static function provideTestCases() {
 		foreach ( glob( __DIR__ . '/data/good-schemas/*.json' ) as $file ) {
 			yield basename( $file ) => [ $file, false ];
 		}

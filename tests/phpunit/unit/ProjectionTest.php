@@ -14,7 +14,7 @@ class ProjectionTest extends MediaWikiUnitTestCase {
 
 	private const DELTA = 0.00001;
 
-	public function provideCoordinatesAndZoom() {
+	public static function provideCoordinatesAndZoom() {
 		return [
 			[ [ 0, 0 ], [ 128, 128 ] ],
 			[ [ 1, 1 ], [ 128.711111, 127.288852 ] ],

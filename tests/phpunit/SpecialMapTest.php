@@ -33,7 +33,7 @@ class SpecialMapTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideParseSubpage() {
+	public static function provideParseSubpage() {
 		$tests = [
 			[ '' ],
 			[ 'foo' ],
@@ -77,7 +77,7 @@ class SpecialMapTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, SpecialMap::link( $lat, $lon, $zoom, $lang ) );
 	}
 
-	public function provideLinks() {
+	public static function provideLinks() {
 		return [
 			[ '/wiki/Special:Map/6/12/-34.5', 12, -34.5, 6 ],
 			[ '/wiki/Special:Map/6/12/-34.5/zh', 12, -34.5, 6, 'zh' ],
