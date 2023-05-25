@@ -12,13 +12,6 @@ use MediaWiki\MediaWikiServices;
  * @license MIT
  */
 class LegacyMapFrame extends LegacyTagHandler {
-	private const THUMB_ALIGN_CLASSES = [
-		'left' => 'tleft',
-		'center' => 'tnone center',
-		'right' => 'tright',
-		'none' => 'tnone',
-	];
-
 	public const TAG = 'mapframe';
 
 	/**
@@ -74,11 +67,12 @@ class LegacyMapFrame extends LegacyTagHandler {
 		return Html::rawElement( 'div', [ 'class' => [
 				...$gen->getContainerClasses(),
 				'thumb',
-				self::THUMB_ALIGN_CLASSES[$this->args->align],
+				MapFrameAttributeGenerator::THUMB_ALIGN_CLASSES[$this->args->align],
 			] ],
 			Html::rawElement( 'div', [
 					'class' => 'thumbinner',
 					'style' => "width: $gen->cssWidth;",
 				], $html ) );
 	}
+
 }
