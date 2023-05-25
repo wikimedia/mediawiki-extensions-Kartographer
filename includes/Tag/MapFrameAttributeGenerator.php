@@ -11,12 +11,14 @@ use MediaWiki\MainConfigNames;
  * @license MIT
  */
 class MapFrameAttributeGenerator {
+
 	private const ALIGN_CLASSES = [
 		'left' => 'floatleft',
 		'center' => 'center',
 		'right' => 'floatright',
 	];
-	public const THUMB_ALIGN_CLASSES = [
+
+	private const THUMB_ALIGN_CLASSES = [
 		'left' => 'tleft',
 		'center' => 'tnone center',
 		'right' => 'tright',
@@ -48,12 +50,22 @@ class MapFrameAttributeGenerator {
 	/**
 	 * @return string[]
 	 */
-	public function getContainerClasses(): array {
-		$classes = [ 'mw-kartographer-container' ];
-		if ( $this->args->width === 'full' ) {
-			$classes[] = 'mw-kartographer-full';
-		}
-		return $classes;
+	private function getContainerClasses(): array {
+		return [
+			'mw-kartographer-container',
+			...( $this->args->width === 'full' ? [ 'mw-kartographer-full' ] : [] ),
+		];
+	}
+
+	/**
+	 * @return string[]
+	 */
+	public function getThumbClasses(): array {
+		return [
+			...$this->getContainerClasses(),
+			'thumb',
+			self::THUMB_ALIGN_CLASSES[$this->args->align],
+		];
 	}
 
 	/**
@@ -61,7 +73,7 @@ class MapFrameAttributeGenerator {
 	 */
 	public function prepareAttrs(): array {
 		$attrs = [
-			'class' => [ 'mw-kartographer-map' ],
+			'class' => 'mw-kartographer-map',
 			// We need dimensions for when there is no img (editpreview or no staticmap)
 			// because an <img> element with permanent failing src has either:
 			// - intrinsic dimensions of 0x0, when alt=''
@@ -100,11 +112,13 @@ class MapFrameAttributeGenerator {
 			$this->args->resolvedLangCode );
 
 		if ( $this->args->frameless ) {
-			array_push( $attrs['class'], ...$this->getContainerClasses() );
-			if ( isset( self::ALIGN_CLASSES[$this->args->align] ) ) {
-				$attrs['class'][] = self::ALIGN_CLASSES[$this->args->align];
-			}
+			$attrs['class'] = [
+				$attrs['class'],
+				...$this->getContainerClasses(),
+				...(array)( self::ALIGN_CLASSES[$this->args->align] ?? [] ),
+			];
 		}
+
 		return $attrs;
 	}
 

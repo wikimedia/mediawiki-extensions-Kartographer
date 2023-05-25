@@ -64,11 +64,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 				$parser->halfParseWikitext( $caption ) );
 		}
 
-		return Html::rawElement( 'div', [ 'class' => [
-				...$gen->getContainerClasses(),
-				'thumb',
-				MapFrameAttributeGenerator::THUMB_ALIGN_CLASSES[$this->args->align],
-			] ],
+		return Html::rawElement( 'div', [ 'class' => $gen->getThumbClasses() ],
 			Html::rawElement( 'div', [
 					'class' => 'thumbinner',
 					'style' => "width: $gen->cssWidth;",
