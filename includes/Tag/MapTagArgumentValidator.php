@@ -33,18 +33,18 @@ class MapTagArgumentValidator {
 	public ?float $lon;
 	/** @var int|null Typically a number from 0 to 19 */
 	public ?int $zoom;
-	/** @var string|null One of "osm-intl" or "osm" */
-	public ?string $mapStyle;
+	/** @var string One of "osm-intl" or "osm" */
+	public string $mapStyle;
 	/** @var string|null Number of pixels (without a unit) or "full" */
 	public ?string $width = null;
 	/** @var int|null */
 	public ?int $height;
-	/** @var string|null One of "left", "center", "right", or "none" */
-	public ?string $align;
+	/** @var string One of "left", "center", "right", or "none" */
+	public string $align;
 	/** @var bool */
 	public bool $frameless;
-	/** @var string|null */
-	public ?string $cssClass;
+	/** @var string */
+	public string $cssClass;
 	/** @var string|null */
 	public ?string $specifiedLangCode;
 	/** @var string */
@@ -109,7 +109,8 @@ class MapTagArgumentValidator {
 
 		$this->zoom = $this->args->getInt( 'zoom', null );
 		$regexp = '/^(' . implode( '|', $this->config->get( 'KartographerStyles' ) ) . ')$/';
-		$this->mapStyle = $this->args->getString( 'mapstyle', $this->config->get( 'KartographerDfltStyle' ), $regexp );
+		$defaultStyle = $this->config->get( 'KartographerDfltStyle' );
+		$this->mapStyle = $this->args->getString( 'mapstyle', null, $regexp ) ?? $defaultStyle;
 		$this->text = $this->args->getString( 'text', null );
 
 		$defaultLangCode = $this->config->get( 'KartographerUsePageLanguage' ) ?
@@ -133,11 +134,11 @@ class MapTagArgumentValidator {
 			$this->align = 'none';
 		} elseif ( $this->width !== null ) {
 			$defaultAlign = $this->language->alignEnd();
-			$this->align = $this->args->getString( 'align', $defaultAlign, '/^(left|center|right)$/' );
+			$this->align = $this->args->getString( 'align', null, '/^(left|center|right)$/' ) ?? $defaultAlign;
 		}
 		$this->frameless = ( $this->text === null || $this->text === '' ) &&
 			$this->args->getString( 'frameless', null ) !== null;
-		$this->cssClass = $this->args->getString( 'class', '', '/^(|[a-zA-Z][-_a-zA-Z0-9]*)$/' );
+		$this->cssClass = $this->args->getString( 'class', null, '/^(|[a-zA-Z][-_a-zA-Z0-9]*)$/' ) ?? '';
 	}
 
 	private function parseGroups(): void {
