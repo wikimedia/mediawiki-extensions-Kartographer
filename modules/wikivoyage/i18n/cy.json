@@ -5,6 +5,8 @@
 		]
 	},
 	"kartographer-wv-group": "Grŵp:",
+	"kartographer-wv-layer-nearby-articles": "Erthyglau gerllaw",
+	"kartographer-wv-warning-external-source-title": "Ffynhonnell data allanol",
 	"kartographer-wv-warning-external-source-agree": "Rwy'n deall",
 	"kartographer-wv-warning-external-source-disagree": "Canslo"
 }

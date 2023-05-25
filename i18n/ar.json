@@ -30,6 +30,7 @@
 	"kartographer-tracking-category-desc": "تحتوي هذه الصفحة على خارطة",
 	"kartographer-specialmap-invalid-coordinates": "إدخال إحداثيات غير صالحة",
 	"kartographer-specialmap-world": "خريطة العالمض",
+	"kartographer-static-mapframe-alt": "خريطة",
 	"kartographer.css": "/* CSS المعروض هنا سيتم تطبيقه على كل الصفحات التي تحتوي على خرائط */",
 	"kartographer.js": "/* أي JavaScript هنا سيتم تحميله لكل المستخدمين عند تحميل الصفحات المحتوية على خرائط */",
 	"kartographer-linktype-aerial": "هوائي",
