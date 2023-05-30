@@ -1,14 +1,15 @@
 {
 	"@metadata": {
 		"authors": [
-			"Eitvys200"
+			"Eitvys200",
+			"Nokeoo"
 		]
 	},
 	"kartographer-wv-group": "Grupė:",
 	"kartographer-wv-layer-nearby-articles": "Netoliese esantys straipsniai",
 	"kartographer-wv-nearby-articles-control": "Naršyti artimas vietas",
 	"kartographer-wv-warning-external-source-title": "Išorinio duomenų šaltinis",
-	"kartographer-wv-warning-external-source-message": "Šis turinys yra talpinamas kitus, todėl jį įgalinant dalinamasi jūsų duomenimis su kitais puslapiais.",
-	"kartographer-wv-warning-external-source-agree": "Gerai",
+	"kartographer-wv-warning-external-source-message": "Šis turinys yra talpinamas kitur, todėl jį įgalinant dalinamasi jūsų IP adresu ir kitais duomenimis su žemėlapio teikėju.",
+	"kartographer-wv-warning-external-source-agree": "Aš suprantu",
 	"kartographer-wv-warning-external-source-disagree": "Atšaukti"
 }
