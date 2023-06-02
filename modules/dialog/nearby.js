@@ -1,4 +1,4 @@
-/** @type {Object.<string,{source: string, width: number | undefined, height: number | undefined}>} */
+/** @type {Object.<string,{source: string, [width]: number, [height]: number}|undefined>} */
 var thumbnailCache = {};
 
 /**
@@ -25,7 +25,6 @@ function mwApi( parameters ) {
  */
 function fetchThumbnail( popup, title, description ) {
 	if ( title in thumbnailCache ) {
-		addThumbnail( popup, title, description );
 		return;
 	}
 
@@ -38,30 +37,16 @@ function fetchThumbnail( popup, title, description ) {
 		piprop: 'thumbnail',
 		pithumbsize: 250
 	} ).then( function ( result ) {
-
 		var pages = result.query.pages || [];
 		pages.forEach( function ( page ) {
+			// This intentionally creates cache entries for pages without thumbnails as well
 			thumbnailCache[ page.title ] = page.thumbnail;
 		} );
-		addThumbnail( popup, title, description );
+		// Simply recreate the entire popup when we found a thumbnail
+		if ( thumbnailCache[ title ] ) {
+			popup.setContent( createPopupHtml( title, description ) );
+		}
 	} );
-}
-
-/**
- * @param {L.Popup} popup
- * @param {string} title
- * @param {string} [description]
- */
-function addThumbnail( popup, title, description ) {
-	if ( !thumbnailCache[ title ] || !thumbnailCache[ title ].source ) {
-		return;
-	}
-
-	popup.setContent( createPopupHtml(
-		title,
-		description,
-		thumbnailCache[ title ]
-	) );
 }
 
 /**
@@ -153,13 +138,12 @@ Nearby.prototype.getSearchQuery = function ( bounds, zoom ) {
 };
 
 /**
- * @param {string} title
+ * @param {string} titleText
  * @param {string} [description]
- * @param {Object} [thumbnail]
  * @return {string}
  */
-function createPopupHtml( title, description, thumbnail ) {
-	title = mw.Title.newFromText( title );
+function createPopupHtml( titleText, description ) {
+	var title = mw.Title.newFromText( titleText );
 
 	var linkHtml = mw.html.element( 'a', {
 			href: title.getUrl(),
@@ -169,28 +153,29 @@ function createPopupHtml( title, description, thumbnail ) {
 		titleHtml = mw.html.element( 'div', {
 			class: 'marker-title'
 		}, new mw.html.Raw( linkHtml ) ),
-		contentHtml = '',
-		thumbnailHtml = '';
+		contentHtml = '';
 
 	if ( description ) {
 		contentHtml += mw.html.element( 'span', {}, description );
 	}
 
+	var thumbnail = thumbnailCache[ title.getPrefixedText() ];
 	if ( thumbnail ) {
 		var imgHtml = mw.html.element( 'img', {
 			src: thumbnail.source,
 			width: thumbnail.width || '',
 			height: thumbnail.height || ''
 		} );
-		thumbnailHtml += mw.html.element( 'a', {
+		contentHtml += mw.html.element( 'a', {
 			href: title.getUrl(),
+			class: 'nearby-article-link',
 			target: '_blank'
 		}, new mw.html.Raw( imgHtml ) );
 	}
 
 	return titleHtml + mw.html.element( 'div', {
 		class: 'marker-description'
-	}, new mw.html.Raw( contentHtml + thumbnailHtml ) );
+	}, new mw.html.Raw( contentHtml ) );
 }
 
 /**
