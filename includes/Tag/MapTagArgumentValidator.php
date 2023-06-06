@@ -5,7 +5,6 @@ namespace Kartographer\Tag;
 use Config;
 use Language;
 use MediaWiki\Languages\LanguageNameUtils;
-use MediaWiki\MediaWikiServices;
 use StatusValue;
 
 /**
@@ -24,8 +23,8 @@ class MapTagArgumentValidator {
 	private Config $config;
 	/** @var Language */
 	private Language $language;
-	/** @var LanguageNameUtils */
-	private LanguageNameUtils $languageNameUtils;
+	/** @var LanguageNameUtils|null */
+	private ?LanguageNameUtils $languageNameUtils;
 
 	/** @var float|null */
 	public ?float $lat;
@@ -65,19 +64,20 @@ class MapTagArgumentValidator {
 	 * @param string[] $args
 	 * @param Config $config
 	 * @param Language $language
+	 * @param LanguageNameUtils|null $languageNameUtils
 	 */
 	public function __construct(
 		string $tag,
 		array $args,
 		Config $config,
-		Language $language
+		Language $language,
+		LanguageNameUtils $languageNameUtils = null
 	) {
 		$this->status = StatusValue::newGood();
 		$this->args = new Tag( $tag, $args, $this->status );
 		$this->config = $config;
 		$this->language = $language;
-		// TODO: Inject
-		$this->languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
+		$this->languageNameUtils = $languageNameUtils;
 
 		$this->parseArgs();
 		if ( $config->get( 'KartographerWikivoyageMode' ) ) {
@@ -127,7 +127,7 @@ class MapTagArgumentValidator {
 		// Language code we're going to use
 		$this->resolvedLangCode = $this->specifiedLangCode ?? $defaultLangCode;
 		// If the specified language code is invalid, behave as if no language was specified
-		if (
+		if ( $this->languageNameUtils &&
 			$this->resolvedLangCode !== 'local' &&
 			!$this->languageNameUtils->isKnownLanguageTag( $this->resolvedLangCode )
 		) {

@@ -17,7 +17,7 @@ class Tag {
 	/** @var string[] */
 	private array $args;
 	/** @var StatusValue */
-	public StatusValue $status;
+	private StatusValue $status;
 
 	/**
 	 * @param string $name

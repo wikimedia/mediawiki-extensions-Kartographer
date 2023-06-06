@@ -101,7 +101,13 @@ abstract class LegacyTagHandler {
 		$this->state = State::getOrCreate( $parserOutput );
 		$this->state->incrementUsage( static::TAG );
 
-		$this->args = new MapTagArgumentValidator( static::TAG, $args, $this->config, $this->getLanguage() );
+		$this->args = new MapTagArgumentValidator(
+			static::TAG,
+			$args,
+			$this->config,
+			$this->getLanguage(),
+			MediaWikiServices::getInstance()->getLanguageNameUtils()
+		);
 		$status = $this->args->status;
 		if ( $status->isOK() ) {
 			$status = SimpleStyleParser::newFromParser( $parser, $frame )->parse( $input );
