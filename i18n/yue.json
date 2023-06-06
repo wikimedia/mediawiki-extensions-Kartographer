@@ -3,7 +3,9 @@
 		"authors": [
 			"Hello903hello",
 			"Moon0319",
-			"唐吉訶德的侍從"
+			"唐吉訶德的侍從",
+			"Amire80",
+			"捍粵者"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use 維基媒體地圖] | 地圖資料 © [https://www.openstreetmap.org/copyright OpenStreetMap貢獻者]",
@@ -31,10 +33,10 @@
 	"leafletdraw-draw-handlers-circle-radius": "半徑",
 	"leafletdraw-draw-handlers-polyline-error": "錯：圖形邊緣唔可以交叉",
 	"leafletdraw-draw-toolbar-actions-text": "取消",
-	"leafletdraw-draw-toolbar-buttons-circle": "畫個圓圈",
-	"leafletdraw-draw-toolbar-buttons-marker": "畫個標記",
+	"leafletdraw-draw-toolbar-buttons-circle": "畫圈",
+	"leafletdraw-draw-toolbar-buttons-marker": "畫標記",
 	"leafletdraw-draw-toolbar-buttons-polygon": "畫個多邊形",
-	"leafletdraw-draw-toolbar-buttons-rectangle": "畫個矩形",
+	"leafletdraw-draw-toolbar-buttons-rectangle": "畫矩形",
 	"leafletdraw-draw-toolbar-undo-text": "剷走最後一點",
 	"leafletdraw-draw-toolbar-undo-title": "剷走畫嘅最後一點",
 	"leafletdraw-edit-handlers-edit-tooltip-subtext": "撳取消來復原變更",
