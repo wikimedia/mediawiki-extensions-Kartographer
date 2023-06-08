@@ -32,11 +32,18 @@ class Tag {
 
 	/**
 	 * @param string $name
-	 * @param string|false|null $default
-	 * @return int|null
+	 * @return bool True if an attribute exists, even if valueless
 	 */
-	public function getInt( string $name, $default ): ?int {
-		$value = $this->getString( $name, $default, '/^-?[0-9]+$/' );
+	public function has( string $name ): bool {
+		return isset( $this->args[$name] );
+	}
+
+	/**
+	 * @param string $name
+	 * @return int|null Null when missing or invalid
+	 */
+	public function getInt( string $name ): ?int {
+		$value = $this->getString( $name, '/^-?[0-9]+$/' );
 		if ( $value !== null ) {
 			$value = intval( $value );
 		}
@@ -46,10 +53,10 @@ class Tag {
 
 	/**
 	 * @param string $name
-	 * @return float|null
+	 * @return float|null Null when missing or invalid
 	 */
 	public function getFloat( string $name ): ?float {
-		$value = $this->getString( $name, null, '/^-?[0-9]*\.?[0-9]+$/' );
+		$value = $this->getString( $name, '/^-?[0-9]*\.?[0-9]+$/' );
 		if ( $value !== null ) {
 			$value = floatval( $value );
 		}
@@ -61,21 +68,18 @@ class Tag {
 	 * Returns value of a named tag attribute with optional validation
 	 *
 	 * @param string $name Attribute name
-	 * @param string|false|null $default Default value or false to trigger error if absent
-	 * @param string|false $regexp Regular expression to validate against or false to not validate
-	 * @return string|null
+	 * @param string|null $regexp Optional regular expression to validate against
+	 * @return string|null Null when missing or invalid
 	 */
-	public function getString( string $name, $default, $regexp = false ): ?string {
+	public function getString( string $name, string $regexp = null ): ?string {
 		if ( !isset( $this->args[$name] ) ) {
-			if ( $default === false ) {
-				$this->status->fatal( 'kartographer-error-missing-attr', $name );
-			}
-			return $default === false ? null : $default;
+			return null;
 		}
+
 		$value = trim( $this->args[$name] );
 		if ( $regexp && !preg_match( $regexp, $value ) ) {
-			$value = null;
 			$this->status->fatal( 'kartographer-error-bad_attr', $name );
+			return null;
 		}
 
 		return $value;
