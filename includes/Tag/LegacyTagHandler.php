@@ -117,14 +117,12 @@ abstract class LegacyTagHandler {
 		}
 
 		if ( !$status->isGood() ) {
-			$result = $this->reportError( $status );
+			$this->state->incrementBrokenTags();
 			State::setState( $parserOutput, $this->state );
-			return $result;
+			return $this->reportError( $status );
 		}
 
 		$this->saveData();
-
-		$this->state->setValidTags();
 
 		$result = $this->render( new PartialWikitextParser( $parser, $frame ), $isPreview );
 
@@ -184,11 +182,9 @@ abstract class LegacyTagHandler {
 		ParserFunctionTracker $tracker
 	): void {
 		foreach ( $state->getUsages() as $key => $count ) {
-			if ( $count ) {
-				// Resulting page property names are "kartographer_links" and "kartographer_frames"
-				$name = 'kartographer_' . preg_replace( '/^map/', '', $key );
-				$parserOutput->setPageProperty( $name, (string)$count );
-			}
+			// Resulting page property names are "kartographer_links" and "kartographer_frames"
+			$name = 'kartographer_' . preg_replace( '/^map/', '', $key );
+			$parserOutput->setPageProperty( $name, (string)$count );
 		}
 
 		$tracker->addTrackingCategories( [
@@ -221,7 +217,6 @@ abstract class LegacyTagHandler {
 	 * @return string HTML
 	 */
 	private function reportError( StatusValue $status ): string {
-		$this->state->setBrokenTags();
 		$errors = array_merge( $status->getErrorsByType( 'error' ),
 			$status->getErrorsByType( 'warning' )
 		);

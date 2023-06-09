@@ -15,10 +15,8 @@ class State implements JsonSerializable {
 
 	public const DATA_KEY = 'kartographer';
 
-	/** @var bool If the page contains at least one valid <map…> tag */
-	private bool $valid = false;
-	/** @var bool If the page contains one or more invalid <map…> tags */
-	private bool $broken = false;
+	/** @var int Total number of invalid <map…> tags on the page */
+	private int $broken = 0;
 
 	/**
 	 * @var array<string,int> Total number of <maplink> and <mapframe> tags on the page, to be
@@ -81,22 +79,18 @@ class State implements JsonSerializable {
 	 * @return bool
 	 */
 	public function hasValidTags(): bool {
-		return $this->valid;
-	}
-
-	public function setValidTags(): void {
-		$this->valid = true;
+		return ( array_sum( $this->usages ) - $this->broken ) > 0;
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function hasBrokenTags(): bool {
-		return $this->broken;
+		return $this->broken > 0;
 	}
 
-	public function setBrokenTags(): void {
-		$this->broken = true;
+	public function incrementBrokenTags(): void {
+		$this->broken++;
 	}
 
 	/**
@@ -186,7 +180,6 @@ class State implements JsonSerializable {
 	public function jsonSerialize(): array {
 		// TODO: Replace with the ...$this->usages syntax when we can use PHP 8.1
 		return array_merge( [
-			'valid' => $this->valid,
 			'broken' => $this->broken,
 			// FIXME: Why do we store flipped arrays with meaningless values in the parser cache?
 			'interactiveGroups' => $this->interactiveGroups,
@@ -203,8 +196,7 @@ class State implements JsonSerializable {
 	 */
 	private static function newFromJson( array $data ): self {
 		$status = new self();
-		$status->valid = $data['valid'];
-		$status->broken = $data['broken'];
+		$status->broken = (int)$data['broken'];
 		$status->usages = array_filter( $data, static function ( $count, $key ) {
 			return is_int( $count ) && $count > 0 && str_starts_with( $key, 'map' );
 		}, ARRAY_FILTER_USE_BOTH );
