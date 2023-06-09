@@ -684,7 +684,10 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 					var geoJson = geoJsonLayer.toGeoJSON();
 					// Undo the sanitization step's parsing of wikitext
 					editing.restoreUnparsedText( geoJson );
-					dialog.input.setValue( JSON.stringify( geoJson, null, '  ' ) );
+					dialog.input.setValue( JSON.stringify( geoJson, null, 2 )
+						// Collapse coordinate pairs to occupy 1 instead of up to 4 lines
+						.replace( /\[\n\s*([-\d.]+,)\s*([-\d.]+)\s*]/g, '[ $1 $2 ]' )
+					);
 				} finally {
 					dialog.updatingGeoJson = false;
 				}
