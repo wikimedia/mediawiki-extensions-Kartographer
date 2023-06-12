@@ -7,6 +7,7 @@ use PPFrame;
 
 /**
  * @license MIT
+ * @codeCoverageIgnore
  */
 class PartialWikitextParser {
 

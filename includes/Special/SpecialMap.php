@@ -127,7 +127,7 @@ class SpecialMap extends UnlistedSpecialPage {
 	 */
 	private function getWorldMapSrcset(): ?string {
 		$srcSetScalesConfig = $this->getConfig()->get( 'KartographerSrcsetScales' );
-		if ( $this->getConfig()->get( 'ResponsiveImages' ) && $srcSetScalesConfig ) {
+		if ( $srcSetScalesConfig && $this->getConfig()->get( 'ResponsiveImages' ) ) {
 			// For now only support 2x, not 1.5. Saves some bytes...
 			$srcSetScales = array_intersect( $srcSetScalesConfig, [ 2 ] );
 			$srcSets = [];

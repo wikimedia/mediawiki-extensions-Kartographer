@@ -141,7 +141,7 @@ class MapFrameAttributeGenerator {
 		];
 
 		$srcSetScalesConfig = $this->config->get( 'KartographerSrcsetScales' );
-		if ( $this->config->get( MainConfigNames::ResponsiveImages ) && $srcSetScalesConfig ) {
+		if ( $srcSetScalesConfig && $this->config->get( MainConfigNames::ResponsiveImages ) ) {
 			// For now only support 2x, not 1.5. Saves some bytes...
 			$srcSetScales = array_intersect( $srcSetScalesConfig, [ 2 ] );
 			$srcSets = [];

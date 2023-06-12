@@ -9,7 +9,10 @@ use Wikimedia\Parsoid\Ext\ExtensionModule;
  */
 class ParsoidKartographerConfig implements ExtensionModule {
 
-	/** @inheritDoc */
+	/**
+	 * @inheritDoc
+	 * @codeCoverageIgnore
+	 */
 	public function getConfig(): array {
 		return [
 			'name' => 'Kartographer',
