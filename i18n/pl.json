@@ -108,6 +108,8 @@
 	"visualeditor-mwmapsdialog-caption": "Podpis",
 	"visualeditor-mwmapsdialog-caption-help": "Ten podpis będzie wyświetlany pod mapą w ramce (tak samo jak podpisy obrazów). Dodanie podpisu powoduje, że mapa ma ramkę.\n\nFormatowanie wikikodem może być wykorzystane, na przykład do pogrubienia, linków lub odniesień.",
 	"visualeditor-mwmapsdialog-language": "Język",
+	"visualeditor-mwmapsdialog-language-help": "Kartographer używa języka zawartości wiki jako domyślnego języka etykiet. Można to zmienić za pomocą niniejszego ustawienia tylko dla tej mapy.\n\nUżyj <code>local</code> zamiast nazwy języka, aby wyświetlić wszystkie etykiety w języku używanym w danej lokalizacji. Na przykład nazwy miast w Meksyku będą wyświetlane w języku hiszpańskim, podczas gdy nazwy miast w Japonii będą wyświetlane w języku japońskim.\n\nGdy etykiety nie są dostępne w wybranym języku, Kartographer stosuje standardową procedurę awaryjną. Aby uzyskać więcej informacji o tym, jak to działa, zobacz [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Extension:Kartographer#Languages_and_fallbacks stronę pomocy Kartographera].",
+	"visualeditor-mwmapsdialog-language-local": "$1 (użyj języka lokalnego dla każdego obszaru mapy)",
 	"visualeditor-mwmapsdialog-help-title": "Dowiedz się więcej o tworzeniu i edycji map.",
 	"visualeditor-mwmapsdialog-position-lat": "Szerokość geograficzna",
 	"visualeditor-mwmapsdialog-position-lon": "Długość geograficzna",
