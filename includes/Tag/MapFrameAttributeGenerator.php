@@ -146,19 +146,27 @@ class MapFrameAttributeGenerator {
 			'decoding' => 'async',
 		];
 
-		$srcSetScalesConfig = $this->config->get( 'KartographerSrcsetScales' );
-		if ( $srcSetScalesConfig && $this->config->get( MainConfigNames::ResponsiveImages ) ) {
-			// For now only support 2x, not 1.5. Saves some bytes...
-			$srcSetScales = array_intersect( $srcSetScalesConfig, [ 2 ] );
-			$srcSets = [];
-			foreach ( $srcSetScales as $srcSetScale ) {
-				$scaledImgUrl = "$imgUrl@{$srcSetScale}x.png?" . wfArrayToCgi( $imgUrlParams );
-				$srcSets[] = "{$scaledImgUrl} {$srcSetScale}x";
-			}
-			$imgAttrs[ 'srcset' ] = implode( ', ', $srcSets );
+		$srcSet = $this->getSrcSet( $imgUrl, $imgUrlParams );
+		if ( $srcSet ) {
+			$imgAttrs['srcset'] = $srcSet;
 		}
 
 		return $imgAttrs;
 	}
 
+	private function getSrcSet( string $imgUrl, array $imgUrlParams = [] ): ?string {
+		$scales = $this->config->get( 'KartographerSrcsetScales' );
+		if ( !$scales || !$this->config->get( MainConfigNames::ResponsiveImages ) ) {
+			return null;
+		}
+
+		// For now only support 2x, not 1.5. Saves some bytes...
+		$scales = array_intersect( $scales, [ 2 ] );
+		$srcSets = [];
+		foreach ( $scales as $scale ) {
+			$scaledImgUrl = "$imgUrl@{$scale}x.png?" . wfArrayToCgi( $imgUrlParams );
+			$srcSets[] = "$scaledImgUrl {$scale}x";
+		}
+		return implode( ', ', $srcSets ) ?: null;
+	}
 }

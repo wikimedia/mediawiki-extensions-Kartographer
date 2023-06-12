@@ -5,6 +5,7 @@ namespace Kartographer\Special;
 use GeoData\Globe;
 use Html;
 use Kartographer\CoordFormatter;
+use MediaWiki\MainConfigNames;
 use SpecialPage;
 use UnlistedSpecialPage;
 
@@ -126,18 +127,19 @@ class SpecialMap extends UnlistedSpecialPage {
 	 * @return string|null
 	 */
 	private function getWorldMapSrcset(): ?string {
-		$srcSetScalesConfig = $this->getConfig()->get( 'KartographerSrcsetScales' );
-		if ( $srcSetScalesConfig && $this->getConfig()->get( 'ResponsiveImages' ) ) {
-			// For now only support 2x, not 1.5. Saves some bytes...
-			$srcSetScales = array_intersect( $srcSetScalesConfig, [ 2 ] );
-			$srcSets = [];
-			foreach ( $srcSetScales as $srcSetScale ) {
-				$scaledImgUrl = $this->getWorldMapUrl( "@{$srcSetScale}x" );
-				$srcSets[] = "{$scaledImgUrl} {$srcSetScale}x";
-			}
-			return implode( ', ', $srcSets );
+		$scales = $this->getConfig()->get( 'KartographerSrcsetScales' );
+		if ( !$scales || !$this->getConfig()->get( MainConfigNames::ResponsiveImages ) ) {
+			return null;
 		}
-		return null;
+
+		// For now only support 2x, not 1.5. Saves some bytes...
+		$scales = array_intersect( $scales, [ 2 ] );
+		$srcSets = [];
+		foreach ( $scales as $scale ) {
+			$scaledImgUrl = $this->getWorldMapUrl( "@{$scale}x" );
+			$srcSets[] = "$scaledImgUrl {$scale}x";
+		}
+		return implode( ', ', $srcSets ) ?: null;
 	}
 
 	/**

@@ -8,13 +8,15 @@ use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers \Kartographer\Special\SpecialMap
+ * @coversDefaultClass \Kartographer\Special\SpecialMap
  * @group Kartographer
  * @license MIT
  */
 class SpecialMapTest extends MediaWikiIntegrationTestCase {
 
 	/**
+	 * @covers ::__construct
+	 * @covers ::parseSubpage
 	 * @dataProvider provideParseSubpage
 	 */
 	public function testParseSubpage(
@@ -70,6 +72,22 @@ class SpecialMapTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers ::__construct
+	 * @covers ::getWorldMapSrcset
+	 * @covers ::getWorldMapUrl
+	 */
+	public function testGetWorldMapSrcset() {
+		$this->setMwGlobals( 'wgKartographerMapServer', 'http://192.0.2.0' );
+		/** @var SpecialMap $specialMap */
+		$specialMap = TestingAccessWrapper::newFromObject( new SpecialMap() );
+		$this->assertSame(
+			'http://192.0.2.0/osm-intl/0/0/0@2x.png 2x',
+			$specialMap->getWorldMapSrcset()
+		);
+	}
+
+	/**
+	 * @covers ::link
 	 * @dataProvider provideLinks
 	 */
 	public function testLink( ?string $expected, ?float $lat, ?float $lon, int $zoom = null, string $lang = 'local' ) {
