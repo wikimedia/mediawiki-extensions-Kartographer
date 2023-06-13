@@ -9,9 +9,11 @@
 			"Rail",
 			"Railfail536",
 			"Amire80",
-			"Woytecr"
+			"Woytecr",
+			"Msz2001"
 		]
 	},
+	"apierror-kartographer-conflicting-revids": "Wyszukiwanie danych mapy z wielu wersji tej samej strony w jednym żądaniu nie jest jeszcze obsługiwane.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Mapy Wikimedia] | Dane kartograficzne © [https://www.openstreetmap.org/copyright Twórcy projektu OpenStreetMap]",
 	"kartographer-broken-category": "Strony z uszkodzonymi mapami",
 	"kartographer-broken-category-desc": "Strona zawiera nieprawidłowe zastosowanie mapy",
@@ -67,6 +69,8 @@
 	"leafletdraw-draw-toolbar-undo-text": "Usuń ostatni punkt",
 	"leafletdraw-draw-toolbar-undo-title": "Usuń ostatnio dodany punkt",
 	"leafletdraw-edit-handlers-edit-tooltip-subtext": "Kliknij \"Anuluj\" by cofnąć zmiany",
+	"leafletdraw-edit-handlers-edit-tooltip-text": "Przeciągnij uchwyty lub znacznik, aby edytować element",
+	"leafletdraw-edit-handlers-remove-tooltip-text": "Kliknij na obiekt do usunięcia",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "Anuluj",
 	"leafletdraw-edit-toolbar-actions-cancel-title": "Anuluj edycję, odrzuć wszystkie zmiany",
 	"leafletdraw-edit-toolbar-actions-save-text": "Zapisz",
