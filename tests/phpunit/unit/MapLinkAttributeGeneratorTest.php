@@ -36,7 +36,7 @@ class MapLinkAttributeGeneratorTest extends MediaWikiUnitTestCase {
 		$attrs = $generator->prepareAttrs();
 		$this->assertSame( [
 			'class' => [ 'mw-kartographer-maplink', 'mw-kartographer-autostyled', 'custom-class' ],
-			'data-mw-kartographer' => '',
+			'data-mw-kartographer' => 'maplink',
 			'data-style' => 'custom',
 			'href' => null,
 			'data-zoom' => '12',

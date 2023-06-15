@@ -298,4 +298,5 @@ abstract class LegacyTagHandler {
 	protected function getOutput(): ContentMetadataCollector {
 		return $this->parser->getOutput();
 	}
+
 }
