@@ -25,7 +25,7 @@ class ParsoidWikitextParser extends WikitextParser {
 		}
 		$dom = $this->extApi->wikitextToDOM( $wikiText, [
 			'parseOpts' => [
-				'extTag' => $this->extApi->extTag,
+				'extTag' => $this->extApi->extTag->getName(),
 				'context' => 'inline',
 			], ], false );
 		return $this->extApi->domToHtml( $dom, false, true );
