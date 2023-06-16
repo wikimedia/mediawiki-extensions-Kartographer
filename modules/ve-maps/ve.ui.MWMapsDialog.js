@@ -133,7 +133,6 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	} );
 
 	this.contentPanel.$element.append(
-		this.$contentMap,
 		geoJsonField.$element
 	);
 
