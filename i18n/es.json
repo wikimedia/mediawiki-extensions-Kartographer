@@ -10,11 +10,13 @@
 			"Macofe",
 			"MarcoAurelio",
 			"Mgpena",
+			"No se",
 			"Rafael.minuesa",
 			"Rubentl134",
 			"YoViajo"
 		]
 	},
+	"apierror-kartographer-conflicting-revids": "Aún no se admite la consulta de datos de mapas de varias revisiones de la misma página en una solicitud.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Mapas de Wikimedia] | Datos del mapa © [https://www.openstreetmap.org/copyright Colaboradores de OpenStreetMap]",
 	"kartographer-broken-category": "Páginas con mapas erróneos",
 	"kartographer-broken-category-desc": "La página incluye un uso no válido de mapas.",
