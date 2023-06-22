@@ -22,7 +22,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Message;
 use Parser;
-use ParserOutput;
 use PPFrame;
 use StatusValue;
 use stdClass;
@@ -171,13 +170,13 @@ abstract class LegacyTagHandler {
 	/**
 	 * Handles the last step of parse process
 	 * @param State $state
-	 * @param ParserOutput $parserOutput to exclusively write to; nothing is read from this object
+	 * @param ContentMetadataCollector $parserOutput
 	 * @param bool $isPreview
 	 * @param ParserFunctionTracker $tracker
 	 */
 	public static function finalParseStep(
 		State $state,
-		ParserOutput $parserOutput,
+		ContentMetadataCollector $parserOutput,
 		bool $isPreview,
 		ParserFunctionTracker $tracker
 	): void {

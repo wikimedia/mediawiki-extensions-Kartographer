@@ -5,6 +5,7 @@ namespace Kartographer;
 use JsonSerializable;
 use ParserOutput;
 use UnexpectedValueException;
+use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 
 /**
  * Stores information about map tags on page in ParserOutput
@@ -68,10 +69,10 @@ class State implements JsonSerializable {
 	/**
 	 * Stores an instance of self in the ParserOutput.
 	 *
-	 * @param ParserOutput $output
+	 * @param ContentMetadataCollector $output
 	 * @param self $state
 	 */
-	public static function setState( ParserOutput $output, self $state ): void {
+	public static function setState( ContentMetadataCollector $output, self $state ): void {
 		$output->setExtensionData( self::DATA_KEY, $state->jsonSerialize() );
 	}
 
