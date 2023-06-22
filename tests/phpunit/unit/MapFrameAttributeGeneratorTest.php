@@ -7,7 +7,6 @@ use Kartographer\Tag\MapFrameAttributeGenerator;
 use Kartographer\Tag\MapTagArgumentValidator;
 use Language;
 use MediaWikiUnitTestCase;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \Kartographer\Tag\MapFrameAttributeGenerator
@@ -58,8 +57,12 @@ class MapFrameAttributeGeneratorTest extends MediaWikiUnitTestCase {
 			'decoding' => 'async',
 		], $imgAttrs );
 
-		$classes = TestingAccessWrapper::newFromObject( $generator )->getContainerClasses();
-		$this->assertSame( [ 'mw-kartographer-container', 'mw-kartographer-full' ], $classes );
+		$this->assertSame( [
+			'mw-kartographer-container',
+			'mw-kartographer-full',
+			'thumb',
+			'tnone',
+		], $generator->getThumbClasses() );
 	}
 
 }
