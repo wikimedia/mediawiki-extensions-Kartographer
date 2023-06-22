@@ -138,13 +138,7 @@ class MapFrameAttributeGenerator {
 		if ( $this->args->showGroups && !$isPreview ) {
 			// Groups are not available to the static map renderer
 			// before the page was saved, can only be applied via JS
-			$imgUrlParams += [
-				'domain' => $this->config->get( 'KartographerMediaWikiInternalUrl' ) ??
-					$this->config->get( MainConfigNames::ServerName ),
-				'title' => $pagetitle,
-				'revid' => $revisionId,
-				'groups' => implode( ',', $this->args->showGroups ),
-			];
+			$imgUrlParams += self::getUrlAttrs( $this->config, $pagetitle, $revisionId, $this->args->showGroups );
 		}
 
 		$imgUrl = "$mapServer/img/{$this->args->mapStyle}," .
@@ -166,6 +160,23 @@ class MapFrameAttributeGenerator {
 		}
 
 		return $imgAttrs;
+	}
+
+	/**
+	 * @param Config $config
+	 * @param string $title
+	 * @param int|null $revId
+	 * @param array $groupId
+	 * @return array
+	 */
+	public static function getUrlAttrs( Config $config, string $title, ?int $revId, array $groupId ): array {
+		return [
+			'domain' => $config->get( 'KartographerMediaWikiInternalUrl' ) ??
+				$config->get( MainConfigNames::ServerName ),
+			'title' => $title,
+			'revid' => $revId,
+			'groups' => implode( ',', $groupId )
+		];
 	}
 
 	private function getSrcSet( string $imgUrl, array $imgUrlParams = [] ): ?string {
