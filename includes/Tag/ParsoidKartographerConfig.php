@@ -2,6 +2,7 @@
 
 namespace Kartographer\Tag;
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Parsoid\Ext\ExtensionModule;
 
 /**
@@ -14,25 +15,32 @@ class ParsoidKartographerConfig implements ExtensionModule {
 	 * @codeCoverageIgnore
 	 */
 	public function getConfig(): array {
-		return [
-			'name' => 'Kartographer',
-			'tags' => [
-				[
-					'name' => 'maplink',
-					'handler' => ParsoidMapLink::class,
-					'options' => [
-						'outputHasCoreMwDomSpecMarkup' => true
+		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
+		if ( $mainConfig->get( 'KartographerParsoidSupport' ) ) {
+			return [
+				'name' => 'Kartographer',
+				'tags' => [
+					[
+						'name' => 'maplink',
+						'handler' => ParsoidMapLink::class,
+						'options' => [
+							'outputHasCoreMwDomSpecMarkup' => true
+						],
 					],
+					[
+						'name' => 'mapframe',
+						'handler' => ParsoidMapFrame::class,
+						'options' => [
+							'outputHasCoreMwDomSpecMarkup' => true
+						],
+					]
 				],
-				[
-					'name' => 'mapframe',
-					'handler' => ParsoidMapFrame::class,
-					'options' => [
-						'outputHasCoreMwDomSpecMarkup' => true
-					],
-				]
-			],
-			'domProcessors' => [ ParsoidDomProcessor::class ]
-		];
+				'domProcessors' => [ ParsoidDomProcessor::class ]
+			];
+		} else {
+			return [
+				'name' => 'Kartographer',
+			];
+		}
 	}
 }
