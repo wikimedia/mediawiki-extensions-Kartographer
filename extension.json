@@ -542,6 +542,10 @@
 		"KartographerMediaWikiInternalUrl": {
 			"description": "Development setting allowing kartotherian to call back to the mapdata API on either a different MediaWiki server or via a non-standard port. Passed as a URL, e.g. \"http://dev.wiki.local.wmftest.net:8080\". Defaults to $wgServerName if not set.",
 			"value": null
+		},
+		"KartographerParsoidSupport": {
+			"description": "Enable Parsoid support for Kartographer. This flag should be removed once the Parsoid support is rolled out to all MW production wikis.",
+			"value": false
 		}
 	},
 	"TrackingCategories": [
