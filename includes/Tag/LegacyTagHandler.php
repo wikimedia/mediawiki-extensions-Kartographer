@@ -157,6 +157,7 @@ abstract class LegacyTagHandler {
 		$this->state->setCounters( $counters );
 
 		if ( $this->args->groupId === null ) {
+			// This hash calculation MUST be the same as in ParsoidDomProcessor::wtPostprocess
 			$groupId = '_' . sha1( FormatJson::encode( $this->geometries, false, FormatJson::ALL_OK ) );
 			$this->args->groupId = $groupId;
 			$this->args->showGroups[] = $groupId;

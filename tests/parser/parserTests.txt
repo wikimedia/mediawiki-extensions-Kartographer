@@ -10,6 +10,8 @@ maplink
 
 !! test
 <maplink>
+!! config
+wgKartographerParsoidSupport=true
 !! wikitext
 <maplink />
 <maplink latitude=10 longitude=20 zoom=13 text='Foo &amp; bar'/>
@@ -23,7 +25,30 @@ maplink
 !! end
 
 !! test
+Localized <maplink> and <mapframe>
+!! config
+wgKartographerParsoidSupport=true
+!! options
+language=de
+!! wikitext
+<maplink latitude=10 longitude=20 zoom=13 text='Foo &amp; bar'/>
+
+<mapframe latitude=10 longitude=20 zoom=13 width=640 height=480/>
+!! html/php
+<p><a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Spezial:Map/13/10/20/de" data-zoom="13" data-lat="10" data-lon="20">Foo &amp; bar</a>
+</p>
+<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 640px;"><a class="mw-kartographer-map" style="width: 640px; height: 480px;" data-mw-kartographer="mapframe" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Spezial:Map/13/10/20/de"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=de" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=de 2x" alt="Karte" /></a></div></div>
+!! html/parsoid
+<p><a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Spezial:Map/13/10/20/de" data-zoom="13" data-lat="10" data-lon="20" typeof="mw:Extension/maplink" about="#mwt4" data-mw='{"name":"maplink","attrs":{"latitude":"10","longitude":"20","zoom":"13","text":"Foo &amp; bar"}}'>Foo &amp; bar</a></p>
+
+<div class="mw-kartographer-container thumb tright" typeof="mw:Extension/mapframe" about="#mwt2" data-mw='{"name":"mapframe","attrs":{"latitude":"10","longitude":"20","zoom":"13","width":"640","height":"480"}}'><div class="thumbinner" style="width: 640px;"><a class="mw-kartographer-map" style="width: 640px; height: 480px;" data-mw-kartographer="mapframe" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/de"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=de" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=de 2x" alt="Karte"/></a></div></div>
+!! end
+
+
+!! test
 <maplink> - HTML sanitization
+!! config
+wgKartographerParsoidSupport=true
 !! wikitext
 <maplink latitude=10 longitude=20 zoom=13 text='<&'/>
 !! html/php
@@ -35,6 +60,8 @@ maplink
 
 !! test
 <maplink> - counters and markers
+!! config
+wgKartographerParsoidSupport=true
 !! wikitext
 <maplink latitude=10.123 longitude=20.456 zoom=13 text='Foo'>
 {
@@ -96,15 +123,17 @@ maplink
 !! html/parsoid
 <p><a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/13/10.123/20.456/en" data-zoom="13" data-lat="10.123" data-lon="20.456" data-overlays='["_83116cf234d349c9a28ff94255a598843fe4304d"]' typeof="mw:Extension/maplink" about="#mwt2" data-mw='{"name":"maplink","attrs":{"latitude":"10.123","longitude":"20.456","zoom":"13","text":"Foo"},"body":{"extsrc":"\n{\n\"type\": \"Feature\",\n\t\"geometry\": {\n\t\t\"type\": \"Point\",\n\t\t\"coordinates\": [-122, 37]\n\t},\n\t\"properties\": {\n\t\t\"marker-symbol\": \"-number\"\n\t}\n}\n"}}'>Foo</a></p>
 
-<p><a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" data-overlays='["_83116cf234d349c9a28ff94255a598843fe4304d"]' typeof="mw:Extension/maplink" about="#mwt4" data-mw='{"name":"maplink","attrs":{"latitude":"10","longitude":"20","zoom":"13"},"body":{"extsrc":"\n{\n\"type\": \"Feature\",\n\t\"geometry\": {\n\t\t\"type\": \"Point\",\n\t\t\"coordinates\": [-122, 37]\n\t},\n\t\"properties\": {\n\t\t\"marker-symbol\": \"-number\"\n\t}\n}\n"}}'>1</a></p>
+<p><a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" data-overlays='["_71c9ddc35eae0a234381347ca4b7440cae1c4edd"]' typeof="mw:Extension/maplink" about="#mwt4" data-mw='{"name":"maplink","attrs":{"latitude":"10","longitude":"20","zoom":"13"},"body":{"extsrc":"\n{\n\"type\": \"Feature\",\n\t\"geometry\": {\n\t\t\"type\": \"Point\",\n\t\t\"coordinates\": [-122, 37]\n\t},\n\t\"properties\": {\n\t\t\"marker-symbol\": \"-number\"\n\t}\n}\n"}}'>2</a></p>
 
 <p><a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" data-overlays='["_9226ee438e3c59edfcd19e81452d7c2ba7e1d841"]' typeof="mw:Extension/maplink" about="#mwt6" data-mw='{"name":"maplink","attrs":{"latitude":"10","longitude":"20","zoom":"13"},"body":{"extsrc":"\n{\n\"type\": \"Feature\",\n\t\"geometry\": {\n\t\t\"type\": \"Point\",\n\t\t\"coordinates\": [-122, 37]\n\t},\n\t\"properties\": {\n\t\t\"marker-symbol\": \"-letter\"\n\t}\n}\n"}}'>A</a></p>
 
-<p><a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" data-overlays='["_9226ee438e3c59edfcd19e81452d7c2ba7e1d841"]' typeof="mw:Extension/maplink" about="#mwt8" data-mw='{"name":"maplink","attrs":{"latitude":"10","longitude":"20","zoom":"13","mapstyle":"osm"},"body":{"extsrc":"\n{\n\"type\": \"Feature\",\n\t\"geometry\": {\n\t\t\"type\": \"Point\",\n\t\t\"coordinates\": [-122, 37]\n\t},\n\t\"properties\": {\n\t\t\"marker-symbol\": \"-letter\"\n\t}\n}\n"}}'>A</a></p>
+<p><a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" data-overlays='["_37e6b9ac695579cb73066fa218a00fc6ed01a04d"]' typeof="mw:Extension/maplink" about="#mwt8" data-mw='{"name":"maplink","attrs":{"latitude":"10","longitude":"20","zoom":"13","mapstyle":"osm"},"body":{"extsrc":"\n{\n\"type\": \"Feature\",\n\t\"geometry\": {\n\t\t\"type\": \"Point\",\n\t\t\"coordinates\": [-122, 37]\n\t},\n\t\"properties\": {\n\t\t\"marker-symbol\": \"-letter\"\n\t}\n}\n"}}'>B</a></p>
 !! end
 
 !! test
 <maplink> - autolabelling with coordinates
+!! config
+wgKartographerParsoidSupport=true
 !! wikitext
 <maplink latitude=10 longitude=20 zoom=13 />
 <maplink />
@@ -122,6 +151,8 @@ maplink
 
 !! test
 <mapframe> auto-positioning
+!! config
+wgKartographerParsoidSupport=true
 !! wikitext
 <mapframe width="full" height="200">{"type":"Feature","geometry":{"type":"Point","coordinates":[1,2]}}</mapframe>
 !! html/php
@@ -132,6 +163,8 @@ maplink
 
 !! test
 <maplink> - class parameter
+!! config
+wgKartographerParsoidSupport=true
 !! wikitext
 <maplink zoom=0 latitude=0 longitude=0 class="" text="Empty class - do nothing"/>
 <maplink zoom=0 latitude=0 longitude=0 class="   " text="Whitespace only class - do nothing"/>
@@ -149,12 +182,14 @@ maplink
 <p><a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0" typeof="mw:Extension/maplink" about="#mwt2" data-mw='{"name":"maplink","attrs":{"zoom":"0","latitude":"0","longitude":"0","class":"","text":"Empty class - do nothing"}}'>Empty class - do nothing</a>
 <a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0" typeof="mw:Extension/maplink" about="#mwt4" data-mw='{"name":"maplink","attrs":{"zoom":"0","latitude":"0","longitude":"0","class":"","text":"Whitespace only class - do nothing"}}'>Whitespace only class - do nothing</a>
 <a class="mw-kartographer-maplink Valid-link_class_123" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0" typeof="mw:Extension/maplink" about="#mwt6" data-mw='{"name":"maplink","attrs":{"zoom":"0","latitude":"0","longitude":"0","class":"Valid-link_class_123","text":"Valid class"}}'>Valid class</a></p>
-<div class="mw-kartographer-error" typeof="mw:Extension/maplink" about="#mwt8" data-mw='{"name":"maplink","attrs":{"zoom":"0","latitude":"0","longitude":"0","class":"class1 class2","text":"Multiple classes aren&apos;t allowed for now"}}'>&lt;maplink>: Attribute "class" has an invalid value</div>
-<div class="mw-kartographer-error" typeof="mw:Extension/maplink" about="#mwt10" data-mw='{"name":"maplink","attrs":{"zoom":"0","latitude":"0","longitude":"0","class":"-Invalid-cl@ss-symbols"}}'>&lt;maplink>: Attribute "class" has an invalid value</div>
+<div class="mw-kartographer-error" data-mw-kartographer="maplink" typeof="mw:Extension/maplink" about="#mwt8" data-mw='{"name":"maplink","attrs":{"zoom":"0","latitude":"0","longitude":"0","class":"class1 class2","text":"Multiple classes aren&apos;t allowed for now"}}'>&lt;maplink>: Attribute "class" has an invalid value</div>
+<div class="mw-kartographer-error" data-mw-kartographer="maplink" typeof="mw:Extension/maplink" about="#mwt10" data-mw='{"name":"maplink","attrs":{"zoom":"0","latitude":"0","longitude":"0","class":"-Invalid-cl@ss-symbols"}}'>&lt;maplink>: Attribute "class" has an invalid value</div>
 !! end
 
 !! test
 <mapframe>
+!! config
+wgKartographerParsoidSupport=true
 !! wikitext
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480/>
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=left/>
@@ -206,6 +241,8 @@ maplink
 
 !! test
 <mapframe> with a caption
+!! config
+wgKartographerParsoidSupport=true
 !! wikitext
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 text="Foo is a '''bar'''" />
 <mapframe latitude=10 longitude=20 zoom=13 width=640 height=480 align=left text="Foo is a <b>bar</b>" />
@@ -232,6 +269,8 @@ maplink
 
 !! test
 Error messages
+!! config
+wgKartographerParsoidSupport=true
 !! wikitext
 <maplink latitude=10 longitude=fail text=Derp>>Derp goes here</maplink>
 <mapframe latitude=10 longitude=20 zoom=13 width=" 640	" height=480 align=crap mapstyle=derp />
@@ -273,37 +312,41 @@ Error messages
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Either both "latitude" and "longitude" parameters should be supplied or neither of them</div>
 <div class="mw-kartographer-error">&lt;mapframe&gt;: Either both "latitude" and "longitude" parameters should be supplied or neither of them</div>
 !! html/parsoid
-<div class="mw-kartographer-error" typeof="mw:Extension/maplink" about="#mwt2" data-mw='{"name":"maplink","attrs":{"latitude":"10","longitude":"fail","text":"Derp"},"body":{"extsrc":">Derp goes here"}}'>&lt;maplink>: Attribute "longitude" has an invalid value</div>
-<div class="mw-kartographer-error" typeof="mw:Extension/mapframe" about="#mwt4" data-mw='{"name":"mapframe","attrs":{"latitude":"10","longitude":"20","zoom":"13","width":"640","height":"480","align":"crap","mapstyle":"derp"}}'>&lt;mapframe> problems:
+<div class="mw-kartographer-error" data-mw-kartographer="maplink" typeof="mw:Extension/maplink" about="#mwt2" data-mw='{"name":"maplink","attrs":{"latitude":"10","longitude":"fail","text":"Derp"},"body":{"extsrc":">Derp goes here"}}'>&lt;maplink>: Attribute "longitude" has an invalid value</div>
+<div class="mw-kartographer-error" data-mw-kartographer="maplink" typeof="mw:Extension/mapframe" about="#mwt4" data-mw='{"name":"mapframe","attrs":{"latitude":"10","longitude":"20","zoom":"13","width":"640","height":"480","align":"crap","mapstyle":"derp"}}'>&lt;mapframe> problems:
 <ul><li>Attribute "mapstyle" has an invalid value</li>
 <li>Attribute "align" has an invalid value</li>
 </ul></div>
-<div class="mw-kartographer-error" typeof="mw:Extension/mapframe" about="#mwt6" data-mw='{"name":"mapframe","attrs":{"latitude":"10","longitude":"20","zoom":"13","width":"%","height":"480"}}'>&lt;mapframe>: Attribute "width" has an invalid value</div>
-<div class="mw-kartographer-error" typeof="mw:Extension/mapframe" about="#mwt8" data-mw='{"name":"mapframe","attrs":{"latitude":"10","longitude":"20","zoom":"13","width":"0%","height":"480"}}'>&lt;mapframe>: Attribute "width" has an invalid value</div>
-<div class="mw-kartographer-error" typeof="mw:Extension/mapframe" about="#mwt10" data-mw='{"name":"mapframe","attrs":{"latitude":"10","longitude":"20","zoom":"13","width":"05%","height":"480"}}'>&lt;mapframe>: Attribute "width" has an invalid value</div>
-<div class="mw-kartographer-error" typeof="mw:Extension/mapframe" about="#mwt12" data-mw='{"name":"mapframe","attrs":{"latitude":"10","longitude":"20","zoom":"13","width":"300%","height":"480"}}'>&lt;mapframe>: Attribute "width" has an invalid value</div>
-<div class="mw-kartographer-error" typeof="mw:Extension/mapframe" about="#mwt14" data-mw='{"name":"mapframe","attrs":{"latitude":"10","longitude":"20","zoom":"13","width":"640","height":"480","align":"crap","mapstyle":"derp"},"body":{"extsrc":"\n{\n    \"type\": \"Feature\",\n    \"geometry\": {\n      \"type\": \"Point\",\n      \"coordinates\": [-122, 37]\n    },\n    \"properties\": {\n      \"title\": \"Foo bar\",\n      \"marker-symbol\": \"museum\",\n      \"marker-size\": \"medium\",\n      \"marker-color\": \"fail\"\n    }\n  }\n"}}'>&lt;mapframe> problems:
+<div class="mw-kartographer-error" data-mw-kartographer="mapframe" typeof="mw:Extension/mapframe" about="#mwt6" data-mw='{"name":"mapframe","attrs":{"latitude":"10","longitude":"20","zoom":"13","width":"%","height":"480"}}'>&lt;mapframe>: Attribute "width" has an invalid value</div>
+<div class="mw-kartographer-error" data-mw-kartographer="mapframe" typeof="mw:Extension/mapframe" about="#mwt8" data-mw='{"name":"mapframe","attrs":{"latitude":"10","longitude":"20","zoom":"13","width":"0%","height":"480"}}'>&lt;mapframe>: Attribute "width" has an invalid value</div>
+<div class="mw-kartographer-error" data-mw-kartographer="mapframe" typeof="mw:Extension/mapframe" about="#mwt10" data-mw='{"name":"mapframe","attrs":{"latitude":"10","longitude":"20","zoom":"13","width":"05%","height":"480"}}'>&lt;mapframe>: Attribute "width" has an invalid value</div>
+<div class="mw-kartographer-error" data-mw-kartographer="mapframe" typeof="mw:Extension/mapframe" about="#mwt12" data-mw='{"name":"mapframe","attrs":{"latitude":"10","longitude":"20","zoom":"13","width":"300%","height":"480"}}'>&lt;mapframe>: Attribute "width" has an invalid value</div>
+<div class="mw-kartographer-error" data-mw-kartographer="mapframe" typeof="mw:Extension/mapframe" about="#mwt14" data-mw='{"name":"mapframe","attrs":{"latitude":"10","longitude":"20","zoom":"13","width":"640","height":"480","align":"crap","mapstyle":"derp"},"body":{"extsrc":"\n{\n    \"type\": \"Feature\",\n    \"geometry\": {\n      \"type\": \"Point\",\n      \"coordinates\": [-122, 37]\n    },\n    \"properties\": {\n      \"title\": \"Foo bar\",\n      \"marker-symbol\": \"museum\",\n      \"marker-size\": \"medium\",\n      \"marker-color\": \"fail\"\n    }\n  }\n"}}'>&lt;mapframe> problems:
 <ul><li>Attribute "mapstyle" has an invalid value</li>
 <li>Attribute "align" has an invalid value</li>
 </ul></div>
-<div class="mw-kartographer-error" typeof="mw:Extension/mapframe" about="#mwt16" data-mw='{"name":"mapframe","attrs":{"width":"200","height":"200","latitude":"100"}}'>&lt;mapframe>: Either both "latitude" and "longitude" parameters should be supplied or neither of them</div>
-<div class="mw-kartographer-error" typeof="mw:Extension/mapframe" about="#mwt18" data-mw='{"name":"mapframe","attrs":{"width":"200","height":"200","longitude":"100"}}'>&lt;mapframe>: Either both "latitude" and "longitude" parameters should be supplied or neither of them</div>
+<div class="mw-kartographer-error" data-mw-kartographer="mapframe" typeof="mw:Extension/mapframe" about="#mwt16" data-mw='{"name":"mapframe","attrs":{"width":"200","height":"200","latitude":"100"}}'>&lt;mapframe>: Either both "latitude" and "longitude" parameters should be supplied or neither of them</div>
+<div class="mw-kartographer-error" data-mw-kartographer="mapframe" typeof="mw:Extension/mapframe" about="#mwt18" data-mw='{"name":"mapframe","attrs":{"width":"200","height":"200","longitude":"100"}}'>&lt;mapframe>: Either both "latitude" and "longitude" parameters should be supplied or neither of them</div>
 !! end
 
 !! test
 Error messages - localized
 !! options
 language=ru
+!! config
+wgKartographerParsoidSupport=true
 !! wikitext
 <maplink zoom=0 latitude=0 longitude=0>fail</maplink>
 !! html/php
 <div class="mw-kartographer-error">&lt;maplink&gt;: Ошибка JSON: Синтаксическая ошибка</div>
 !! html/parsoid
-<div class="mw-kartographer-error" typeof="mw:Extension/maplink" about="#mwt2" data-mw='{"name":"maplink","attrs":{"zoom":"0","latitude":"0","longitude":"0"},"body":{"extsrc":"fail"}}'>&lt;maplink>: Ошибка JSON: Синтаксическая ошибка</div>
+<div class="mw-kartographer-error" data-mw-kartographer="maplink" typeof="mw:Extension/maplink" about="#mwt2" data-mw='{"name":"maplink","attrs":{"zoom":"0","latitude":"0","longitude":"0"},"body":{"extsrc":"fail"}}'>&lt;maplink>: Ошибка JSON: Синтаксическая ошибка</div>
 !! end
 
 !! test
 CSS sanitization
+!! config
+wgKartographerParsoidSupport=true
 !! wikitext
 <maplink latitude=10 longitude=20 zoom=10 style="color: red;" text="<span style='foo: bar; background-image: url(https://example.com);'&gt;foo</span&gt;"/><!-- style=... was removed -->
 !! html/php
@@ -316,6 +359,7 @@ CSS sanitization
 !! test
 <maplink> - marker styles
 !! config
+wgKartographerParsoidSupport=true
 wgKartographerUseMarkerStyle=true
 !! wikitext
 <maplink latitude=10 longitude=20 zoom=13>[
@@ -360,6 +404,7 @@ wgKartographerUseMarkerStyle=true
 <maplink> - marker styles disabled
 !! config
 wgKartographerUseMarkerStyle=false
+wgKartographerParsoidSupport=true
 !! wikitext
 <maplink latitude=10 longitude=20 zoom=13>
 {
@@ -384,6 +429,7 @@ wgKartographerUseMarkerStyle=false
 !! test
 Wikivoyage mode enabled
 !! config
+wgKartographerParsoidSupport=true
 wgKartographerWikivoyageMode=true
 !! wikitext
 <maplink zoom=0 latitude=0 longitude=0 group=ponies/>
@@ -418,6 +464,7 @@ wgKartographerWikivoyageMode=true
 !! test
 Wikivoyage mode disabled
 !! config
+wgKartographerParsoidSupport=true
 wgKartographerWikivoyageMode=false
 !! wikitext
 <maplink zoom=0 latitude=0 longitude=0 group=ponies/>
@@ -446,6 +493,7 @@ wgKartographerWikivoyageMode=false
 !! test
 show=...
 !! config
+wgKartographerParsoidSupport=true
 wgKartographerWikivoyageMode=true
 !! wikitext
 <maplink zoom=0 latitude=0 longitude=0 show="foo"/>
@@ -473,13 +521,15 @@ wgKartographerWikivoyageMode=true
 <a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0" data-overlays='["foo"]' typeof="mw:Extension/maplink" about="#mwt6" data-mw='{"name":"maplink","attrs":{"zoom":"0","latitude":"0","longitude":"0","show":"foo"}}'>0°0′0″N 0°0′0″E</a>
 <a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0" typeof="mw:Extension/maplink" about="#mwt8" data-mw='{"name":"maplink","attrs":{"zoom":"0","latitude":"0","longitude":"0","show":""}}'>0°0′0″N 0°0′0″E</a>
 <a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0" typeof="mw:Extension/maplink" about="#mwt10" data-mw='{"name":"maplink","attrs":{"zoom":"0","latitude":"0","longitude":"0","show":""}}'>0°0′0″N 0°0′0″E</a></p>
-<div class="mw-kartographer-error" typeof="mw:Extension/maplink" about="#mwt12" data-mw='{"name":"maplink","attrs":{"zoom":"0","latitude":"0","longitude":"0","show":"😂"}}'>&lt;maplink>: Attribute "show" has an invalid value</div>
-<div class="mw-kartographer-error" typeof="mw:Extension/maplink" about="#mwt14" data-mw='{"name":"maplink","attrs":{"zoom":"0","latitude":"0","longitude":"0","show":"test-foo"}}'>&lt;maplink>: Attribute "show" has an invalid value</div>
+<div class="mw-kartographer-error" data-mw-kartographer="maplink" typeof="mw:Extension/maplink" about="#mwt12" data-mw='{"name":"maplink","attrs":{"zoom":"0","latitude":"0","longitude":"0","show":"😂"}}'>&lt;maplink>: Attribute "show" has an invalid value</div>
+<div class="mw-kartographer-error" data-mw-kartographer="maplink" typeof="mw:Extension/maplink" about="#mwt14" data-mw='{"name":"maplink","attrs":{"zoom":"0","latitude":"0","longitude":"0","show":"test-foo"}}'>&lt;maplink>: Attribute "show" has an invalid value</div>
 <p><a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/0/0/0/en" data-zoom="0" data-lat="0" data-lon="0" data-overlays='["йа криветко"]' typeof="mw:Extension/maplink" about="#mwt16" data-mw='{"name":"maplink","attrs":{"zoom":"0","latitude":"0","longitude":"0","show":"йа криветко"}}'>0°0′0″N 0°0′0″E</a></p>
 !! end
 
 !! test
 ExternalData errors
+!! config
+wgKartographerParsoidSupport=true
 !! wikitext
 <maplink>
 [
@@ -533,7 +583,7 @@ ExternalData errors
 <li>/1/type: Does not have a value in the enumeration ["FeatureCollection"]</li>
 </ul></div>
 !! html/parsoid
-<div class="mw-kartographer-error" typeof="mw:Extension/maplink" about="#mwt2" data-mw='{"name":"maplink","attrs":{},"body":{"extsrc":"\n[\n\t{\n\t\t\"type\": \"ExternalData\",\n\t\t\"service\": \"fail\",\n\t\t\"ids\": [ \"Q1\", \"Q2\" ]\n\t},\n\t{\n\t\t\"type\": \"ExternalData\",\n\t\t\"service\": \"lulzifier\",\n\t\t\"query\": \"test\"\n\t}\n]\n"}}'>&lt;maplink>: The JSON content is not valid GeoJSON+simplestyle. The list below shows all attempts to interpret it according to <a rel="nofollow" class="external text" href="https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json">the JSON Schema</a>. Not all are errors.<ul class="mw-kartographer-error-log mw-collapsible mw-collapsed">
+<div class="mw-kartographer-error" data-mw-kartographer="maplink" typeof="mw:Extension/maplink" about="#mwt2" data-mw='{"name":"maplink","attrs":{},"body":{"extsrc":"\n[\n\t{\n\t\t\"type\": \"ExternalData\",\n\t\t\"service\": \"fail\",\n\t\t\"ids\": [ \"Q1\", \"Q2\" ]\n\t},\n\t{\n\t\t\"type\": \"ExternalData\",\n\t\t\"service\": \"lulzifier\",\n\t\t\"query\": \"test\"\n\t}\n]\n"}}'>&lt;maplink>: The JSON content is not valid GeoJSON+simplestyle. The list below shows all attempts to interpret it according to <a rel="nofollow" class="external text" href="https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json">the JSON Schema</a>. Not all are errors.<ul class="mw-kartographer-error-log mw-collapsible mw-collapsed">
 <li>/0/service: Does not have a value in the enumeration ["geoshape","geoline","geopoint","geomask"]</li>
 <li>/0/title: The property title is required</li>
 <li>/0/service: Does not have a value in the enumeration ["page"]</li>
