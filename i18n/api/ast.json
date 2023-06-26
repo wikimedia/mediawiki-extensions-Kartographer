@@ -4,12 +4,10 @@
 			"Xuacu"
 		]
 	},
-	"apihelp-sanitize-mapdata-description": "Fai la convalidación de datos pa la estensión Kartographer",
 	"apihelp-sanitize-mapdata-summary": "Fai la convalidación de datos pa la estensión Kartographer",
 	"apihelp-sanitize-mapdata-param-title": "Títulu de la páxina onde suponse que s'alcuentra esti GeoJSON. Si nun se da nengún títulu, úsase unu ficticiu.",
 	"apihelp-sanitize-mapdata-param-text": "GeoJSON a saniar",
 	"apihelp-sanitize-mapdata-example": "Saniar un blob GeoJSON",
-	"apihelp-query+mapdata-description": "Llograr los datos del mapa de Kartographer",
 	"apihelp-query+mapdata-summary": "Llograr tolos datos del mapa de Kartographer de les páxines daes",
 	"apihelp-query+mapdata-example-1": "Solicitar tolos datos de mapes de la páxina <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-example-2": "Solicitar tolos datos de mapes de los grupos <kbd>group1</kbd> y <kbd>group2</kbd> de la páxina <kbd>Metallica</kbd>",

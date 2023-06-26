@@ -6,12 +6,10 @@
 			"MuratTheTurkish"
 		]
 	},
-	"apihelp-sanitize-mapdata-description": "Kartographer uzantısı için veri doğrulaması gerçekleştirir",
 	"apihelp-sanitize-mapdata-summary": "Kartographer uzantısı için veri doğrulaması gerçekleştirir",
 	"apihelp-sanitize-mapdata-param-title": "Bu GeoJSON'un konumlandırılması gereken sayfanın başlığı. Başlık belirtilmezse, sahte bir başlık kullanılacaktır.",
 	"apihelp-sanitize-mapdata-param-text": "Sterilize edilecek GeoJSON",
 	"apihelp-sanitize-mapdata-example": "GeoJSON blobunu temizleyin",
-	"apihelp-query+mapdata-description": "Kartographer harita verilerini alın",
 	"apihelp-query+mapdata-summary": "Verilen sayfalar için tüm Kartographer harita verilerini isteyin",
 	"apihelp-query+mapdata-example-1": "Tüm harita verilerini <kbd>Metallica</kbd> sayfasından isteyin",
 	"apihelp-query+mapdata-example-2": "Harita verilerini <kbd>group1</kbd> ve <kbd>group2</kbd> gruplarında <kbd>Metallica</kbd> sayfasından isteyin",

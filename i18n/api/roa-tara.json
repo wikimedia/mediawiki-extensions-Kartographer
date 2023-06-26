@@ -4,12 +4,10 @@
 			"Joetaras"
 		]
 	},
-	"apihelp-sanitize-mapdata-description": "Fà 'a validazione de le date cu l'estenzione Kartographer",
 	"apihelp-sanitize-mapdata-summary": "Fà 'a validazione de le date cu l'estenzione Kartographer",
 	"apihelp-sanitize-mapdata-param-title": "Titole d'a pàgene addò se penze ca stu GeoJSON s'avesse acchià. Ce non g'avène mise nisciune titole, ne avène ausate une fause.",
 	"apihelp-sanitize-mapdata-param-text": "GeoJSON da pulezzà",
 	"apihelp-sanitize-mapdata-example": "Pulizze 'nu blob GeoJSON",
-	"apihelp-query+mapdata-description": "Analizze le date Kartographer d'a mappe",
 	"apihelp-query+mapdata-summary": "Cirche tutte le date Kartographer d'a mappe pe le pàggene date",
 	"apihelp-query+mapdata-example-1": "Cirche tutte le date d'a mappe da 'a pàgene <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-example-2": "Cirche le date d'a mappe jndr'à le gruppe <kbd>group1</kbd> e <kbd>group2</kbd> da 'a pàgene <kbd>Metallica</kbd>",

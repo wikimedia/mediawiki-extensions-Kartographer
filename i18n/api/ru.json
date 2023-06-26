@@ -6,12 +6,10 @@
 			"Stjn"
 		]
 	},
-	"apihelp-sanitize-mapdata-description": "Выполняет проверку данных для расширения Kartographer",
 	"apihelp-sanitize-mapdata-summary": "Выполняет проверку данных для расширения Kartographer",
 	"apihelp-sanitize-mapdata-param-title": "Заголовок страницы, на которой этот GeoJSON должен быть расположен. Если заголовок не указано, будет использоваться фиктивная.",
 	"apihelp-sanitize-mapdata-param-text": "GeoJSON для очистки",
 	"apihelp-sanitize-mapdata-example": "Очистить данные GeoJSON",
-	"apihelp-query+mapdata-description": "Получить данные карты Kartographer",
 	"apihelp-query+mapdata-summary": "Запросить все данные карты Kartographer для определённых страниц",
 	"apihelp-query+mapdata-example-1": "Запрос всех данных карты на странице <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-example-2": "Запрос данных карты в группах <kbd> group1 </kbd> и <kbd> group2 </kbd> со страницы <kbd>Metallica</kbd>",

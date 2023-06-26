@@ -4,12 +4,10 @@
 			"Jon Harald Søby"
 		]
 	},
-	"apihelp-sanitize-mapdata-description": "Utfører datavalidering for Kartographer-utvidelsen",
 	"apihelp-sanitize-mapdata-summary": "Utfører datavalidering for Kartographer-utvidelsen",
 	"apihelp-sanitize-mapdata-param-title": "Tittelen til en side hvor denne GeoJSON-en skal befinne seg. Om ingen tittel blir oppgitt vil en tilfeldig en bli brukt.",
 	"apihelp-sanitize-mapdata-param-text": "GeoJSON å sanitere",
 	"apihelp-sanitize-mapdata-example": "Saniter en GeoJSON-blobb",
-	"apihelp-query+mapdata-description": "Hent Kartographer-kartdata",
 	"apihelp-query+mapdata-summary": "Be om Kartographer-kartdata for de gitte sidene",
 	"apihelp-query+mapdata-example-1": "Etterspør alle kartdata fra side <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-example-2": "Etterspør kartdata i gruppene <kbd>group1</kbd> og <kbd>group2</kbd> fra siden <kbd>Metallica</kbd>",

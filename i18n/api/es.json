@@ -8,12 +8,10 @@
 			"Rafael.minuesa"
 		]
 	},
-	"apihelp-sanitize-mapdata-description": "Realiza la validación de datos para la extensión Kartographer",
 	"apihelp-sanitize-mapdata-summary": "Realiza validación de datos para la extensión Kartographer",
 	"apihelp-sanitize-mapdata-param-title": "Título de la página en la que esta GeoJSON se supone que se encuentra. Si no hay ningún título, un maniquí.",
 	"apihelp-sanitize-mapdata-param-text": "GeoJSON que expurgar",
 	"apihelp-sanitize-mapdata-example": "Expurgar un objeto binario GeoJSON",
-	"apihelp-query+mapdata-description": "Solicitar los datos del mapa de Kartographer",
 	"apihelp-query+mapdata-example-1": "Solicitar todos los datos de mapa de la página <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-example-2": "Solicitar los datos de mapa de los grupos <kbd>group1</kbd> y <kbd>group2</kbd> de la página <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-param-continue": "Usa este parámetro para continuar con la iteración de los resultados",

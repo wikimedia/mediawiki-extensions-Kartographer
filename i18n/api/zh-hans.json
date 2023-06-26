@@ -6,12 +6,10 @@
 			"Shizhao"
 		]
 	},
-	"apihelp-sanitize-mapdata-description": "为Kartographer扩展执行数据验证",
 	"apihelp-sanitize-mapdata-summary": "为Kartographer扩展执行数据验证",
 	"apihelp-sanitize-mapdata-param-title": "此GeoJSON应该位于页面标题。如果未提供标题，将使用一个假的标题。",
 	"apihelp-sanitize-mapdata-param-text": "要清理的GeoJSON",
 	"apihelp-sanitize-mapdata-example": "清理一个GeoJSON大对象",
-	"apihelp-query+mapdata-description": "获取Kartographer的地图数据",
 	"apihelp-query+mapdata-summary": "请求给定页面的所有 Kartographer 地图数据",
 	"apihelp-query+mapdata-example-1": "从<kbd>Metallica</kbd>页面请求所有地图数据",
 	"apihelp-query+mapdata-example-2": "从页面<kbd>Metallica</kbd>请求组<kbd>group1</kbd>和<kbd>group2</kbd>中的地图数据",
