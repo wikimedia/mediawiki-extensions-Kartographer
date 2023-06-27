@@ -4,9 +4,13 @@
 			"Joao Xavier"
 		]
 	},
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use mapi de Wikimedia] | Mapo-datumi © [https://www.openstreetmap.org/copyright kontributeri de OpenStreetMap]",
 	"kartographer-tracking-category-desc": "La pagino inkluzas mapo",
 	"kartographer-linktype-other": "Altra",
 	"kartographer-sidebar-externalservices-show-all": "Videz pluse",
+	"kartographer-sidebar-mapdetails": "Extera mapi",
+	"kartographer-sidebar-nearbybutton": "Montrez artikli pri loki vicini",
+	"kartographer-sidebar-togglebutton": "Extera mapi",
 	"leafletdraw-draw-toolbar-actions-text": "Anular",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "Anular",
 	"leafletdraw-edit-toolbar-actions-save-text": "Konservez",
