@@ -21,7 +21,7 @@ use stdClass;
  */
 class SimpleStyleParser {
 
-	private const WIKITEXT_PROPERTIES = [ 'title', 'description' ];
+	public const WIKITEXT_PROPERTIES = [ 'title', 'description' ];
 
 	/** @var WikitextParser */
 	private WikitextParser $parser;

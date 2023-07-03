@@ -28,7 +28,7 @@ class ParsoidMapLink extends ParsoidTagHandler {
 
 		$this->parseTag( $extApi, $src, $extArgs );
 		if ( !$this->args->status->isGood() ) {
-			return $this->reportErrors( $extApi );
+			return $this->reportErrors( $extApi, self::TAG );
 		}
 
 		$text = $this->args->text;

@@ -3,6 +3,7 @@
 namespace Kartographer\Tag;
 
 use FormatJson;
+use Kartographer\ParsoidUtils;
 use Kartographer\SimpleStyleParser;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutputStringSets;
@@ -44,23 +45,43 @@ class ParsoidDomProcessor extends DOMProcessor {
 		$kartData = [];
 		$counters = [];
 		$requested = [];
+		$interactive = [];
+		$maplink = 0;
+		$mapframe = 0;
+		$broken = 0;
 
 		foreach ( $kartnodes as $kartnode ) {
 			$tagName = $kartnode->getAttribute( 'data-mw-kartographer' ) ?? '';
+			if ( $tagName !== '' ) {
+				$$tagName++;
+			}
+
 			$marker = $extApi->getTempNodeData( $kartnode, $tagName );
-			$requested += $marker['showGroups'] ?? [];
+			if ( $marker === 'error' ) {
+				$broken++;
+				continue;
+			}
+			$requested = array_merge( $requested, $marker['showGroups'] ?? [] );
+			if ( $tagName === ParsoidMapFrame::TAG ) {
+				$interactive = array_merge( $interactive, $marker['showGroups'] ?? [] );
+			}
+
 			if ( !$marker || !$marker['geometries'] || !$marker['geometries'][0] instanceof stdClass ) {
 				continue;
 			}
 			[ $counter, $props ] = SimpleStyleParser::updateMarkerSymbolCounters( $marker['geometries'], $counters );
 			if ( $tagName === ParsoidMapLink::TAG ) {
-				$text = $extApi->getTopLevelDoc()->createTextNode( $counter );
+				$text = $extApi->getTopLevelDoc()->createTextNode( $counter ?? '' );
 				if ( !isset( DOMDataUtils::getDataMw( $kartnode )->attrs->text ) ) {
 					$kartnode->replaceChild( $text, $kartnode->firstChild );
 				}
 			}
 
 			$data = $marker['geometries'];
+
+			if ( empty( $data ) && !$counter ) {
+				continue;
+			}
 
 			if ( $counter ) {
 				// If we have a counter, we update the marker data prior to encoding the groupId, and we remove
@@ -89,29 +110,39 @@ class ParsoidDomProcessor extends DOMProcessor {
 
 			// There is no way to ever add anything to a private group starting with `_`
 			if ( isset( $kartData[$groupId] ) && !str_starts_with( $groupId, '_' ) ) {
-				$kartData[$groupId] = array_merge( $kartData[$groupId], $data );
+				// phan is grumbling without the ?? [], although it shouldn't
+				$kartData[$groupId] = array_merge( $kartData[$groupId], $data ?? [] );
 			} else {
 				$kartData[$groupId] = $data;
 			}
 		}
 
-		foreach ( $requested as $req ) {
-			if ( !isset( $kartData[$req] ) ) {
-				$kartData[$req] = [];
-			}
+		if ( $broken > 0 ) {
+			ParsoidUtils::addCategory( $extApi, 'kartographer-broken-category' );
 		}
-		$extApi->getMetadata()->setJsConfigVar( 'wgKartographerLiveData', $kartData );
+		if ( $maplink + $mapframe > $broken ) {
+			ParsoidUtils::addCategory( $extApi, 'kartographer-tracking-category' );
+		}
 
 		$state = [
-			'broken' => 0,
-			'interactiveGroups' => array_keys( $kartData ),
-			'requestedGroups' => array_keys( $kartData ),
+			'broken' => $broken,
+			'interactiveGroups' => array_keys( $interactive ),
+			'requestedGroups' => array_keys( $requested ),
 			'counters' => $counters,
+			'maplinks' => $maplink,
+			'mapframes' => $mapframe,
 			'data' => $kartData,
 			'parsoidIntVersion' =>
 				MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerParsoidVersion' ),
 		];
 		$extApi->getMetadata()->setExtensionData( 'kartographer', $state );
+
+		foreach ( $interactive as $req ) {
+			if ( !isset( $kartData[$req] ) ) {
+				$kartData[$req] = [];
+			}
+		}
+		$extApi->getMetadata()->setJsConfigVar( 'wgKartographerLiveData', $kartData );
 	}
 
 	/**
@@ -161,7 +192,9 @@ class ParsoidDomProcessor extends DOMProcessor {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$pagetitle = $extApi->getPageConfig()->getTitle();
 		$revisionId = $extApi->getPageConfig()->getRevisionId();
-		$attrs += MapFrameAttributeGenerator::getUrlAttrs( $config, $pagetitle, $revisionId, [ $groupId ] );
+		$attrs = array_merge( $attrs,
+			MapFrameAttributeGenerator::getUrlAttrs( $config, $pagetitle, $revisionId, [ $groupId ] )
+		);
 
 		return $url[0] . '?' . wfArrayToCgi( $attrs );
 	}

@@ -2,6 +2,8 @@
 
 namespace Kartographer;
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReferenceValue;
 use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\DOM\Element;
@@ -66,6 +68,25 @@ class ParsoidUtils {
 			} else {
 				$node->setAttribute( $k, $v );
 			}
+		}
+	}
+
+	/**
+	 * Add category to the page, from its key
+	 * @param ParsoidExtensionAPI $extApi
+	 * @param string $category
+	 * @return void
+	 */
+	public static function addCategory( ParsoidExtensionAPI $extApi, string $category ) {
+		$catService = MediaWikiServices::getInstance()->getTrackingCategories();
+		$pageRef = PageReferenceValue::localReference(
+			$extApi->getPageConfig()->getNs(), $extApi->getPageConfig()->getTitle()
+		);
+		$cat = $catService->resolveTrackingCategory( $category, $pageRef );
+		if ( $cat ) {
+			$extApi->getMetadata()->addCategory( $cat->getDBkey() );
+		} else {
+			$extApi->log( 'warn/kartographer', 'Could not add tracking category', $category );
 		}
 	}
 }

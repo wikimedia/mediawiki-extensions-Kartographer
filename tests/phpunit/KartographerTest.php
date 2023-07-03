@@ -40,6 +40,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 			MainConfigNames::LanguageCode => 'qqx',
 			MainConfigNames::Script => '/w/index.php',
 			MainConfigNames::ScriptPath => '/w',
+			'KartographerParsoidSupport' => 'true',
 		] );
 	}
 
@@ -69,6 +70,36 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$expected = json_encode( json_decode( $expected ) );
 
 		$this->assertEquals( $expected, json_encode( $state->getData() ), $message );
+	}
+
+	/**
+	 * @dataProvider provideTagData
+	 */
+	public function testTagDataParsoid( $expected, string $input, string $message, bool $wikivoyageMode = false,
+										?string $parsoid = null
+	) {
+		$this->setMwGlobals( 'wgKartographerWikivoyageMode', $wikivoyageMode );
+		$output = $this->parseParsoid( $input );
+		$state = $output->getExtensionData( 'kartographer' );
+
+		if ( $expected === false ) {
+			$this->assertTrue( $state['broken'] > 0, $message . ' Parse is expected to fail' );
+			$this->assertTrackingCategory( 'kartographer-broken-category', $output );
+			$this->assertNotTrackingCategory( 'kartographer-tracking-category', $output );
+			return;
+		}
+		$this->assertFalse( $state['broken'] > 0, $message . ' Parse is expected to succeed' );
+		$this->assertTrue(
+			$state['maplinks'] + $state['mapframes'] > $state['broken'],
+			$message . ' State is expected to have valid tags'
+		);
+		$this->assertNotTrackingCategory( 'kartographer-broken-category', $output );
+		$this->assertTrackingCategory( 'kartographer-tracking-category', $output );
+
+		// Normalize JSON
+		$expected = json_encode( json_decode( $parsoid ?? $expected ) );
+
+		$this->assertEquals( $expected, json_encode( $state['data'] ), $message );
 	}
 
 	public static function provideTagData() {
@@ -121,6 +152,11 @@ class KartographerTest extends MediaWikiLangTestCase {
 				"properties":{"title":"&lt;script&gt;alert(document.cookie);&lt;\/script&gt;",
 				"description":"<a href=\"\/w\/index.php?title=Link_to_nowhere&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"(red-link-title: Link to nowhere)\">Link to nowhere<\/a>","marker-symbol":"1"}}
 			]}';
+		$wikitextJsonParsoid = '{"_301c273795f88ed29491555b76a382a279ea387e":[
+			{"type":"Feature","geometry":{"type":"Point","coordinates":[-122,37]},
+			"properties":{"title":"&lt;script>alert(document.cookie);&lt;\/script>",
+			"description":"<a rel=\"mw:WikiLink\" href=\".\/Link_to_nowhere\" title=\"Link to nowhere\" data-parsoid=\'{\"stx\":\"simple\",\"a\":{\"href\":\".\/Link_to_nowhere\"},\"sa\":{\"href\":\"Link to nowhere\"}}\'>Link to nowhere<\/a>","marker-symbol":"1"}}
+			]}';
 		return [
 			[ '[]', '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37/>', '<mapframe> without JSON' ],
 			[ '[]', '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37></mapframe>', '<mapframe> without JSON 2' ],
@@ -147,13 +183,17 @@ class KartographerTest extends MediaWikiLangTestCase {
 				$wikitextJsonParsed,
 				'<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37>[' .
 					self::WIKITEXT_JSON . ']</mapframe>',
-				'<mapframe> with parsable text and description'
+				'<mapframe> with parsable text and description',
+				false,
+				$wikitextJsonParsoid
 			],
 			[
 				$wikitextJsonParsed,
 				'<maplink zoom=13 longitude=-122 latitude=37>[' .
 					self::WIKITEXT_JSON . ']</maplink>',
-				'<maplink> with parsable text and description'
+				'<maplink> with parsable text and description',
+				false,
+				$wikitextJsonParsoid
 			],
 
 			// Bugs
@@ -172,8 +212,22 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$this->assertTrackingCategory( 'kartographer-tracking-category', $output );
 	}
 
+	public function testBothTrackingCategoriesParsoid() {
+		// An invalid and a valid mapframe
+		$wikitext = '<mapframe /><mapframe width="1" height="1" />';
+		$output = $this->parseParsoid( $wikitext );
+		$this->assertTrackingCategory( 'kartographer-broken-category', $output );
+		$this->assertTrackingCategory( 'kartographer-tracking-category', $output );
+	}
+
 	public function testNoTrackingCategories() {
 		$output = $this->parse( '' );
+		$this->assertNotTrackingCategory( 'kartographer-broken-category', $output );
+		$this->assertNotTrackingCategory( 'kartographer-tracking-category', $output );
+	}
+
+	public function testNoTrackingCategoriesParsoid() {
+		$output = $this->parseParsoid( '' );
 		$this->assertNotTrackingCategory( 'kartographer-broken-category', $output );
 		$this->assertNotTrackingCategory( 'kartographer-tracking-category', $output );
 	}
@@ -285,8 +339,8 @@ class KartographerTest extends MediaWikiLangTestCase {
 			// not testing the exact content without parsoid, this would fail
 			return;
 		}
-		// FIXME ideally, this would be assertArrayEquals. For now, we're fine with shipping a bit more data
-		// than necessary.
+		// FIXME ideally, we would not ship more data than we strictly need, but for now we're fine with it.
+		// To be revisited when preview mode is implemented in Parsoid.
 		foreach ( $expected as $v ) {
 			self::assertArrayHasKey( $v, (array)$vars['wgKartographerLiveData'] );
 		}

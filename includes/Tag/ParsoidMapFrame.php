@@ -24,7 +24,7 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 	public function sourceToDom( ParsoidExtensionAPI $extApi, string $src, array $extArgs ) {
 		$this->parseTag( $extApi, $src, $extArgs );
 		if ( !$this->args->status->isGood() ) {
-			return $this->reportErrors( $extApi );
+			return $this->reportErrors( $extApi, self::TAG );
 		}
 
 		// TODO if fullwidth, we really should use interactive mode..
@@ -32,7 +32,6 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 		// Should be fixed, especially considering VE in page editing etc...
 		$staticMode = $this->config->get( 'KartographerStaticMapframe' );
 
-		// TODO fix isPreview
 		$isPreview = $extApi->isPreview();
 		if ( $staticMode && $isPreview ) {
 			$extApi->getMetadata()->setJsConfigVar( 'wgKartographerStaticMapframePreview', true );

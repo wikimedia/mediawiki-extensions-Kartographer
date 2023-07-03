@@ -2,6 +2,7 @@
 
 namespace Kartographer\Tag;
 
+use Closure;
 use Config;
 use DOMException;
 use Kartographer\ParsoidWikitextParser;
@@ -10,8 +11,10 @@ use LogicException;
 use MediaWiki\MediaWikiServices;
 use stdClass;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
+use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Ext\ExtensionTagHandler;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
+use Wikimedia\Parsoid\Utils\DOMCompat;
 
 /**
  * @license MIT
@@ -76,19 +79,19 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 	 * @return DocumentFragment
 	 * @throws DOMException
 	 */
-	public function reportErrors( ParsoidExtensionAPI $extApi ): DocumentFragment {
+	public function reportErrors( ParsoidExtensionAPI $extApi, string $tag ): DocumentFragment {
 		$status = $this->args->status;
-		// TODO find a way to report broken tags
 		$errors = array_merge( $status->getErrorsByType( 'error' ),
 			$status->getErrorsByType( 'warning' )
 		);
 		if ( !$errors ) {
 			throw new LogicException( __METHOD__ . '(): attempt to report error when none took place' );
 		}
-
 		$dom = $extApi->getTopLevelDoc()->createDocumentFragment();
 		$div = $extApi->getTopLevelDoc()->createElement( 'div' );
 		$div->setAttribute( 'class', 'mw-kartographer-error' );
+		$div->setAttribute( 'data-mw-kartographer', $tag );
+		$extApi->setTempNodeData( $div, 'error' );
 		$dom->appendChild( $div );
 		if ( count( $errors ) > 1 ) {
 			// kartographer-error-context-multi takes two parameters: the tag name and the
@@ -151,5 +154,33 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 			$ul->appendChild( $li );
 		}
 		return $dom;
+	}
+
+	public function processAttributeEmbeddedHTML( ParsoidExtensionAPI $extApi, Element $elt, Closure $proc ): void {
+		if ( $elt->hasAttribute( 'data-mw-kartographer' ) ) {
+			$node = $elt;
+		} else {
+			$node = DOMCompat::querySelector( $elt, '*[data-mw-kartographer]' );
+		}
+		if ( !$node ) {
+			return;
+		}
+		$exttagname = $node->getAttribute( 'data-mw-kartographer' );
+		if ( !$exttagname ) {
+			return;
+		}
+		$marker = $extApi->getTempNodeData( $node, $exttagname );
+		if ( is_array( $marker ) && $marker['geometries'] ) {
+			foreach ( $marker['geometries'] as $geom ) {
+				if ( !isset( $geom->properties ) ) {
+					continue;
+				}
+				foreach ( $geom->properties as $key => $prop ) {
+					if ( in_array( $key, SimpleStyleParser::WIKITEXT_PROPERTIES ) ) {
+						$geom->properties->$key = $proc( $prop );
+					}
+				}
+			}
+		}
 	}
 }

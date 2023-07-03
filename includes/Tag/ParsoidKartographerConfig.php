@@ -24,14 +24,20 @@ class ParsoidKartographerConfig implements ExtensionModule {
 						'name' => 'maplink',
 						'handler' => ParsoidMapLink::class,
 						'options' => [
-							'outputHasCoreMwDomSpecMarkup' => true
+							'outputHasCoreMwDomSpecMarkup' => true,
+							'wt2html' => [
+								'embedsHTMLInAttributes' => true
+							]
 						],
 					],
 					[
 						'name' => 'mapframe',
 						'handler' => ParsoidMapFrame::class,
 						'options' => [
-							'outputHasCoreMwDomSpecMarkup' => true
+							'outputHasCoreMwDomSpecMarkup' => true,
+							'wt2html' => [
+								'embedsHTMLInAttributes' => true
+							]
 						],
 					]
 				],
