@@ -25,6 +25,8 @@
 	"kartographer-coord-lat-neg-lon-pos": "$1° $2′ $3″ S, $4° $5′ $6″ E",
 	"kartographer-coord-lat-neg-lon-neg": "$1° $2′ $3″ S, $4° $5′ $6″ W",
 	"kartographer-specialmap-invalid-coordinates": "Ette antud vigased koordinaadid",
+	"kartographer-specialmap-world": "Maailmakaart",
+	"kartographer-static-mapframe-alt": "Kaart",
 	"kartographer.css": "/* Siin asuv kaskaadilaadistik laaditakse kõigil kaartidega lehekülgedel. */",
 	"kartographer.js": "/* Siin asuv JavaScript laaditakse kõigi kasutajate jaoks kõigil kaartidega lehekülgedel. */",
 	"kartographer-linktype-aerial": "Aerofoto",
