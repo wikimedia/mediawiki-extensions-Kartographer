@@ -2,9 +2,40 @@
 	"@metadata": {
 		"authors": [
 			"राम प्रसाद जोशी",
-			"हिमाल सुबेदी"
+			"हिमाल सुबेदी",
+			"बडा काजी"
 		]
 	},
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use विकिमीडिया नक्सा] | नक्सा डेटा © [https://www.openstreetmap.org/copyright ओपन स्ट्रिट नक्सा योगदानकर्ताहरू]",
+	"kartographer-attribution-externaldata": "$1: $2",
+	"kartographer-attribution-short": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use विकिमीडिया] | © [https://www.openstreetmap.org/copyright ओपन स्ट्रिट नक्सा]",
+	"kartographer-broken-category": "टुटेको नक्सा भएका पृष्ठहरू",
+	"kartographer-broken-category-desc": "पृष्ठमा अमान्य नक्साको प्रयोग समावेश छ",
+	"kartographer-desc": "नक्साहरूलाई विकी पृष्ठहरूमा थप्न अनुमति दिन्छ",
+	"kartographer-linktype-map": "मानक नक्सा",
+	"kartographer-linktype-other": "अन्य",
+	"kartographer-linktype-satellite": "उपग्रह",
+	"kartographer-linktype-terrain": "भूभाग",
+	"kartographer-linktype-topo": "स्थलाकृतिक",
+	"kartographer-sidebar-coordinates": "निर्देशाङ्कहरू",
+	"kartographer-sidebar-filterdropdown": "नक्सा प्रकार चयन गर्नुहोस्",
+	"kartographer-sidebar-externalservices": "नक्सा सेवाहरू",
+	"kartographer-sidebar-externalservices-show-all": "थप हेर्नुहोस्",
+	"kartographer-sidebar-latitude": "अक्षांश",
+	"kartographer-sidebar-longitude": "देशान्तर",
+	"kartographer-sidebar-mapdetails": "बाह्य नक्साहरू",
+	"kartographer-sidebar-nearbybutton": "नजिकका लेखहरू देखाउनुहोस्",
+	"kartographer-sidebar-service": "सेवा",
+	"kartographer-sidebar-togglebutton": "बाह्य नक्साहरू",
+	"leafletdraw-draw-handlers-circle-radius": "त्रिज्या",
+	"leafletdraw-draw-toolbar-actions-text": "रद्द गर्नुहोस्",
+	"leafletdraw-edit-toolbar-actions-save-text": "सङ्ग्रह गर्नुहोस्",
 	"leafletdraw-edit-toolbar-actions-save-title": "परिवर्तन सङ्ग्रह गर्नुहोस्",
-	"visualeditor-mwmapsdialog-language": "भाषा"
+	"visualeditor-mwmapsdialog-language": "भाषा",
+	"visualeditor-mwmapsdialog-position-lat": "अक्षांश",
+	"visualeditor-mwmapsdialog-position-lon": "देशान्तर",
+	"visualeditor-mwmapsdialog-position-zoom": "नजिकबाट हेर्नुहोस्",
+	"visualeditor-mwmapsdialog-size": "आकार",
+	"visualeditor-mwmapsdialog-title": "नक्सा",
+	"visualeditor-mwmapscontextitem-title": "नक्सा"
 }
