@@ -3,10 +3,10 @@
 namespace Kartographer;
 
 use FormatJson;
+use InvalidArgumentException;
 use JsonConfig\JCMapDataContent;
 use JsonConfig\JCSingleton;
 use JsonSchema\Validator;
-use LogicException;
 use MediaWiki\MediaWikiServices;
 use Parser;
 use PPFrame;
@@ -303,7 +303,7 @@ class SimpleStyleParser {
 				break;
 
 			default:
-				throw new LogicException( "Unexpected service name '$service'" );
+				throw new InvalidArgumentException( "Unexpected service name '$service'" );
 		}
 
 		$object = $ret;

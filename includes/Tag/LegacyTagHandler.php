@@ -12,12 +12,12 @@ namespace Kartographer\Tag;
 use Config;
 use FormatJson;
 use Html;
+use InvalidArgumentException;
 use Kartographer\ParserFunctionTracker;
 use Kartographer\PartialWikitextParser;
 use Kartographer\SimpleStyleParser;
 use Kartographer\State;
 use Language;
-use LogicException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Message;
@@ -220,7 +220,7 @@ abstract class LegacyTagHandler {
 			$status->getErrorsByType( 'warning' )
 		);
 		if ( !$errors ) {
-			throw new LogicException( __METHOD__ . '(): attempt to report error when none took place' );
+			throw new InvalidArgumentException( 'Attempt to report error when none took place' );
 		}
 
 		if ( count( $errors ) > 1 ) {
