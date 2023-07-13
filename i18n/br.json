@@ -9,7 +9,12 @@
 	},
 	"kartographer-broken-category": "Pajennoù gant kartennoù faziek",
 	"kartographer-tracking-category": "Pajennoù gant kartennoù",
+	"kartographer-specialmap-world": "Kartenn ar bed",
+	"kartographer-sidebar-mapdetails": "Kartennoù diavaez",
+	"kartographer-sidebar-togglebutton": "Kartennoù diavaez",
 	"kartographer-fullscreen-collapse": "Kuzhat munudoù ar gartenn",
+	"kartographer-fullscreen-text": "Diskouez er skramm leun",
+	"visualeditor-mwmapsdialog-area": "Takad kartenn",
 	"visualeditor-mwmapsdialog-title": "Kartenn",
 	"visualeditor-mwmapscontextitem-title": "Kartenn"
 }
