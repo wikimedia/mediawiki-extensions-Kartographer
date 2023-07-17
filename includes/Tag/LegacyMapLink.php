@@ -21,17 +21,23 @@ class LegacyMapLink extends LegacyTagHandler {
 	protected function render( PartialWikitextParser $parser, bool $isPreview ): string {
 		$this->getOutput()->addModules( [ 'ext.kartographer.link' ] );
 
+		$gen = new MapLinkAttributeGenerator( $this->args, $this->config, $this->markerProperties );
+		$attrs = $gen->prepareAttrs();
+
 		// @todo: Mapbox markers don't support localized numbers yet
 		$text = $this->args->text;
 		if ( $text === null ) {
-			$text = $this->counter ?: ( new CoordFormatter( $this->args->lat, $this->args->lon ) )
-				->format( $this->getLanguageCode() );
+			$text = $this->counter;
+			if ( $text === null ) {
+				$formatter = new CoordFormatter( $this->args->lat, $this->args->lon );
+				$text = $formatter->format( $this->getLanguageCode() );
+				if ( $this->args->lat === null || $this->args->lon === null ) {
+					$attrs['class'][] = 'error';
+				}
+			}
 		} elseif ( $text !== '' ) {
 			$text = $parser->halfParseWikitext( $text );
 		}
-
-		$gen = new MapLinkAttributeGenerator( $this->args, $this->config, $this->markerProperties );
-		$attrs = $gen->prepareAttrs();
 
 		return Html::rawElement( 'a', $attrs, $text );
 	}
