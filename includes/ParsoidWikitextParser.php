@@ -27,7 +27,12 @@ class ParsoidWikitextParser extends WikitextParser {
 			'parseOpts' => [
 				'extTag' => $this->extApi->extTag->getName(),
 				'context' => 'inline',
-			], ], false );
+			],
+			// the wikitext is embedded into a JSON attribute, processing in a new frame seems to be the right move
+			// to avoid DSR failures
+			'processInNewFrame' => true,
+			'clearDSROffsets' => true,
+		], false );
 		return $this->extApi->domToHtml( $dom, false, true );
 	}
 }

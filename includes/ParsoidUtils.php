@@ -50,4 +50,22 @@ class ParsoidUtils {
 			$extApi->addLangI18nAttribute( $element, new Bcp47CodeValue( $language ), $name, $msgKey, $params );
 		}
 	}
+
+	/**
+	 * @param array $attrs
+	 * @param Element $node
+	 * @return void
+	 */
+	public static function addAttributesToNode( array $attrs, Element $node ): void {
+		foreach ( $attrs as $k => $v ) {
+			if ( $v === null ) {
+				continue;
+			}
+			if ( $k === 'class' && is_array( $v ) ) {
+				$node->setAttribute( $k, implode( ' ', $v ) );
+			} else {
+				$node->setAttribute( $k, $v );
+			}
+		}
+	}
 }

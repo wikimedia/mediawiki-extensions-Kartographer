@@ -546,6 +546,10 @@
 		"KartographerParsoidSupport": {
 			"description": "Enable Parsoid support for Kartographer. This flag should be removed once the Parsoid support is rolled out to all MW production wikis.",
 			"value": false
+		},
+		"KartographerParsoidVersion": {
+			"description": "Version of the Parsoid integration code. This is added to the extension data to enable cache rejection if necessary.",
+			"value": "1.0.0"
 		}
 	},
 	"TrackingCategories": [

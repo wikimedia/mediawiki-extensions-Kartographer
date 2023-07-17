@@ -2,6 +2,7 @@
 namespace Kartographer\Tests;
 
 use Kartographer\State;
+use MediaWiki\MediaWikiServices;
 use MediaWikiLangTestCase;
 use ParserOptions;
 use ParserOutput;
@@ -189,6 +190,21 @@ class KartographerTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	/**
+	 * @dataProvider provideResourceModulesData
+	 */
+	public function testResourceModulesParsoid( string $input, array $expectedModules, array $expectedStyles ) {
+		$this->setMwGlobals( 'wgKartographerStaticMapframe', false );
+		$output = $this->parseParsoid( $input );
+
+		$this->assertArrayEquals(
+			array_keys( $expectedModules ), array_unique( $output->getModules() )
+		);
+		$this->assertArrayEquals(
+			array_keys( $expectedStyles ), array_unique( $output->getModuleStyles() )
+		);
+	}
+
 	public static function provideResourceModulesData() {
 		$mapframe = '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37/>';
 		$maplink = '<maplink width=700 height=400 zoom=13 longitude=-122 latitude=37/>';
@@ -246,6 +262,31 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$vars = $output->getJsConfigVars();
 		$this->assertArrayHasKey( 'wgKartographerLiveData', $vars );
 		$this->assertArrayEquals( $expected, array_keys( (array)$vars['wgKartographerLiveData'] ) );
+	}
+
+	/** @dataProvider provideLiveData */
+	public function testLiveDataParsoid(
+		string $wikitext,
+		array $expected,
+		bool $isPreview = false,
+		bool $isSectionPreview = false,
+		bool $wikivoyageMode = false
+	) {
+		$this->setMwGlobals( 'wgKartographerWikivoyageMode', $wikivoyageMode );
+		$output = $this->parseParsoid( $wikitext );
+		$vars = $output->getJsConfigVars();
+		$this->assertArrayHasKey( 'wgKartographerLiveData', $vars );
+
+		if ( MediaWikiServices::getInstance()->getMainConfig()->has( 'KartographerParsoidSupport' ) &&
+			MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerParsoidSupport' ) !== true ) {
+			// not testing the exact content without parsoid, this would fail
+			return;
+		}
+		// FIXME ideally, this would be assertArrayEquals. For now, we're fine with shipping a bit more data
+		// than necessary.
+		foreach ( $expected as $v ) {
+			self::assertArrayHasKey( $v, (array)$vars['wgKartographerLiveData'] );
+		}
 	}
 
 	public static function provideLiveData() {
@@ -390,5 +431,11 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$title = Title::makeTitleSafe( NS_CATEGORY, $cat );
 		$cats = $output->getCategories();
 		$this->assertSame( $expected, isset( $cats[$title->getDBkey()] ), $message );
+	}
+
+	private function parseParsoid( string $wikitext ) {
+		$parsoid = $this->getServiceContainer()->getParsoidParserFactory()->create();
+		return $parsoid->parse( $wikitext, Title::newFromText( 'Test Page' ),
+			ParserOptions::newFromAnon() );
 	}
 }
