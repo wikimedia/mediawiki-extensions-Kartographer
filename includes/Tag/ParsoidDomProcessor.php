@@ -28,9 +28,18 @@ class ParsoidDomProcessor extends DOMProcessor {
 			return;
 		}
 
-		// Assumption: no instance is embedded in an attribute - otherwise it won't be found by the querySelector.
-		// If that can happen, then this should be modified to also search in the attributes, but this feels very
-		// expensive for a case that probably doesn't happen in practice.
+		$state = [
+			'broken' => 0,
+			'interactiveGroups' => [],
+			'requestedGroups' => [],
+			'counters' => [],
+			'maplinks' => 0,
+			'mapframes' => 0,
+			'data' => [],
+		];
+
+		// FIXME This only selects data-mw-kartographer nodes without exploring HTML that may be stored in
+		// attributes. We need to expand the traversal to find these as well.
 		$kartnodes = DOMCompat::querySelectorAll( $root, '*[data-mw-kartographer]' );
 
 		// let's avoid adding data to the page if there's no kartographer nodes!
@@ -51,98 +60,103 @@ class ParsoidDomProcessor extends DOMProcessor {
 		$broken = 0;
 
 		foreach ( $kartnodes as $kartnode ) {
-			$tagName = $kartnode->getAttribute( 'data-mw-kartographer' ) ?? '';
-			if ( $tagName !== '' ) {
-				$$tagName++;
-			}
-
-			$marker = $extApi->getTempNodeData( $kartnode, $tagName );
-			if ( $marker === 'error' ) {
-				$broken++;
-				continue;
-			}
-			$requested = array_merge( $requested, $marker['showGroups'] ?? [] );
-			if ( $tagName === ParsoidMapFrame::TAG ) {
-				$interactive = array_merge( $interactive, $marker['showGroups'] ?? [] );
-			}
-
-			if ( !$marker || !$marker['geometries'] || !$marker['geometries'][0] instanceof stdClass ) {
-				continue;
-			}
-			[ $counter, $props ] = SimpleStyleParser::updateMarkerSymbolCounters( $marker['geometries'], $counters );
-			if ( $tagName === ParsoidMapLink::TAG ) {
-				$text = $extApi->getTopLevelDoc()->createTextNode( $counter ?? '' );
-				if ( !isset( DOMDataUtils::getDataMw( $kartnode )->attrs->text ) ) {
-					$kartnode->replaceChild( $text, $kartnode->firstChild );
-				}
-			}
-
-			$data = $marker['geometries'];
-
-			if ( empty( $data ) && !$counter ) {
-				continue;
-			}
-
-			if ( $counter ) {
-				// If we have a counter, we update the marker data prior to encoding the groupId, and we remove
-				// the (previously comupted) groupId from showGroups
-				if ( isset( $marker['groupId'][0] ) && $marker['groupId'][0] === '_' ) {
-					// TODO unclear if this is necessary or if we could simply set it to [].
-					$marker['showGroups'] = array_values( array_diff( $marker['showGroups'], [ $marker['groupId'] ] ) );
-					$marker[ 'groupId' ] = null;
-				}
-			}
-
-			$groupId = $marker['groupId'] ?? null;
-			if ( $groupId === null ) {
-				// This hash calculation MUST be the same as in LegacyTagHandler::saveData
-				$groupId = '_' . sha1( FormatJson::encode( $marker['geometries'], false, FormatJson::ALL_OK ) );
-				$marker['groupId'] = $groupId;
-				$marker['showGroups'][] = $groupId;
-				$kartnode->setAttribute( 'data-overlays', FormatJson::encode( $marker['showGroups'] ) );
-				$img = $kartnode->firstChild;
-				// this should always be the case, but let make phan aware of it
-				if ( $img instanceof Element ) {
-					$this->updateSrc( $img, $groupId, $extApi );
-					$this->updateSrcSet( $img, $groupId, $extApi );
-				}
-			}
-
-			// There is no way to ever add anything to a private group starting with `_`
-			if ( isset( $kartData[$groupId] ) && !str_starts_with( $groupId, '_' ) ) {
-				// phan is grumbling without the ?? [], although it shouldn't
-				$kartData[$groupId] = array_merge( $kartData[$groupId], $data ?? [] );
-			} else {
-				$kartData[$groupId] = $data;
-			}
+			$this->processKartographerNode( $kartnode, $extApi, $state );
 		}
 
-		if ( $broken > 0 ) {
+		if ( $state['broken'] > 0 ) {
 			ParsoidUtils::addCategory( $extApi, 'kartographer-broken-category' );
 		}
-		if ( $maplink + $mapframe > $broken ) {
+		if ( $state['maplinks'] + $state['mapframes'] > $state['broken'] ) {
 			ParsoidUtils::addCategory( $extApi, 'kartographer-tracking-category' );
 		}
 
-		$state = [
-			'broken' => $broken,
-			'interactiveGroups' => array_keys( $interactive ),
-			'requestedGroups' => array_keys( $requested ),
-			'counters' => $counters,
-			'maplinks' => $maplink,
-			'mapframes' => $mapframe,
-			'data' => $kartData,
-			'parsoidIntVersion' =>
-				MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerParsoidVersion' ),
-		];
+		$interactive = $state['interactiveGroups'];
+		$state['interactiveGroups'] = array_keys( $state['interactiveGroups'] );
+		$state['requestedGroups'] = array_keys( $state['requestedGroups'] );
+		$state['parsoidIntVersion'] =
+			MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerParsoidVersion' );
 		$extApi->getMetadata()->setExtensionData( 'kartographer', $state );
 
 		foreach ( $interactive as $req ) {
-			if ( !isset( $kartData[$req] ) ) {
-				$kartData[$req] = [];
+			if ( !isset( $state['data'][$req] ) ) {
+				$state['data'][$req] = [];
 			}
 		}
-		$extApi->getMetadata()->setJsConfigVar( 'wgKartographerLiveData', $kartData );
+		$extApi->getMetadata()->setJsConfigVar( 'wgKartographerLiveData', $state['data'] ?? [] );
+	}
+
+	/**
+	 * @param Element $kartnode
+	 * @param ParsoidExtensionAPI $extApi
+	 * @param array &$state
+	 * @return void
+	 */
+	private function processKartographerNode( Element $kartnode, ParsoidExtensionAPI $extApi, array &$state ) {
+		$tagName = $kartnode->getAttribute( 'data-mw-kartographer' ) ?? '';
+		if ( $tagName !== '' ) {
+			$state[$tagName . 's' ]++;
+		}
+
+		$marker = $extApi->getTempNodeData( $kartnode, $tagName );
+		if ( $marker === 'error' ) {
+			$state['broken']++;
+			return;
+		}
+		$state['requestedGroups'] = array_merge( $state['requestedGroups'], $marker['showGroups'] ?? [] );
+		if ( $tagName === ParsoidMapFrame::TAG ) {
+			$state['interactiveGroups'] = array_merge( $state['interactiveGroups'], $marker['showGroups'] ?? [] );
+		}
+
+		if ( !$marker || !$marker['geometries'] || !$marker['geometries'][0] instanceof stdClass ) {
+			return;
+		}
+		[ $counter, $props ] = SimpleStyleParser::updateMarkerSymbolCounters( $marker['geometries'],
+			$state['counters'] );
+		if ( $tagName === ParsoidMapLink::TAG && $counter ) {
+			if ( !isset( DOMDataUtils::getDataMw( $kartnode )->attrs->text ) ) {
+				$text = $extApi->getTopLevelDoc()->createTextNode( $counter );
+				$kartnode->replaceChild( $text, $kartnode->firstChild );
+			}
+		}
+
+		$data = $marker['geometries'];
+
+		if ( empty( $data ) && !$counter ) {
+			return;
+		}
+
+		if ( $counter ) {
+			// If we have a counter, we update the marker data prior to encoding the groupId, and we remove
+			// the (previously comupted) groupId from showGroups
+			if ( isset( $marker['groupId'][0] ) && $marker['groupId'][0] === '_' ) {
+				// TODO unclear if this is necessary or if we could simply set it to [].
+				$marker['showGroups'] = array_values( array_diff( $marker['showGroups'], [ $marker['groupId'] ] ) );
+				$marker[ 'groupId' ] = null;
+			}
+		}
+
+		$groupId = $marker['groupId'] ?? null;
+		if ( $groupId === null ) {
+			// This hash calculation MUST be the same as in LegacyTagHandler::saveData
+			$groupId = '_' . sha1( FormatJson::encode( $marker['geometries'], false, FormatJson::ALL_OK ) );
+			$marker['groupId'] = $groupId;
+			$marker['showGroups'][] = $groupId;
+			$kartnode->setAttribute( 'data-overlays', FormatJson::encode( $marker['showGroups'] ) );
+			$img = $kartnode->firstChild;
+			// this should always be the case, but let make phan aware of it
+			if ( $img instanceof Element ) {
+				$this->updateSrc( $img, $groupId, $extApi );
+				$this->updateSrcSet( $img, $groupId, $extApi );
+			}
+		}
+
+		// There is no way to ever add anything to a private group starting with `_`
+		if ( isset( $state['data'][$groupId] ) && !str_starts_with( $groupId, '_' ) ) {
+			// phan is grumbling without the ?? [], although it shouldn't
+			$state['data'][$groupId] = array_merge( $state['data'][$groupId], $data ?? [] );
+		} else {
+			$state['data'][$groupId] = $data;
+		}
 	}
 
 	/**
