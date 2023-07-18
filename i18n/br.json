@@ -15,7 +15,11 @@
 	"kartographer-coord-lat-negative": "$1S",
 	"kartographer-coord-lon-positive": "$1K",
 	"kartographer-coord-lon-negative": "$1R",
+	"kartographer-sidebar-mapdetails": "Kartennoù diavaez",
+	"kartographer-sidebar-togglebutton": "Kartennoù diavaez",
 	"kartographer-fullscreen-collapse": "Kuzhat munudoù ar gartenn",
+	"kartographer-fullscreen-text": "Diskouez er skramm leun",
+	"visualeditor-mwmapsdialog-area": "Takad kartenn",
 	"visualeditor-mwmapsdialog-title": "Kartenn",
 	"visualeditor-mwmapscontextitem-title": "Kartenn"
 }
