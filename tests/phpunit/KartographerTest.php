@@ -155,7 +155,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$wikitextJsonParsoid = '{"_301c273795f88ed29491555b76a382a279ea387e":[
 			{"type":"Feature","geometry":{"type":"Point","coordinates":[-122,37]},
 			"properties":{"title":"&lt;script>alert(document.cookie);&lt;\/script>",
-			"description":"<a rel=\"mw:WikiLink\" href=\".\/Link_to_nowhere\" title=\"Link to nowhere\" data-parsoid=\'{\"stx\":\"simple\",\"a\":{\"href\":\".\/Link_to_nowhere\"},\"sa\":{\"href\":\"Link to nowhere\"}}\'>Link to nowhere<\/a>","marker-symbol":"1"}}
+			"description":"<a rel=\"mw:WikiLink\" href=\".\/Link_to_nowhere\" title=\"Link to nowhere\" data-parsoid=\'{\"tsr\":[0,19],\"stx\":\"simple\",\"a\":{\"href\":\".\/Link_to_nowhere\"},\"sa\":{\"href\":\"Link to nowhere\"}}\'>Link to nowhere<\/a>","marker-symbol":"1"}}
 			]}';
 		return [
 			[ '[]', '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37/>', '<mapframe> without JSON' ],

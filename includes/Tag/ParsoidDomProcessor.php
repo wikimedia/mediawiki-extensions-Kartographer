@@ -14,6 +14,7 @@ use Wikimedia\Parsoid\Ext\DOMDataUtils;
 use Wikimedia\Parsoid\Ext\DOMProcessor;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
 use Wikimedia\Parsoid\Utils\DOMCompat;
+use Wikimedia\Parsoid\Utils\DOMTraverser;
 
 /**
  * @license MIT
@@ -51,17 +52,14 @@ class ParsoidDomProcessor extends DOMProcessor {
 		$extApi->getMetadata()->addModuleStyles( [ 'ext.kartographer.style' ] );
 		$extApi->getMetadata()->appendOutputStrings( ParserOutputStringSets::EXTRA_CSP_DEFAULT_SRC, [ $mapServer ] );
 
-		$kartData = [];
-		$counters = [];
-		$requested = [];
-		$interactive = [];
-		$maplink = 0;
-		$mapframe = 0;
-		$broken = 0;
-
-		foreach ( $kartnodes as $kartnode ) {
-			$this->processKartographerNode( $kartnode, $extApi, $state );
-		}
+		$traverser = new DOMTraverser( false, true );
+		$traverser->addHandler( null, function ( $node ) use ( &$state, $extApi ) {
+			if ( $node instanceof Element && $node->hasAttribute( 'data-mw-kartographer' ) ) {
+				$this->processKartographerNode( $node, $extApi, $state );
+			}
+			return true;
+		} );
+		$traverser->traverse( $extApi, $root );
 
 		if ( $state['broken'] > 0 ) {
 			ParsoidUtils::addCategory( $extApi, 'kartographer-broken-category' );
@@ -97,20 +95,23 @@ class ParsoidDomProcessor extends DOMProcessor {
 			$state[$tagName . 's' ]++;
 		}
 
-		$marker = $extApi->getTempNodeData( $kartnode, $tagName );
-		if ( $marker === 'error' ) {
+		$markerStr = $kartnode->getAttribute( 'data-kart' );
+		$kartnode->removeAttribute( 'data-kart' );
+		if ( $markerStr === 'error' ) {
 			$state['broken']++;
 			return;
 		}
-		$state['requestedGroups'] = array_merge( $state['requestedGroups'], $marker['showGroups'] ?? [] );
+		$marker = json_decode( $markerStr ?? '' );
+
+		$state['requestedGroups'] = array_merge( $state['requestedGroups'], $marker->showGroups ?? [] );
 		if ( $tagName === ParsoidMapFrame::TAG ) {
-			$state['interactiveGroups'] = array_merge( $state['interactiveGroups'], $marker['showGroups'] ?? [] );
+			$state['interactiveGroups'] = array_merge( $state['interactiveGroups'], $marker->showGroups ?? [] );
 		}
 
-		if ( !$marker || !$marker['geometries'] || !$marker['geometries'][0] instanceof stdClass ) {
+		if ( !$marker || !$marker->geometries || !$marker->geometries[0] instanceof stdClass ) {
 			return;
 		}
-		[ $counter, $props ] = SimpleStyleParser::updateMarkerSymbolCounters( $marker['geometries'],
+		[ $counter, $props ] = SimpleStyleParser::updateMarkerSymbolCounters( $marker->geometries,
 			$state['counters'] );
 		if ( $tagName === ParsoidMapLink::TAG && $counter ) {
 			if ( !isset( DOMDataUtils::getDataMw( $kartnode )->attrs->text ) ) {
@@ -119,7 +120,7 @@ class ParsoidDomProcessor extends DOMProcessor {
 			}
 		}
 
-		$data = $marker['geometries'];
+		$data = $marker->geometries;
 
 		if ( empty( $data ) && !$counter ) {
 			return;
@@ -127,21 +128,21 @@ class ParsoidDomProcessor extends DOMProcessor {
 
 		if ( $counter ) {
 			// If we have a counter, we update the marker data prior to encoding the groupId, and we remove
-			// the (previously comupted) groupId from showGroups
-			if ( isset( $marker['groupId'][0] ) && $marker['groupId'][0] === '_' ) {
+			// the (previously computed) groupId from showGroups
+			if ( ( $marker->groupId[0] ?? '' ) === '_' ) {
 				// TODO unclear if this is necessary or if we could simply set it to [].
-				$marker['showGroups'] = array_values( array_diff( $marker['showGroups'], [ $marker['groupId'] ] ) );
-				$marker[ 'groupId' ] = null;
+				$marker->showGroups = array_values( array_diff( $marker->showGroups, [ $marker->groupId ] ) );
+				$marker->groupId = null;
 			}
 		}
 
-		$groupId = $marker['groupId'] ?? null;
+		$groupId = $marker->groupId ?? null;
 		if ( $groupId === null ) {
 			// This hash calculation MUST be the same as in LegacyTagHandler::saveData
-			$groupId = '_' . sha1( FormatJson::encode( $marker['geometries'], false, FormatJson::ALL_OK ) );
-			$marker['groupId'] = $groupId;
-			$marker['showGroups'][] = $groupId;
-			$kartnode->setAttribute( 'data-overlays', FormatJson::encode( $marker['showGroups'] ) );
+			$groupId = '_' . sha1( FormatJson::encode( $marker->geometries, false, FormatJson::ALL_OK ) );
+			$marker->groupId = $groupId;
+			$marker->showGroups[] = $groupId;
+			$kartnode->setAttribute( 'data-overlays', FormatJson::encode( $marker->showGroups ) );
 			$img = $kartnode->firstChild;
 			// this should always be the case, but let make phan aware of it
 			if ( $img instanceof Element ) {

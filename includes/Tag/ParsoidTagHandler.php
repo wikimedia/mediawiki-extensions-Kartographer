@@ -91,7 +91,7 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 		$div = $extApi->getTopLevelDoc()->createElement( 'div' );
 		$div->setAttribute( 'class', 'mw-kartographer-error' );
 		$div->setAttribute( 'data-mw-kartographer', $tag );
-		$extApi->setTempNodeData( $div, 'error' );
+		$div->setAttribute( 'data-kart', 'error' );
 		$dom->appendChild( $div );
 		if ( count( $errors ) > 1 ) {
 			// kartographer-error-context-multi takes two parameters: the tag name and the
@@ -169,18 +169,19 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 		if ( !$exttagname ) {
 			return;
 		}
-		$marker = $extApi->getTempNodeData( $node, $exttagname );
-		if ( is_array( $marker ) && $marker['geometries'] ) {
-			foreach ( $marker['geometries'] as $geom ) {
+		$marker = json_decode( $node->getAttribute( 'data-kart' ) ?? '', false );
+		if ( $marker instanceof stdClass && $marker->geometries ) {
+			foreach ( $marker->geometries as $geom ) {
 				if ( !isset( $geom->properties ) ) {
 					continue;
 				}
 				foreach ( $geom->properties as $key => $prop ) {
 					if ( in_array( $key, SimpleStyleParser::WIKITEXT_PROPERTIES ) ) {
-						$geom->properties->$key = $proc( $prop );
+						$geom->properties->{$key} = $proc( $prop );
 					}
 				}
 			}
+			$node->setAttribute( 'data-kart', json_encode( $marker ) );
 		}
 	}
 }
