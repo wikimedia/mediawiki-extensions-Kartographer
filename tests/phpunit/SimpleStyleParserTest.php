@@ -6,6 +6,7 @@ use JsonConfig\JCMapDataContent;
 use Kartographer\SimpleStyleParser;
 use Kartographer\WikitextParser;
 use LogicException;
+use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use Parser;
 use ParserOptions;
@@ -20,11 +21,12 @@ use Title;
 class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
-		$this->setMwGlobals( [
-			'wgJsonConfigModels' => [ 'Map.JsonConfig' => [ 'class' => JCMapDataContent::class ] ],
-			'wgJsonConfigs' => [ 'Map.JsonConfig' => [ 'namespace' => 486, 'nsName' => 'Data' ] ],
-			'wgKartographerMapServer' => 'https://maps.wikimedia.org',
-			'wgScriptPath' => '',
+		$this->overrideConfigValues( [
+			'JsonConfigModels' => [ 'Map.JsonConfig' => [ 'class' => JCMapDataContent::class ] ],
+			'JsonConfigs' => [ 'Map.JsonConfig' => [ 'namespace' => 486, 'nsName' => 'Data' ] ],
+			'KartographerMapServer' => 'https://maps.wikimedia.org',
+			MainConfigNames::LanguageCode => 'qqx',
+			MainConfigNames::ScriptPath => '',
 		] );
 	}
 

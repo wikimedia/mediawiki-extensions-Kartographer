@@ -2,6 +2,7 @@
 namespace Kartographer\Tests;
 
 use Kartographer\State;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWikiLangTestCase;
 use ParserOptions;
@@ -32,11 +33,12 @@ class KartographerTest extends MediaWikiLangTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->setMwGlobals( [
-			'wgKartographerMapServer' => 'http://192.0.2.0',
-			'wgKartographerMediaWikiInternalUrl' => 'localhost',
-			'wgScriptPath' => '/w',
-			'wgScript' => '/w/index.php',
+		$this->overrideConfigValues( [
+			'KartographerMapServer' => 'http://192.0.2.0',
+			'KartographerMediaWikiInternalUrl' => 'localhost',
+			MainConfigNames::LanguageCode => 'qqx',
+			MainConfigNames::Script => '/w/index.php',
+			MainConfigNames::ScriptPath => '/w',
 		] );
 	}
 
@@ -113,10 +115,10 @@ class KartographerTest extends MediaWikiLangTestCase {
 			{"type":"Feature","geometry":{"type":"Point","coordinates":[-122,37]},"properties":{"title":"Foo bar"}},
 			{"type":"GeometryCollection","geometries":[{"type":"Point","coordinates":[0,0],"properties":{}}]}
 		]}';
-		$wikitextJsonParsed = '{"_ee2aa7342f7aee686e9d155932d0118dd4370c36":[
+		$wikitextJsonParsed = '{"_d0b261d7d6c90ab9ca4b2cbc36b5171b11510015":[
 				{"type":"Feature","geometry":{"type":"Point","coordinates":[-122,37]},
 				"properties":{"title":"&lt;script&gt;alert(document.cookie);&lt;\/script&gt;",
-				"description":"<a href=\"\/w\/index.php?title=Link_to_nowhere&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"Link to nowhere (page does not exist)\">Link to nowhere<\/a>","marker-symbol":"1"}}
+				"description":"<a href=\"\/w\/index.php?title=Link_to_nowhere&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"(red-link-title: Link to nowhere)\">Link to nowhere<\/a>","marker-symbol":"1"}}
 			]}';
 		return [
 			[ '[]', '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37/>', '<mapframe> without JSON' ],
@@ -240,7 +242,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 		// because they might not yet exist when the renderer requests them.
 		$this->assertStringNotContainsString( 'domain=localhost&amp;title=Test&amp;', $output->getRawText() );
 		$this->assertStringContainsString(
-			'/img/osm-intl,13,37,-122,700x400.png?lang=en',
+			'/img/osm-intl,13,37,-122,700x400.png?lang=qqx',
 			$output->getRawText()
 		);
 	}

@@ -7,6 +7,7 @@ use ApiUsageException;
 use FlaggableWikiPage;
 use FlaggedRevs;
 use FlaggedRevsParserCache;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use ParserOptions;
@@ -33,12 +34,13 @@ class ApiQueryMapDataTest extends ApiTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->setMwGlobals( [
-			'wgFlaggedRevsAutoReview' => 0,
-			'wgFlaggedRevsNamespaces' => [ NS_MAIN ],
-			'wgFlaggedRevsProtection' => false,
-			'wgKartographerMapServer' => 'http://192.0.2.0',
-			'wgKartographerWikivoyageMode' => true,
+		$this->overrideConfigValues( [
+			'FlaggedRevsAutoReview' => 0,
+			'FlaggedRevsNamespaces' => [ NS_MAIN ],
+			'FlaggedRevsProtection' => false,
+			'KartographerMapServer' => 'http://192.0.2.0',
+			'KartographerWikivoyageMode' => true,
+			MainConfigNames::LanguageCode => 'qqx',
 		] );
 	}
 
