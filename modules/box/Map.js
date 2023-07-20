@@ -11,28 +11,26 @@
  * @class Kartographer.Box.MapClass
  * @extends L.Map
  */
-var util = require( 'ext.kartographer.util' ),
-	OpenFullScreenControl = require( './openfullscreen_control.js' ),
-	dataLayerOpts = require( './dataLayerOpts.js' ),
-	ScaleControl = require( './scale_control.js' ),
-	DataManagerFactory = require( './data.js' ),
-	scale, urlFormat,
-	worldLatLng = new L.LatLngBounds( [ -90, -180 ], [ 90, 180 ] ),
-	KartographerMap;
+const util = require( 'ext.kartographer.util' );
+const OpenFullScreenControl = require( './openfullscreen_control.js' );
+const dataLayerOpts = require( './dataLayerOpts.js' );
+const ScaleControl = require( './scale_control.js' );
+const DataManagerFactory = require( './data.js' );
+const worldLatLng = new L.LatLngBounds( [ -90, -180 ], [ 90, 180 ] );
 
 /**
  * @return {number}
  * @private
  */
 function bracketDevicePixelRatio() {
-	var brackets = mw.config.get( 'wgKartographerSrcsetScales' ),
-		baseRatio = window.devicePixelRatio || 1;
+	const brackets = mw.config.get( 'wgKartographerSrcsetScales' );
+	const baseRatio = window.devicePixelRatio || 1;
 	if ( !brackets ) {
 		return 1;
 	}
 	brackets.unshift( 1 );
-	for ( var i = 0; i < brackets.length; i++ ) {
-		var scl = brackets[ i ];
+	for ( let i = 0; i < brackets.length; i++ ) {
+		const scl = brackets[ i ];
 		if ( scl >= baseRatio || ( baseRatio - scl ) < 0.1 ) {
 			return scl;
 		}
@@ -40,9 +38,9 @@ function bracketDevicePixelRatio() {
 	return brackets[ brackets.length - 1 ];
 }
 
-scale = bracketDevicePixelRatio();
+let scale = bracketDevicePixelRatio();
 scale = ( scale === 1 ) ? '' : ( '@' + scale + 'x' );
-urlFormat = '/{z}/{x}/{y}' + scale + '.png';
+const urlFormat = '/{z}/{x}/{y}' + scale + '.png';
 
 require( './leaflet.sleep.js' );
 require( './mapbox-settings.js' ).configure();
@@ -80,7 +78,7 @@ L.Popup.mergeOptions( {
  * @private
  */
 function validateBounds( layer ) {
-	var bounds = ( typeof layer.getBounds === 'function' ) && layer.getBounds();
+	let bounds = ( typeof layer.getBounds === 'function' ) && layer.getBounds();
 
 	bounds = bounds || ( typeof layer.getLatLng === 'function' ) && layer.getLatLng();
 
@@ -105,7 +103,7 @@ function validateBounds( layer ) {
  * @private
  */
 function getValidBounds( layer ) {
-	var layerBounds = new L.LatLngBounds();
+	const layerBounds = new L.LatLngBounds();
 	if ( typeof layer.eachLayer === 'function' ) {
 		layer.eachLayer( function ( child ) {
 			layerBounds.extend( getValidBounds( child ) );
@@ -122,8 +120,8 @@ function getValidBounds( layer ) {
  * @private
  */
 function buildAttribution( url ) {
-	var uri = new mw.Uri( url );
-	var link = mw.html.element(
+	const uri = new mw.Uri( url );
+	const link = mw.html.element(
 		'a',
 		{
 			target: '_blank',
@@ -138,7 +136,7 @@ function buildAttribution( url ) {
 	);
 }
 
-KartographerMap = L.Map.extend( {
+const KartographerMap = L.Map.extend( {
 	/**
 	 * Create a map within options.container
 	 *
@@ -177,10 +175,10 @@ KartographerMap = L.Map.extend( {
 	 * @public
 	 */
 	initialize: function ( options ) {
-		var mapServer = mw.config.get( 'wgKartographerMapServer' ),
-			defaultStyle = mw.config.get( 'wgKartographerDfltStyle' ),
-			style = options.style || defaultStyle,
-			map = this;
+		const mapServer = mw.config.get( 'wgKartographerMapServer' );
+		const defaultStyle = mw.config.get( 'wgKartographerDfltStyle' );
+		const style = options.style || defaultStyle;
+		const map = this;
 
 		if ( !mapServer ) {
 			throw new Error( 'wgKartographerMapServer must be configured.' );
@@ -195,7 +193,7 @@ KartographerMap = L.Map.extend( {
 
 		$( options.container ).addClass( 'mw-kartographer-interactive' );
 
-		var args = L.extend( {}, L.Map.prototype.options, options, {
+		const args = L.extend( {}, L.Map.prototype.options, options, {
 			// `center` and `zoom` are to undefined to avoid calling
 			// setView now. setView is called later when the data is
 			// loaded.
@@ -375,9 +373,9 @@ KartographerMap = L.Map.extend( {
 			map.initView( options.center, options.zoom );
 
 			// Workaround to make interactive elements (especially geoshapes) reachable via tab
-			for ( var id in map.dataLayers ) {
+			for ( const id in map.dataLayers ) {
 				map.dataLayers[ id ].eachLayer( function ( shape ) {
-					var el = shape.getElement();
+					const el = shape.getElement();
 					if ( shape.getPopup() ) {
 						el.tabIndex = 0;
 					} else {
@@ -480,7 +478,7 @@ KartographerMap = L.Map.extend( {
 	 * @private
 	 */
 	addGeoJSONGroups: function ( groups ) {
-		var map = this;
+		const map = this;
 		groups.forEach( function ( group ) {
 			if ( group.failed ) {
 				if ( group.name && group.name.slice( 0, 1 ) === '_' && group.failureReason ) {
@@ -489,14 +487,14 @@ KartographerMap = L.Map.extend( {
 				return;
 			}
 
-			var layerOptions = {};
-			var geoJSON = group.getGeoJSON();
+			const layerOptions = {};
+			const geoJSON = group.getGeoJSON();
 
 			if ( !geoJSON.length ) {
 				return;
 			// FIXME: How can it be an array (with .length) and GeoJSON object the same time?
 			} else if ( geoJSON.service === 'page' ) {
-				var attribution = buildAttribution( geoJSON.url );
+				const attribution = buildAttribution( geoJSON.url );
 				layerOptions.name = attribution;
 				layerOptions.attribution = attribution;
 			} else if ( group.name ) {
@@ -520,8 +518,8 @@ KartographerMap = L.Map.extend( {
 			return $.Deferred().resolve().promise();
 		}
 
-		var title = mw.config.get( 'wgPageName' );
-		var revid = mw.config.get( 'wgRevisionId' );
+		const title = mw.config.get( 'wgPageName' );
+		const revid = mw.config.get( 'wgRevisionId' );
 		return DataManagerFactory().loadGroups( dataGroups, title, revid )
 			.then( this.addGeoJSONGroups.bind( this ) );
 	},
@@ -548,7 +546,7 @@ KartographerMap = L.Map.extend( {
 	addGeoJSONLayer: function ( geoJSON, options ) {
 		if ( typeof geoJSON === 'string' ) {
 			mw.log.warn( 'Please update deprecated call to addGeoJSONLayer, see T327151' );
-			var name = geoJSON;
+			const name = geoJSON;
 			geoJSON = options;
 			options = arguments[ 2 ];
 			options.name = name;
@@ -557,15 +555,15 @@ KartographerMap = L.Map.extend( {
 		try {
 			// T326790 make sure that only points triggering popups are rendered interactive
 			options.pointToLayer = function ( feature, latlon ) {
-				var props = feature.properties,
-					interactive = !!( props && ( props.title || props.description ) );
+				const props = feature.properties;
+				const interactive = !!( props && ( props.title || props.description ) );
 				// Note: This is the same call as in the default pointToLayer function.
-				var marker = L.mapbox.marker.style( feature, latlon );
+				const marker = L.mapbox.marker.style( feature, latlon );
 				marker.options.interactive = interactive;
 				marker.options.keyboard = interactive;
 				return marker;
 			};
-			var layer = L.mapbox.featureLayer( geoJSON, $.extend( {}, dataLayerOpts, options ) ).addTo( this );
+			const layer = L.mapbox.featureLayer( geoJSON, $.extend( {}, dataLayerOpts, options ) ).addTo( this );
 			layer.getAttribution = function () {
 				return this.options.attribution;
 			};
@@ -587,7 +585,7 @@ KartographerMap = L.Map.extend( {
 	openFullScreen: function ( position ) {
 		this.doWhenReady( function () {
 
-			var map = this.options.link ? this : this.fullScreenMap;
+			let map = this.options.link ? this : this.fullScreenMap;
 			position = position || this.getMapPosition();
 
 			if ( !map ) {
@@ -657,8 +655,8 @@ KartographerMap = L.Map.extend( {
 	 * @return {number} return.zoom
 	 */
 	getMapPosition: function ( options ) {
-		var center = this.getCenter().wrap(),
-			zoom = this.getZoom();
+		let center = this.getCenter().wrap();
+		const zoom = this.getZoom();
 
 		if ( options && options.scaled ) {
 			center = L.latLng( this.getScaleLatLng( center.lat, center.lng, zoom ) );
@@ -683,22 +681,22 @@ KartographerMap = L.Map.extend( {
 			return this.fullScreenRoute;
 		}
 
-		var hash = this.fullScreenRoute,
-			currentPosition = this.getMapPosition(),
-			initialPosition = this._initialPosition,
-			newHash = currentPosition.zoom + '/' + this.getScaleLatLng(
-				currentPosition.center.lat,
-				currentPosition.center.lng,
-				currentPosition.zoom
-			).join( '/' ),
-			initialHash = initialPosition.center && (
-				initialPosition.zoom + '/' +
+		let hash = this.fullScreenRoute;
+		const currentPosition = this.getMapPosition();
+		const initialPosition = this._initialPosition;
+		const newHash = currentPosition.zoom + '/' + this.getScaleLatLng(
+			currentPosition.center.lat,
+			currentPosition.center.lng,
+			currentPosition.zoom
+		).join( '/' );
+		const initialHash = initialPosition.center && (
+			initialPosition.zoom + '/' +
 				this.getScaleLatLng(
 					initialPosition.center.lat,
 					initialPosition.center.lng,
 					initialPosition.zoom
 				).join( '/' )
-			);
+		);
 
 		if ( newHash !== initialHash ) {
 			hash += '/' + newHash;
@@ -729,7 +727,7 @@ KartographerMap = L.Map.extend( {
 	 * @chainable
 	 */
 	setView: function ( center, zoom, options, save ) {
-		var initial = this.getInitialMapPosition();
+		const initial = this.getInitialMapPosition();
 
 		if ( Array.isArray( center ) ) {
 			if ( !isNaN( center[ 0 ] ) && !isNaN( center[ 1 ] ) ) {
@@ -746,7 +744,7 @@ KartographerMap = L.Map.extend( {
 			// Bounds calulation depends on the size of the frame
 			// If the frame is not visible, there is no point in calculating
 			// You need to call invalidateSize when it becomes available again
-			var maxBounds = getValidBounds( this );
+			const maxBounds = getValidBounds( this );
 
 			if ( maxBounds.isValid() ) {
 				this.fitBounds( maxBounds );
@@ -816,7 +814,7 @@ KartographerMap = L.Map.extend( {
 		zoom = zoom === undefined ? this.getZoom() : zoom;
 
 		// T321603: It appears like zoom can be a bogus fractional value for unknown reasons
-		var precision = zoom > 1 ? Math.ceil( Math.log( zoom ) / Math.LN2 ) : 0;
+		const precision = zoom > 1 ? Math.ceil( Math.log( zoom ) / Math.LN2 ) : 0;
 		return [ lat.toFixed( precision ), lng.toFixed( precision ) ];
 	},
 
@@ -828,7 +826,7 @@ KartographerMap = L.Map.extend( {
 	 * @chainable
 	 */
 	remove: function () {
-		var parent = this.parentMap || this.parentLink;
+		const parent = this.parentMap || this.parentLink;
 
 		if ( this.fullScreenMap ) {
 			L.Map.prototype.remove.call( this.fullScreenMap );
@@ -865,11 +863,12 @@ KartographerMap = L.Map.extend( {
 		}
 
 		// eslint-disable-next-line no-jquery/no-sizzle
-		var $visibleParent = this.$container.closest( ':visible' );
+		let $visibleParent = this.$container.closest( ':visible' );
 
 		// Try `max` properties.
-		var width = $visibleParent.css( 'max-width' ),
-			height = $visibleParent.css( 'max-height' );
+		let width = $visibleParent.css( 'max-width' );
+		let height = $visibleParent.css( 'max-height' );
+
 		width = ( !width || width === 'none' ) ? $visibleParent.width() : width;
 		height = ( !height || height === 'none' ) ? $visibleParent.height() : height;
 
@@ -935,14 +934,13 @@ KartographerMap = L.Map.extend( {
 	 * @chainable
 	 */
 	toggleStaticState: function () {
-		var deviceWidth = window.innerWidth,
-			// All maps static if deviceWitdh < 480px
-			isSmallWindow = deviceWidth <= 480,
-			staticMap;
+		const deviceWidth = window.innerWidth;
+		// All maps static if deviceWitdh < 480px
+		const isSmallWindow = deviceWidth <= 480;
 
 		// If the window is wide enough, make sure there is at least
 		// a 200px margin to scroll, otherwise make the map static.
-		staticMap = this.options.alwaysStatic || isSmallWindow || ( this.getSize().x + 200 ) > deviceWidth;
+		const staticMap = this.options.alwaysStatic || isSmallWindow || ( this.getSize().x + 200 ) > deviceWidth;
 
 		// Skip if the map is already static
 		if ( this._static === staticMap ) {
@@ -979,7 +977,7 @@ KartographerMap = L.Map.extend( {
 	 * @chainable
 	 */
 	invalidateSizeAndSetInitialView: function () {
-		var position = this.getInitialMapPosition();
+		const position = this.getInitialMapPosition();
 		this.invalidateSize();
 		if ( position ) {
 			// at rare times during load fases, position might be undefined

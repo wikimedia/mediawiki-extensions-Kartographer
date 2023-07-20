@@ -1,5 +1,5 @@
 /** @type {Object.<string,Object|undefined>} */
-var thumbnailCache = {};
+const thumbnailCache = {};
 
 /**
  * @param {Object} parameters
@@ -37,7 +37,7 @@ function fetchThumbnail( popup, title, description ) {
 		piprop: 'thumbnail',
 		pithumbsize: 250
 	} ).then( function ( result ) {
-		var pages = result.query.pages || [];
+		const pages = result.query.pages || [];
 		pages.forEach( function ( page ) {
 			// This intentionally creates cache entries for pages without thumbnails as well
 			thumbnailCache[ page.title ] = page.thumbnail;
@@ -92,7 +92,7 @@ Nearby.prototype.initClusterMarkers = function () {
 Nearby.prototype.getDebouncedRadius = function ( bounds ) {
 	// This corresponds to the smallest circle around the bounding rectangle, so some results will
 	// be outside that visible rectangle
-	var radius = Math.floor( bounds.getCenter().distanceTo( bounds.getSouthWest() ) );
+	const radius = Math.floor( bounds.getCenter().distanceTo( bounds.getSouthWest() ) );
 	// Rounding to 2 significant digits means we loose +/-5% in the absolute worst case
 	// eslint-disable-next-line no-bitwise
 	return radius.toPrecision( 2 ) | 0;
@@ -108,9 +108,9 @@ Nearby.prototype.getDebouncedRadius = function ( bounds ) {
  */
 Nearby.prototype.getDebouncedPoint = function ( point, zoom ) {
 	// Higher numbers = less precision = larger grid size = better debounce
-	var looseness = 22;
+	const looseness = 22;
 	// 4 decimal places correspond to ~11m, 3 to ~110m, and so on
-	var decimalPlaces = Math.max(
+	const decimalPlaces = Math.max(
 		// Zoom changes with a factor of 2, lat/lng with a factor of 10 per decimal place
 		4 - Math.floor( ( looseness - zoom ) * Math.LN2 / Math.LN10 ),
 		0
@@ -131,8 +131,8 @@ Nearby.prototype.getDebouncedPoint = function ( point, zoom ) {
  * @return {string}
  */
 Nearby.prototype.getSearchQuery = function ( bounds, zoom ) {
-	var radius = this.getDebouncedRadius( bounds ),
-		center = this.getDebouncedPoint( bounds.getCenter(), zoom );
+	let radius = this.getDebouncedRadius( bounds );
+	const center = this.getDebouncedPoint( bounds.getCenter(), zoom );
 	radius = radius % 1000 ? radius + 'm' : Math.round( radius / 1000 ) + 'km';
 	return 'nearcoord:' + radius + ',' + center.lat + ',' + center.lng;
 };
@@ -143,25 +143,27 @@ Nearby.prototype.getSearchQuery = function ( bounds, zoom ) {
  * @return {string}
  */
 function createPopupHtml( titleText, description ) {
-	var title = mw.Title.newFromText( titleText );
+	const title = mw.Title.newFromText( titleText );
 
-	var linkHtml = mw.html.element( 'a', {
-			href: title.getUrl(),
-			class: 'nearby-article-link',
-			target: '_blank'
-		}, title.getPrefixedText() ),
-		titleHtml = mw.html.element( 'div', {
-			class: 'marker-title'
-		}, new mw.html.Raw( linkHtml ) ),
-		contentHtml = '';
+	const linkHtml = mw.html.element( 'a', {
+		href: title.getUrl(),
+		class: 'nearby-article-link',
+		target: '_blank'
+	}, title.getPrefixedText() );
+
+	const titleHtml = mw.html.element( 'div', {
+		class: 'marker-title'
+	}, new mw.html.Raw( linkHtml ) );
+
+	let contentHtml = '';
 
 	if ( description ) {
 		contentHtml += mw.html.element( 'span', {}, description );
 	}
 
-	var thumbnail = thumbnailCache[ title.getPrefixedText() ];
+	const thumbnail = thumbnailCache[ title.getPrefixedText() ];
 	if ( thumbnail ) {
-		var imgHtml = mw.html.element( 'img', {
+		const imgHtml = mw.html.element( 'img', {
 			src: thumbnail.source,
 			width: thumbnail.width || '',
 			height: thumbnail.height || ''
@@ -327,7 +329,7 @@ Nearby.prototype.fetchAndPopulateNearbyLayer = function ( map ) {
  * @return {jQuery.Promise}
  */
 Nearby.prototype.fetch = function ( bounds, zoom ) {
-	var limit = mw.config.get( 'wgKartographerNearby' );
+	const limit = mw.config.get( 'wgKartographerNearby' );
 	// TODO: Cache results if bounds remains unchanged
 	return mwApi( {
 		action: 'query',
@@ -352,7 +354,7 @@ Nearby.prototype.fetch = function ( bounds, zoom ) {
  * @param {Object} queryApiResponse
  */
 Nearby.prototype.populateNearbyLayer = function ( map, queryApiResponse ) {
-	var geoJSON = this.convertGeosearchToGeoJSON( queryApiResponse );
+	const geoJSON = this.convertGeosearchToGeoJSON( queryApiResponse );
 
 	if ( !this.nearbyLayer ) {
 		this.nearbyLayer = this.createNearbyLayer( geoJSON );
@@ -371,7 +373,7 @@ Nearby.prototype.populateNearbyLayer = function ( map, queryApiResponse ) {
 	}
 
 	if ( !this.seenMarkerPaint && mw.eventLog ) {
-		var elapsedTime = Math.round( mw.now() - this.performanceStartTime );
+		const elapsedTime = Math.round( mw.now() - this.performanceStartTime );
 		mw.eventLog.submit( 'mediawiki.maps_interaction', {
 			$schema: '/analytics/mediawiki/maps/interaction/1.0.0',
 			action: 'nearby-marker-paint',
@@ -390,10 +392,10 @@ Nearby.prototype.populateNearbyLayer = function ( map, queryApiResponse ) {
  * @return {Object[]} A list of GeoJSON features, one for each page.
  */
 Nearby.prototype.convertGeosearchToGeoJSON = function ( response ) {
-	var pages = response.query && response.query.pages || [];
+	const pages = response.query && response.query.pages || [];
 
 	return pages.reduce( function ( result, page ) {
-		var coordinates = page.coordinates && page.coordinates[ 0 ];
+		const coordinates = page.coordinates && page.coordinates[ 0 ];
 
 		if ( coordinates ) {
 			result.push( {
@@ -417,7 +419,7 @@ Nearby.prototype.convertGeosearchToGeoJSON = function ( response ) {
  * @return {L.GeoJSON}
  */
 Nearby.prototype.createNearbyLayer = function ( geoJSON ) {
-	var self = this;
+	const self = this;
 	return L.geoJSON( geoJSON, {
 		filter: this.filterDuplicatePoints.bind( this ),
 		pointToLayer: this.createNearbyMarker,

@@ -7,7 +7,7 @@
  * @class Kartographer.Dialog.CloseFullScreenControl
  * @extends L.Control
  */
-var CloseFullScreenControl = L.Control.extend( {
+const CloseFullScreenControl = L.Control.extend( {
 	options: {
 		position: 'topright'
 	},
@@ -19,8 +19,8 @@ var CloseFullScreenControl = L.Control.extend( {
 	 * @protected
 	 */
 	onAdd: function () {
-		var container = L.DomUtil.create( 'div', 'leaflet-bar' ),
-			link = L.DomUtil.create( 'a', 'oo-ui-icon-close', container );
+		const container = L.DomUtil.create( 'div', 'leaflet-bar' );
+		const link = L.DomUtil.create( 'a', 'oo-ui-icon-close', container );
 
 		link.href = '#';
 		link.title = mw.msg( 'kartographer-fullscreen-close' );

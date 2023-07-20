@@ -1,7 +1,7 @@
 {
 	"root": true,
 	"extends": [
-		"wikimedia/client-es5",
+		"wikimedia/client-es6",
 		"wikimedia/jquery",
 		"wikimedia/mediawiki",
 		"wikimedia/jsduck"
@@ -17,8 +17,6 @@
 		"mediawiki/valid-package-file-require": "warn",
 		"prefer-regex-literals": "warn",
 		"no-shadow": "warn",
-		"no-loss-of-precision": "warn",
-		"es-x/no-block-scoped-variables": "warn",
-		"es-x/no-set": "warn"
+		"no-loss-of-precision": "warn"
 	}
 }

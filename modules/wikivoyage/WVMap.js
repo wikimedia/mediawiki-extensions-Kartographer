@@ -4,9 +4,9 @@
  * @alternateClassName WVMap
  * @class Kartographer.Wikivoyage.WVMap
  */
-var wikivoyage = require( './wikivoyage.js' ),
-	WVMapLayers = require( './WVMapLayers.js' ),
-	ControlNearby = require( './ControlNearby.js' );
+const wikivoyage = require( './wikivoyage.js' );
+const WVMapLayers = require( './WVMapLayers.js' );
+const ControlNearby = require( './ControlNearby.js' );
 
 /* eslint-disable no-underscore-dangle */
 
@@ -29,7 +29,7 @@ WVMap.prototype.nearby = function () {
 		return;
 	}
 
-	var control = this._controlNearby;
+	let control = this._controlNearby;
 	if ( control ) {
 		return control;
 	}

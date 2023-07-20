@@ -4,9 +4,9 @@
  * @class Kartographer.DialogSideBar
  */
 
-var storage = require( 'mediawiki.storage' ).local,
-	/** Storage key for Last known selected map type in sidebar */
-	SELECTEDTYPE_KEY = 'ext.kartographer.sidebar.selectedType';
+const storage = require( 'mediawiki.storage' ).local;
+/** Storage key for Last known selected map type in sidebar */
+const SELECTEDTYPE_KEY = 'ext.kartographer.sidebar.selectedType';
 
 /**
  * @constructor
@@ -40,7 +40,7 @@ function SideBar( options ) {
  * @return {string}
  */
 SideBar.prototype.formatLink = function ( url ) {
-	var scale = Math.round( Math.pow( 2, Math.min( 3, Math.max( 0, 18 - this.initialMapPosition.zoom ) ) ) * 1000 );
+	const scale = Math.round( Math.pow( 2, Math.min( 3, Math.max( 0, 18 - this.initialMapPosition.zoom ) ) ) * 1000 );
 	url = url.replace( /{latitude}/g, this.initialMapPosition.center.lat );
 	url = url.replace( /{longitude}/g, this.initialMapPosition.center.lng );
 	url = url.replace( /{zoom}/g, this.initialMapPosition.zoom || mw.config.get( 'wgKartographerFallbackZoom' ) );
@@ -73,14 +73,13 @@ SideBar.prototype.toggle = function ( open ) {
  * @chainable
  */
 SideBar.prototype.render = function () {
-	var sidebar = this,
-		map = sidebar.dialog.map,
-		$container;
+	const sidebar = this;
+	const map = sidebar.dialog.map;
 
 	/**
 	 * @property {jQuery}
 	 */
-	$container = sidebar.$el = $( '<div>' ).addClass( 'mw-kartographer-mapDialog-sidebar' );
+	const $container = sidebar.$el = $( '<div>' ).addClass( 'mw-kartographer-mapDialog-sidebar' );
 
 	/**
 	 * @property {Object}
@@ -131,7 +130,7 @@ SideBar.prototype.onMapMove = OO.ui.throttle( function () {
 SideBar.prototype.renderMapDetails = function () {
 	// FIXME: Store $coords in memory to avoid selector here.
 	// eslint-disable-next-line no-jquery/no-global-selector
-	var $coords = $( '.mw-kartographer-mapdetails-coordinates' );
+	let $coords = $( '.mw-kartographer-mapdetails-coordinates' );
 
 	if ( !$coords.length ) {
 		// Only re-create the DOM elements if they don't already
@@ -200,9 +199,9 @@ SideBar.prototype.renderMapDetails = function () {
  * Renders the type filter dropdown into its container.
  */
 SideBar.prototype.renderTypeFilter = function () {
-	var sidebar = this,
-		dropdown = sidebar.createFilterDropdown(),
-		defaultType = sidebar.metadata.types[ 0 ];
+	const sidebar = this;
+	const dropdown = sidebar.createFilterDropdown();
+	const defaultType = sidebar.metadata.types[ 0 ];
 
 	dropdown.getMenu().on( 'select', function ( item ) {
 		storage.set( SELECTEDTYPE_KEY, item.getData() );
@@ -226,42 +225,44 @@ SideBar.prototype.renderTypeFilter = function () {
  * Renders the external services partial into its container.
  */
 SideBar.prototype.renderExternalServices = function () {
-	var sidebar = this,
-		selectedType = storage.get( SELECTEDTYPE_KEY ),
-		$list = this.$servicesContainer.find( '.mw-kartographer-filterservices-list' ),
-		toggleShowServicesState = function ( state ) {
-			sidebar.showAllServices = state !== undefined ? !!state : !sidebar.showAllServices;
-		},
-		populateListItems = function ( bypassAndShowAllServices ) {
-			var featured = [],
-				regular = [],
-				services = sidebar.byType[ selectedType ];
+	const sidebar = this;
+	const selectedType = storage.get( SELECTEDTYPE_KEY );
+	let $list = this.$servicesContainer.find( '.mw-kartographer-filterservices-list' );
+
+	const toggleShowServicesState = function ( state ) {
+		sidebar.showAllServices = state !== undefined ? !!state : !sidebar.showAllServices;
+	};
+
+	const populateListItems = function ( bypassAndShowAllServices ) {
+			const featured = [];
+			const regular = [];
+			const services = sidebar.byType[ selectedType ];
 
 			// eslint-disable-next-line no-jquery/no-each-util
 			$.each( services, function ( serviceId, links ) {
 				// Only one link is supported per type per service for now.
-				var link = links[ 0 ],
-					service = sidebar.byService[ serviceId ],
-					formatted = service.featured ? featured : regular,
-					$item = $( '<div>' )
-						.addClass( 'mw-kartographer-filterservices-list-item' )
-						.toggleClass( 'mw-kartographer-filterservices-list-item-featured', service.featured )
-						.append(
-							new OO.ui.ButtonWidget( {
-								framed: false,
-								href: sidebar.formatLink( link.url ),
-								target: '_blank',
-								classes: [ 'mw-kartographer-filterservices-list-item-button' ],
-								icon: 'newWindow',
-								label: service.name
-							} ).$element
-						);
+				const link = links[ 0 ];
+				const service = sidebar.byService[ serviceId ];
+				const formatted = service.featured ? featured : regular;
+				const $item = $( '<div>' )
+					.addClass( 'mw-kartographer-filterservices-list-item' )
+					.toggleClass( 'mw-kartographer-filterservices-list-item-featured', service.featured )
+					.append(
+						new OO.ui.ButtonWidget( {
+							framed: false,
+							href: sidebar.formatLink( link.url ),
+							target: '_blank',
+							classes: [ 'mw-kartographer-filterservices-list-item-button' ],
+							icon: 'newWindow',
+							label: service.name
+						} ).$element
+					);
 
 				formatted.push( $item );
 			} );
 
 			$list.empty();
-			var items = ( bypassAndShowAllServices || sidebar.showAllServices ) ?
+			const items = ( bypassAndShowAllServices || sidebar.showAllServices ) ?
 				featured.concat( regular ) : featured;
 
 			// Update message
@@ -314,9 +315,9 @@ SideBar.prototype.renderExternalServices = function () {
  * {@link #byType} catalogs of services.
  */
 SideBar.prototype.parseExternalLinks = function () {
-	var services = this.metadata.services,
-		byService = {},
-		byType = {};
+	const services = this.metadata.services;
+	const byService = {};
+	const byType = {};
 
 	services.forEach( function ( service ) {
 		byService[ service.id ] = service;
@@ -349,10 +350,10 @@ SideBar.prototype.parseExternalLinks = function () {
  * @return {OO.ui.DropdownWidget}
  */
 SideBar.prototype.createFilterDropdown = function () {
-	var labels = this.metadata.localization;
+	const labels = this.metadata.localization;
 
 	// eslint-disable-next-line no-jquery/no-map-util
-	var items = $.map( this.metadata.types, function ( type ) {
+	const items = $.map( this.metadata.types, function ( type ) {
 		return new OO.ui.MenuOptionWidget( {
 			data: type,
 			label: labels[ type ]

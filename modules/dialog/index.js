@@ -5,9 +5,9 @@
  * @class Kartographer.Dialog
  * @singleton
  */
-var Dialog = require( './dialog.js' ),
-	router = require( 'mediawiki.router' ),
-	windowManager, mapDialog, routerEnabled;
+const Dialog = require( './dialog.js' );
+const router = require( 'mediawiki.router' );
+let windowManager, mapDialog, routerEnabled;
 
 /**
  * @return {Kartographer.Dialog}
@@ -36,7 +36,7 @@ function close() {
 }
 
 function closeIfNotMapRoute( routeEv ) {
-	var isMapRoute = routeEv && /^\/(map|maplink)\//.test( routeEv.path );
+	const isMapRoute = routeEv && /^\/(map|maplink)\//.test( routeEv.path );
 	if ( !isMapRoute ) {
 		close();
 	}
@@ -50,9 +50,8 @@ module.exports = {
 	 * @param {Kartographer.Box.MapClass} map
 	 */
 	render: function ( map ) {
-		var manager = getWindowManager(),
-			dialog = getMapDialog(),
-			instance;
+		const manager = getWindowManager();
+		const dialog = getMapDialog();
 
 		if ( map.useRouter && !routerEnabled ) {
 			router.on( 'route', closeIfNotMapRoute );
@@ -61,10 +60,10 @@ module.exports = {
 		}
 
 		if ( !manager.getCurrentWindow() ) {
-			instance = manager.openWindow( dialog, { map: map } );
+			const instance = manager.openWindow( dialog, { map: map } );
 			instance.closing.then( function () {
 				if ( map.parentMap && !map.parentMap.options.alwaysStatic ) {
-					var targetPoint = map.project( map.getCenter(), map.getZoom() ).subtract( dialog.offset ),
+					const targetPoint = map.project( map.getCenter(), map.getZoom() ).subtract( dialog.offset ),
 						targetLatLng = map.unproject( targetPoint, map.getZoom() );
 					map.parentMap.setView(
 						targetLatLng,
@@ -86,20 +85,19 @@ module.exports = {
 	 *                          The rendering process might not yet be finished.
 	 */
 	renderNewMap: function ( mapObject ) {
-		var manager = getWindowManager(),
-			dialog = getMapDialog(),
-			deferred = $.Deferred(),
-			promises = [ mw.loader.using( 'ext.kartographer.box' ) ],
-			instance;
+		const manager = getWindowManager();
+		const dialog = getMapDialog();
+		const deferred = $.Deferred();
+		const promises = [ mw.loader.using( 'ext.kartographer.box' ) ];
 
 		if ( !manager.getCurrentWindow() ) {
 			// We open the window immediately to guarantee responsiveness
 			// Only THEN we set the map
-			instance = manager.openWindow( dialog, {} );
+			const instance = manager.openWindow( dialog, {} );
 			promises.push( instance.opened );
 		}
 		$.when.apply( $, promises ).then( function () {
-			var map = require( 'ext.kartographer.box' ).map( mapObject );
+			const map = require( 'ext.kartographer.box' ).map( mapObject );
 			deferred.resolve( map );
 			if ( map.useRouter && !routerEnabled ) {
 				router.on( 'route', closeIfNotMapRoute );

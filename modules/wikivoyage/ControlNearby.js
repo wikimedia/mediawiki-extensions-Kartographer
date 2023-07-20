@@ -9,13 +9,12 @@
  * @extends L.Control
  * @private
  */
-var wikivoyage = require( './wikivoyage.js' ),
-	NearbyArticles = require( './NearbyArticles.js' ),
-	pruneClusterLib = require( 'ext.kartographer.lib.prunecluster' ),
-	PruneCluster = pruneClusterLib.PruneCluster,
-	PruneClusterForLeaflet = pruneClusterLib.PruneClusterForLeaflet,
-	articlePath = mw.config.get( 'wgArticlePath' ),
-	ControlNearby;
+const wikivoyage = require( './wikivoyage.js' );
+const NearbyArticles = require( './NearbyArticles.js' );
+const pruneClusterLib = require( 'ext.kartographer.lib.prunecluster' );
+const PruneCluster = pruneClusterLib.PruneCluster;
+const PruneClusterForLeaflet = pruneClusterLib.PruneClusterForLeaflet;
+const articlePath = mw.config.get( 'wgArticlePath' );
 
 /**
  * @param {L.Marker} marker
@@ -37,7 +36,7 @@ function prepareMarker( marker, data ) {
  * @return {string} HTML
  */
 function createPopupHtml( wgPageName, thumbnail ) {
-	var img = mw.html.element( 'img', {
+	const img = mw.html.element( 'img', {
 			src: NearbyArticles.getConfig( 'thumbPath' ) + thumbnail + '/120px-' + thumbnail.slice( 5 )
 		} ),
 		link = mw.html.element( 'a', {
@@ -74,7 +73,7 @@ function createMarker( latitude, longitude, wgArticle, thumbnail ) {
 }
 
 /* eslint-disable no-underscore-dangle */
-ControlNearby = L.Control.extend( {
+const ControlNearby = L.Control.extend( {
 	options: {
 		// Do not switch for RTL because zoom also stays in place
 		position: 'topleft'
@@ -84,7 +83,7 @@ ControlNearby = L.Control.extend( {
 	 * @override
 	 */
 	onAdd: function ( map ) {
-		var container = L.DomUtil.create( 'div', 'leaflet-bar' ),
+		const container = L.DomUtil.create( 'div', 'leaflet-bar' ),
 			link = L.DomUtil.create( 'a', 'mw-kartographer-icon-nearby', container ),
 			pruneCluster = new PruneClusterForLeaflet( 70 );
 
@@ -114,7 +113,7 @@ ControlNearby = L.Control.extend( {
 	 * @param {Object} obj
 	 */
 	_onOverlayAdd: function ( obj ) {
-		var control = this,
+		const control = this,
 			pruneCluster = this.pruneCluster;
 
 		if ( pruneCluster !== obj.layer ) {
@@ -131,10 +130,7 @@ ControlNearby = L.Control.extend( {
 			return;
 		}
 		NearbyArticles.fetch().done( function ( addressPoints ) {
-			var i = 0,
-				total = addressPoints.length;
-
-			for ( i; i < total; i++ ) {
+			for ( let i = 0; i < addressPoints.length; i++ ) {
 				pruneCluster.RegisterMarker(
 					createMarker.apply( null, addressPoints[ i ] )
 				);
@@ -191,7 +187,7 @@ ControlNearby = L.Control.extend( {
 	 * @param {boolean} [enabled]
 	 */
 	_toggleLayer: function ( enabled ) {
-		var control = this;
+		const control = this;
 
 		enabled = ( enabled !== undefined ) ? enabled : this.isEnabled();
 
@@ -210,7 +206,7 @@ ControlNearby = L.Control.extend( {
 	 * @param {boolean} [enabled]
 	 */
 	_toggleDataLayers: function ( enabled ) {
-		var control = this;
+		const control = this;
 
 		// Toggling this layer toggles data layers. We do not want to trigger
 		// events like if the user manually toggled these layers. That's why this

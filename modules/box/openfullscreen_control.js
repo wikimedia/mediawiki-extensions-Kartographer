@@ -8,7 +8,7 @@
  * @class Kartographer.Box.OpenFullScreenControl
  * @extends L.Control
  */
-var OpenFullScreenControl = L.Control.extend( {
+const OpenFullScreenControl = L.Control.extend( {
 	options: {
 		// Do not switch for RTL because zoom also stays in place
 		position: 'topright'
@@ -21,7 +21,7 @@ var OpenFullScreenControl = L.Control.extend( {
 	 * @protected
 	 */
 	onAdd: function () {
-		var container = L.DomUtil.create( 'div', 'leaflet-bar leaflet-control-static' );
+		const container = L.DomUtil.create( 'div', 'leaflet-bar leaflet-control-static' );
 
 		this.link = L.DomUtil.create( 'a', 'oo-ui-icon-fullScreen', container );
 		this.link.title = mw.msg( 'kartographer-fullscreen-text' );

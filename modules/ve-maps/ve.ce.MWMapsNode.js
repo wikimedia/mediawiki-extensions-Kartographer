@@ -19,9 +19,10 @@ ve.ce.MWMapsNode = function VeCeMWMaps( model, config ) {
 	this.$thumbinner = $( '<div>' ).addClass( 'thumbinner' );
 
 	// HACK: Copy caption from originalDomElements
-	var store = model.doc.getStore(),
-		contents = store.value( store.hashOfValue( null, OO.getHash( [ model.getHashObjectForRendering(), null ] ) ) ),
-		$caption = $( contents ).find( '.thumbcaption' );
+	const store = model.doc.getStore();
+	const contents = store.value( store.hashOfValue( null, OO.getHash( [ model.getHashObjectForRendering(), null ] ) ) );
+	const $caption = $( contents ).find( '.thumbcaption' );
+
 	this.$caption = $caption.length ? $caption.clone() : $( '<div>' ).addClass( 'thumbcaption' );
 	this.previewedCaption = model.getAttribute( 'mw' ).attrs.text;
 
@@ -80,7 +81,7 @@ ve.ce.MWMapsNode.static.primaryCommandName = 'mwMaps';
  * @return {boolean} Maps requires interactive rendering
  */
 ve.ce.MWMapsNode.prototype.requiresInteractive = function () {
-	var mwData = this.model.getAttribute( 'mw' );
+	const mwData = this.model.getAttribute( 'mw' );
 
 	return ( mwData.body && mwData.body.extsrc ) || isNaN( mwData.attrs.latitude ) || isNaN( mwData.attrs.zoom );
 };
@@ -111,17 +112,17 @@ ve.ce.MWMapsNode.prototype.onSetup = function () {
  * Update the map rendering
  */
 ve.ce.MWMapsNode.prototype.update = function () {
-	var requiresInteractive = this.requiresInteractive(),
-		mwAttrs = this.model.getAttribute( 'mw' ).attrs,
-		isFullWidth = mwAttrs.width === 'full' || mwAttrs.width === '100%',
-		align = !isFullWidth &&
-			( mwAttrs.align || ( this.model.doc.getDir() === 'ltr' ? 'right' : 'left' ) ),
-		alignClasses = {
-			left: 'floatleft',
-			center: 'center',
-			right: 'floatright'
-		},
-		frameless = 'frameless' in mwAttrs && !mwAttrs.text;
+	const requiresInteractive = this.requiresInteractive();
+	const mwAttrs = this.model.getAttribute( 'mw' ).attrs;
+	const isFullWidth = mwAttrs.width === 'full' || mwAttrs.width === '100%';
+	const align = !isFullWidth &&
+			( mwAttrs.align || ( this.model.doc.getDir() === 'ltr' ? 'right' : 'left' ) );
+	const alignClasses = {
+		left: 'floatleft',
+		center: 'center',
+		right: 'floatright'
+	};
+	const frameless = 'frameless' in mwAttrs && !mwAttrs.text;
 
 	if ( requiresInteractive ) {
 		if ( !this.map && this.getRoot() ) {
@@ -161,11 +162,11 @@ ve.ce.MWMapsNode.prototype.update = function () {
 	if ( mwAttrs.text !== this.previewedCaption ) {
 		this.previewedCaption = mwAttrs.text;
 		// Same basic sanitization as in Sanitizer::decodeTagAttributes()
-		var caption = ( mwAttrs.text || '' ).trim().replace( /\s+/g, ' ' );
+		const caption = ( mwAttrs.text || '' ).trim().replace( /\s+/g, ' ' );
 		if ( !caption ) {
 			this.$caption.empty();
 		} else {
-			var $caption = this.$caption;
+			const $caption = this.$caption;
 			new mw.Api()
 				.parse( caption, {
 					// Minimize the JSON we get back
@@ -187,7 +188,7 @@ ve.ce.MWMapsNode.prototype.update = function () {
 		.append( frameless ? this.$map : this.$thumbinner.prepend( this.$map ) )
 		.removeClass( 'floatleft center floatright' )
 		.addClass( alignClasses[ align ] );
-	var dim = this.model.getCurrentDimensions();
+	const dim = this.model.getCurrentDimensions();
 	if ( isFullWidth ) {
 		dim.width = '100%';
 	}
@@ -201,10 +202,10 @@ ve.ce.MWMapsNode.prototype.update = function () {
  * Setup an interactive map
  */
 ve.ce.MWMapsNode.prototype.setupMap = function () {
-	var mwData = this.model.getAttribute( 'mw' ),
-		mwAttrs = mwData && mwData.attrs,
-		util = require( 'ext.kartographer.util' ),
-		node = this;
+	const mwData = this.model.getAttribute( 'mw' );
+	const mwAttrs = mwData && mwData.attrs;
+	const util = require( 'ext.kartographer.util' );
+	const node = this;
 
 	this.map = require( 'ext.kartographer.box' ).map( {
 		container: this.$map[ 0 ],
@@ -235,8 +236,8 @@ ve.ce.MWMapsNode.prototype.updateGeoJson = function () {
 		return;
 	}
 
-	var mwData = this.model.getAttribute( 'mw' ),
-		geoJson = ve.getProp( mwData, 'body', 'extsrc' );
+	const mwData = this.model.getAttribute( 'mw' );
+	const geoJson = ve.getProp( mwData, 'body', 'extsrc' );
 
 	if ( geoJson !== this.geoJson ) {
 		require( 'ext.kartographer.editing' ).updateKartographerLayer( this.map, geoJson ).then( this.updateMapPosition.bind( this ) );
@@ -252,14 +253,14 @@ ve.ce.MWMapsNode.prototype.updateMapPosition = function () {
 		return;
 	}
 
-	var mwData = this.model.getAttribute( 'mw' ),
-		mapData = this.mapData,
-		updatedData = mwData && mwData.attrs;
+	const mwData = this.model.getAttribute( 'mw' );
+	const mapData = this.mapData;
+	const updatedData = mwData && mwData.attrs;
 
 	if ( !updatedData ) {
 		// auto calculate the position
 		this.map.setView( null, mapData.zoom );
-		var current = this.map.getMapPosition();
+		const current = this.map.getMapPosition();
 		// update missing attributes with current position.
 		mwData.attrs.latitude = mapData.latitude = current.center.lat.toString();
 		mwData.attrs.longitude = mapData.longitude = current.center.lng.toString();
@@ -295,8 +296,8 @@ ve.ce.MWMapsNode.prototype.updateStatic = function ( width, height ) {
 		this.$imageLoader = null;
 	}
 
-	var url = this.model.getUrl( width, height ),
-		node = this;
+	const url = this.model.getUrl( width, height );
+	const node = this;
 
 	this.$imageLoader = $( '<img>' ).on( 'load', function () {
 		node.$map.css( 'backgroundImage', 'url(' + url + ')' );
@@ -304,7 +305,7 @@ ve.ce.MWMapsNode.prototype.updateStatic = function ( width, height ) {
 };
 
 /**
- * @see ve.ce.ResizableNode.onResizableResizing
+ * @inheritdoc
  */
 ve.ce.MWMapsNode.prototype.onResizableResizing = function () {
 	// Mixin method
@@ -318,13 +319,13 @@ ve.ce.MWMapsNode.prototype.onResizableResizing = function () {
 };
 
 /**
- * @see ve.ce.ResizableNode.getAttributeChanges
+ * @inheritdoc
  * @param {number} width
  * @param {number} height
  * @return {Object}
  */
 ve.ce.MWMapsNode.prototype.getAttributeChanges = function ( width, height ) {
-	var mwData = ve.copy( this.model.getAttribute( 'mw' ) );
+	const mwData = ve.copy( this.model.getAttribute( 'mw' ) );
 
 	mwData.attrs.width = width.toString();
 	mwData.attrs.height = height.toString();

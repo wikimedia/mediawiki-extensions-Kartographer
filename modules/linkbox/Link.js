@@ -25,7 +25,7 @@
  * @method
  */
 function Link( options ) {
-	var link = this;
+	const link = this;
 
 	/**
 	 * Reference to the link container.
@@ -80,10 +80,8 @@ function Link( options ) {
  * @memberof Kartographer.Linkbox.LinkClass
  */
 Link.prototype.openFullScreen = function ( position ) {
-	var link = this,
-		map = link.fullScreenMap,
-		mapObject,
-		el;
+	const link = this;
+	const map = link.fullScreenMap;
 
 	position = position || {};
 	position.center = position.center || link.center;
@@ -101,9 +99,9 @@ Link.prototype.openFullScreen = function ( position ) {
 		} );
 	/* eslint-enable no-underscore-dangle */
 	} else {
-		el = document.createElement( 'div' );
+		const el = document.createElement( 'div' );
 		el.className = 'mw-kartographer-mapDialog-map';
-		mapObject = {
+		const mapObject = {
 			container: el,
 			featureType: link.featureType,
 			fullscreen: true,

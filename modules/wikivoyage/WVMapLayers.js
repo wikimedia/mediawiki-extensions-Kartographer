@@ -6,8 +6,8 @@
  * @class Kartographer.Wikivoyage.WVMapLayers
  * @private
  */
-var wikivoyage = require( './wikivoyage.js' ),
-	ControlLayers = require( './ControlLayers.js' );
+const wikivoyage = require( './wikivoyage.js' );
+const ControlLayers = require( './ControlLayers.js' );
 
 /**
  * @constructor
@@ -63,7 +63,7 @@ WVMapLayers.prototype.update = function () {
  * @chainable
  */
 WVMapLayers.prototype.basemap = function ( id ) {
-	var tileLayer = wikivoyage.createTileLayer( id );
+	const tileLayer = wikivoyage.createTileLayer( id );
 	this.addLayer( tileLayer.layer, tileLayer.name );
 	return this;
 };
@@ -75,7 +75,7 @@ WVMapLayers.prototype.basemap = function ( id ) {
  * @chainable
  */
 WVMapLayers.prototype.overlay = function ( id ) {
-	var tileLayer = wikivoyage.createTileLayer( id );
+	const tileLayer = wikivoyage.createTileLayer( id );
 	this.addLayer( tileLayer.layer, tileLayer.name, true );
 	return this;
 };
@@ -88,7 +88,7 @@ WVMapLayers.prototype.overlay = function ( id ) {
  * @chainable
  */
 WVMapLayers.prototype.datalayer = function ( id, layer ) {
-	var self = this;
+	const self = this;
 	if ( typeof id === 'object' ) {
 		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( id, function ( group, groupLayer ) {

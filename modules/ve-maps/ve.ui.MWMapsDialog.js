@@ -49,7 +49,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	// Parent method
 	ve.ui.MWMapsDialog.super.prototype.initialize.call( this );
 
-	var helpLink = new OO.ui.ButtonWidget( {
+	const helpLink = new OO.ui.ButtonWidget( {
 		icon: 'help',
 		classes: [ 've-ui-mwMapsDialog-help' ],
 		title: ve.msg( 'visualeditor-mwmapsdialog-help-title' ),
@@ -75,7 +75,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		expanded: false,
 		label: ve.msg( 'visualeditor-mwmapsdialog-content' )
 	} );
-	var optionsPanel = new OO.ui.TabPanelLayout( 'options', {
+	const optionsPanel = new OO.ui.TabPanelLayout( 'options', {
 		expanded: false,
 		label: ve.msg( 'visualeditor-mwmapsdialog-options' ),
 		classes: [ 've-ui-mwMapsDialog-optionsPanel' ]
@@ -85,19 +85,19 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	this.scalable = null;
 
 	this.latitude = new OO.ui.TextInputWidget();
-	var latitudeField = new OO.ui.FieldLayout( this.latitude, {
+	const latitudeField = new OO.ui.FieldLayout( this.latitude, {
 		align: 'left',
 		label: ve.msg( 'visualeditor-mwmapsdialog-position-lat' )
 	} );
 
 	this.longitude = new OO.ui.TextInputWidget();
-	var longitudeField = new OO.ui.FieldLayout( this.longitude, {
+	const longitudeField = new OO.ui.FieldLayout( this.longitude, {
 		align: 'left',
 		label: ve.msg( 'visualeditor-mwmapsdialog-position-lon' )
 	} );
 
 	this.zoom = new OO.ui.NumberInputWidget( { min: 1, max: 19, step: 1 } );
-	var zoomField = new OO.ui.FieldLayout( this.zoom, {
+	const zoomField = new OO.ui.FieldLayout( this.zoom, {
 		align: 'left',
 		label: ve.msg( 'visualeditor-mwmapsdialog-position-zoom' )
 	} );
@@ -127,7 +127,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 		.setLanguage( 'json' )
 		.toggleLineNumbers( false )
 		.setDir( 'ltr' );
-	var geoJsonField = new OO.ui.FieldLayout( this.input, {
+	const geoJsonField = new OO.ui.FieldLayout( this.input, {
 		align: 'top',
 		label: ve.msg( 'visualeditor-mwmapsdialog-geojson' )
 	} );
@@ -138,7 +138,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 
 	// Options panel
 	this.caption = new ve.ui.MWMapsCaptionInputWidget();
-	var captionField = new OO.ui.FieldLayout( this.caption, {
+	const captionField = new OO.ui.FieldLayout( this.caption, {
 		align: 'top',
 		label: ve.msg( 'visualeditor-mwmapsdialog-caption' ),
 		help: ve.msg( 'visualeditor-mwmapsdialog-caption-help' ),
@@ -156,13 +156,13 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	} );
 
 	this.frame = new OO.ui.ToggleSwitchWidget();
-	var frameField = new OO.ui.FieldLayout( this.frame, {
+	const frameField = new OO.ui.FieldLayout( this.frame, {
 		label: ve.msg( 'visualeditor-mwmapsdialog-frame' ),
 		classes: [ 've-ui-mwMapsDialog-frameField' ]
 	} );
 
 	// get languages and format them for combobox, initialize with the special `local` setting
-	var languages = ve.init.platform.getLanguageCodes()
+	const languages = ve.init.platform.getLanguageCodes()
 		.sort()
 		.map( function ( languageCode ) {
 			return {
@@ -184,7 +184,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 			filterFromInput: true
 		}
 	} );
-	var languageField = new OO.ui.FieldLayout( this.language, {
+	const languageField = new OO.ui.FieldLayout( this.language, {
 		align: 'top',
 		label: ve.msg( 'visualeditor-mwmapsdialog-language' ),
 		help: new OO.ui.HtmlSnippet( mw.message( 'visualeditor-mwmapsdialog-language-help' ).parse() ),
@@ -249,18 +249,15 @@ ve.ui.MWMapsDialog.prototype.onDimensionsChange = function () {
  * Update the greyed out selected map area shown on the map
  */
 ve.ui.MWMapsDialog.prototype.updateMapArea = function () {
-	var
-		dimensions, centerCoord, zoom,
-		centerPoint, boundPoints, boundCoords;
-
 	if ( !this.map ) {
 		return;
 	}
 
-	dimensions = this.dimensions.getDimensions();
-	var width = this.dimensions.getWidth(),
-		isFullWidth = width === 'full' || width === '100%',
-		initialDimensions = this.scalable.getCurrentDimensions();
+	const dimensions = this.dimensions.getDimensions();
+	const width = this.dimensions.getWidth();
+	const isFullWidth = width === 'full' || width === '100%';
+	const initialDimensions = this.scalable.getCurrentDimensions();
+
 	if ( !isFinite( dimensions.width ) ) {
 		// Fullscreen width is hard-coded; otherwise reuse the initial values from getSetupProcess
 		dimensions.width = isFullWidth ? 800 : ( initialDimensions.width || 300 );
@@ -269,15 +266,15 @@ ve.ui.MWMapsDialog.prototype.updateMapArea = function () {
 		dimensions.height = initialDimensions.height || 300;
 	}
 	// The user input might be non-numeric, still try to visualize if possible
-	centerCoord = [ parseFloat( this.latitude.getValue() ), parseFloat( this.longitude.getValue() ) ];
-	zoom = this.zoom.getValue();
+	const centerCoord = [ parseFloat( this.latitude.getValue() ), parseFloat( this.longitude.getValue() ) ];
+	const zoom = this.zoom.getValue();
 
-	centerPoint = this.map.project( centerCoord, zoom );
-	boundPoints = [
+	const centerPoint = this.map.project( centerCoord, zoom );
+	const boundPoints = [
 		centerPoint.add( [ dimensions.width / 2, dimensions.height / 2 ] ),
 		centerPoint.add( [ -dimensions.width / 2, -dimensions.height / 2 ] )
 	];
-	boundCoords = [
+	const boundCoords = [
 		this.map.unproject( boundPoints[ 0 ], zoom ),
 		this.map.unproject( boundPoints[ 1 ], zoom )
 	];
@@ -299,7 +296,7 @@ ve.ui.MWMapsDialog.prototype.updateMapArea = function () {
 ve.ui.MWMapsDialog.prototype.updateMapCutout = function ( latLngs ) {
 	// Show black overlay nicely when panning around the world (1/3):
 	// * Add some massive bleed to the whole-world coordinates.
-	var worldCoords = [
+	const worldCoords = [
 		[ -90, -180 * 2 * 10 ],
 		[ -90, 180 * 2 * 10 ],
 		[ 90, 180 * 2 * 10 ],
@@ -358,12 +355,12 @@ ve.ui.MWMapsDialog.prototype.onIndexLayoutSet = function ( tabPanel ) {
  * @param {string} value
  */
 ve.ui.MWMapsDialog.prototype.onCaptionChange = function ( value ) {
-	var canBeFrameless = !value;
+	const canBeFrameless = !value;
 	if ( this.frame.isDisabled() === canBeFrameless ) {
-		var isFramed = true;
+		let isFramed = true;
 		if ( canBeFrameless ) {
 			// Reset back to the original value before the dialog opened
-			var mwAttrs = this.selectedNode && this.selectedNode.getAttribute( 'mw' ).attrs;
+			const mwAttrs = this.selectedNode && this.selectedNode.getAttribute( 'mw' ).attrs;
 			isFramed = !( mwAttrs && 'frameless' in mwAttrs );
 		}
 		this.frame.setDisabled( !canBeFrameless ).setValue( isFramed );
@@ -378,7 +375,7 @@ ve.ui.MWMapsDialog.prototype.onCaptionChange = function ( value ) {
  * @param {string} dir
  */
 ve.ui.MWMapsDialog.prototype.onLanguageChange = function ( lang ) {
-	var util = require( 'ext.kartographer.util' );
+	const util = require( 'ext.kartographer.util' );
 	if ( !this.map ) {
 		return;
 	}
@@ -419,17 +416,17 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 		return;
 	}
 
-	var latitude = this.latitude.getValue(),
-		longitude = this.longitude.getValue(),
-		zoom = this.zoom.getValue(),
-		caption = this.caption.getValue(),
-		lang = this.language.getValue(),
-		util = require( 'ext.kartographer.util' ),
-		dimensions = this.scalable.getBoundedDimensions(
-			this.dimensions.getDimensions()
-		),
-		width = this.dimensions.getWidth(),
-		isFullWidth = width === 'full' || width === '100%';
+	const latitude = this.latitude.getValue();
+	const longitude = this.longitude.getValue();
+	const zoom = this.zoom.getValue();
+	const caption = this.caption.getValue();
+	const lang = this.language.getValue();
+	const util = require( 'ext.kartographer.util' );
+	const dimensions = this.scalable.getBoundedDimensions(
+		this.dimensions.getDimensions()
+	);
+	const width = this.dimensions.getWidth();
+	const isFullWidth = width === 'full' || width === '100%';
 
 	mwData.attrs.latitude = latitude.toString();
 	mwData.attrs.longitude = longitude.toString();
@@ -441,7 +438,7 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
 	}
 	mwData.attrs.lang = ( lang && lang !== util.getDefaultLanguage() ) ? lang : undefined;
 	if ( !( this.selectedNode instanceof ve.dm.MWInlineMapsNode ) ) {
-		var contentDirection = this.getFragment().getDocument().getDir(),
+		const contentDirection = this.getFragment().getDocument().getDir(),
 			defaultAlign = contentDirection === 'ltr' ? 'right' : 'left',
 			align = this.align.findSelectedItem().getData();
 
@@ -489,12 +486,12 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 	data = data || {};
 	return ve.ui.MWMapsDialog.super.prototype.getSetupProcess.call( this, data )
 		.next( function () {
-			var inline = this.selectedNode instanceof ve.dm.MWInlineMapsNode,
-				mwAttrs = this.selectedNode && this.selectedNode.getAttribute( 'mw' ).attrs || {},
-				frameless = 'frameless' in mwAttrs && !mwAttrs.text,
-				mapPosition = this.getInitialMapPosition(),
-				util = require( 'ext.kartographer.util' ),
-				isReadOnly = this.isReadOnly();
+			const inline = this.selectedNode instanceof ve.dm.MWInlineMapsNode;
+			const mwAttrs = this.selectedNode && this.selectedNode.getAttribute( 'mw' ).attrs || {};
+			const frameless = 'frameless' in mwAttrs && !mwAttrs.text;
+			const mapPosition = this.getInitialMapPosition();
+			const util = require( 'ext.kartographer.util' );
+			const isReadOnly = this.isReadOnly();
 
 			this.input.clearUndoStack();
 
@@ -535,8 +532,8 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 			this.longitude.setValue( String( mapPosition.center[ 1 ] ) ).setReadOnly( isReadOnly );
 			this.zoom.setValue( String( mapPosition.zoom ) ).setReadOnly( isReadOnly );
 			this.dimensions.setDimensions( this.scalable.getCurrentDimensions() ).setReadOnly( isReadOnly );
-			var width = mwAttrs.width,
-				isFullWidth = width === 'full' || width === '100%';
+			const width = mwAttrs.width;
+			const isFullWidth = width === 'full' || width === '100%';
 			if ( isFullWidth ) {
 				this.dimensions.setWidth( width );
 			}
@@ -558,20 +555,20 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
  *  editor finishes loading
  */
 ve.ui.MWMapsDialog.prototype.setupMap = function () {
-	var dialog = this;
+	const dialog = this;
 
 	if ( this.map ) {
 		return $.Deferred.promise.resolve();
 	}
 
 	return mw.loader.using( 'ext.kartographer.editor' ).then( function () {
-		var geoJsonLayer,
-			deferred = $.Deferred(),
-			editing = require( 'ext.kartographer.editing' ),
-			util = require( 'ext.kartographer.util' ),
-			defaultShapeOptions = { shapeOptions: L.mapbox.simplestyle.style( {} ) },
-			mwData = dialog.selectedNode && dialog.selectedNode.getAttribute( 'mw' ),
-			mwAttrs = mwData && mwData.attrs;
+		let geoJsonLayer;
+		const deferred = $.Deferred();
+		const editing = require( 'ext.kartographer.editing' );
+		const util = require( 'ext.kartographer.util' );
+		const defaultShapeOptions = { shapeOptions: L.mapbox.simplestyle.style( {} ) };
+		const mwData = dialog.selectedNode && dialog.selectedNode.getAttribute( 'mw' );
+		const mwAttrs = mwData && mwData.attrs;
 
 		// TODO: Support 'style' editing
 		dialog.map = require( 'ext.kartographer.box' ).map( {
@@ -616,30 +613,25 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 			}
 
 			function updateCoordsAndDimensions() {
-				var
-					center, bounds, scale, resized,
-					topLeftPoint, topRightPoint, bottomLeftPoint,
-					lat, lng, width, height;
-
 				dialog.wasDragging = true;
 
-				center = dialog.mapArea.getCenter();
-				bounds = dialog.mapArea.getBounds();
-				scale = dialog.map.getZoomScale( dialog.zoom.getValue(), dialog.map.getZoom() );
+				const center = dialog.mapArea.getCenter();
+				const bounds = dialog.mapArea.getBounds();
+				const scale = dialog.map.getZoomScale( dialog.zoom.getValue(), dialog.map.getZoom() );
 
 				// Calculate everything before setting anything, because that modifies the `bounds` object
-				topLeftPoint = dialog.map.project( bounds.getNorthWest(), dialog.map.getZoom() );
-				topRightPoint = dialog.map.project( bounds.getNorthEast(), dialog.map.getZoom() );
-				bottomLeftPoint = dialog.map.project( bounds.getSouthWest(), dialog.map.getZoom() );
-				width = Math.round( scale * ( topRightPoint.x - topLeftPoint.x ) );
-				height = Math.round( scale * ( bottomLeftPoint.y - topLeftPoint.y ) );
+				const topLeftPoint = dialog.map.project( bounds.getNorthWest(), dialog.map.getZoom() );
+				const topRightPoint = dialog.map.project( bounds.getNorthEast(), dialog.map.getZoom() );
+				const bottomLeftPoint = dialog.map.project( bounds.getSouthWest(), dialog.map.getZoom() );
+				const width = Math.round( scale * ( topRightPoint.x - topLeftPoint.x ) );
+				const height = Math.round( scale * ( bottomLeftPoint.y - topLeftPoint.y ) );
 
 				// Round lat/lng to 0.000001 deg (chosen per https://enwp.org/Decimal_degrees#Precision)
-				lat = center.lat.toFixed( 6 );
-				lng = center.lng.toFixed( 6 );
+				const lat = center.lat.toFixed( 6 );
+				const lng = center.lng.toFixed( 6 );
 
 				// Ignore changes in size by 1px, they happen while moving due to rounding
-				resized = Math.abs( dialog.dimensions.getDimensions().width - width ) > 1 ||
+				const resized = Math.abs( dialog.dimensions.getDimensions().width - width ) > 1 ||
 					Math.abs( dialog.dimensions.getDimensions().height - height ) > 1;
 
 				dialog.latitude.setValue( lat );
@@ -680,7 +672,7 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 				// Prevent circular update of map
 				dialog.updatingGeoJson = true;
 				try {
-					var geoJson = geoJsonLayer.toGeoJSON();
+					const geoJson = geoJsonLayer.toGeoJSON();
 					// Undo the sanitization step's parsing of wikitext
 					editing.restoreUnparsedText( geoJson );
 					dialog.input.setValue( JSON.stringify( geoJson, null, 2 )
@@ -716,10 +708,10 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
  * @return {Object} Object containing latitude, longitude and zoom
  */
 ve.ui.MWMapsDialog.prototype.getInitialMapPosition = function () {
-	var latitude, longitude, zoom,
-		pageCoords = mw.config.get( 'wgCoordinates' ),
-		mwData = this.selectedNode && this.selectedNode.getAttribute( 'mw' ),
-		mwAttrs = mwData && mwData.attrs;
+	let latitude, longitude, zoom;
+	const pageCoords = mw.config.get( 'wgCoordinates' );
+	const mwData = this.selectedNode && this.selectedNode.getAttribute( 'mw' );
+	const mwAttrs = mwData && mwData.attrs;
 
 	if ( mwAttrs && mwAttrs.zoom ) {
 		// The wikitext might contain non-numeric user input, still try to visualize if possible
@@ -746,7 +738,7 @@ ve.ui.MWMapsDialog.prototype.getInitialMapPosition = function () {
  * Update the GeoJSON layer from the current input state
  */
 ve.ui.MWMapsDialog.prototype.updateMapContents = function () {
-	var self = this;
+	const self = this;
 
 	if ( !this.map || this.updatingGeoJson ) {
 		return;

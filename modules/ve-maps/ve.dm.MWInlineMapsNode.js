@@ -38,7 +38,7 @@ ve.dm.MWInlineMapsNode.static.extensionName = 'maplink';
  * @inheritdoc
  */
 ve.dm.MWInlineMapsNode.prototype.isEditable = function () {
-	var containsDynamicFeatures = this.usesAutoPositioning() || this.usesExternalData();
+	const containsDynamicFeatures = this.usesAutoPositioning() || this.usesExternalData();
 	return !this.usesMapData() || !containsDynamicFeatures;
 };
 
@@ -48,7 +48,7 @@ ve.dm.MWInlineMapsNode.prototype.isEditable = function () {
  * @return {boolean}
  */
 ve.dm.MWInlineMapsNode.prototype.usesAutoPositioning = function () {
-	var mwAttrs = this.getAttribute( 'mw' ).attrs;
+	const mwAttrs = this.getAttribute( 'mw' ).attrs;
 	return !( mwAttrs.latitude && mwAttrs.longitude && mwAttrs.zoom );
 };
 
@@ -58,8 +58,8 @@ ve.dm.MWInlineMapsNode.prototype.usesAutoPositioning = function () {
  * @return {boolean}
  */
 ve.dm.MWInlineMapsNode.prototype.usesExternalData = function () {
-	var mwData = this.getAttribute( 'mw' ),
-		geoJson = ( mwData.body && mwData.body.extsrc ) || '';
+	const mwData = this.getAttribute( 'mw' );
+	const geoJson = ( mwData.body && mwData.body.extsrc ) || '';
 	return geoJson.indexOf( 'ExternalData' ) !== -1;
 };
 
@@ -69,7 +69,7 @@ ve.dm.MWInlineMapsNode.prototype.usesExternalData = function () {
  * @return {boolean}
  */
 ve.dm.MWInlineMapsNode.prototype.usesMapData = function () {
-	var mwData = this.getAttribute( 'mw' );
+	const mwData = this.getAttribute( 'mw' );
 	return !!( mwData.body && mwData.body.extsrc );
 };
 

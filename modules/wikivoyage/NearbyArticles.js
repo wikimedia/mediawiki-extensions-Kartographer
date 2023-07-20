@@ -5,8 +5,8 @@
  * @class Kartographer.Wikivoyage.NearbyArticles
  * @singleton
  */
-var fetchArticlesPromise,
-	config = {};
+let fetchArticlesPromise;
+const config = {};
 
 module.exports = {
 	/**
@@ -17,7 +17,7 @@ module.exports = {
 	 *   articles.
 	 */
 	setConfig: function ( obj ) {
-		for ( var key in obj ) {
+		for ( const key in obj ) {
 			config[ key ] = obj[ key ];
 		}
 	},

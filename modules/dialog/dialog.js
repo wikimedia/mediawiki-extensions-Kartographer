@@ -7,9 +7,9 @@
  * @class Kartographer.Dialog.DialogClass
  * @extends OO.ui.Dialog
  */
-var CloseFullScreenControl = require( './closefullscreen_control.js' ),
-	// Opens the sidebar when the screen is wide enough (greater than 1024px)
-	SIDEBAR_WIDTH = 320;
+const CloseFullScreenControl = require( './closefullscreen_control.js' );
+// Opens the sidebar when the screen is wide enough (greater than 1024px)
+const SIDEBAR_WIDTH = 320;
 
 /**
  * @constructor
@@ -53,7 +53,7 @@ MapDialog.prototype.initialize = function () {
  * @param {L.Map|null} map
  */
 MapDialog.prototype.setMap = function ( map ) {
-	var dialog = this;
+	const dialog = this;
 	// remove older map
 	if ( dialog.map ) {
 		dialog.map.remove();
@@ -74,7 +74,7 @@ MapDialog.prototype.setMap = function ( map ) {
 	dialog.$captionContainer.text( dialog.map.captionText );
 	dialog.$mapBody.append( dialog.map.$container.css( 'position', '' ) );
 
-	var $focusBox = $( '<div>' ).addClass( 'mw-kartographer-mapDialog-focusBox' );
+	const $focusBox = $( '<div>' ).addClass( 'mw-kartographer-mapDialog-focusBox' );
 
 	// Add focus frame and hide on mouse but show on keyboard navigation
 	dialog.map.$container
@@ -88,7 +88,7 @@ MapDialog.prototype.setMap = function ( map ) {
 		} )
 		.on( 'keyup', function ( e ) {
 			if ( e.which === OO.ui.Keys.TAB ) {
-				var isMap = dialog.map.$container.is( e.target );
+				const isMap = dialog.map.$container.is( e.target );
 				$focusBox.toggleClass( 'mw-kartographer-mapDialog-focusBox-available', isMap );
 			}
 		} );
@@ -97,7 +97,7 @@ MapDialog.prototype.setMap = function ( map ) {
 	if ( dialog.sideBar ) {
 		dialog.sideBar.tearDown();
 		dialog.map.doWhenReady( function () {
-			var open = dialog.mapDetailsButton.getValue();
+			const open = dialog.mapDetailsButton.getValue();
 			dialog.offsetMap( open );
 			dialog.toggleSideBar( open );
 		} );
@@ -117,8 +117,8 @@ MapDialog.prototype.setMap = function ( map ) {
 };
 
 MapDialog.prototype.setupFooter = function () {
-	var dialog = this,
-		$buttonContainer = $( '<div>' ).addClass( 'mw-kartographer-buttonfoot' );
+	const dialog = this;
+	const $buttonContainer = $( '<div>' ).addClass( 'mw-kartographer-buttonfoot' );
 
 	// Add nearby button
 	if ( mw.config.get( 'wgKartographerNearby' ) &&
@@ -152,11 +152,11 @@ MapDialog.prototype.setupFooter = function () {
  * @param {boolean} [open] If the sidebar should be shown or not, omit to toggle
  */
 MapDialog.prototype.toggleSideBar = function ( open ) {
-	var dialog = this;
+	const dialog = this;
 
 	mw.loader.using( 'ext.kartographer.dialog.sidebar' ).then( function () {
 		if ( !dialog.sideBar ) {
-			var SideBar = require( 'ext.kartographer.dialog.sidebar' );
+			const SideBar = require( 'ext.kartographer.dialog.sidebar' );
 			dialog.sideBar = new SideBar( { dialog: dialog } );
 			dialog.sideBar.toggle( true );
 		}
@@ -200,7 +200,7 @@ MapDialog.prototype.toggleNearbyLayerWrapper = function ( showNearby ) {
 MapDialog.prototype.toggleNearbyLayer = function ( showNearby, enableClustering ) {
 	if ( this.map ) {
 		if ( !this.nearby ) {
-			var Nearby = require( './nearby.js' );
+			const Nearby = require( './nearby.js' );
 			this.nearby = new Nearby( enableClustering );
 		}
 		this.nearby.toggleNearbyLayer( this.map, showNearby );
@@ -218,7 +218,7 @@ MapDialog.prototype.toggleNearbyLayer = function ( showNearby, enableClustering 
 };
 
 MapDialog.prototype.getActionProcess = function ( action ) {
-	var dialog = this;
+	const dialog = this;
 
 	if ( !action ) {
 		return new OO.ui.Process( function () {
@@ -237,10 +237,10 @@ MapDialog.prototype.getActionProcess = function ( action ) {
  * @param {boolean} isSidebarOpen Whether the sidebar is open.
  */
 MapDialog.prototype.offsetMap = function ( isSidebarOpen ) {
-	var map = this.map;
+	const map = this.map;
 	this.offset = [ isSidebarOpen ? SIDEBAR_WIDTH / 2 : 0, 0 ];
-	var targetPoint = map.project( map.getCenter(), map.getZoom() ).add( this.offset ),
-		targetLatLng = map.unproject( targetPoint, map.getZoom() );
+	const targetPoint = map.project( map.getCenter(), map.getZoom() ).add( this.offset );
+	const targetLatLng = map.unproject( targetPoint, map.getZoom() );
 
 	map.setView( targetLatLng, map.getZoom(), { animate: false } ).invalidateSize();
 };
@@ -248,8 +248,8 @@ MapDialog.prototype.offsetMap = function ( isSidebarOpen ) {
 MapDialog.prototype.getSetupProcess = function ( options ) {
 	return MapDialog.super.prototype.getSetupProcess.call( this, options )
 		.next( function () {
-			var dialog = this,
-				isFirstTimeOpen = !dialog.mapDetailsButton;
+			const dialog = this;
+			const isFirstTimeOpen = !dialog.mapDetailsButton;
 
 			if ( isFirstTimeOpen ) {
 				dialog.setupFooter();

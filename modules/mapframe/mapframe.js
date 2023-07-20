@@ -9,21 +9,22 @@
  * @class Kartographer.Frame
  * @singleton
  */
-var util = require( 'ext.kartographer.util' ),
-	kartobox = require( 'ext.kartographer.box' ),
-	router = require( 'mediawiki.router' ),
-	rAF = window.requestAnimationFrame || setTimeout,
+const util = require( 'ext.kartographer.util' );
+const kartobox = require( 'ext.kartographer.box' );
+const router = require( 'mediawiki.router' );
+const rAF = window.requestAnimationFrame || setTimeout;
 
-	/**
-	 * References the mapframe containers of the page.
-	 *
-	 * @type {HTMLElement[]}
-	 */
-	maps = [],
-	/**
-	 * @private
-	 */
-	routerInited = false;
+/**
+ * References the mapframe containers of the page.
+ *
+ * @type {HTMLElement[]}
+ */
+const maps = [];
+
+/**
+ * @private
+ */
+let routerInited = false;
 
 /**
  * Gets the map data attached to an element.
@@ -39,9 +40,9 @@ var util = require( 'ext.kartographer.util' ),
  * @return {string} return.captionText
  */
 function getMapData( element ) {
-	var $el = $( element ),
-		$caption = $el.parent().find( '.thumbcaption' ),
-		captionText = '';
+	const $el = $( element );
+	const $caption = $el.parent().find( '.thumbcaption' );
+	let captionText = '';
 
 	if ( $caption[ 0 ] ) {
 		captionText = $caption.get( 0 ).innerText;
@@ -64,11 +65,11 @@ function getMapData( element ) {
  * @return {Object} map KartographerMap
  */
 function initMapBox( data, $container ) {
-	var index = maps.length;
+	const index = maps.length;
 
 	data.enableFullScreenButton = true;
 
-	var map = kartobox.map( {
+	const map = kartobox.map( {
 		featureType: 'mapframe',
 		container: $container.get( 0 ),
 		center: [ data.latitude, data.longitude ],
@@ -114,7 +115,7 @@ function initMapBox( data, $container ) {
  * @param {HTMLElement} element Parsed <mapframe> element
  */
 function initMapframeFromElement( element ) {
-	var map = initMapBox( getMapData( element ), $( element ) );
+	const map = initMapBox( getMapData( element ), $( element ) );
 	mw.hook( 'wikipage.maps' ).fire( [ map ], false /* isFullScreen */ );
 }
 
@@ -153,14 +154,14 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		//     #/map/0/5
 		//     #/map/0/16/-122.4006/37.7873
 		router.route( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([+-]?\d+\.?\d{0,5})?\/([+-]?\d+\.?\d{0,5})?)?/, function ( maptagId, zoom, latitude, longitude ) {
-			var map = maps[ maptagId ],
-				position;
+			const map = maps[ maptagId ];
 
 			if ( !map ) {
 				router.navigate( '' );
 				return;
 			}
 
+			let position;
 			if ( zoom !== undefined && latitude !== undefined && longitude !== undefined ) {
 				position = {
 					center: [ +latitude, +longitude ],

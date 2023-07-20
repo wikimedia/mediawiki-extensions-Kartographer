@@ -16,15 +16,15 @@
 		maps = Array.isArray( maps ) ? maps : [ maps ];
 
 		maps.forEach( function ( map ) {
-			var popup = L.popup();
+			const popup = L.popup();
 
 			function onMapMenu( e ) {
-				var content = '',
-					zoom = map.getZoom(),
-					coords = map.getScaleLatLng(
-						e.latlng.lat,
-						e.latlng.lng
-					);
+				let content = '';
+				const zoom = map.getZoom();
+				const coords = map.getScaleLatLng(
+					e.latlng.lat,
+					e.latlng.lng
+				);
 
 				content += '<table>';
 				content += '<tr><th>' + mw.message( 'visualeditor-mwmapsdialog-position-lat' ).escaped() + '</th><td>' + coords[ 0 ] + '</td></tr>';

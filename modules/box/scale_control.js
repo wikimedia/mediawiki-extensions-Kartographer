@@ -8,7 +8,7 @@
  * @class Kartographer.Box.ScaleControl
  * @extends L.Control
  */
-var ScaleControl = L.Control.Scale.extend( {
+const ScaleControl = L.Control.Scale.extend( {
 
 	isMetric: true,
 

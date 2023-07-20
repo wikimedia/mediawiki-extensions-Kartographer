@@ -1,9 +1,9 @@
-var DataManager = require( 'ext.kartographer.data' );
+const DataManager = require( 'ext.kartographer.data' );
 
 module.exports = function () {
 	return DataManager( {
 		createPromise: function ( callback ) {
-			var promise = $.Deferred();
+			const promise = $.Deferred();
 			try {
 				callback( promise.resolve.bind( promise ), promise.reject.bind( promise ) );
 			} catch ( err ) {

@@ -1,5 +1,5 @@
 ( function () {
-	var cjs = require( 'rollup-plugin-commonjs' );
+	const cjs = require( 'rollup-plugin-commonjs' );
 
 	module.exports = {
 		entry: 'node_modules/@wikimedia/mapdata/src/index.js',
