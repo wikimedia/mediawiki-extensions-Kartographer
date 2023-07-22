@@ -224,18 +224,19 @@ abstract class LegacyTagHandler {
 			throw new LogicException( __METHOD__ . '(): attempt to report error when none took place' );
 		}
 
+		$tag = '<' . static::TAG . '>';
 		if ( count( $errors ) > 1 ) {
 			$html = '';
 			foreach ( $errors as $err ) {
 				$html .= Html::rawElement( 'li', [], wfMessage( $err['message'], $err['params'] )
 					->inLanguage( $this->getLanguage() )->parse() ) . "\n";
 			}
-			$msg = wfMessage( 'kartographer-error-context-multi', static::TAG )
+			$msg = wfMessage( 'kartographer-error-context-multi', $tag )
 				->rawParams( Html::rawElement( 'ul', [], $html ) );
 		} else {
 			$errorText = wfMessage( $errors[0]['message'], $errors[0]['params'] )
 				->inLanguage( $this->getLanguage() )->parse();
-			$msg = wfMessage( 'kartographer-error-context', static::TAG, Message::rawParam( $errorText ) );
+			$msg = wfMessage( 'kartographer-error-context', $tag, Message::rawParam( $errorText ) );
 		}
 		return Html::rawElement( 'div', [ 'class' => 'mw-kartographer-error' ],
 			$msg->inLanguage( $this->getLanguage() )->escaped() .
