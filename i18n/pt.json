@@ -19,7 +19,7 @@
 	"kartographer-broken-category": "Páginas com mapas inválidos",
 	"kartographer-broken-category-desc": "A página inclui uma utilização inválida de mapas",
 	"kartographer-desc": "Permite a inserção de mapas nas páginas da wiki",
-	"kartographer-error-context-multi": "Problemas de <$1>:\n$2",
+	"kartographer-error-context-multi": "Problemas de $1:\n$2",
 	"kartographer-error-json": "Não foi possível analisar o JSON: $1",
 	"kartographer-error-json-object": "O conteúdo tem de ser um objeto GeoJSON+simplestyle válido ou uma matriz de tais objetos.",
 	"kartographer-error-json-type": "Cada objeto GeoJSON+simplestyle tem de ter um tipo não vazio, por exemplo, <code>{ \"type\": \"Feature\" }</code>.",

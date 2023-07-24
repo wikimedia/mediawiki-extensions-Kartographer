@@ -10,7 +10,7 @@
 	"kartographer-broken-category": "Paginas con cartas rupte",
 	"kartographer-broken-category-desc": "Iste pagina contine un uso invalide de carta geographic",
 	"kartographer-desc": "Permitte le addition de cartas geographic a paginas wiki",
-	"kartographer-error-context-multi": "Problemas de <$1>:\n$2",
+	"kartographer-error-context-multi": "Problemas de $1:\n$2",
 	"kartographer-error-json": "JSON non analysabile: $1",
 	"kartographer-error-json-object": "Iste contento debe esser un objecto GeoJSON+simplestyle valide o un matrice de tal objectos.",
 	"kartographer-error-json-type": "Cata objecto GeoJSON+simplestyle debe haber un typo non vacue, p.ex. <code>{ \"type\": \"Feature\" }</code>.",

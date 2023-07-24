@@ -12,7 +12,7 @@
 	"kartographer-broken-category": "דפים עם מפות מקולקלות",
 	"kartographer-broken-category-desc": "הדף הזה מכיל שימוש בלתי־תקין במפה",
 	"kartographer-desc": "אפשרות להוסיף מפות לדפי ויקי",
-	"kartographer-error-context-multi": "בעיות <$1>:\n$2",
+	"kartographer-error-context-multi": "בעיות $1:\n$2",
 	"kartographer-error-json": "לא היה אפשר לפענח JSON כי: $1",
 	"kartographer-error-json-object": "התוכן חייב להיות עצם GeoJSON+simplestyle תקין או מערך של עצמים כאלה.",
 	"kartographer-error-json-type": "לכל עצם GeoJSON+simplestyle חייב להיות סוג לא ריק, למשל <code dir=\"ltr\">{ \"type\": \"Feature\" }</code> .",

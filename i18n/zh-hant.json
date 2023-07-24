@@ -19,7 +19,7 @@
 	"kartographer-broken-category": "有損壞地圖的頁面",
 	"kartographer-broken-category-desc": "有包含無效地圖用法的頁面",
 	"kartographer-desc": "允許將地圖新增至 wiki 頁面",
-	"kartographer-error-context-multi": "<$1>問題：\n$2",
+	"kartographer-error-context-multi": "$1問題：\n$2",
 	"kartographer-error-json": "無法解析 JSON：$1",
 	"kartographer-error-json-object": "內容必須是有效的 GeoJSON + simplestyle 的物件或是此類物件的陣列。",
 	"kartographer-error-json-type": "每個 GeoJSON + simplestyle 物件必須要有一個非空值類型，例如：<code>{ \"type\": \"Feature\" }</code>。",

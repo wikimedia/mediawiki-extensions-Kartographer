@@ -1,9 +1,0 @@
-{
-	"@metadata": {
-		"authors": [
-			"Piano1forte2"
-		]
-	},
-	"kartographer-error-bad_attr": "Attribute '$1' has an invalid value",
-	"kartographer-error-latlon": "Either both 'latitude' and 'longitude' parameters should be supplied or neither of them"
-}

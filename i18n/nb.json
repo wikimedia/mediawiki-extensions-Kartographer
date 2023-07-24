@@ -14,7 +14,7 @@
 	"kartographer-broken-category": "Sider med ødelagte kart",
 	"kartographer-broken-category-desc": "Siden inkluderer ugyldig kartbruk",
 	"kartographer-desc": "Lar kart legges til på wikisider",
-	"kartographer-error-context-multi": "<$1>-problemer:\n$2",
+	"kartographer-error-context-multi": "$1-problemer:\n$2",
 	"kartographer-error-json": "Kunne ikke parse JSON: $1",
 	"kartographer-error-json-object": "Innholdet må være et gyldig GeoJSON+simplestyle-objekt eller en tabell over slike objekter.",
 	"kartographer-error-json-type": "Hvert GeoJSON+simplestyle-objekt må ha en ikke-tom type, f.eks. <code>{ \"type\": \"Feature\" }</code>.",

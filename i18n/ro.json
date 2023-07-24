@@ -11,7 +11,7 @@
 	"kartographer-broken-category": "Pagini cu hărți defecte",
 	"kartographer-broken-category-desc": "Pagina include o utilizare de hartă invalidă",
 	"kartographer-desc": "Permite adăugarea de hărți în paginile wiki",
-	"kartographer-error-context-multi": "Tag <$1> cu probleme:\n$2",
+	"kartographer-error-context-multi": "Tag $1 cu probleme:\n$2",
 	"kartographer-error-json": "Nu pot parsa JSON: $1",
 	"kartographer-error-missing-attr": "Atributul \"$1\" lipsește",
 	"kartographer-error-bad_attr": "Atributul \"$1\" are o valoare invalidă",

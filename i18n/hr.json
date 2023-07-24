@@ -8,7 +8,7 @@
 	"kartographer-broken-category": "Stranice s nevaljalim zemljovidima",
 	"kartographer-broken-category-desc": "Stranica uključuje nevaljalu uporabu zemljovida",
 	"kartographer-desc": "Omogućava dodavanje zemljovida wiki stranicama",
-	"kartographer-error-context-multi": "Problemi s <$1>:\n$2",
+	"kartographer-error-context-multi": "Problemi s $1:\n$2",
 	"kartographer-error-json": "Raščlanjivanje JSON-a nije moguće: $1",
 	"kartographer-error-missing-attr": "Nedostaje atribut \"$1\"",
 	"kartographer-error-bad_attr": "Atribut \"$1\" ima nevaljalu vrijednost",

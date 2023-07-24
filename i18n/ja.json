@@ -27,7 +27,7 @@
 	"kartographer-broken-category": "破損した地図があるページ",
 	"kartographer-broken-category-desc": "そのページは無効なマップ使用法を含んでいます",
 	"kartographer-desc": "ウィキページにマップを追加することを許可",
-	"kartographer-error-context-multi": "<$1>の問題:\n$2",
+	"kartographer-error-context-multi": "$1の問題:\n$2",
 	"kartographer-error-json": "次のJSONをパースできません: $1",
 	"kartographer-error-missing-attr": "属性 \"$1\" が不足しています",
 	"kartographer-error-bad_attr": "属性 '$1' は無効な値です",

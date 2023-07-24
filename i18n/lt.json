@@ -14,7 +14,7 @@
 	"kartographer-broken-category": "Puslapiai su neveikiančiais žemėlapiais",
 	"kartographer-broken-category-desc": "Puslapyje netinkamai naudojamas žemėlapis",
 	"kartographer-desc": "Leidžia pridėti žemėlapius prie viki puslapių",
-	"kartographer-error-context-multi": "<$1> problemos:\n$2",
+	"kartographer-error-context-multi": "$1 problemos:\n$2",
 	"kartographer-error-json-object": "Turinys turi būti galiojantis \"GeoJSON+simplestyle\" objektas arba tokių objektų masyvas.",
 	"kartographer-error-json-type": "Kiekvieno \"GeoJSON+simplestyle\" objekto tipas neturi būti tuščias, pavyzdžiui, <code>{ \"type\": \"Feature\" }</code>.",
 	"kartographer-error-missing-attr": "Trūksta „$1“ elemento",

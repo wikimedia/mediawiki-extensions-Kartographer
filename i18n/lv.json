@@ -11,7 +11,7 @@
 	"kartographer-broken-category": "Lapas ar bojātām kartēm",
 	"kartographer-broken-category-desc": "Šajā lapā karte izmantota nekorekti",
 	"kartographer-desc": "Ļauj pievienot kartes viki lapām",
-	"kartographer-error-context-multi": "<$1> problēmas:\n$2",
+	"kartographer-error-context-multi": "$1 problēmas:\n$2",
 	"kartographer-error-json": "Nevarēja apstrādāt JSON: $1",
 	"kartographer-error-json-object": "Saturam ir jābūt derīgam GeoJSON+simplestyle objektam vai šādu objektu masīvam.",
 	"kartographer-error-missing-attr": "Trūkst atribūts \"$1\"",

@@ -29,7 +29,7 @@
 	"kartographer-broken-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Файлы|#default=Страницы}} с некорректными картами",
 	"kartographer-broken-category-desc": "Эта страница содержит недопустимое использование карты",
 	"kartographer-desc": "Позволяет добавлять карты на вики-страницы.",
-	"kartographer-error-context-multi": "Проблемы с <$1>:\n$2",
+	"kartographer-error-context-multi": "Проблемы с $1:\n$2",
 	"kartographer-error-json": "Ошибка JSON: $1",
 	"kartographer-error-json-object": "Содержимое должно быть допустимым объектом GeoJSON+simplestyle или массивом таких объектов.",
 	"kartographer-error-json-type": "Каждый объект GeoJSON+simplestyle должен иметь непустой тип, например <code>{ \"type\": \"Feature\" }</code>.",

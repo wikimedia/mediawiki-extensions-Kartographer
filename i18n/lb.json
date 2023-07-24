@@ -10,7 +10,7 @@
 	"kartographer-broken-category": "Säite mat futtisse Kaarten",
 	"kartographer-broken-category-desc": "D'Säit huet en net valabele Gebrauch vun enger Kaart",
 	"kartographer-desc": "Erméiglecht et fir Kaarten op d'Wiki-Säiten derbäizesetzen.",
-	"kartographer-error-context-multi": "<$1>-Problemer:\n$2",
+	"kartographer-error-context-multi": "$1-Problemer:\n$2",
 	"kartographer-error-missing-attr": "Attribut \"$1\" feelt",
 	"kartographer-error-bad_data": "Den JSON-Inhalt ass kee valabelen GeoJSON+simplestyle. D'Lëscht hei drënner weist all Versich fir en z'interpretéieren. Net all Feeler.",
 	"kartographer-error-title": "Den Titel \"$1\" ass keng valabel Kaartendatesäit",

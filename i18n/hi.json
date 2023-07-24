@@ -16,7 +16,7 @@
 	"kartographer-broken-category": "टूटे हुए नक्शे के साथ पृष्ठ",
 	"kartographer-broken-category-desc": "पृष्ठ में एक अमान्य मानचित्र उपयोग शामिल है",
 	"kartographer-desc": "नक्शे को विकी पृष्ठों में जोड़ा जा सकता है",
-	"kartographer-error-context-multi": "<$1> परेशानी:\n$2",
+	"kartographer-error-context-multi": "$1 परेशानी:\n$2",
 	"kartographer-error-bad_data": "JSON सामग्री मान्य GeoJSON+simplestyle नहीं है। नीचे की सूची में इसे समझने के सभी प्रयास दिखाए गए हैं। सभी प्रयास त्रुटियाँ नहीं हैं।",
 	"kartographer-tracking-category": "मानचित्र वाले पृष्ठ",
 	"kartographer-tracking-category-desc": "पृष्ठ में नक्शा भी है।",

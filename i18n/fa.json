@@ -17,7 +17,7 @@
 	"kartographer-broken-category": "صفحه‌های با نقشه خراب",
 	"kartographer-broken-category-desc": "در این صفحه یک نقشهٔ خراب استفاده شده‌است",
 	"kartographer-desc": "اجازه‌دادن به نقشه‌ها برای افزوده‌شدن به صفحه‌های ویکی",
-	"kartographer-error-context-multi": "<$1> مشکلات:\n$2",
+	"kartographer-error-context-multi": "$1 مشکلات:\n$2",
 	"kartographer-error-json": "امکان تحلیل JSON وجود ندارد:‌$1",
 	"kartographer-error-missing-attr": "مقدار $1 ارائه نشده است",
 	"kartographer-error-bad_attr": "مقدار ویژگی $1 نامعتبر است",

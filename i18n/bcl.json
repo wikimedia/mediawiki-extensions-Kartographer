@@ -9,7 +9,7 @@
 	"kartographer-broken-category": "Mga pahina na igwang mga nagkaparasa na mapa",
 	"kartographer-broken-category-desc": "Kaiba sa pahina an sarong bakong-wastong paggamit kan mapa",
 	"kartographer-desc": "pigtutugutan an mga mapa na idadagdag sa mga pahina kan wiki",
-	"kartographer-error-context-multi": "<$1> mga problema:\n$2",
+	"kartographer-error-context-multi": "$1 mga problema:\n$2",
 	"kartographer-error-json": "Dai mai-parse an JSON: $1",
 	"kartographer-error-missing-attr": "Nawawara an katangiang \"$1\"",
 	"kartographer-error-bad_attr": "An sarong \"$1\", sarong bakong-tama na halaga",

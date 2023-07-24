@@ -5,7 +5,7 @@
 			"פוילישער"
 		]
 	},
-	"kartographer-error-context-multi": "<$1> פראבלעמען:\n$2",
+	"kartographer-error-context-multi": "$1 פראבלעמען:\n$2",
 	"kartographer-tracking-category": "בלעטער מיט מאַפעס",
 	"kartographer-linktype-map": "סטאנדארטע מאַפעס",
 	"kartographer-linktype-other": "אַנדער",

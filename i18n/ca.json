@@ -14,7 +14,7 @@
 	"kartographer-broken-category": "Pàgines amb errors en els mapes",
 	"kartographer-broken-category-desc": "La pàgina inclou un mapa amb utilització no vàlida",
 	"kartographer-desc": "Permet afegir mapes en pàgines wiki",
-	"kartographer-error-context-multi": "Problemes amb <$1>:\n$2",
+	"kartographer-error-context-multi": "Problemes amb $1:\n$2",
 	"kartographer-error-json": "No s'ha pogut analitzar el JSON: $1",
 	"kartographer-error-json-object": "El contingut ha de ser un objecte GeoJSON+simplestyle vàlid o una matriu d'aquests objectes.",
 	"kartographer-error-json-type": "Cada objecte GeoJSON+simplestyle ha de tenir un tipus no buit, per exemple <code>{ \"type\": \"Feature\" }</code> .",

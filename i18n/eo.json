@@ -10,7 +10,7 @@
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Vikimediaj mapoj] | Mapdatumoj © [https://www.openstreetmap.org/copyright Kontribuantoj de OpenStreetMap]",
-	"kartographer-error-context-multi": "Problemoj je <$1>:\n$2",
+	"kartographer-error-context-multi": "Problemoj je $1:\n$2",
 	"kartographer-error-json": "Ne povis sintakse analizi JSON: $1",
 	"kartographer-error-missing-attr": "Atributo \"$1\" mankas",
 	"kartographer-error-bad_attr": "La valoro de la atributo \"$1\" ne estas valida",

@@ -13,7 +13,7 @@
 	"kartographer-broken-category": "Stránky s rozbitými mapami",
 	"kartographer-broken-category-desc": "Tato stránka obsahuje chybně použitou mapu",
 	"kartographer-desc": "Umožňuje na stránky wiki přidávat mapy",
-	"kartographer-error-context-multi": "Problémy u <$1>:\n$2",
+	"kartographer-error-context-multi": "Problémy u $1:\n$2",
 	"kartographer-error-json": "Nepodařilo se analyzovat JSON: $1",
 	"kartographer-error-missing-attr": "Chybí atribut „$1“",
 	"kartographer-error-bad_attr": "Atribut „$1“ má neplatnou hodnotu",

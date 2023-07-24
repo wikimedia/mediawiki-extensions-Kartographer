@@ -11,7 +11,7 @@
 	"kartographer-broken-category": "simalepi’ay a kasabelih nu papo",
 	"kartographer-broken-category-desc": "yamalyilu la’cusay papo saungay a kasabelih",
 	"kartographer-desc": "mahasa pacunus papo tayza wiki kasabelih",
-	"kartographer-error-context-multi": "<$1> munday:\n$2",
+	"kartographer-error-context-multi": "$1 munday:\n$2",
 	"kartographer-error-missing-attr": "mahedaw susin \"$1\"",
 	"kartographer-error-bad_attr": "susin \"$1\" a sulyang la’cus",
 	"kartographer-tracking-category": "sipapoay a kasabelih",

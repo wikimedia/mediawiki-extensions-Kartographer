@@ -9,7 +9,7 @@
 	"kartographer-broken-category": "Pampanid nga agraman kadagiti nadadael a mapa",
 	"kartographer-broken-category-desc": "Mangiraman ti panid iti maysa nga imbalido a panagusar iti mapa",
 	"kartographer-desc": "Mangipalubos a mainayon dagiti mapa kadagiti panid ti wiki",
-	"kartographer-error-context-multi": "Dagiti problema ti <$1>:\n$2",
+	"kartographer-error-context-multi": "Dagiti problema ti $1:\n$2",
 	"kartographer-error-json": "Saan a mawaswas ti JSON: $1",
 	"kartographer-error-missing-attr": "Awan ti gupit ti \"$1\"",
 	"kartographer-error-bad_attr": "Ti gupit ti \"$1\" ket addaan iti maysa nga imbalido a pateg",

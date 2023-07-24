@@ -20,7 +20,7 @@
 	"kartographer-broken-category": "Haritaları bozuk sayfalar",
 	"kartographer-broken-category-desc": "Sayfa geçersiz bir harita kullanımını içeriyor",
 	"kartographer-desc": "Haritaların viki sayfalarına eklenmesine izin verir",
-	"kartographer-error-context-multi": "<$1> sorunları:\n$2",
+	"kartographer-error-context-multi": "$1 sorunları:\n$2",
 	"kartographer-error-json": "JSON ayrıştırılamadı: $1",
 	"kartographer-error-json-object": "İçerik, geçerli bir GeoJSON+simplestyle nesnesi ya da bunlardan oluşan bir dizi olmalıdır.",
 	"kartographer-error-json-type": "Her GeoJSON+simplestyle nesnesinin boş olmayan bir türü olmalıdır, ör. <code>{ \"type\": \"Feature\" }</code>.",

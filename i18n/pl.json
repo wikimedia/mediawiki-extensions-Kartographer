@@ -18,7 +18,7 @@
 	"kartographer-broken-category": "Strony z uszkodzonymi mapami",
 	"kartographer-broken-category-desc": "Strona zawiera nieprawidłowe zastosowanie mapy",
 	"kartographer-desc": "Pozwala na dodawanie map do stron wiki.",
-	"kartographer-error-context-multi": "Problemy z <$1>:\n$2",
+	"kartographer-error-context-multi": "Problemy z $1:\n$2",
 	"kartographer-error-json": "Nie udało się przeanalizować JSON: $1",
 	"kartographer-error-json-object": "Treść musi być prawidłowym obiektem GeoJSON+simplestyle lub tablicą takich obiektów.",
 	"kartographer-error-json-type": "Każdy obiekt GeoJSON+simplestyle musi mieć niepusty typ, np. <code>{ \"type\": \"Feature\" }</code>.",

@@ -21,7 +21,7 @@
 	"kartographer-broken-category": "有损坏地图的页面",
 	"kartographer-broken-category-desc": "页面包含无效的地图用法",
 	"kartographer-desc": "允许将地图添加至wiki页面",
-	"kartographer-error-context-multi": "<$1>问题：\n$2",
+	"kartographer-error-context-multi": "$1问题：\n$2",
 	"kartographer-error-json": "不能解析JSON：$1",
 	"kartographer-error-json-object": "内容必须是有效的 GeoJSON+simplestyle 对象或此类对象的数组。",
 	"kartographer-error-json-type": "每个 GeoJSON+simplestyle 对象必须有一个非空类型，例如<code>{ \"type\": \"Feature\" }</code> 。",

@@ -20,7 +20,7 @@
 	"kartographer-broken-category": "Sivut, joissa on rikkinäisiä karttoja",
 	"kartographer-broken-category-desc": "Sivu sisältää virheellisesti käytetyn <code><nowiki><maps></nowiki></code>-tagin.",
 	"kartographer-desc": "Tekee mahdolliseksi karttojen lisäämisen wikisivuihin",
-	"kartographer-error-context-multi": "<$1> ongelmat:\n$2",
+	"kartographer-error-context-multi": "$1 ongelmat:\n$2",
 	"kartographer-error-json": "JSONin $1 jäsentäminen epäonnistui",
 	"kartographer-error-missing-attr": "Määrite ”$1” puuttuu",
 	"kartographer-error-bad_attr": "Määritteen ”$1” arvo ei kelpaa",

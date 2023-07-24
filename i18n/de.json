@@ -12,7 +12,7 @@
 	"kartographer-broken-category": "Seiten mit defekten Karten",
 	"kartographer-broken-category-desc": "Die Seite enthält eine ungültige Kartenverwendung",
 	"kartographer-desc": "Erlaubt das Einfügen von Karten in Wikiseiten",
-	"kartographer-error-context-multi": "<$1>-Probleme:\n$2",
+	"kartographer-error-context-multi": "$1-Probleme:\n$2",
 	"kartographer-error-json": "JSON konnte nicht geparst werden: $1",
 	"kartographer-error-json-object": "Der Inhalt muss ein gültiges GeoJSON+simplestyle-Objekt oder ein Array solcher Objekte sein.",
 	"kartographer-error-json-type": "Jedes GeoJSON+simplestyle-Objekt muss einen nicht leeren Typ haben, z. B. <code>{ \"type\": \"Feature\" }</code> .",
