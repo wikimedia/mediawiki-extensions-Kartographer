@@ -41,7 +41,6 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 		$extApi->getMetadata()->addModules( [ $staticMode && !$isPreview
 			? 'ext.kartographer.staticframe'
 			: 'ext.kartographer.frame' ] );
-		$extApi->getMetadata()->addModuleStyles( [ 'ext.kartographer.style' ] );
 
 		$gen = new MapFrameAttributeGenerator( $this->args, $this->config );
 		$attrs = $gen->prepareAttrs();

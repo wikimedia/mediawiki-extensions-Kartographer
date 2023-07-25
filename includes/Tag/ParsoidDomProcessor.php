@@ -5,6 +5,7 @@ namespace Kartographer\Tag;
 use FormatJson;
 use Kartographer\SimpleStyleParser;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOutputStringSets;
 use stdClass;
 use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\DOM\Node;
@@ -35,6 +36,10 @@ class ParsoidDomProcessor extends DOMProcessor {
 		if ( empty( $kartnodes ) ) {
 			return;
 		}
+
+		$mapServer = MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerMapServer' );
+		$extApi->getMetadata()->addModuleStyles( [ 'ext.kartographer.style' ] );
+		$extApi->getMetadata()->appendOutputStrings( ParserOutputStringSets::EXTRA_CSP_DEFAULT_SRC, [ $mapServer ] );
 
 		$kartData = [];
 		$counters = [];

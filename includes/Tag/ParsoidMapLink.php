@@ -25,7 +25,6 @@ class ParsoidMapLink extends ParsoidTagHandler {
 	 */
 	public function sourceToDom( ParsoidExtensionAPI $extApi, string $src, array $extArgs ) {
 		$extApi->getMetadata()->addModules( [ 'ext.kartographer.link' ] );
-		$extApi->getMetadata()->addModuleStyles( [ 'ext.kartographer.style' ] );
 
 		$this->parseTag( $extApi, $src, $extArgs );
 		if ( !$this->args->status->isGood() ) {
