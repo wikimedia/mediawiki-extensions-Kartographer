@@ -8,7 +8,8 @@
 			"No Sleep till Krupki",
 			"Plaga med",
 			"Tomato Cream",
-			"Tīgelika"
+			"Tīgelika",
+			"ZlyiLev"
 		]
 	},
 	"apierror-kartographer-conflicting-revids": "Запыт даных карты з некалькіх версій адной і той жа старонкі ў адным запыце пакуль не падтрымліваецца.",
@@ -21,7 +22,7 @@
 	"kartographer-error-json-object": "Змест павінен быць слушным аб’ектам GeoJSON+simplestyle або масівам такіх аб’ектаў.",
 	"kartographer-error-json-type": "Кожны аб’ект GeoJSON+simplestyle павінен мець непусты тып, напрыклад, <code>{ \"type\": \"Feature\" }</code>.",
 	"kartographer-error-missing-attr": "Атрыбут «$1» адсутнічае",
-	"kartographer-error-bad_attr": "Атрыбут «$1» мае няслушная значэнне",
+	"kartographer-error-bad_attr": "Атрыбут «$1» мае няслушнае значэнне",
 	"kartographer-error-bad_data": "Змест JSON — няслушны GeoJSON+simplestyle. Спіс ніжэй паказвае ўсё спробы яго інтэрпрэтаваць у адпаведнасці са [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json схемай JSON]. Не ўсе яны памылкі.",
 	"kartographer-error-latlon": "Павінны быць пададзены абодва параметры «latitude» і «longitude», або ні адзін з іх",
 	"kartographer-error-title": "Загаловак «$1» ­— не слушная старонка даных карты",
