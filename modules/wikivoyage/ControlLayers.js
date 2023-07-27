@@ -2,7 +2,7 @@
 /**
  * Control to allow users to switch between different layers on the map.
  *
- * See [L.Control.Layers](https://www.mapbox.com/mapbox.js/api/v2.3.0/l-control-layers/)
+ * See [L.Control.Layers](https://www.mapbox.com/mapbox.js/api/v3.3.1/l-control-layers/)
  * documentation for more details.
  *
  * @alternateClassName ControlLayers
@@ -13,6 +13,9 @@
 var wikivoyage = require( './wikivoyage.js' ),
 	ControlLayers;
 
+/**
+ * @memberof Kartographer.Wikivoyage.ControlLayers
+ */
 ControlLayers = L.Control.Layers.extend( {
 
 	/**

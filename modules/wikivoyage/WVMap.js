@@ -11,6 +11,8 @@ var wikivoyage = require( './wikivoyage.js' ),
 /* eslint-disable no-underscore-dangle */
 
 /**
+ * @constructor
+ * @memberof Kartographer.Wikivoyage.WVMapLayers
  * @param {L.Map} map
  */
 function WVMap( map ) {

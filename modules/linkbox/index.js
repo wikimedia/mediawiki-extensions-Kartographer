@@ -9,7 +9,6 @@ module.exports = {
 
 	/**
 	 * @type {Kartographer.Linkbox.LinkClass}
-	 * @ignore
 	 */
 	Link: require( './Link.js' ),
 

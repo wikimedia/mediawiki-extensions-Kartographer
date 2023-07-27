@@ -1,0 +1,74 @@
+{
+	"opts": {
+		"destination": "docs/js",
+		"package": "package.json",
+		"pedantic": true,
+		"recurse": true,
+		"template": "node_modules/jsdoc-wmf-theme"
+	},
+	"plugins": [
+		"plugins/markdown"
+	],
+	"source": {
+		"include": [ "modules" ]
+	},
+	"templates": {
+		"cleverLinks": true,
+		"default": {
+			"useLongnameInNav": true
+		},
+		"wmf": {
+			"linkMap": {
+				"jQuery": "https://api.jquery.com/Types/#jQuery",
+				"jQuery.Promise": "https://api.jquery.com/Types/#Promise",
+				"ve.ce.MWBlockExtensionNode": "https://doc.wikimedia.org/VisualEditor/master/js/#!/api/ve.ce.MWBlockExtensionNode",
+				"ve.ce.MWInlineExtensionNode": "https://doc.wikimedia.org/VisualEditor/master/js/#!/api/ve.ce.MWInlineExtensionNode",
+				"ve.ce.ResizableNode": "https://doc.wikimedia.org/VisualEditor/master/js/#!/api/ve.ce.ResizableNode",
+				"ve.ce.ResizableNode.getAttributeChanges": "https://doc.wikimedia.org/VisualEditor/master/js/#!/api/ve.ce.ResizableNode-method-getAttributeChanges",
+				"ve.ce.ResizableNode.onResizableResizing": "https://doc.wikimedia.org/VisualEditor/master/js/#!/api/ve.ce.ResizableNode-method-onResizableResizing",
+				"ve.dm.MWBlockExtensionNode": "https://doc.wikimedia.org/VisualEditor/master/js/#!/api/ve.dm.MWBlockExtensionNode",
+				"ve.dm.ModelNode": "https://doc.wikimedia.org/VisualEditor/master/js/#!/api/ve.dm.Model",
+				"ve.dm.MWInlineExtensionNode": "https://doc.wikimedia.org/VisualEditor/master/js/#!/api/ve.dm.MWInlineExtensionNode",
+				"ve.dm.Model": "https://doc.wikimedia.org/VisualEditor/master/js/#!/api/ve.dm.Model",
+				"ve.dm.Node": "https://doc.wikimedia.org/VisualEditor/master/js/#!/api/ve.dm.Node",
+				"ve.dm.ResizableNode": "https://doc.wikimedia.org/VisualEditor/master/js/#!/api/ve.dm.ResizableNode",
+				"ve.dm.Scalable": "https://doc.wikimedia.org/VisualEditor/master/js/#!/api/ve.dm.Scalable",
+				"ve.ui.FragmentWindowTool": "https://doc.wikimedia.org/mediawiki-core/master/js/#!/api/ve.ui.FragmentWindowTool",
+				"ve.ui.LinearContext": "https://doc.wikimedia.org/VisualEditor/master/js/#!/api/ve.ui.LinearContext",
+				"ve.ui.LinearContextItem": "https://doc.wikimedia.org/VisualEditor/master/js/#!/api/ve.ui.LinearContextItem",
+				"ve.ui.MWExtensionDialog": "https://doc.wikimedia.org/VisualEditor/master/js/#!/api/ve.ui.MWExtensionDialog",
+				"ve.ui.MWExtensionWindow.insertOrUpdateNode": "https://doc.wikimedia.org/VisualEditor/master/js/#!/api/ve.ui.MWExtensionWindow-method-insertOrUpdateNode",
+				"ve.ui.MWExtensionWindow.updateMwData": "https://doc.wikimedia.org/VisualEditor/master/js/#!/api/ve.ui.MWExtensionWindow-method-updateMwData",
+				"Array": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+				"Event": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
+				"HTMLElement": "https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement",
+				"Kartographer.Data.Group": "https://gerrit.wikimedia.org/g/mapdata",
+				"L.mapbox.FeatureLayer": "https://docs.mapbox.com/mapbox.js/api/v3.3.1/l-mapbox-featurelayer/",
+				"L.Control": "https://leafletjs.com/reference.html#control",
+				"L.Control.Attribution": "https://docs.mapbox.com/mapbox.js/api/v3.3.1/l-control-attribution/",
+				"L.Control.Layers": "https://www.mapbox.com/mapbox.js/api/v3.3.1/l-control-layers/",
+				"L.GeoJSON": "https://leafletjs.com/reference.html#geojson",
+				"L.LatLng": "https://leafletjs.com/reference.html#latlng",
+				"L.LatLngBounds": "https://leafletjs.com/reference.html#latlngbounds",
+				"L.Layer": "https://leafletjs.com/reference.html#layer",
+				"L.Map": "https://leafletjs.com/reference.html#map",
+				"L.Marker": "https://leafletjs.com/reference.html#marker",
+				"L.MarkerCluster": "https://github.com/Leaflet/Leaflet.markercluster",
+				"L.Popup": "https://leafletjs.com/reference.html#popup",
+				"L.TileLayer": "https://leafletjs.com/reference.html#tilelayer",
+				"Object": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+				"OO.ui.Dialog": "https://doc.wikimedia.org/mediawiki-core/master/js/#!/api/OO.ui.Dialog",
+				"OO.ui.DropdownWidget": "https://doc.wikimedia.org/mediawiki-core/master/js/#!/api/OO.ui.DropdownWidget",
+				"OO.ui.MultilineTextInputWidget": "https://doc.wikimedia.org/mediawiki-core/master/js/#!/api/OO.ui.MultilineTextInputWidget",
+				"OO.ui.TabPanelLayout": "https://doc.wikimedia.org/mediawiki-core/master/js/#!/api/OO.ui.TabPanelLayout",
+				"OO.ui.ToolGroup": "https://doc.wikimedia.org/mediawiki-core/master/js/#!/api/OO.ui.ToolGroup",
+				"OO.ui.WindowInstance": "https://doc.wikimedia.org/mediawiki-core/master/js/#!/api/OO.ui.WindowInstance",
+				"OO.ui.WindowManager": "https://doc.wikimedia.org/mediawiki-core/master/js/#!/api/OO.ui.WindowManager",
+				"PruneCluster": "https://github.com/SINTEF-9012/PruneCluster/",
+				"PruneCluster.Marker": "https://github.com/SINTEF-9012/PruneCluster/",
+				"PruneClusterForLeaflet": "https://github.com/SINTEF-9012/PruneCluster/",
+				"Set": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set"
+			}
+		}
+	}
+}

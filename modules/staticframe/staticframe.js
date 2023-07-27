@@ -19,7 +19,6 @@ var util = require( 'ext.kartographer.util' ),
 	maplinks = [],
 	/**
 	 * @private
-	 * @ignore
 	 */
 	routerInited = false;
 
@@ -56,8 +55,6 @@ function getMapData( element ) {
 
 /**
  * This code will be executed once the article is rendered and ready.
- *
- * @ignore
  */
 mw.hook( 'wikipage.content' ).add( function ( $content ) {
 	// `wikipage.content` may be fired more than once.

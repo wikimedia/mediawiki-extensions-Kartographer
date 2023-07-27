@@ -142,11 +142,12 @@ KartographerMap = L.Map.extend( {
 	/**
 	 * Create a map within options.container
 	 *
+	 * This function implements the constructor
+	 *
 	 * options.container has to be visible before constructing the map
 	 * or call invalidateSizeAndSetInitialView when it becomes visible.
 	 * See also phab:T151524 and https://github.com/Leaflet/Leaflet/issues/4200
 	 *
-	 * @constructor
 	 * @param {Object} options **Configuration and options:**
 	 * @param {HTMLElement} options.container **Map container.**
 	 * @param {boolean} [options.allowFullScreen=false] **Whether the map
@@ -171,7 +172,8 @@ KartographerMap = L.Map.extend( {
 	 *   a full screen map)_.
 	 * @param {string} [options.fullScreenRoute] Route associated to this map
 	 *   _(internal, used by "`<maplink>`" and "`<mapframe>`")_.
-	 * @member Kartographer.Box.MapClass
+	 *
+	 * @memberof Kartographer.Box.MapClass
 	 * @public
 	 */
 	initialize: function ( options ) {
@@ -204,8 +206,10 @@ KartographerMap = L.Map.extend( {
 		L.Map.prototype.initialize.call( this, options.container, args );
 
 		/**
+		 * @name $container
 		 * @property {jQuery} $container Reference to the map
 		 *   container.
+		 * @memberof Kartographer.Box.MapClass#
 		 * @protected
 		 */
 		this.$container = $( this._container );
@@ -216,58 +220,76 @@ KartographerMap = L.Map.extend( {
 		} );
 
 		/**
+		 * @name parentMap
 		 * @property {Kartographer.Box.MapClass} [parentMap=null] Reference
 		 *   to the parent map.
+		 * @memberof Kartographer.Box.MapClass#
 		 * @protected
 		 */
 		this.parentMap = options.parentMap || null;
 
 		/**
-		 * @property {Kartographer.Box.MapClass} [parentLink=null] Reference
+		 * @name parentLink
+		 * @property {Kartographer.Linkbox.LinkClass} [parentLink=null] Reference
 		 *   to the parent link.
+		 * @memberof Kartographer.Box.MapClass#
 		 * @protected
 		 */
 		this.parentLink = options.parentLink || null;
 
 		/**
+		 * @name featureType
 		 * @property {string} The feature type identifier.
+		 * @memberof Kartographer.Box.MapClass#
 		 * @protected
 		 */
 		this.featureType = options.featureType;
 
 		/**
+		 * @name fullScreenMap
 		 * @property {Kartographer.Box.MapClass} [fullScreenMap=null] Reference
 		 *   to the child full screen map.
+		 * @memberof Kartographer.Box.MapClass#
 		 * @protected
 		 */
 		this.fullScreenMap = null;
 
 		/**
+		 * @name useRouter
 		 * @property {boolean} useRouter Whether the map uses the Mediawiki Router.
+		 * @memberof Kartographer.Box.MapClass#
 		 * @protected
 		 */
 		this.useRouter = !!options.fullScreenRoute;
 
 		/**
+		 * @name fullScreenRoute
 		 * @property {string} [fullScreenRoute=null] Route associated to this map.
+		 * @memberof Kartographer.Box.MapClass#
 		 * @protected
 		 */
 		this.fullScreenRoute = options.fullScreenRoute || null;
 
 		/**
+		 * @name captionText
 		 * @property {string} [captionText=''] Caption associated to the map.
+		 * @memberof Kartographer.Box.MapClass#
 		 * @protected
 		 */
 		this.captionText = options.captionText || '';
 
 		/**
+		 * @name lang
 		 * @property {string} lang Language code to use for labels
 		 * @type {string}
+		 * @memberof Kartographer.Box.MapClass#
 		 */
 		this.lang = options.lang || util.getDefaultLanguage();
 
 		/**
-		 * @property {L.FeatureLayer[]} dataLayers References to the data layers.
+		 * @name dataLayers
+		 * @property {L.mapbox.FeatureLayer[]} dataLayers References to the data layers.
+		 * @memberof Kartographer.Box.MapClass#
 		 * @protected
 		 */
 		this.dataLayers = [];
@@ -275,14 +297,18 @@ KartographerMap = L.Map.extend( {
 		/* Add base layer */
 
 		/**
+		 * @name layerUrl
 		 * @property {string} layerUrl Base URL for the tile layer
+		 * @memberof Kartographer.Box.MapClass#
 		 * @protected
 		 */
 		this.layerUrl = mapServer + ( style ? '/' + style : '' ) + urlFormat;
 
 		/**
+		 * @name wikimediaLayer
 		 * @property {L.TileLayer} wikimediaLayer Reference to `Wikimedia`
 		 *   tile layer.
+		 * @memberof Kartographer.Box.MapClass#
 		 * @protected
 		 */
 		this.wikimediaLayer = L.tileLayer(
@@ -296,14 +322,18 @@ KartographerMap = L.Map.extend( {
 		/* Add map controls */
 
 		/**
+		 * @name attributionControl
 		 * @property {L.Control.Attribution} attributionControl Reference
 		 *   to attribution control.
+		 * @memberof Kartographer.Box.MapClass#
 		 */
 		this.attributionControl.setPrefix( '' );
 
 		/**
+		 * @name scaleControl
 		 * @property {Kartographer.Box.ScaleControl} scaleControl Reference
 		 *   to scale control.
+		 * @memberof Kartographer.Box.MapClass#
 		 */
 		this.scaleControl = new ScaleControl( { position: 'bottomright' } ).addTo( this );
 
@@ -314,8 +344,10 @@ KartographerMap = L.Map.extend( {
 			} );
 
 			/**
+			 * @name openFullScreenControl
 			 * @property {Kartographer.Box.OpenFullScreenControl|undefined} [openFullScreenControl=undefined]
 			 * Reference to open full screen control.
+			 * @memberof Kartographer.Box.MapClass#
 			 */
 			this.openFullScreenControl = new OpenFullScreenControl( { position: 'topright' } ).addTo( this );
 		}
@@ -361,8 +393,10 @@ KartographerMap = L.Map.extend( {
 
 			map.fire(
 				/**
-				 * @event kartographerisready
 				 * Fired when the Kartographer Map object is ready.
+				 *
+				 * @event kartographerisready
+				 * @memberof Kartographer.Box.MapClass
 				 */
 				'kartographerisready' );
 		}
@@ -689,7 +723,7 @@ KartographerMap = L.Map.extend( {
 	 *
 	 * @param {L.LatLng|number[]|string} [center] Map center.
 	 * @param {number} [zoom]
-	 * @param {Object} [options] See [L.Map#setView](https://www.mapbox.com/mapbox.js/api/v2.3.0/l-map-class/)
+	 * @param {Object} [options] See [L.Map#setView](https://www.mapbox.com/mapbox.js/api/v3.3.1/l-map-class/)
 	 *   documentation for the full list of options.
 	 * @param {boolean} [save=false] Whether to update the data attributes.
 	 * @chainable

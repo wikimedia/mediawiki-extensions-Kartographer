@@ -26,7 +26,7 @@ module.exports = {
 	 * Gets a configuration parameter.
 	 *
 	 * @param {string} configParam
-	 * @return {*}
+	 * @return {string}
 	 */
 	getConfig: function ( configParam ) {
 		return config[ configParam ];

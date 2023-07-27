@@ -8,7 +8,7 @@
  *
  * @class
  * @extends ve.ce.MWBlockExtensionNode
- * @mixins ve.ce.ResizableNode
+ * @mixes ve.ce.ResizableNode
  *
  * @constructor
  * @param {ve.dm.MWMapsNode} model Model to observe
