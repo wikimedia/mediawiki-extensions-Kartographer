@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Winston Sung"
+		]
+	},
+	"kartographer-icon-docs-key": "Naziv",
+	"kartographer-icon-docs-help": "Opis",
+	"visualeditor-mwmapsdialog-caption": "Opis"
+}
