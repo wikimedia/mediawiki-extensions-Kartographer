@@ -21,8 +21,8 @@ class ParsoidDomProcessor extends DOMProcessor {
 	/**
 	 * @inheritDoc
 	 */
-	public function wtPostprocess( ParsoidExtensionAPI $extApi, Node $root, array $options, bool $atTopLevel ): void {
-		if ( !( $root instanceof Element ) || !$atTopLevel ) {
+	public function wtPostprocess( ParsoidExtensionAPI $extApi, Node $root, array $options ): void {
+		if ( !( $root instanceof Element ) ) {
 			return;
 		}
 
