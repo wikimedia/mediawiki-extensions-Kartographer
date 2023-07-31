@@ -8,7 +8,8 @@
 			"Amire80",
 			"Plaga med",
 			"Tomato Cream",
-			"Tīgelika"
+			"Tīgelika",
+			"ZlyiLev"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Карты WikiMedia] | Даныя карт © [https://www.openstreetmap.org/copyright Аўтары OpenStreetMap]",
@@ -18,7 +19,7 @@
 	"kartographer-error-context-multi": "Праблемы з &lt;$1&gt;:\n$2",
 	"kartographer-error-json": "Не ўдалося прааналізаваць JSON: $1",
 	"kartographer-error-missing-attr": "Атрыбут «$1» адсутнічае",
-	"kartographer-error-bad_attr": "Атрыбут «$1» мае няслушная значэнне",
+	"kartographer-error-bad_attr": "Атрыбут «$1» мае няслушнае значэнне",
 	"kartographer-error-latlon": "Павінны быць пададзены абодва параметры «latitude» і «longitude», або ні адзін з іх",
 	"kartographer-error-title": "Загаловак «$1» ­— не слушная старонка даных карты",
 	"kartographer-tracking-category": "Старонкі з картамі",
