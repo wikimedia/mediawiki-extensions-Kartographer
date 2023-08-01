@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Reedy"
+		]
+	},
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON to sanitise",
+	"apihelp-sanitize-mapdata-example": "Sanitise a GeoJSON blob"
+}

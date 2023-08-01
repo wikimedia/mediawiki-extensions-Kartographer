@@ -8,7 +8,8 @@
 			"No Sleep till Krupki",
 			"Plaga med",
 			"Tomato Cream",
-			"Tīgelika"
+			"Tīgelika",
+			"ZlyiLev"
 		]
 	},
 	"apierror-kartographer-conflicting-revids": "Запыт даных карты з некалькіх версій адной і той жа старонкі ў адным запыце пакуль не падтрымліваецца.",
@@ -19,7 +20,7 @@
 	"kartographer-error-context-multi": "Праблемы з &lt;$1&gt;:\n$2",
 	"kartographer-error-json": "Не ўдалося прааналізаваць JSON: $1",
 	"kartographer-error-missing-attr": "Атрыбут «$1» адсутнічае",
-	"kartographer-error-bad_attr": "Атрыбут «$1» мае няслушная значэнне",
+	"kartographer-error-bad_attr": "Атрыбут «$1» мае няслушнае значэнне",
 	"kartographer-error-bad_data": "Змест JSON — няслушны GeoJSON+simplestyle. Першая памылка праверкі на элеменце «$1»: «$2».",
 	"kartographer-error-latlon": "Павінны быць пададзены абодва параметры «latitude» і «longitude», або ні адзін з іх",
 	"kartographer-error-title": "Загаловак «$1» ­— не слушная старонка даных карты",
