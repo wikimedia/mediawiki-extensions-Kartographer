@@ -11,6 +11,7 @@ use Title;
 
 /**
  * @group Kartographer
+ * @group Database
  * @covers \Kartographer\Tag\LegacyTagHandler
  * @covers \Kartographer\Tag\LegacyMapFrame
  * @covers \Kartographer\Tag\LegacyMapLink
