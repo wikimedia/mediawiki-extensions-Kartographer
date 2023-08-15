@@ -13,7 +13,7 @@ var CloseFullScreenControl = require( './closefullscreen_control.js' ),
 
 /**
  * @constructor
- * @type {Kartographer.Dialog.DialogClass}
+ * @memberof Kartographer.Dialog.DialogClass
  */
 function MapDialog() {
 	// Parent method

@@ -9,7 +9,7 @@
  *
  * @class
  * @extends ve.dm.MWBlockExtensionNode
- * @mixins ve.dm.ResizableNode
+ * @mixes ve.dm.ResizableNode
  *
  * @constructor
  * @param {Object} [element] Reference to element in linear model

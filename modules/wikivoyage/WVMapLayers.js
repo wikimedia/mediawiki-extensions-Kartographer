@@ -9,6 +9,11 @@
 var wikivoyage = require( './wikivoyage.js' ),
 	ControlLayers = require( './ControlLayers.js' );
 
+/**
+ * @constructor
+ * @memberof Kartographer.Wikivoyage.WVMapLayers
+ * @param {L.Map} map
+ */
 function WVMapLayers( map ) {
 	this.map = map;
 	this.control = new ControlLayers();

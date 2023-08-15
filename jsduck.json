@@ -1,9 +1,0 @@
-{
-	"--title": "Kartographer extension for Mediawiki - Documentation",
-	"--warnings": [ "-nodoc(class,public)" ],
-	"--external": "HTMLElement,jQuery,jQuery.Promise,jQuery.Promise.then,L.Control,L.Control.Layers,L.Control.Scale,L.Control.Attribution,L.TileLayer,L.Map,L.mapbox.FeatureLayer,L.Layer,L.GeoJSON,L.LatLng,L.LatLngBounds,PruneCluster,PruneClusterForLeaflet,OO.ui.Dialog,OO.ui.ButtonWidget,OO.ui.DropdownWidget",
-	"--output": "docs",
-	"--": [
-		"modules/"
-	]
-}

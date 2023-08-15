@@ -2,7 +2,7 @@
 /**
  * # Control to open the map in a full screen dialog.
  *
- * See [L.Control](https://www.mapbox.com/mapbox.js/api/v2.3.0/l-control/)
+ * See [L.Control](https://www.mapbox.com/mapbox.js/api/v3.3.1/l-control/)
  * documentation for more details.
  *
  * @class Kartographer.Box.OpenFullScreenControl

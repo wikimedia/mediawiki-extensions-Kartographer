@@ -20,7 +20,7 @@
  * @param {string} [options.lang] Language code
  * @param {string} [options.fullScreenRoute] Route associated to this map
  *   _(internal, used by "`<maplink>`")_.
- * @member Kartographer.Linkbox.LinkClass
+ * @memberof Kartographer.Linkbox.LinkClass
  * @type {Kartographer.Linkbox.LinkClass}
  * @method
  */
@@ -77,7 +77,7 @@ function Link( options ) {
  * **Uses Resource Loader module: {@link Kartographer.Dialog ext.kartographer.dialog}**
  *
  * @param {Object} [position] Map `center` and `zoom`.
- * @member Kartographer.Linkbox.LinkClass
+ * @memberof Kartographer.Linkbox.LinkClass
  */
 Link.prototype.openFullScreen = function ( position ) {
 	var link = this,

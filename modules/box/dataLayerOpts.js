@@ -5,7 +5,7 @@
  * into your map. This module is the set of options passed to this method
  * when it is called.
  *
- * See [L.mapbox.featureLayer](https://www.mapbox.com/mapbox.js/api/v2.3.0/l-mapbox-featurelayer/)
+ * See [L.mapbox.featureLayer](https://www.mapbox.com/mapbox.js/api/v3.3.1/l-mapbox-featurelayer/)
  * documentation for the full list of options.
  *
  * @class Kartographer.Box.dataLayerOpts
