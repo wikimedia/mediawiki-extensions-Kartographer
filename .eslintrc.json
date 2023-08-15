@@ -15,11 +15,6 @@
 		"jsdoc/check-tag-names": "error",
 		"jsdoc/require-returns": "off",
 		"jsdoc/require-returns-check": "off",
-		"max-len": "off",
-		"mediawiki/class-doc": "warn",
-		"mediawiki/valid-package-file-require": "warn",
-		"prefer-regex-literals": "warn",
-		"no-shadow": "warn",
-		"no-loss-of-precision": "warn"
+		"max-len": "off"
 	}
 }
