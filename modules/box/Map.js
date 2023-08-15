@@ -7,7 +7,7 @@
  * methods have dependants outside of this codebase. Especially tools and gadgets around maps for
  * Wikimedia wikis. Be extra careful when changing these.
  *
- * @alternateClassName KartographerMap
+ * @borrows Kartographer.Box.MapClass as KartographerMap
  * @class Kartographer.Box.MapClass
  * @extends L.Map
  */

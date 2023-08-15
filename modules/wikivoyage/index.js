@@ -1,7 +1,7 @@
 /**
  * Wikivoyage customization.
  *
- * @alternateClassName ext.kartographer.wikivoyage
+ * @borrows Kartographer.Wikivoyage as ext.kartographer.wikivoyage
  * @class Kartographer.Wikivoyage
  * @singleton
  */

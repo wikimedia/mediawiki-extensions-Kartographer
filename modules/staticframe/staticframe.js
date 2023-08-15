@@ -4,7 +4,7 @@
  * Once the page is loaded and ready, turn all `<mapframe/>` tags into links
  * that open a full screen map.
  *
- * @alternateClassName ext.kartographer.staticframe
+ * @borrows Kartographer.StaticFrame as ext.kartographer.staticframe
  * @class Kartographer.StaticFrame
  * @singleton
  */

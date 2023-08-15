@@ -8,8 +8,8 @@
  * - [L.mapbox.config.HTTP_URL](https://www.mapbox.com/mapbox.js/api/v3.3.1/l-mapbox-config-http_url/)
  * - [L.mapbox.config.HTTPS_URL](https://www.mapbox.com/mapbox.js/api/v3.3.1/l-mapbox-config-https_url/)
  *
- * @alternateClassName Settings
- * @alternateClassName ext.kartographer.settings
+ * @borrows Kartographer.Settings as Settings
+ * @borrows Kartographer.Settings as ext.kartographer.settings
  * @class Kartographer.Settings
  * @singleton
  */

@@ -1,7 +1,7 @@
 /**
  * Utility methods.
  *
- * @alternateClassName wikivoyage
+ * @borrows Kartographer.Wikivoyage.wikivoyage as wikivoyage
  * @class Kartographer.Wikivoyage.wikivoyage
  * @singleton
  */

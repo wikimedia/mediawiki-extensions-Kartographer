@@ -4,8 +4,8 @@
  * Once the page is loaded and ready, turn all `<maplink/>` tags into a link
  * that opens the map in full screen mode.
  *
- * @alternateClassName Link
- * @alternateClassName ext.kartographer.link
+ * @borrows Kartograhper.Link as Link
+ * @borrows Kartograhper.Link as ext.kartographer.link
  * @class Kartographer.Link
  * @singleton
  */

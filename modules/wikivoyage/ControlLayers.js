@@ -5,7 +5,7 @@
  * See [L.Control.Layers](https://www.mapbox.com/mapbox.js/api/v3.3.1/l-control-layers/)
  * documentation for more details.
  *
- * @alternateClassName ControlLayers
+ * @borrows Kartographer.Wikivoyage.ControlLayers as ControlLayers
  * @class Kartographer.Wikivoyage.ControlLayers
  * @extends L.Control.Layers
  * @private

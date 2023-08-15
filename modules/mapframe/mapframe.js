@@ -4,8 +4,8 @@
  * Once the page is loaded and ready, turn all `<mapframe/>` tags into
  * interactive maps.
  *
- * @alternateClassName Frame
- * @alternateClassName ext.kartographer.frame
+ * @borrows Kartographer.Frame as Frame
+ * @borrows Kartographer.Frame as ext.kartographer.frame
  * @class Kartographer.Frame
  * @singleton
  */

@@ -2,7 +2,7 @@
  * Module to add {@link Kartographer.Wikivoyage.ControlLayers} control to the
  * map and add the tile layers and overlays.
  *
- * @alternateClassName WVMapLayers
+ * @borrows Kartograhper.Wikivoyage as WVMapLayers
  * @class Kartographer.Wikivoyage.WVMapLayers
  * @private
  */

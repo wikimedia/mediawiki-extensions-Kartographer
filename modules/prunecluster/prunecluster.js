@@ -5,8 +5,8 @@
  * See [PruneCluster](https://github.com/SINTEF-9012/PruneCluster)
  * documentation for more details about this plugin.
  *
- * @alternateClassName PruneCluster
- * @alternateClassName ext.kartographer.prunecluster
+ * @borrows Kartographer.PruneCluster as PruneCluster
+ * @borrows Kartographer.PruneCluster as ext.kartographer.prunecluster
  * @class Kartographer.PruneCluster
  * @singleton
  */

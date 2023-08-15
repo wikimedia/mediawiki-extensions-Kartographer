@@ -4,7 +4,7 @@
 		"wikimedia/client-es6",
 		"wikimedia/jquery",
 		"wikimedia/mediawiki",
-		"wikimedia/jsduck"
+		"wikimedia/jsdoc"
 	],
 	"globals": {
 		"L": "readonly",
@@ -12,6 +12,9 @@
 		"Set": "readonly"
 	},
 	"rules": {
+		"jsdoc/check-tag-names": "error",
+		"jsdoc/require-returns": "off",
+		"jsdoc/require-returns-check": "off",
 		"max-len": "off",
 		"mediawiki/class-doc": "warn",
 		"mediawiki/valid-package-file-require": "warn",

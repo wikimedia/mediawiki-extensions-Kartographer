@@ -1,7 +1,7 @@
 /**
  * Module to fetch nearby articles.
  *
- * @alternateClassName NearbyArticles
+ * @borrows Kartographer.Wikivoyage.NearbyArticles as NearbyArticles
  * @class Kartographer.Wikivoyage.NearbyArticles
  * @singleton
  */

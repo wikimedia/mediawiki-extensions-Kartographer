@@ -1,8 +1,8 @@
 /**
  * Module containing useful methods when editing a map.
  *
- * @alternateClassName Editing
- * @alternateClassName ext.kartographer.editing
+ * @borrows Kartographer.Editing as Editing
+ * @borrows Kartographer.Editing as ext.kartographer.editing
  * @class Kartographer.Editing
  * @singleton
  */

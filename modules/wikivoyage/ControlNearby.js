@@ -4,7 +4,7 @@
  * See [L.Control](https://www.mapbox.com/mapbox.js/api/v3.3.1/l-control/)
  * documentation for more details.
  *
- * @alternateClassName ControlNearby
+ * @borrows Kartographer.Wikivoyage.ControlNearby as ControlNearby
  * @class Kartographer.Wikivoyage.ControlNearby
  * @extends L.Control
  * @private

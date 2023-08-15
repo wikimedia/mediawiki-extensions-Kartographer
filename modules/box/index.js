@@ -1,7 +1,7 @@
 /**
  * **Resource Loader module: {@link Kartographer.Box ext.kartographer.box}**
  *
- * @alternateClassName ext.kartographer.box
+ * @borrows Kartographer.Box as ext.kartographer.box
  * @class Kartographer.Box
  * @singleton
  */

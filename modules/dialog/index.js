@@ -1,7 +1,7 @@
 /**
  * Module to help rendering maps in a full screen dialog.
  *
- * @alternateClassName ext.kartographer.dialog
+ * @borrows Kartographer.Dialog as ext.kartographer.dialog
  * @class Kartographer.Dialog
  * @singleton
  */
