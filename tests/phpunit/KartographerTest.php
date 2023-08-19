@@ -4,10 +4,10 @@ namespace Kartographer\Tests;
 use Kartographer\State;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use MediaWikiLangTestCase;
 use ParserOptions;
 use ParserOutput;
-use Title;
 
 /**
  * @group Kartographer

@@ -3,11 +3,11 @@
 namespace Kartographer\Tests;
 
 use Kartographer\SimpleStyleParser;
+use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use Parser;
 use ParserOptions;
 use StatusValue;
-use Title;
 
 /**
  * @covers \Kartographer\SimpleStyleParser

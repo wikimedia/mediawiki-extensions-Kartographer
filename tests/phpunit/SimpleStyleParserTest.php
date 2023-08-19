@@ -7,11 +7,11 @@ use Kartographer\SimpleStyleParser;
 use Kartographer\WikitextParser;
 use LogicException;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use Parser;
 use ParserOptions;
 use Status;
-use Title;
 
 /**
  * @covers \Kartographer\SimpleStyleParser
