@@ -10,8 +10,8 @@ use FlaggedRevsParserCache;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Title\Title;
 use ParserOptions;
-use Title;
 use WikitextContent;
 
 /**

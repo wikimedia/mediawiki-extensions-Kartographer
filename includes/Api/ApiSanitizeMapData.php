@@ -15,11 +15,11 @@ use ApiMain;
 use FormatJson;
 use Kartographer\MediaWikiWikitextParser;
 use Kartographer\SimpleStyleParser;
+use MediaWiki\Title\Title;
 use Parser;
 use ParserFactory;
 use ParserOptions;
 use Status;
-use Title;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
