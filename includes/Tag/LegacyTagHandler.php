@@ -20,12 +20,12 @@ use Kartographer\State;
 use Language;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use Message;
 use Parser;
 use PPFrame;
 use StatusValue;
 use stdClass;
-use Title;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 
 /**

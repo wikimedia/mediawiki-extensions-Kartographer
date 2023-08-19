@@ -6,6 +6,7 @@ if ( $IP === false ) {
 require_once "$IP/maintenance/Maintenance.php";
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 
 /**
  * Purges all pages that use <maplink> or <mapframe>, using the tracking category.
