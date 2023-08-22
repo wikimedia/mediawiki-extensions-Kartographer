@@ -5,7 +5,9 @@
 			"Айсар",
 			"Лилиә",
 			"Ләйсән",
-			"Янмурза Баки"
+			"Янмурза Баки",
+			"Amire80",
+			"З. ӘЙЛЕ"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Викимедиа карталары] | мәғлүмәттәр © [https://www.openstreetmap.org/copyright OpenStreetMap ҡатнашыусылары]",
@@ -41,9 +43,9 @@
 	"leafletdraw-edit-toolbar-actions-cancel-title": "Мөхәррирләүҙе алыу, бөтә үҙгәртеүҙәрҙе кире ала",
 	"leafletdraw-edit-toolbar-actions-save-text": "Һаҡларға",
 	"leafletdraw-edit-toolbar-actions-save-title": "Үҙгәрештәрҙе һаҡларға",
-	"leafletdraw-edit-toolbar-buttons-editdisabled": "Үҙгәртеүгә ҡатламдар юҡ",
-	"leafletdraw-edit-toolbar-buttons-remove": "Ҡатламдарҙы юйырға",
-	"leafletdraw-edit-toolbar-buttons-removedisabled": "Юйырға ҡатламдар юҡ",
+	"leafletdraw-edit-toolbar-buttons-editdisabled": "Мөхәррирләү өсөн объекттар юҡ",
+	"leafletdraw-edit-toolbar-buttons-remove": "Объекттарҙы юйырға",
+	"leafletdraw-edit-toolbar-buttons-removedisabled": "Юйырға объекттар юҡ",
 	"mapbox-control-zoomin-title": "Яҡынайтырға",
 	"mapbox-control-zoomout-title": "Йырағайтырға",
 	"kartographer-fullscreen-close": "Ябырға",
