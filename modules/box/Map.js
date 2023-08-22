@@ -207,7 +207,7 @@ const KartographerMap = L.Map.extend( {
 		 * @name $container
 		 * @property {jQuery} $container Reference to the map
 		 *   container.
-		 * @memberof Kartographer.Box.MapClass#
+		 * @memberof Kartographer.Box.MapClass
 		 * @protected
 		 */
 		this.$container = $( this._container );
@@ -221,7 +221,7 @@ const KartographerMap = L.Map.extend( {
 		 * @name parentMap
 		 * @property {Kartographer.Box.MapClass} [parentMap=null] Reference
 		 *   to the parent map.
-		 * @memberof Kartographer.Box.MapClass#
+		 * @memberof Kartographer.Box.MapClass
 		 * @protected
 		 */
 		this.parentMap = options.parentMap || null;
@@ -230,7 +230,7 @@ const KartographerMap = L.Map.extend( {
 		 * @name parentLink
 		 * @property {Kartographer.Linkbox.LinkClass} [parentLink=null] Reference
 		 *   to the parent link.
-		 * @memberof Kartographer.Box.MapClass#
+		 * @memberof Kartographer.Box.MapClass
 		 * @protected
 		 */
 		this.parentLink = options.parentLink || null;
@@ -238,7 +238,7 @@ const KartographerMap = L.Map.extend( {
 		/**
 		 * @name featureType
 		 * @property {string} The feature type identifier.
-		 * @memberof Kartographer.Box.MapClass#
+		 * @memberof Kartographer.Box.MapClass
 		 * @protected
 		 */
 		this.featureType = options.featureType;
@@ -247,7 +247,7 @@ const KartographerMap = L.Map.extend( {
 		 * @name fullScreenMap
 		 * @property {Kartographer.Box.MapClass} [fullScreenMap=null] Reference
 		 *   to the child full screen map.
-		 * @memberof Kartographer.Box.MapClass#
+		 * @memberof Kartographer.Box.MapClass
 		 * @protected
 		 */
 		this.fullScreenMap = null;
@@ -255,7 +255,7 @@ const KartographerMap = L.Map.extend( {
 		/**
 		 * @name useRouter
 		 * @property {boolean} useRouter Whether the map uses the Mediawiki Router.
-		 * @memberof Kartographer.Box.MapClass#
+		 * @memberof Kartographer.Box.MapClass
 		 * @protected
 		 */
 		this.useRouter = !!options.fullScreenRoute;
@@ -263,7 +263,7 @@ const KartographerMap = L.Map.extend( {
 		/**
 		 * @name fullScreenRoute
 		 * @property {string} [fullScreenRoute=null] Route associated to this map.
-		 * @memberof Kartographer.Box.MapClass#
+		 * @memberof Kartographer.Box.MapClass
 		 * @protected
 		 */
 		this.fullScreenRoute = options.fullScreenRoute || null;
@@ -271,7 +271,7 @@ const KartographerMap = L.Map.extend( {
 		/**
 		 * @name captionText
 		 * @property {string} [captionText=''] Caption associated to the map.
-		 * @memberof Kartographer.Box.MapClass#
+		 * @memberof Kartographer.Box.MapClass
 		 * @protected
 		 */
 		this.captionText = options.captionText || '';
@@ -280,14 +280,14 @@ const KartographerMap = L.Map.extend( {
 		 * @name lang
 		 * @property {string} lang Language code to use for labels
 		 * @type {string}
-		 * @memberof Kartographer.Box.MapClass#
+		 * @memberof Kartographer.Box.MapClass
 		 */
 		this.lang = options.lang || util.getDefaultLanguage();
 
 		/**
 		 * @name dataLayers
 		 * @property {L.mapbox.FeatureLayer[]} dataLayers References to the data layers.
-		 * @memberof Kartographer.Box.MapClass#
+		 * @memberof Kartographer.Box.MapClass
 		 * @protected
 		 */
 		this.dataLayers = [];
@@ -297,7 +297,7 @@ const KartographerMap = L.Map.extend( {
 		/**
 		 * @name layerUrl
 		 * @property {string} layerUrl Base URL for the tile layer
-		 * @memberof Kartographer.Box.MapClass#
+		 * @memberof Kartographer.Box.MapClass
 		 * @protected
 		 */
 		this.layerUrl = mapServer + ( style ? '/' + style : '' ) + urlFormat;
@@ -306,7 +306,7 @@ const KartographerMap = L.Map.extend( {
 		 * @name wikimediaLayer
 		 * @property {L.TileLayer} wikimediaLayer Reference to `Wikimedia`
 		 *   tile layer.
-		 * @memberof Kartographer.Box.MapClass#
+		 * @memberof Kartographer.Box.MapClass
 		 * @protected
 		 */
 		this.wikimediaLayer = L.tileLayer(
@@ -323,7 +323,7 @@ const KartographerMap = L.Map.extend( {
 		 * @name attributionControl
 		 * @property {L.Control.Attribution} attributionControl Reference
 		 *   to attribution control.
-		 * @memberof Kartographer.Box.MapClass#
+		 * @memberof Kartographer.Box.MapClass
 		 */
 		this.attributionControl.setPrefix( '' );
 
@@ -331,7 +331,7 @@ const KartographerMap = L.Map.extend( {
 		 * @name scaleControl
 		 * @property {Kartographer.Box.ScaleControl} scaleControl Reference
 		 *   to scale control.
-		 * @memberof Kartographer.Box.MapClass#
+		 * @memberof Kartographer.Box.MapClass
 		 */
 		this.scaleControl = new ScaleControl( { position: 'bottomright' } ).addTo( this );
 
@@ -345,7 +345,7 @@ const KartographerMap = L.Map.extend( {
 			 * @name openFullScreenControl
 			 * @property {Kartographer.Box.OpenFullScreenControl|undefined} [openFullScreenControl=undefined]
 			 * Reference to open full screen control.
-			 * @memberof Kartographer.Box.MapClass#
+			 * @memberof Kartographer.Box.MapClass
 			 */
 			this.openFullScreenControl = new OpenFullScreenControl( { position: 'topright' } ).addTo( this );
 		}
