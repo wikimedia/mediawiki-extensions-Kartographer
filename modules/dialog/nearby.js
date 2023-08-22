@@ -1,4 +1,4 @@
-/** @type {Object.<string,Object|undefined>} */
+/** @type {Object.<string, {source: string, width: number|undefined, height: number|undefined}|undefined>} */
 const thumbnailCache = {};
 
 /**
