@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Aefgh39622",
-			"Patsagorn Y."
+			"Patsagorn Y.",
+			"RidJasper"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use แผนที่วิกิมีเดีย] | ข้อมูลแผนที่ทั้งหมด © โดย[https://www.openstreetmap.org/copyright ผู้มีส่วนร่วมใน OpenStreetMap]",
@@ -49,7 +50,7 @@
 	"visualeditor-mwmapsdialog-area": "พื้นที่แผนที่",
 	"visualeditor-mwmapsdialog-content": "เนืัอหาแผนที่",
 	"visualeditor-mwmapsdialog-options": "ตัวเลือก",
-	"visualeditor-mwmapsdialog-display": "การจัดแนว",
+	"visualeditor-mwmapsdialog-display": "การแสดงผล",
 	"visualeditor-mwmapsdialog-language": "ภาษา",
 	"visualeditor-mwmapsdialog-position-lat": "ละติจูด",
 	"visualeditor-mwmapsdialog-position-lon": "ลองจิจูด",
