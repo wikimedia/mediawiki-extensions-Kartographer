@@ -121,9 +121,7 @@ MapDialog.prototype.setupFooter = function () {
 	const $buttonContainer = $( '<div>' ).addClass( 'mw-kartographer-buttonfoot' );
 
 	// Add nearby button
-	if ( mw.config.get( 'wgKartographerNearby' ) &&
-		( !OO.ui.isMobile() || mw.config.get( 'wgKartographerNearbyOnMobile' ) )
-	) {
+	if ( mw.config.get( 'wgKartographerNearby' ) ) {
 		dialog.mapNearbyButton = new OO.ui.ToggleButtonWidget( {
 			label: mw.msg( 'kartographer-sidebar-nearbybutton' )
 		} );
@@ -183,14 +181,10 @@ MapDialog.prototype.toggleSideBar = function ( open ) {
 
 /**
  * @param {boolean} showNearby
- */
+*/
 MapDialog.prototype.toggleNearbyLayerWrapper = function ( showNearby ) {
-	if ( mw.config.get( 'wgKartographerNearbyClustering' ) ) {
-		mw.loader.using( 'ext.kartographer.lib.leaflet.markercluster' )
-			.then( this.toggleNearbyLayer.bind( this, showNearby, true ) );
-	} else {
-		this.toggleNearbyLayer( showNearby );
-	}
+	mw.loader.using( 'ext.kartographer.lib.leaflet.markercluster' )
+		.then( this.toggleNearbyLayer.bind( this, showNearby, true ) );
 };
 
 /**
