@@ -49,7 +49,7 @@ class MapFrameAttributeGeneratorTest extends MediaWikiUnitTestCase {
 			'href' => null,
 		], $attrs );
 
-		$imgAttrs = $generator->prepareImgAttrs( false, 'X', 9 );
+		$imgAttrs = $generator->prepareImgAttrs( true, 'X', 9 );
 		$this->assertSame( [
 			'src' => '/img/custom,12,a,a,800x300.png?lang=local&domain=localhost&title=X&revid=9&groups=hotels',
 			'width' => 800,
