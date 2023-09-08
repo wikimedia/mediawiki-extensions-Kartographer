@@ -123,19 +123,20 @@ class MapFrameAttributeGenerator {
 	}
 
 	/**
-	 * @param bool $isPreview
+	 * @param bool $serverMayRenderOverlays If the map server should attempt to render GeoJSON
+	 *  overlays via their group id
 	 * @param string $pagetitle
 	 * @param ?int $revisionId
 	 * @return array
 	 */
-	public function prepareImgAttrs( bool $isPreview, string $pagetitle, ?int $revisionId ): array {
+	public function prepareImgAttrs( bool $serverMayRenderOverlays, string $pagetitle, ?int $revisionId ): array {
 		$mapServer = $this->config->get( 'KartographerMapServer' );
 		$staticWidth = $this->args->width === 'full' ? 800 : (int)$this->args->width;
 
 		$imgUrlParams = [
 			'lang' => $this->args->resolvedLangCode,
 		];
-		if ( $this->args->showGroups && !$isPreview ) {
+		if ( $this->args->showGroups && $serverMayRenderOverlays ) {
 			// Groups are not available to the static map renderer
 			// before the page was saved, can only be applied via JS
 			$imgUrlParams += self::getUrlAttrs( $this->config, $pagetitle, $revisionId, $this->args->showGroups );

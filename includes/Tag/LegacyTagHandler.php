@@ -123,7 +123,7 @@ abstract class LegacyTagHandler {
 
 		$this->saveData();
 
-		$result = $this->render( new PartialWikitextParser( $parser, $frame ), $isPreview );
+		$result = $this->render( new PartialWikitextParser( $parser, $frame ), !$isPreview );
 
 		State::setState( $parserOutput, $this->state );
 		return $result;
@@ -131,11 +131,13 @@ abstract class LegacyTagHandler {
 
 	/**
 	 * When overridden in a descendant class, returns tag HTML
+	 *
 	 * @param PartialWikitextParser $parser
-	 * @param bool $isPreview
+	 * @param bool $serverMayRenderOverlays If the map server should attempt to render GeoJSON
+	 *  overlays via their group id
 	 * @return string
 	 */
-	abstract protected function render( PartialWikitextParser $parser, bool $isPreview ): string;
+	abstract protected function render( PartialWikitextParser $parser, bool $serverMayRenderOverlays ): string;
 
 	private function saveData(): void {
 		$this->state->addRequestedGroups( $this->args->showGroups );
@@ -170,15 +172,16 @@ abstract class LegacyTagHandler {
 
 	/**
 	 * Handles the last step of parse process
+	 *
 	 * @param State $state
 	 * @param ContentMetadataCollector $parserOutput
-	 * @param bool $isPreview
+	 * @param bool $outputAllLiveData
 	 * @param ParserFunctionTracker $tracker
 	 */
 	public static function finalParseStep(
 		State $state,
 		ContentMetadataCollector $parserOutput,
-		bool $isPreview,
+		bool $outputAllLiveData,
 		ParserFunctionTracker $tracker
 	): void {
 		foreach ( $state->getUsages() as $key => $count ) {
@@ -194,7 +197,7 @@ abstract class LegacyTagHandler {
 
 		// https://phabricator.wikimedia.org/T145615 - include all data in previews
 		$data = $state->getData();
-		if ( $data && $isPreview ) {
+		if ( $data && $outputAllLiveData ) {
 			$parserOutput->setJsConfigVar( 'wgKartographerLiveData', $data );
 		} else {
 			$interact = $state->getInteractiveGroups();

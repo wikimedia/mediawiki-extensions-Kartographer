@@ -32,12 +32,12 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 		// Should be fixed, especially considering VE in page editing etc...
 		$staticMode = $this->config->get( 'KartographerStaticMapframe' );
 
-		$isPreview = $extApi->isPreview();
-		if ( $staticMode && $isPreview ) {
-			$extApi->getMetadata()->setJsConfigVar( 'wgKartographerStaticMapframePreview', true );
+		$serverMayRenderOverlays = !$extApi->isPreview();
+		if ( $staticMode && !$serverMayRenderOverlays ) {
+			$extApi->getMetadata()->setJsConfigVar( 'wgKartographerStaticMapframePreview', 1 );
 		}
 
-		$extApi->getMetadata()->addModules( [ $staticMode && !$isPreview
+		$extApi->getMetadata()->addModules( [ $staticMode && $serverMayRenderOverlays
 			? 'ext.kartographer.staticframe'
 			: 'ext.kartographer.frame' ] );
 
@@ -46,7 +46,7 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 
 		$pageTitle = $extApi->getPageConfig()->getTitle();
 		$revisionId = $extApi->getPageConfig()->getRevisionId();
-		$imgAttrs = $gen->prepareImgAttrs( $isPreview, $pageTitle, $revisionId );
+		$imgAttrs = $gen->prepareImgAttrs( $serverMayRenderOverlays, $pageTitle, $revisionId );
 
 		$doc = $extApi->getTopLevelDoc();
 		$dom = $doc->createDocumentFragment();
@@ -57,7 +57,7 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 		ParsoidUtils::createLangAttribute( $thumbnail, 'alt', 'kartographer-static-mapframe-alt', [], $extApi,
 			null );
 
-		if ( $isPreview ) {
+		if ( !$serverMayRenderOverlays ) {
 			$noscript = $doc->createElement( 'noscript' );
 			$noscript->appendChild( $thumbnail );
 			$thumbnail = $noscript;

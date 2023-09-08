@@ -18,7 +18,7 @@ class LegacyMapLink extends LegacyTagHandler {
 	/**
 	 * @inheritDoc
 	 */
-	protected function render( PartialWikitextParser $parser, bool $isPreview ): string {
+	protected function render( PartialWikitextParser $parser, bool $serverMayRenderOverlays ): string {
 		$this->getOutput()->addModules( [ 'ext.kartographer.link' ] );
 
 		$gen = new MapLinkAttributeGenerator( $this->args, $this->config, $this->markerProperties );

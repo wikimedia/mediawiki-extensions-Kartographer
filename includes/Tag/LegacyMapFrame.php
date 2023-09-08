@@ -17,15 +17,15 @@ class LegacyMapFrame extends LegacyTagHandler {
 	/**
 	 * @inheritDoc
 	 */
-	protected function render( PartialWikitextParser $parser, bool $isPreview ): string {
+	protected function render( PartialWikitextParser $parser, bool $serverMayRenderOverlays ): string {
 		// TODO if fullwidth, we really should use interactive mode..
 		// BUT not possible to use both modes at the same time right now. T248023
 		// Should be fixed, especially considering VE in page editing etc...
 		$staticMode = $this->config->get( 'KartographerStaticMapframe' );
-		if ( $staticMode && $isPreview ) {
-			$this->getOutput()->setJsConfigVar( 'wgKartographerStaticMapframePreview', true );
+		if ( $staticMode && !$serverMayRenderOverlays ) {
+			$this->getOutput()->setJsConfigVar( 'wgKartographerStaticMapframePreview', 1 );
 		}
-		$this->getOutput()->addModules( [ $staticMode && !$isPreview
+		$this->getOutput()->addModules( [ $staticMode && $serverMayRenderOverlays
 			? 'ext.kartographer.staticframe'
 			: 'ext.kartographer.frame' ] );
 
@@ -40,11 +40,11 @@ class LegacyMapFrame extends LegacyTagHandler {
 		$pageTitle = $page ?
 			MediaWikiServices::getInstance()->getTitleFormatter()->getPrefixedText( $page ) : '';
 		$revisionId = $this->parser->getRevisionId();
-		$imgAttrs = $gen->prepareImgAttrs( $isPreview, $pageTitle, $revisionId );
+		$imgAttrs = $gen->prepareImgAttrs( $serverMayRenderOverlays, $pageTitle, $revisionId );
 		$imgAttrs['alt'] = wfMessage( 'kartographer-static-mapframe-alt' )->text();
 
 		$thumbnail = Html::element( 'img', $imgAttrs );
-		if ( $isPreview ) {
+		if ( !$serverMayRenderOverlays ) {
 			$thumbnail = Html::rawElement( 'noscript', [], $thumbnail );
 			if ( $this->args->usesAutoPosition() ) {
 				// Impossible to render .png thumbnails that depend on unsaved ExternalData. Preview
