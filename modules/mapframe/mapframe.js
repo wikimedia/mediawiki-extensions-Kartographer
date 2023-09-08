@@ -82,8 +82,7 @@ function initMapBox( data, $container ) {
 		alwaysStatic: mw.config.get( 'wgKartographerStaticMapframePreview' )
 	} );
 
-	$container.removeAttr( 'href' );
-	$container.find( 'img' ).remove();
+	$container.removeAttr( 'href' ).remove( 'img' );
 
 	maps[ index ] = map;
 
