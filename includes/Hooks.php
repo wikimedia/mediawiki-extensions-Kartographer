@@ -56,9 +56,7 @@ class Hooks implements
 		}
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function onParserTestGlobals( &$globals ) {
 		$globals['wgKartographerMapServer'] = 'https://maps.wikimedia.org';
 	}

@@ -24,7 +24,6 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryMapData extends ApiQueryBase {
 
-	/** @var WikiPageFactory */
 	private WikiPageFactory $pageFactory;
 
 	/**
@@ -39,9 +38,7 @@ class ApiQueryMapData extends ApiQueryBase {
 		$this->pageFactory = $pageFactory;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$limit = $params['limit'];
@@ -139,9 +136,7 @@ class ApiQueryMapData extends ApiQueryBase {
 		}
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'groups' => [
@@ -162,9 +157,7 @@ class ApiQueryMapData extends ApiQueryBase {
 		];
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function getExamplesMessages() {
 		return [
 			'action=query&prop=mapdata&titles=Metallica' => 'apihelp-query+mapdata-example-1',
@@ -173,16 +166,12 @@ class ApiQueryMapData extends ApiQueryBase {
 		];
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function getCacheMode( $params ) {
 		return 'public';
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function isInternal() {
 		return true;
 	}

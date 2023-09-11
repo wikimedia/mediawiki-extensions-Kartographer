@@ -12,11 +12,9 @@ use StatusValue;
  */
 class Tag {
 
-	/** @var string */
 	public string $name;
 	/** @var string[] */
 	private array $args;
-	/** @var StatusValue */
 	private StatusValue $status;
 
 	/**

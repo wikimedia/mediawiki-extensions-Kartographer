@@ -22,24 +22,14 @@ use Wikimedia\Parsoid\Utils\DOMCompat;
 class ParsoidTagHandler extends ExtensionTagHandler {
 	public const TAG = '';
 
-	/** @var MapTagArgumentValidator */
 	protected MapTagArgumentValidator $args;
-	/** @var ?string */
 	protected ?string $counter = null;
-	/** @var ?stdClass */
 	protected ?stdClass $markerProperties = null;
-	/** @var Config */
 	protected Config $config;
 	/** @var stdClass[] */
 	protected array $geometries = [];
 
-	/**
-	 * @param ParsoidExtensionAPI $extApi
-	 * @param string $input
-	 * @param array $extArgs
-	 * @return void
-	 */
-	protected function parseTag( ParsoidExtensionAPI $extApi, string $input, array $extArgs ) {
+	protected function parseTag( ParsoidExtensionAPI $extApi, string $input, array $extArgs ): void {
 		$this->config = MediaWikiServices::getInstance()->getMainConfig();
 		$args = [];
 		foreach ( $extArgs as $extArg ) {

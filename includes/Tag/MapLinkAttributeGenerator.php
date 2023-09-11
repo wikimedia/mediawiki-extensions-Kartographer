@@ -11,18 +11,11 @@ use stdClass;
  * @license MIT
  */
 class MapLinkAttributeGenerator {
-	/** @var MapTagArgumentValidator */
+
 	private MapTagArgumentValidator $args;
-	/** @var Config */
 	private Config $config;
-	/** @var ?stdClass */
 	private ?stdClass $markerProperties;
 
-	/**
-	 * @param MapTagArgumentValidator $args
-	 * @param Config $config
-	 * @param ?stdClass $markerProperties
-	 */
 	public function __construct( MapTagArgumentValidator $args, Config $config, ?stdClass $markerProperties ) {
 		$this->args = $args;
 		$this->config = $config;

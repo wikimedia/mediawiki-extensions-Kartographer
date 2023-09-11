@@ -26,9 +26,7 @@ class SpecialMap extends UnlistedSpecialPage {
 		parent::__construct( $name );
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$output = $this->getOutput();

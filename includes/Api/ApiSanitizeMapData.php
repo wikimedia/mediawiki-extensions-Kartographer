@@ -30,7 +30,6 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiSanitizeMapData extends ApiBase {
 
-	/** @var ParserFactory */
 	private ParserFactory $parserFactory;
 
 	/**
@@ -47,9 +46,7 @@ class ApiSanitizeMapData extends ApiBase {
 		$this->parserFactory = $parserFactory;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function execute() {
 		$params = $this->extractRequestParams();
 
@@ -92,9 +89,7 @@ class ApiSanitizeMapData extends ApiBase {
 		}
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function getAllowedParams() {
 		return [
 			'title' => [
@@ -108,16 +103,12 @@ class ApiSanitizeMapData extends ApiBase {
 		];
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function mustBePosted() {
 		return true;
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	protected function getExamplesMessages() {
 		return [
 			'action=sanitize-mapdata&text={"foo":"bar"}' => 'apihelp-sanitize-mapdata-example',

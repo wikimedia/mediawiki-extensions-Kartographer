@@ -17,13 +17,8 @@ class CoordFormatter {
 	private array $lat;
 	/** @var int[] */
 	private array $lon;
-	/** @var string */
 	private string $msgKey;
 
-	/**
-	 * @param float|null $lat
-	 * @param float|null $lon
-	 */
 	public function __construct( ?float $lat, ?float $lon ) {
 		[ $plusMinusLat, $this->lat ] = $this->convertCoord( $lat );
 		[ $plusMinusLon, $this->lon ] = $this->convertCoord( $lon );

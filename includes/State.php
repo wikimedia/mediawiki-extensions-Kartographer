@@ -76,16 +76,10 @@ class State implements JsonSerializable {
 		$output->setExtensionData( self::DATA_KEY, $state->jsonSerialize() );
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function hasValidTags(): bool {
 		return ( array_sum( $this->usages ) - $this->broken ) > 0;
 	}
 
-	/**
-	 * @return bool
-	 */
 	public function hasBrokenTags(): bool {
 		return $this->broken > 0;
 	}
@@ -94,9 +88,6 @@ class State implements JsonSerializable {
 		$this->broken++;
 	}
 
-	/**
-	 * @param string $tag
-	 */
 	public function incrementUsage( string $tag ): void {
 		if ( !str_starts_with( $tag, 'map' ) ) {
 			throw new UnexpectedValueException( 'Unsupported tag name' );

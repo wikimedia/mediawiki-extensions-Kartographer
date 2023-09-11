@@ -18,9 +18,7 @@ use MediaWiki\ResourceLoader\ResourceLoader;
  */
 class DataModule extends RL\Module {
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function getScript( RL\Context $context ) {
 		$config = $this->getConfig();
 		return ResourceLoader::makeConfigSetScript( [
@@ -38,18 +36,12 @@ class DataModule extends RL\Module {
 		] );
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function enableModuleContentVersion() {
 		return true;
 	}
 
-	/**
-	 * @see RL\Module::supportsURLLoading
-	 *
-	 * @return bool
-	 */
+	/** @inheritDoc */
 	public function supportsURLLoading() {
 		// always use getScript() to acquire JavaScript (even in debug mode)
 		return false;

@@ -13,10 +13,6 @@ abstract class WikitextParser {
 	 */
 	abstract public function parseWikitext( string $wikiText ): string;
 
-	/**
-	 * @param string $wikiText
-	 * @return bool
-	 */
 	protected function needsParsing( string $wikiText ): bool {
 		// Skip expensive parser calls when there is no wikitext syntax to parse. This is not
 		// uncommon in this context. wfEscapeWikiText() is ~400 times faster than the core parser,

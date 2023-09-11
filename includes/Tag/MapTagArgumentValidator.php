@@ -15,20 +15,13 @@ use StatusValue;
  */
 class MapTagArgumentValidator {
 
-	/** @var StatusValue */
 	public StatusValue $status;
-	/** @var Tag */
 	private Tag $args;
-	/** @var Config */
 	private Config $config;
-	/** @var Language */
 	private Language $language;
-	/** @var LanguageNameUtils|null */
 	private ?LanguageNameUtils $languageNameUtils;
 
-	/** @var float|null */
 	public ?float $lat;
-	/** @var float|null */
 	public ?float $lon;
 	/** @var int|null Typically a number from 0 to 19 */
 	public ?int $zoom;
@@ -36,19 +29,13 @@ class MapTagArgumentValidator {
 	public string $mapStyle;
 	/** @var string|null Number of pixels (without a unit) or "full" */
 	public ?string $width = null;
-	/** @var int|null */
 	public ?int $height;
 	/** @var string One of "left", "center", "right", or "none" */
 	public string $align;
-	/** @var bool */
 	public bool $frameless;
-	/** @var string */
 	public string $cssClass;
-	/** @var string|null */
 	public ?string $specifiedLangCode;
-	/** @var string */
 	public string $resolvedLangCode;
-	/** @var string|null */
 	public ?string $text;
 
 	/**

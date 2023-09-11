@@ -14,9 +14,7 @@ use MediaWiki\MediaWikiServices;
 class LegacyMapFrame extends LegacyTagHandler {
 	public const TAG = 'mapframe';
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	protected function render( PartialWikitextParser $parser, bool $serverMayRenderOverlays ): string {
 		// TODO if fullwidth, we really should use interactive mode..
 		// BUT not possible to use both modes at the same time right now. T248023

@@ -10,12 +10,8 @@ use Parser;
  */
 class ParserFunctionTracker {
 
-	/** @var Parser */
 	private Parser $parser;
 
-	/**
-	 * @param Parser $parser
-	 */
 	public function __construct( Parser $parser ) {
 		$this->parser = $parser;
 	}

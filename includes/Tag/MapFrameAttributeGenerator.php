@@ -25,17 +25,10 @@ class MapFrameAttributeGenerator {
 		'none' => 'tnone',
 	];
 
-	/** @var MapTagArgumentValidator */
 	private MapTagArgumentValidator $args;
-	/** @var Config */
 	private Config $config;
-	/** @var string */
 	public string $cssWidth;
 
-	/**
-	 * @param MapTagArgumentValidator $args
-	 * @param Config $config
-	 */
 	public function __construct( MapTagArgumentValidator $args, Config $config ) {
 		$this->args = $args;
 		$this->config = $config;
@@ -68,9 +61,6 @@ class MapFrameAttributeGenerator {
 		];
 	}
 
-	/**
-	 * @return array
-	 */
 	public function prepareAttrs(): array {
 		$attrs = [
 			'class' => 'mw-kartographer-map',

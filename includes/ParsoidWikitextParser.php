@@ -8,12 +8,9 @@ use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
  * @license MIT
  */
 class ParsoidWikitextParser extends WikitextParser {
-	/** @var ParsoidExtensionAPI */
+
 	private ParsoidExtensionAPI $extApi;
 
-	/**
-	 * @param ParsoidExtensionAPI $extApi
-	 */
 	public function __construct( ParsoidExtensionAPI $extApi ) {
 		$this->extApi = $extApi;
 	}

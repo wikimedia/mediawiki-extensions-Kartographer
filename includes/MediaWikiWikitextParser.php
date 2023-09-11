@@ -10,16 +10,9 @@ use PPFrame;
  */
 class MediaWikiWikitextParser extends WikitextParser {
 
-	/** @var Parser */
 	private Parser $parser;
-
-	/** @var PPFrame|null */
 	private ?PPFrame $frame;
 
-	/**
-	 * @param Parser $parser
-	 * @param PPFrame|null $frame
-	 */
 	public function __construct( Parser $parser, PPFrame $frame = null ) {
 		$this->parser = $parser;
 		$this->frame = $frame;

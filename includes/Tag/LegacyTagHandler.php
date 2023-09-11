@@ -43,19 +43,12 @@ abstract class LegacyTagHandler {
 
 	/** @var stdClass[] */
 	private array $geometries = [];
-	/** @var MapTagArgumentValidator */
 	protected MapTagArgumentValidator $args;
-	/** @var string|null */
 	protected ?string $counter = null;
-	/** @var Config */
 	protected Config $config;
-	/** @var Parser */
 	protected Parser $parser;
-	/** @var Language */
 	private Language $targetLanguage;
-	/** @var State */
 	protected State $state;
-	/** @var stdClass|null */
 	protected ?stdClass $markerProperties = null;
 
 	/**
@@ -271,9 +264,6 @@ abstract class LegacyTagHandler {
 		] ], $log );
 	}
 
-	/**
-	 * @return Language
-	 */
 	private function getLanguage(): Language {
 		// Log if the user language is different from the page language (T311592)
 		$page = $this->parser->getPage();
@@ -289,16 +279,10 @@ abstract class LegacyTagHandler {
 		return $this->targetLanguage;
 	}
 
-	/**
-	 * @return string
-	 */
 	protected function getLanguageCode(): string {
 		return $this->getLanguage()->getCode();
 	}
 
-	/**
-	 * @return ContentMetadataCollector
-	 */
 	protected function getOutput(): ContentMetadataCollector {
 		return $this->parser->getOutput();
 	}

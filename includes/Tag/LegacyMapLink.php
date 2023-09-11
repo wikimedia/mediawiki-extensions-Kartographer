@@ -15,9 +15,7 @@ class LegacyMapLink extends LegacyTagHandler {
 
 	public const TAG = 'maplink';
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	protected function render( PartialWikitextParser $parser, bool $serverMayRenderOverlays ): string {
 		$this->getOutput()->addModules( [ 'ext.kartographer.link' ] );
 

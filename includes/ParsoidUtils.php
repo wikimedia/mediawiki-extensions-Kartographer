@@ -53,11 +53,6 @@ class ParsoidUtils {
 		}
 	}
 
-	/**
-	 * @param array $attrs
-	 * @param Element $node
-	 * @return void
-	 */
 	public static function addAttributesToNode( array $attrs, Element $node ): void {
 		foreach ( $attrs as $k => $v ) {
 			if ( $v === null ) {

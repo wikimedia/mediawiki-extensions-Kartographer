@@ -23,20 +23,10 @@ class SimpleStyleParser {
 
 	public const WIKITEXT_PROPERTIES = [ 'title', 'description' ];
 
-	/** @var WikitextParser */
 	private WikitextParser $parser;
-
-	/** @var array */
 	private array $options;
-
-	/** @var string */
 	private string $mapServer;
 
-	/**
-	 * @param Parser $parser
-	 * @param PPFrame|null $frame
-	 * @return self
-	 */
 	public static function newFromParser( Parser $parser, PPFrame $frame = null ): self {
 		return new self( new MediaWikiWikitextParser( $parser, $frame ) );
 	}

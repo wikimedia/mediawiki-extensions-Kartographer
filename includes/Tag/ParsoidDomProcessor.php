@@ -21,9 +21,7 @@ use Wikimedia\Parsoid\Utils\DOMTraverser;
  */
 class ParsoidDomProcessor extends DOMProcessor {
 
-	/**
-	 * @inheritDoc
-	 */
+	/** @inheritDoc */
 	public function wtPostprocess( ParsoidExtensionAPI $extApi, Node $root, array $options ): void {
 		if ( !( $root instanceof Element ) ) {
 			return;
@@ -83,13 +81,7 @@ class ParsoidDomProcessor extends DOMProcessor {
 		$extApi->getMetadata()->setJsConfigVar( 'wgKartographerLiveData', $state['data'] ?? [] );
 	}
 
-	/**
-	 * @param Element $kartnode
-	 * @param ParsoidExtensionAPI $extApi
-	 * @param array &$state
-	 * @return void
-	 */
-	private function processKartographerNode( Element $kartnode, ParsoidExtensionAPI $extApi, array &$state ) {
+	private function processKartographerNode( Element $kartnode, ParsoidExtensionAPI $extApi, array &$state ): void {
 		$tagName = $kartnode->getAttribute( 'data-mw-kartographer' ) ?? '';
 		if ( $tagName !== '' ) {
 			$state[$tagName . 's' ]++;
@@ -160,13 +152,7 @@ class ParsoidDomProcessor extends DOMProcessor {
 		}
 	}
 
-	/**
-	 * @param Element $firstChild
-	 * @param string $groupId
-	 * @param ParsoidExtensionAPI $extApi
-	 * @return void
-	 */
-	private function updateSrc( Element $firstChild, string $groupId, ParsoidExtensionAPI $extApi ) {
+	private function updateSrc( Element $firstChild, string $groupId, ParsoidExtensionAPI $extApi ): void {
 		$src = $firstChild->getAttribute( 'src' ) ?? '';
 		if ( $src !== '' ) {
 			$src = $this->updateUrl( $src, $extApi, $groupId );
@@ -174,13 +160,7 @@ class ParsoidDomProcessor extends DOMProcessor {
 		}
 	}
 
-	/**
-	 * @param Element $firstChild
-	 * @param string $groupId
-	 * @param ParsoidExtensionAPI $extApi
-	 * @return void
-	 */
-	private function updateSrcSet( Element $firstChild, string $groupId, ParsoidExtensionAPI $extApi ) {
+	private function updateSrcSet( Element $firstChild, string $groupId, ParsoidExtensionAPI $extApi ): void {
 		$srcset = $firstChild->getAttribute( 'srcset' ) ?? '';
 		if ( $srcset !== '' ) {
 			$arr = explode( ', ', $srcset );
@@ -194,12 +174,6 @@ class ParsoidDomProcessor extends DOMProcessor {
 		}
 	}
 
-	/**
-	 * @param string $src
-	 * @param ParsoidExtensionAPI $extApi
-	 * @param string $groupId
-	 * @return string
-	 */
 	private function updateUrl( string $src, ParsoidExtensionAPI $extApi, string $groupId ): string {
 		$url = explode( '?', $src );
 		$attrs = wfCgiToArray( $url[1] );
