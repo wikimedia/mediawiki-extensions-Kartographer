@@ -31,10 +31,23 @@ class ParsoidMapLink extends ParsoidTagHandler {
 			return $this->reportErrors( $extApi, self::TAG );
 		}
 
+		$gen = new MapLinkAttributeGenerator( $this->args, $this->config, $this->markerProperties );
+		$attrs = $gen->prepareAttrs();
+
 		$text = $this->args->text;
 		if ( $text === null ) {
-			$text = $this->counter ?: ( new CoordFormatter( $this->args->lat, $this->args->lon ) )
-				->formatParsoidSpan( $extApi, null );
+			$text = $this->counter;
+			if ( $text === null ) {
+				$formatter = new CoordFormatter( $this->args->lat, $this->args->lon );
+				// TODO: for now, we're using the old wfMessage method with English hardcoded. This should not
+				// stay that way.
+				// When l10n is added to Parsoid, replace this line with
+				// ( new CoordFormatter( $this->args->lat, $this->args->lon ) )->formatParsoidSpan( $extApi, null );
+				$text = $formatter->format( 'en' );
+				if ( !$this->args->hasCoordinates() ) {
+					$attrs['class'][] = 'error';
+				}
+			}
 		} elseif ( $text !== '' ) {
 			$text = $extApi->wikitextToDOM( $text, [
 				'parseOpts' => [
@@ -49,8 +62,6 @@ class ParsoidMapLink extends ParsoidTagHandler {
 
 		$dom = $doc->createDocumentFragment();
 		$a = $doc->createElement( 'a' );
-		$gen = new MapLinkAttributeGenerator( $this->args, $this->config, $this->markerProperties );
-		$attrs = $gen->prepareAttrs();
 		if ( $this->args->groupId === null && $this->geometries ) {
 			$groupId = '_' . sha1( FormatJson::encode( $this->geometries, false,
 					FormatJson::ALL_OK ) );
