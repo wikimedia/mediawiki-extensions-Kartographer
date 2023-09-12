@@ -9,5 +9,7 @@
 	"leafletdraw-edit-toolbar-actions-cancel-text": "Жокко чыгаруу",
 	"leafletdraw-edit-toolbar-actions-save-text": "Сактоо",
 	"kartographer-fullscreen-close": "Жабуу",
-	"visualeditor-mwmapsdialog-language": "Тил"
+	"visualeditor-mwmapsdialog-language": "Тил",
+	"visualeditor-mwmapsdialog-title": "Карта",
+	"visualeditor-mwmapscontextitem-title": "Карта"
 }
