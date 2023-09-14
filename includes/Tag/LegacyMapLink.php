@@ -31,7 +31,7 @@ class LegacyMapLink extends LegacyTagHandler {
 			if ( $text === null ) {
 				$formatter = new CoordFormatter( $this->args->lat, $this->args->lon );
 				$text = $formatter->format( $this->getLanguageCode() );
-				if ( $this->args->lat === null || $this->args->lon === null ) {
+				if ( !$this->args->hasCoordinates() ) {
 					$attrs['class'][] = 'error';
 				}
 			}

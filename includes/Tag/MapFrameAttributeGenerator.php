@@ -94,7 +94,7 @@ class MapFrameAttributeGenerator {
 			$attrs['data-zoom'] = $this->args->zoom;
 		}
 
-		if ( $this->args->lat !== null && $this->args->lon !== null ) {
+		if ( $this->args->hasCoordinates() ) {
 			$attrs['data-lat'] = $this->args->lat;
 			$attrs['data-lon'] = $this->args->lon;
 		}

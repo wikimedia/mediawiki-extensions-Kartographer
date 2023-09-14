@@ -166,10 +166,18 @@ class MapTagArgumentValidator {
 	}
 
 	/**
-	 * @return bool
+	 * @return bool If a complete pair of coordinates is given, e.g. to render a <maplink> label
+	 */
+	public function hasCoordinates(): bool {
+		return $this->lat !== null && $this->lon !== null;
+	}
+
+	/**
+	 * @return bool If the map relies on Kartotherian's auto-position feature (extracting a bounding
+	 *  box from the GeoJSON) instead of the arguments alone (coordinates and zoom)
 	 */
 	public function usesAutoPosition(): bool {
-		return $this->zoom === null || $this->lat === null || $this->lon === null;
+		return $this->zoom === null || !$this->hasCoordinates();
 	}
 
 }

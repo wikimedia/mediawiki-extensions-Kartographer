@@ -53,7 +53,7 @@ class MapLinkAttributeGenerator {
 			$attrs['data-zoom'] = (string)$this->args->zoom;
 		}
 
-		if ( $this->args->lat !== null && $this->args->lon !== null ) {
+		if ( $this->args->hasCoordinates() ) {
 			$attrs['data-lat'] = (string)$this->args->lat;
 			$attrs['data-lon'] = (string)$this->args->lon;
 		}
