@@ -1,10 +1,10 @@
-( function () {
-	const cjs = require( 'rollup-plugin-commonjs' );
+'use strict';
 
-	module.exports = {
-		entry: 'node_modules/@wikimedia/mapdata/src/index.js',
-		format: 'cjs',
-		plugins: [ cjs() ],
-		dest: 'lib/external/wikimedia-mapdata.js'
-	};
-}() );
+const cjs = require( 'rollup-plugin-commonjs' );
+
+module.exports = {
+	entry: 'node_modules/@wikimedia/mapdata/src/index.js',
+	format: 'cjs',
+	plugins: [ cjs() ],
+	dest: 'lib/external/wikimedia-mapdata.js'
+};
