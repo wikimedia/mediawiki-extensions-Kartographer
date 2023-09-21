@@ -33,7 +33,7 @@ class PurgeMapPages extends Maintenance {
 		$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryMessage->inContentLanguage()->text() );
 		$dryRun = $this->hasOption( 'dry-run' );
 		$iterator = new BatchRowIterator(
-			wfGetDB( DB_REPLICA ),
+			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase(),
 			[ 'categorylinks', 'page' ],
 			[ 'cl_type', 'cl_sortkey', 'cl_from' ],
 			$this->getBatchSize()
