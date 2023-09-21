@@ -486,8 +486,8 @@ class KartographerTest extends MediaWikiLangTestCase {
 	): void {
 		$cat = wfMessage( $key )->inContentLanguage()->text();
 		$title = Title::makeTitleSafe( NS_CATEGORY, $cat );
-		$cats = $output->getCategories();
-		$this->assertSame( $expected, isset( $cats[$title->getDBkey()] ), $message );
+		$cats = $output->getCategoryNames();
+		$this->assertSame( $expected, in_array( $title->getDBkey(), $cats, true ), $message );
 	}
 
 	private function parseParsoid( string $wikitext ) {
