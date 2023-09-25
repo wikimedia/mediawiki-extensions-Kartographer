@@ -527,14 +527,6 @@
 			"description": "Number of nearby articles to load via the coordinates API. A number between 100 and 500 is recommended. Requires the GeoData and CirrusSearch extensions to be installed. Set to 0 to disable the feature.",
 			"value": false
 		},
-		"KartographerNearbyClustering": {
-			"description": "Temporary feature flag used to enable point clustering in the $wgKartographerNearby feature.",
-			"value": true
-		},
-		"KartographerNearbyOnMobile": {
-			"description": "Enable the \"nearby\" feature on mobile skins.",
-			"value": false
-		},
 		"KartographerWikivoyageNearby": {
 			"description": "Feature flag used to disable the Wikivoyage Nearby feature.",
 			"value": true

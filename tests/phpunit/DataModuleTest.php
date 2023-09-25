@@ -40,8 +40,6 @@ class DataModuleTest extends MediaWikiIntegrationTestCase {
 			'KartographerFallbackZoom' => 0,
 			'KartographerMapServer' => '',
 			'KartographerNearby' => $nearbyConfig,
-			'KartographerNearbyClustering' => null,
-			'KartographerNearbyOnMobile' => null,
 			'KartographerSimpleStyleMarkers' => null,
 			'KartographerSrcsetScales' => [],
 			'KartographerStyles' => [],
