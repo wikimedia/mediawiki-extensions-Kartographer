@@ -19,10 +19,10 @@ class TagTest extends MediaWikiUnitTestCase {
 
 		$this->assertSame( 2, $args->getInt( 'key' ) );
 		$this->assertNull( $args->getInt( 'missing' ) );
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 
 		$this->assertNull( $args->getInt( 'bad' ) );
-		$this->assertTrue( $status->hasMessage( 'kartographer-error-bad_attr' ) );
+		$this->assertStatusError( 'kartographer-error-bad_attr', $status );
 	}
 
 	public function testGetFloat() {
@@ -31,10 +31,10 @@ class TagTest extends MediaWikiUnitTestCase {
 
 		$this->assertSame( 0.3, $args->getFloat( 'key' ) );
 		$this->assertNull( $args->getFloat( 'missing' ) );
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 
 		$this->assertNull( $args->getFloat( 'bad' ) );
-		$this->assertTrue( $status->hasMessage( 'kartographer-error-bad_attr' ) );
+		$this->assertStatusError( 'kartographer-error-bad_attr', $status );
 	}
 
 	public function testGetString() {
@@ -46,10 +46,10 @@ class TagTest extends MediaWikiUnitTestCase {
 
 		$this->assertSame( 'a', $args->getString( 'key' ) );
 		$this->assertNull( $args->getString( 'missing' ) );
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 
 		$this->assertNull( $args->getString( 'key', '/z/' ) );
-		$this->assertTrue( $status->hasMessage( 'kartographer-error-bad_attr' ) );
+		$this->assertStatusError( 'kartographer-error-bad_attr', $status );
 	}
 
 }
