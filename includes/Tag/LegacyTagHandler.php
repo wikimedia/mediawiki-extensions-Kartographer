@@ -42,7 +42,6 @@ abstract class LegacyTagHandler {
 	public const TAG = '';
 
 	protected MapTagArgumentValidator $args;
-	protected ?string $counter = null;
 	protected Config $config;
 	protected Parser $parser;
 	private Language $targetLanguage;
@@ -144,7 +143,8 @@ abstract class LegacyTagHandler {
 		$counters = $this->state->getCounters();
 		$marker = SimpleStyleParser::updateMarkerSymbolCounters( $geometries, $counters );
 		if ( $marker ) {
-			[ $this->counter, $this->markerProperties ] = $marker;
+			[ $counter, $this->markerProperties ] = $marker;
+			$this->args->setFallbackText( $counter );
 		}
 		$this->state->setCounters( $counters );
 

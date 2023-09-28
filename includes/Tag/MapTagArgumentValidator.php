@@ -37,6 +37,7 @@ class MapTagArgumentValidator {
 	public ?string $specifiedLangCode;
 	public string $resolvedLangCode;
 	public ?string $text;
+	private ?string $fallbackText = null;
 
 	/**
 	 * @var string|null Currently parsed group identifier from the group="…" attribute. Only allowed
@@ -165,6 +166,14 @@ class MapTagArgumentValidator {
 	 */
 	public function usesAutoPosition(): bool {
 		return $this->zoom === null || !$this->hasCoordinates();
+	}
+
+	public function setFallbackText( string $text ): void {
+		$this->fallbackText = $text;
+	}
+
+	public function getTextWithFallback(): ?string {
+		return $this->text ?? $this->fallbackText;
 	}
 
 }

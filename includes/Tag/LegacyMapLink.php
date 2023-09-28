@@ -23,17 +23,11 @@ class LegacyMapLink extends LegacyTagHandler {
 		$attrs = $gen->prepareAttrs();
 
 		// @todo: Mapbox markers don't support localized numbers yet
-		$text = $this->args->text;
+		$text = $this->args->getTextWithFallback();
 		if ( $text === null ) {
-			$text = $this->counter;
-			if ( $text === null ) {
-				$formatter = new CoordFormatter( $this->args->lat, $this->args->lon );
-				$text = $formatter->format( $this->getLanguageCode() );
-				if ( !$this->args->hasCoordinates() ) {
-					$attrs['class'][] = 'error';
-				}
-			}
-		} elseif ( $text !== '' ) {
+			$formatter = new CoordFormatter( $this->args->lat, $this->args->lon );
+			$text = $formatter->format( $this->getLanguageCode() );
+		} else {
 			$text = $parser->halfParseWikitext( $text );
 		}
 

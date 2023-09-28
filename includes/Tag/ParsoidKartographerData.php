@@ -13,6 +13,5 @@ use stdClass;
 class ParsoidKartographerData {
 	public MapTagArgumentValidator $args;
 	public array $geometries = [];
-	public ?string $counter = null;
 	public ?stdClass $markerProperties = null;
 }
