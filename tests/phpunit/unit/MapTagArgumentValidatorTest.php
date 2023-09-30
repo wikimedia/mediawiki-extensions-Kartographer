@@ -25,7 +25,7 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 			'group' => 'hotels',
 		], $this->getConfig(), $language );
 
-		$this->assertTrue( $args->status->isGood() );
+		$this->assertStatusGood( $args->status );
 		$this->assertNull( $args->lat );
 		$this->assertNull( $args->lon );
 		$this->assertNull( $args->zoom );
@@ -47,7 +47,7 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 		$language = $this->createMock( Language::class );
 		$args = new MapTagArgumentValidator( 'mapframe', [], $this->getConfig(), $language );
 
-		$this->assertTrue( $args->status->hasMessage( 'kartographer-error-missing-attr' ) );
+		$this->assertStatusError( 'kartographer-error-missing-attr', $args->status );
 	}
 
 	public function testInvalidCoordinatePair() {
@@ -56,7 +56,7 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 			'latitude' => 0,
 		], $this->getConfig(), $language );
 
-		$this->assertTrue( $args->status->hasMessage( 'kartographer-error-latlon' ) );
+		$this->assertStatusError( 'kartographer-error-latlon', $args->status );
 	}
 
 	public function testInvalidAlignment() {
@@ -70,7 +70,7 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 		], $this->getConfig(), $language );
 
 		$this->assertSame( 'left', $args->align );
-		$this->assertTrue( $args->status->hasMessage( 'kartographer-error-bad_attr' ) );
+		$this->assertStatusError( 'kartographer-error-bad_attr', $args->status );
 	}
 
 	private function getConfig(): Config {

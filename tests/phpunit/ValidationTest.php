@@ -42,9 +42,9 @@ class ValidationTest extends MediaWikiIntegrationTestCase {
 		$result = $validator->parse( $content );
 
 		if ( $shouldFail ) {
-			$this->assertFalse( $result->isGood(), 'Validation unexpectedly succeeded' );
+			$this->assertStatusNotGood( $result );
 		} else {
-			$this->assertTrue( $result->isGood(), 'Validation failed' );
+			$this->assertStatusGood( $result );
 		}
 	}
 

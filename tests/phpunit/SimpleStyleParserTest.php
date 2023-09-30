@@ -11,7 +11,6 @@ use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use Parser;
 use ParserOptions;
-use Status;
 
 /**
  * @covers \Kartographer\SimpleStyleParser
@@ -44,7 +43,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 
 		$status = $ssp->parse( $input );
 
-		$this->assertTrue( $status->isOK(), Status::wrap( $status )->getMessage()->text() );
+		$this->assertStatusGood( $status );
 		$this->assertEquals( $expected, $status->getValue()['data'], $message );
 	}
 
@@ -131,9 +130,10 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 
 		$status = $ssp->normalizeAndSanitize( $data );
 
-		$this->assertSame( !$expectedError, $status->isOK() );
 		if ( $expectedError ) {
-			$this->assertTrue( $status->hasMessage( $expectedError ), $status );
+			$this->assertStatusError( $expectedError, $status );
+		} else {
+			$this->assertStatusGood( $status );
 		}
 		$this->assertEquals( json_decode( $expected ?? $json ), $data );
 		$this->assertSame( $data, $status->getValue()['data'] );
