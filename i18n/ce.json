@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Умар"
+			"Умар",
+			"Amire80"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Викимедиан картанаш] | хаамаш © [https://www.openstreetmap.org/copyright OpenStreetMap декъашхой]",
@@ -15,7 +16,7 @@
 	"kartographer-tracking-category-desc": "Карта долу агӀо",
 	"kartographer-linktype-aerial": "Аэро",
 	"kartographer-linktype-map": "Стандартан картанаш",
-	"kartographer-linktype-other": "Кхиерг",
+	"kartographer-linktype-other": "Кхийерг",
 	"kartographer-linktype-satellite": "Спутникан",
 	"kartographer-linktype-terrain": "Меттигаш",
 	"kartographer-linktype-topo": "Топографийн",
