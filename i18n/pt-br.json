@@ -7,7 +7,8 @@
 			"Felipe L. Ewald",
 			"Luk3",
 			"Opraco",
-			"Robertpontes"
+			"Robertpontes",
+			"YuriNikolai"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Mapas Wikimedia] | Map data © [https://www.openstreetmap.org/copyright Contribuidores do OpenStreetMap]",
@@ -94,7 +95,7 @@
 	"visualeditor-mwmapsdialog-area": "Área do mapa",
 	"visualeditor-mwmapsdialog-content": "Conteúdo do mapa",
 	"visualeditor-mwmapsdialog-options": "Opções",
-	"visualeditor-mwmapsdialog-display": "Alinhamento",
+	"visualeditor-mwmapsdialog-display": "Exibição",
 	"visualeditor-mwmapsdialog-geojson": "GeoJSON",
 	"visualeditor-mwmapsdialog-language": "Idioma",
 	"visualeditor-mwmapsdialog-language-local": "$1 (use o idioma local para cada área do mapa)",
