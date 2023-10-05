@@ -316,6 +316,9 @@ const KartographerMap = L.Map.extend( {
 				attribution: mw.message( 'kartographer-attribution' ).parse()
 			}
 		).addTo( this );
+		this.wikimediaLayer.on( 'tileloadstart', function ( e ) {
+			e.tile.classList.add( 'mw-invert' );
+		} );
 
 		/* Add map controls */
 
