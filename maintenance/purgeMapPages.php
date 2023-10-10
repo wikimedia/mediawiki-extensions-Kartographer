@@ -5,7 +5,6 @@ if ( $IP === false ) {
 }
 require_once "$IP/maintenance/Maintenance.php";
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 
 /**
@@ -33,7 +32,7 @@ class PurgeMapPages extends Maintenance {
 		$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryMessage->inContentLanguage()->text() );
 		$dryRun = $this->hasOption( 'dry-run' );
 		$iterator = new BatchRowIterator(
-			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->getReplicaDatabase(),
+			$this->getServiceContainer()->getDBLoadBalancerFactory()->getReplicaDatabase(),
 			[ 'categorylinks', 'page' ],
 			[ 'cl_type', 'cl_sortkey', 'cl_from' ],
 			$this->getBatchSize()
@@ -45,7 +44,7 @@ class PurgeMapPages extends Maintenance {
 
 		$pages = 0;
 		$failures = 0;
-		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
 		foreach ( $iterator as $batch ) {
 			foreach ( $batch as $row ) {
 				$title = Title::newFromRow( $row );

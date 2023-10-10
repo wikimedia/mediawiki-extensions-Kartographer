@@ -3,7 +3,6 @@ namespace Kartographer\Tests;
 
 use Kartographer\State;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use MediaWikiLangTestCase;
 use ParserOptions;
@@ -334,8 +333,8 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$vars = $output->getJsConfigVars();
 		$this->assertArrayHasKey( 'wgKartographerLiveData', $vars );
 
-		if ( MediaWikiServices::getInstance()->getMainConfig()->has( 'KartographerParsoidSupport' ) &&
-			MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerParsoidSupport' ) !== true ) {
+		if ( $this->getServiceContainer()->getMainConfig()->has( 'KartographerParsoidSupport' ) &&
+			$this->getServiceContainer()->getMainConfig()->get( 'KartographerParsoidSupport' ) !== true ) {
 			// not testing the exact content without parsoid, this would fail
 			return;
 		}
