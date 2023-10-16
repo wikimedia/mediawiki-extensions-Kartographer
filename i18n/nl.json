@@ -17,7 +17,7 @@
 	"kartographer-broken-category-desc": "De pagina bevat een ongeldig gebruik van een kaart",
 	"kartographer-desc": "Maakt het mogelijk kaarten toe te voegen aan wikipagina's",
 	"kartographer-error-context-multi": "Problemen met $1:\n$2",
-	"kartographer-error-json": "Kon JSON niet parsen: $1",
+	"kartographer-error-json": "Kon JSON-code niet ontleden: $1",
 	"kartographer-error-json-object": "De inhoud moet een geldig GeoJSON+simplestyle-object zijn of een array van dergelijke objecten.",
 	"kartographer-error-json-type": "Elk GeoJSON+simplestyle-object moet een niet-leeg type hebben, bv. <code>{ \"type\": \"Feature\" }</code>.",
 	"kartographer-error-missing-attr": "Attribuut \"$1\" ontbreekt",
