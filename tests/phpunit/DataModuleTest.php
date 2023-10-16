@@ -44,10 +44,9 @@ class DataModuleTest extends MediaWikiIntegrationTestCase {
 			'KartographerSrcsetScales' => [],
 			'KartographerStyles' => [],
 			'KartographerUsePageLanguage' => false,
-			'KartographerWikivoyageNearby' => false,
 		] ) );
 		$script = $module->getScript( $this->createMock( Context::class ) );
-		$this->assertStringContainsString( '"wgKartographerNearby":' . $expected . ',', $script );
+		$this->assertStringContainsString( '"wgKartographerNearby":' . $expected . '}', $script );
 	}
 
 }

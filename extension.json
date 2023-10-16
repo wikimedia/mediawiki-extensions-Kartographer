@@ -410,20 +410,16 @@
 				"modules/wikivoyage/wikivoyage.js",
 				"modules/wikivoyage/NearbyArticles.js",
 				"modules/wikivoyage/ControlLayers.js",
-				"modules/wikivoyage/ControlNearby.js",
 				"modules/wikivoyage/WVMapLayers.js",
 				"modules/wikivoyage/WVMap.js"
 			],
 			"styles": [
 				"modules/wikivoyage/styles/wv-leaflet.less",
-				"modules/wikivoyage/styles/control-layers.less",
-				"modules/wikivoyage/styles/control-nearby.less"
+				"modules/wikivoyage/styles/control-layers.less"
 			],
 			"messages": [
 				"kartographer-wv-group",
-				"kartographer-wv-layer-nearby-articles",
 				"kartographer-wv-layer-wikimedia",
-				"kartographer-wv-nearby-articles-control",
 				"kartographer-wv-warning-external-source-title",
 				"kartographer-wv-warning-external-source-message",
 				"kartographer-wv-warning-external-source-agree",
@@ -526,10 +522,6 @@
 		"KartographerNearby": {
 			"description": "Number of nearby articles to load via the coordinates API. A number between 100 and 500 is recommended. Requires the GeoData and CirrusSearch extensions to be installed. Set to 0 to disable the feature.",
 			"value": false
-		},
-		"KartographerWikivoyageNearby": {
-			"description": "Feature flag used to disable the Wikivoyage Nearby feature.",
-			"value": true
 		},
 		"KartographerMediaWikiInternalUrl": {
 			"description": "Development setting allowing kartotherian to call back to the mapdata API on either a different MediaWiki server or via a non-standard port. Passed as a URL, e.g. \"http://dev.wiki.local.wmftest.net:8080\". Defaults to $wgServerName if not set.",

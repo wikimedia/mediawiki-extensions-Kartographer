@@ -4,9 +4,7 @@
  * @borrows Kartographer.Wikivoyage.WVMap as WVMap
  * @class Kartographer.Wikivoyage.WVMap
  */
-const wikivoyage = require( './wikivoyage.js' );
 const WVMapLayers = require( './WVMapLayers.js' );
-const ControlNearby = require( './ControlNearby.js' );
 
 /* eslint-disable no-underscore-dangle */
 
@@ -20,30 +18,13 @@ function WVMap( map ) {
 }
 
 /**
- * Adds the nearby articles control to the map.
- *
- * @return {Kartographer.Wikivoyage.ControlNearby}
+ * @ignore
+ * @deprecated since 1.41
  */
+// TODO: Remove when there's no usage anywhere see T332785
 WVMap.prototype.nearby = function () {
-	if ( mw.config.get( 'wgKartographerWikivoyageNearby' ) === false ) {
-		return;
-	}
-
-	let control = this._controlNearby;
-	if ( control ) {
-		return control;
-	}
-
-	control = this._controlNearby = new ControlNearby();
-	control.addTo( this.map );
-
-	this.controlLayers().addLayer(
-		control.pruneCluster,
-		wikivoyage.formatLayerName( mw.msg( 'kartographer-wv-layer-nearby-articles' ), control.pruneCluster.options ),
-		true
-	).update();
-
-	return control;
+	mw.log.warn( 'Use of new WVMap.nearby() is deprecated. It got replaced and should not be used anymore.' );
+	mw.track( 'mw.deprecate', 'WVMap.nearby' );
 };
 
 /**

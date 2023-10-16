@@ -1,57 +1,22 @@
 /**
  * Module to fetch nearby articles.
  *
+ * @deprecated since 1.41
  * @borrows Kartographer.Wikivoyage.NearbyArticles as NearbyArticles
  * @class Kartographer.Wikivoyage.NearbyArticles
  * @singleton
  */
-let fetchArticlesPromise;
-const config = {};
 
 module.exports = {
 	/**
-	 * Configure the module.
-	 *
-	 * @param {Object} obj
-	 * @param {Object} obj.url The API (script file) containing the nearby
-	 *   articles.
+	 * @ignore
+	 * @deprecated since 1.41
 	 */
-	setConfig: function ( obj ) {
-		for ( const key in obj ) {
-			config[ key ] = obj[ key ];
-		}
-	},
-
-	/**
-	 * Gets a configuration parameter.
-	 *
-	 * @param {string} configParam
-	 * @return {string}
-	 */
-	getConfig: function ( configParam ) {
-		return config[ configParam ];
-	},
-
-	/**
-	 * Fetches nearby articles.
-	 *
-	 * @return {jQuery.Promise} Promise which resolves with the data array
-	 *   once the map is initialized.
-	 */
-	fetch: function () {
-		if ( fetchArticlesPromise ) {
-			return fetchArticlesPromise;
-		}
-
-		if ( config.url ) {
-			fetchArticlesPromise = $.getScript( config.url )
-				.then( function () {
-					return window.addressPoints;
-				} );
-		} else {
-			fetchArticlesPromise = $.Deferred().reject( 'url for nearby articles is missing.' ).promise();
-		}
-
-		return fetchArticlesPromise;
+	// TODO: Remove when there's no usage anywhere see T332785
+	setConfig: function () {
+		mw.log.warn(
+			'Use of new NearbyArticles.setConfig() is deprecated. It got replaced and should not be used anymore.'
+		);
+		mw.track( 'mw.deprecate', 'NearbyArticles.setConfig' );
 	}
 };

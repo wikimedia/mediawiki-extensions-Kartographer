@@ -7,9 +7,7 @@
 		]
 	},
 	"kartographer-wv-group": "{{Identical|Group}}",
-	"kartographer-wv-layer-nearby-articles": "Label for the map overlay that contains nearby articles' markers.",
 	"kartographer-wv-layer-wikimedia": "{{optional}}\nLabel for the tile layer that contains tiles from Wikimedia tile server.",
-	"kartographer-wv-nearby-articles-control": "Title attribute for the map control that displays the nearby articles.",
 	"kartographer-wv-warning-external-source-title": "Title for the message dialog that warns about loading external data source.",
 	"kartographer-wv-warning-external-source-message": "Message for the message dialog that warns about loading external data source.",
 	"kartographer-wv-warning-external-source-agree": "Label of the message dialog action that approves loading external data source.",
