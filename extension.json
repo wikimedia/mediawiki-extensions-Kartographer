@@ -378,18 +378,6 @@
 				"lib/external/leaflet.markercluster/MarkerCluster.Default.css"
 			]
 		},
-		"ext.kartographer.lib.prunecluster": {
-			"dependencies": [
-				"mapbox"
-			],
-			"scripts": [
-				"lib/external/prunecluster/PruneCluster.js",
-				"modules/prunecluster/prunecluster.js"
-			],
-			"styles": [
-				"lib/external/prunecluster/LeafletStyleSheet.css"
-			]
-		},
 		"ext.kartographer.lib.topojson": {
 			"dependencies": [
 				"mapbox"
@@ -402,8 +390,7 @@
 		"ext.kartographer.wv": {
 			"dependencies": [
 				"oojs-ui.styles.icons-editing-core",
-				"mapbox",
-				"ext.kartographer.lib.prunecluster"
+				"mapbox"
 			],
 			"packageFiles": [
 				"modules/wikivoyage/index.js",

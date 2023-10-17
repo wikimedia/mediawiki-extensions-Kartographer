@@ -10,10 +10,6 @@ rm lib/external/mapbox/images/render.sh
 
 cp -v node_modules/@wikimedia/leaflet-sleep/Leaflet.Sleep.js lib/external/leaflet.sleep.js
 
-cp -v node_modules/prunecluster/dist/PruneCluster.js \
-    node_modules/prunecluster/dist/LeafletStyleSheet.css \
-    lib/external/prunecluster/
-
 cp -v node_modules/leaflet.markercluster/dist/leaflet.markercluster-src.js \
 	node_modules/leaflet.markercluster/dist/MarkerCluster.css \
 	node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css \
