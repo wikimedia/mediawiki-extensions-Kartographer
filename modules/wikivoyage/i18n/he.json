@@ -6,9 +6,7 @@
 		]
 	},
 	"kartographer-wv-group": "קבוצה:",
-	"kartographer-wv-layer-nearby-articles": "ערכים בסביבה",
 	"kartographer-wv-layer-wikimedia": "ויקימדיה",
-	"kartographer-wv-nearby-articles-control": "לחקור יעדים קרובים",
 	"kartographer-wv-warning-external-source-title": "מקור נתונים חיצוני",
 	"kartographer-wv-warning-external-source-message": "התוכן הזה מאוחסן במקור חיצוני, ולכן הפעלתו תגרום לשיתוף הנתונים כתובת ה־IP שלך ושל נתונים אחרים שלך עם ספק המפות.",
 	"kartographer-wv-warning-external-source-agree": "הבנתי",

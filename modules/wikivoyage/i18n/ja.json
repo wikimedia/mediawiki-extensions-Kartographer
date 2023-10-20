@@ -8,8 +8,6 @@
 		]
 	},
 	"kartographer-wv-group": "グループ:",
-	"kartographer-wv-layer-nearby-articles": "付近についての記事",
-	"kartographer-wv-nearby-articles-control": "近隣の場所を探す",
 	"kartographer-wv-warning-external-source-title": "外部データソース",
 	"kartographer-wv-warning-external-source-message": "このコンテンツは外部にてホストされており、有効化するとあなたのIPアドレスその他のデータは、地図提供者のサイトに共有されます。",
 	"kartographer-wv-warning-external-source-agree": "分かりました",

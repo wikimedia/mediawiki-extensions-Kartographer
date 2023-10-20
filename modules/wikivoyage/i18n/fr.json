@@ -7,9 +7,7 @@
 		]
 	},
 	"kartographer-wv-group": "Groupe :",
-	"kartographer-wv-layer-nearby-articles": "Articles à proximité",
 	"kartographer-wv-layer-wikimedia": "Wikimedia",
-	"kartographer-wv-nearby-articles-control": "Explorer des destinations proches",
 	"kartographer-wv-warning-external-source-title": "Source de données externe",
 	"kartographer-wv-warning-external-source-message": "Ce contenu est hébergé à l’extérieur, donc si vous l’autorisez, votre adresse IP et d’autres données seront partagées avec le fournisseur cartographique.",
 	"kartographer-wv-warning-external-source-agree": "J’ai compris",

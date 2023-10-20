@@ -6,8 +6,6 @@
 		]
 	},
 	"kartographer-wv-group": "Група:",
-	"kartographer-wv-layer-nearby-articles": "Артыкулы пра месцы побач",
-	"kartographer-wv-nearby-articles-control": "Вывучыць суседнія кірункі",
 	"kartographer-wv-warning-external-source-title": "Вонкавая крыніца зьвестак",
 	"kartographer-wv-warning-external-source-message": "Гэты зьмест знаходзіцца на вонкавым рэсурсе, яго падключэньне прывядзе да перадачы IP-адрасу й іншых вашых зьвестак прадстаўніку мапы.",
 	"kartographer-wv-warning-external-source-agree": "Я разумею",
