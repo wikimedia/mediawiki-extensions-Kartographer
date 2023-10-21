@@ -114,10 +114,6 @@ class ParsoidDomProcessor extends DOMProcessor {
 
 		$data = $marker->geometries;
 
-		if ( !$data && !$counter ) {
-			return;
-		}
-
 		if ( $counter ) {
 			// If we have a counter, we update the marker data prior to encoding the groupId, and we remove
 			// the (previously computed) groupId from showGroups
@@ -145,8 +141,7 @@ class ParsoidDomProcessor extends DOMProcessor {
 
 		// There is no way to ever add anything to a private group starting with `_`
 		if ( isset( $state['data'][$groupId] ) && !str_starts_with( $groupId, '_' ) ) {
-			// phan is grumbling without the ?? [], although it shouldn't
-			$state['data'][$groupId] = array_merge( $state['data'][$groupId], $data ?? [] );
+			$state['data'][$groupId] = array_merge( $state['data'][$groupId], $data );
 		} else {
 			$state['data'][$groupId] = $data;
 		}
