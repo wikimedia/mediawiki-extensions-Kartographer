@@ -42,7 +42,7 @@ class ParsoidDomProcessor extends DOMProcessor {
 		$kartnodes = DOMCompat::querySelectorAll( $root, '*[data-mw-kartographer]' );
 
 		// let's avoid adding data to the page if there's no kartographer nodes!
-		if ( empty( $kartnodes ) ) {
+		if ( !$kartnodes ) {
 			return;
 		}
 
@@ -114,7 +114,7 @@ class ParsoidDomProcessor extends DOMProcessor {
 
 		$data = $marker->geometries;
 
-		if ( empty( $data ) && !$counter ) {
+		if ( !$data && !$counter ) {
 			return;
 		}
 
