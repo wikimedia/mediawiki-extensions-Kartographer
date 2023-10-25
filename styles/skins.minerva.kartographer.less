@@ -16,7 +16,7 @@ a.mw-kartographer-link,
 }
 
 // Override for MinervaNeue's "hack.less" that tries to fix Template:Multiple_image
-@media all and ( max-width: @width-breakpoint-tablet ) {
+@media all and ( max-width: @max-width-breakpoint-mobile ) {
 	.content .mw-kartographer-container.thumb .thumbinner {
 		// Override the 'flex' rules
 		display: block;
@@ -34,7 +34,7 @@ a.mw-kartographer-link,
 // enforces width: 320px for thumbs, which means that thumb/maps that
 // are set for width=100% are overrided and remain small. We need
 // to override that override.
-@media screen and ( min-width: @width-breakpoint-tablet ) {
+@media screen and ( min-width: @min-width-breakpoint-tablet ) {
 	.content .mw-kartographer-container.mw-kartographer-full.thumb {
 		width: 100%;
 	}
