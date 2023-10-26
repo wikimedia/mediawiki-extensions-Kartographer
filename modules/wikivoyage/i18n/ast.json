@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Tokvo",
-			"Xuacu"
+			"Xuacu",
+			"YoaR"
 		]
 	},
 	"kartographer-wv-group": "Grupu:",
@@ -11,5 +12,5 @@
 	"kartographer-wv-warning-external-source-title": "Fonte de datos esterna",
 	"kartographer-wv-warning-external-source-message": "Esti conteníu ta agospiáu externamente. Poro, si lo actives van compartise los tos datos con otros sitios.",
 	"kartographer-wv-warning-external-source-agree": "Ta bien",
-	"kartographer-wv-warning-external-source-disagree": "Encaboxar"
+	"kartographer-wv-warning-external-source-disagree": "Zarrar"
 }
