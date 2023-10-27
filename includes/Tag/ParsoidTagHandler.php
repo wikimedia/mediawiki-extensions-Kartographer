@@ -3,12 +3,12 @@
 namespace Kartographer\Tag;
 
 use Closure;
-use Config;
 use DOMException;
 use Kartographer\ParsoidWikitextParser;
 use Kartographer\SimpleStyleParser;
 use LogicException;
 use MediaWiki\MediaWikiServices;
+use StatusValue;
 use stdClass;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\DOM\Element;
@@ -22,15 +22,15 @@ use Wikimedia\Parsoid\Utils\DOMCompat;
 class ParsoidTagHandler extends ExtensionTagHandler {
 	public const TAG = '';
 
-	protected MapTagArgumentValidator $args;
-	protected ?string $counter = null;
-	protected ?stdClass $markerProperties = null;
-	protected Config $config;
-	/** @var stdClass[] */
-	protected array $geometries = [];
-
-	protected function parseTag( ParsoidExtensionAPI $extApi, string $input, array $extArgs ): void {
-		$this->config = MediaWikiServices::getInstance()->getMainConfig();
+	/**
+	 * @param ParsoidExtensionAPI $extApi
+	 * @param string $input
+	 * @param array $extArgs
+	 * @return ParsoidKartographerData
+	 */
+	protected function parseTag( ParsoidExtensionAPI $extApi, string $input, array $extArgs ): ParsoidKartographerData {
+		$data = new ParsoidKartographerData();
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$args = [];
 		foreach ( $extArgs as $extArg ) {
 			$args[$extArg->k] = $extArg->v;
@@ -39,29 +39,31 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 		$langFactory = MediaWikiServices::getInstance()->getLanguageFactory();
 		$langUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
 
-		$this->args = new MapTagArgumentValidator( static::TAG, $args, $this->config,
+		$data->args = new MapTagArgumentValidator( static::TAG, $args,
+			$config,
 			// FIXME setting the display language to English for the first version, needs to be fixed when we
 			// have a localization solution for Parsoid
 			$langFactory->getLanguage( 'en' ),
 			$langUtils );
-		if ( $this->args->status->isOK() ) {
+		if ( $data->args->status->isOK() ) {
 			$wp = new ParsoidWikitextParser( $extApi );
 			$sspStatus = ( new SimpleStyleParser( $wp ) )->parse( $input );
 			if ( $sspStatus->isOk() ) {
-				$this->geometries = $sspStatus->getValue()['data'];
+				$data->geometries = $sspStatus->getValue()['data'];
 			}
 			// FIXME: This is a hack but necessary to communicate to the outside world
 			// it's necessary to overwrite value to also pass JSON error status
-			$this->args->status->merge( $sspStatus, true );
+			$data->args->status->merge( $sspStatus, true );
 		}
-		if ( !$this->geometries ) {
-			return;
+		if ( !$data->geometries ) {
+			return $data;
 		}
 
-		$marker = SimpleStyleParser::findFirstMarkerSymbol( $this->geometries );
+		$marker = SimpleStyleParser::findFirstMarkerSymbol( $data->geometries );
 		if ( $marker ) {
-			[ $this->counter, $this->markerProperties ] = $marker;
+			[ $data->counter, $data->markerProperties ] = $marker;
 		}
+		return $data;
 	}
 
 	/**
@@ -69,8 +71,9 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 	 * @return DocumentFragment
 	 * @throws DOMException
 	 */
-	public function reportErrors( ParsoidExtensionAPI $extApi, string $tag ): DocumentFragment {
-		$status = $this->args->status;
+	public function reportErrors(
+		ParsoidExtensionAPI $extApi, string $tag, StatusValue $status
+	): DocumentFragment {
 		$errors = array_merge( $status->getErrorsByType( 'error' ),
 			$status->getErrorsByType( 'warning' )
 		);
@@ -108,7 +111,7 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 			$div->appendChild( $err );
 		}
 
-		$jsonErrors = $this->getJSONValidatorLog( $extApi );
+		$jsonErrors = $this->getJSONValidatorLog( $extApi, $status );
 
 		if ( $jsonErrors ) {
 			$div->appendChild( $jsonErrors );
@@ -121,8 +124,7 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 	 * @return ?DocumentFragment
 	 * @throws DOMException
 	 */
-	private function getJSONValidatorLog( ParsoidExtensionAPI $extApi ): ?DocumentFragment {
-		$status = $this->args->status;
+	private function getJSONValidatorLog( ParsoidExtensionAPI $extApi, StatusValue $status ): ?DocumentFragment {
 		$dom = $extApi->getTopLevelDoc()->createDocumentFragment();
 		$errors = $status->getValue()['schema-errors'] ?? [];
 		if ( !$errors ) {

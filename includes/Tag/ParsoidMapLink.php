@@ -6,6 +6,7 @@ use DOMException;
 use FormatJson;
 use Kartographer\CoordFormatter;
 use Kartographer\ParsoidUtils;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
 
@@ -25,26 +26,27 @@ class ParsoidMapLink extends ParsoidTagHandler {
 	 */
 	public function sourceToDom( ParsoidExtensionAPI $extApi, string $src, array $extArgs ) {
 		$extApi->getMetadata()->addModules( [ 'ext.kartographer.link' ] );
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 
-		$this->parseTag( $extApi, $src, $extArgs );
-		if ( !$this->args->status->isGood() ) {
-			return $this->reportErrors( $extApi, self::TAG );
+		$data = $this->parseTag( $extApi, $src, $extArgs );
+		if ( !$data->args->status->isGood() ) {
+			return $this->reportErrors( $extApi, self::TAG, $data->args->status );
 		}
 
-		$gen = new MapLinkAttributeGenerator( $this->args, $this->config, $this->markerProperties );
+		$gen = new MapLinkAttributeGenerator( $data->args, $config, $data->markerProperties );
 		$attrs = $gen->prepareAttrs();
 
-		$text = $this->args->text;
+		$text = $data->args->text;
 		if ( $text === null ) {
-			$text = $this->counter;
+			$text = $data->counter;
 			if ( $text === null ) {
-				$formatter = new CoordFormatter( $this->args->lat, $this->args->lon );
+				$formatter = new CoordFormatter( $data->args->lat, $data->args->lon );
 				// TODO: for now, we're using the old wfMessage method with English hardcoded. This should not
 				// stay that way.
 				// When l10n is added to Parsoid, replace this line with
 				// ( new CoordFormatter( $this->args->lat, $this->args->lon ) )->formatParsoidSpan( $extApi, null );
 				$text = $formatter->format( 'en' );
-				if ( !$this->args->hasCoordinates() ) {
+				if ( !$data->args->hasCoordinates() ) {
 					$attrs['class'][] = 'error';
 				}
 			}
@@ -62,20 +64,20 @@ class ParsoidMapLink extends ParsoidTagHandler {
 
 		$dom = $doc->createDocumentFragment();
 		$a = $doc->createElement( 'a' );
-		if ( $this->args->groupId === null && $this->geometries ) {
-			$groupId = '_' . sha1( FormatJson::encode( $this->geometries, false,
+		if ( $data->args->groupId === null && $data->geometries ) {
+			$groupId = '_' . sha1( FormatJson::encode( $data->geometries, false,
 					FormatJson::ALL_OK ) );
-			$this->args->groupId = $groupId;
-			$this->args->showGroups[] = $groupId;
+			$data->args->groupId = $groupId;
+			$data->args->showGroups[] = $groupId;
 		}
 
-		if ( $this->args->showGroups ) {
-			$attrs['data-overlays'] = FormatJson::encode( $this->args->showGroups, false,
+		if ( $data->args->showGroups ) {
+			$attrs['data-overlays'] = FormatJson::encode( $data->args->showGroups, false,
 				FormatJson::ALL_OK );
 			$dataKart = [
-				'groupId' => $this->args->groupId,
-				'showGroups' => $this->args->showGroups,
-				'geometries' => $this->geometries
+				'groupId' => $data->args->groupId,
+				'showGroups' => $data->args->showGroups,
+				'geometries' => $data->geometries
 			];
 			$a->setAttribute( 'data-kart', json_encode( $dataKart ) );
 		}

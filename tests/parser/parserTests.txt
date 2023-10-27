@@ -620,3 +620,27 @@ wgKartographerParsoidSupport=true
 <li>/1/type: Does not have a value in the enumeration ["FeatureCollection"]</li>
 </ul></div>
 !! end
+
+!! test
+Tag extension cache should not keep a state around between extension invocations (second link should have coordinates as text)
+!! config
+wgKartographerParsoidSupport=true
+!! wikitext
+<maplink latitude=10.123 longitude=20.456 zoom=13 text='Foo'>
+{
+"type": "Feature",
+	"geometry": {
+		"type": "Point",
+		"coordinates": [-122, 37]
+	},
+	"properties": {
+		"marker-symbol": "-number"
+	}
+}
+</maplink>
+
+<maplink latitude=10 longitude=20 />
+!! html/parsoid
+<p><a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/13/10.123/20.456/en" data-zoom="13" data-lat="10.123" data-lon="20.456" typeof="mw:Extension/maplink" data-mw='{"name":"maplink","attrs":{"latitude":"10.123","longitude":"20.456","zoom":"13","text":"Foo"},"body":{"extsrc":"\n{\n\"type\": \"Feature\",\n\t\"geometry\": {\n\t\t\"type\": \"Point\",\n\t\t\"coordinates\": [-122, 37]\n\t},\n\t\"properties\": {\n\t\t\"marker-symbol\": \"-number\"\n\t}\n}\n"}}'>Foo</a></p>
+<p><a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/0/10/20/en" data-lat="10" data-lon="20" typeof="mw:Extension/maplink" data-mw='{"name":"maplink","attrs":{"latitude":"10","longitude":"20"}}'>10°0′0″N 20°0′0″E</a></p>
+!! end

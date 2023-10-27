@@ -4,6 +4,7 @@ namespace Kartographer\Tag;
 
 use DOMException;
 use Kartographer\ParsoidUtils;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
 
@@ -22,15 +23,17 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 	 * @throws DOMException
 	 */
 	public function sourceToDom( ParsoidExtensionAPI $extApi, string $src, array $extArgs ) {
-		$this->parseTag( $extApi, $src, $extArgs );
-		if ( !$this->args->status->isGood() ) {
-			return $this->reportErrors( $extApi, self::TAG );
+		$data = $this->parseTag( $extApi, $src, $extArgs );
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+
+		if ( !$data->args->status->isGood() ) {
+			return $this->reportErrors( $extApi, self::TAG, $data->args->status );
 		}
 
 		// TODO if fullwidth, we really should use interactive mode..
 		// BUT not possible to use both modes at the same time right now. T248023
 		// Should be fixed, especially considering VE in page editing etc...
-		$staticMode = $this->config->get( 'KartographerStaticMapframe' );
+		$staticMode = $config->get( 'KartographerStaticMapframe' );
 
 		$serverMayRenderOverlays = !$extApi->isPreview();
 		if ( $staticMode && !$serverMayRenderOverlays ) {
@@ -41,7 +44,7 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 			? 'ext.kartographer.staticframe'
 			: 'ext.kartographer.frame' ] );
 
-		$gen = new MapFrameAttributeGenerator( $this->args, $this->config );
+		$gen = new MapFrameAttributeGenerator( $data->args, $config );
 		$attrs = $gen->prepareAttrs();
 
 		$pageTitle = $extApi->getPageConfig()->getTitle();
@@ -61,7 +64,7 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 			$noscript = $doc->createElement( 'noscript' );
 			$noscript->appendChild( $thumbnail );
 			$thumbnail = $noscript;
-			if ( $this->args->usesAutoPosition() ) {
+			if ( $data->args->usesAutoPosition() ) {
 				// Impossible to render .png thumbnails that depend on unsaved ExternalData. Preview
 				// will replace this with a dynamic map anyway when JavaScript is available.
 				$thumbnail = $doc->createTextNode( '' );
@@ -70,16 +73,16 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 
 		$a = $doc->createElement( 'a' );
 		$dataKart = [
-			'groupId' => $this->args->groupId,
-			'showGroups' => $this->args->showGroups,
-			'geometries' => $this->geometries
+			'groupId' => $data->args->groupId,
+			'showGroups' => $data->args->showGroups,
+			'geometries' => $data->geometries
 		];
 		$a->setAttribute( 'data-kart', json_encode( $dataKart ) );
 		ParsoidUtils::addAttributesToNode( $attrs, $a );
 
 		$a->appendChild( $thumbnail );
 
-		if ( $this->args->frameless ) {
+		if ( $data->args->frameless ) {
 			$dom->appendChild( $a );
 			return $dom;
 		}
@@ -88,7 +91,7 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 		$thumbinner->setAttribute( 'class', 'thumbinner' );
 		$thumbinner->setAttribute( 'style', "width: $gen->cssWidth;" );
 		$thumbinner->appendChild( $a );
-		$caption = (string)$this->args->text;
+		$caption = (string)$data->args->text;
 		if ( $caption !== '' ) {
 			$parsedCaption = $extApi->wikitextToDOM( $caption, [
 				'parseOpts' => [
