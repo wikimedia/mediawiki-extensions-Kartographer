@@ -41,8 +41,6 @@ abstract class LegacyTagHandler {
 	 */
 	public const TAG = '';
 
-	/** @var stdClass[] */
-	private array $geometries = [];
 	protected MapTagArgumentValidator $args;
 	protected ?string $counter = null;
 	protected Config $config;
@@ -101,10 +99,11 @@ abstract class LegacyTagHandler {
 			MediaWikiServices::getInstance()->getLanguageNameUtils()
 		);
 		$status = $this->args->status;
+		$geometries = [];
 		if ( $status->isOK() ) {
 			$status = SimpleStyleParser::newFromParser( $parser, $frame )->parse( $input );
 			if ( $status->isOK() ) {
-				$this->geometries = $status->getValue()['data'];
+				$geometries = $status->getValue()['data'];
 			}
 		}
 
@@ -114,7 +113,8 @@ abstract class LegacyTagHandler {
 			return $this->reportError( $status );
 		}
 
-		$this->saveData();
+		$this->state->addRequestedGroups( $this->args->showGroups );
+		$this->saveData( $geometries );
 
 		$result = $this->render( new PartialWikitextParser( $parser, $frame ), !$isPreview );
 
@@ -132,10 +132,8 @@ abstract class LegacyTagHandler {
 	 */
 	abstract protected function render( PartialWikitextParser $parser, bool $serverMayRenderOverlays ): string;
 
-	private function saveData(): void {
-		$this->state->addRequestedGroups( $this->args->showGroups );
-
-		if ( !$this->geometries ) {
+	private function saveData( array $geometries ): void {
+		if ( !$geometries ) {
 			return;
 		}
 
@@ -144,7 +142,7 @@ abstract class LegacyTagHandler {
 		// For all GeoJSON items whose marker-symbol value begins with '-counter' and '-letter',
 		// recursively replace them with an automatically incremented marker icon.
 		$counters = $this->state->getCounters();
-		$marker = SimpleStyleParser::updateMarkerSymbolCounters( $this->geometries, $counters );
+		$marker = SimpleStyleParser::updateMarkerSymbolCounters( $geometries, $counters );
 		if ( $marker ) {
 			[ $this->counter, $this->markerProperties ] = $marker;
 		}
@@ -152,7 +150,7 @@ abstract class LegacyTagHandler {
 
 		if ( $this->args->groupId === null ) {
 			// This hash calculation MUST be the same as in ParsoidDomProcessor::wtPostprocess
-			$groupId = '_' . sha1( FormatJson::encode( $this->geometries, false, FormatJson::ALL_OK ) );
+			$groupId = '_' . sha1( FormatJson::encode( $geometries, false, FormatJson::ALL_OK ) );
 			$this->args->groupId = $groupId;
 			$this->args->showGroups[] = $groupId;
 			// no need to array_unique() because it's impossible to manually add a private group
@@ -160,7 +158,7 @@ abstract class LegacyTagHandler {
 			$groupId = (string)$this->args->groupId;
 		}
 
-		$this->state->addData( $groupId, $this->geometries );
+		$this->state->addData( $groupId, $geometries );
 	}
 
 	/**
