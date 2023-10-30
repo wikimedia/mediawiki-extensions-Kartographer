@@ -3,7 +3,6 @@
 namespace Kartographer\Tag;
 
 use Closure;
-use DOMException;
 use Kartographer\ParsoidWikitextParser;
 use Kartographer\SimpleStyleParser;
 use LogicException;
@@ -25,7 +24,7 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 	/**
 	 * @param ParsoidExtensionAPI $extApi
 	 * @param string $input
-	 * @param array $extArgs
+	 * @param stdClass[] $extArgs
 	 * @return ParsoidKartographerData
 	 */
 	protected function parseTag( ParsoidExtensionAPI $extApi, string $input, array $extArgs ): ParsoidKartographerData {
@@ -68,8 +67,9 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 
 	/**
 	 * @param ParsoidExtensionAPI $extApi
+	 * @param string $tag
+	 * @param StatusValue $status
 	 * @return DocumentFragment
-	 * @throws DOMException
 	 */
 	public function reportErrors(
 		ParsoidExtensionAPI $extApi, string $tag, StatusValue $status
@@ -121,16 +121,16 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 
 	/**
 	 * @param ParsoidExtensionAPI $extApi
+	 * @param StatusValue $status
 	 * @return ?DocumentFragment
-	 * @throws DOMException
 	 */
 	private function getJSONValidatorLog( ParsoidExtensionAPI $extApi, StatusValue $status ): ?DocumentFragment {
-		$dom = $extApi->getTopLevelDoc()->createDocumentFragment();
 		$errors = $status->getValue()['schema-errors'] ?? [];
 		if ( !$errors ) {
 			return null;
 		}
 
+		$dom = $extApi->getTopLevelDoc()->createDocumentFragment();
 		$ul = $extApi->getTopLevelDoc()->createElement( 'ul' );
 		$ul->setAttribute( 'class', 'mw-kartographer-error-log mw-collapsible mw-collapsed' );
 		$dom->appendChild( $ul );
