@@ -1,7 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Xuacu"
+			"Xuacu",
+			"Amire80",
+			"YoaR"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia maps] | Datos del mapa © [https://www.openstreetmap.org/copyright collaboradores d'OpenStreetMap]",
@@ -48,8 +50,8 @@
 	"leafletdraw-draw-handlers-polyline-tooltip-start": "Fai clic pa principiar a dibuxar una llinia",
 	"leafletdraw-draw-handlers-rectangle-tooltip-start": "Fai clic y abasna pa dibuxar un rectángulu",
 	"leafletdraw-draw-handlers-simpleshape-tooltip-end": "Suelta'l mur pa dexar de dibuxar",
-	"leafletdraw-draw-toolbar-actions-text": "Encaboxar",
-	"leafletdraw-draw-toolbar-actions-title": "Encaboxar el dibuxu",
+	"leafletdraw-draw-toolbar-actions-text": "Zarrar",
+	"leafletdraw-draw-toolbar-actions-title": "Zarrar el dibuxu",
 	"leafletdraw-draw-toolbar-buttons-circle": "Dibuxar un círculu",
 	"leafletdraw-draw-toolbar-buttons-marker": "Dibuxar un marcador",
 	"leafletdraw-draw-toolbar-buttons-circlemarker": "Dibuxar un marcador circular",
@@ -58,10 +60,10 @@
 	"leafletdraw-draw-toolbar-buttons-rectangle": "Dibuxar un rectángulu",
 	"leafletdraw-draw-toolbar-undo-text": "Desaniciar l'últimu puntu",
 	"leafletdraw-draw-toolbar-undo-title": "Desaniciar l'últimu puntu dibuxáu",
-	"leafletdraw-edit-handlers-edit-tooltip-subtext": "Fai clic n'encaboxar pa desfaer los cambeos",
+	"leafletdraw-edit-handlers-edit-tooltip-subtext": "Fai clic en zarrar pa desfaer los cambeos",
 	"leafletdraw-edit-handlers-edit-tooltip-text": "Abasna los tiradores o'l marcador pa editar una carauterística",
 	"leafletdraw-edit-handlers-remove-tooltip-text": "Fai clic na carauterística a desaniciar",
-	"leafletdraw-edit-toolbar-actions-cancel-text": "Encaboxar",
+	"leafletdraw-edit-toolbar-actions-cancel-text": "Zarrar",
 	"leafletdraw-edit-toolbar-actions-cancel-title": "Atayar la edición, descarta tolos cambeos",
 	"leafletdraw-edit-toolbar-actions-save-text": "Guardar",
 	"leafletdraw-edit-toolbar-actions-save-title": "Guardar los cambios",
@@ -90,6 +92,6 @@
 	"visualeditor-mwmapsdialog-position-zoom": "Zoom",
 	"visualeditor-mwmapsdialog-size": "Tamañu",
 	"visualeditor-mwmapsdialog-title": "Mapa",
-	"visualeditor-mwmapscontextitem-nosupport": "Esti mapa contien carauterístiques dinámiques y, de momentu, solo puede editase nel mou de códigu fonte.",
+	"visualeditor-mwmapscontextitem-nosupport": "Esti mapa contién carauterístiques dinámiques y, de momentu, solo puede editase nel mou de códigu fonte.",
 	"visualeditor-mwmapscontextitem-title": "Mapa"
 }
