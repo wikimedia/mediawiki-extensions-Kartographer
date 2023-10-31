@@ -34,8 +34,8 @@ class MapTagArgumentValidator {
 	public string $align;
 	public bool $frameless;
 	public string $cssClass;
-	public ?string $specifiedLangCode;
-	public string $resolvedLangCode;
+	/** @var string|null Language code as specified by the user, null if none or invalid */
+	public ?string $specifiedLangCode = null;
 	public ?string $text;
 	private ?string $fallbackText = null;
 
@@ -107,20 +107,10 @@ class MapTagArgumentValidator {
 		$this->mapStyle = $this->args->getString( 'mapstyle', $regexp ) ?? $defaultStyle;
 		$this->text = $this->args->getString( 'text' );
 
-		$defaultLangCode = $this->config->get( 'KartographerUsePageLanguage' ) ?
-			$this->language->getCode() :
-			'local';
-		// Language code specified by the user (null if none)
-		$this->specifiedLangCode = $this->args->getString( 'lang' );
-		// Language code we're going to use
-		$this->resolvedLangCode = $this->specifiedLangCode ?? $defaultLangCode;
+		$lang = $this->args->getString( 'lang' );
 		// If the specified language code is invalid, behave as if no language was specified
-		if ( $this->languageNameUtils &&
-			$this->resolvedLangCode !== 'local' &&
-			!$this->languageNameUtils->isKnownLanguageTag( $this->resolvedLangCode )
-		) {
-			$this->specifiedLangCode = null;
-			$this->resolvedLangCode = $defaultLangCode;
+		if ( $lang && $this->isValidLanguageCode( $lang ) ) {
+			$this->specifiedLangCode = $lang;
 		}
 
 		// Arguments valid only for one of the two tags, but all optional anyway
@@ -166,6 +156,21 @@ class MapTagArgumentValidator {
 	 */
 	public function usesAutoPosition(): bool {
 		return $this->zoom === null || !$this->hasCoordinates();
+	}
+
+	private function isValidLanguageCode( string $code ): bool {
+		return $code === 'local' ||
+			// Everything is valid without a validator, should only be used in test scenarios
+			!$this->languageNameUtils ||
+			$this->languageNameUtils->isKnownLanguageTag( $code );
+	}
+
+	public function getLanguageCodeWithDefaultFallback(): string {
+		return $this->specifiedLangCode ??
+			( $this->config->get( 'KartographerUsePageLanguage' ) ?
+				$this->language->getCode() :
+				'local'
+			);
 	}
 
 	public function setFallbackText( string $text ): void {

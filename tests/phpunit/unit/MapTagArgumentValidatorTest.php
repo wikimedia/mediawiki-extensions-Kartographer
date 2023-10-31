@@ -36,7 +36,7 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 		$this->assertTrue( $args->frameless );
 		$this->assertSame( '', $args->cssClass );
 		$this->assertNull( $args->specifiedLangCode );
-		$this->assertSame( 'local', $args->resolvedLangCode );
+		$this->assertSame( 'local', $args->getLanguageCodeWithDefaultFallback() );
 		$this->assertNull( $args->text );
 		$this->assertSame( 'hotels', $args->groupId );
 		$this->assertSame( [ 'hotels' ], $args->showGroups );

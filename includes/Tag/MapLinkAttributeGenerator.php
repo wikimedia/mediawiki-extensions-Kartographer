@@ -38,7 +38,7 @@ class MapLinkAttributeGenerator {
 					$this->args->lat,
 					$this->args->lon,
 					$this->args->zoom,
-					$this->args->resolvedLangCode
+					$this->args->getLanguageCodeWithDefaultFallback()
 				)
 		];
 
@@ -56,7 +56,6 @@ class MapLinkAttributeGenerator {
 		}
 
 		$style = $this->extractMarkerCss();
-
 		if ( $style ) {
 			$attrs['class'][] = 'mw-kartographer-autostyled';
 			$attrs['style'] = $style;

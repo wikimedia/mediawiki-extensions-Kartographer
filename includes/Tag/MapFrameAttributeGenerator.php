@@ -99,7 +99,7 @@ class MapFrameAttributeGenerator {
 		}
 
 		$attrs['href'] = SpecialMap::link( $this->args->lat, $this->args->lon, $this->args->zoom,
-			$this->args->resolvedLangCode );
+			$this->args->getLanguageCodeWithDefaultFallback() );
 
 		if ( $this->args->frameless ) {
 			$attrs['class'] = [
@@ -124,7 +124,7 @@ class MapFrameAttributeGenerator {
 		$staticWidth = $this->args->width === 'full' ? 800 : (int)$this->args->width;
 
 		$imgUrlParams = [
-			'lang' => $this->args->resolvedLangCode,
+			'lang' => $this->args->getLanguageCodeWithDefaultFallback(),
 		];
 		if ( $this->args->showGroups && $serverMayRenderOverlays ) {
 			// Groups are not available to the static map renderer
