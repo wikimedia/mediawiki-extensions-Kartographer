@@ -26,13 +26,13 @@ class ParsoidMapLink extends ParsoidTagHandler {
 	 */
 	public function sourceToDom( ParsoidExtensionAPI $extApi, string $src, array $extArgs ) {
 		$extApi->getMetadata()->addModules( [ 'ext.kartographer.link' ] );
-		$config = MediaWikiServices::getInstance()->getMainConfig();
 
 		$data = $this->parseTag( $extApi, $src, $extArgs );
 		if ( !$data->args->status->isGood() ) {
 			return $this->reportErrors( $extApi, self::TAG, $data->args->status );
 		}
 
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$gen = new MapLinkAttributeGenerator( $data->args, $config, $data->markerProperties );
 		$attrs = $gen->prepareAttrs();
 

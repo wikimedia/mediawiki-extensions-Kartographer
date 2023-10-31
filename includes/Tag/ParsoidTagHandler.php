@@ -29,21 +29,8 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 	 */
 	protected function parseTag( ParsoidExtensionAPI $extApi, string $input, array $extArgs ): ParsoidKartographerData {
 		$data = new ParsoidKartographerData();
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$args = [];
-		foreach ( $extArgs as $extArg ) {
-			$args[$extArg->k] = $extArg->v;
-		}
+		$data->args = $this->processParsoidExtensionArguments( $extArgs );
 
-		$langFactory = MediaWikiServices::getInstance()->getLanguageFactory();
-		$langUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
-
-		$data->args = new MapTagArgumentValidator( static::TAG, $args,
-			$config,
-			// FIXME setting the display language to English for the first version, needs to be fixed when we
-			// have a localization solution for Parsoid
-			$langFactory->getLanguage( 'en' ),
-			$langUtils );
 		if ( $data->args->status->isOK() ) {
 			$wp = new ParsoidWikitextParser( $extApi );
 			$sspStatus = ( new SimpleStyleParser( $wp ) )->parse( $input );
@@ -54,15 +41,36 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 			// it's necessary to overwrite value to also pass JSON error status
 			$data->args->status->merge( $sspStatus, true );
 		}
-		if ( !$data->geometries ) {
-			return $data;
+
+		if ( $data->geometries ) {
+			$marker = SimpleStyleParser::findFirstMarkerSymbol( $data->geometries );
+			if ( $marker ) {
+				[ $data->counter, $data->markerProperties ] = $marker;
+			}
 		}
 
-		$marker = SimpleStyleParser::findFirstMarkerSymbol( $data->geometries );
-		if ( $marker ) {
-			[ $data->counter, $data->markerProperties ] = $marker;
-		}
 		return $data;
+	}
+
+	/**
+	 * @param stdClass[] $extArgs
+	 * @return MapTagArgumentValidator
+	 */
+	private function processParsoidExtensionArguments( array $extArgs ): MapTagArgumentValidator {
+		$services = MediaWikiServices::getInstance();
+
+		$args = [];
+		foreach ( $extArgs as $extArg ) {
+			$args[$extArg->k] = $extArg->v;
+		}
+
+		return new MapTagArgumentValidator( static::TAG, $args,
+			$services->getMainConfig(),
+			// FIXME setting the display language to English for the first version, needs to be fixed when we
+			// have a localization solution for Parsoid
+			$services->getLanguageFactory()->getLanguage( 'en' ),
+			$services->getLanguageNameUtils()
+		);
 	}
 
 	/**

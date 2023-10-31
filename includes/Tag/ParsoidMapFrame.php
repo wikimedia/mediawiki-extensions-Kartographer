@@ -24,7 +24,6 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 	 */
 	public function sourceToDom( ParsoidExtensionAPI $extApi, string $src, array $extArgs ) {
 		$data = $this->parseTag( $extApi, $src, $extArgs );
-		$config = MediaWikiServices::getInstance()->getMainConfig();
 
 		if ( !$data->args->status->isGood() ) {
 			return $this->reportErrors( $extApi, self::TAG, $data->args->status );
@@ -33,6 +32,7 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 		// TODO if fullwidth, we really should use interactive mode..
 		// BUT not possible to use both modes at the same time right now. T248023
 		// Should be fixed, especially considering VE in page editing etc...
+		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$staticMode = $config->get( 'KartographerStaticMapframe' );
 
 		$serverMayRenderOverlays = !$extApi->isPreview();
