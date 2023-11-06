@@ -66,6 +66,10 @@ class MapLinkAttributeGenerator {
 			$attrs['class'][] = $this->args->cssClass;
 		}
 
+		if ( !$this->args->hasCoordinates() && $this->args->getTextWithFallback() === null ) {
+			$attrs['class'][] = 'error';
+		}
+
 		if ( $this->args->showGroups ) {
 			$attrs['data-overlays'] = FormatJson::encode( $this->args->showGroups, false,
 				FormatJson::ALL_OK );

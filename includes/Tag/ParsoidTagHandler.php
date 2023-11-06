@@ -45,7 +45,8 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 		if ( $data->geometries ) {
 			$marker = SimpleStyleParser::findFirstMarkerSymbol( $data->geometries );
 			if ( $marker ) {
-				[ $data->counter, $data->markerProperties ] = $marker;
+				[ $counter, $data->markerProperties ] = $marker;
+				$data->args->setFallbackText( $counter );
 			}
 		}
 

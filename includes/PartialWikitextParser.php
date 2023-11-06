@@ -24,6 +24,11 @@ class PartialWikitextParser {
 	 * @return string Half-parsed HTML according to {@see Parser::recursiveTagParse}
 	 */
 	public function halfParseWikitext( string $wikiText ): string {
+		// Don't parse trivial alphanumeric-only strings, e.g. counters like "A" or "99".
+		if ( $wikiText === '' || ctype_alnum( $wikiText ) ) {
+			return $wikiText;
+		}
+
 		return $this->parser->recursiveTagParse( $wikiText, $this->frame );
 	}
 
