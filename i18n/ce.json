@@ -15,6 +15,7 @@
 	"kartographer-error-bad_attr": "«$1» атрибутан магийна доцу маьӀна ду",
 	"kartographer-tracking-category": "Картанаш долу агӀонаш",
 	"kartographer-tracking-category-desc": "Карта долу агӀо",
+	"kartographer-specialmap-invalid-coordinates": "Йихкина нийса йоцу координаташ",
 	"kartographer-specialmap-world": "Дуьненан карта",
 	"kartographer-static-mapframe-alt": "Карта",
 	"kartographer-linktype-aerial": "Аэро",
