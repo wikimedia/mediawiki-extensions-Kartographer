@@ -395,7 +395,6 @@
 			"packageFiles": [
 				"modules/wikivoyage/index.js",
 				"modules/wikivoyage/wikivoyage.js",
-				"modules/wikivoyage/NearbyArticles.js",
 				"modules/wikivoyage/ControlLayers.js",
 				"modules/wikivoyage/WVMapLayers.js",
 				"modules/wikivoyage/WVMap.js"

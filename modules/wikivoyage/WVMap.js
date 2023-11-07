@@ -18,16 +18,6 @@ function WVMap( map ) {
 }
 
 /**
- * @ignore
- * @deprecated since 1.41
- */
-// TODO: Remove when there's no usage anywhere see T332785
-WVMap.prototype.nearby = function () {
-	mw.log.warn( 'Use of new WVMap.nearby() is deprecated. It got replaced and should not be used anymore.' );
-	mw.track( 'mw.deprecate', 'WVMap.nearby' );
-};
-
-/**
  * Adds the layer switcher control to the map.
  *
  * @return {Kartographer.Wikivoyage.WVMapLayers}

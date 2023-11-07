@@ -14,10 +14,5 @@ module.exports = {
 	/**
 	 * @type {Kartographer.Wikivoyage.WVMap}
 	 */
-	WVMap: require( './WVMap.js' ),
-
-	/**
-	 * @type {Kartographer.Wikivoyage.NearbyArticles}
-	 */
-	NearbyArticles: require( './NearbyArticles.js' )
+	WVMap: require( './WVMap.js' )
 };
