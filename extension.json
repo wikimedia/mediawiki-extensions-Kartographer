@@ -249,7 +249,6 @@
 			],
 			"messages": [
 				"kartographer-fullscreen-close",
-				"kartographer-fullscreen-collapse",
 				"kartographer-sidebar-coordinates",
 				"kartographer-sidebar-close-button",
 				"kartographer-sidebar-filterdropdown",
@@ -258,8 +257,7 @@
 				"kartographer-sidebar-externalservices-show-all",
 				"kartographer-sidebar-latitude",
 				"kartographer-sidebar-longitude",
-				"kartographer-sidebar-mapdetails",
-				"kartographer-sidebar-service"
+				"kartographer-sidebar-mapdetails"
 			]
 		},
 		"ext.kartographer.util": {
