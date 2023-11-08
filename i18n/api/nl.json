@@ -5,5 +5,14 @@
 			"McDutchie"
 		]
 	},
+	"apihelp-sanitize-mapdata-summary": "Voert gegevensvalidatie uit voor de uitbreiding Kartographer",
+	"apihelp-sanitize-mapdata-param-title": "Titel van de pagina waarop deze GeoJSON zich zou moeten bevinden. Als er geen titel is opgegeven, wordt een fictieve titel gebruikt.",
+	"apihelp-sanitize-mapdata-param-text": "De op te schonen GeoJSON-code",
+	"apihelp-sanitize-mapdata-example": "Een GeoJSON-blob opschonen",
+	"apihelp-query+mapdata-summary": "Alle Kartographer-kaartgegevens opvragen voor de gegeven pagina’s",
+	"apihelp-query+mapdata-example-1": "Alle kaartgegevens opvragen van de pagina <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-example-2": "Kaartgegevens opvragen in groepen <kbd>group1</kbd> en <kbd>group2</kbd> van de pagina <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-param-continue": "Gebruik deze parameter om door te gaan met het doorlopen van de resultaten",
+	"apihelp-query+mapdata-param-groups": "Door sluistekens gescheiden groepen waarvoor gegevens moeten worden geretourneerd",
 	"apihelp-query+mapdata-param-limit": "Gegevens voor het aantal terug te sturen pagina's"
 }
