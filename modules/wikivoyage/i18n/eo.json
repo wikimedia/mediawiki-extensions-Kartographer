@@ -1,10 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Orikrin1998"
+			"Orikrin1998",
+			"Ziko"
 		]
 	},
 	"kartographer-wv-group": "Grupo :",
-	"kartographer-wv-warning-external-source-agree": "Ĝi estas bone",
+	"kartographer-wv-warning-external-source-title": "Ekstera datumfonto",
+	"kartographer-wv-warning-external-source-message": "Ĉi tiu enhavo estas gastigita ekstere, do se vi ebligas ĝin, ĝi donos vian IP-adreson kaj aliajn datumojn al la mapo-provizanto.",
+	"kartographer-wv-warning-external-source-agree": "Mi aprovas",
 	"kartographer-wv-warning-external-source-disagree": "Nuligi"
 }
