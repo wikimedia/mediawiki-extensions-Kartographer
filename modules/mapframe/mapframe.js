@@ -99,11 +99,7 @@ function initMapBox( data, $container ) {
 		// If MobileFrontend is active do the same for collapsible sections
 		// Unfortunately doesn't work when those sections are immediately
 		// made visible again on page load.
-		mw.loader.using( 'mobile.startup', function () {
-			// this will not complete when target != desktop
-			mw.mobileFrontend.require( 'mobile.startup' ).eventBusSingleton
-				.on( 'section-toggled', map.invalidateSizeAndSetInitialView.bind( map ) );
-		} );
+		mw.hook( 'mobileFrontend.section-toggled' ).add( map.invalidateSizeAndSetInitialView.bind( map ) );
 	}
 
 	return map;
