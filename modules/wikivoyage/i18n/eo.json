@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Orikrin1998"
+			"Orikrin1998",
+			"Ziko"
 		]
 	},
 	"kartographer-wv-group": "Grupo :",
+	"kartographer-wv-warning-external-source-title": "Ekstera datumfonto",
 	"kartographer-wv-warning-external-source-agree": "Ĝi estas bone",
 	"kartographer-wv-warning-external-source-disagree": "Nuligi"
 }
