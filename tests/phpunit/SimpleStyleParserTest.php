@@ -3,6 +3,7 @@
 namespace Kartographer\Tests;
 
 use JsonConfig\JCMapDataContent;
+use JsonConfig\JCSingleton;
 use Kartographer\SimpleStyleParser;
 use Kartographer\WikitextParser;
 use LogicException;
@@ -27,6 +28,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 			MainConfigNames::LanguageCode => 'qqx',
 			MainConfigNames::ScriptPath => '',
 		] );
+		JCSingleton::init( true );
 	}
 
 	/**
