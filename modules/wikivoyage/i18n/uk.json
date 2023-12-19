@@ -13,7 +13,7 @@
 	"kartographer-wv-layer-wikimedia": "Вікімедіа",
 	"kartographer-wv-nearby-articles-control": "Оглянути місця неподалік",
 	"kartographer-wv-warning-external-source-title": "Зовнішнє джерело даних",
-	"kartographer-wv-warning-external-source-message": "Цей вміст зберігається на зовнішньму ресурсі, тож його увімкнення призведе до того, що Ваші дані будуть доступні іншим сайтам.",
+	"kartographer-wv-warning-external-source-message": "Цей вміст зберігається на зовнішньому ресурсі, тож його увімкнення призведе до того, що ваша IP-адреса та інші дані будуть доступні постачальнику карт.",
 	"kartographer-wv-warning-external-source-agree": "Я розумію",
 	"kartographer-wv-warning-external-source-disagree": "Скасувати"
 }
