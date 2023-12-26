@@ -44,7 +44,7 @@
 	"kartographer-sidebar-service": "Dienst",
 	"kartographer-sidebar-togglebutton": "Externe kaarten",
 	"leafletdraw-draw-handlers-circle-radius": "Straal",
-	"leafletdraw-draw-handlers-circle-tooltip-start": "Klik en sleep om en cirkel te tekenen",
+	"leafletdraw-draw-handlers-circle-tooltip-start": "Klik en sleep om een cirkel te tekenen",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Klik op de kaart om een markering te plaatsen",
 	"leafletdraw-draw-handlers-circlemarker-tooltip-start": "Klik op de kaart om de cirkelmarkering te plaatsen",
 	"leafletdraw-draw-handlers-polygon-tooltip-cont": "Klik om door te gaan met het tekenen van deze vorm",
