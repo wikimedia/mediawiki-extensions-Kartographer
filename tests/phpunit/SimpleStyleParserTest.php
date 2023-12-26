@@ -40,9 +40,10 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 
 		$options = ParserOptions::newFromAnon();
 		$parser = $this->getServiceContainer()->getParserFactory()->create();
+		$config = $this->getServiceContainer()->getMainConfig();
 		$title = Title::newFromText( 'Test' );
 		$parser->startExternalParse( $title, $options, Parser::OT_HTML );
-		$ssp = SimpleStyleParser::newFromParser( $parser );
+		$ssp = SimpleStyleParser::newFromParser( $parser, $config );
 
 		$status = $ssp->parse( $input );
 
@@ -123,7 +124,11 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 	) {
 		$parser = $this->createMock( WikitextParser::class );
 		$parser->method( 'parse' )->willReturn( 'HTML' );
-		$ssp = new SimpleStyleParser( $parser, [ $option => true ] );
+		$ssp = new SimpleStyleParser(
+			$parser,
+			$this->getServiceContainer()->getMainConfig(),
+			[ $option => true ]
+		);
 		$data = json_decode( $json );
 
 		if ( $expected && ctype_alpha( $expected ) && class_exists( $expected ) ) {
@@ -368,7 +373,10 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testParseEmptyObjectsAsObjects() {
-		$ssp = new SimpleStyleParser( $this->createMock( WikitextParser::class ) );
+		$ssp = new SimpleStyleParser(
+			$this->createMock( WikitextParser::class ),
+			$this->getServiceContainer()->getMainConfig()
+		);
 		$status = $ssp->parse( '[ {
 			"type": "ExternalData",
 			"service": "geoshape",
