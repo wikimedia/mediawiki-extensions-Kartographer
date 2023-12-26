@@ -18,8 +18,8 @@ use Kartographer\PartialWikitextParser;
 use Kartographer\SimpleStyleParser;
 use Kartographer\State;
 use Language;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use Message;
 use Parser;
@@ -45,8 +45,17 @@ abstract class LegacyTagHandler {
 	protected Config $config;
 	protected Parser $parser;
 	private Language $targetLanguage;
+	private LanguageNameUtils $languageNameUtils;
 	protected State $state;
 	protected ?stdClass $markerProperties = null;
+
+	public function __construct(
+		Config $config,
+		LanguageNameUtils $languageNameUtils
+	) {
+		$this->config = $config;
+		$this->languageNameUtils = $languageNameUtils;
+	}
 
 	/**
 	 * Entry point for all tags
@@ -58,7 +67,6 @@ abstract class LegacyTagHandler {
 	 * @return string
 	 */
 	public function handle( ?string $input, array $args, Parser $parser, PPFrame $frame ): string {
-		$this->config = MediaWikiServices::getInstance()->getMainConfig();
 		$mapServer = $this->config->get( 'KartographerMapServer' );
 		if ( !$mapServer ) {
 			throw new \ConfigException( '$wgKartographerMapServer doesn\'t have a default, please set your own' );
@@ -81,7 +89,7 @@ abstract class LegacyTagHandler {
 			$args,
 			$this->config,
 			$this->getLanguage(),
-			MediaWikiServices::getInstance()->getLanguageNameUtils()
+			$this->languageNameUtils
 		);
 		$status = $this->args->status;
 		$geometries = [];

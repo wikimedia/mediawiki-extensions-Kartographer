@@ -9,12 +9,15 @@
 
 namespace Kartographer;
 
+use Config;
 use Kartographer\Tag\LegacyMapFrame;
 use Kartographer\Tag\LegacyMapLink;
 use Kartographer\Tag\LegacyTagHandler;
 use MediaWiki\Hook\ParserAfterParseHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Hook\ParserTestGlobalsHook;
+use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Title\TitleFormatter;
 use Parser;
 use StripState;
 
@@ -29,9 +32,20 @@ class Hooks implements
 	private LegacyMapLink $legacyMapLink;
 	private LegacyMapFrame $legacyMapFrame;
 
-	public function __construct() {
-		$this->legacyMapLink = new LegacyMapLink();
-		$this->legacyMapFrame = new LegacyMapFrame();
+	public function __construct(
+		Config $config,
+		LanguageNameUtils $languageNameUtils,
+		TitleFormatter $titleFormatter
+	) {
+		$this->legacyMapLink = new LegacyMapLink(
+			$config,
+			$languageNameUtils
+		);
+		$this->legacyMapFrame = new LegacyMapFrame(
+			$config,
+			$languageNameUtils,
+			$titleFormatter
+		);
 	}
 
 	/**
