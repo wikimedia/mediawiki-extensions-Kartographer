@@ -57,21 +57,7 @@ abstract class LegacyTagHandler {
 	 * @param PPFrame $frame
 	 * @return string
 	 */
-	public static function entryPoint( ?string $input, array $args, Parser $parser, PPFrame $frame ): string {
-		/** @phan-suppress-next-line PhanTypeInstantiateAbstractStatic */
-		$handler = new static();
-
-		return $handler->handle( $input, $args, $parser, $frame );
-	}
-
-	/**
-	 * @param string|null $input
-	 * @param array $args
-	 * @param Parser $parser
-	 * @param PPFrame $frame
-	 * @return string
-	 */
-	private function handle( ?string $input, array $args, Parser $parser, PPFrame $frame ): string {
+	public function handle( ?string $input, array $args, Parser $parser, PPFrame $frame ): string {
 		$this->config = MediaWikiServices::getInstance()->getMainConfig();
 		$mapServer = $this->config->get( 'KartographerMapServer' );
 		if ( !$mapServer ) {

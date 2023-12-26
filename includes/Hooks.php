@@ -26,6 +26,13 @@ class Hooks implements
 	ParserAfterParseHook,
 	ParserTestGlobalsHook
 {
+	private LegacyMapLink $legacyMapLink;
+	private LegacyMapFrame $legacyMapFrame;
+
+	public function __construct() {
+		$this->legacyMapLink = new LegacyMapLink();
+		$this->legacyMapFrame = new LegacyMapFrame();
+	}
 
 	/**
 	 * ParserFirstCallInit hook handler
@@ -33,8 +40,8 @@ class Hooks implements
 	 * @param Parser $parser
 	 */
 	public function onParserFirstCallInit( $parser ) {
-		$parser->setHook( LegacyMapLink::TAG, [ LegacyMapLink::class, 'entryPoint' ] );
-		$parser->setHook( LegacyMapFrame::TAG, [ LegacyMapFrame::class, 'entryPoint' ] );
+		$parser->setHook( LegacyMapLink::TAG, [ $this->legacyMapLink, 'handle' ] );
+		$parser->setHook( LegacyMapFrame::TAG, [ $this->legacyMapFrame, 'handle' ] );
 	}
 
 	/**
