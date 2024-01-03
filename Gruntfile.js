@@ -39,8 +39,8 @@ module.exports = function ( grunt ) {
 		const done = this.async();
 		// Are there unstaged changes after synchronizing from upstream libraries?
 		require( 'child_process' ).exec( 'git ls-files lib/external --modified', function ( err, stdout, stderr ) {
-			// Before we try to rebuild lib/external files, let's make sure there aren't any local unstaged changes
-			// first in those files, so we don't override uncommitted work
+			// Before we try to rebuild lib/external files, let's make sure there aren't any local
+			// unstaged changes first in those files, so we don't override uncommitted work
 			const ret = err || stderr || stdout;
 			if ( ret ) {
 				grunt.log.error( 'There are uncommitted changes to external library files. Please change these files upstream, instead.' );

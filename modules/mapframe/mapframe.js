@@ -149,6 +149,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		//     #/map/0
 		//     #/map/0/5
 		//     #/map/0/16/-122.4006/37.7873
+		// eslint-disable-next-line security/detect-unsafe-regex
 		router.route( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([+-]?\d+\.?\d{0,5})?\/([+-]?\d+\.?\d{0,5})?)?/, function ( maptagId, zoom, latitude, longitude ) {
 			const map = maps[ maptagId ];
 

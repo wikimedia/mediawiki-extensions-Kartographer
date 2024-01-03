@@ -181,7 +181,7 @@ MapDialog.prototype.toggleSideBar = function ( open ) {
 
 /**
  * @param {boolean} showNearby
-*/
+ */
 MapDialog.prototype.toggleNearbyLayerWrapper = function ( showNearby ) {
 	mw.loader.using( 'ext.kartographer.lib.leaflet.markercluster' )
 		.then( this.toggleNearbyLayer.bind( this, showNearby, true ) );
