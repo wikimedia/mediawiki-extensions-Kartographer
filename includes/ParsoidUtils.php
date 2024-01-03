@@ -79,7 +79,7 @@ class ParsoidUtils {
 		);
 		$cat = $catService->resolveTrackingCategory( $category, $pageRef );
 		if ( $cat ) {
-			$extApi->getMetadata()->addCategory( $cat->getDBkey() );
+			$extApi->getMetadata()->addCategory( $cat );
 		} else {
 			$extApi->log( 'warn/kartographer', 'Could not add tracking category', $category );
 		}
