@@ -21,9 +21,10 @@
 			function onMapMenu( e ) {
 				let content = '';
 				const zoom = map.getZoom();
+				const wrapped = e.latlng.wrap();
 				const coords = map.getScaleLatLng(
-					e.latlng.lat,
-					e.latlng.lng
+					wrapped.lat,
+					wrapped.lng
 				);
 
 				content += '<table>';
