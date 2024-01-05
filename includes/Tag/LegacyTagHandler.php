@@ -11,8 +11,6 @@ namespace Kartographer\Tag;
 
 use Config;
 use FormatJson;
-use Html;
-use InvalidArgumentException;
 use Kartographer\ParserFunctionTracker;
 use Kartographer\PartialWikitextParser;
 use Kartographer\SimpleStyleParser;
@@ -21,10 +19,8 @@ use Language;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Title\Title;
-use Message;
 use Parser;
 use PPFrame;
-use StatusValue;
 use stdClass;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 
@@ -103,7 +99,9 @@ abstract class LegacyTagHandler {
 		if ( !$status->isGood() ) {
 			$this->state->incrementBrokenTags();
 			State::setState( $parserOutput, $this->state );
-			return $this->reportError( $status );
+
+			$errorReporter = new ErrorReporter( $this->getLanguageCode() );
+			return $errorReporter->getHtml( $status, static::TAG );
 		}
 
 		$this->state->addRequestedGroups( $this->args->showGroups );
@@ -198,62 +196,6 @@ abstract class LegacyTagHandler {
 				$parserOutput->setJsConfigVar( 'wgKartographerLiveData', (object)$liveData );
 			}
 		}
-	}
-
-	/**
-	 * @param StatusValue $status
-	 * @return string HTML
-	 */
-	private function reportError( StatusValue $status ): string {
-		$errors = array_merge( $status->getErrorsByType( 'error' ),
-			$status->getErrorsByType( 'warning' )
-		);
-		if ( !$errors ) {
-			throw new InvalidArgumentException( 'Attempt to report error when none took place' );
-		}
-
-		$tag = '<' . static::TAG . '>';
-		if ( count( $errors ) > 1 ) {
-			$html = '';
-			foreach ( $errors as $err ) {
-				$html .= Html::rawElement( 'li', [], wfMessage( $err['message'], $err['params'] )
-					->inLanguage( $this->getLanguage() )->parse() ) . "\n";
-			}
-			$msg = wfMessage( 'kartographer-error-context-multi', $tag )
-				->rawParams( Html::rawElement( 'ul', [], $html ) );
-		} else {
-			$errorText = wfMessage( $errors[0]['message'], $errors[0]['params'] )
-				->inLanguage( $this->getLanguage() )->parse();
-			$msg = wfMessage( 'kartographer-error-context', $tag, Message::rawParam( $errorText ) );
-		}
-		return Html::rawElement( 'div', [ 'class' => 'mw-kartographer-error' ],
-			$msg->inLanguage( $this->getLanguage() )->escaped() .
-			$this->getJSONValidatorLog( $status->getValue()['schema-errors'] ?? [] )
-		);
-	}
-
-	/**
-	 * @param array[] $errors
-	 *
-	 * @return string HTML
-	 */
-	private function getJSONValidatorLog( array $errors ): string {
-		if ( !$errors ) {
-			return '';
-		}
-
-		$log = "\n";
-		/** These errors come from {@see \JsonSchema\Constraints\BaseConstraint::addError} */
-		foreach ( $errors as $error ) {
-			$log .= Html::element( 'li', [],
-				$error['pointer'] . wfMessage( 'colon-separator' )->text() . $error['message']
-			) . "\n";
-		}
-		return Html::rawElement( 'ul', [ 'class' => [
-			'mw-kartographer-error-log',
-			'mw-collapsible',
-			'mw-collapsed',
-		] ], $log );
 	}
 
 	private function getLanguage(): Language {

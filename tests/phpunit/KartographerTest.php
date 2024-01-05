@@ -11,6 +11,7 @@ use ParserOutput;
 /**
  * @group Kartographer
  * @group Database
+ * @covers \Kartographer\Tag\ErrorReporter
  * @covers \Kartographer\Tag\LegacyTagHandler
  * @covers \Kartographer\Tag\LegacyMapFrame
  * @covers \Kartographer\Tag\LegacyMapLink
