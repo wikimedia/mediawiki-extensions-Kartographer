@@ -2,9 +2,9 @@
 
 namespace Kartographer\Tag;
 
-use Config;
 use FormatJson;
 use Kartographer\Special\SpecialMap;
+use MediaWiki\Config\Config;
 use MediaWiki\MainConfigNames;
 
 /**

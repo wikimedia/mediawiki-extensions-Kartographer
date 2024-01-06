@@ -3,11 +3,11 @@
 namespace Kartographer\Special;
 
 use GeoData\Globe;
-use Html;
 use Kartographer\CoordFormatter;
+use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
-use SpecialPage;
-use UnlistedSpecialPage;
+use MediaWiki\SpecialPage\SpecialPage;
+use MediaWiki\SpecialPage\UnlistedSpecialPage;
 
 /**
  * Special page that works as a fallback destination for non-JS users

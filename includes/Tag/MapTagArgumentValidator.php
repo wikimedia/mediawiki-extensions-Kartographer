@@ -2,8 +2,8 @@
 
 namespace Kartographer\Tag;
 
-use Config;
 use Language;
+use MediaWiki\Config\Config;
 use MediaWiki\Languages\LanguageNameUtils;
 use StatusValue;
 

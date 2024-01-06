@@ -2,9 +2,9 @@
 
 namespace Kartographer\Tag;
 
-use Config;
-use Html;
 use Kartographer\PartialWikitextParser;
+use MediaWiki\Config\Config;
+use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Title\TitleFormatter;
 

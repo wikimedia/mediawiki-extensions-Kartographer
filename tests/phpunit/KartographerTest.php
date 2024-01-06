@@ -3,10 +3,10 @@ namespace Kartographer\Tests;
 
 use Kartographer\State;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
 use MediaWikiLangTestCase;
 use ParserOptions;
-use ParserOutput;
 
 /**
  * @group Kartographer

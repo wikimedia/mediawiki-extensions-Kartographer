@@ -14,8 +14,8 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Parser\ParserOutput;
 use ParserOptions;
-use ParserOutput;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 

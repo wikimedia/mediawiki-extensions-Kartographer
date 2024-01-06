@@ -9,6 +9,7 @@
 namespace Kartographer\Modules;
 
 use ExtensionRegistry;
+use MediaWiki\Config\ConfigException;
 // phpcs:disable MediaWiki.Classes.FullQualifiedClassName -- T308814
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
@@ -56,7 +57,7 @@ class DataModule extends RL\Module {
 		if ( !ExtensionRegistry::getInstance()->isLoaded( 'GeoData' ) ||
 			!ExtensionRegistry::getInstance()->isLoaded( 'CirrusSearch' )
 		) {
-			throw new \ConfigException( '$wgKartographerNearby requires GeoData and CirrusSearch extensions' );
+			throw new ConfigException( '$wgKartographerNearby requires GeoData and CirrusSearch extensions' );
 		}
 
 		return $limit === true ? 300 : (int)$limit;

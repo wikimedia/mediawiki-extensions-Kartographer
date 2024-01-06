@@ -2,8 +2,8 @@
 
 namespace Kartographer\Tests;
 
-use HashConfig;
 use Kartographer\Modules\DataModule;
+use MediaWiki\Config\HashConfig;
 use MediaWiki\ResourceLoader\Context;
 use MediaWikiIntegrationTestCase;
 

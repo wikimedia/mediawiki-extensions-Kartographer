@@ -2,8 +2,8 @@
 
 namespace Kartographer\Tag;
 
-use Html;
 use InvalidArgumentException;
+use MediaWiki\Html\Html;
 use StatusValue;
 
 /**

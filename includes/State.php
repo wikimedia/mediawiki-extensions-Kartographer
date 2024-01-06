@@ -3,7 +3,7 @@
 namespace Kartographer;
 
 use JsonSerializable;
-use ParserOutput;
+use MediaWiki\Parser\ParserOutput;
 use UnexpectedValueException;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 

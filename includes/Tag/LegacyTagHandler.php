@@ -9,13 +9,14 @@
 
 namespace Kartographer\Tag;
 
-use Config;
 use FormatJson;
 use Kartographer\ParserFunctionTracker;
 use Kartographer\PartialWikitextParser;
 use Kartographer\SimpleStyleParser;
 use Kartographer\State;
 use Language;
+use MediaWiki\Config\Config;
+use MediaWiki\Config\ConfigException;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Title\Title;
@@ -65,7 +66,7 @@ abstract class LegacyTagHandler {
 	public function handle( ?string $input, array $args, Parser $parser, PPFrame $frame ): string {
 		$mapServer = $this->config->get( 'KartographerMapServer' );
 		if ( !$mapServer ) {
-			throw new \ConfigException( '$wgKartographerMapServer doesn\'t have a default, please set your own' );
+			throw new ConfigException( '$wgKartographerMapServer doesn\'t have a default, please set your own' );
 		}
 
 		$this->parser = $parser;

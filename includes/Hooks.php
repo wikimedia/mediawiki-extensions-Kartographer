@@ -9,10 +9,10 @@
 
 namespace Kartographer;
 
-use Config;
 use Kartographer\Tag\LegacyMapFrame;
 use Kartographer\Tag\LegacyMapLink;
 use Kartographer\Tag\LegacyTagHandler;
+use MediaWiki\Config\Config;
 use MediaWiki\Hook\ParserAfterParseHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Hook\ParserTestGlobalsHook;

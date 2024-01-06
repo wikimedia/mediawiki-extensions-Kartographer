@@ -5,6 +5,7 @@ namespace Kartographer\UnitTests;
 use Kartographer\ParserFunctionTracker;
 use Kartographer\State;
 use Kartographer\Tag\LegacyTagHandler;
+use MediaWiki\Parser\ParserOutput;
 use MediaWikiUnitTestCase;
 use stdClass;
 
@@ -34,7 +35,7 @@ class LegacyTagHandlerTest extends MediaWikiUnitTestCase {
 			}
 		}
 
-		$output = $this->createMock( \ParserOutput::class );
+		$output = $this->createMock( ParserOutput::class );
 		$output->expects( $this->once() )
 			->method( 'setJsConfigVar' )
 			->with( 'wgKartographerLiveData', $expected );

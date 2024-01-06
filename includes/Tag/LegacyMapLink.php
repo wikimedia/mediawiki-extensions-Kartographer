@@ -2,9 +2,9 @@
 
 namespace Kartographer\Tag;
 
-use Html;
 use Kartographer\CoordFormatter;
 use Kartographer\PartialWikitextParser;
+use MediaWiki\Html\Html;
 
 /**
  * The <maplink> tag creates a link that, when clicked, will open a dynamic map in Special:Map page

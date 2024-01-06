@@ -5,8 +5,8 @@ namespace Kartographer\UnitTests;
 use Kartographer\State;
 use Kartographer\Tag\LegacyMapFrame;
 use Kartographer\Tag\LegacyMapLink;
+use MediaWiki\Parser\ParserOutput;
 use MediaWikiUnitTestCase;
-use ParserOutput;
 use Wikimedia\TestingAccessWrapper;
 
 /**

@@ -2,10 +2,10 @@
 
 namespace Kartographer\UnitTests;
 
-use HashConfig;
 use Kartographer\Tag\MapFrameAttributeGenerator;
 use Kartographer\Tag\MapTagArgumentValidator;
 use Language;
+use MediaWiki\Config\HashConfig;
 use MediaWikiUnitTestCase;
 
 /**
