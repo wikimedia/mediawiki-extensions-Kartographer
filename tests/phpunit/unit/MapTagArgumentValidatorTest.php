@@ -96,7 +96,7 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 			'comma separates names' => [ 'a b,c', [ 'a b', 'c' ] ],
 			'all whitespace is trimmed' => [ ' a , b ', [ 'a', 'b' ] ],
 			'empty name is not allowed' => [ 'a,,b', null ],
-			'FIXME: whitespace-only name is not allowed' => [ 'a, ,b', [ 'a', '', 'b' ] ],
+			'whitespace-only name is not allowed' => [ 'a, ,b', null ],
 			'comma at the start' => [ ' ,a', null ],
 			'comma at the end' => [ 'a, ', null ],
 		];
