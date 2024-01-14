@@ -5,7 +5,7 @@
 		"doc": "jsdoc -c jsdoc.json -p",
 		"test": "grunt test",
 		"build-lib": "./bin/build.sh",
-		"minify-svg": "svgo --config=.svgo.config.js --quiet --recursive --folder styles/images/"
+		"minify:svg": "svgo --config=.svgo.config.js --quiet --recursive --folder styles/images/"
 	},
 	"devDependencies": {
 		"browserify": "16.2.2",
@@ -22,7 +22,7 @@
 		"rollup": "^0.36.1",
 		"rollup-plugin-commonjs": "^5.0.4",
 		"stylelint-config-wikimedia": "0.16.1",
-		"svgo": "3.0.2"
+		"svgo": "3.2.0"
 	},
 	"dependencies": {
 		"@wikimedia/leaflet-sleep": "^0.5.1",
