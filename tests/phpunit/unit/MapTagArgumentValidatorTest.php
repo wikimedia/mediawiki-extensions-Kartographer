@@ -73,6 +73,35 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 		$this->assertStatusError( 'kartographer-error-bad_attr', $args->status );
 	}
 
+	/**
+	 * @dataProvider provideShowGroups
+	 */
+	public function testShowGroups( string $show, ?array $expected ) {
+		$language = $this->createMock( Language::class );
+		$args = new MapTagArgumentValidator( 'maplink', [
+			'show' => $show,
+		], $this->getConfig(), $language );
+
+		if ( $expected === null ) {
+			$this->assertStatusError( 'kartographer-error-bad_attr', $args->status );
+		} else {
+			$this->assertSame( $expected, $args->showGroups );
+		}
+	}
+
+	public function provideShowGroups() {
+		return [
+			'empty' => [ '', [] ],
+			'names can contain whitespace' => [ 'a b', [ 'a b' ] ],
+			'comma separates names' => [ 'a b,c', [ 'a b', 'c' ] ],
+			'all whitespace is trimmed' => [ ' a , b ', [ 'a', 'b' ] ],
+			'empty name is not allowed' => [ 'a,,b', null ],
+			'FIXME: whitespace-only name is not allowed' => [ 'a, ,b', [ 'a', '', 'b' ] ],
+			'comma at the start' => [ ' ,a', null ],
+			'comma at the end' => [ 'a, ', null ],
+		];
+	}
+
 	private function getConfig(): Config {
 		return new HashConfig( [
 			'KartographerDfltStyle' => 'custom',
