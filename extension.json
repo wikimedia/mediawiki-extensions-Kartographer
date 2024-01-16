@@ -494,7 +494,7 @@
 		},
 		"KartographerStaticFullWidth": {
 			"description": "The actual width of static map images when a <mapframe> uses the special value width=\"full\". Relevant on wikis in static mode or when JavaScript is disabled. It's recommended to use one of the $wgImageLimits widths for consistency.",
-			"value": 800
+			"value": 1024
 		},
 		"KartographerUseMarkerStyle": {
 			"description": "Allows Kartographer to extract marker styles from the GeoJSON to style a <maplink> accordingly. Currently only the \"marker-color\" is considered.",
