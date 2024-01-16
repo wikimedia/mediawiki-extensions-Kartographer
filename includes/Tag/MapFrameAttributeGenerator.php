@@ -121,7 +121,8 @@ class MapFrameAttributeGenerator {
 	 */
 	public function prepareImgAttrs( bool $serverMayRenderOverlays, string $pagetitle, ?int $revisionId ): array {
 		$mapServer = $this->config->get( 'KartographerMapServer' );
-		$staticWidth = $this->args->width === 'full' ? 800 : (int)$this->args->width;
+		$fullWidth = $this->config->get( 'KartographerStaticFullWidth' );
+		$staticWidth = $this->args->width === 'full' ? $fullWidth : (int)$this->args->width;
 
 		$imgUrlParams = [
 			'lang' => $this->args->getLanguageCodeWithDefaultFallback(),

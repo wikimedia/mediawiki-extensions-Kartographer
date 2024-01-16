@@ -22,6 +22,7 @@ class MapFrameAttributeGeneratorTest extends MediaWikiUnitTestCase {
 			'KartographerMapServer' => '',
 			'KartographerMediaWikiInternalUrl' => 'localhost',
 			'KartographerSrcsetScales' => [],
+			'KartographerStaticFullWidth' => 800,
 			'KartographerStyles' => [],
 			'KartographerUsePageLanguage' => false,
 			'KartographerWikivoyageMode' => true,

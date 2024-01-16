@@ -492,6 +492,10 @@
 			"description": "Server providing the map tiles. This is the only setting that doesn't have a default. You must provide a value. Note that the Wikimedia tile server \"https://maps.wikimedia.org\" can't be used outside of the Wikimedia cluster.",
 			"value": null
 		},
+		"KartographerStaticFullWidth": {
+			"description": "The actual width of static map images when a <mapframe> uses the special value width=\"full\". Relevant on wikis in static mode or when JavaScript is disabled. It's recommended to use one of the $wgImageLimits widths for consistency.",
+			"value": 800
+		},
 		"KartographerUseMarkerStyle": {
 			"description": "Allows Kartographer to extract marker styles from the GeoJSON to style a <maplink> accordingly. Currently only the \"marker-color\" is considered.",
 			"value": false
