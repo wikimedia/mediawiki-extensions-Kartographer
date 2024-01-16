@@ -239,12 +239,8 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( 'wgKartographerStaticMapframe', false );
 		$output = $this->parse( $input );
 
-		$this->assertArrayEquals(
-			array_keys( $expectedModules ), array_unique( $output->getModules() )
-		);
-		$this->assertArrayEquals(
-			array_keys( $expectedStyles ), array_unique( $output->getModuleStyles() )
-		);
+		$this->assertArrayEquals( $expectedModules, $output->getModules() );
+		$this->assertArrayEquals( $expectedStyles, $output->getModuleStyles() );
 	}
 
 	/**
@@ -254,13 +250,9 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( 'wgKartographerStaticMapframe', false );
 		$output = $this->parseParsoid( $input );
 
-		$parsoidModules = [ 'mediawiki.skinning.content.parsoid' => '' ];
-		$this->assertArrayEquals(
-			array_keys( $expectedModules ), array_unique( $output->getModules() )
-		);
-		$this->assertArrayEquals(
-			array_keys( array_merge( $expectedStyles, $parsoidModules ) ), array_unique( $output->getModuleStyles() )
-		);
+		$parsoidModules = [ 'mediawiki.skinning.content.parsoid' ];
+		$this->assertArrayEquals( $expectedModules, $output->getModules() );
+		$this->assertArrayEquals( array_merge( $expectedStyles, $parsoidModules ), $output->getModuleStyles() );
 	}
 
 	public static function provideResourceModulesData() {
@@ -269,17 +261,21 @@ class KartographerTest extends MediaWikiLangTestCase {
 
 		// @todo @fixme These are incorrect, but match existing code
 		// When the code is fixed, they should be changed
-		$frameMod = [ 'ext.kartographer.frame' => '' ];
-		$frameStyle = [ 'ext.kartographer.style' => '' ];
+		$frameMod = [ 'ext.kartographer.frame' ];
+		$frameStyle = [ 'ext.kartographer.style' ];
 
-		$linkMod = [ 'ext.kartographer.link' => '' ];
-		$linkStyle = [ 'ext.kartographer.style' => '' ];
+		$linkMod = [ 'ext.kartographer.link' ];
+		$linkStyle = [ 'ext.kartographer.style' ];
 
 		return [
 			[ '', [], [] ],
 			[ $mapframe, $frameMod, $frameStyle ],
 			[ $maplink, $linkMod, $linkStyle ],
-			[ $mapframe . $maplink, $frameMod + $linkMod, $frameStyle + $linkStyle ],
+			[
+				$mapframe . $maplink,
+				array_unique( array_merge( $frameMod, $linkMod ) ),
+				array_unique( array_merge( $frameStyle, $linkStyle ) )
+			],
 		];
 	}
 
