@@ -17,19 +17,17 @@ mw.hook( 'wikipage.maps' ).add( function ( maps ) {
 		const popup = L.popup();
 
 		function onMapMenu( e ) {
-			let content = '';
 			const zoom = map.getZoom();
 			const wrapped = e.latlng.wrap();
 			const coords = map.getScaleLatLng(
 				wrapped.lat,
 				wrapped.lng
 			);
-
-			content += '<table>';
-			content += '<tr><th>' + mw.message( 'visualeditor-mwmapsdialog-position-lat' ).escaped() + '</th><td>' + coords[ 0 ] + '</td></tr>';
-			content += '<tr><th>' + mw.message( 'visualeditor-mwmapsdialog-position-lon' ).escaped() + '</th><td>' + coords[ 1 ] + '</td></tr>';
-			content += '<tr><th>' + mw.message( 'visualeditor-mwmapsdialog-position-zoom' ).escaped() + '</th><td>' + zoom + '</td></tr>';
-			content += '</table>';
+			const content = '<table>' +
+				'<tr><th>' + mw.message( 'visualeditor-mwmapsdialog-position-lat' ).escaped() + '</th><td>' + coords[ 0 ] + '</td></tr>' +
+				'<tr><th>' + mw.message( 'visualeditor-mwmapsdialog-position-lon' ).escaped() + '</th><td>' + coords[ 1 ] + '</td></tr>' +
+				'<tr><th>' + mw.message( 'visualeditor-mwmapsdialog-position-zoom' ).escaped() + '</th><td>' + zoom + '</td></tr>' +
+				'</table>';
 
 			popup
 				.setLatLng( e.latlng )
