@@ -251,16 +251,15 @@ class KartographerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideResourceModulesData
 	 */
 	public function testResourceModulesParsoid( string $input, array $expectedModules, array $expectedStyles ) {
-		$this->markTestSkipped( 'Temporarily skip tests to let us merge a core patch.' );
-
 		$this->setMwGlobals( 'wgKartographerStaticMapframe', false );
 		$output = $this->parseParsoid( $input );
 
+		$parsoidModules = [ 'mediawiki.skinning.content.parsoid' => '' ];
 		$this->assertArrayEquals(
 			array_keys( $expectedModules ), array_unique( $output->getModules() )
 		);
 		$this->assertArrayEquals(
-			array_keys( $expectedStyles ), array_unique( $output->getModuleStyles() )
+			array_keys( array_merge( $expectedStyles, $parsoidModules ) ), array_unique( $output->getModuleStyles() )
 		);
 	}
 
