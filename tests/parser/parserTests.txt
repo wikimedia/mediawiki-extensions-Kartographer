@@ -393,11 +393,15 @@ wgKartographerUseMarkerStyle=true
 	}
 }
 ]</maplink>
+<maplink latitude=1 longitude=1 text="T355044" />
 !! html/php
 <p><a class="mw-kartographer-maplink mw-kartographer-autostyled" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" style="background: #abcdef;" data-overlays="[&quot;_a179016647e3e59d6050d1da013ff6b20ba0a5e2&quot;]">A</a>
+<a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/0/1/1/en" data-lat="1" data-lon="1">T355044</a>
 </p>
 !! html/parsoid
-<p><a class="mw-kartographer-maplink mw-kartographer-autostyled" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" style="background: #abcdef;" data-overlays='["_a179016647e3e59d6050d1da013ff6b20ba0a5e2"]' typeof="mw:Extension/maplink" about="#mwt2" data-mw='{"name":"maplink","attrs":{"latitude":"10","longitude":"20","zoom":"13"},"body":{"extsrc":"[\n{\n\t\"type\": \"Feature\",\n\t\"geometry\": {\n\t\t\"type\": \"Point\",\n\t\t\"coordinates\": [1, 2]\n \t}\n},\n{\n\"type\": \"Feature\",\n\t\"geometry\": {\n\t\t\"type\": \"Point\",\n\t\t\"coordinates\": [-122, 37]\n\t},\n\t\"properties\": {\n\t\t\"marker-symbol\": \"-letter\",\n\t\t\"marker-color\": \"#abcdef\"\n\t}\n},\n{\n\"type\": \"Feature\",\n\t\"geometry\": {\n\t\t\"type\": \"Point\",\n\t\t\"coordinates\": [-122, 37]\n\t},\n\t\"properties\": {\n\t\t\"marker-symbol\": \"-number\",\n\t\t\"marker-color\": \"#DDEEFF\"\n\t}\n}\n]"}}'>A</a></p>
+<p><a class="mw-kartographer-maplink mw-kartographer-autostyled" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/13/10/20/en" data-zoom="13" data-lat="10" data-lon="20" style="background: #abcdef;" data-overlays='["_a179016647e3e59d6050d1da013ff6b20ba0a5e2"]' typeof="mw:Extension/maplink" about="#mwt2" data-mw='{"name":"maplink","attrs":{"latitude":"10","longitude":"20","zoom":"13"},"body":{"extsrc":"[\n{\n\t\"type\": \"Feature\",\n\t\"geometry\": {\n\t\t\"type\": \"Point\",\n\t\t\"coordinates\": [1, 2]\n \t}\n},\n{\n\"type\": \"Feature\",\n\t\"geometry\": {\n\t\t\"type\": \"Point\",\n\t\t\"coordinates\": [-122, 37]\n\t},\n\t\"properties\": {\n\t\t\"marker-symbol\": \"-letter\",\n\t\t\"marker-color\": \"#abcdef\"\n\t}\n},\n{\n\"type\": \"Feature\",\n\t\"geometry\": {\n\t\t\"type\": \"Point\",\n\t\t\"coordinates\": [-122, 37]\n\t},\n\t\"properties\": {\n\t\t\"marker-symbol\": \"-number\",\n\t\t\"marker-color\": \"#DDEEFF\"\n\t}\n}\n]"}}'>A</a>
+<a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/0/1/1/en" data-lat="1" data-lon="1" typeof="mw:Extension/maplink" data-mw='{"name":"maplink","attrs":{"latitude":"1","longitude":"1","text":"T355044"}}'>T355044</a>
+</p>
 !! end
 
 !! test

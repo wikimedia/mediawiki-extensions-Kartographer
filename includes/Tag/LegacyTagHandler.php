@@ -81,6 +81,9 @@ abstract class LegacyTagHandler {
 		$this->state = State::getOrCreate( $parserOutput );
 		$this->state->incrementUsage( static::TAG );
 
+		// T355044: Reset state that should only survive for a single <maplink>
+		$this->markerProperties = null;
+
 		$this->args = new MapTagArgumentValidator(
 			static::TAG,
 			$args,
