@@ -6,6 +6,7 @@ use Language;
 use MediaWiki\Config\Config;
 use MediaWiki\Languages\LanguageNameUtils;
 use StatusValue;
+use stdClass;
 
 /**
  * Validator and preprocessor for all arguments that can be used in <mapframe> and <maplink> tags.
@@ -38,6 +39,7 @@ class MapTagArgumentValidator {
 	public ?string $specifiedLangCode = null;
 	public ?string $text;
 	private ?string $fallbackText = null;
+	public ?stdClass $markerProperties = null;
 
 	/**
 	 * @var string|null Currently parsed group identifier from the group="…" attribute. Only allowed
@@ -173,8 +175,9 @@ class MapTagArgumentValidator {
 			);
 	}
 
-	public function setFallbackText( string $text ): void {
-		$this->fallbackText = $text;
+	public function setFirstMarkerProperties( ?string $fallbackText, stdClass $properties ): void {
+		$this->fallbackText = $fallbackText;
+		$this->markerProperties = $properties;
 	}
 
 	public function getTextWithFallback(): ?string {

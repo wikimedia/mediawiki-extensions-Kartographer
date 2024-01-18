@@ -94,7 +94,7 @@ class SimpleStyleParser {
 	/**
 	 * @param stdClass[] $values
 	 * @param int[] &$counters
-	 * @return array|null [ string $markerSymbol, stdClass $markerProperties ]
+	 * @return array{string,stdClass}|null [ string $firstMarkerSymbol, stdClass $firstMarkerProperties ]
 	 */
 	public static function updateMarkerSymbolCounters( array $values, array &$counters = [] ): ?array {
 		$firstMarker = null;
@@ -134,8 +134,8 @@ class SimpleStyleParser {
 
 	/**
 	 * @param stdClass[] $values
-	 * @return array|null Same as {@see updateMarkerSymbolCounters}, but with the $markerSymbol
-	 *  name not updated
+	 * @return array{string,stdClass}|null Same as {@see updateMarkerSymbolCounters}, but with the
+	 *  $firstMarkerSymbol name not updated
 	 */
 	public static function findFirstMarkerSymbol( array $values ): ?array {
 		foreach ( $values as $item ) {

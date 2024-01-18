@@ -5,7 +5,6 @@ namespace Kartographer\Tag;
 use FormatJson;
 use Kartographer\Special\SpecialMap;
 use MediaWiki\Config\Config;
-use stdClass;
 
 /**
  * @license MIT
@@ -14,12 +13,10 @@ class MapLinkAttributeGenerator {
 
 	private MapTagArgumentValidator $args;
 	private Config $config;
-	private ?stdClass $markerProperties;
 
-	public function __construct( MapTagArgumentValidator $args, Config $config, ?stdClass $markerProperties ) {
+	public function __construct( MapTagArgumentValidator $args, Config $config ) {
 		$this->args = $args;
 		$this->config = $config;
-		$this->markerProperties = $markerProperties;
 	}
 
 	/**
@@ -83,11 +80,11 @@ class MapLinkAttributeGenerator {
 	 */
 	private function extractMarkerCss(): string {
 		if ( $this->config->get( 'KartographerUseMarkerStyle' )
-			&& $this->markerProperties
-			&& isset( $this->markerProperties->{'marker-color'} )
+			&& $this->args->markerProperties
+			&& isset( $this->args->markerProperties->{'marker-color'} )
 			// JsonSchema already validates this value for us, however this regex will also fail
 			// if the color is invalid
-			&& preg_match( '/^#?((?:[\da-f]{3}){1,2})$/i', $this->markerProperties->{'marker-color'}, $m )
+			&& preg_match( '/^#?((?:[\da-f]{3}){1,2})$/i', $this->args->markerProperties->{'marker-color'}, $m )
 		) {
 			return "background: #{$m[1]};";
 		}

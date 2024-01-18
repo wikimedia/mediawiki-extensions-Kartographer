@@ -22,7 +22,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Title\Title;
 use Parser;
 use PPFrame;
-use stdClass;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 
 /**
@@ -44,7 +43,6 @@ abstract class LegacyTagHandler {
 	private Language $targetLanguage;
 	private LanguageNameUtils $languageNameUtils;
 	protected State $state;
-	protected ?stdClass $markerProperties = null;
 
 	public function __construct(
 		Config $config,
@@ -80,9 +78,6 @@ abstract class LegacyTagHandler {
 		$parserOutput->addExtraCSPDefaultSrc( $mapServer );
 		$this->state = State::getOrCreate( $parserOutput );
 		$this->state->incrementUsage( static::TAG );
-
-		// T355044: Reset state that should only survive for a single <maplink>
-		$this->markerProperties = null;
 
 		$this->args = new MapTagArgumentValidator(
 			static::TAG,
@@ -139,8 +134,7 @@ abstract class LegacyTagHandler {
 		$counters = $this->state->getCounters();
 		$marker = SimpleStyleParser::updateMarkerSymbolCounters( $geometries, $counters );
 		if ( $marker ) {
-			[ $counter, $this->markerProperties ] = $marker;
-			$this->args->setFallbackText( $counter );
+			$this->args->setFirstMarkerProperties( ...$marker );
 		}
 		$this->state->setCounters( $counters );
 

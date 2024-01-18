@@ -33,7 +33,7 @@ class ParsoidMapLink extends ParsoidTagHandler {
 		}
 
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$gen = new MapLinkAttributeGenerator( $data->args, $config, $data->markerProperties );
+		$gen = new MapLinkAttributeGenerator( $data->args, $config );
 		$attrs = $gen->prepareAttrs();
 
 		$text = $data->args->getTextWithFallback();
