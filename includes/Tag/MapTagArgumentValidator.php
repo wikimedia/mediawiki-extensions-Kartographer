@@ -48,7 +48,7 @@ class MapTagArgumentValidator {
 	public array $showGroups = [];
 
 	/**
-	 * @param string $tag
+	 * @param string $tag Tag name, e.g. "maplink"
 	 * @param string[] $args
 	 * @param Config $config
 	 * @param Language $language

@@ -18,7 +18,7 @@ class Tag {
 	private StatusValue $status;
 
 	/**
-	 * @param string $name
+	 * @param string $name Tag name, e.g. "maplink"
 	 * @param string[] $args
 	 * @param StatusValue $status
 	 */

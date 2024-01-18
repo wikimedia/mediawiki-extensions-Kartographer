@@ -83,9 +83,7 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 	public function reportErrors(
 		ParsoidExtensionAPI $extApi, string $tag, StatusValue $status
 	): DocumentFragment {
-		$errors = array_merge( $status->getErrorsByType( 'error' ),
-			$status->getErrorsByType( 'warning' )
-		);
+		$errors = $status->getErrors();
 		if ( !$errors ) {
 			throw new LogicException( __METHOD__ . '(): attempt to report error when none took place' );
 		}

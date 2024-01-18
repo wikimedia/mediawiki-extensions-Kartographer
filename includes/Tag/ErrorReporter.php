@@ -23,10 +23,7 @@ class ErrorReporter {
 	 * @return string HTML
 	 */
 	public function getHtml( StatusValue $status, string $tag ): string {
-		$errors = array_merge(
-			$status->getErrorsByType( 'error' ),
-			$status->getErrorsByType( 'warning' )
-		);
+		$errors = $status->getErrors();
 		if ( !$errors ) {
 			throw new InvalidArgumentException( 'Attempt to report error when none took place' );
 		}
