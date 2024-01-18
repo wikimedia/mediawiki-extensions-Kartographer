@@ -194,7 +194,7 @@ const KartographerMap = L.Map.extend( {
 		$( options.container ).addClass( 'mw-kartographer-interactive' );
 
 		const args = L.extend( {}, L.Map.prototype.options, options, {
-			// `center` and `zoom` are to undefined to avoid calling
+			// `center` and `zoom` are undefined to avoid calling
 			// setView now. setView is called later when the data is
 			// loaded.
 			center: undefined,
