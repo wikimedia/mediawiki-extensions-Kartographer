@@ -10,41 +10,37 @@
  * @class Kartographer.Preview
  * @singleton
  */
-( function () {
+mw.hook( 'wikipage.maps' ).add( function ( maps ) {
+	maps = Array.isArray( maps ) ? maps : [ maps ];
 
-	mw.hook( 'wikipage.maps' ).add( function ( maps ) {
-		maps = Array.isArray( maps ) ? maps : [ maps ];
+	maps.forEach( function ( map ) {
+		const popup = L.popup();
 
-		maps.forEach( function ( map ) {
-			const popup = L.popup();
+		function onMapMenu( e ) {
+			let content = '';
+			const zoom = map.getZoom();
+			const wrapped = e.latlng.wrap();
+			const coords = map.getScaleLatLng(
+				wrapped.lat,
+				wrapped.lng
+			);
 
-			function onMapMenu( e ) {
-				let content = '';
-				const zoom = map.getZoom();
-				const wrapped = e.latlng.wrap();
-				const coords = map.getScaleLatLng(
-					wrapped.lat,
-					wrapped.lng
-				);
+			content += '<table>';
+			content += '<tr><th>' + mw.message( 'visualeditor-mwmapsdialog-position-lat' ).escaped() + '</th><td>' + coords[ 0 ] + '</td></tr>';
+			content += '<tr><th>' + mw.message( 'visualeditor-mwmapsdialog-position-lon' ).escaped() + '</th><td>' + coords[ 1 ] + '</td></tr>';
+			content += '<tr><th>' + mw.message( 'visualeditor-mwmapsdialog-position-zoom' ).escaped() + '</th><td>' + zoom + '</td></tr>';
+			content += '</table>';
 
-				content += '<table>';
-				content += '<tr><th>' + mw.message( 'visualeditor-mwmapsdialog-position-lat' ).escaped() + '</th><td>' + coords[ 0 ] + '</td></tr>';
-				content += '<tr><th>' + mw.message( 'visualeditor-mwmapsdialog-position-lon' ).escaped() + '</th><td>' + coords[ 1 ] + '</td></tr>';
-				content += '<tr><th>' + mw.message( 'visualeditor-mwmapsdialog-position-zoom' ).escaped() + '</th><td>' + zoom + '</td></tr>';
-				content += '</table>';
+			popup
+				.setLatLng( e.latlng )
+				// These are non-localized wiki tag attributes, so no need for i18n
+				.setContent( content )
+				.openOn( map );
+		}
 
-				popup
-					.setLatLng( e.latlng )
-					// These are non-localized wiki tag attributes, so no need for i18n
-					.setContent( content )
-					.openOn( map );
-			}
-
-			if ( !map.isStatic() ) {
-				// on right click, add a little popup with the coordinates.
-				map.on( 'contextmenu', onMapMenu );
-			}
-		} );
+		if ( !map.isStatic() ) {
+			// on right click, add a little popup with the coordinates.
+			map.on( 'contextmenu', onMapMenu );
+		}
 	} );
-
-}() );
+} );
