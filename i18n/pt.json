@@ -31,6 +31,8 @@
 	"kartographer-tracking-category": "Páginas com mapas",
 	"kartographer-tracking-category-desc": "A página inclui um mapa",
 	"kartographer-specialmap-invalid-coordinates": "As coordenadas fornecidas são inválidas",
+	"kartographer-specialmap-world": "Mapa do mundo",
+	"kartographer-static-mapframe-alt": "Mapa",
 	"kartographer-linktype-aerial": "Aéreo",
 	"kartographer-linktype-map": "Mapas padrão",
 	"kartographer-linktype-other": "Outro",
