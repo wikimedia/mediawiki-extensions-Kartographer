@@ -49,7 +49,6 @@
 	"kartographer-linktype-topo": "Appears on the sidebar of the full screen map. A plural adjective, as in \"Topographic (maps)\".\n\n{{Identical|Topographic}}",
 	"kartographer-link-acme-mapper": "{{optional}}Full screen map info sidebar - external service name\n{{related|Kartographer-link}}",
 	"kartographer-link-apple-maps": "{{optional}}Full screen map info sidebar - external service name\n{{related|Kartographer-link}}",
-	"kartographer-link-arctic-io": "{{optional}}Full screen map info sidebar - external service name\n{{related|Kartographer-link}}",
 	"kartographer-link-bing-maps": "{{optional}}Full screen map info sidebar - external service name\n{{related|Kartographer-link}}",
 	"kartographer-link-blue-marble-navigator": "{{optional}}Full screen map info sidebar - external service name\n{{related|Kartographer-link}}",
 	"kartographer-link-geohack": "{{optional}}Full screen map info sidebar - external service name\n{{related|Kartographer-link}}",

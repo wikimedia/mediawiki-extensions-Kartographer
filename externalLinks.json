@@ -41,15 +41,6 @@
 			]
 		},
 		{
-			"id": "arctic-io",
-			"links": [
-				{
-					"type": "satellite",
-					"url": "https://www.arctic.io/wikipedia/?lon={longitude}&lat={latitude}&title={title}"
-				}
-			]
-		},
-		{
 			"id": "bing-maps",
 			"featured": true,
 			"links": [
