@@ -122,13 +122,13 @@ class MapTagArgumentValidator {
 		}
 		$this->frameless = ( $this->text === null || $this->text === '' ) &&
 			$this->args->getString( 'frameless' ) !== null;
-		$this->cssClass = $this->args->getString( 'class', '/^(|[a-zA-Z][-_a-zA-Z0-9]*)$/' ) ?? '';
+		$this->cssClass = $this->args->getString( 'class', '/^([a-z][\w-]*)?$/i' ) ?? '';
 	}
 
 	private function parseGroups(): void {
-		$this->groupId = $this->args->getString( 'group', '/^(\w| )+$/u' );
+		$this->groupId = $this->args->getString( 'group', '/^[\w ]+$/u' );
 
-		$show = $this->args->getString( 'show', '/^(|(\w| )+(\s*,\s*(\w| )+)*)$/u' );
+		$show = $this->args->getString( 'show', '/^([\w ]+(\s*,\s*+[\w ]+)*)?$/u' );
 		if ( $show ) {
 			$this->showGroups = array_map( 'trim', explode( ',', $show ) );
 		}
