@@ -22,6 +22,8 @@
 	"kartographer-tracking-category": "Странице са мапама",
 	"kartographer-tracking-category-desc": "Странице које укључују мапу",
 	"kartographer-specialmap-invalid-coordinates": "Пружене кординате су невалидне",
+	"kartographer-specialmap-world": "Мапа света",
+	"kartographer-static-mapframe-alt": "Мапа",
 	"kartographer-linktype-aerial": "Ваздушни",
 	"kartographer-linktype-map": "Стандардне мапе",
 	"kartographer-linktype-other": "Друго",
