@@ -1,10 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Stefán Örvar Sigmundsson",
 			"Sveinki",
 			"Sveinn í Felli"
 		]
 	},
+	"kartographer-broken-category": "Síður með brotin landakort",
 	"kartographer-tracking-category": "Síður með landakortum",
 	"kartographer-linktype-map": "Stöðluð landakort",
 	"kartographer-linktype-other": "Annað",
