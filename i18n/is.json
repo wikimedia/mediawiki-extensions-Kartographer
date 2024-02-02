@@ -7,7 +7,9 @@
 		]
 	},
 	"kartographer-broken-category": "Síður með brotin landakort",
+	"kartographer-broken-category-desc": "Síðan innifelur ógilda notkun landakorts",
 	"kartographer-tracking-category": "Síður með landakortum",
+	"kartographer-tracking-category-desc": "Síðan innifelur landakort",
 	"kartographer-linktype-map": "Stöðluð landakort",
 	"kartographer-linktype-other": "Annað",
 	"kartographer-linktype-satellite": "Gervitungl",
