@@ -2,10 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Sveinki",
-			"Sveinn í Felli"
+			"Sveinn í Felli",
+			"Stefán Örvar Sigmundsson"
 		]
 	},
+	"kartographer-broken-category": "Síður með brotin landakort",
+	"kartographer-broken-category-desc": "Síðan innifelur ógilda notkun landakorts",
 	"kartographer-tracking-category": "Síður með landakortum",
+	"kartographer-tracking-category-desc": "Síðan innifelur landakort",
 	"kartographer-coord-lat-positive": "$1N",
 	"kartographer-coord-lat-negative": "$1S",
 	"kartographer-coord-lon-positive": "$1A",

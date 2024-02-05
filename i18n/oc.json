@@ -1,11 +1,21 @@
 {
 	"@metadata": {
 		"authors": [
-			"Cedric31"
+			"Cedric31",
+			"Lhanars"
 		]
 	},
+	"kartographer-attribution": "[[foundation:Maps_Terms_of_Use|Mapas Wikimedia]] | Mapatge © [https://www.openstreetmap.org/copyright OpenStreetMap - collaborators]",
 	"kartographer-broken-category": "Paginas amb de mapas contenent d'errors",
 	"kartographer-tracking-category": "Paginas amb de mapas",
+	"kartographer-linktype-aerial": "Aerian",
+	"kartographer-linktype-map": "Mapas estandards",
+	"kartographer-linktype-satellite": "Satellit",
+	"kartographer-linktype-topo": "Topografic",
+	"kartographer-sidebar-coordinates": "Coordenadas",
+	"kartographer-sidebar-externalservices": "Servicis de mapas",
+	"kartographer-sidebar-externalservices-show-all": "Mòstra'n mai",
+	"kartographer-sidebar-nearbybutton": "Mostrar de luòcs pròps",
 	"kartographer-sidebar-togglebutton": "Mai de detalhs",
 	"mapbox-control-zoomin-title": "Zoom avant",
 	"mapbox-control-zoomout-title": "Zoom arrièr",
