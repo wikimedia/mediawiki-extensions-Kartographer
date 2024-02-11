@@ -74,8 +74,9 @@ class ParsoidUtils {
 	 */
 	public static function addCategory( ParsoidExtensionAPI $extApi, string $category ) {
 		$catService = MediaWikiServices::getInstance()->getTrackingCategories();
+		$linkTarget = $extApi->getPageConfig()->getLinkTarget();
 		$pageRef = PageReferenceValue::localReference(
-			$extApi->getPageConfig()->getNs(), $extApi->getPageConfig()->getTitle()
+			$linkTarget->getNamespace(), $linkTarget->getDBkey()
 		);
 		$cat = $catService->resolveTrackingCategory( $category, $pageRef );
 		if ( $cat ) {

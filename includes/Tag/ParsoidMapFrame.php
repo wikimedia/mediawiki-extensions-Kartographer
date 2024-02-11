@@ -5,6 +5,7 @@ namespace Kartographer\Tag;
 use DOMException;
 use Kartographer\ParsoidUtils;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
 
@@ -47,7 +48,8 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 		$gen = new MapFrameAttributeGenerator( $data->args, $config );
 		$attrs = $gen->prepareAttrs();
 
-		$pageTitle = $extApi->getPageConfig()->getTitle();
+		$linkTarget = $extApi->getPageConfig()->getLinkTarget();
+		$pageTitle = Title::newFromLinkTarget( $linkTarget )->getPrefixedText();
 		$revisionId = $extApi->getPageConfig()->getRevisionId();
 		$imgAttrs = $gen->prepareImgAttrs( $serverMayRenderOverlays, $pageTitle, $revisionId );
 
