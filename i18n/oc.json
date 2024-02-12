@@ -10,14 +10,20 @@
 	"kartographer-tracking-category": "Paginas amb de mapas",
 	"kartographer-linktype-aerial": "Aerian",
 	"kartographer-linktype-map": "Mapas estandards",
+	"kartographer-linktype-other": "Autres",
 	"kartographer-linktype-satellite": "Satellit",
+	"kartographer-linktype-terrain": "Terrenh",
 	"kartographer-linktype-topo": "Topografic",
 	"kartographer-sidebar-coordinates": "Coordenadas",
 	"kartographer-sidebar-externalservices": "Servicis de mapas",
+	"kartographer-sidebar-externalservices-show-featured": "Sites disponibles",
 	"kartographer-sidebar-externalservices-show-all": "Mòstra'n mai",
+	"kartographer-sidebar-mapdetails": "Mapas extèrnas",
 	"kartographer-sidebar-nearbybutton": "Mostrar de luòcs pròps",
+	"kartographer-sidebar-reload-nearbybutton": "Refrescar los resultats",
 	"kartographer-sidebar-togglebutton": "Mai de detalhs",
 	"mapbox-control-zoomin-title": "Zoom avant",
 	"mapbox-control-zoomout-title": "Zoom arrièr",
-	"kartographer-fullscreen-close": "Tampar"
+	"kartographer-fullscreen-close": "Tampar",
+	"kartographer-fullscreen-text": "Mòstra la mapa complèta"
 }
