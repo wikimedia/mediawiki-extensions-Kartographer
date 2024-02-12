@@ -7,6 +7,7 @@ use Kartographer\ParsoidUtils;
 use Kartographer\SimpleStyleParser;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutputStringSets;
+use MediaWiki\Title\Title;
 use stdClass;
 use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\DOM\Node;
@@ -174,7 +175,8 @@ class ParsoidDomProcessor extends DOMProcessor {
 		$attrs = wfCgiToArray( $url[1] );
 
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$pagetitle = $extApi->getPageConfig()->getTitle();
+		$linkTarget = $extApi->getPageConfig()->getLinkTarget();
+		$pagetitle = Title::newFromLinkTarget( $linkTarget )->getPrefixedText();
 		$revisionId = $extApi->getPageConfig()->getRevisionId();
 		$attrs = array_merge( $attrs,
 			MapFrameAttributeGenerator::getUrlAttrs( $config, $pagetitle, $revisionId, [ $groupId ] )
