@@ -143,7 +143,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 		// execute this piece of code only once
 		routerInited = true;
 
-		// Opens a map in full screen. #/map(/:zoom)(/:latitude)(/:longitude)
+		// Opens a map in full screen. #/map/:id(/:zoom)(/:latitude)(/:longitude)
 		// Examples:
 		//     #/map/0
 		//     #/map/0/5

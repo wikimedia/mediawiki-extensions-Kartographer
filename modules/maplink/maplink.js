@@ -76,7 +76,7 @@ function handleMapLinks( $content ) {
  * Activate the router for the full screen mode.
  */
 function activateRouter() {
-	// Opens a maplink in full screen. #/maplink(/:zoom)(/:latitude)(/:longitude)
+	// Opens a maplink in full screen. #/maplink/:id(/:zoom)(/:latitude)(/:longitude)
 	// Examples:
 	//     #/maplink/0
 	//     #/maplink/0/5
