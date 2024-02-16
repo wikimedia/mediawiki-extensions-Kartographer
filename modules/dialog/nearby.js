@@ -1,4 +1,12 @@
-/** @type {Object.<string, {source: string, width: number|undefined, height: number|undefined}|undefined>} */
+/**
+ * Thumbnail properties we receive from the api
+ * @typedef {Object} Nearby~ThumbnailProperties
+ * @property {string} source
+ * @property {number|undefined} width
+ * @property {number|undefined} height
+ */
+
+/** @type {Object.<string,ThumbnailProperties>} */
 const thumbnailCache = {};
 
 /**
