@@ -106,7 +106,7 @@
 	"visualeditor-mwmapsdialog-display-help": "Nastavite vodoravni položaj zemljevida na strani. Druga vsebina strani bo potekala okoli zemljevida le, če je nastavljena desno ali levo, ne na sredino.\n\nIzklop okvirja povzroči, da bo vdelani zemljevid narisan brez okvirja (obrobe), podobno kot pri slikah brez okvirja. Ta možnost je onemogočena, če ima zemljevid napis.",
 	"visualeditor-mwmapsdialog-frame": "Prikaži okvir",
 	"visualeditor-mwmapsdialog-caption": "Napis",
-	"visualeditor-mwmapsdialog-caption-help": "Ta napis bo prikazan pod zemljevidom v okvirju (enako kot napisi slik). Če dodate napis, mora imeti zemljevid okvir.\n\nTu lahko uporabite oblikovanje vikibesedila, na primer za krepko pisavo, povezave ali reference.",
+	"visualeditor-mwmapsdialog-caption-help": "Ta napis bo prikazan pod zemljevidom v okvirju (enako kot napisi k slikam). Če boste dodali napis, bo imel zemljevid okvir.\n\nTu lahko uporabite vikibesedilno označevanje, na primer za krepko pisavo, povezave ali sklice.",
 	"visualeditor-mwmapsdialog-geojson": "GeoJSON",
 	"visualeditor-mwmapsdialog-language": "Jezik",
 	"visualeditor-mwmapsdialog-language-help": "Kartograf uporablja jezik vsebine vikija kot privzeti jezik za oznake. To lahko spremenite s to nastavitvijo samo za ta zemljevid.\n\nUporabite <code>local</code> namesto imena jezika, da prikažete vse oznake v krajevnem jeziku lokacije. Imena mest v Mehiki bi bila na primer lahko prikazana v španščini, imena mest na Japonskem pa v japonščini.\n\nČe oznake niso na voljo v izbranem jeziku, Kartograf sledi nadomestnemu postopku. Za več informacij o tem, kako to deluje, glejte [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Extension:Kartographer#Languages_and_fallbacks stran s pomočjo za Kartograf].",
