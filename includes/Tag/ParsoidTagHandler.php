@@ -62,7 +62,11 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 
 		$args = [];
 		foreach ( $extArgs as $extArg ) {
-			$args[$extArg->k] = $extArg->v;
+			// Might be an array or Token object when wikitext like <maplink {{1x|text}}=… /> is
+			// used. The old parser doesn't resolve this either.
+			if ( is_string( $extArg->k ) ) {
+				$args[$extArg->k] = $extArg->v;
+			}
 		}
 
 		return new MapTagArgumentValidator( static::TAG, $args,
