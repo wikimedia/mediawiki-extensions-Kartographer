@@ -58,7 +58,7 @@ abstract class LegacyTagHandler {
 	 * Entry point for all tags
 	 *
 	 * @param string|null $input
-	 * @param array $args
+	 * @param array<string,string> $args
 	 * @param Parser $parser
 	 * @param PPFrame $frame
 	 * @return string
