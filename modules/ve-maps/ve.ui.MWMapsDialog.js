@@ -708,21 +708,22 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
  * @return {Object} Object containing latitude, longitude and zoom
  */
 ve.ui.MWMapsDialog.prototype.getInitialMapPosition = function () {
-	let latitude, longitude, zoom;
+	let latitude, longitude;
 	const pageCoords = mw.config.get( 'wgCoordinates' );
 	const mwData = this.selectedNode && this.selectedNode.getAttribute( 'mw' );
-	const mwAttrs = mwData && mwData.attrs;
+	const mwAttrs = mwData && mwData.attrs || {};
+	let zoom = parseInt( mwAttrs.zoom );
 
-	if ( mwAttrs && mwAttrs.zoom ) {
+	if ( mwAttrs.latitude || mwAttrs.longitude ) {
 		// The wikitext might contain non-numeric user input, still try to visualize if possible
 		latitude = parseFloat( mwAttrs.latitude );
 		longitude = parseFloat( mwAttrs.longitude );
-		zoom = parseInt( mwAttrs.zoom );
 	} else if ( pageCoords ) {
 		// Use page coordinates if Extension:GeoData is available
 		latitude = pageCoords.lat;
 		longitude = pageCoords.lon;
-		zoom = 5;
+		// While 0 (the entire world) can be a valid zoom, it doesn't make sense in this context
+		zoom = zoom || 5;
 	}
 
 	return {
