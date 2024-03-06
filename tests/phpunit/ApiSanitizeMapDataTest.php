@@ -128,7 +128,7 @@ class ApiSanitizeMapDataTest extends MediaWikiIntegrationTestCase {
 
 		$defaults = $this->getConfVar( 'DefaultUserOptions' );
 		// thumbsize 0 is equivalent to 120px
-		$this->setMwGlobals( 'wgDefaultUserOptions', [ 'thumbsize' => 0 ] + $defaults );
+		$this->overrideConfigValue( 'DefaultUserOptions', [ 'thumbsize' => 0 ] + $defaults );
 
 		$manager = $this->getServiceContainer()->getUserOptionsManager();
 		// thumbsize 1 is equivalent to 150px

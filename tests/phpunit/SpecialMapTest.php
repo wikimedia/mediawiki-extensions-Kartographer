@@ -77,7 +77,7 @@ class SpecialMapTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::getWorldMapUrl
 	 */
 	public function testGetWorldMapSrcset() {
-		$this->setMwGlobals( 'wgKartographerMapServer', 'http://192.0.2.0' );
+		$this->overrideConfigValue( 'KartographerMapServer', 'http://192.0.2.0' );
 		/** @var SpecialMap $specialMap */
 		$specialMap = TestingAccessWrapper::newFromObject( new SpecialMap() );
 		$this->assertSame(
@@ -91,7 +91,7 @@ class SpecialMapTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideLinks
 	 */
 	public function testLink( ?string $expected, ?float $lat, ?float $lon, int $zoom = null, string $lang = 'local' ) {
-		$this->setMwGlobals( 'wgArticlePath', '/wiki/$1' );
+		$this->overrideConfigValue( 'ArticlePath', '/wiki/$1' );
 		$this->assertSame( $expected, SpecialMap::link( $lat, $lon, $zoom, $lang ) );
 	}
 

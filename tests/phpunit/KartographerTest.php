@@ -48,7 +48,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideTagData
 	 */
 	public function testTagData( $expected, string $input, string $message, bool $wikivoyageMode = false ) {
-		$this->setMwGlobals( 'wgKartographerWikivoyageMode', $wikivoyageMode );
+		$this->overrideConfigValue( 'KartographerWikivoyageMode', $wikivoyageMode );
 		$output = $this->parse( $input );
 		$state = State::getState( $output );
 
@@ -78,7 +78,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 	public function testTagDataParsoid( $expected, string $input, string $message, bool $wikivoyageMode = false,
 										?string $parsoid = null
 	) {
-		$this->setMwGlobals( 'wgKartographerWikivoyageMode', $wikivoyageMode );
+		$this->overrideConfigValue( 'KartographerWikivoyageMode', $wikivoyageMode );
 		$output = $this->parseParsoid( $input );
 		$state = $output->getExtensionData( 'kartographer' );
 
@@ -236,7 +236,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideResourceModulesData
 	 */
 	public function testResourceModules( string $input, array $expectedModules, array $expectedStyles ) {
-		$this->setMwGlobals( 'wgKartographerStaticMapframe', false );
+		$this->overrideConfigValue( 'KartographerStaticMapframe', false );
 		$output = $this->parse( $input );
 
 		$this->assertArrayEquals( $expectedModules, $output->getModules() );
@@ -247,7 +247,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideResourceModulesData
 	 */
 	public function testResourceModulesParsoid( string $input, array $expectedModules, array $expectedStyles ) {
-		$this->setMwGlobals( 'wgKartographerStaticMapframe', false );
+		$this->overrideConfigValue( 'KartographerStaticMapframe', false );
 		$output = $this->parseParsoid( $input );
 
 		$parsoidModules = [ 'mediawiki.skinning.content.parsoid' ];
@@ -281,8 +281,8 @@ class KartographerTest extends MediaWikiLangTestCase {
 
 	public function testImagePreview() {
 		// Previews should not contain group data for the static image
-		$this->setMwGlobals( [
-			'wgKartographerStaticMapframe' => false,
+		$this->overrideConfigValues( [
+			'KartographerStaticMapframe' => false,
 			'KartographerDfltStyle' => 'osm-intl',
 		] );
 		$input = '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37>' .
@@ -309,9 +309,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 		bool $isSectionPreview = false,
 		bool $wikivoyageMode = false
 	) {
-		$this->setMwGlobals( [
-			'wgKartographerWikivoyageMode' => $wikivoyageMode,
-		] );
+		$this->overrideConfigValue( 'KartographerWikivoyageMode', $wikivoyageMode );
 		$output = $this->parse( $wikitext, $isPreview, $isSectionPreview );
 		$vars = $output->getJsConfigVars();
 		$this->assertArrayHasKey( 'wgKartographerLiveData', $vars );
@@ -326,7 +324,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 		bool $isSectionPreview = false,
 		bool $wikivoyageMode = false
 	) {
-		$this->setMwGlobals( 'wgKartographerWikivoyageMode', $wikivoyageMode );
+		$this->overrideConfigValue( 'KartographerWikivoyageMode', $wikivoyageMode );
 		$output = $this->parseParsoid( $wikitext );
 		$vars = $output->getJsConfigVars();
 		$this->assertArrayHasKey( 'wgKartographerLiveData', $vars );
@@ -407,7 +405,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideGroupNames
 	 */
 	public function testGroupNames( array $expected, string $input ) {
-		$this->setMwGlobals( 'wgKartographerWikivoyageMode', true );
+		$this->overrideConfigValue( 'KartographerWikivoyageMode', true );
 		$output = $this->parse( $input );
 		$state = State::getState( $output );
 
@@ -432,7 +430,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideInvalidGroupNames
 	 */
 	public function testInvalidGroupNames( string $input ) {
-		$this->setMwGlobals( 'wgKartographerWikivoyageMode', true );
+		$this->overrideConfigValue( 'KartographerWikivoyageMode', true );
 		$output = $this->parse( $input );
 		$state = State::getState( $output );
 
