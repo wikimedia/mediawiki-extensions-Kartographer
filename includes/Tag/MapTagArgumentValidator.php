@@ -177,7 +177,9 @@ class MapTagArgumentValidator {
 
 	public function setFirstMarkerProperties( ?string $fallbackText, stdClass $properties ): void {
 		$this->fallbackText = $fallbackText;
-		$this->markerProperties = $properties;
+		if ( $this->config->get( 'KartographerUseMarkerStyle' ) ) {
+			$this->markerProperties = $properties;
+		}
 	}
 
 	public function getTextWithFallback(): ?string {

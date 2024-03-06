@@ -19,7 +19,7 @@ class LegacyMapLink extends LegacyTagHandler {
 	protected function render( PartialWikitextParser $parser, bool $serverMayRenderOverlays ): string {
 		$this->getOutput()->addModules( [ 'ext.kartographer.link' ] );
 
-		$gen = new MapLinkAttributeGenerator( $this->args, $this->config );
+		$gen = new MapLinkAttributeGenerator( $this->args );
 		$attrs = $gen->prepareAttrs();
 
 		// @todo: Mapbox markers don't support localized numbers yet

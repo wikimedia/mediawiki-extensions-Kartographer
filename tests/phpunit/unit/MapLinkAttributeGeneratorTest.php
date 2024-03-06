@@ -31,7 +31,7 @@ class MapLinkAttributeGeneratorTest extends MediaWikiUnitTestCase {
 			'group' => 'hotels',
 		], $config, $language );
 		$args->setFirstMarkerProperties( null, (object)[ 'marker-color' => '#f00' ] );
-		$generator = new MapLinkAttributeGenerator( $args, $config );
+		$generator = new MapLinkAttributeGenerator( $args );
 
 		$attrs = $generator->prepareAttrs();
 		$this->assertSame( [
