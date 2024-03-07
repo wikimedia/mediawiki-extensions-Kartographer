@@ -21,6 +21,11 @@ use stdClass;
  */
 class SimpleStyleParser {
 
+	/**
+	 * Maximum for marker-symbol="-number…" counters. See T141335 for discussion to possibly
+	 * increase this to 199 or even 999.
+	 */
+	private const MAX_NUMERIC_COUNTER = 99;
 	public const WIKITEXT_PROPERTIES = [ 'title', 'description' ];
 
 	private WikitextParser $parser;
@@ -93,7 +98,7 @@ class SimpleStyleParser {
 
 	/**
 	 * @param stdClass[] $values
-	 * @param int[] &$counters
+	 * @param array<string,int> &$counters
 	 * @return array{string,stdClass}|null [ string $firstMarkerSymbol, stdClass $firstMarkerProperties ]
 	 */
 	public static function updateMarkerSymbolCounters( array $values, array &$counters = [] ): ?array {
@@ -109,24 +114,19 @@ class SimpleStyleParser {
 			if ( $isNumber || str_starts_with( $marker, '-letter' ) ) {
 				// numbers 1..99 or letters a..z
 				$count = $counters[$marker] ?? 0;
-				if ( $count < ( $isNumber ? 99 : 26 ) ) {
+				if ( $count < ( $isNumber ? self::MAX_NUMERIC_COUNTER : 26 ) ) {
 					$counters[$marker] = ++$count;
 				}
 				$marker = $isNumber ? strval( $count ) : chr( ord( 'a' ) + $count - 1 );
 				$item->properties->{'marker-symbol'} = $marker;
-				if ( !$firstMarker ) {
-					// GeoJSON is in lowercase, but the letter is shown as uppercase
-					$firstMarker = [ mb_strtoupper( $marker ), $item->properties ];
-				}
+				// GeoJSON is in lowercase, but the letter is shown as uppercase
+				$firstMarker ??= [ mb_strtoupper( $marker ), $item->properties ];
 			}
 
 			// Recurse into FeatureCollection and GeometryCollection
 			$features = $item->features ?? $item->geometries ?? null;
 			if ( $features ) {
-				$found = self::updateMarkerSymbolCounters( $features, $counters );
-				if ( !$firstMarker ) {
-					$firstMarker = $found;
-				}
+				$firstMarker ??= self::updateMarkerSymbolCounters( $features, $counters );
 			}
 		}
 		return $firstMarker;
