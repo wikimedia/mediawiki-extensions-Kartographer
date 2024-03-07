@@ -29,8 +29,8 @@ class State implements JsonSerializable {
 	private array $interactiveGroups = [];
 	/** @var array<string,int> */
 	private array $requestedGroups = [];
-	/** @var array<string,int>|null */
-	private ?array $counters = null;
+	/** @var array<string,int> */
+	private array $counters = [];
 
 	/**
 	 * @var array[] Indexed per group identifier
@@ -136,7 +136,7 @@ class State implements JsonSerializable {
 	 * @return array<string,int>
 	 */
 	public function getCounters(): array {
-		return $this->counters ?? [];
+		return $this->counters;
 	}
 
 	/**
@@ -176,7 +176,7 @@ class State implements JsonSerializable {
 			// FIXME: Why do we store flipped arrays with meaningless values in the parser cache?
 			'interactiveGroups' => $this->interactiveGroups,
 			'requestedGroups' => $this->requestedGroups,
-			'counters' => $this->counters,
+			'counters' => $this->counters ?: null,
 			'data' => $this->data,
 		], $this->usages );
 	}
@@ -188,14 +188,14 @@ class State implements JsonSerializable {
 	 */
 	private static function newFromJson( array $data ): self {
 		$status = new self();
-		$status->broken = (int)$data['broken'];
+		$status->broken = (int)( $data['broken'] ?? 0 );
 		$status->usages = array_filter( $data, static function ( $count, $key ) {
 			return is_int( $count ) && $count > 0 && str_starts_with( $key, 'map' );
 		}, ARRAY_FILTER_USE_BOTH );
-		$status->interactiveGroups = $data['interactiveGroups'];
-		$status->requestedGroups = $data['requestedGroups'];
-		$status->counters = $data['counters'];
-		$status->data = $data['data'];
+		$status->interactiveGroups = $data['interactiveGroups'] ?? [];
+		$status->requestedGroups = $data['requestedGroups'] ?? [];
+		$status->counters = $data['counters'] ?? [];
+		$status->data = $data['data'] ?? [];
 
 		return $status;
 	}
