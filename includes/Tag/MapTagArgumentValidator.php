@@ -140,7 +140,7 @@ class MapTagArgumentValidator {
 		}
 
 		// Make sure there are no group name duplicates
-		$this->showGroups = array_unique( $this->showGroups );
+		$this->showGroups = array_values( array_unique( $this->showGroups ) );
 	}
 
 	/**
