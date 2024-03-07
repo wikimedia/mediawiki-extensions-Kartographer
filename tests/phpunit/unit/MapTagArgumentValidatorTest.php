@@ -92,6 +92,7 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 	public function provideShowGroups() {
 		return [
 			'empty' => [ '', [] ],
+			'duplicates' => [ 'a,a,b', [ 'a', 'b' ] ],
 			'names can contain whitespace' => [ 'a b', [ 'a b' ] ],
 			'comma separates names' => [ 'a b,c', [ 'a b', 'c' ] ],
 			'all whitespace is trimmed' => [ ' a , b ', [ 'a', 'b' ] ],
