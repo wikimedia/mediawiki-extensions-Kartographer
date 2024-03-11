@@ -24,14 +24,14 @@ class MapLinkAttributeGeneratorTest extends MediaWikiUnitTestCase {
 			'KartographerUsePageLanguage' => false,
 			'KartographerWikivoyageMode' => true,
 		] );
-		$markerProperties = (object)[ 'marker-color' => '#f00' ];
 
 		$args = new MapTagArgumentValidator( '', [
 			'class' => 'custom-class',
 			'zoom' => 12,
 			'group' => 'hotels',
 		], $config, $language );
-		$generator = new MapLinkAttributeGenerator( $args, $config, $markerProperties );
+		$args->setFirstMarkerProperties( null, (object)[ 'marker-color' => '#f00' ] );
+		$generator = new MapLinkAttributeGenerator( $args, $config );
 
 		$attrs = $generator->prepareAttrs();
 		$this->assertSame( [
