@@ -13,13 +13,13 @@ use StatusValue;
 class Tag {
 
 	public string $name;
-	/** @var string[] */
+	/** @var array<string,string> */
 	private array $args;
 	private StatusValue $status;
 
 	/**
 	 * @param string $name Tag name, e.g. "maplink"
-	 * @param string[] $args
+	 * @param array<string,string> $args
 	 * @param StatusValue $status
 	 */
 	public function __construct( string $name, array $args, StatusValue $status ) {
