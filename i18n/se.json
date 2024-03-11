@@ -6,9 +6,11 @@
 			"Kimberli Mäkäräinen (WMNO)"
 		]
 	},
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia-kárttat] | Kártadieđut © [https://www.openstreetmap.org/copyright OpenStreetMap geavaheaddjit]",
 	"kartographer-tracking-category": "Siiddut, main lea kárttat",
 	"kartographer-tracking-category-desc": "Dán siiddus lea kárta",
 	"kartographer-sidebar-coordinates": "Koordináhtat",
+	"kartographer-sidebar-externalservices": "Kártabálvalusat",
 	"kartographer-sidebar-externalservices-show-all": "Čájet eambbo",
 	"kartographer-sidebar-latitude": "Govdodatgráda",
 	"kartographer-sidebar-longitude": "Guhkkodatgráda",
