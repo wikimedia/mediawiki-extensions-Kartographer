@@ -72,8 +72,8 @@ class StateTest extends MediaWikiUnitTestCase {
 		$state->addRequestedGroups( [ 6 => 'a', 7 => 'b' ] );
 		$this->assertSame( [ 'a', 'b' ], $state->getRequestedGroups() );
 
-		$state->addRequestedGroups( [ 11 => 'b',  22 => 'c' ] );
-		$this->assertSame( [ 'a' , 'b', 'c' ], $state->getRequestedGroups() );
+		$state->addRequestedGroups( [ 11 => 'b', 22 => 'c' ] );
+		$this->assertSame( [ 'a', 'b', 'c' ], $state->getRequestedGroups() );
 	}
 
 	public function testCounters() {
