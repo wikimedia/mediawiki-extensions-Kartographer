@@ -45,6 +45,9 @@
 			"class": "Kartographer\\Api\\ApiQueryMapData",
 			"services": [
 				"WikiPageFactory"
+			],
+			"optional_services": [
+				"FlaggedRevsParserCache"
 			]
 		}
 	},

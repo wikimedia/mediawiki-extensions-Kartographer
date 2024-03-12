@@ -8,10 +8,10 @@ use ApiQueryBase;
 use ExtensionRegistry;
 use FlaggableWikiPage;
 use FlaggedRevs;
+use FlaggedRevsParserCache;
 use FormatJson;
 use Kartographer\State;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserOutput;
@@ -25,17 +25,21 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 class ApiQueryMapData extends ApiQueryBase {
 
 	private WikiPageFactory $pageFactory;
+	private ?FlaggedRevsParserCache $parserCache;
 
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param WikiPageFactory $pageFactory
+	 * @param FlaggedRevsParserCache|null $parserCache
 	 */
 	public function __construct( ApiQuery $query, $moduleName,
-		WikiPageFactory $pageFactory
+		WikiPageFactory $pageFactory,
+		?FlaggedRevsParserCache $parserCache
 	) {
 		parent::__construct( $query, $moduleName, 'mpd' );
 		$this->pageFactory = $pageFactory;
+		$this->parserCache = $parserCache;
 	}
 
 	/** @inheritDoc */
@@ -191,7 +195,7 @@ class ApiQueryMapData extends ApiQueryBase {
 	private function getParserOutput( PageIdentity $title, ?int $requestedRevId ) {
 		$parserOptions = ParserOptions::newFromAnon();
 
-		if ( ExtensionRegistry::getInstance()->isLoaded( 'FlaggedRevs' ) ) {
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'FlaggedRevs' ) && $this->parserCache ) {
 			$page = FlaggableWikiPage::newInstance( $title );
 			$isOldRev = $requestedRevId && $requestedRevId !== $page->getLatest();
 			$latestRevMayBeSpecial = FlaggedRevs::inclusionSetting() === FR_INCLUDES_STABLE;
@@ -200,9 +204,7 @@ class ApiQueryMapData extends ApiQueryBase {
 				$requestedRevId = $requestedRevId ?: $page->getLatest();
 				if ( $requestedRevId === $page->getStable() ) {
 					// This is the stable revision, so we need to use the special FlaggedRevs cache.
-					/** @var \FlaggedRevsParserCache $stableParserCache */
-					$stableParserCache = MediaWikiServices::getInstance()->getService( 'FlaggedRevsParserCache' );
-					$parserOutput = $stableParserCache->get( $page, $parserOptions );
+					$parserOutput = $this->parserCache->get( $page, $parserOptions );
 					if ( $parserOutput ) {
 						return $parserOutput;
 					}
