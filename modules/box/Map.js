@@ -254,7 +254,7 @@ const KartographerMap = L.Map.extend( {
 
 		/**
 		 * @name useRouter
-		 * @property {boolean} useRouter Whether the map uses the Mediawiki Router.
+		 * @property {boolean} useRouter Whether the map uses the MediaWiki Router.
 		 * @memberof Kartographer.Box.MapClass
 		 * @protected
 		 */
