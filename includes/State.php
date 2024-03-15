@@ -29,7 +29,7 @@ class State implements JsonSerializable {
 	private array $interactiveGroups = [];
 	/** @var array<string,int> */
 	private array $requestedGroups = [];
-	/** @var int[]|null */
+	/** @var array<string,int>|null */
 	private ?array $counters = null;
 
 	/**
