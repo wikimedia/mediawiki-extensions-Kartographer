@@ -6,7 +6,6 @@ use DOMException;
 use FormatJson;
 use Kartographer\CoordFormatter;
 use Kartographer\ParsoidUtils;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
 
@@ -32,8 +31,7 @@ class ParsoidMapLink extends ParsoidTagHandler {
 			return $this->reportErrors( $extApi, self::TAG, $data->args->status );
 		}
 
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$gen = new MapLinkAttributeGenerator( $data->args, $config );
+		$gen = new MapLinkAttributeGenerator( $data->args );
 		$attrs = $gen->prepareAttrs();
 
 		$text = $data->args->getTextWithFallback();

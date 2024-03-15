@@ -4,7 +4,6 @@ namespace Kartographer\Tag;
 
 use FormatJson;
 use Kartographer\Special\SpecialMap;
-use MediaWiki\Config\Config;
 
 /**
  * @license MIT
@@ -12,11 +11,9 @@ use MediaWiki\Config\Config;
 class MapLinkAttributeGenerator {
 
 	private MapTagArgumentValidator $args;
-	private Config $config;
 
-	public function __construct( MapTagArgumentValidator $args, Config $config ) {
+	public function __construct( MapTagArgumentValidator $args ) {
 		$this->args = $args;
-		$this->config = $config;
 	}
 
 	/**
@@ -79,8 +76,7 @@ class MapLinkAttributeGenerator {
 	 * @return string
 	 */
 	private function extractMarkerCss(): string {
-		if ( $this->config->get( 'KartographerUseMarkerStyle' )
-			&& $this->args->markerProperties
+		if ( $this->args->markerProperties
 			&& isset( $this->args->markerProperties->{'marker-color'} )
 			// JsonSchema already validates this value for us, however this regex will also fail
 			// if the color is invalid
