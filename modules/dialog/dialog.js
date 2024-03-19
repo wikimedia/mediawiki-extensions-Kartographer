@@ -37,7 +37,8 @@ MapDialog.prototype.initialize = function () {
 	// Parent method
 	MapDialog.super.prototype.initialize.apply( this, arguments );
 
-	this.$mapBody = $( '<div>' ).addClass( 'mw-kartographer-map-body' )
+	// T359082: Temporarily disable dark mode unless we have a better idea
+	this.$mapBody = $( '<div>' ).addClass( 'mw-kartographer-map-body notheme' )
 		.append( $( '<div>' ).addClass( 'kartographer-mapDialog-loading' ) );
 	this.$mapFooter = $( '<div>' ).addClass( 'mw-kartographer-map-foot' );
 

@@ -39,7 +39,7 @@ class MapFrameAttributeGeneratorTest extends MediaWikiUnitTestCase {
 
 		$attrs = $generator->prepareAttrs();
 		$this->assertSame( [
-			'class' => [ 'mw-kartographer-map', 'mw-kartographer-container', 'mw-kartographer-full' ],
+			'class' => [ 'mw-kartographer-map', 'notheme', 'mw-kartographer-container', 'mw-kartographer-full' ],
 			'style' => 'width: 100%; height: 300px;',
 			'data-mw-kartographer' => 'mapframe',
 			'data-style' => 'custom',

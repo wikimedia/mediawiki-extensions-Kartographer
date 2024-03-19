@@ -63,7 +63,8 @@ class MapFrameAttributeGenerator {
 
 	public function prepareAttrs(): array {
 		$attrs = [
-			'class' => 'mw-kartographer-map',
+			// T359082: Temporarily disable dark mode unless we have a better idea
+			'class' => [ 'mw-kartographer-map', 'notheme' ],
 			// We need dimensions for when there is no img (editpreview or no staticmap)
 			// because an <img> element with permanent failing src has either:
 			// - intrinsic dimensions of 0x0, when alt=''
@@ -103,7 +104,7 @@ class MapFrameAttributeGenerator {
 
 		if ( $this->args->frameless ) {
 			$attrs['class'] = [
-				$attrs['class'],
+				...$attrs['class'],
 				...$this->getContainerClasses(),
 				...(array)( self::ALIGN_CLASSES[$this->args->align] ?? [] ),
 			];

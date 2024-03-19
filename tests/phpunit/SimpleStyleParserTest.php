@@ -21,6 +21,7 @@ use ParserOptions;
 class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
+		parent::setUp();
 		$this->overrideConfigValues( [
 			'JsonConfigModels' => [ 'Map.JsonConfig' => [ 'class' => JCMapDataContent::class ] ],
 			'JsonConfigs' => [ 'Map.JsonConfig' => [ 'namespace' => 486, 'nsName' => 'Data' ] ],

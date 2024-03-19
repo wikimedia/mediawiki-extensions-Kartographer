@@ -4,6 +4,7 @@ namespace Kartographer\Tests;
 
 use GeoData\Globe;
 use Kartographer\Special\SpecialMap;
+use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use Wikimedia\TestingAccessWrapper;
 
@@ -13,6 +14,13 @@ use Wikimedia\TestingAccessWrapper;
  * @license MIT
  */
 class SpecialMapTest extends MediaWikiIntegrationTestCase {
+
+	protected function setUp(): void {
+		parent::setUp();
+		$this->overrideConfigValues( [
+			MainConfigNames::LanguageCode => 'qqx',
+		] );
+	}
 
 	/**
 	 * @covers ::__construct
