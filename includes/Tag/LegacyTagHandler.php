@@ -41,14 +41,14 @@ abstract class LegacyTagHandler {
 	protected Config $config;
 	protected Parser $parser;
 	private Language $targetLanguage;
-	private LanguageNameUtils $languageNameUtils;
+	private LanguageNameUtils $languageCodeValidator;
 
 	public function __construct(
 		Config $config,
-		LanguageNameUtils $languageNameUtils
+		LanguageNameUtils $languageCodeValidator
 	) {
 		$this->config = $config;
-		$this->languageNameUtils = $languageNameUtils;
+		$this->languageCodeValidator = $languageCodeValidator;
 	}
 
 	/**
@@ -83,7 +83,7 @@ abstract class LegacyTagHandler {
 			$args,
 			$this->config,
 			$this->getTargetLanguage(),
-			$this->languageNameUtils
+			$this->languageCodeValidator
 		);
 		$status = $this->args->status;
 		$geometries = [];

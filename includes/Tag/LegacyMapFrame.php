@@ -21,12 +21,12 @@ class LegacyMapFrame extends LegacyTagHandler {
 
 	public function __construct(
 		Config $config,
-		LanguageNameUtils $languageNameUtils,
+		LanguageNameUtils $languageCodeValidator,
 		TitleFormatter $titleFormatter
 	) {
 		parent::__construct(
 			$config,
-			$languageNameUtils
+			$languageCodeValidator
 		);
 		$this->titleFormatter = $titleFormatter;
 	}

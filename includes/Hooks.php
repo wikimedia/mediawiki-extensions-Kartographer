@@ -32,16 +32,16 @@ class Hooks implements
 
 	public function __construct(
 		Config $config,
-		LanguageNameUtils $languageNameUtils,
+		LanguageNameUtils $languageCodeValidator,
 		TitleFormatter $titleFormatter
 	) {
 		$this->legacyMapLink = new LegacyMapLink(
 			$config,
-			$languageNameUtils
+			$languageCodeValidator
 		);
 		$this->legacyMapFrame = new LegacyMapFrame(
 			$config,
-			$languageNameUtils,
+			$languageCodeValidator,
 			$titleFormatter
 		);
 	}

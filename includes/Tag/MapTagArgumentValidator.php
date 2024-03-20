@@ -20,7 +20,7 @@ class MapTagArgumentValidator {
 	private Tag $args;
 	private Config $config;
 	private Language $defaultLanguage;
-	private ?LanguageNameUtils $languageNameUtils;
+	private ?LanguageNameUtils $languageCodeValidator;
 
 	public ?float $lat;
 	public ?float $lon;
@@ -54,20 +54,20 @@ class MapTagArgumentValidator {
 	 * @param array<string,string> $args
 	 * @param Config $config
 	 * @param Language $defaultLanguage
-	 * @param LanguageNameUtils|null $languageNameUtils
+	 * @param LanguageNameUtils|null $languageCodeValidator
 	 */
 	public function __construct(
 		string $tag,
 		array $args,
 		Config $config,
 		Language $defaultLanguage,
-		LanguageNameUtils $languageNameUtils = null
+		LanguageNameUtils $languageCodeValidator = null
 	) {
 		$this->status = StatusValue::newGood();
 		$this->args = new Tag( $tag, $args, $this->status );
 		$this->config = $config;
 		$this->defaultLanguage = $defaultLanguage;
-		$this->languageNameUtils = $languageNameUtils;
+		$this->languageCodeValidator = $languageCodeValidator;
 
 		$this->parseArgs();
 		if ( $config->get( 'KartographerWikivoyageMode' ) ) {
@@ -163,8 +163,8 @@ class MapTagArgumentValidator {
 	private function isValidLanguageCode( string $code ): bool {
 		return $code === 'local' ||
 			// Everything is valid without a validator, should only be used in test scenarios
-			!$this->languageNameUtils ||
-			$this->languageNameUtils->isKnownLanguageTag( $code );
+			!$this->languageCodeValidator ||
+			$this->languageCodeValidator->isKnownLanguageTag( $code );
 	}
 
 	public function getLanguageCodeWithDefaultFallback(): string {
