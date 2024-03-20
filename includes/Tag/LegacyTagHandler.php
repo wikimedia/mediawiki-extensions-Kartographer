@@ -83,7 +83,7 @@ abstract class LegacyTagHandler {
 			static::TAG,
 			$args,
 			$this->config,
-			$this->getLanguage(),
+			$this->getTargetLanguage(),
 			$this->languageNameUtils
 		);
 		$status = $this->args->status;
@@ -99,7 +99,7 @@ abstract class LegacyTagHandler {
 			$this->state->incrementBrokenTags();
 			State::setState( $parserOutput, $this->state );
 
-			$errorReporter = new ErrorReporter( $this->getLanguageCode() );
+			$errorReporter = new ErrorReporter( $this->getTargetLanguageCode() );
 			return $errorReporter->getHtml( $status, static::TAG );
 		}
 
@@ -197,7 +197,7 @@ abstract class LegacyTagHandler {
 		}
 	}
 
-	private function getLanguage(): Language {
+	private function getTargetLanguage(): Language {
 		// Log if the user language is different from the page language (T311592)
 		$page = $this->parser->getPage();
 		if ( $page ) {
@@ -212,8 +212,8 @@ abstract class LegacyTagHandler {
 		return $this->targetLanguage;
 	}
 
-	protected function getLanguageCode(): string {
-		return $this->getLanguage()->getCode();
+	protected function getTargetLanguageCode(): string {
+		return $this->getTargetLanguage()->getCode();
 	}
 
 	protected function getOutput(): ContentMetadataCollector {
