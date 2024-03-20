@@ -26,17 +26,17 @@ class ParsoidMapLink extends ParsoidTagHandler {
 	public function sourceToDom( ParsoidExtensionAPI $extApi, string $src, array $extArgs ) {
 		$extApi->getMetadata()->addModules( [ 'ext.kartographer.link' ] );
 
-		$data = $this->parseTag( $extApi, $src, $extArgs );
-		if ( !$data->args->status->isGood() ) {
-			return $this->reportErrors( $extApi, self::TAG, $data->args->status );
+		[ $status, $args, $geometries ] = $this->parseTag( $extApi, $src, $extArgs );
+		if ( !$status->isGood() ) {
+			return $this->reportErrors( $extApi, self::TAG, $status );
 		}
 
-		$gen = new MapLinkAttributeGenerator( $data->args );
+		$gen = new MapLinkAttributeGenerator( $args );
 		$attrs = $gen->prepareAttrs();
 
-		$text = $data->args->getTextWithFallback();
+		$text = $args->getTextWithFallback();
 		if ( $text === null ) {
-			$formatter = new CoordFormatter( $data->args->lat, $data->args->lon );
+			$formatter = new CoordFormatter( $args->lat, $args->lon );
 			// TODO: for now, we're using the old wfMessage method with English hardcoded. This should not
 			// stay that way.
 			// When l10n is added to Parsoid, replace this line with
@@ -57,20 +57,20 @@ class ParsoidMapLink extends ParsoidTagHandler {
 
 		$dom = $doc->createDocumentFragment();
 		$a = $doc->createElement( 'a' );
-		if ( $data->args->groupId === null && $data->geometries ) {
-			$groupId = '_' . sha1( FormatJson::encode( $data->geometries, false,
+		if ( $args->groupId === null && $geometries ) {
+			$groupId = '_' . sha1( FormatJson::encode( $geometries, false,
 					FormatJson::ALL_OK ) );
-			$data->args->groupId = $groupId;
-			$data->args->showGroups[] = $groupId;
+			$args->groupId = $groupId;
+			$args->showGroups[] = $groupId;
 		}
 
-		if ( $data->args->showGroups ) {
-			$attrs['data-overlays'] = FormatJson::encode( $data->args->showGroups, false,
+		if ( $args->showGroups ) {
+			$attrs['data-overlays'] = FormatJson::encode( $args->showGroups, false,
 				FormatJson::ALL_OK );
 			$dataKart = [
-				'groupId' => $data->args->groupId,
-				'showGroups' => $data->args->showGroups,
-				'geometries' => $data->geometries
+				'groupId' => $args->groupId,
+				'showGroups' => $args->showGroups,
+				'geometries' => $geometries
 			];
 			$a->setAttribute( 'data-kart', json_encode( $dataKart ) );
 		}

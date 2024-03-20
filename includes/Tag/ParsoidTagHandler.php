@@ -25,31 +25,29 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 	 * @param ParsoidExtensionAPI $extApi
 	 * @param string $input
 	 * @param stdClass[] $extArgs
-	 * @return ParsoidKartographerData
+	 * @return array{StatusValue,MapTagArgumentValidator,stdClass[]}
 	 */
-	protected function parseTag( ParsoidExtensionAPI $extApi, string $input, array $extArgs ): ParsoidKartographerData {
-		$data = new ParsoidKartographerData();
-		$data->args = $this->processParsoidExtensionArguments( $extArgs );
+	protected function parseTag( ParsoidExtensionAPI $extApi, string $input, array $extArgs ): array {
+		$args = $this->processParsoidExtensionArguments( $extArgs );
+		$status = $args->status;
 
-		if ( $data->args->status->isOK() ) {
+		$geometries = [];
+		if ( $status->isOK() ) {
 			$wp = new ParsoidWikitextParser( $extApi );
-			$sspStatus = ( new SimpleStyleParser( $wp ) )->parse( $input );
-			if ( $sspStatus->isOk() ) {
-				$data->geometries = $sspStatus->getValue()['data'];
+			$status = ( new SimpleStyleParser( $wp ) )->parse( $input );
+			if ( $status->isOk() ) {
+				$geometries = $status->getValue()['data'];
 			}
-			// FIXME: This is a hack but necessary to communicate to the outside world
-			// it's necessary to overwrite value to also pass JSON error status
-			$data->args->status->merge( $sspStatus, true );
 		}
 
-		if ( $data->geometries ) {
-			$marker = SimpleStyleParser::findFirstMarkerSymbol( $data->geometries );
+		if ( $geometries ) {
+			$marker = SimpleStyleParser::findFirstMarkerSymbol( $geometries );
 			if ( $marker ) {
-				$data->args->setFirstMarkerProperties( ...$marker );
+				$args->setFirstMarkerProperties( ...$marker );
 			}
 		}
 
-		return $data;
+		return [ $status, $args, $geometries ];
 	}
 
 	/**

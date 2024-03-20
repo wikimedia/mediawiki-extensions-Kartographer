@@ -24,10 +24,10 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 	 * @throws DOMException
 	 */
 	public function sourceToDom( ParsoidExtensionAPI $extApi, string $src, array $extArgs ) {
-		$data = $this->parseTag( $extApi, $src, $extArgs );
+		[ $status, $args, $geometries ] = $this->parseTag( $extApi, $src, $extArgs );
 
-		if ( !$data->args->status->isGood() ) {
-			return $this->reportErrors( $extApi, self::TAG, $data->args->status );
+		if ( !$status->isGood() ) {
+			return $this->reportErrors( $extApi, self::TAG, $status );
 		}
 
 		// TODO if fullwidth, we really should use interactive mode..
@@ -45,7 +45,7 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 			? 'ext.kartographer.staticframe'
 			: 'ext.kartographer.frame' ] );
 
-		$gen = new MapFrameAttributeGenerator( $data->args, $config );
+		$gen = new MapFrameAttributeGenerator( $args, $config );
 		$attrs = $gen->prepareAttrs();
 
 		$linkTarget = $extApi->getPageConfig()->getLinkTarget();
@@ -66,7 +66,7 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 			$noscript = $doc->createElement( 'noscript' );
 			$noscript->appendChild( $thumbnail );
 			$thumbnail = $noscript;
-			if ( $data->args->usesAutoPosition() ) {
+			if ( $args->usesAutoPosition() ) {
 				// Impossible to render .png thumbnails that depend on unsaved ExternalData. Preview
 				// will replace this with a dynamic map anyway when JavaScript is available.
 				$thumbnail = $doc->createTextNode( '' );
@@ -75,16 +75,16 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 
 		$a = $doc->createElement( 'a' );
 		$dataKart = [
-			'groupId' => $data->args->groupId,
-			'showGroups' => $data->args->showGroups,
-			'geometries' => $data->geometries
+			'groupId' => $args->groupId,
+			'showGroups' => $args->showGroups,
+			'geometries' => $geometries
 		];
 		$a->setAttribute( 'data-kart', json_encode( $dataKart ) );
 		ParsoidUtils::addAttributesToNode( $attrs, $a );
 
 		$a->appendChild( $thumbnail );
 
-		if ( $data->args->frameless ) {
+		if ( $args->frameless ) {
 			$dom->appendChild( $a );
 			return $dom;
 		}
@@ -93,7 +93,7 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 		$thumbinner->setAttribute( 'class', 'thumbinner' );
 		$thumbinner->setAttribute( 'style', "width: $gen->cssWidth;" );
 		$thumbinner->appendChild( $a );
-		$caption = (string)$data->args->text;
+		$caption = (string)$args->text;
 		if ( $caption !== '' ) {
 			$parsedCaption = $extApi->wikitextToDOM( $caption, [
 				'parseOpts' => [
