@@ -10,12 +10,13 @@
 			"Ladsgroup",
 			"Reza1615",
 			"درفش کاویانی",
-			"Amire80"
+			"Amire80",
+			"Ebraminio"
 		]
 	},
 	"kartographer-attribution": "[https://meta.wikimedia.org/wiki/Maps_Terms_of_Use/fa نقشه‌های ویکی‌مدیا] | داده‌های نقشه © [https://www.openstreetmap.org/copyright مشارکت‌کنندگان اوپن‌استریت‌مپ]",
 	"kartographer-broken-category": "صفحه‌های با نقشه خراب",
-	"kartographer-broken-category-desc": "در این صفحه یک نقشهٔ خراب استفاده شده‌است",
+	"kartographer-broken-category-desc": "در این صفحه یک نقشهٔ خراب استفاده شده است",
 	"kartographer-desc": "اجازه‌دادن به نقشه‌ها برای افزوده‌شدن به صفحه‌های ویکی",
 	"kartographer-error-context-multi": "&lt;$1&gt; مشکلات:\n$2",
 	"kartographer-error-json": "امکان تحلیل JSON وجود ندارد:‌$1",
@@ -23,7 +24,7 @@
 	"kartographer-error-bad_attr": "مقدار ویژگی $1 نامعتبر است",
 	"kartographer-tracking-category": "صفحه‌های دارای نقشه",
 	"kartographer-tracking-category-desc": "صفحه دارای یک نقشه",
-	"kartographer-specialmap-invalid-coordinates": "مختصات نامعتبر ارائه شده‌است",
+	"kartographer-specialmap-invalid-coordinates": "مختصات نامعتبر ارائه شده است",
 	"kartographer-linktype-aerial": "هوایی",
 	"kartographer-linktype-map": "نقشه استاندارد",
 	"kartographer-linktype-other": "دیگر",
