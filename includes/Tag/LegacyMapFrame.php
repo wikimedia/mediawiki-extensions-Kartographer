@@ -31,8 +31,8 @@ class LegacyMapFrame extends LegacyTagHandler {
 		$this->titleFormatter = $titleFormatter;
 	}
 
-	protected function saveData( State $state, array $geometries ): void {
-		parent::saveData( $state, $geometries );
+	protected function updateState( State $state, array $geometries ): void {
+		parent::updateState( $state, $geometries );
 		// Must be after the parent call because that possibly added a private group hash
 		$state->addInteractiveGroups( $this->args->showGroups );
 	}

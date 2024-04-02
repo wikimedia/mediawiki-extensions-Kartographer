@@ -72,7 +72,7 @@ class State implements JsonSerializable {
 	 * @param ContentMetadataCollector $output
 	 * @param self $state
 	 */
-	public static function setState( ContentMetadataCollector $output, self $state ): void {
+	public static function saveState( ContentMetadataCollector $output, self $state ): void {
 		$output->setExtensionData( self::DATA_KEY, $state->jsonSerialize() );
 	}
 

@@ -96,17 +96,17 @@ abstract class LegacyTagHandler {
 
 		if ( !$status->isGood() ) {
 			$state->incrementBrokenTags();
-			State::setState( $parserOutput, $state );
+			State::saveState( $parserOutput, $state );
 
 			$errorReporter = new ErrorReporter( $this->getTargetLanguageCode() );
 			return $errorReporter->getHtml( $status, static::TAG );
 		}
 
-		$this->saveData( $state, $geometries );
+		$this->updateState( $state, $geometries );
 
 		$result = $this->render( new PartialWikitextParser( $parser, $frame ), !$isPreview );
 
-		State::setState( $parserOutput, $state );
+		State::saveState( $parserOutput, $state );
 		return $result;
 	}
 
@@ -120,7 +120,7 @@ abstract class LegacyTagHandler {
 	 */
 	abstract protected function render( PartialWikitextParser $parser, bool $serverMayRenderOverlays ): string;
 
-	protected function saveData( State $state, array $geometries ): void {
+	protected function updateState( State $state, array $geometries ): void {
 		$state->addRequestedGroups( $this->args->showGroups );
 
 		if ( !$geometries ) {

@@ -110,7 +110,7 @@ class StateTest extends MediaWikiUnitTestCase {
 		$state = State::getOrCreate( $output );
 		$state->addData( 'test', [ 'foo' => 'bar' ] );
 
-		State::setState( $output, $state );
+		State::saveState( $output, $state );
 		$retrieved = State::getState( $output );
 		$this->assertEquals( $state, $retrieved );
 	}
@@ -173,7 +173,7 @@ class StateTest extends MediaWikiUnitTestCase {
 	 */
 	public function testParserOutputPersistenceRoundTrip( State $state ) {
 		$output = new ParserOutput();
-		State::setState( $output, $state );
+		State::saveState( $output, $state );
 
 		$this->assertEquals( $state, State::getState( $output ) );
 	}
