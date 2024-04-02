@@ -56,7 +56,7 @@ abstract class LegacyTagHandler {
 	 * @param array<string,string> $args
 	 * @param Parser $parser
 	 * @param PPFrame $frame
-	 * @return string
+	 * @return string HTML
 	 */
 	public function handle( ?string $input, array $args, Parser $parser, PPFrame $frame ): string {
 		$mapServer = $this->config->get( 'KartographerMapServer' );
@@ -73,8 +73,6 @@ abstract class LegacyTagHandler {
 
 		$parserOutput->addModuleStyles( [ 'ext.kartographer.style' ] );
 		$parserOutput->addExtraCSPDefaultSrc( $mapServer );
-		$state = State::getOrCreate( $parserOutput );
-		$state->incrementUsage( static::TAG );
 
 		$this->args = new MapTagArgumentValidator(
 			static::TAG,
@@ -92,20 +90,20 @@ abstract class LegacyTagHandler {
 			}
 		}
 
-		if ( !$status->isGood() ) {
-			$state->incrementBrokenTags();
-			State::saveState( $parserOutput, $state );
+		$state = State::getOrCreate( $parserOutput );
+		$state->incrementUsage( static::TAG );
 
+		if ( $status->isGood() ) {
+			$this->updateState( $state, $geometries );
+			$html = $this->render( new PartialWikitextParser( $parser, $frame ), !$isPreview );
+		} else {
+			$state->incrementBrokenTags();
 			$errorReporter = new ErrorReporter( $this->getTargetLanguageCode() );
-			return $errorReporter->getHtml( $status, static::TAG );
+			$html = $errorReporter->getHtml( $status, static::TAG );
 		}
 
-		$this->updateState( $state, $geometries );
-
-		$result = $this->render( new PartialWikitextParser( $parser, $frame ), !$isPreview );
-
 		State::saveState( $parserOutput, $state );
-		return $result;
+		return $html;
 	}
 
 	/**
@@ -114,7 +112,7 @@ abstract class LegacyTagHandler {
 	 * @param PartialWikitextParser $parser
 	 * @param bool $serverMayRenderOverlays If the map server should attempt to render GeoJSON
 	 *  overlays via their group id
-	 * @return string
+	 * @return string HTML
 	 */
 	abstract protected function render( PartialWikitextParser $parser, bool $serverMayRenderOverlays ): string;
 
