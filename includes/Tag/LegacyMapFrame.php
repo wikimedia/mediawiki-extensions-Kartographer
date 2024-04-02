@@ -3,6 +3,7 @@
 namespace Kartographer\Tag;
 
 use Kartographer\PartialWikitextParser;
+use Kartographer\State;
 use MediaWiki\Config\Config;
 use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageNameUtils;
@@ -30,6 +31,12 @@ class LegacyMapFrame extends LegacyTagHandler {
 		$this->titleFormatter = $titleFormatter;
 	}
 
+	protected function saveData( State $state, array $geometries ): void {
+		parent::saveData( $state, $geometries );
+		// Must be after the parent call because that possibly added a private group hash
+		$state->addInteractiveGroups( $this->args->showGroups );
+	}
+
 	/** @inheritDoc */
 	protected function render( PartialWikitextParser $parser, bool $serverMayRenderOverlays ): string {
 		// TODO if fullwidth, we really should use interactive mode..
@@ -45,10 +52,6 @@ class LegacyMapFrame extends LegacyTagHandler {
 
 		$gen = new MapFrameAttributeGenerator( $this->args, $this->config );
 		$attrs = $gen->prepareAttrs();
-
-		if ( $this->args->showGroups ) {
-			$this->state->addInteractiveGroups( $this->args->showGroups );
-		}
 
 		$page = $this->parser->getPage();
 		$pageTitle = $page ? $this->titleFormatter->getPrefixedText( $page ) : '';

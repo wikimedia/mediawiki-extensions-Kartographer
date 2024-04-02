@@ -42,7 +42,6 @@ abstract class LegacyTagHandler {
 	protected Parser $parser;
 	private Language $targetLanguage;
 	private LanguageNameUtils $languageNameUtils;
-	protected State $state;
 
 	public function __construct(
 		Config $config,
@@ -76,8 +75,8 @@ abstract class LegacyTagHandler {
 
 		$parserOutput->addModuleStyles( [ 'ext.kartographer.style' ] );
 		$parserOutput->addExtraCSPDefaultSrc( $mapServer );
-		$this->state = State::getOrCreate( $parserOutput );
-		$this->state->incrementUsage( static::TAG );
+		$state = State::getOrCreate( $parserOutput );
+		$state->incrementUsage( static::TAG );
 
 		$this->args = new MapTagArgumentValidator(
 			static::TAG,
@@ -96,19 +95,18 @@ abstract class LegacyTagHandler {
 		}
 
 		if ( !$status->isGood() ) {
-			$this->state->incrementBrokenTags();
-			State::setState( $parserOutput, $this->state );
+			$state->incrementBrokenTags();
+			State::setState( $parserOutput, $state );
 
 			$errorReporter = new ErrorReporter( $this->getLanguageCode() );
 			return $errorReporter->getHtml( $status, static::TAG );
 		}
 
-		$this->state->addRequestedGroups( $this->args->showGroups );
-		$this->saveData( $geometries );
+		$this->saveData( $state, $geometries );
 
 		$result = $this->render( new PartialWikitextParser( $parser, $frame ), !$isPreview );
 
-		State::setState( $parserOutput, $this->state );
+		State::setState( $parserOutput, $state );
 		return $result;
 	}
 
@@ -122,7 +120,9 @@ abstract class LegacyTagHandler {
 	 */
 	abstract protected function render( PartialWikitextParser $parser, bool $serverMayRenderOverlays ): string;
 
-	private function saveData( array $geometries ): void {
+	protected function saveData( State $state, array $geometries ): void {
+		$state->addRequestedGroups( $this->args->showGroups );
+
 		if ( !$geometries ) {
 			return;
 		}
@@ -131,12 +131,12 @@ abstract class LegacyTagHandler {
 
 		// For all GeoJSON items whose marker-symbol value begins with '-counter' and '-letter',
 		// recursively replace them with an automatically incremented marker icon.
-		$counters = $this->state->getCounters();
+		$counters = $state->getCounters();
 		$marker = SimpleStyleParser::updateMarkerSymbolCounters( $geometries, $counters );
 		if ( $marker ) {
 			$this->args->setFirstMarkerProperties( ...$marker );
 		}
-		$this->state->setCounters( $counters );
+		$state->setCounters( $counters );
 
 		if ( $this->args->groupId === null ) {
 			// This hash calculation MUST be the same as in ParsoidDomProcessor::wtPostprocess
@@ -148,7 +148,7 @@ abstract class LegacyTagHandler {
 			$groupId = (string)$this->args->groupId;
 		}
 
-		$this->state->addData( $groupId, $geometries );
+		$state->addData( $groupId, $geometries );
 	}
 
 	/**
