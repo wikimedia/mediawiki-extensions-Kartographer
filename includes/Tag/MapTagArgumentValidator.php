@@ -37,7 +37,9 @@ class MapTagArgumentValidator {
 	public string $cssClass;
 	/** @var string|null Language code as specified by the user, null if none or invalid */
 	public ?string $specifiedLangCode = null;
+	/** Empty string when text="" was given, null when the attribute was missing */
 	public ?string $text;
+	public string $alt;
 	private ?string $fallbackText = null;
 	public string $firstMarkerColor = '';
 
@@ -108,6 +110,7 @@ class MapTagArgumentValidator {
 		$defaultStyle = $this->config->get( 'KartographerDfltStyle' );
 		$this->mapStyle = $this->args->getString( 'mapstyle', $regexp ) ?? $defaultStyle;
 		$this->text = $this->args->getString( 'text' );
+		$this->alt = $this->args->getString( 'alt' ) ?? '';
 
 		$lang = $this->args->getString( 'lang' );
 		// If the specified language code is invalid, behave as if no language was specified
@@ -122,8 +125,9 @@ class MapTagArgumentValidator {
 			$defaultAlign = $this->language->alignEnd();
 			$this->align = $this->args->getString( 'align', '/^(left|center|right)$/' ) ?? $defaultAlign;
 		}
-		$this->frameless = ( $this->text === null || $this->text === '' ) &&
-			$this->args->getString( 'frameless' ) !== null;
+		$this->frameless = $this->args->getString( 'frameless' ) !== null &&
+			// Can only suppress empty frames that don't contain a caption
+			(string)$this->text === '';
 		$this->cssClass = $this->args->getString( 'class', '/^([a-z][\w-]*)?$/i' ) ?? '';
 	}
 

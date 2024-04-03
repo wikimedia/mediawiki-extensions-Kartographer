@@ -59,8 +59,10 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 		$thumbnail = $doc->createElement( 'img' );
 
 		ParsoidUtils::addAttributesToNode( $imgAttrs, $thumbnail );
-		ParsoidUtils::createLangAttribute( $thumbnail, 'alt', 'kartographer-static-mapframe-alt', [], $extApi,
-			null );
+		if ( !isset( $imgAttrs['alt'] ) ) {
+			ParsoidUtils::createLangAttribute( $thumbnail, 'alt',
+				'kartographer-static-mapframe-alt', [], $extApi, null );
+		}
 
 		if ( !$serverMayRenderOverlays ) {
 			$noscript = $doc->createElement( 'noscript' );

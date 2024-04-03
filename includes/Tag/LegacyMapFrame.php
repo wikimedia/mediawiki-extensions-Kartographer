@@ -54,7 +54,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 		$pageTitle = $page ? $this->titleFormatter->getPrefixedText( $page ) : '';
 		$revisionId = $this->parser->getRevisionId();
 		$imgAttrs = $gen->prepareImgAttrs( $serverMayRenderOverlays, $pageTitle, $revisionId );
-		$imgAttrs['alt'] = wfMessage( 'kartographer-static-mapframe-alt' )->text();
+		$imgAttrs['alt'] ??= wfMessage( 'kartographer-static-mapframe-alt' )->text();
 
 		$thumbnail = Html::element( 'img', $imgAttrs );
 		if ( !$serverMayRenderOverlays ) {
