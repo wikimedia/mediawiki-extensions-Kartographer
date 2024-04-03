@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Maqa001"
+			"Maqa001",
+			"NMW03"
 		]
 	},
 	"kartographer-wv-group": "Qrup:",
@@ -9,6 +10,7 @@
 	"kartographer-wv-layer-wikimedia": "Vikimediya",
 	"kartographer-wv-nearby-articles-control": "Yaxınlıqdakı yerləri araşdırın",
 	"kartographer-wv-warning-external-source-title": "Xarici məlumat mənbəyi",
-	"kartographer-wv-warning-external-source-agree": "Bu yaxşıdır",
+	"kartographer-wv-warning-external-source-message": "Bu məzmun xaricdə yerləşir, ona görə də onu aktivləşdirmək sizin IP ünvanınızı və digər məlumatlarınızı xəritə provayderi ilə paylaşacaq.",
+	"kartographer-wv-warning-external-source-agree": "Başa düşdüm",
 	"kartographer-wv-warning-external-source-disagree": "Ləğv et"
 }
