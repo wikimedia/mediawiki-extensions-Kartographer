@@ -4,9 +4,12 @@ namespace Kartographer\Tests;
 use Kartographer\State;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Title\Title;
 use MediaWikiLangTestCase;
 use ParserOptions;
+use Wikimedia\Parsoid\Utils\DOMCompat;
+use Wikimedia\Parsoid\Utils\DOMDataUtils;
 
 /**
  * @group Kartographer
@@ -218,6 +221,25 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$output = $this->parseParsoid( $wikitext );
 		$this->assertTrackingCategory( 'kartographer-broken-category', $output );
 		$this->assertTrackingCategory( 'kartographer-tracking-category', $output );
+	}
+
+	/** Testing T362034 - this test fails if we're not passing srcOffsets when parsing the text content */
+	public function testSrcOffsetsMaplinkParsoid() {
+		$tests = [
+			"<maplink latitude=10.123 longitude=20.456 zoom=13 text='hello {{1x|plop}} world' />",
+			"<mapframe width=100 height=100 latitude=10.123 longitude=20.456 zoom=13 text='hello {{1x|plop}} world' />"
+		];
+		foreach ( $tests as $wikitext ) {
+			$output = $this->parseParsoid( $wikitext );
+			$pb = PageBundleParserOutputConverter::pageBundleFromParserOutput( $output );
+			$dom = $pb->toDom();
+			$transclusion = DOMCompat::querySelector( $dom, '[typeof~="mw:Transclusion"]' );
+			$dp = DOMDataUtils::getJSONAttribute( $transclusion, 'data-parsoid', '' );
+			$start = strpos( $wikitext, '{' );
+			// second }
+			$end = strpos( $wikitext, '}' ) + 1;
+			$this->assertEquals( [ $start, $end + 1, null, null ], $dp->dsr );
+		}
 	}
 
 	public function testNoTrackingCategories() {

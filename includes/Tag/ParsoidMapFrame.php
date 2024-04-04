@@ -24,7 +24,7 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 	 * @throws DOMException
 	 */
 	public function sourceToDom( ParsoidExtensionAPI $extApi, string $src, array $extArgs ) {
-		[ $status, $args, $geometries ] = $this->parseTag( $extApi, $src, $extArgs );
+		[ $status, $args, $geometries, $srcOffsets ] = $this->parseTag( $extApi, $src, $extArgs );
 
 		if ( !$status->isGood() ) {
 			return $this->reportErrors( $extApi, self::TAG, $status );
@@ -100,6 +100,7 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 					'extTag' => 'mapframe',
 					'context' => 'inline',
 				],
+				'srcOffsets' => $srcOffsets['text']->value ?? null,
 			], false );
 			$div = $doc->createElement( 'div' );
 			$div->setAttribute( 'class', 'thumbcaption' );

@@ -13,6 +13,7 @@ use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Ext\ExtensionTagHandler;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
+use Wikimedia\Parsoid\Tokens\KVSourceRange;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 
 /**
@@ -25,11 +26,15 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 	 * @param ParsoidExtensionAPI $extApi
 	 * @param string $input
 	 * @param stdClass[] $extArgs
-	 * @return array{StatusValue,MapTagArgumentValidator,stdClass[]}
+	 * @return array{StatusValue,MapTagArgumentValidator,stdClass[],KVSourceRange[]}
 	 */
 	protected function parseTag( ParsoidExtensionAPI $extApi, string $input, array $extArgs ): array {
 		$args = $this->processParsoidExtensionArguments( $extArgs );
 		$status = $args->status;
+		$srcOffsets = [];
+		foreach ( $extArgs as $extArg ) {
+			$srcOffsets[ $extArg->k ] = $extArg->srcOffsets ?? null;
+		}
 
 		$geometries = [];
 		if ( $status->isOK() ) {
@@ -47,7 +52,7 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 			}
 		}
 
-		return [ $status, $args, $geometries ];
+		return [ $status, $args, $geometries, $srcOffsets ];
 	}
 
 	/**
