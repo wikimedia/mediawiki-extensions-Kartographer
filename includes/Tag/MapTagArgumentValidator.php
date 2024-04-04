@@ -39,7 +39,7 @@ class MapTagArgumentValidator {
 	public ?string $specifiedLangCode = null;
 	public ?string $text;
 	private ?string $fallbackText = null;
-	public ?stdClass $markerProperties = null;
+	public string $firstMarkerColor = '';
 
 	/**
 	 * @var string|null Currently parsed group identifier from the group="…" attribute. Only allowed
@@ -177,8 +177,15 @@ class MapTagArgumentValidator {
 
 	public function setFirstMarkerProperties( ?string $fallbackText, stdClass $properties ): void {
 		$this->fallbackText = $fallbackText;
-		if ( $this->config->get( 'KartographerUseMarkerStyle' ) ) {
-			$this->markerProperties = $properties;
+
+		if ( $this->config->get( 'KartographerUseMarkerStyle' ) &&
+			isset( $properties->{'marker-color'} ) &&
+			// JsonSchema already validates this value for us, however this regex will also fail
+			// if the color is invalid
+			preg_match( '/^#?((?:[\da-f]{3}){1,2})$/i', $properties->{'marker-color'}, $m )
+		) {
+			// Simplestyle allows colors "with or without the # prefix". Enforce it here.
+			$this->firstMarkerColor = '#' . $m[1];
 		}
 	}
 

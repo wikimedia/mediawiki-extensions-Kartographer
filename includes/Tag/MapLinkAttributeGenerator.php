@@ -49,10 +49,9 @@ class MapLinkAttributeGenerator {
 			$attrs['data-lang'] = $this->args->specifiedLangCode;
 		}
 
-		$style = $this->extractMarkerCss();
-		if ( $style ) {
+		if ( $this->args->firstMarkerColor ) {
 			$attrs['class'][] = 'mw-kartographer-autostyled';
-			$attrs['style'] = $style;
+			$attrs['style'] = "background: {$this->args->firstMarkerColor};";
 		}
 
 		if ( $this->args->cssClass !== '' ) {
@@ -69,23 +68,6 @@ class MapLinkAttributeGenerator {
 		}
 
 		return $attrs;
-	}
-
-	/**
-	 * Extracts CSS style to be used by the link from GeoJSON
-	 * @return string
-	 */
-	private function extractMarkerCss(): string {
-		if ( $this->args->markerProperties
-			&& isset( $this->args->markerProperties->{'marker-color'} )
-			// JsonSchema already validates this value for us, however this regex will also fail
-			// if the color is invalid
-			&& preg_match( '/^#?((?:[\da-f]{3}){1,2})$/i', $this->args->markerProperties->{'marker-color'}, $m )
-		) {
-			return "background: #{$m[1]};";
-		}
-
-		return '';
 	}
 
 }
