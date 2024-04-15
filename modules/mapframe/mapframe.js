@@ -74,6 +74,7 @@ function initMapBox( data, $container ) {
 		center: [ data.latitude, data.longitude ],
 		zoom: data.zoom,
 		lang: data.lang,
+		style: data.style,
 		fullScreenRoute: '/map/' + index,
 		allowFullScreen: true,
 		dataGroups: data.overlays,
