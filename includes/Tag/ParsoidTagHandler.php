@@ -13,6 +13,7 @@ use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Ext\ExtensionTagHandler;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
+use Wikimedia\Parsoid\Ext\Utils;
 use Wikimedia\Parsoid\Tokens\KVSourceRange;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 
@@ -33,7 +34,9 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 		$status = $args->status;
 		$srcOffsets = [];
 		foreach ( $extArgs as $extArg ) {
-			$srcOffsets[ $extArg->k ] = $extArg->srcOffsets ?? null;
+			if ( is_string( $extArg->k ) ) {
+				$srcOffsets[$extArg->k] = $extArg->srcOffsets ?? null;
+			}
 		}
 
 		$geometries = [];
@@ -67,7 +70,12 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 			// Might be an array or Token object when wikitext like <maplink {{1x|text}}=… /> is
 			// used. The old parser doesn't resolve this either.
 			if ( is_string( $extArg->k ) ) {
-				$args[$extArg->k] = $extArg->v;
+				if ( $extArg->k === 'text' && $extArg->vsrc ) {
+					// preserve newlines and spaces for 'text' attribute
+					$args[$extArg->k] = Utils::decodeWtEntities( $extArg->vsrc );
+				} else {
+					$args[$extArg->k] = $extArg->v;
+				}
 			}
 		}
 

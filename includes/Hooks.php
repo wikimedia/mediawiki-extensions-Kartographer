@@ -15,7 +15,6 @@ use Kartographer\Tag\LegacyTagHandler;
 use MediaWiki\Config\Config;
 use MediaWiki\Hook\ParserAfterParseHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
-use MediaWiki\Hook\ParserTestGlobalsHook;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Title\TitleFormatter;
 use Parser;
@@ -26,8 +25,7 @@ use StripState;
  */
 class Hooks implements
 	ParserFirstCallInitHook,
-	ParserAfterParseHook,
-	ParserTestGlobalsHook
+	ParserAfterParseHook
 {
 	private LegacyMapLink $legacyMapLink;
 	private LegacyMapFrame $legacyMapFrame;
@@ -77,8 +75,15 @@ class Hooks implements
 		}
 	}
 
-	/** @inheritDoc */
-	public function onParserTestGlobals( &$globals ) {
-		$globals['wgKartographerMapServer'] = 'https://maps.wikimedia.org';
+	/**
+	 * Sets $wgKartographerMapServer in integration test/CI setup
+	 * This is needed by parserTests that define articles containing Kartographer content - parsing them when
+	 * inserting them in the test DB requires $wgKartographerMapServer to be defined early.
+	 */
+	public static function onRegistration() {
+		global $wgKartographerMapServer;
+		if ( defined( 'MW_PHPUNIT_TEST' ) || defined( 'MW_QUIBBLE_CI' ) ) {
+			$wgKartographerMapServer = 'https://maps.wikimedia.org';
+		}
 	}
 }

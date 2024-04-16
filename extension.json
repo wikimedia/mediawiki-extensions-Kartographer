@@ -16,6 +16,7 @@
 			"JsonConfig": "*"
 		}
 	},
+	"callback": "Kartographer\\Hooks::onRegistration",
 	"MessagesDirs": {
 		"Kartographer": [
 			"i18n",
@@ -427,7 +428,6 @@
 		"wgKartographerLiveData"
 	],
 	"Hooks": {
-		"ParserTestGlobals": "KartographerHooks",
 		"ParserFirstCallInit": "KartographerHooks",
 		"ParserAfterParse": "KartographerHooks"
 	},
