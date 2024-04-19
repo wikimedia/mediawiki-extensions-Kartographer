@@ -1,5 +1,6 @@
 /**
  * Thumbnail properties we receive from the api
+ *
  * @typedef {Object} Nearby~ThumbnailProperties
  * @property {string} source
  * @property {number|undefined} width
