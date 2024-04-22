@@ -168,8 +168,7 @@ abstract class LegacyTagHandler {
 		foreach ( $state->getUsages() as $key => $count ) {
 			// Resulting page property names are "kartographer_links" and "kartographer_frames"
 			$name = 'kartographer_' . preg_replace( '/^map/', '', $key );
-			// Ensure count is numeric so it will be indexed.
-			$parserOutput->setPageProperty( $name, (int)$count );
+			$parserOutput->setNumericPageProperty( $name, $count );
 		}
 
 		$tracker->addTrackingCategories( [
