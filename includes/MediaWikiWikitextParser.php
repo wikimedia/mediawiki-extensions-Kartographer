@@ -19,11 +19,7 @@ class MediaWikiWikitextParser extends WikitextParser {
 	}
 
 	/** @inheritDoc */
-	public function parseWikitext( string $wikiText ): string {
-		if ( !$this->needsParsing( $wikiText ) ) {
-			return $wikiText;
-		}
-
+	protected function parse( string $wikiText ): string {
 		$wikiText = $this->parser->recursiveTagParseFully( $wikiText, $this->frame ?: false );
 		return trim( Parser::stripOuterParagraph( $wikiText ) );
 	}

@@ -122,8 +122,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 		string $option = null
 	) {
 		$parser = $this->createMock( WikitextParser::class );
-		$parser->method( 'parseWikitext' )
-			->willReturn( 'HTML' );
+		$parser->method( 'parse' )->willReturn( 'HTML' );
 		$ssp = new SimpleStyleParser( $parser, [ $option => true ] );
 		$data = json_decode( $json );
 
@@ -224,22 +223,22 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 				'{ "properties": {} }',
 			],
 			[
-				'{ "properties": { "title": "…", "description": {} } }',
+				'{ "properties": { "title": "*", "description": {} } }',
 				'{ "properties": { "title": "HTML" } }',
 			],
 			[
-				'{ "properties": { "title": { "en": "…", "de": null, "fr": "" } } }',
+				'{ "properties": { "title": { "en": "*", "de": null, "fr": "" } } }',
 				'{ "properties": { "title": { "en": "HTML" } } }',
 			],
 			[
-				'{ "properties": { "title": "…" } }',
-				'{ "properties": { "title": "HTML", "_origtitle": "…" } }',
+				'{ "properties": { "title": "*" } }',
+				'{ "properties": { "title": "HTML", "_origtitle": "*" } }',
 				null,
 				'saveUnparsed'
 			],
 			[
-				'{ "properties": { "title": { "en": "…", "de": null } } }',
-				'{ "properties": { "title": { "en": "HTML" }, "_origtitle": { "en": "…" } } }',
+				'{ "properties": { "title": { "en": "*", "de": null } } }',
+				'{ "properties": { "title": { "en": "HTML" }, "_origtitle": { "en": "*" } } }',
 				null,
 				'saveUnparsed'
 			],
