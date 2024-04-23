@@ -93,10 +93,10 @@ class ApiQueryMapData extends ApiQueryBase {
 	}
 
 	/**
-	 * @param array[] $data All groups
+	 * @param array<string,array> $data All groups
 	 * @param string[] $groupIds requested groups or empty to disable filtering
 	 * @param bool $isStrict If true, log missing groups
-	 * @return array[] Filtered groups, with the same keys as $data
+	 * @return array<string,?array> Filtered groups, with the same keys as $data
 	 */
 	private function filterGroups( array $data, array $groupIds, bool $isStrict ): array {
 		if ( !$groupIds ) {
