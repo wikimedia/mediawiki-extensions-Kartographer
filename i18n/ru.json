@@ -18,11 +18,14 @@
 			"Vlad5250",
 			"Лилиә",
 			"Туллук",
-			"Deltaspace"
+			"Deltaspace",
+			"Kareyac",
+			"Novichev",
+			"Pacha Tchernof"
 		]
 	},
 	"apierror-kartographer-conflicting-revids": "Запрос картографических данных из нескольких версий одной и той же страницы в одном запросе пока не поддерживается.",
-	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use карты Викимедиа] | данные © [https://www.openstreetmap.org/copyright участники OpenStreetMap]",
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Карты Викимедиа] | Данные © [https://www.openstreetmap.org/copyright участники OpenStreetMap]",
 	"kartographer-broken-category": "{{#switch:{{NAMESPACE}}|{{ns:File}}=Файлы|#default=Страницы}} с некорректными картами",
 	"kartographer-broken-category-desc": "Эта страница содержит недопустимое использование карты",
 	"kartographer-desc": "Позволяет добавлять карты на вики-страницы.",
