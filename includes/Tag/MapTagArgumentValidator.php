@@ -19,7 +19,7 @@ class MapTagArgumentValidator {
 	public StatusValue $status;
 	private Tag $args;
 	private Config $config;
-	private Language $language;
+	private Language $defaultLanguage;
 	private ?LanguageNameUtils $languageNameUtils;
 
 	public ?float $lat;
@@ -53,20 +53,20 @@ class MapTagArgumentValidator {
 	 * @param string $tag Tag name, e.g. "maplink"
 	 * @param array<string,string> $args
 	 * @param Config $config
-	 * @param Language $language
+	 * @param Language $defaultLanguage
 	 * @param LanguageNameUtils|null $languageNameUtils
 	 */
 	public function __construct(
 		string $tag,
 		array $args,
 		Config $config,
-		Language $language,
+		Language $defaultLanguage,
 		LanguageNameUtils $languageNameUtils = null
 	) {
 		$this->status = StatusValue::newGood();
 		$this->args = new Tag( $tag, $args, $this->status );
 		$this->config = $config;
-		$this->language = $language;
+		$this->defaultLanguage = $defaultLanguage;
 		$this->languageNameUtils = $languageNameUtils;
 
 		$this->parseArgs();
@@ -119,7 +119,7 @@ class MapTagArgumentValidator {
 		if ( $this->width === 'full' ) {
 			$this->align = 'none';
 		} elseif ( $this->width !== null ) {
-			$defaultAlign = $this->language->alignEnd();
+			$defaultAlign = $this->defaultLanguage->alignEnd();
 			$this->align = $this->args->getString( 'align', '/^(left|center|right)$/' ) ?? $defaultAlign;
 		}
 		$this->frameless = ( $this->text === null || $this->text === '' ) &&
@@ -170,7 +170,7 @@ class MapTagArgumentValidator {
 	public function getLanguageCodeWithDefaultFallback(): string {
 		return $this->specifiedLangCode ??
 			( $this->config->get( 'KartographerUsePageLanguage' ) ?
-				$this->language->getCode() :
+				$this->defaultLanguage->getCode() :
 				'local'
 			);
 	}

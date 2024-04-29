@@ -34,7 +34,7 @@ class CoordFormatter {
 	 * Convert coordinates to degrees, minutes, seconds
 	 *
 	 * @param float|null $coord
-	 * @return array
+	 * @return array{string,int[]}
 	 */
 	private function convertCoord( ?float $coord ): array {
 		$val = round( (float)$coord * 3600 );
