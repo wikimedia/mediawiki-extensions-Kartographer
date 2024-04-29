@@ -16,10 +16,7 @@ class ParsoidWikitextParser extends WikitextParser {
 	}
 
 	/** @inheritDoc */
-	public function parseWikitext( string $wikiText ): string {
-		if ( !$this->needsParsing( $wikiText ) ) {
-			return $wikiText;
-		}
+	protected function parse( string $wikiText ): string {
 		$dom = $this->extApi->wikitextToDOM( $wikiText, [
 			'parseOpts' => [
 				'extTag' => $this->extApi->extTag->getName(),
