@@ -189,12 +189,23 @@ class StateTest extends MediaWikiUnitTestCase {
 			'broken' => 0,
 			'maplinks' => 1,
 			'mapframes' => 1,
-			// FIXME: Why do we store flipped arrays with meaningless values in the parser cache?
-			'interactiveGroups' => [ 'interactive' => 0 ],
-			'requestedGroups' => [ 'requested' => 0 ],
+			'interactiveGroups' => [ 'interactive' ],
+			'requestedGroups' => [ 'requested' ],
 			'counters' => null,
 			'data' => [],
 		], $state->jsonSerialize() );
+	}
+
+	public function testFlippedGroupsBackwardsCompatibility() {
+		// TODO: This test can be removed when we remove the backwards compatibility code
+		$parserOutput = $this->createNoOpMock( ParserOutput::class, [ 'getExtensionData' ] );
+		$parserOutput->method( 'getExtensionData' )->willReturn( [
+			'interactiveGroups' => [ 'interactive' => 7 ],
+			'requestedGroups' => [ 'requested' => 9 ],
+		] );
+		$state = State::getState( $parserOutput );
+		$this->assertSame( [ 'interactive' ], $state->getInteractiveGroups() );
+		$this->assertSame( [ 'requested' ], $state->getRequestedGroups() );
 	}
 
 	/**

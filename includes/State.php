@@ -25,15 +25,15 @@ class State implements JsonSerializable {
 	 */
 	private array $usages = [];
 
-	/** @var array<string,int> */
+	/** @var array<string,null> Flipped set, values are meaningless */
 	private array $interactiveGroups = [];
-	/** @var array<string,int> */
+	/** @var array<string,null> Flipped set, values are meaningless */
 	private array $requestedGroups = [];
 	/** @var array<string,int> */
 	private array $counters = [];
 
 	/**
-	 * @var array[] Indexed per group identifier
+	 * @var array<string,array> Indexed per group identifier
 	 */
 	private array $data = [];
 
@@ -108,7 +108,7 @@ class State implements JsonSerializable {
 	 * @param string[] $groupIds
 	 */
 	public function addInteractiveGroups( array $groupIds ): void {
-		$this->interactiveGroups += array_flip( $groupIds );
+		$this->interactiveGroups += array_fill_keys( $groupIds, null );
 	}
 
 	/**
@@ -122,7 +122,7 @@ class State implements JsonSerializable {
 	 * @param string[] $groupIds
 	 */
 	public function addRequestedGroups( array $groupIds ): void {
-		$this->requestedGroups += array_flip( $groupIds );
+		$this->requestedGroups += array_fill_keys( $groupIds, null );
 	}
 
 	/**
@@ -160,7 +160,7 @@ class State implements JsonSerializable {
 	}
 
 	/**
-	 * @return array[] Associative key-value array, build up by {@see addData}
+	 * @return array<string,array> Associative key-value array, build up by {@see addData}
 	 */
 	public function getData(): array {
 		return $this->data;
@@ -173,9 +173,8 @@ class State implements JsonSerializable {
 		// TODO: Replace with the ...$this->usages syntax when we can use PHP 8.1
 		return array_merge( [
 			'broken' => $this->broken,
-			// FIXME: Why do we store flipped arrays with meaningless values in the parser cache?
-			'interactiveGroups' => $this->interactiveGroups,
-			'requestedGroups' => $this->requestedGroups,
+			'interactiveGroups' => $this->getInteractiveGroups(),
+			'requestedGroups' => $this->getRequestedGroups(),
 			'counters' => $this->counters ?: null,
 			'data' => $this->data,
 		], $this->usages );
@@ -192,8 +191,17 @@ class State implements JsonSerializable {
 		$status->usages = array_filter( $data, static function ( $count, $key ) {
 			return is_int( $count ) && $count > 0 && str_starts_with( $key, 'map' );
 		}, ARRAY_FILTER_USE_BOTH );
-		$status->interactiveGroups = $data['interactiveGroups'] ?? [];
-		$status->requestedGroups = $data['requestedGroups'] ?? [];
+
+		// TODO: Backwards compatibility, can be removed 30 days later
+		if ( !array_is_list( $data['interactiveGroups'] ?? [] ) ) {
+			$data['interactiveGroups'] = array_keys( $data['interactiveGroups'] );
+		}
+		if ( !array_is_list( $data['requestedGroups'] ?? [] ) ) {
+			$data['requestedGroups'] = array_keys( $data['requestedGroups'] );
+		}
+
+		$status->addInteractiveGroups( $data['interactiveGroups'] ?? [] );
+		$status->addRequestedGroups( $data['requestedGroups'] ?? [] );
 		$status->counters = $data['counters'] ?? [];
 		$status->data = $data['data'] ?? [];
 
