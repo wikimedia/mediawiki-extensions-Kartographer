@@ -152,6 +152,10 @@ class MapFrameAttributeGenerator {
 			$imgAttrs['srcset'] = $srcSet;
 		}
 
+		if ( $this->args->alt !== '' ) {
+			$imgAttrs['alt'] = $this->args->alt;
+		}
+
 		return $imgAttrs;
 	}
 
