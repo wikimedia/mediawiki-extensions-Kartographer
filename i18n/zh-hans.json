@@ -13,7 +13,8 @@
 			"ZiqiLiang",
 			"予弦",
 			"神樂坂秀吉",
-			"铁桶"
+			"铁桶",
+			"沈澄心"
 		]
 	},
 	"apierror-kartographer-conflicting-revids": "尚不支持在一次请求中查询同一页面的多个修订版本的地图数据。",
@@ -34,6 +35,8 @@
 	"kartographer-tracking-category": "有地图的页面",
 	"kartographer-tracking-category-desc": "页面包含地图",
 	"kartographer-specialmap-invalid-coordinates": "提供的坐标无效",
+	"kartographer-specialmap-world": "世界地图",
+	"kartographer-static-mapframe-alt": "地图",
 	"kartographer.css": "/* 这里放置的CSS将应用到所有有地图的页面 */",
 	"kartographer.js": "/* 这里的任何JavaScript将为加载包含地图的页面的用户加载 */",
 	"kartographer-linktype-aerial": "航拍",
