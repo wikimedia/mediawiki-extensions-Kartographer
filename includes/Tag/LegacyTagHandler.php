@@ -18,8 +18,6 @@ use Language;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Languages\LanguageNameUtils;
-use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\Title\Title;
 use Parser;
 use PPFrame;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
@@ -82,7 +80,7 @@ abstract class LegacyTagHandler {
 			static::TAG,
 			$args,
 			$this->config,
-			$this->getTargetLanguage(),
+			$this->targetLanguage,
 			$this->languageCodeValidator
 		);
 		$status = $this->args->status;
@@ -196,23 +194,8 @@ abstract class LegacyTagHandler {
 		}
 	}
 
-	private function getTargetLanguage(): Language {
-		// Log if the user language is different from the page language (T311592)
-		$page = $this->parser->getPage();
-		if ( $page ) {
-			$pageLang = Title::castFromPageReference( $page )->getPageLanguage();
-			if ( $this->targetLanguage->getCode() !== $pageLang->getCode() ) {
-				LoggerFactory::getInstance( 'Kartographer' )->notice( 'Target language (' .
-					$this->targetLanguage->getCode() . ') is different than page language (' .
-					$pageLang->getCode() . ') (T311592)' );
-			}
-		}
-
-		return $this->targetLanguage;
-	}
-
 	protected function getTargetLanguageCode(): string {
-		return $this->getTargetLanguage()->getCode();
+		return $this->targetLanguage->getCode();
 	}
 
 	protected function getOutput(): ContentMetadataCollector {
