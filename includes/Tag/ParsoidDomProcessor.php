@@ -127,7 +127,7 @@ class ParsoidDomProcessor extends DOMProcessor {
 
 		$groupId = $marker->groupId ?? null;
 		if ( $groupId === null ) {
-			// This hash calculation MUST be the same as in LegacyTagHandler::saveData
+			// This hash calculation MUST be the same as in LegacyTagHandler::updateState
 			$groupId = '_' . sha1( FormatJson::encode( $marker->geometries, false, FormatJson::ALL_OK ) );
 			$marker->groupId = $groupId;
 			$marker->showGroups[] = $groupId;
