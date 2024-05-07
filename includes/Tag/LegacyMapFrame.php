@@ -4,10 +4,7 @@ namespace Kartographer\Tag;
 
 use Kartographer\PartialWikitextParser;
 use Kartographer\State;
-use MediaWiki\Config\Config;
 use MediaWiki\Html\Html;
-use MediaWiki\Languages\LanguageNameUtils;
-use MediaWiki\Title\TitleFormatter;
 
 /**
  * The <mapframe> tag inserts a map into wiki page
@@ -15,21 +12,8 @@ use MediaWiki\Title\TitleFormatter;
  * @license MIT
  */
 class LegacyMapFrame extends LegacyTagHandler {
+
 	public const TAG = 'mapframe';
-
-	private TitleFormatter $titleFormatter;
-
-	public function __construct(
-		Config $config,
-		LanguageNameUtils $languageCodeValidator,
-		TitleFormatter $titleFormatter
-	) {
-		parent::__construct(
-			$config,
-			$languageCodeValidator
-		);
-		$this->titleFormatter = $titleFormatter;
-	}
 
 	protected function updateState( State $state, array $geometries ): void {
 		parent::updateState( $state, $geometries );
@@ -53,8 +37,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 		$gen = new MapFrameAttributeGenerator( $this->args, $this->config );
 		$attrs = $gen->prepareAttrs();
 
-		$page = $this->parserContext->getPage();
-		$pageTitle = $page ? $this->titleFormatter->getPrefixedText( $page ) : '';
+		$pageTitle = $this->parserContext->getPrefixedText();
 		$revisionId = $this->parserContext->getRevisionId();
 		$imgAttrs = $gen->prepareImgAttrs( $serverMayRenderOverlays, $pageTitle, $revisionId );
 		$imgAttrs['alt'] ??= wfMessage( 'kartographer-static-mapframe-alt' )->text();

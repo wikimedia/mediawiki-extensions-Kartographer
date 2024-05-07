@@ -3,24 +3,38 @@
 namespace Kartographer\Tag;
 
 use Language;
-use MediaWiki\Page\PageReference;
+use MediaWiki\Title\TitleFormatter;
 use Parser;
 
 /**
+ * Meant to encapsulate all relevant incoming (!) context that's historically attached to the legacy
+ * {@see Parser} class. This is very similar to Parsoid's "view of {@see ParserOptions}", see
+ * {@see \MediaWiki\Parser\Parsoid\Config\PageConfig}.
+ *
  * @license MIT
  */
 class ParserContext {
 
 	private Parser $parser;
+	private TitleFormatter $titleFormatter;
 
-	public function __construct( Parser $parser ) {
+	public function __construct( Parser $parser, TitleFormatter $titleFormatter ) {
 		$this->parser = $parser;
+		$this->titleFormatter = $titleFormatter;
 	}
 
-	public function getPage(): ?PageReference {
-		return $this->parser->getPage();
+	/**
+	 * @see \MediaWiki\Parser\Parsoid\Config\PageConfig::getLinkTarget
+	 */
+	public function getPrefixedText(): string {
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable That's hard deprecated anyway
+		return $this->titleFormatter->getPrefixedText( $this->parser->getPage() );
 	}
 
+	/**
+	 * @see \MediaWiki\Parser\Parsoid\Config\PageConfig::getRevisionId
+	 * @return int|null Can be null during preview
+	 */
 	public function getRevisionId(): ?int {
 		return $this->parser->getRevisionId();
 	}

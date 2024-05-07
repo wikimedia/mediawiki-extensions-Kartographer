@@ -17,6 +17,7 @@ use Kartographer\State;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Title\TitleFormatter;
 use Parser;
 use PPFrame;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
@@ -39,13 +40,16 @@ abstract class LegacyTagHandler {
 	protected ParserContext $parserContext;
 	private ContentMetadataCollector $metadataCollector;
 	private LanguageNameUtils $languageCodeValidator;
+	private TitleFormatter $titleFormatter;
 
 	public function __construct(
 		Config $config,
-		LanguageNameUtils $languageCodeValidator
+		LanguageNameUtils $languageCodeValidator,
+		TitleFormatter $titleFormatter
 	) {
 		$this->config = $config;
 		$this->languageCodeValidator = $languageCodeValidator;
+		$this->titleFormatter = $titleFormatter;
 	}
 
 	/**
@@ -63,7 +67,7 @@ abstract class LegacyTagHandler {
 			throw new ConfigException( '$wgKartographerMapServer doesn\'t have a default, please set your own' );
 		}
 
-		$this->parserContext = new ParserContext( $parser );
+		$this->parserContext = new ParserContext( $parser, $this->titleFormatter );
 		$this->metadataCollector = $parser->getOutput();
 		$options = $parser->getOptions();
 		$isPreview = $options->getIsPreview() || $options->getIsSectionPreview();

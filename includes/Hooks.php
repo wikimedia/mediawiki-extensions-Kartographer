@@ -37,7 +37,8 @@ class Hooks implements
 	) {
 		$this->legacyMapLink = new LegacyMapLink(
 			$config,
-			$languageCodeValidator
+			$languageCodeValidator,
+			$titleFormatter
 		);
 		$this->legacyMapFrame = new LegacyMapFrame(
 			$config,
