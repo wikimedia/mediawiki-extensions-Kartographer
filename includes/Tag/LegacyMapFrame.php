@@ -37,7 +37,7 @@ class LegacyMapFrame extends LegacyTagHandler {
 		$gen = new MapFrameAttributeGenerator( $this->args, $this->config );
 		$attrs = $gen->prepareAttrs();
 
-		$pageTitle = $this->parserContext->getPrefixedText();
+		$pageTitle = $this->parserContext->getPrefixedDBkey();
 		$revisionId = $this->parserContext->getRevisionId();
 		$imgAttrs = $gen->prepareImgAttrs( $serverMayRenderOverlays, $pageTitle, $revisionId );
 		$imgAttrs['alt'] ??= wfMessage( 'kartographer-static-mapframe-alt' )->text();

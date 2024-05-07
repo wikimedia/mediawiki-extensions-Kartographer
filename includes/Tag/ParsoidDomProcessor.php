@@ -176,7 +176,7 @@ class ParsoidDomProcessor extends DOMProcessor {
 
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$linkTarget = $extApi->getPageConfig()->getLinkTarget();
-		$pagetitle = Title::newFromLinkTarget( $linkTarget )->getPrefixedText();
+		$pagetitle = Title::newFromLinkTarget( $linkTarget )->getPrefixedDBkey();
 		$revisionId = $extApi->getPageConfig()->getRevisionId();
 		$attrs = array_merge( $attrs,
 			MapFrameAttributeGenerator::getUrlAttrs( $config, $pagetitle, $revisionId, [ $groupId ] )

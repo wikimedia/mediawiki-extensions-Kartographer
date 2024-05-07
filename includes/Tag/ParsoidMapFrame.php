@@ -49,7 +49,7 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 		$attrs = $gen->prepareAttrs();
 
 		$linkTarget = $extApi->getPageConfig()->getLinkTarget();
-		$pageTitle = Title::newFromLinkTarget( $linkTarget )->getPrefixedText();
+		$pageTitle = Title::newFromLinkTarget( $linkTarget )->getPrefixedDBkey();
 		$revisionId = $extApi->getPageConfig()->getRevisionId();
 		$imgAttrs = $gen->prepareImgAttrs( $serverMayRenderOverlays, $pageTitle, $revisionId );
 
