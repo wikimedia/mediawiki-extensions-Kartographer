@@ -254,13 +254,17 @@ ve.ui.MWMapsDialog.prototype.updateMapArea = function () {
 	}
 
 	const dimensions = this.dimensions.getDimensions();
-	const width = this.dimensions.getWidth();
-	const isFullWidth = width === 'full' || width === '100%';
 	const initialDimensions = this.scalable.getCurrentDimensions();
 
 	if ( !isFinite( dimensions.width ) ) {
-		// Fullscreen width is hard-coded; otherwise reuse the initial values from getSetupProcess
-		dimensions.width = isFullWidth ? 800 : ( initialDimensions.width || 300 );
+		const width = this.dimensions.getWidth();
+		const isFullWidth = width === 'full' || width === '100%';
+		if ( isFullWidth ) {
+			dimensions.width = mw.config.get( 'wgKartographerStaticFullWidth' );
+		} else {
+			// Fullscreen width is hard-coded; otherwise reuse the initial values from getSetupProcess
+			dimensions.width = initialDimensions.width || 300;
+		}
 	}
 	if ( !isFinite( dimensions.height ) ) {
 		dimensions.height = initialDimensions.height || 300;

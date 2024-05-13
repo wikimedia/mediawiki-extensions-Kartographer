@@ -24,6 +24,7 @@ class DataModule extends RL\Module {
 		$config = $this->getConfig();
 		return ResourceLoader::makeConfigSetScript( [
 			'wgKartographerMapServer' => $config->get( 'KartographerMapServer' ),
+			'wgKartographerStaticFullWidth' => $config->get( 'KartographerStaticFullWidth' ),
 			'wgKartographerSrcsetScales' => $config->get( 'KartographerSrcsetScales' ),
 			'wgKartographerStyles' => $config->get( 'KartographerStyles' ),
 			'wgKartographerDfltStyle' => $config->get( 'KartographerDfltStyle' ),
