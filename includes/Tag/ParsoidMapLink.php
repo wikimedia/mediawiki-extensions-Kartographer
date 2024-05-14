@@ -25,7 +25,6 @@ class ParsoidMapLink extends ParsoidTagHandler {
 	 */
 	public function sourceToDom( ParsoidExtensionAPI $extApi, string $src, array $extArgs ) {
 		$extApi->getMetadata()->addModules( [ 'ext.kartographer.link' ] );
-
 		[ $status, $args, $geometries, $srcOffsets ] = $this->parseTag( $extApi, $src, $extArgs );
 		if ( !$status->isGood() ) {
 			return $this->reportErrors( $extApi, self::TAG, $status );
@@ -37,11 +36,7 @@ class ParsoidMapLink extends ParsoidTagHandler {
 		$text = $args->getTextWithFallback();
 		if ( $text === null ) {
 			$formatter = new CoordFormatter( $args->lat, $args->lon );
-			// TODO: for now, we're using the old wfMessage method with English hardcoded. This should not
-			// stay that way.
-			// When l10n is added to Parsoid, replace this line with
-			// ( new CoordFormatter( $this->args->lat, $this->args->lon ) )->formatParsoidSpan( $extApi, null );
-			$text = $formatter->format( 'en' );
+			$text = $formatter->formatParsoidSpan( $extApi, null );
 		} elseif ( $text !== '' && !ctype_alnum( $text ) ) {
 			// Don't parse trivial alphanumeric-only strings, e.g. counters like "A" or "99".
 			$text = $extApi->wikitextToDOM( $text, [

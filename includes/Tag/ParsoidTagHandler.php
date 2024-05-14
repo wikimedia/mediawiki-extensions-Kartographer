@@ -30,7 +30,7 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 	 * @return array{StatusValue,MapTagArgumentValidator,stdClass[],KVSourceRange[]}
 	 */
 	protected function parseTag( ParsoidExtensionAPI $extApi, string $input, array $extArgs ): array {
-		$args = $this->processParsoidExtensionArguments( $extArgs );
+		$args = $this->processParsoidExtensionArguments( $extApi, $extArgs );
 		$status = $args->status;
 		$srcOffsets = [];
 		foreach ( $extArgs as $extArg ) {
@@ -58,11 +58,9 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 		return [ $status, $args, $geometries, $srcOffsets ];
 	}
 
-	/**
-	 * @param stdClass[] $extArgs
-	 * @return MapTagArgumentValidator
-	 */
-	private function processParsoidExtensionArguments( array $extArgs ): MapTagArgumentValidator {
+	private function processParsoidExtensionArguments(
+		ParsoidExtensionAPI $extApi, array $extArgs
+	): MapTagArgumentValidator {
 		$services = MediaWikiServices::getInstance();
 
 		$args = [];
@@ -81,9 +79,10 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 
 		return new MapTagArgumentValidator( static::TAG, $args,
 			$services->getMainConfig(),
-			// FIXME setting the display language to English for the first version, needs to be fixed when we
-			// have a localization solution for Parsoid
-			$services->getLanguageFactory()->getLanguage( 'en' ),
+			// TODO Ideally, this wouldn't need the page language, and it would generate an href with an i18n'd
+			// attribute that would then get localized. But, this would require rich attributes to do cleanly, so
+			// let's punt that to later.
+			$services->getLanguageFactory()->getLanguage( $extApi->getPageConfig()->getPageLanguageBcp47() ),
 			$services->getLanguageNameUtils()
 		);
 	}
