@@ -6,8 +6,7 @@
 	"extends": [
 		"wikimedia/client-es6",
 		"wikimedia/jquery",
-		"wikimedia/mediawiki",
-		"wikimedia/jsdoc"
+		"wikimedia/mediawiki"
 	],
 	"globals": {
 		"L": "readonly",
