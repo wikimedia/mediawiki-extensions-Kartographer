@@ -32,7 +32,7 @@ class PurgeMapPages extends Maintenance {
 		$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryMessage->inContentLanguage()->text() );
 		$dryRun = $this->hasOption( 'dry-run' );
 		$iterator = new BatchRowIterator(
-			$this->getServiceContainer()->getDBLoadBalancerFactory()->getReplicaDatabase(),
+			$this->getReplicaDB(),
 			[ 'categorylinks', 'page' ],
 			[ 'cl_type', 'cl_sortkey', 'cl_from' ],
 			$this->getBatchSize()
