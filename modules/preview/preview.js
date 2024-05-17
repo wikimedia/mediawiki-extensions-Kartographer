@@ -23,16 +23,25 @@ mw.hook( 'wikipage.maps' ).add( function ( maps ) {
 				wrapped.lat,
 				wrapped.lng
 			);
-			const content = '<table>' +
-				'<tr><th>' + mw.message( 'visualeditor-mwmapsdialog-position-lat' ).escaped() + '</th><td>' + coords[ 0 ] + '</td></tr>' +
-				'<tr><th>' + mw.message( 'visualeditor-mwmapsdialog-position-lon' ).escaped() + '</th><td>' + coords[ 1 ] + '</td></tr>' +
-				'<tr><th>' + mw.message( 'visualeditor-mwmapsdialog-position-zoom' ).escaped() + '</th><td>' + zoom + '</td></tr>' +
-				'</table>';
+			const $content = $( '<table>' ).append(
+				$( '<tr>' ).append(
+					$( '<th>' ).text( mw.msg( 'visualeditor-mwmapsdialog-position-lat' ) ),
+					$( '<td>' ).text( coords[ 0 ] )
+				),
+				$( '<tr>' ).append(
+					$( '<th>' ).text( mw.msg( 'visualeditor-mwmapsdialog-position-lon' ) ),
+					$( '<td>' ).text( coords[ 1 ] )
+				),
+				$( '<tr>' ).append(
+					$( '<th>' ).text( mw.msg( 'visualeditor-mwmapsdialog-position-zoom' ) ),
+					$( '<td>' ).text( zoom )
+				)
+			);
 
 			popup
 				.setLatLng( e.latlng )
 				// These are non-localized wiki tag attributes, so no need for i18n
-				.setContent( content )
+				.setContent( $content[ 0 ] )
 				.openOn( map );
 		}
 
