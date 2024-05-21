@@ -15,7 +15,7 @@
 	"kartographer-error-context-multi": "בעיות <$1>:\n$2",
 	"kartographer-error-json": "לא היה אפשר לפענח JSON כי: $1",
 	"kartographer-error-json-object": "התוכן חייב להיות עצם GeoJSON+simplestyle תקין או מערך של עצמים כאלה.",
-	"kartographer-error-json-type": "לכל עצם GeoJSON+simplestyle חייב להיות סוג לא ריק, למשל <code dir=\"ltr\">{ \"type\": \"Feature\" }</code> .",
+	"kartographer-error-json-type": "לכל עצם GeoJSON+simplestyle חייב להיות סוג לא ריק, למשל <code dir=\"ltr\">{ \"type\": \"Feature\" }</code>.",
 	"kartographer-error-missing-attr": "התכונה \"$1\" חסרה",
 	"kartographer-error-bad_attr": "לתכונה \"$1\" יש ערך בלתי־תקין",
 	"kartographer-error-bad_data": "תוכן ה־JSON אינו GeoJSON+simplestyle תקין. הרשימה להלן מציגה את כל הניסיונות לפרש את זה בהתאם ל[https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json סכמת JSON]. לא כולם שגיאות.",
