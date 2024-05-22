@@ -18,7 +18,7 @@
 	"kartographer-broken-category": "Сторінки зі зламаними мапами",
 	"kartographer-broken-category-desc": "Сторінка містить неправильне використання мапи",
 	"kartographer-desc": "Дозволяє додавати мапи до сторінок у вікі",
-	"kartographer-error-context-multi": "проблеми $1:\n$2",
+	"kartographer-error-context-multi": "Проблеми $1:\n$2",
 	"kartographer-error-json": "Помилка JSON: $1",
 	"kartographer-error-json-object": "Вміст має бути дійсним об'єктом GeoJSON+simplestyle або масивом таких об'єктів.",
 	"kartographer-error-json-type": "Кожен об'єкт GeoJSON+simplestyle повинен мати непорожній тип, наприклад <code>{ \"type\": \"Feature\" }</code>.",
