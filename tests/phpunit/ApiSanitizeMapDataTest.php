@@ -5,12 +5,12 @@ namespace Kartographer\Tests;
 use ApiMain;
 use ApiResult;
 use ApiUsageException;
-use DerivativeContext;
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\FauxRequest;
 use MediaWikiIntegrationTestCase;
 use MockHttpTrait;
-use RequestContext;
 
 /**
  * @covers \Kartographer\Api\ApiSanitizeMapData
