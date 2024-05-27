@@ -12,5 +12,7 @@
 	"leafletdraw-edit-toolbar-actions-cancel-text": "Jooskâ",
 	"leafletdraw-edit-toolbar-actions-save-text": "Vuorkkii",
 	"kartographer-fullscreen-close": "Toopâ",
-	"visualeditor-mwmapsdialog-language": "Kielâ"
+	"visualeditor-mwmapsdialog-language": "Kielâ",
+	"visualeditor-mwmapsdialog-title": "Kárttá",
+	"visualeditor-mwmapscontextitem-title": "Kárttá"
 }
