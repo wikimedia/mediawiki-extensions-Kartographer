@@ -5,8 +5,6 @@
  */
 
 const storage = require( 'mediawiki.storage' ).local;
-/** Storage key for Last known selected map type in sidebar */
-const SELECTEDTYPE_KEY = 'ext.kartographer.sidebar.selectedType';
 
 /**
  * @constructor
@@ -32,6 +30,11 @@ function SideBar( options ) {
 	this.metadata = require( '../../externalLinks.json' );
 	this.parseExternalLinks();
 }
+
+/**
+ * Storage key for Last known selected map type in sidebar
+ */
+SideBar.prototype.SELECTEDTYPE_KEY = 'ext.kartographer.sidebar.selectedType';
 
 /**
  * Replaces link variables with contextual data.
@@ -203,12 +206,12 @@ SideBar.prototype.renderTypeFilter = function () {
 	const dropdown = sidebar.createFilterDropdown();
 	const defaultType = sidebar.metadata.types[ 0 ];
 
-	dropdown.getMenu().on( 'select', function ( item ) {
-		storage.set( SELECTEDTYPE_KEY, item.getData() );
+	dropdown.getMenu().on( 'select', ( item ) => {
+		storage.set( this.SELECTEDTYPE_KEY, item.getData() );
 		sidebar.renderExternalServices();
 	} );
 	dropdown.getMenu().selectItemByData(
-		storage.get( SELECTEDTYPE_KEY ) ||
+		storage.get( this.SELECTEDTYPE_KEY ) ||
 		defaultType
 	);
 
@@ -226,7 +229,7 @@ SideBar.prototype.renderTypeFilter = function () {
  */
 SideBar.prototype.renderExternalServices = function () {
 	const sidebar = this;
-	const selectedType = storage.get( SELECTEDTYPE_KEY );
+	const selectedType = storage.get( this.SELECTEDTYPE_KEY );
 	let $list = this.$servicesContainer.find( '.mw-kartographer-filterservices-list' );
 
 	const toggleShowServicesState = function ( state ) {
