@@ -172,11 +172,18 @@ class MapTagArgumentValidator {
 	}
 
 	public function getLanguageCodeWithDefaultFallback(): string {
-		return $this->specifiedLangCode ??
-			( $this->config->get( 'KartographerUsePageLanguage' ) ?
-				$this->defaultLanguage->getCode() :
-				'local'
-			);
+		if ( $this->specifiedLangCode ) {
+			return $this->specifiedLangCode;
+		}
+
+		if ( $this->config->get( 'KartographerUsePageLanguage' ) &&
+			// T288150: Pedantic validation of the target language we just got from the parser
+			$this->isValidLanguageCode( $this->defaultLanguage->getCode() )
+		) {
+			return $this->defaultLanguage->getCode();
+		}
+
+		return 'local';
 	}
 
 	public function setFirstMarkerProperties( ?string $fallbackText, stdClass $properties ): void {

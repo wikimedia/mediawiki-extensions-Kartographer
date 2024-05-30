@@ -6,6 +6,7 @@ use Kartographer\Tag\MapTagArgumentValidator;
 use Language;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWikiUnitTestCase;
 
 /**
@@ -73,6 +74,46 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 		$this->assertStatusError( 'kartographer-error-bad_attr', $args->status );
 	}
 
+	public function testUserProvidedLanguage() {
+		$language = $this->createMock( Language::class );
+
+		$args = new MapTagArgumentValidator( 'mapframe', [
+			'lang' => 'hu',
+		], $this->getConfig(), $language );
+
+		$this->assertSame( 'hu', $args->getLanguageCodeWithDefaultFallback() );
+	}
+
+	public function testUsePageLanguage() {
+		$language = $this->createMock( Language::class );
+		$language->method( 'getCode' )->willReturn( 'fr' );
+		$validator = $this->createMock( LanguageNameUtils::class );
+		$validator->method( 'isKnownLanguageTag' )->willReturn( true );
+
+		$args = new MapTagArgumentValidator( 'mapframe', [],
+			$this->getConfig( [ 'KartographerUsePageLanguage' => true ] ),
+			$language,
+			$validator
+		);
+
+		$this->assertSame( 'fr', $args->getLanguageCodeWithDefaultFallback() );
+	}
+
+	public function testInvalidDefaultLanguage() {
+		$language = $this->createMock( Language::class );
+		$language->method( 'getCode' )->willReturn( 'fr' );
+		$validator = $this->createMock( LanguageNameUtils::class );
+		$validator->method( 'isKnownLanguageTag' )->willReturn( false );
+
+		$args = new MapTagArgumentValidator( 'mapframe', [],
+			$this->getConfig( [ 'KartographerUsePageLanguage' => true ] ),
+			$language,
+			$validator
+		);
+
+		$this->assertSame( 'local', $args->getLanguageCodeWithDefaultFallback() );
+	}
+
 	/**
 	 * @dataProvider provideShowGroups
 	 */
@@ -103,8 +144,8 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	private function getConfig(): Config {
-		return new HashConfig( [
+	private function getConfig( array $settings = [] ): Config {
+		return new HashConfig( $settings + [
 			'KartographerDfltStyle' => 'custom',
 			'KartographerStyles' => [],
 			'KartographerUsePageLanguage' => false,

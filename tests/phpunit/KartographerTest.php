@@ -316,7 +316,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 		// because they might not yet exist when the renderer requests them.
 		$this->assertStringNotContainsString( 'domain=localhost&amp;title=Test&amp;', $output->getRawText() );
 		$this->assertStringContainsString(
-			'/img/osm-intl,13,37,-122,700x400.png?lang=qqx',
+			'/img/osm-intl,13,37,-122,700x400.png?lang=local',
 			$output->getRawText()
 		);
 	}
