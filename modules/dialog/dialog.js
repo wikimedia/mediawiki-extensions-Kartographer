@@ -262,9 +262,9 @@ MapDialog.prototype.getReadyProcess = function ( options ) {
 
 			if ( options.map ) {
 				this.setMap( options.map );
-				this.map.doWhenReady( function () {
+				this.map.doWhenReady( () => {
 					mw.hook( 'wikipage.maps' ).fire( this.map, true /* isFullScreen */ );
-				}, this );
+				} );
 			}
 		} );
 };

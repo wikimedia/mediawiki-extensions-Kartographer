@@ -584,7 +584,7 @@ const KartographerMap = L.Map.extend( {
 	 * @param {Object} [position] Map `center` and `zoom`.
 	 */
 	openFullScreen: function ( position ) {
-		this.doWhenReady( function () {
+		this.doWhenReady( () => {
 
 			let map = this.options.link ? this : this.fullScreenMap;
 			position = position || this.getMapPosition();
@@ -621,7 +621,7 @@ const KartographerMap = L.Map.extend( {
 					require( 'ext.kartographer.dialog' ).render( map );
 				} );
 			} );
-		}, this );
+		} );
 	},
 
 	/**
