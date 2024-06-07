@@ -25,48 +25,46 @@
  * @method
  */
 function Link( options ) {
-	const link = this;
-
 	/**
 	 * Reference to the link container.
 	 *
 	 * @type {HTMLElement}
 	 */
-	link.container = options.container;
+	this.container = options.container;
 
 	/**
 	 * Reference to the map container as a jQuery element.
 	 *
 	 * @type {jQuery}
 	 */
-	link.$container = $( link.container );
-	link.$container.addClass( 'mw-kartographer-link' );
+	this.$container = $( this.container );
+	this.$container.addClass( 'mw-kartographer-link' );
 
-	link.center = options.center || 'auto';
-	link.zoom = options.zoom || 'auto';
-	link.lang = options.lang || require( 'ext.kartographer.util' ).getDefaultLanguage();
+	this.center = options.center || 'auto';
+	this.zoom = options.zoom || 'auto';
+	this.lang = options.lang || require( 'ext.kartographer.util' ).getDefaultLanguage();
 
-	link.opened = false;
+	this.opened = false;
 
-	link.useRouter = !!options.fullScreenRoute;
-	link.fullScreenRoute = options.fullScreenRoute || null;
-	link.captionText = options.captionText || '';
-	link.dataGroups = options.dataGroups;
-	link.data = options.data;
-	link.featureType = options.featureType;
+	this.useRouter = !!options.fullScreenRoute;
+	this.fullScreenRoute = options.fullScreenRoute || null;
+	this.captionText = options.captionText || '';
+	this.dataGroups = options.dataGroups;
+	this.data = options.data;
+	this.featureType = options.featureType;
 
 	/**
 	 * @property {Kartographer.Box.MapClass} [fullScreenMap=null] Reference
 	 *   to the associated full screen map.
 	 * @protected
 	 */
-	link.fullScreenMap = null;
+	this.fullScreenMap = null;
 
-	if ( link.useRouter && link.container.tagName === 'A' ) {
-		link.container.href = '#' + link.fullScreenRoute;
+	if ( this.useRouter && this.container.tagName === 'A' ) {
+		this.container.href = '#' + this.fullScreenRoute;
 	} else {
-		link.$container.on( 'click.kartographer', () => {
-			link.openFullScreen();
+		this.$container.on( 'click.kartographer', () => {
+			this.openFullScreen();
 		} );
 	}
 }
@@ -80,12 +78,11 @@ function Link( options ) {
  * @memberof Kartographer.Linkbox.LinkClass
  */
 Link.prototype.openFullScreen = function ( position ) {
-	const link = this;
-	const map = link.fullScreenMap;
+	const map = this.fullScreenMap;
 
 	position = position || {};
-	position.center = position.center || link.center;
-	position.zoom = typeof position.zoom === 'number' ? position.zoom : link.zoom;
+	position.center = position.center || this.center;
+	position.zoom = typeof position.zoom === 'number' ? position.zoom : this.zoom;
 
 	/* eslint-disable no-underscore-dangle */
 	if ( map && map._container._leaflet_id ) {
@@ -103,22 +100,22 @@ Link.prototype.openFullScreen = function ( position ) {
 		el.className = 'mw-kartographer-mapDialog-map';
 		const mapObject = {
 			container: el,
-			featureType: link.featureType,
+			featureType: this.featureType,
 			fullscreen: true,
 			link: true,
 			parentLink: this,
 			center: position.center,
 			zoom: position.zoom,
-			lang: link.lang,
-			captionText: link.captionText,
-			dataGroups: link.dataGroups,
-			data: link.data,
-			fullScreenRoute: link.fullScreenRoute
+			lang: this.lang,
+			captionText: this.captionText,
+			dataGroups: this.dataGroups,
+			data: this.data,
+			fullScreenRoute: this.fullScreenRoute
 		};
 
 		mw.loader.using( 'ext.kartographer.dialog' ).then( () => {
 			require( 'ext.kartographer.dialog' ).renderNewMap( mapObject ).then( ( m ) => {
-				link.fullScreenMap = m;
+				this.fullScreenMap = m;
 			} );
 		} );
 	}

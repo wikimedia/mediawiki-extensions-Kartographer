@@ -76,42 +76,41 @@ SideBar.prototype.toggle = function ( open ) {
  * @chainable
  */
 SideBar.prototype.render = function () {
-	const sidebar = this;
-	const map = sidebar.dialog.map;
+	const map = this.dialog.map;
 
 	/**
 	 * @property {jQuery}
 	 */
-	const $container = sidebar.$el = $( '<div>' ).addClass( 'mw-kartographer-mapDialog-sidebar' );
+	const $container = this.$el = $( '<div>' ).addClass( 'mw-kartographer-mapDialog-sidebar' );
 
 	/**
 	 * @property {Object}
 	 */
-	sidebar.mapPosition = map.getMapPosition( { scaled: true } );
+	this.mapPosition = map.getMapPosition( { scaled: true } );
 	/**
 	 * @property {jQuery}
 	 */
-	sidebar.$mapDetailsContainer = $( '<div>' ).addClass( 'mw-kartographer-mapdetails' ).appendTo( $container );
-
-	/**
-	 * @property {jQuery}
-	 */
-	sidebar.$filterContainer = $( '<div>' ).addClass( 'mw-kartographer-filterservices' ).appendTo( $container );
+	this.$mapDetailsContainer = $( '<div>' ).addClass( 'mw-kartographer-mapdetails' ).appendTo( $container );
 
 	/**
 	 * @property {jQuery}
 	 */
-	sidebar.$servicesContainer = $( '<div>' ).addClass( 'mw-kartographer-externalservices' ).appendTo( $container );
+	this.$filterContainer = $( '<div>' ).addClass( 'mw-kartographer-filterservices' ).appendTo( $container );
 
-	sidebar.renderMapDetails();
-	sidebar.renderTypeFilter();
-	sidebar.renderExternalServices();
+	/**
+	 * @property {jQuery}
+	 */
+	this.$servicesContainer = $( '<div>' ).addClass( 'mw-kartographer-externalservices' ).appendTo( $container );
 
-	$container.appendTo( sidebar.dialog.$mapBody );
+	this.renderMapDetails();
+	this.renderTypeFilter();
+	this.renderExternalServices();
 
-	map.on( 'move', sidebar.onMapMove, sidebar );
+	$container.appendTo( this.dialog.$mapBody );
 
-	return sidebar;
+	map.on( 'move', this.onMapMove, this );
+
+	return this;
 };
 
 /**
@@ -202,20 +201,19 @@ SideBar.prototype.renderMapDetails = function () {
  * Renders the type filter dropdown into its container.
  */
 SideBar.prototype.renderTypeFilter = function () {
-	const sidebar = this;
-	const dropdown = sidebar.createFilterDropdown();
-	const defaultType = sidebar.metadata.types[ 0 ];
+	const dropdown = this.createFilterDropdown();
+	const defaultType = this.metadata.types[ 0 ];
 
 	dropdown.getMenu().on( 'select', ( item ) => {
 		storage.set( this.SELECTEDTYPE_KEY, item.getData() );
-		sidebar.renderExternalServices();
+		this.renderExternalServices();
 	} );
 	dropdown.getMenu().selectItemByData(
 		storage.get( this.SELECTEDTYPE_KEY ) ||
 		defaultType
 	);
 
-	sidebar.$filterContainer.append(
+	this.$filterContainer.append(
 		new OO.ui.LabelWidget( {
 			classes: [ 'mw-kartographer-filterservices-title' ],
 			label: mw.msg( 'kartographer-sidebar-externalservices' )
@@ -228,60 +226,59 @@ SideBar.prototype.renderTypeFilter = function () {
  * Renders the external services partial into its container.
  */
 SideBar.prototype.renderExternalServices = function () {
-	const sidebar = this;
 	const selectedType = storage.get( this.SELECTEDTYPE_KEY );
 	let $list = this.$servicesContainer.find( '.mw-kartographer-filterservices-list' );
 
 	const toggleShowServicesState = function ( state ) {
-		sidebar.showAllServices = state !== undefined ? !!state : !sidebar.showAllServices;
+		this.showAllServices = state !== undefined ? !!state : !this.showAllServices;
 	};
 
-	const populateListItems = function ( bypassAndShowAllServices ) {
-			const featured = [];
-			const regular = [];
-			const services = sidebar.byType[ selectedType ];
+	const populateListItems = ( bypassAndShowAllServices ) => {
+		const featured = [];
+		const regular = [];
+		const services = this.byType[ selectedType ];
 
-			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( services, ( serviceId, links ) => {
-				// Only one link is supported per type per service for now.
-				const link = links[ 0 ];
-				const service = sidebar.byService[ serviceId ];
-				const formatted = service.featured ? featured : regular;
-				const $item = $( '<div>' )
-					.addClass( 'mw-kartographer-filterservices-list-item' )
-					.toggleClass( 'mw-kartographer-filterservices-list-item-featured', service.featured )
-					.append(
-						new OO.ui.ButtonWidget( {
-							framed: false,
-							href: sidebar.formatLink( link.url ),
-							target: '_blank',
-							classes: [ 'mw-kartographer-filterservices-list-item-button' ],
-							icon: 'newWindow',
-							label: service.name
-						} ).$element
-					);
+		// eslint-disable-next-line no-jquery/no-each-util
+		$.each( services, ( serviceId, links ) => {
+			// Only one link is supported per type per service for now.
+			const link = links[ 0 ];
+			const service = this.byService[ serviceId ];
+			const formatted = service.featured ? featured : regular;
+			const $item = $( '<div>' )
+				.addClass( 'mw-kartographer-filterservices-list-item' )
+				.toggleClass( 'mw-kartographer-filterservices-list-item-featured', service.featured )
+				.append(
+					new OO.ui.ButtonWidget( {
+						framed: false,
+						href: this.formatLink( link.url ),
+						target: '_blank',
+						classes: [ 'mw-kartographer-filterservices-list-item-button' ],
+						icon: 'newWindow',
+						label: service.name
+					} ).$element
+				);
 
-				formatted.push( $item );
-			} );
+			formatted.push( $item );
+		} );
 
-			$list.empty();
-			const items = ( bypassAndShowAllServices || sidebar.showAllServices ) ?
-				featured.concat( regular ) : featured;
+		$list.empty();
+		const items = ( bypassAndShowAllServices || this.showAllServices ) ?
+			featured.concat( regular ) : featured;
 
-			// Update message
-			sidebar.toggleShowServices.setLabel(
-				( bypassAndShowAllServices || sidebar.showAllServices ) ?
-					mw.msg( 'kartographer-sidebar-externalservices-show-featured' ) :
-					mw.msg( 'kartographer-sidebar-externalservices-show-all' )
-			);
+		// Update message
+		this.toggleShowServices.setLabel(
+			( bypassAndShowAllServices || this.showAllServices ) ?
+				mw.msg( 'kartographer-sidebar-externalservices-show-featured' ) :
+				mw.msg( 'kartographer-sidebar-externalservices-show-all' )
+		);
 
-			$list.append( items );
-			return items;
-		},
-		onToggleShowServicesButton = function () {
-			toggleShowServicesState();
-			populateListItems();
-		};
+		$list.append( items );
+		return items;
+	};
+	const onToggleShowServicesButton = () => {
+		toggleShowServicesState();
+		populateListItems();
+	};
 
 	if ( !selectedType ) {
 		return;
@@ -305,7 +302,7 @@ SideBar.prototype.renderExternalServices = function () {
 	}
 
 	this.toggleShowServices.toggle( true );
-	if ( Object.keys( sidebar.byType[ selectedType ] ).length <= 7 ) {
+	if ( Object.keys( this.byType[ selectedType ] ).length <= 7 ) {
 		populateListItems( true );
 		this.toggleShowServices.toggle( false );
 	} else {

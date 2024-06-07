@@ -428,7 +428,6 @@ Nearby.prototype.convertGeosearchToGeoJSON = function ( response ) {
  * @return {L.GeoJSON}
  */
 Nearby.prototype.createNearbyLayer = function ( geoJSON ) {
-	const self = this;
 	return L.geoJSON( geoJSON, {
 		filter: this.filterDuplicatePoints.bind( this ),
 		pointToLayer: this.createNearbyMarker,
@@ -449,14 +448,14 @@ Nearby.prototype.createNearbyLayer = function ( geoJSON ) {
 				);
 				$( event.popup.getElement() ).find( '.nearby-article-link' )
 					.on( 'click', () => {
-						if ( !self.seenArticleLink ) {
+						if ( !this.seenArticleLink ) {
 							if ( mw.eventLog ) {
 								mw.eventLog.submit( 'mediawiki.maps_interaction', {
 									$schema: '/analytics/mediawiki/maps/interaction/1.0.0',
 									action: 'nearby-link-click'
 								} );
 							}
-							self.seenArticleLink = true;
+							this.seenArticleLink = true;
 						}
 					} );
 			} );

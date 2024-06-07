@@ -474,11 +474,11 @@ ve.ui.MWMapsDialog.prototype.updateMwData = function ( mwData ) {
  */
 ve.ui.MWMapsDialog.prototype.getReadyProcess = function ( data ) {
 	return ve.ui.MWMapsDialog.super.prototype.getReadyProcess.call( this, data )
-		.next( function () {
+		.next( () => {
 			this.pushPending();
 			this.setupMap()
 				.then( this.popPending.bind( this ) );
-		}, this );
+		} );
 };
 
 /**
@@ -487,7 +487,7 @@ ve.ui.MWMapsDialog.prototype.getReadyProcess = function ( data ) {
 ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 	data = data || {};
 	return ve.ui.MWMapsDialog.super.prototype.getSetupProcess.call( this, data )
-		.next( function () {
+		.next( () => {
 			const inline = this.selectedNode instanceof ve.dm.MWInlineMapsNode;
 			const mwAttrs = this.selectedNode && this.selectedNode.getAttribute( 'mw' ).attrs || {};
 			const frameless = 'frameless' in mwAttrs && !mwAttrs.text;
@@ -547,7 +547,7 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
 			this.language.setValue( mwAttrs.lang || util.getDefaultLanguage() ).setReadOnly( isReadOnly );
 
 			this.updateActions();
-		}, this );
+		} );
 };
 
 /**
@@ -557,8 +557,6 @@ ve.ui.MWMapsDialog.prototype.getSetupProcess = function ( data ) {
  *  editor finishes loading
  */
 ve.ui.MWMapsDialog.prototype.setupMap = function () {
-	const dialog = this;
-
 	if ( this.map ) {
 		return $.Deferred.promise.resolve();
 	}
@@ -569,62 +567,62 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 		const editing = require( 'ext.kartographer.editing' );
 		const util = require( 'ext.kartographer.util' );
 		const defaultShapeOptions = { shapeOptions: L.mapbox.simplestyle.style( {} ) };
-		const mwData = dialog.selectedNode && dialog.selectedNode.getAttribute( 'mw' );
+		const mwData = this.selectedNode && this.selectedNode.getAttribute( 'mw' );
 		const mwAttrs = mwData && mwData.attrs;
 
 		// TODO: Support 'style' editing
-		dialog.map = require( 'ext.kartographer.box' ).map( {
-			container: dialog.$map[ 0 ],
+		this.map = require( 'ext.kartographer.box' ).map( {
+			container: this.$map[ 0 ],
 			lang: mwAttrs && mwAttrs.lang || util.getDefaultLanguage(),
 			alwaysInteractive: true
 		} );
 
-		dialog.map.doWhenReady( () => {
+		this.map.doWhenReady( () => {
 			// Show black overlay nicely when panning around the world (2/3):
 			// * Prevent wrapping around the antimeridian, so that we don't have to duplicate the drawings
 			//   in imaginary parallel worlds.
-			dialog.map.setMaxBounds( [ [ -90, -180 ], [ 90, 180 ] ] );
+			this.map.setMaxBounds( [ [ -90, -180 ], [ 90, 180 ] ] );
 
-			dialog.mapArea = L.rectangle( [ [ 0, 0 ], [ 0, 0 ] ], {
+			this.mapArea = L.rectangle( [ [ 0, 0 ], [ 0, 0 ] ], {
 				// Invisible
 				stroke: false,
 				fillOpacity: 0,
 				// Prevent the area from affecting cursors (this is unrelated to editing)
 				interactive: false
 			} );
-			dialog.mapArea.editing.enable();
+			this.mapArea.editing.enable();
 
-			dialog.mapCutout = L.polygon( [], {
+			this.mapCutout = L.polygon( [], {
 				stroke: false,
 				color: 'black',
 				// Prevent the area from affecting cursors
 				interactive: false
 			} );
-			dialog.map.addLayer( dialog.mapCutout );
+			this.map.addLayer( this.mapCutout );
 
 			// Show black overlay nicely when panning around the world (3/3):
 			// * Allow large bleed when drawing map cutout area.
-			dialog.map.getRenderer( dialog.mapCutout ).options.padding = 10;
+			this.map.getRenderer( this.mapCutout ).options.padding = 10;
 
-			dialog.updateMapContents();
-			dialog.updateMapArea();
-			dialog.resetMapZoomAndPosition( true );
+			this.updateMapContents();
+			this.updateMapArea();
+			this.resetMapZoomAndPosition( true );
 
-			function updateCutout() {
-				dialog.updateMapCutout( dialog.mapArea.getLatLngs() );
-			}
+			const updateCutout = () => {
+				this.updateMapCutout( this.mapArea.getLatLngs() );
+			};
 
-			function updateCoordsAndDimensions() {
-				dialog.wasDragging = true;
+			const updateCoordsAndDimensions = () => {
+				this.wasDragging = true;
 
-				const center = dialog.mapArea.getCenter();
-				const bounds = dialog.mapArea.getBounds();
-				const scale = dialog.map.getZoomScale( dialog.zoom.getValue(), dialog.map.getZoom() );
+				const center = this.mapArea.getCenter();
+				const bounds = this.mapArea.getBounds();
+				const scale = this.map.getZoomScale( this.zoom.getValue(), this.map.getZoom() );
 
 				// Calculate everything before setting anything, because that modifies the `bounds` object
-				const topLeftPoint = dialog.map.project( bounds.getNorthWest(), dialog.map.getZoom() );
-				const topRightPoint = dialog.map.project( bounds.getNorthEast(), dialog.map.getZoom() );
-				const bottomLeftPoint = dialog.map.project( bounds.getSouthWest(), dialog.map.getZoom() );
+				const topLeftPoint = this.map.project( bounds.getNorthWest(), this.map.getZoom() );
+				const topRightPoint = this.map.project( bounds.getNorthEast(), this.map.getZoom() );
+				const bottomLeftPoint = this.map.project( bounds.getSouthWest(), this.map.getZoom() );
 				const width = Math.round( scale * ( topRightPoint.x - topLeftPoint.x ) );
 				const height = Math.round( scale * ( bottomLeftPoint.y - topLeftPoint.y ) );
 
@@ -633,31 +631,31 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 				const lng = center.lng.toFixed( 6 );
 
 				// Ignore changes in size by 1px, they happen while moving due to rounding
-				const resized = Math.abs( dialog.dimensions.getDimensions().width - width ) > 1 ||
-					Math.abs( dialog.dimensions.getDimensions().height - height ) > 1;
+				const resized = Math.abs( this.dimensions.getDimensions().width - width ) > 1 ||
+					Math.abs( this.dimensions.getDimensions().height - height ) > 1;
 
-				dialog.latitude.setValue( lat );
-				dialog.longitude.setValue( lng );
-				dialog.dimensions.setDimensions( {
+				this.latitude.setValue( lat );
+				this.longitude.setValue( lng );
+				this.dimensions.setDimensions( {
 					width: width,
 					height: height
 				} );
 
-				dialog.wasDragging = false;
-				dialog.updateMapArea();
+				this.wasDragging = false;
+				this.updateMapArea();
 				if ( resized ) {
-					dialog.resetMapZoomAndPosition();
+					this.resetMapZoomAndPosition();
 				} else {
-					dialog.resetMapPosition();
+					this.resetMapPosition();
 				}
-			}
+			};
 
-			dialog.mapArea
+			this.mapArea
 				.on( 'editdrag', updateCutout )
 				.on( 'edit', updateCoordsAndDimensions );
 
-			geoJsonLayer = editing.getKartographerLayer( dialog.map );
-			dialog.contentsDraw = new L.Control.Draw( {
+			geoJsonLayer = editing.getKartographerLayer( this.map );
+			this.contentsDraw = new L.Control.Draw( {
 				edit: { featureGroup: geoJsonLayer },
 				draw: {
 					circle: false,
@@ -670,34 +668,34 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 				}
 			} );
 
-			function update() {
+			const update = () => {
 				// Prevent circular update of map
-				dialog.updatingGeoJson = true;
+				this.updatingGeoJson = true;
 				try {
 					const geoJson = geoJsonLayer.toGeoJSON();
 					// Undo the sanitization step's parsing of wikitext
 					editing.restoreUnparsedText( geoJson );
-					dialog.input.setValue( JSON.stringify( geoJson, null, 2 )
+					this.input.setValue( JSON.stringify( geoJson, null, 2 )
 						// Collapse coordinate pairs to occupy 1 instead of up to 4 lines
 						.replace( /\[\n\s*([-\d.]+,)\s*([-\d.]+)\s*]/g, '[ $1 $2 ]' )
 					);
 				} finally {
-					dialog.updatingGeoJson = false;
+					this.updatingGeoJson = false;
 				}
-				dialog.updateActions();
-			}
+				this.updateActions();
+			};
 
-			function created( e ) {
+			const created = ( e ) => {
 				e.layer.addTo( geoJsonLayer );
 				update();
-			}
+			};
 
-			dialog.map
+			this.map
 				.on( 'draw:edited', update )
 				.on( 'draw:deleted', update )
 				.on( 'draw:created', created );
 
-			dialog.onIndexLayoutSet( dialog.indexLayout.getCurrentTabPanel() );
+			this.onIndexLayoutSet( this.indexLayout.getCurrentTabPanel() );
 			deferred.resolve();
 		} );
 		return deferred.promise();
@@ -741,8 +739,6 @@ ve.ui.MWMapsDialog.prototype.getInitialMapPosition = function () {
  * Update the GeoJSON layer from the current input state
  */
 ve.ui.MWMapsDialog.prototype.updateMapContents = function () {
-	const self = this;
-
 	if ( !this.map || this.updatingGeoJson ) {
 		return;
 	}
@@ -751,14 +747,14 @@ ve.ui.MWMapsDialog.prototype.updateMapContents = function () {
 	require( 'ext.kartographer.editing' )
 		.updateKartographerLayer( this.map, this.input.getValue() )
 		.done( () => {
-			self.input.setValidityFlag( true );
+			this.input.setValidityFlag( true );
 		} )
 		.fail( () => {
-			self.input.setValidityFlag( false );
+			this.input.setValidityFlag( false );
 		} )
 		.always( () => {
-			self.updateActions();
-			self.input.popPending();
+			this.updateActions();
+			this.input.popPending();
 		} );
 };
 
@@ -767,7 +763,7 @@ ve.ui.MWMapsDialog.prototype.updateMapContents = function () {
  */
 ve.ui.MWMapsDialog.prototype.getTeardownProcess = function ( data ) {
 	return ve.ui.MWMapsDialog.super.prototype.getTeardownProcess.call( this, data )
-		.first( function () {
+		.first( () => {
 			// Events
 			this.indexLayout.disconnect( this );
 
@@ -787,7 +783,7 @@ ve.ui.MWMapsDialog.prototype.getTeardownProcess = function ( data ) {
 				this.map.remove();
 				this.map = null;
 			}
-		}, this );
+		} );
 };
 
 /**

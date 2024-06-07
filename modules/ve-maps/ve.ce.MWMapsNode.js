@@ -205,7 +205,6 @@ ve.ce.MWMapsNode.prototype.setupMap = function () {
 	const mwData = this.model.getAttribute( 'mw' );
 	const mwAttrs = mwData && mwData.attrs;
 	const util = require( 'ext.kartographer.util' );
-	const node = this;
 
 	this.map = require( 'ext.kartographer.box' ).map( {
 		container: this.$map[ 0 ],
@@ -217,14 +216,14 @@ ve.ce.MWMapsNode.prototype.setupMap = function () {
 	} );
 	this.map.on( 'layeradd', this.updateMapPosition, this );
 	this.map.doWhenReady( () => {
-		node.updateGeoJson();
+		this.updateGeoJson();
 
 		// Disable interaction
-		node.map.dragging.disable();
-		node.map.touchZoom.disable();
-		node.map.doubleClickZoom.disable();
-		node.map.scrollWheelZoom.disable();
-		node.map.keyboard.disable();
+		this.map.dragging.disable();
+		this.map.touchZoom.disable();
+		this.map.doubleClickZoom.disable();
+		this.map.scrollWheelZoom.disable();
+		this.map.keyboard.disable();
 	} );
 };
 
@@ -297,10 +296,9 @@ ve.ce.MWMapsNode.prototype.updateStatic = function ( width, height ) {
 	}
 
 	const url = this.model.getUrl( width, height );
-	const node = this;
 
 	this.$imageLoader = $( '<img>' ).on( 'load', () => {
-		node.$map.css( 'backgroundImage', 'url(' + url + ')' );
+		this.$map.css( 'backgroundImage', 'url(' + url + ')' );
 	} ).attr( 'src', url );
 };
 

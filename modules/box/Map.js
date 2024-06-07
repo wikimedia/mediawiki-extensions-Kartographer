@@ -178,7 +178,6 @@ const KartographerMap = L.Map.extend( {
 		const mapServer = mw.config.get( 'wgKartographerMapServer' );
 		const defaultStyle = mw.config.get( 'wgKartographerDfltStyle' );
 		const style = options.style || defaultStyle;
-		const map = this;
 
 		if ( !mapServer ) {
 			throw new Error( 'wgKartographerMapServer must be configured.' );
@@ -214,7 +213,7 @@ const KartographerMap = L.Map.extend( {
 
 		this.on( 'kartographerisready', () => {
 			// eslint-disable-next-line camelcase
-			map._kartographer_ready = true;
+			this._kartographer_ready = true;
 		} );
 
 		/**
@@ -341,7 +340,7 @@ const KartographerMap = L.Map.extend( {
 		if ( options.allowFullScreen ) {
 			// embed maps, and full screen is allowed
 			this.on( 'dblclick', () => {
-				map.openFullScreen();
+				this.openFullScreen();
 			} );
 
 			/**
@@ -369,15 +368,15 @@ const KartographerMap = L.Map.extend( {
 		// The `ready` function has not fired yet so there is no center or zoom defined.
 		// Disable panning and zooming until that has happened.
 		// See T257872.
-		map.dragging.disable();
-		map.touchZoom.disable();
+		this.dragging.disable();
+		this.touchZoom.disable();
 
-		function ready() {
-			map.initView( options.center, options.zoom );
+		const ready = () => {
+			this.initView( options.center, options.zoom );
 
 			// Workaround to make interactive elements (especially geoshapes) reachable via tab
-			for ( const id in map.dataLayers ) {
-				map.dataLayers[ id ].eachLayer( ( shape ) => {
+			for ( const id in this.dataLayers ) {
+				this.dataLayers[ id ].eachLayer( ( shape ) => {
 					const el = shape.getElement();
 					if ( shape.getPopup() ) {
 						el.tabIndex = 0;
@@ -387,12 +386,12 @@ const KartographerMap = L.Map.extend( {
 				} );
 			}
 
-			if ( !map.isStatic() ) {
-				map.dragging.enable();
-				map.touchZoom.enable();
+			if ( !this.isStatic() ) {
+				this.dragging.enable();
+				this.touchZoom.enable();
 			}
 
-			map.fire(
+			this.fire(
 				/**
 				 * Fired when the Kartographer Map object is ready.
 				 *
@@ -400,11 +399,11 @@ const KartographerMap = L.Map.extend( {
 				 * @memberof Kartographer.Box.MapClass
 				 */
 				'kartographerisready' );
-		}
+		};
 
 		if ( this.parentMap ) {
 			this.parentMap.dataLayers.forEach( ( layer ) => {
-				map.addGeoJSONLayer( layer.getGeoJSON(), layer.options );
+				this.addGeoJSONLayer( layer.getGeoJSON(), layer.options );
 			} );
 			ready();
 			return;
@@ -412,7 +411,7 @@ const KartographerMap = L.Map.extend( {
 
 		this.addDataGroups( options.dataGroups ).then( () => {
 			if ( typeof options.data === 'object' ) {
-				map.addDataLayer( options.data ).then( () => {
+				this.addDataLayer( options.data ).then( () => {
 					ready();
 				} );
 			} else {
@@ -481,7 +480,6 @@ const KartographerMap = L.Map.extend( {
 	 * @private
 	 */
 	addGeoJSONGroups: function ( groups ) {
-		const map = this;
 		groups.forEach( ( group ) => {
 			if ( group.failed ) {
 				if ( group.name && group.name.slice( 0, 1 ) === '_' && group.failureReason ) {
@@ -503,7 +501,7 @@ const KartographerMap = L.Map.extend( {
 			} else if ( group.name ) {
 				layerOptions.name = group.name;
 			}
-			map.addGeoJSONLayer( geoJSON, layerOptions );
+			this.addGeoJSONLayer( geoJSON, layerOptions );
 		} );
 	},
 

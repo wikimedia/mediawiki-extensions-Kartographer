@@ -88,11 +88,10 @@ WVMapLayers.prototype.overlay = function ( id ) {
  * @chainable
  */
 WVMapLayers.prototype.datalayer = function ( id, layer ) {
-	const self = this;
 	if ( typeof id === 'object' ) {
 		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( id, ( group, groupLayer ) => {
-			self.datalayer( group, groupLayer );
+			this.datalayer( group, groupLayer );
 		} );
 		return this;
 	}

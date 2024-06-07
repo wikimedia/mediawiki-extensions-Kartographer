@@ -45,7 +45,6 @@ const ControlLayers = L.Control.Layers.extend( {
 	 * @private
 	 */
 	_onInputClick: function ( event ) {
-		const self = this;
 		const proto = L.Control.Layers.prototype._onInputClick;
 		const input = event && event.target;
 
@@ -55,7 +54,7 @@ const ControlLayers = L.Control.Layers.extend( {
 		) {
 			const obj = this._getLayer( input.layerId );
 			if ( this._map.hasLayer( obj.layer ) ) {
-				proto.call( self );
+				proto.call( this );
 			} else {
 				event.stopPropagation();
 				if ( !obj.overlay && this._previousSelected ) {
@@ -66,7 +65,7 @@ const ControlLayers = L.Control.Layers.extend( {
 				wikivoyage.isAllowed( obj.layer )
 					.done( () => {
 						input.checked = true;
-						proto.call( self );
+						proto.call( this );
 					} );
 			}
 		} else {
