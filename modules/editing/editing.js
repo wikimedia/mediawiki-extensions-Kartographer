@@ -45,7 +45,7 @@ function updateKartographerLayer( map, geoJsonString ) {
 		action: 'sanitize-mapdata',
 		text: geoJsonString,
 		title: mw.config.get( 'wgPageName' )
-	} ).then( function ( resp ) {
+	} ).then( ( resp ) => {
 		const data = resp[ 'sanitize-mapdata' ];
 		const sanitizedJsonString = data && data.sanitized;
 

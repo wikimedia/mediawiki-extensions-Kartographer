@@ -61,7 +61,7 @@ module.exports = {
 
 		if ( !manager.getCurrentWindow() ) {
 			const instance = manager.openWindow( dialog, { map: map } );
-			instance.closing.then( function () {
+			instance.closing.then( () => {
 				if ( map.parentMap && !map.parentMap.options.alwaysStatic ) {
 					const targetPoint = map.project( map.getCenter(), map.getZoom() ).subtract( dialog.offset ),
 						targetLatLng = map.unproject( targetPoint, map.getZoom() );
@@ -96,7 +96,7 @@ module.exports = {
 			const instance = manager.openWindow( dialog, {} );
 			promises.push( instance.opened );
 		}
-		$.when.apply( $, promises ).then( function () {
+		$.when.apply( $, promises ).then( () => {
 			const map = require( 'ext.kartographer.box' ).map( mapObject );
 			deferred.resolve( map );
 			if ( map.useRouter && !routerEnabled ) {
@@ -105,7 +105,7 @@ module.exports = {
 				routerEnabled = true;
 			}
 			dialog.setMap( map );
-		}, function () {
+		}, () => {
 			deferred.reject();
 		} );
 		return deferred.promise();

@@ -175,7 +175,7 @@ ve.ce.MWMapsNode.prototype.update = function () {
 					disablelimitreport: 1,
 					disabletoc: 1
 				} )
-				.done( function ( html ) {
+				.done( ( html ) => {
 					$caption.html( html );
 				} );
 		}
@@ -216,7 +216,7 @@ ve.ce.MWMapsNode.prototype.setupMap = function () {
 		// TODO: Support style editing
 	} );
 	this.map.on( 'layeradd', this.updateMapPosition, this );
-	this.map.doWhenReady( function () {
+	this.map.doWhenReady( () => {
 		node.updateGeoJson();
 
 		// Disable interaction
@@ -299,7 +299,7 @@ ve.ce.MWMapsNode.prototype.updateStatic = function ( width, height ) {
 	const url = this.model.getUrl( width, height );
 	const node = this;
 
-	this.$imageLoader = $( '<img>' ).on( 'load', function () {
+	this.$imageLoader = $( '<img>' ).on( 'load', () => {
 		node.$map.css( 'backgroundImage', 'url(' + url + ')' );
 	} ).attr( 'src', url );
 };

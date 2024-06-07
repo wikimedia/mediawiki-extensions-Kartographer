@@ -242,7 +242,7 @@ SideBar.prototype.renderExternalServices = function () {
 			const services = sidebar.byType[ selectedType ];
 
 			// eslint-disable-next-line no-jquery/no-each-util
-			$.each( services, function ( serviceId, links ) {
+			$.each( services, ( serviceId, links ) => {
 				// Only one link is supported per type per service for now.
 				const link = links[ 0 ];
 				const service = sidebar.byService[ serviceId ];
@@ -322,11 +322,11 @@ SideBar.prototype.parseExternalLinks = function () {
 	const byService = {};
 	const byType = {};
 
-	services.forEach( function ( service ) {
+	services.forEach( ( service ) => {
 		byService[ service.id ] = service;
 		service.byType = {};
 
-		service.links.forEach( function ( link ) {
+		service.links.forEach( ( link ) => {
 			service.byType[ link.type ] = service.byType[ link.type ] || [];
 			service.byType[ link.type ].push( link );
 
@@ -356,12 +356,10 @@ SideBar.prototype.createFilterDropdown = function () {
 	const labels = this.metadata.localization;
 
 	// eslint-disable-next-line no-jquery/no-map-util
-	const items = $.map( this.metadata.types, function ( type ) {
-		return new OO.ui.MenuOptionWidget( {
-			data: type,
-			label: labels[ type ]
-		} );
-	} );
+	const items = $.map( this.metadata.types, ( type ) => new OO.ui.MenuOptionWidget( {
+		data: type,
+		label: labels[ type ]
+	} ) );
 
 	return new OO.ui.DropdownWidget( {
 		label: mw.msg( 'kartographer-sidebar-filterdropdown' ),

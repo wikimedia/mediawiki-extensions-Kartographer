@@ -38,7 +38,7 @@ module.exports = function ( grunt ) {
 	grunt.registerTask( 'libcheck', function () {
 		const done = this.async();
 		// Are there unstaged changes after synchronizing from upstream libraries?
-		require( 'child_process' ).exec( 'git ls-files lib/external --modified', function ( err, stdout, stderr ) {
+		require( 'child_process' ).exec( 'git ls-files lib/external --modified', ( err, stdout, stderr ) => {
 			// Before we try to rebuild lib/external files, let's make sure there aren't any local
 			// unstaged changes first in those files, so we don't override uncommitted work
 			const ret = err || stderr || stdout;
@@ -47,8 +47,8 @@ module.exports = function ( grunt ) {
 				grunt.log.error( ret );
 			} else {
 				// Build the lib files and verify there isn't a difference
-				require( 'child_process' ).exec( 'npm run build-lib', function () {
-					require( 'child_process' ).exec( 'git ls-files lib/external --modified', function ( err2, stdout2, stderr2 ) {
+				require( 'child_process' ).exec( 'npm run build-lib', () => {
+					require( 'child_process' ).exec( 'git ls-files lib/external --modified', ( err2, stdout2, stderr2 ) => {
 						const ret2 = err2 || stderr2 || stdout2;
 						if ( ret2 ) {
 							grunt.log.error( 'These library files were directly changed. Please change them upstream, instead:' );

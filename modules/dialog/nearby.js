@@ -45,9 +45,9 @@ function fetchThumbnail( popup, title, description ) {
 		prop: 'pageimages',
 		piprop: 'thumbnail',
 		pithumbsize: 250
-	} ).then( function ( result ) {
+	} ).then( ( result ) => {
 		const pages = result.query.pages || [];
-		pages.forEach( function ( page ) {
+		pages.forEach( ( page ) => {
 			// This intentionally creates cache entries for pages without thumbnails as well
 			thumbnailCache[ page.title ] = page.thumbnail;
 		} );
@@ -194,12 +194,12 @@ function createPopupHtml( titleText, description ) {
  * @param {L.Map} map
  */
 Nearby.prototype.initializeKnownPoints = function ( map ) {
-	map.eachLayer( function ( layer ) {
+	map.eachLayer( ( layer ) => {
 		// Note: mapbox does simple checks like this in other places as well
 		if ( layer.feature && layer.feature.properties && layer.feature.properties.title ) {
 			this.knownTitles.add( layer.feature.properties.title );
 		}
-	}.bind( this ) );
+	} );
 };
 
 /**
@@ -403,7 +403,7 @@ Nearby.prototype.populateNearbyLayer = function ( map, queryApiResponse ) {
 Nearby.prototype.convertGeosearchToGeoJSON = function ( response ) {
 	const pages = response.query && response.query.pages || [];
 
-	return pages.reduce( function ( result, page ) {
+	return pages.reduce( ( result, page ) => {
 		const coordinates = page.coordinates && page.coordinates[ 0 ];
 
 		if ( coordinates ) {
@@ -433,24 +433,22 @@ Nearby.prototype.createNearbyLayer = function ( geoJSON ) {
 		filter: this.filterDuplicatePoints.bind( this ),
 		pointToLayer: this.createNearbyMarker,
 		onEachFeature: function ( feature, layer ) {
-			layer.bindPopup( function () {
-				return createPopupHtml(
-					feature.properties.title,
-					feature.properties.description
-				);
-			}, {
+			layer.bindPopup( () => createPopupHtml(
+				feature.properties.title,
+				feature.properties.description
+			), {
 				// Same minWidth as in the Map class; maxWidth defaults to 300
 				minWidth: 160,
 				autoPanPadding: [ 40, 55 ],
 				closeButton: false
-			} ).on( 'popupopen', function ( event ) {
+			} ).on( 'popupopen', ( event ) => {
 				fetchThumbnail(
 					event.popup,
 					feature.properties.title,
 					feature.properties.description
 				);
 				$( event.popup.getElement() ).find( '.nearby-article-link' )
-					.on( 'click', function () {
+					.on( 'click', () => {
 						if ( !self.seenArticleLink ) {
 							if ( mw.eventLog ) {
 								mw.eventLog.submit( 'mediawiki.maps_interaction', {

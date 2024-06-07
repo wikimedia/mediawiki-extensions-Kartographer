@@ -164,15 +164,13 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 	// get languages and format them for combobox, initialize with the special `local` setting
 	const languages = ve.init.platform.getLanguageCodes()
 		.sort()
-		.map( function ( languageCode ) {
-			return {
-				data: languageCode,
-				label: ve.msg( 'visualeditor-mwmapsdialog-language-option',
-					ve.init.platform.getLanguageName( languageCode ),
-					languageCode
-				)
-			};
-		} );
+		.map( ( languageCode ) => ( {
+			data: languageCode,
+			label: ve.msg( 'visualeditor-mwmapsdialog-language-option',
+				ve.init.platform.getLanguageName( languageCode ),
+				languageCode
+			)
+		} ) );
 	languages.unshift( {
 		data: 'local',
 		label: ve.msg( 'visualeditor-mwmapsdialog-language-local', 'local' )
@@ -565,7 +563,7 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 		return $.Deferred.promise.resolve();
 	}
 
-	return mw.loader.using( 'ext.kartographer.editor' ).then( function () {
+	return mw.loader.using( 'ext.kartographer.editor' ).then( () => {
 		let geoJsonLayer;
 		const deferred = $.Deferred();
 		const editing = require( 'ext.kartographer.editing' );
@@ -581,7 +579,7 @@ ve.ui.MWMapsDialog.prototype.setupMap = function () {
 			alwaysInteractive: true
 		} );
 
-		dialog.map.doWhenReady( function () {
+		dialog.map.doWhenReady( () => {
 			// Show black overlay nicely when panning around the world (2/3):
 			// * Prevent wrapping around the antimeridian, so that we don't have to duplicate the drawings
 			//   in imaginary parallel worlds.
@@ -752,13 +750,13 @@ ve.ui.MWMapsDialog.prototype.updateMapContents = function () {
 	this.input.pushPending();
 	require( 'ext.kartographer.editing' )
 		.updateKartographerLayer( this.map, this.input.getValue() )
-		.done( function () {
+		.done( () => {
 			self.input.setValidityFlag( true );
 		} )
-		.fail( function () {
+		.fail( () => {
 			self.input.setValidityFlag( false );
 		} )
-		.always( function () {
+		.always( () => {
 			self.updateActions();
 			self.input.popPending();
 		} );

@@ -80,14 +80,14 @@ MapDialog.prototype.setMap = function ( map ) {
 	// Add focus frame and hide on mouse but show on keyboard navigation
 	dialog.map.$container
 		.append( $focusBox )
-		.on( 'mousedown', function () {
+		.on( 'mousedown', () => {
 			$focusBox.removeClass( 'mw-kartographer-mapDialog-focusBox-available' );
 		} )
-		.on( 'mouseup', function () {
+		.on( 'mouseup', () => {
 			// Keep focus in container to allow keyboard navigation
 			dialog.map.$container.trigger( 'focus' );
 		} )
-		.on( 'keyup', function ( e ) {
+		.on( 'keyup', ( e ) => {
 			if ( e.which === OO.ui.Keys.TAB ) {
 				const isMap = dialog.map.$container.is( e.target );
 				$focusBox.toggleClass( 'mw-kartographer-mapDialog-focusBox-available', isMap );
@@ -97,14 +97,14 @@ MapDialog.prototype.setMap = function ( map ) {
 	// The button exists, the sidebar was open, call `tearDown` and reopen it.
 	if ( dialog.sideBar ) {
 		dialog.sideBar.tearDown();
-		dialog.map.doWhenReady( function () {
+		dialog.map.doWhenReady( () => {
 			const open = dialog.mapDetailsButton.getValue();
 			dialog.offsetMap( open );
 			dialog.toggleSideBar( open );
 		} );
 	} else {
 		// The button exists, the sidebar was not open, simply run `offsetMap`
-		dialog.map.doWhenReady( function () {
+		dialog.map.doWhenReady( () => {
 			dialog.offsetMap( false );
 			// preload the sidebar, we finished doing all the other stuff
 			mw.loader.load( 'ext.kartographer.dialog.sidebar' );
@@ -153,7 +153,7 @@ MapDialog.prototype.setupFooter = function () {
 MapDialog.prototype.toggleSideBar = function ( open ) {
 	const dialog = this;
 
-	mw.loader.using( 'ext.kartographer.dialog.sidebar' ).then( function () {
+	mw.loader.using( 'ext.kartographer.dialog.sidebar' ).then( () => {
 		if ( !dialog.sideBar ) {
 			const SideBar = require( 'ext.kartographer.dialog.sidebar' );
 			dialog.sideBar = new SideBar( { dialog: dialog } );
@@ -170,9 +170,9 @@ MapDialog.prototype.toggleSideBar = function ( open ) {
 
 		// Animations only work if content is visible
 		dialog.sideBar.$el.attr( 'aria-hidden', null );
-		setTimeout( function () {
+		setTimeout( () => {
 			dialog.$mapBody.toggleClass( 'mw-kartographer-mapDialog-sidebar-opened', open );
-			setTimeout( function () {
+			setTimeout( () => {
 				// Ensure proper hidden content after animation finishes
 				dialog.sideBar.$el.attr( 'aria-hidden', !open );
 			}, 100 /* Duration of the CSS animation */ );
@@ -216,7 +216,7 @@ MapDialog.prototype.getActionProcess = function ( action ) {
 	const dialog = this;
 
 	if ( !action ) {
-		return new OO.ui.Process( function () {
+		return new OO.ui.Process( () => {
 			if ( dialog.map ) {
 				dialog.map.closeFullScreen();
 				// Will be destroyed later, {@see getTeardownProcess} below

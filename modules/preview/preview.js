@@ -10,10 +10,10 @@
  * @class Kartographer.Preview
  * @singleton
  */
-mw.hook( 'wikipage.maps' ).add( function ( maps ) {
+mw.hook( 'wikipage.maps' ).add( ( maps ) => {
 	maps = Array.isArray( maps ) ? maps : [ maps ];
 
-	maps.forEach( function ( map ) {
+	maps.forEach( ( map ) => {
 		const popup = L.popup();
 
 		function onMapMenu( e ) {

@@ -4,8 +4,5 @@
 	},
 	"globals": {
 		"ve": false
-	},
-	"rules": {
-		"no-var": "off"
 	}
 }

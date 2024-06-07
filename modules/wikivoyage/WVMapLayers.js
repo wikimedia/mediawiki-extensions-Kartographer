@@ -91,7 +91,7 @@ WVMapLayers.prototype.datalayer = function ( id, layer ) {
 	const self = this;
 	if ( typeof id === 'object' ) {
 		// eslint-disable-next-line no-jquery/no-each-util
-		$.each( id, function ( group, groupLayer ) {
+		$.each( id, ( group, groupLayer ) => {
 			self.datalayer( group, groupLayer );
 		} );
 		return this;

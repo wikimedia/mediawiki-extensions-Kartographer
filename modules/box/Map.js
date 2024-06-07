@@ -105,7 +105,7 @@ function validateBounds( layer ) {
 function getValidBounds( layer ) {
 	const layerBounds = new L.LatLngBounds();
 	if ( typeof layer.eachLayer === 'function' ) {
-		layer.eachLayer( function ( child ) {
+		layer.eachLayer( ( child ) => {
 			layerBounds.extend( getValidBounds( child ) );
 		} );
 	} else {
@@ -212,7 +212,7 @@ const KartographerMap = L.Map.extend( {
 		 */
 		this.$container = $( this._container );
 
-		this.on( 'kartographerisready', function () {
+		this.on( 'kartographerisready', () => {
 			// eslint-disable-next-line camelcase
 			map._kartographer_ready = true;
 		} );
@@ -316,7 +316,7 @@ const KartographerMap = L.Map.extend( {
 				attribution: mw.message( 'kartographer-attribution' ).parse()
 			}
 		).addTo( this );
-		this.wikimediaLayer.on( 'tileloadstart', function ( e ) {
+		this.wikimediaLayer.on( 'tileloadstart', ( e ) => {
 			e.tile.classList.add( 'mw-invert' );
 		} );
 
@@ -340,7 +340,7 @@ const KartographerMap = L.Map.extend( {
 
 		if ( options.allowFullScreen ) {
 			// embed maps, and full screen is allowed
-			this.on( 'dblclick', function () {
+			this.on( 'dblclick', () => {
 				map.openFullScreen();
 			} );
 
@@ -377,7 +377,7 @@ const KartographerMap = L.Map.extend( {
 
 			// Workaround to make interactive elements (especially geoshapes) reachable via tab
 			for ( const id in map.dataLayers ) {
-				map.dataLayers[ id ].eachLayer( function ( shape ) {
+				map.dataLayers[ id ].eachLayer( ( shape ) => {
 					const el = shape.getElement();
 					if ( shape.getPopup() ) {
 						el.tabIndex = 0;
@@ -403,22 +403,22 @@ const KartographerMap = L.Map.extend( {
 		}
 
 		if ( this.parentMap ) {
-			this.parentMap.dataLayers.forEach( function ( layer ) {
+			this.parentMap.dataLayers.forEach( ( layer ) => {
 				map.addGeoJSONLayer( layer.getGeoJSON(), layer.options );
 			} );
 			ready();
 			return;
 		}
 
-		this.addDataGroups( options.dataGroups ).then( function () {
+		this.addDataGroups( options.dataGroups ).then( () => {
 			if ( typeof options.data === 'object' ) {
-				map.addDataLayer( options.data ).then( function () {
+				map.addDataLayer( options.data ).then( () => {
 					ready();
 				} );
 			} else {
 				ready();
 			}
-		}, function () {
+		}, () => {
 			// T25787
 			ready();
 			mw.log.error( 'Unable to add datalayers to map.' );
@@ -482,7 +482,7 @@ const KartographerMap = L.Map.extend( {
 	 */
 	addGeoJSONGroups: function ( groups ) {
 		const map = this;
-		groups.forEach( function ( group ) {
+		groups.forEach( ( group ) => {
 			if ( group.failed ) {
 				if ( group.name && group.name.slice( 0, 1 ) === '_' && group.failureReason ) {
 					mw.log.warn( 'Layer ' + group.name + ' not found or contains no data: ' + group.failureReason );
@@ -566,7 +566,7 @@ const KartographerMap = L.Map.extend( {
 				marker.options.keyboard = interactive;
 				return marker;
 			};
-			const layer = L.mapbox.featureLayer( geoJSON, $.extend( {}, dataLayerOpts, options ) ).addTo( this );
+			const layer = L.mapbox.featureLayer( geoJSON, Object.assign( {}, dataLayerOpts, options ) ).addTo( this );
 			layer.getAttribution = function () {
 				return this.options.attribution;
 			};
@@ -610,7 +610,7 @@ const KartographerMap = L.Map.extend( {
 					false
 				);
 			} else {
-				this.doWhenReady( function () {
+				this.doWhenReady( () => {
 					map.setView(
 						position.center,
 						position.zoom
@@ -618,8 +618,8 @@ const KartographerMap = L.Map.extend( {
 				} );
 			}
 
-			mw.loader.using( 'ext.kartographer.dialog' ).then( function () {
-				map.doWhenReady( function () {
+			mw.loader.using( 'ext.kartographer.dialog' ).then( () => {
+				map.doWhenReady( () => {
 					require( 'ext.kartographer.dialog' ).render( map );
 				} );
 			} );

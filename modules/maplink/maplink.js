@@ -81,8 +81,8 @@ function activateRouter() {
 	//     #/maplink/0
 	//     #/maplink/0/5
 	//     #/maplink/0/16/-122.4006/37.7873
-	// eslint-disable-next-line security/detect-unsafe-regex
-	router.route( /maplink\/([0-9]+)(?:\/([0-9]+))?(?:\/([+-]?\d+\.?\d{0,5})?\/([+-]?\d+\.?\d{0,5})?)?/, function ( maptagId, zoom, latitude, longitude ) {
+
+	router.route( /maplink\/([0-9]+)(?:\/([0-9]+))?(?:\/([+-]?\d+\.?\d{0,5})?\/([+-]?\d+\.?\d{0,5})?)?/, ( maptagId, zoom, latitude, longitude ) => {
 		const link = maplinks[ maptagId ];
 
 		if ( !link ) {

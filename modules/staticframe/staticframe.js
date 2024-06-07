@@ -56,7 +56,7 @@ function getMapData( element ) {
 /**
  * This code will be executed once the article is rendered and ready.
  */
-mw.hook( 'wikipage.content' ).add( function ( $content ) {
+mw.hook( 'wikipage.content' ).add( ( $content ) => {
 	// `wikipage.content` may be fired more than once.
 	while ( maplinks.length ) {
 		maplinks.pop().$container.off( 'click.kartographer' );
@@ -69,7 +69,7 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 			const container = this;
 			const $container = $( container );
 
-			mw.loader.using( 'oojs-ui', function () {
+			mw.loader.using( 'oojs-ui', () => {
 				const button = new OO.ui.ButtonWidget( {
 					// In static mode this button is just a visual hint but doesn't have its own action
 					tabIndex: -1,
@@ -118,8 +118,8 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 	//     #/map/0
 	//     #/map/0/5
 	//     #/map/0/16/-122.4006/37.7873
-	// eslint-disable-next-line security/detect-unsafe-regex
-	router.route( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([+-]?\d+\.?\d{0,5})?\/([+-]?\d+\.?\d{0,5})?)?/, function ( maptagId, zoom, latitude, longitude ) {
+
+	router.route( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([+-]?\d+\.?\d{0,5})?\/([+-]?\d+\.?\d{0,5})?)?/, ( maptagId, zoom, latitude, longitude ) => {
 		const link = maplinks[ maptagId ];
 
 		if ( !link ) {

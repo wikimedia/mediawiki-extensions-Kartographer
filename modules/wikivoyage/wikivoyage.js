@@ -57,7 +57,7 @@ module.exports = {
 	addTileLayer: function ( id, url, options ) {
 		options.wvLayerId = id;
 		options.attribution = options.attribution || '';
-		( options.attribs || [] ).forEach( function ( attrib ) {
+		( options.attribs || [] ).forEach( ( attrib ) => {
 			options.attribution += mw.html.escape( attrib.label ) + ' ' +
 			mw.html.element( 'a', { href: attrib.url }, attrib.name );
 		} );
@@ -122,7 +122,7 @@ module.exports = {
 	 * @return {jQuery.Promise}
 	 */
 	isAllowed: function ( layer ) {
-		return mw.loader.using( 'mediawiki.storage' ).then( function () {
+		return mw.loader.using( 'mediawiki.storage' ).then( () => {
 			if ( areExternalAllowed === undefined ) {
 				areExternalAllowed = mw.storage.get( STORAGE_KEY ) === '1';
 			}
@@ -130,7 +130,7 @@ module.exports = {
 			if ( !layer.options.wvIsExternal || areExternalAllowed ) {
 				return;
 			}
-			return alertExternalData().closed.then( function ( data ) {
+			return alertExternalData().closed.then( ( data ) => {
 				if ( data && data.action && data.action === 'good' ) {
 					areExternalAllowed = true;
 					mw.storage.set( STORAGE_KEY, '1' );

@@ -65,7 +65,7 @@ function Link( options ) {
 	if ( link.useRouter && link.container.tagName === 'A' ) {
 		link.container.href = '#' + link.fullScreenRoute;
 	} else {
-		link.$container.on( 'click.kartographer', function () {
+		link.$container.on( 'click.kartographer', () => {
 			link.openFullScreen();
 		} );
 	}
@@ -94,7 +94,7 @@ Link.prototype.openFullScreen = function ( position ) {
 			position.zoom
 		);
 
-		mw.loader.using( 'ext.kartographer.dialog' ).then( function () {
+		mw.loader.using( 'ext.kartographer.dialog' ).then( () => {
 			require( 'ext.kartographer.dialog' ).render( map );
 		} );
 	/* eslint-enable no-underscore-dangle */
@@ -116,8 +116,8 @@ Link.prototype.openFullScreen = function ( position ) {
 			fullScreenRoute: link.fullScreenRoute
 		};
 
-		mw.loader.using( 'ext.kartographer.dialog' ).then( function () {
-			require( 'ext.kartographer.dialog' ).renderNewMap( mapObject ).then( function ( m ) {
+		mw.loader.using( 'ext.kartographer.dialog' ).then( () => {
+			require( 'ext.kartographer.dialog' ).renderNewMap( mapObject ).then( ( m ) => {
 				link.fullScreenMap = m;
 			} );
 		} );
