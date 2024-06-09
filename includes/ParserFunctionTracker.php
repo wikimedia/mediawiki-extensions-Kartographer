@@ -3,7 +3,7 @@
 namespace Kartographer;
 
 use InvalidArgumentException;
-use Parser;
+use MediaWiki\Parser\Parser;
 
 /**
  * @license MIT

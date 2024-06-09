@@ -3,6 +3,7 @@
 namespace Kartographer\UnitTests;
 
 use Kartographer\Modules\ExternalLinksProvider;
+use MediaWiki\Message\Message;
 use MediaWiki\ResourceLoader\Context;
 
 /**
@@ -15,7 +16,7 @@ class ExternalLinksProviderTest extends \MediaWikiUnitTestCase {
 	public function testGetData() {
 		$context = $this->createMock( Context::class );
 		$context->method( 'msg' )->willReturnCallback( function ( $key ) {
-			$msg = $this->createMock( \Message::class );
+			$msg = $this->createMock( Message::class );
 			$msg->method( 'plain' )->willReturn( "<$key>" );
 			return $msg;
 		} );

@@ -3,8 +3,8 @@
 namespace Kartographer\Tests;
 
 use Kartographer\MediaWikiWikitextParser;
+use MediaWiki\Parser\Parser;
 use MediaWikiIntegrationTestCase;
-use Parser;
 
 /**
  * @covers \Kartographer\MediaWikiWikitextParser

@@ -8,9 +8,9 @@ use Kartographer\SimpleStyleParser;
 use Kartographer\WikitextParser;
 use LogicException;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
-use Parser;
 use ParserOptions;
 
 /**

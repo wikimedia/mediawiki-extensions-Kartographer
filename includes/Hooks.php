@@ -16,8 +16,8 @@ use MediaWiki\Config\Config;
 use MediaWiki\Hook\ParserAfterParseHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Title\TitleFormatter;
-use Parser;
 use StripState;
 
 /**

@@ -8,7 +8,7 @@ use JsonConfig\JCMapDataContent;
 use JsonConfig\JCSingleton;
 use JsonSchema\Validator;
 use MediaWiki\MediaWikiServices;
-use Parser;
+use MediaWiki\Parser\Parser;
 use PPFrame;
 use StatusValue;
 use stdClass;

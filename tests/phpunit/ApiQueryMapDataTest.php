@@ -2,7 +2,6 @@
 
 namespace Kartographer\Tests;
 
-use ApiTestCase;
 use ApiUsageException;
 use FlaggableWikiPage;
 use FlaggedRevs;
@@ -10,6 +9,7 @@ use FlaggedRevsParserCache;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Tests\Api\ApiTestCase;
 use MediaWiki\Title\Title;
 use ParserOptions;
 use WikitextContent;

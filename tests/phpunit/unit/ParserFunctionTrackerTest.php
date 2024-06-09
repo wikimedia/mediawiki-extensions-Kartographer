@@ -3,8 +3,8 @@
 namespace Kartographer\UnitTests;
 
 use Kartographer\ParserFunctionTracker;
+use MediaWiki\Parser\Parser;
 use MediaWikiUnitTestCase;
-use Parser;
 
 /**
  * @covers \Kartographer\ParserFunctionTracker

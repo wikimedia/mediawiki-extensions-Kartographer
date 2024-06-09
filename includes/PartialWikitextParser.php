@@ -2,7 +2,7 @@
 
 namespace Kartographer;
 
-use Parser;
+use MediaWiki\Parser\Parser;
 use PPFrame;
 
 /**

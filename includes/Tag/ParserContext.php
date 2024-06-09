@@ -3,8 +3,8 @@
 namespace Kartographer\Tag;
 
 use Language;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Title\TitleFormatter;
-use Parser;
 
 /**
  * Meant to encapsulate all relevant incoming (!) context that's historically attached to the legacy

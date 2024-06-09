@@ -17,8 +17,8 @@ use Kartographer\State;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ConfigException;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Parser\Parser;
 use MediaWiki\Title\TitleFormatter;
-use Parser;
 use PPFrame;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 
