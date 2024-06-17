@@ -3,7 +3,8 @@
 		"authors": [
 			"Aefgh39622",
 			"Patsagorn Y.",
-			"RidJasper"
+			"RidJasper",
+			"Ekminarin"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use แผนที่วิกิมีเดีย] | ข้อมูลแผนที่ทั้งหมด © โดย[https://www.openstreetmap.org/copyright ผู้มีส่วนร่วมใน OpenStreetMap]",
@@ -21,8 +22,10 @@
 	"kartographer-tracking-category": "หน้าที่มีแผนที่",
 	"kartographer-tracking-category-desc": "หน้าที่มีแผนที่ในเนื้อหา",
 	"kartographer-specialmap-invalid-coordinates": "การป้อนค่าพิกัดที่ไม่ถูกต้อง",
+	"kartographer-linktype-map": "แผนที่มาตรฐาน",
 	"kartographer-linktype-other": "อื่น ๆ",
 	"kartographer-linktype-satellite": "ดาวเทียม",
+	"kartographer-linktype-terrain": "ภูมิประเทศ",
 	"kartographer-link-wikiminiatlas": "วิกิมินิแอตลาส",
 	"kartographer-sidebar-coordinates": "พิกัด",
 	"kartographer-sidebar-filterdropdown": "เลือกชนิดแผนที่",
@@ -31,6 +34,7 @@
 	"kartographer-sidebar-latitude": "ละติจูด",
 	"kartographer-sidebar-longitude": "ลองจิจูด",
 	"kartographer-sidebar-mapdetails": "แผนที่ภายนอก",
+	"kartographer-sidebar-nearbybutton": "แสดงบทความใกล้เคียง",
 	"kartographer-sidebar-service": "บริการ",
 	"kartographer-sidebar-togglebutton": "แผนที่ภายนอก",
 	"leafletdraw-draw-handlers-circle-radius": "รัศมี",
