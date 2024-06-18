@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"N. Longo"
+		]
+	},
+	"apihelp-sanitize-mapdata-summary": "O fà a validaçión di dæti pe l'estensción Kartographer",
+	"apihelp-sanitize-mapdata-param-title": "Tìtolo da pàgina dónde se crédde che ségge sto GeoJSON chi. Se no l'é indicòu nisciùn tìtolo, ne saiâ dêuviòu un fâso.",
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON da sanificâ",
+	"apihelp-sanitize-mapdata-example": "Sanificâ 'n blob GeoJSON",
+	"apihelp-query+mapdata-summary": "Domandâ tùtti i dæti de màppe de Kartographer pe-e pàgine indicæ",
+	"apihelp-query+mapdata-example-1": "Domandâ tùtti i dæti de màppa da pàgina <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-example-2": "Domandâ i dæti de màppa inti grùppi <kbd>group1</kbd> e <kbd>group2</kbd> da-a pàgina <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-param-continue": "Dêuviâ sto paràmetro chi p'anâ avànti con l'iteraçión pe mêzo di rizultâti.",
+	"apihelp-query+mapdata-param-groups": "Grùppi separæ da | pe restitoî i dæti de",
+	"apihelp-query+mapdata-param-limit": "Dæti in sciô nùmero de pàgine da restitoî"
+}
