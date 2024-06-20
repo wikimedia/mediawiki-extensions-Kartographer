@@ -1,75 +1,79 @@
 @import 'mediawiki.skin.variables.less';
 
+.ve-ui-mwMapsDialog {
+	> .oo-ui-window-body {
+		display: flex;
+		flex-flow: column;
+	}
+
+	&-mapWidget {
+		flex: auto;
+
+		> div {
+			width: @size-full;
+			height: @size-full;
+			background-color: @background-color-neutral;
+		}
+	}
+
+	&-indexLayout {
+		max-height: @size-half;
+	}
+
+	&-geoJSONWidget {
+		max-width: none;
+
+		&,
+		.oo-ui-inputWidget-input:first-child,
+		.ace_editor.ace-tm {
+			min-height: 210px;
+		}
+	}
+
+	&-optionsPanel .oo-ui-fieldLayout-header {
+		font-weight: bold;
+	}
+
+	&-frameField.oo-ui-fieldLayout.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
+		flex-grow: 0;
+		font-weight: normal;
+
+		> .oo-ui-labelElement-label {
+			margin-right: 1em;
+		}
+	}
+
+	&-help {
+		position: absolute;
+		top: 0.714285em;
+		right: 0.714285em;
+		margin: 0;
+	}
+}
+
 .ve-ce-mwMapsNode {
 	background-position: center;
 	background-repeat: no-repeat;
-}
 
-.ve-ui-mwMapsDialog > .oo-ui-window-body {
-	display: flex;
-	flex-flow: column;
-}
+	&.center {
+		/* Fixes align=center */
+		position: relative;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
 
-.ve-ui-mwMapsDialog-mapWidget {
-	flex: auto;
-}
+	.thumbcaption > p {
+		&:first-child {
+			margin-top: 0;
+			padding-top: 0;
+		}
 
-.ve-ui-mwMapsDialog-indexLayout {
-	max-height: @size-half;
-}
-
-.ve-ui-mwMapsDialog-mapWidget > div {
-	width: @size-full;
-	height: @size-full;
-	background-color: @background-color-neutral;
-}
-
-.ve-ui-mwMapsDialog-geoJSONWidget {
-	max-width: none;
-	min-height: 210px;
-}
-
-.ve-ui-mwMapsDialog-geoJSONWidget .oo-ui-inputWidget-input:first-child,
-.ve-ui-mwMapsDialog-geoJSONWidget .ace_editor.ace-tm {
-	min-height: 210px;
-}
-
-.ve-ui-mwMapsDialog-optionsPanel .oo-ui-fieldLayout-header {
-	font-weight: bold;
-}
-
-.ve-ui-mwMapsDialog-frameField.oo-ui-fieldLayout.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header {
-	flex-grow: 0;
-	font-weight: normal;
-}
-
-.ve-ui-mwMapsDialog-frameField.oo-ui-fieldLayout.oo-ui-labelElement > .oo-ui-fieldLayout-body > .oo-ui-fieldLayout-header > .oo-ui-labelElement-label {
-	margin-right: 1em;
-}
-
-.ve-ui-mwMapsDialog-help {
-	position: absolute;
-	top: 0.714285em;
-	right: 0.714285em;
-	margin: 0;
-}
-
-/* Fixes align=center */
-.ve-ce-mwMapsNode.center {
-	position: relative;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.ve-ce-mwMapsNode .thumbcaption > p:first-child {
-	margin-top: 0;
-	padding-top: 0;
-}
-
-.ve-ce-mwMapsNode .thumbcaption > p:last-child {
-	margin-bottom: 0;
-	padding-bottom: 0;
+		&:last-child {
+			margin-bottom: 0;
+			padding-bottom: 0;
+		}
+	}
 }
 
 .ve-ui-mwMapsContextItem-nosupport {
