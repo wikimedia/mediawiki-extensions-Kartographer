@@ -1,3 +1,5 @@
+@import 'mediawiki.skin.variables.less';
+
 /**
  * Fix unwanted flipping of styles by CSS Janus (T127137)
  */
@@ -27,7 +29,7 @@ img.leaflet-marker-icon {
 
 .leaflet-interactive:focus {
 	clip-path: none;
-	outline: 2px solid #3366cc;
+	outline: @border-width-thick @border-style-base @outline-color-progressive--focus;
 }
 
 /* Browser support for object-position is slightly worse than for object-fit */
