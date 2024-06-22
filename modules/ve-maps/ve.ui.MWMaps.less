@@ -1,3 +1,5 @@
+@import 'mediawiki.skin.variables.less';
+
 .ve-ce-mwMapsNode {
 	background-position: center;
 	background-repeat: no-repeat;
@@ -13,13 +15,13 @@
 }
 
 .ve-ui-mwMapsDialog-indexLayout {
-	max-height: 50%;
+	max-height: @size-half;
 }
 
 .ve-ui-mwMapsDialog-mapWidget > div {
-	width: 100%;
-	height: 100%;
-	background-color: #eaecf0;
+	width: @size-full;
+	height: @size-full;
+	background-color: @background-color-neutral;
 }
 
 .ve-ui-mwMapsDialog-geoJSONWidget {
@@ -71,7 +73,7 @@
 }
 
 .ve-ui-mwMapsContextItem-nosupport {
-	color: #72777d;
+	color: @color-base--subtle;
 	font-style: italic;
-	line-height: 1.6;
+	line-height: @line-height-medium;
 }

@@ -86,7 +86,7 @@
 			],
 			"styles": [
 				"lib/external/mapbox/mapbox.css",
-				"lib/mapbox-style-fixes.css"
+				"lib/mapbox-style-fixes.less"
 			],
 			"messages": [
 				"kartographer-fullscreen-text",
@@ -335,7 +335,7 @@
 				"modules/ve-maps/ve.ui.MWMapsTool.js"
 			],
 			"styles": [
-				"modules/ve-maps/ve.ui.MWMaps.css"
+				"modules/ve-maps/ve.ui.MWMaps.less"
 			],
 			"messages": [
 				"visualeditor-mwmapscontextitem-nosupport",
