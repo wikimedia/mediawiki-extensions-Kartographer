@@ -3,12 +3,13 @@
 		"authors": [
 			"राम प्रसाद जोशी",
 			"हिमाल सुबेदी",
-			"बडा काजी"
+			"बडा काजी",
+			"पर्वत सुबेदी"
 		]
 	},
-	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use विकिमीडिया नक्सा] | नक्सा डेटा © [https://www.openstreetmap.org/copyright ओपन स्ट्रिट नक्सा योगदानकर्ताहरू]",
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use विकिमिडिया नक्सा] | नक्सा डेटा © [https://www.openstreetmap.org/copyright ओपन स्ट्रिट नक्सा योगदानकर्ताहरू]",
 	"kartographer-attribution-externaldata": "$1: $2",
-	"kartographer-attribution-short": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use विकिमीडिया] | © [https://www.openstreetmap.org/copyright ओपन स्ट्रिट नक्सा]",
+	"kartographer-attribution-short": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use विकिमिडिया] | © [https://www.openstreetmap.org/copyright ओपन स्ट्रिट नक्सा]",
 	"kartographer-broken-category": "टुटेको नक्सा भएका पृष्ठहरू",
 	"kartographer-broken-category-desc": "पृष्ठमा अमान्य नक्साको प्रयोग समावेश छ",
 	"kartographer-desc": "नक्साहरूलाई विकी पृष्ठहरूमा थप्न अनुमति दिन्छ",
