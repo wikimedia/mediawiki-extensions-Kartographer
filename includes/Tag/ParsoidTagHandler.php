@@ -27,17 +27,15 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 	 * @param ParsoidExtensionAPI $extApi
 	 * @param string $input
 	 * @param stdClass[] $extArgs
-	 * @return array{StatusValue,MapTagArgumentValidator,stdClass[],KVSourceRange[]}
+	 * @return array{StatusValue,MapTagArgumentValidator,stdClass[],array<string,?KVSourceRange>}
 	 */
 	protected function parseTag( ParsoidExtensionAPI $extApi, string $input, array $extArgs ): array {
-		$args = $this->processParsoidExtensionArguments( $extApi, $extArgs );
-		$status = $args->status;
 		$srcOffsets = [];
-		foreach ( $extArgs as $extArg ) {
-			if ( is_string( $extArg->k ) ) {
-				$srcOffsets[$extArg->k] = $extArg->srcOffsets ?? null;
-			}
-		}
+		$args = $this->processArguments(
+			$this->convertParsoidExtensionArguments( $extArgs, $srcOffsets ),
+			$extApi
+		);
+		$status = $args->status;
 
 		$geometries = [];
 		if ( $status->isOK() ) {
@@ -58,11 +56,12 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 		return [ $status, $args, $geometries, $srcOffsets ];
 	}
 
-	private function processParsoidExtensionArguments(
-		ParsoidExtensionAPI $extApi, array $extArgs
-	): MapTagArgumentValidator {
-		$services = MediaWikiServices::getInstance();
-
+	/**
+	 * @param stdClass[] $extArgs
+	 * @param array<string,?KVSourceRange> &$srcOffsets Secondary out-parameter
+	 * @return array<string,string>
+	 */
+	private function convertParsoidExtensionArguments( array $extArgs, array &$srcOffsets ): array {
 		$args = [];
 		foreach ( $extArgs as $extArg ) {
 			// Might be an array or Token object when wikitext like <maplink {{1x|text}}=… /> is
@@ -74,8 +73,23 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 				} else {
 					$args[$extArg->k] = $extArg->v;
 				}
+
+				$srcOffsets[$extArg->k] = $extArg->srcOffsets ?? null;
 			}
 		}
+		return $args;
+	}
+
+	/**
+	 * @param array<string,string> $args
+	 * @param ParsoidExtensionAPI $extApi
+	 * @return MapTagArgumentValidator
+	 */
+	private function processArguments(
+		array $args,
+		ParsoidExtensionAPI $extApi
+	): MapTagArgumentValidator {
+		$services = MediaWikiServices::getInstance();
 
 		return new MapTagArgumentValidator( static::TAG, $args,
 			$services->getMainConfig(),
