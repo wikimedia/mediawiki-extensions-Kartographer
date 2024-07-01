@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"NMW03"
+			"NMW03",
+			"Nemoralis"
 		]
 	},
+	"apierror-kartographer-conflicting-revids": "Bir sorğuda eyni səhifənin çoxsaylı versiyalarından xəritə məlumatlarının sorğulanması hələ dəstəklənmir.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Vikimedia xəritələri] | Xəritə datası © [https://www.openstreetmap.org/copyright OpenStreetMap redaktorları]",
 	"kartographer-attribution-short": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Vikimedia] | © [https://www.openstreetmap.org/copyright OpenStreetMap]",
 	"kartographer-broken-category": "Xətalı xəritəsi olan səhifələr",
@@ -11,6 +13,9 @@
 	"kartographer-desc": "Xəritələrin viki səhifələrinə əlavə edilməsinə imkan verir",
 	"kartographer-error-json": "JSON-u təhlil etmək mümkün olmadı: $1",
 	"kartographer-error-missing-attr": "\"$1\" atributu yoxdur",
+	"kartographer-error-bad_attr": "\"$1\" atributunun yanlış dəyəri var",
+	"kartographer-error-latlon": "\"latitude\" və \"longitude\" parametrlərinin hər ikisi təyin edilməlidir və ya heç biri təyin edilməməlidir",
+	"kartographer-error-title": "\"$1\" başlığı etibarlı xəritə datası səhifəsi deyil",
 	"kartographer-tracking-category": "Xəritələri olan səhifələr",
 	"kartographer-tracking-category-desc": "Səhifədə xəritə var",
 	"kartographer-specialmap-invalid-coordinates": "Yanlış koordinatlar göstərilib",
