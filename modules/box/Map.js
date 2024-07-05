@@ -190,7 +190,7 @@ const KartographerMap = L.Map.extend( {
 			options.zoom = undefined;
 		}
 
-		$( options.container ).addClass( 'mw-kartographer-interactive' );
+		$( options.container ).addClass( 'mw-kartographer-interactive notheme' );
 
 		const args = L.extend( {}, L.Map.prototype.options, options, {
 			// `center` and `zoom` are undefined to avoid calling

@@ -51,7 +51,7 @@ ve.ui.MWMapsDialog.prototype.initialize = function () {
 
 	const helpLink = new OO.ui.ButtonWidget( {
 		icon: 'help',
-		classes: [ 've-ui-mwMapsDialog-help' ],
+		classes: [ 've-ui-mwMapsDialog-help', 'notheme' ],
 		title: ve.msg( 'visualeditor-mwmapsdialog-help-title' ),
 		href: 'https://www.mediawiki.org/wiki/Special:MyLanguage/Help:VisualEditor/Maps',
 		target: '_blank'
