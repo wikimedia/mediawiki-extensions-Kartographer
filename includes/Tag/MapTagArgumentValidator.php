@@ -16,11 +16,12 @@ use stdClass;
  */
 class MapTagArgumentValidator {
 
-	public StatusValue $status;
-	private Tag $args;
 	private Config $config;
 	private Language $defaultLanguage;
 	private ?LanguageNameUtils $languageCodeValidator;
+
+	public StatusValue $status;
+	private Tag $args;
 
 	public ?float $lat;
 	public ?float $lon;
@@ -65,11 +66,12 @@ class MapTagArgumentValidator {
 		Language $defaultLanguage,
 		LanguageNameUtils $languageCodeValidator = null
 	) {
-		$this->status = StatusValue::newGood();
-		$this->args = new Tag( $tag, $args, $this->status );
 		$this->config = $config;
 		$this->defaultLanguage = $defaultLanguage;
 		$this->languageCodeValidator = $languageCodeValidator;
+
+		$this->status = StatusValue::newGood();
+		$this->args = new Tag( $tag, $args, $this->status );
 
 		$this->parseArgs();
 		if ( $config->get( 'KartographerWikivoyageMode' ) ) {
