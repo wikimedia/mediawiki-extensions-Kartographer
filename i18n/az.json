@@ -106,6 +106,7 @@
 	"visualeditor-mwmapsdialog-caption": "Başlıq",
 	"visualeditor-mwmapsdialog-caption-help": "Bu başlıq çərçivədəki xəritənin altında göstəriləcək (şəkil başlıqları ilə eyni). Başlığın əlavə edilməsi xəritədə çərçivədə olmağa məcbur edir.\n\nVikimətn formatı, məsələn, qalın yazı, keçidlər və ya istinadlar istifadə edilə bilər.",
 	"visualeditor-mwmapsdialog-language": "Dil",
+	"visualeditor-mwmapsdialog-language-help": "Kartographer, etiket dili üçün defolt olaraq vikinin məzmun dilindən istifadə edir. Bu, yalnız bu xəritə üçün bu parametrlə dəyişdirilə bilər.\n\nHəmin məkanda yerli dildə olan bütün etiketləri göstərmək üçün dil adı əvəzinə <code>local</code> istifadə edin. Beləliklə, Meksikadakı şəhər adları ispan dilində, Yaponiyadakı şəhər adları isə yapon dilində göstəriləcək.\n\nSeçilmiş dildə etiketlər mövcud olmadıqda Kartographer defolt dili istifadə edir. Bunun necə işləməsi haqqında ətraflı məlumat üçün [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Extension:Kartographer#Languages_and_fallbacks kömək səhifəsinə] baxın",
 	"visualeditor-mwmapsdialog-language-option": "$1 – $2",
 	"visualeditor-mwmapsdialog-language-local": "$1 (hər xəritə sahəsi üçün yerli dildən istifadə edin)",
 	"visualeditor-mwmapsdialog-help-title": "Xəritələrin yaradılması və redaktə edilməsi haqqında məlumat əldə edin.",
