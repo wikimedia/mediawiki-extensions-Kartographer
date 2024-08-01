@@ -100,7 +100,7 @@
 	"visualeditor-mwmapsdialog-options": "Opties",
 	"visualeditor-mwmapsdialog-display": "Uitlijning",
 	"visualeditor-mwmapsdialog-display-help": "Stelt de horizontale positie van de kaart op de pagina in. Andere pagina-inhoud vloeit alleen om de kaart heen als de kaart rechts of links is ingesteld, niet in het midden.\n\nAls u het kader uitschakelt, wordt de ingesloten kaart zonder kader (rand) getekend, vergelijkbaar met kaderloze afbeeldingen. Deze optie is uitgeschakeld als de kaart een bijschrift heeft.",
-	"visualeditor-mwmapsdialog-frame": "Kader tonen",
+	"visualeditor-mwmapsdialog-frame": "Kader weergeven",
 	"visualeditor-mwmapsdialog-caption": "Bijschrift",
 	"visualeditor-mwmapsdialog-caption-help": "Dit bijschrift verschijnt onder de kaart in het kader (zoals bij afbeeldingsbijschriften). Door een bijschrift toe te voegen krijgt de kaart een kader.\n\nHier kan wikitekst-opmaak worden gebruikt, bijvoorbeeld voor vetgedrukte tekst, koppelingen of verwijzingen.",
 	"visualeditor-mwmapsdialog-language": "Taal",
