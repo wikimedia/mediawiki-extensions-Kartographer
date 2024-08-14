@@ -21,7 +21,7 @@
 	"kartographer-error-bad_data": "Der JSON-Inhalt ist kein gültiges GeoJSON+simplestyle. Die nachstehende Liste zeigt alle Versuche, sie nach [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json dem JSON-Schema] zu interpretieren. Nicht alle sind Fehler.",
 	"kartographer-error-latlon": "Entweder sollten die Parameter „latitude“ und „longitude“ oder keiner der beiden angegeben werden.",
 	"kartographer-error-title": "Der Titel „$1“ ist keine gültige Kartendatenseite",
-	"kartographer-tracking-category": "Seiten mit Karten",
+	"kartographer-tracking-category": "Seiten, die die Kartographer-Erweiterung verwenden",
 	"kartographer-tracking-category-desc": "Die Seite enthält eine Karte.",
 	"kartographer-coord-lat-pos-lon-pos": "$1°$2′$3″N $4°$5′$6″O",
 	"kartographer-coord-lat-neg-lon-pos": "$1°$2′$3″S $4°$5′$6″O",
