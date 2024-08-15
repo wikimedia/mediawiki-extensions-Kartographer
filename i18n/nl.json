@@ -25,7 +25,7 @@
 	"kartographer-error-bad_data": "De JSON-inhoud is geen geldige GeoJSON+simplestyle. In de onderstaande lijst staan alle pogingen om deze te interpreteren volgens [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json het JSON-schema]. Het zijn niet allemaal fouten.",
 	"kartographer-error-latlon": "De parameters \"latitude\" en \"longitude\" moeten allebei worden verstrekt, of geen van beide",
 	"kartographer-error-title": "De titel \"$1\" verwijst niet naar een geldige pagina met kaartgegevens",
-	"kartographer-tracking-category": "Pagina's met kaarten",
+	"kartographer-tracking-category": "Pagina's die de uitbreiding Kartographer gebruiken",
 	"kartographer-tracking-category-desc": "De pagina bevat een kaart",
 	"kartographer-specialmap-invalid-coordinates": "Ongeldige coördinaten opgegeven",
 	"kartographer-specialmap-world": "Wereldkaart",

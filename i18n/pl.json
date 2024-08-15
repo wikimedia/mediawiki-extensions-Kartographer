@@ -27,7 +27,7 @@
 	"kartographer-error-bad_data": "Zawartość JSON nie jest poprawnym GeoJSON+simplestyle. Lista poniżej opisuje wszystkie próby interpretacji zgodnie ze [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json specyfikacją JSON]. Nie wszystkie są błędami.",
 	"kartographer-error-latlon": "Podaj zarówno \"długość\" jak i \"szerokość\", albo żaden z parametrów",
 	"kartographer-error-title": "Tytuł „$1” nie jest prawidłową stroną danych mapy",
-	"kartographer-tracking-category": "Strony z mapami",
+	"kartographer-tracking-category": "Strony używające rozszerzenia Kartographer",
 	"kartographer-tracking-category-desc": "Strona zawiera mapę",
 	"kartographer-specialmap-invalid-coordinates": "Podano nieprawidłowe współrzędne",
 	"kartographer-specialmap-world": "Mapa świata",

@@ -29,7 +29,7 @@
 	"kartographer-error-bad_data": "JSON içeriği geçerli GeoJSON+simplestyle değil. Aşağıdaki liste, bunu [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json JSON şemasına] göre yorumlayan tüm girişimleri gösterir. Hepsi hata olmayabilir.",
 	"kartographer-error-latlon": "Hem \"latitude\" hem de \"longitude\" parametreleri sağlanmalı veya hiçbiri sağlanmamalıdır",
 	"kartographer-error-title": "\"$1\" başlığı geçerli bir harita veri sayfası değil",
-	"kartographer-tracking-category": "Haritalı sayfalar",
+	"kartographer-tracking-category": "Kartographer uzantısını kullanan sayfalar",
 	"kartographer-tracking-category-desc": "Sayfa bir harita içeriyor",
 	"kartographer-coord-lat-pos-lon-pos": "$1°$2′$3″K $4°$5′$6″D",
 	"kartographer-coord-lat-pos-lon-neg": "$1°$2′$3″K $4°$5′$6″B",
