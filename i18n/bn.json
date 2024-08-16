@@ -22,7 +22,7 @@
 	"kartographer-error-bad_data": "JSON সামগ্রীটি বৈধ GeoJSON+simplestyle নয়। নিচের তালিকাটি [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json JSON স্কিমা] অনুযায়ী এটি ব্যাখ্যা করার সমস্ত প্রচেষ্টা দেখায়। সবগুলোই ভুল নয়।",
 	"kartographer-error-latlon": "হয় উভয় \"অক্ষাংশ\" এবং \"দ্রাঘিমাংশ\" পরামিতি সরবরাহ করা উচিত অথবা দুটির একটিও নয়",
 	"kartographer-error-title": "শিরোনাম \"$1\" একটি বৈধ মানচিত্রের উপাত্ত পাতা নয়",
-	"kartographer-tracking-category": "মানচিত্রসহ পাতা",
+	"kartographer-tracking-category": "কার্টোগ্রাফার এক্সটেনশন ব্যবহার করা পাতা",
 	"kartographer-tracking-category-desc": "পাতাটি একটি মানচিত্র অন্তর্ভুক্ত করে",
 	"kartographer-specialmap-invalid-coordinates": "সরবরাহকৃত স্থানাঙ্ক অবৈধ",
 	"kartographer-specialmap-world": "বিশ্ব মানচিত্র",
