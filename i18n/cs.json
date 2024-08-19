@@ -20,7 +20,7 @@
 	"kartographer-error-bad_data": "JSON obsah není platný GeoJSON+simplestyle. První chyba validace je na elementu „$1“: „$2“.",
 	"kartographer-error-latlon": "Zadány by měly být buď oba parametry „latitude“ a „longitude“, nebo ani jeden",
 	"kartographer-error-title": "„$1“ není platný název stránky s mapovými daty",
-	"kartographer-tracking-category": "Stránky s mapami",
+	"kartographer-tracking-category": "Stránky používající rozšíření Kartographer",
 	"kartographer-tracking-category-desc": "Tato stránka obsahuje mapu",
 	"kartographer-specialmap-invalid-coordinates": "Zadány neplatné souřadnice",
 	"kartographer.css": "/* Zde uvedené CSS bude ovlivňovat každou stránku obsahující mapu */",

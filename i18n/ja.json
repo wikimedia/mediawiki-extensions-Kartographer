@@ -34,7 +34,7 @@
 	"kartographer-error-bad_data": "このJSON コンテンツは正しいGeoJSON+simplestyleではありません。以下の一覧は[https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json JSON スキーマ]に従って解釈しようとするすべての試みを示しています。すべてがエラーというわけではありません。",
 	"kartographer-error-latlon": "パラメータの「latitude」と「longitude」の両方を入力するか、どちらも不用か",
 	"kartographer-error-title": "タイトル \"$1\" は正しい地図データのページではありません",
-	"kartographer-tracking-category": "地図があるページ",
+	"kartographer-tracking-category": "Kartographer拡張機能を使用しているページ",
 	"kartographer-tracking-category-desc": "そのページはマップを含んでいます",
 	"kartographer-specialmap-invalid-coordinates": "不適切な座標が入力されました",
 	"kartographer-specialmap-world": "世界地図",
