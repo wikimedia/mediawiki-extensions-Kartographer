@@ -23,7 +23,7 @@
 	"kartographer-error-bad_data": "El contingut JSON no és vàlid per GeoJSON+simplestyle. El primer error de validació és a l'element \"$1\": \"$2\".",
 	"kartographer-error-latlon": "Cal proporcionar tots dos paràmetres «latitude» i «longitude» o bé cap d'ells",
 	"kartographer-error-title": "El títol «$1» no és una pàgina vàlida de dades de mapa",
-	"kartographer-tracking-category": "Pàgines amb mapes",
+	"kartographer-tracking-category": "Pàgines que usen l'extensió Kartographer",
 	"kartographer-tracking-category-desc": "La pàgina inclou un mapa",
 	"kartographer-specialmap-invalid-coordinates": "Les coordenades proporcionades no son vàlides",
 	"kartographer-linktype-aerial": "Aeri",
