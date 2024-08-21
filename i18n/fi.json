@@ -28,7 +28,7 @@
 	"kartographer-error-bad_data": "JSON-tiedoston sisältö ei ole validi GeoJSON+simplestyle",
 	"kartographer-error-latlon": "On annettava joko sekä ”latitude”- että ”longitude”-arvot tai sitten ei kumpaakaan niistä",
 	"kartographer-error-title": "Nimike ”$1” ei ole kelvollinen karttatietosivu",
-	"kartographer-tracking-category": "Sivut, joissa on karttoja",
+	"kartographer-tracking-category": "Kartographer-laajennusta käyttävät sivut",
 	"kartographer-tracking-category-desc": "Sivu sisältää kartan",
 	"kartographer-specialmap-invalid-coordinates": "Annetut koordinaatit ovat virheelliset",
 	"kartographer-specialmap-world": "Maailmankartta",
