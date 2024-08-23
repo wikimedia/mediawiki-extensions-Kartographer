@@ -23,7 +23,7 @@
 	"kartographer-error-json": "امکان تحلیل JSON وجود ندارد:‌$1",
 	"kartographer-error-missing-attr": "مقدار $1 ارائه نشده است",
 	"kartographer-error-bad_attr": "مقدار ویژگی $1 نامعتبر است",
-	"kartographer-tracking-category": "صفحه‌های دارای نقشه",
+	"kartographer-tracking-category": "صفحه‌هایی که از افزونه نقشه‌نگار استفاده می‌کنند",
 	"kartographer-tracking-category-desc": "صفحه دارای یک نقشه",
 	"kartographer-specialmap-invalid-coordinates": "مختصات نامعتبر ارائه شده است",
 	"kartographer-linktype-aerial": "هوایی",
