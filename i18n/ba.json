@@ -3,6 +3,7 @@
 		"authors": [
 			"Amire80",
 			"Sagan",
+			"Stjn",
 			"Азат Хәлилов",
 			"Айсар",
 			"З. ӘЙЛЕ",
@@ -12,7 +13,7 @@
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Викимедиа карталары] | мәғлүмәттәр © [https://www.openstreetmap.org/copyright OpenStreetMap ҡатнашыусылары]",
-	"kartographer-broken-category": "Карталары дөрөҫ булмаған {{#switch:{{NAMESPACE}}|{{ns:File}}=файлдар|#default=биттәр}}",
+	"kartographer-broken-category": "Карталары дөрөҫ булмаған биттәр",
 	"kartographer-broken-category-desc": "Был биттә файҙаланырға яраҡһыҙ карталар бар",
 	"kartographer-desc": "Карталарҙы вики-биткә өҫтәргә рөхсәт итә.",
 	"kartographer-error-context-multi": "$1 проблемалары: $2",
