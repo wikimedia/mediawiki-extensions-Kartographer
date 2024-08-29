@@ -24,7 +24,7 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 	 * @throws DOMException
 	 */
 	public function sourceToDom( ParsoidExtensionAPI $extApi, string $src, array $extArgs ) {
-		[ $status, $args, $geometries, $srcOffsets ] = $this->parseTag( $extApi, $src, $extArgs );
+		[ $status, $args, $geometries ] = $this->parseTag( $extApi, $src, $extArgs );
 
 		if ( !$status->isGood() ) {
 			return $this->reportErrors( $extApi, self::TAG, $status );
@@ -102,7 +102,10 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 					'extTag' => 'mapframe',
 					'context' => 'inline',
 				],
-				'srcOffsets' => $srcOffsets['text']->value ?? null,
+				// the wikitext is embedded into a JSON attribute, processing in a new frame seems to be the right move
+				// to avoid DSR failures
+				'processInNewFrame' => true,
+				'clearDSROffsets' => true,
 			], false );
 			$div = $doc->createElement( 'div' );
 			$div->setAttribute( 'class', 'thumbcaption' );
