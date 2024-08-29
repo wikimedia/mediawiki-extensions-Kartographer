@@ -21,7 +21,7 @@
 	"kartographer-error-bad_data": "תוכן ה־JSON אינו GeoJSON+simplestyle תקין. הרשימה להלן מציגה את כל הניסיונות לפרש את זה בהתאם ל[https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json סכמת JSON]. לא כולם שגיאות.",
 	"kartographer-error-latlon": "יש לספק את שני הפרמטרים \"קו רוחב\" ו\"קו אורך\", או לא לספק אף אחד מהם",
 	"kartographer-error-title": "הכותרת \"$1\" אינה דף נתוני מפה תקין",
-	"kartographer-tracking-category": "דפים שמשתמש בהרחבה Kartographer",
+	"kartographer-tracking-category": "דפים שמשתמשים בהרחבה Kartographer",
 	"kartographer-tracking-category-desc": "הדף הזה מכיל מפה",
 	"kartographer-specialmap-invalid-coordinates": "הקואורדינטות שסופקו אינן תקינות",
 	"kartographer-specialmap-world": "מפת העולם",
