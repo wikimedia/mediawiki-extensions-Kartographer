@@ -24,7 +24,7 @@ module.exports = function () {
 			return $.isPlainObject( ...args );
 		},
 		extend: function ( ...args ) {
-			// eslint-disable-next-line no-jquery/no-extend
+
 			return $.extend( ...args );
 		},
 		getJSON: function ( ...args ) {

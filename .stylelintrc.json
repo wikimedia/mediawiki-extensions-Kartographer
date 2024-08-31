@@ -1,7 +1,6 @@
 {
 	"extends": [
-		"stylelint-config-wikimedia/support-modern",
-		"stylelint-config-wikimedia/mediawiki"
+		"stylelint-config-wikimedia"
 	],
 	"rules": {
 		"declaration-property-unit-disallowed-list": null,
