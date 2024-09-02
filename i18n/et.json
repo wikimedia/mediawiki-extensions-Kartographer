@@ -18,7 +18,7 @@
 	"kartographer-error-bad_data": "See JSON-sisu pole õige GeoJSON+simplestyle. Järgmises loendis on kõik katsed tõlgendada seda vastavalt [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json JSON-skeemile]. Need kõik ei ole vead.",
 	"kartographer-error-latlon": "Ära peab olema toodud nii \"latitude\" kui ka \"longitude\" või mitte kumbki.",
 	"kartographer-error-title": "Pealkiri \"$1\" ei vasta sobivale kaardiandmete leheküljele.",
-	"kartographer-tracking-category": "Kaartidega leheküljed",
+	"kartographer-tracking-category": "Tarkvaralisa Kartographer kasutavad leheküljed",
 	"kartographer-tracking-category-desc": "Sellel leheküljel on kaart.",
 	"kartographer-coord-lat-pos-lon-pos": "$1° $2′ $3″ N, $4° $5′ $6″ E",
 	"kartographer-coord-lat-pos-lon-neg": "$1° $2′ $3″ N, $4° $5′ $6″ W",
