@@ -8,8 +8,6 @@ use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Title\Title;
 use MediaWikiLangTestCase;
 use ParserOptions;
-use Wikimedia\Parsoid\Utils\DOMCompat;
-use Wikimedia\Parsoid\Utils\DOMDataUtils;
 
 /**
  * @group Kartographer
@@ -223,22 +221,31 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$this->assertTrackingCategory( 'kartographer-tracking-category', $output );
 	}
 
-	/** Testing T362034 - this test fails if we're not passing srcOffsets when parsing the text content */
-	public function testSrcOffsetsMaplinkParsoid() {
+	/**
+	 * There are three ways of handling srcOffsets in the extension:
+	 * a/ do nothing
+	 * b/ pass srcOffsets for the embedded wikitext
+	 * c/ reset the frame
+	 *
+	 * Doing nothing fails parserTests introduced when fixing T362034).
+	 * Passing srcOffsets is very error-prone since the wikitext content can be normalized (stripped spaces,
+	 * converted entities) and simply passing them blindly can crash the rendering on UTF-8 boundary issues (see
+	 * T373460).
+	 * This test ensures that if the srcOffsets are reintroduced at some point, they avoid the pitfalls we already
+	 * ran into.
+	 */
+	public function testSrcOffsetsDoNotCrash() {
 		$tests = [
-			"<maplink latitude=10.123 longitude=20.456 zoom=13 text='hello {{1x|plop}} world' />",
-			"<mapframe width=100 height=100 latitude=10.123 longitude=20.456 zoom=13 text='hello {{1x|plop}} world' />"
+			'<mapframe zoom=7 width=250 height=250' .
+			' latitude=50.3500 longitude=30.7100 text="{{colorbox|#79da8f}}&nbsp;Безпечні зони{{^|1px}}"/>',
+			'<mapframe zoom=13 latitude = 45.76 longitude =8.56' .
+			' align=right width=250 height=350 text=" {{Légende|#400080|Collégiale de la Nativité}}"/>'
 		];
 		foreach ( $tests as $wikitext ) {
 			$output = $this->parseParsoid( $wikitext );
-			$pb = PageBundleParserOutputConverter::pageBundleFromParserOutput( $output );
-			$dom = $pb->toDom();
-			$transclusion = DOMCompat::querySelector( $dom, '[typeof~="mw:Transclusion"]' );
-			$dp = DOMDataUtils::getJSONAttribute( $transclusion, 'data-parsoid', '' );
-			$start = strpos( $wikitext, '{' );
-			// second }
-			$end = strpos( $wikitext, '}' ) + 1;
-			$this->assertEquals( [ $start, $end + 1, null, null ], $dp->dsr );
+			PageBundleParserOutputConverter::pageBundleFromParserOutput( $output );
+			// just checking we're still alive
+			$this->assertTrue( true );
 		}
 	}
 

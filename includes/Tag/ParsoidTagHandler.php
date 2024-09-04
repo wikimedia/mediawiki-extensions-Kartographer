@@ -14,7 +14,6 @@ use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Ext\ExtensionTagHandler;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
 use Wikimedia\Parsoid\Ext\Utils;
-use Wikimedia\Parsoid\Tokens\KVSourceRange;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 
 /**
@@ -27,12 +26,11 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 	 * @param ParsoidExtensionAPI $extApi
 	 * @param string $input
 	 * @param stdClass[] $extArgs
-	 * @return array{StatusValue,MapTagArgumentValidator,stdClass[],array<string,?KVSourceRange>}
+	 * @return array{StatusValue,MapTagArgumentValidator,stdClass[]}
 	 */
 	protected function parseTag( ParsoidExtensionAPI $extApi, string $input, array $extArgs ): array {
-		$srcOffsets = [];
 		$args = $this->processArguments(
-			$this->convertParsoidExtensionArguments( $extArgs, $srcOffsets ),
+			$this->convertParsoidExtensionArguments( $extArgs ),
 			$extApi
 		);
 		$status = $args->status;
@@ -53,15 +51,14 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 			}
 		}
 
-		return [ $status, $args, $geometries, $srcOffsets ];
+		return [ $status, $args, $geometries ];
 	}
 
 	/**
 	 * @param stdClass[] $extArgs
-	 * @param array<string,?KVSourceRange> &$srcOffsets Secondary out-parameter
 	 * @return array<string,string>
 	 */
-	private function convertParsoidExtensionArguments( array $extArgs, array &$srcOffsets ): array {
+	private function convertParsoidExtensionArguments( array $extArgs ): array {
 		$args = [];
 		foreach ( $extArgs as $extArg ) {
 			// Might be an array or Token object when wikitext like <maplink {{1x|text}}=… /> is
@@ -73,8 +70,6 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 				} else {
 					$args[$extArg->k] = $extArg->v;
 				}
-
-				$srcOffsets[$extArg->k] = $extArg->srcOffsets ?? null;
 			}
 		}
 		return $args;
