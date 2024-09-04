@@ -477,7 +477,18 @@ ve.ui.MWMapsDialog.prototype.getReadyProcess = function ( data ) {
 		.next( () => {
 			this.pushPending();
 			this.setupMap()
-				.then( this.popPending.bind( this ) );
+				.then( this.popPending.bind( this ) )
+				.then( () => {
+					/* Now the map is set up, updateMwData will work.
+					   If we're inserting, set originalMwData to the initial
+					   state for hasMeaningfulEdits and isSaveable */
+					if ( this.originalMwData === null ) {
+						const mwData = this.getNewElement().attributes.mw;
+						this.updateMwData( mwData );
+						this.originalMwData = mwData;
+						this.updateActions();
+					}
+				} );
 		} );
 };
 
