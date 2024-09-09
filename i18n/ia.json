@@ -19,7 +19,7 @@
 	"kartographer-error-bad_data": "Le contento JSON non es GeoJSON+simplestyle valide. Le lista sequente monstra tote le tentativas de interpretar lo secundo [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json le schema JSON]. Non totes es errores.",
 	"kartographer-error-latlon": "Le duo parametros \"latitude\" e \"longitude\" debe esser fornite, o necun del duo",
 	"kartographer-error-title": "Le titulo \"$1\" non es un pagina de datos cartographic valide",
-	"kartographer-tracking-category": "Paginas con cartas",
+	"kartographer-tracking-category": "Paginas que usa le extension Kartographer",
 	"kartographer-tracking-category-desc": "Le pagina include un carta",
 	"kartographer-specialmap-invalid-coordinates": "Coordinatas non valide fornite",
 	"kartographer-specialmap-world": "Carta del mundo",
