@@ -12,7 +12,9 @@
 			"神樂坂秀吉",
 			"铁桶",
 			"GuoPC",
-			"MangoFanFanw"
+			"MangoFanFanw",
+			"Winston Sung",
+			"沈澄心"
 		]
 	},
 	"apierror-kartographer-conflicting-revids": "尚不支持在一次请求中查询同一页面的多个修订版本的地图数据。",
@@ -43,6 +45,7 @@
 	"kartographer-link-apple-maps": "苹果地图",
 	"kartographer-link-bing-maps": "必应地图",
 	"kartographer-link-google-maps": "Google地图",
+	"kartographer-link-openstreetmap": "OpenStreetMap",
 	"kartographer-link-waze": "位智",
 	"kartographer-link-wikimapia": "维基卫星地图",
 	"kartographer-sidebar-coordinates": "坐标",
