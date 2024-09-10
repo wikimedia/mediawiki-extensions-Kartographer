@@ -20,7 +20,7 @@
 	"kartographer-error-bad_data": "JSON məzmunu etibarlı GeoJSON+simplestyle deyil. Aşağıdakı siyahı [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json JSON sxemasına] uyğun olaraq onu tətbiq etmək üçün bütün cəhdləri göstərir. Hamısı xəta olmaya bilər.",
 	"kartographer-error-latlon": "\"latitude\" və \"longitude\" parametrlərinin hər ikisi təyin edilməlidir və ya heç biri təyin edilməməlidir",
 	"kartographer-error-title": "\"$1\" başlığı etibarlı xəritə datası səhifəsi deyil",
-	"kartographer-tracking-category": "Kartoqraf uzantısından istifadə edən səhifələr",
+	"kartographer-tracking-category": "Kartographer uzantısından istifadə edən səhifələr",
 	"kartographer-tracking-category-desc": "Səhifədə xəritə var",
 	"kartographer-coord-lat-pos-lon-pos": "$1°$2′$3″ şm. e. $4°$5′$6″ ş. u.",
 	"kartographer-coord-lat-pos-lon-neg": "$1°$2′$3″ şm. e. $4°$5′$6″ q. u.",

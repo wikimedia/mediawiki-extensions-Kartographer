@@ -19,7 +19,7 @@
 	"kartographer-error-missing-attr": "Недостаје атрибут „$1”",
 	"kartographer-error-bad_attr": "Атрибут „$1” има невалиду вредност",
 	"kartographer-error-title": "Наслов „$1” није валидна страница података мапе",
-	"kartographer-tracking-category": "Странице са мапама",
+	"kartographer-tracking-category": "Странице које користе додатак Kartographer",
 	"kartographer-tracking-category-desc": "Странице које укључују мапу",
 	"kartographer-specialmap-invalid-coordinates": "Пружене кординате су невалидне",
 	"kartographer-specialmap-world": "Мапа света",
