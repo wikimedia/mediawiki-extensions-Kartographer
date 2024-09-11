@@ -11,10 +11,12 @@
 			"Ladsgroup",
 			"Reza1615",
 			"درفش کاویانی",
-			"Ebraminio"
+			"Ebraminio",
+			"Ebrahim",
+			"Pppery"
 		]
 	},
-	"kartographer-attribution": "[https://meta.wikimedia.org/wiki/Maps_Terms_of_Use/fa نقشه‌های ویکی‌مدیا] | داده‌های نقشه © [https://www.openstreetmap.org/copyright مشارکت‌کنندگان اوپن‌استریت‌مپ]",
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Policy:Maps_Terms_of_Use/fa نقشه‌های ویکی‌مدیا] | داده‌های نقشه © [https://www.openstreetmap.org/copyright مشارکت‌کنندگان اوپن‌استریت‌مپ]",
 	"kartographer-broken-category": "صفحه‌های با نقشه خراب",
 	"kartographer-broken-category-desc": "در این صفحه یک نقشهٔ خراب استفاده شده است",
 	"kartographer-desc": "اجازه‌دادن به نقشه‌ها برای افزوده‌شدن به صفحه‌های ویکی",
