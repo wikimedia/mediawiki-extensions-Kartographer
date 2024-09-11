@@ -27,7 +27,7 @@ function SideBar( options ) {
 	/**
 	 * @property {Object}
 	 */
-	this.metadata = require( '../../externalLinks.json' );
+	this.metadata = require( './externalLinks.json' );
 	this.parseExternalLinks();
 }
 
