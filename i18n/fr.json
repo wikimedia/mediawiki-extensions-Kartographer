@@ -14,11 +14,13 @@
 			"Urhixidur",
 			"Verdy p",
 			"Wladek92",
-			"Zarisi"
+			"Zarisi",
+			"Goombiis",
+			"Pppery"
 		]
 	},
 	"apierror-kartographer-conflicting-revids": "La demande de données cartographiques depuis plusieurs révisions de la même page en une seule requête n’est pas encore prise en charge.",
-	"kartographer-attribution": "[https://meta.wikimedia.org/wiki/Maps_Terms_of_Use/fr Cartes Wikimedia] | Données de carte © [https://www.openstreetmap.org/copyright Contributeurs d’OpenStreetMap]",
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Policy:Maps_Terms_of_Use/fr Cartes Wikimedia] | Données de carte © [https://www.openstreetmap.org/copyright Contributeurs d’OpenStreetMap]",
 	"kartographer-attribution-externaldata": "$1 : $2",
 	"kartographer-attribution-short": "[https://meta.wikimedia.org/wiki/Maps_Terms_of_Use/fr Wikimedia] | © [https://www.openstreetmap.org/copyright OpenStreetMap]",
 	"kartographer-broken-category": "Pages avec des cartes contenant des erreurs",
