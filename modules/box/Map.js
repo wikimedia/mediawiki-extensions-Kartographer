@@ -120,14 +120,14 @@ function getValidBounds( layer ) {
  * @private
  */
 function buildAttribution( url ) {
-	const uri = new mw.Uri( url );
+	const uri = new URL( url, location.href );
 	const link = mw.html.element(
 		'a',
 		{
 			target: '_blank',
-			href: '//commons.wikimedia.org/wiki/Data:' + encodeURIComponent( uri.query.title )
+			href: '//commons.wikimedia.org/wiki/Data:' + encodeURIComponent( uri.searchParams.get( 'title' ) )
 		},
-		uri.query.title
+		uri.searchParams.get( 'title' )
 	);
 	return mw.msg(
 		'kartographer-attribution-externaldata',

@@ -158,9 +158,9 @@
 		"ext.kartographer.box": {
 			"localBasePath": "modules/box",
 			"dependencies": [
+				"web2017-polyfills",
 				"mediawiki.api",
 				"mediawiki.util",
-				"mediawiki.Uri",
 				"oojs-ui.styles.icons-media",
 				"mapbox",
 				"ext.kartographer.lib.topojson",
