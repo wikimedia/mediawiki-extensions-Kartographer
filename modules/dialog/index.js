@@ -35,7 +35,9 @@ function close() {
 	}
 }
 
-function closeIfNotMapRoute( routeEv ) {
+function onRouterRoute( routeEv ) {
+	// The hash has been changed by some user action. If it is no longer
+	// a known map route, close the map dialog.
 	const isMapRoute = routeEv && /^\/(map|maplink)\//.test( routeEv.path );
 	if ( !isMapRoute ) {
 		close();
@@ -54,8 +56,7 @@ module.exports = {
 		const dialog = getMapDialog();
 
 		if ( map.useRouter && !routerEnabled ) {
-			router.on( 'route', closeIfNotMapRoute );
-			router.route( '', closeIfNotMapRoute );
+			router.on( 'route', onRouterRoute );
 			routerEnabled = true;
 		}
 
@@ -100,8 +101,7 @@ module.exports = {
 			const map = require( 'ext.kartographer.box' ).map( mapObject );
 			deferred.resolve( map );
 			if ( map.useRouter && !routerEnabled ) {
-				router.on( 'route', closeIfNotMapRoute );
-				router.route( '', closeIfNotMapRoute );
+				router.on( 'route', onRouterRoute );
 				routerEnabled = true;
 			}
 			dialog.setMap( map );
@@ -117,9 +117,10 @@ module.exports = {
 	close: function () {
 		if ( mapDialog && mapDialog.map.useRouter ) {
 			router.navigate( '' );
-		} else {
-			close();
+			// #navigate uses history.pushState which doesn't trigger a
+			// hashchange event, so we still need to close the dialog manually.
 		}
+		close();
 	},
 
 	private: {
