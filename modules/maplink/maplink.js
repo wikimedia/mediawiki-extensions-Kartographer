@@ -82,7 +82,7 @@ function activateRouter() {
 	//     #/maplink/0/5
 	//     #/maplink/0/16/-122.4006/37.7873
 
-	router.route( /maplink\/([0-9]+)(?:\/([0-9]+))?(?:\/([+-]?\d+\.?\d{0,5})?\/([+-]?\d+\.?\d{0,5})?)?/, ( maptagId, zoom, latitude, longitude ) => {
+	router.addRoute( /maplink\/([0-9]+)(?:\/([0-9]+))?(?:\/([+-]?\d+\.?\d{0,5})?\/([+-]?\d+\.?\d{0,5})?)?/, ( maptagId, zoom, latitude, longitude ) => {
 		const link = maplinks[ maptagId ];
 
 		if ( !link ) {
