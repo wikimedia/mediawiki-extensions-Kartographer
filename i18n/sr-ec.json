@@ -8,7 +8,8 @@
 			"Obsuser",
 			"Vlad5250",
 			"Zoranzoki21",
-			"Сербијана"
+			"Сербијана",
+			"Obradovic Goran"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Викимедијине мапе] | Подаци мапе © [https://www.openstreetmap.org/copyright Сарадници OpenStreetMap]",
@@ -18,7 +19,7 @@
 	"kartographer-desc": "Омогућава додавање мапа на вики страницама",
 	"kartographer-error-json": "Није могуће рашчланити JSON: $1",
 	"kartographer-error-missing-attr": "Недостаје атрибут „$1”",
-	"kartographer-error-bad_attr": "Атрибут „$1” има невалиду вредност",
+	"kartographer-error-bad_attr": "Атрибут „$1” има невалидну вредност",
 	"kartographer-error-title": "Наслов „$1” није валидна страница података мапе",
 	"kartographer-tracking-category": "Странице са мапама",
 	"kartographer-tracking-category-desc": "Странице које укључују мапу",
