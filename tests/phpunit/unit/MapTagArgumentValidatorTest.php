@@ -18,13 +18,14 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 
 	public function testBasicFunctionality() {
 		$language = $this->createMock( Language::class );
+		$languageNameUtils = $this->createMock( LanguageNameUtils::class );
 		$args = new MapTagArgumentValidator( 'mapframe', [
 			'width' => '100%',
 			'height' => '300',
 			'align' => 'center',
 			'frameless' => '',
 			'group' => 'hotels',
-		], $this->getConfig(), $language );
+		], $this->getConfig(), $language, $languageNameUtils );
 
 		$this->assertStatusGood( $args->status );
 		$this->assertNull( $args->lat );
@@ -46,16 +47,18 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 
 	public function testRequiredAttributes() {
 		$language = $this->createMock( Language::class );
-		$args = new MapTagArgumentValidator( 'mapframe', [], $this->getConfig(), $language );
+		$languageNameUtils = $this->createMock( LanguageNameUtils::class );
+		$args = new MapTagArgumentValidator( 'mapframe', [], $this->getConfig(), $language, $languageNameUtils );
 
 		$this->assertStatusError( 'kartographer-error-missing-attr', $args->status );
 	}
 
 	public function testInvalidCoordinatePair() {
 		$language = $this->createMock( Language::class );
+		$languageNameUtils = $this->createMock( LanguageNameUtils::class );
 		$args = new MapTagArgumentValidator( '', [
 			'latitude' => 0,
-		], $this->getConfig(), $language );
+		], $this->getConfig(), $language, $languageNameUtils );
 
 		$this->assertStatusError( 'kartographer-error-latlon', $args->status );
 	}
@@ -64,11 +67,12 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 		$language = $this->createMock( Language::class );
 		$language->method( 'alignEnd' )->willReturn( 'left' );
 
+		$languageNameUtils = $this->createMock( LanguageNameUtils::class );
 		$args = new MapTagArgumentValidator( 'mapframe', [
 			'width' => '200',
 			'height' => '200',
 			'align' => 'invalid',
-		], $this->getConfig(), $language );
+		], $this->getConfig(), $language, $languageNameUtils );
 
 		$this->assertSame( 'left', $args->align );
 		$this->assertStatusError( 'kartographer-error-bad_attr', $args->status );
@@ -76,10 +80,12 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 
 	public function testUserProvidedLanguage() {
 		$language = $this->createMock( Language::class );
+		$languageNameUtils = $this->createMock( LanguageNameUtils::class );
+		$languageNameUtils->method( 'isKnownLanguageTag' )->willReturn( true );
 
 		$args = new MapTagArgumentValidator( 'mapframe', [
 			'lang' => 'hu',
-		], $this->getConfig(), $language );
+		], $this->getConfig(), $language, $languageNameUtils );
 
 		$this->assertSame( 'hu', $args->getLanguageCodeWithDefaultFallback() );
 	}
@@ -119,9 +125,10 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 	 */
 	public function testShowGroups( string $show, ?array $expected ) {
 		$language = $this->createMock( Language::class );
+		$languageNameUtils = $this->createMock( LanguageNameUtils::class );
 		$args = new MapTagArgumentValidator( 'maplink', [
 			'show' => $show,
-		], $this->getConfig(), $language );
+		], $this->getConfig(), $language, $languageNameUtils );
 
 		if ( $expected === null ) {
 			$this->assertStatusError( 'kartographer-error-bad_attr', $args->status );

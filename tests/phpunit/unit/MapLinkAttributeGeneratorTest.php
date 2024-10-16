@@ -6,6 +6,7 @@ use Kartographer\Tag\MapLinkAttributeGenerator;
 use Kartographer\Tag\MapTagArgumentValidator;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Language\Language;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWikiUnitTestCase;
 
 /**
@@ -17,6 +18,7 @@ class MapLinkAttributeGeneratorTest extends MediaWikiUnitTestCase {
 
 	public function testContainerAttributeGeneration() {
 		$language = $this->createMock( Language::class );
+		$languageNameUtils = $this->createMock( LanguageNameUtils::class );
 		$config = new HashConfig( [
 			'KartographerDfltStyle' => 'custom',
 			'KartographerStyles' => [],
@@ -29,7 +31,7 @@ class MapLinkAttributeGeneratorTest extends MediaWikiUnitTestCase {
 			'class' => 'custom-class',
 			'zoom' => 12,
 			'group' => 'hotels',
-		], $config, $language );
+		], $config, $language, $languageNameUtils );
 		$args->setFirstMarkerProperties( null, (object)[ 'marker-color' => '#f00' ] );
 		$generator = new MapLinkAttributeGenerator( $args );
 

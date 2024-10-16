@@ -6,6 +6,7 @@ use Kartographer\Tag\MapFrameAttributeGenerator;
 use Kartographer\Tag\MapTagArgumentValidator;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Language\Language;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWikiUnitTestCase;
 
 /**
@@ -17,6 +18,7 @@ class MapFrameAttributeGeneratorTest extends MediaWikiUnitTestCase {
 
 	public function testContainerAndImageAttributeGeneration() {
 		$language = $this->createMock( Language::class );
+		$languageNameUtils = $this->createMock( LanguageNameUtils::class );
 		$config = new HashConfig( [
 			'KartographerDfltStyle' => 'custom',
 			'KartographerMapServer' => '',
@@ -34,7 +36,7 @@ class MapFrameAttributeGeneratorTest extends MediaWikiUnitTestCase {
 			'zoom' => 12,
 			'group' => 'hotels',
 			'frameless' => '',
-		], $config, $language );
+		], $config, $language, $languageNameUtils );
 		$generator = new MapFrameAttributeGenerator( $args, $config );
 
 		$attrs = $generator->prepareAttrs();
