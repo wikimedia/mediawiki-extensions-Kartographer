@@ -5,7 +5,7 @@ namespace Kartographer\Tag;
 use FormatJson;
 use Kartographer\ParsoidUtils;
 use Kartographer\SimpleStyleParser;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Config\Config;
 use MediaWiki\Parser\ParserOutputStringSets;
 use MediaWiki\Title\Title;
 use stdClass;
@@ -21,6 +21,14 @@ use Wikimedia\Parsoid\Utils\DOMTraverser;
  * @license MIT
  */
 class ParsoidDomProcessor extends DOMProcessor {
+
+	private Config $config;
+
+	public function __construct(
+		Config $config
+	) {
+		$this->config = $config;
+	}
 
 	/** @inheritDoc */
 	public function wtPostprocess( ParsoidExtensionAPI $extApi, Node $root, array $options ): void {
@@ -47,7 +55,7 @@ class ParsoidDomProcessor extends DOMProcessor {
 			return;
 		}
 
-		$mapServer = MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerMapServer' );
+		$mapServer = $this->config->get( 'KartographerMapServer' );
 		$extApi->getMetadata()->addModuleStyles( [ 'ext.kartographer.style' ] );
 		$extApi->getMetadata()->appendOutputStrings( ParserOutputStringSets::EXTRA_CSP_DEFAULT_SRC, [ $mapServer ] );
 
@@ -70,8 +78,7 @@ class ParsoidDomProcessor extends DOMProcessor {
 		$interactive = $state['interactiveGroups'];
 		$state['interactiveGroups'] = array_keys( $state['interactiveGroups'] );
 		$state['requestedGroups'] = array_keys( $state['requestedGroups'] );
-		$state['parsoidIntVersion'] =
-			MediaWikiServices::getInstance()->getMainConfig()->get( 'KartographerParsoidVersion' );
+		$state['parsoidIntVersion'] = $this->config->get( 'KartographerParsoidVersion' );
 		$extApi->getMetadata()->setExtensionData( 'kartographer', $state );
 
 		foreach ( $interactive as $req ) {
@@ -174,12 +181,11 @@ class ParsoidDomProcessor extends DOMProcessor {
 		$url = explode( '?', $src );
 		$attrs = wfCgiToArray( $url[1] );
 
-		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$linkTarget = $extApi->getPageConfig()->getLinkTarget();
 		$pagetitle = Title::newFromLinkTarget( $linkTarget )->getPrefixedDBkey();
 		$revisionId = $extApi->getPageConfig()->getRevisionId();
 		$attrs = array_merge( $attrs,
-			MapFrameAttributeGenerator::getUrlAttrs( $config, $pagetitle, $revisionId, [ $groupId ] )
+			MapFrameAttributeGenerator::getUrlAttrs( $this->config, $pagetitle, $revisionId, [ $groupId ] )
 		);
 
 		return $url[0] . '?' . wfArrayToCgi( $attrs );

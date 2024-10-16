@@ -2,7 +2,7 @@
 
 namespace Kartographer\Tag;
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Config\Config;
 use Wikimedia\Parsoid\Ext\ExtensionModule;
 
 /**
@@ -10,13 +10,20 @@ use Wikimedia\Parsoid\Ext\ExtensionModule;
  */
 class ParsoidKartographerConfig implements ExtensionModule {
 
+	private Config $config;
+
+	public function __construct(
+		Config $config
+	) {
+		$this->config = $config;
+	}
+
 	/**
 	 * @inheritDoc
 	 * @codeCoverageIgnore
 	 */
 	public function getConfig(): array {
-		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		if ( $mainConfig->get( 'KartographerParsoidSupport' ) ) {
+		if ( $this->config->get( 'KartographerParsoidSupport' ) ) {
 			return [
 				'name' => 'Kartographer',
 				'tags' => [
@@ -32,7 +39,12 @@ class ParsoidKartographerConfig implements ExtensionModule {
 					],
 					[
 						'name' => 'mapframe',
-						'handler' => ParsoidMapFrame::class,
+						'handler' => [
+							'class' => ParsoidMapFrame::class,
+							'services' => [
+								'MainConfig'
+							],
+						],
 						'options' => [
 							'outputHasCoreMwDomSpecMarkup' => true,
 							'wt2html' => [
@@ -41,7 +53,12 @@ class ParsoidKartographerConfig implements ExtensionModule {
 						],
 					]
 				],
-				'domProcessors' => [ ParsoidDomProcessor::class ]
+				'domProcessors' => [ [
+					'class' => ParsoidDomProcessor::class,
+					'services' => [
+						'MainConfig',
+					] ],
+				],
 			];
 		} else {
 			return [
