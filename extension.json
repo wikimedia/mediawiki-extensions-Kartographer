@@ -537,7 +537,12 @@
 		"kartographer-broken-category"
 	],
 	"ParsoidModules": [
-		"Kartographer\\Tag\\ParsoidKartographerConfig"
+		{
+			"class": "Kartographer\\Tag\\ParsoidKartographerConfig",
+			"services": [
+				"MainConfig"
+			]
+		}
 	],
 	"load_composer_autoloader": true,
 	"manifest_version": 2

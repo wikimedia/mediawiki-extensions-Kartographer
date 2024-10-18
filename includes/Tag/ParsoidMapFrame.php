@@ -4,7 +4,7 @@ namespace Kartographer\Tag;
 
 use DOMException;
 use Kartographer\ParsoidUtils;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Config\Config;
 use MediaWiki\Title\Title;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
@@ -15,6 +15,14 @@ use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
 class ParsoidMapFrame extends ParsoidTagHandler {
 
 	public const TAG = 'mapframe';
+
+	private Config $config;
+
+	public function __construct(
+		Config $config
+	) {
+		$this->config = $config;
+	}
 
 	/**
 	 * @param ParsoidExtensionAPI $extApi
@@ -33,8 +41,7 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 		// TODO if fullwidth, we really should use interactive mode..
 		// BUT not possible to use both modes at the same time right now. T248023
 		// Should be fixed, especially considering VE in page editing etc...
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$staticMode = $config->get( 'KartographerStaticMapframe' );
+		$staticMode = $this->config->get( 'KartographerStaticMapframe' );
 
 		$serverMayRenderOverlays = !$extApi->isPreview();
 		if ( $staticMode && !$serverMayRenderOverlays ) {
@@ -45,7 +52,7 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 			? 'ext.kartographer.staticframe'
 			: 'ext.kartographer.frame' ] );
 
-		$gen = new MapFrameAttributeGenerator( $args, $config );
+		$gen = new MapFrameAttributeGenerator( $args, $this->config );
 		$attrs = $gen->prepareAttrs();
 
 		$linkTarget = $extApi->getPageConfig()->getLinkTarget();
