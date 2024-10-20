@@ -9,17 +9,17 @@
 
 namespace Kartographer\Tag;
 
-use FormatJson;
 use Kartographer\ParserFunctionTracker;
 use Kartographer\PartialWikitextParser;
 use Kartographer\SimpleStyleParser;
 use Kartographer\State;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\ConfigException;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\PPFrame;
 use MediaWiki\Title\TitleFormatter;
-use PPFrame;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 
 /**

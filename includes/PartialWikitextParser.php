@@ -3,7 +3,7 @@
 namespace Kartographer;
 
 use MediaWiki\Parser\Parser;
-use PPFrame;
+use MediaWiki\Parser\PPFrame;
 
 /**
  * @license MIT

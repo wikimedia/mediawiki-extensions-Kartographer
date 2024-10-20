@@ -4,8 +4,8 @@ namespace Kartographer\UnitTests;
 
 use Kartographer\Tag\MapLinkAttributeGenerator;
 use Kartographer\Tag\MapTagArgumentValidator;
-use Language;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Language\Language;
 use MediaWikiUnitTestCase;
 
 /**

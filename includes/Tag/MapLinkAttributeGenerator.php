@@ -2,8 +2,8 @@
 
 namespace Kartographer\Tag;
 
-use FormatJson;
 use Kartographer\Special\SpecialMap;
+use MediaWiki\Json\FormatJson;
 
 /**
  * @license MIT

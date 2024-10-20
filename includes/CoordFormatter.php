@@ -2,7 +2,7 @@
 
 namespace Kartographer;
 
-use Language;
+use MediaWiki\Language\Language;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
 

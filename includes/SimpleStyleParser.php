@@ -2,14 +2,14 @@
 
 namespace Kartographer;
 
-use FormatJson;
 use InvalidArgumentException;
 use JsonConfig\JCMapDataContent;
 use JsonConfig\JCSingleton;
 use JsonSchema\Validator;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;
-use PPFrame;
+use MediaWiki\Parser\PPFrame;
 use StatusValue;
 use stdClass;
 

@@ -3,9 +3,9 @@
 namespace Kartographer\UnitTests;
 
 use Kartographer\Tag\MapTagArgumentValidator;
-use Language;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Language\Language;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWikiUnitTestCase;
 

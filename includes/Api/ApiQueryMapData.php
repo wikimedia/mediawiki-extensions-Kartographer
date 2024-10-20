@@ -2,20 +2,20 @@
 
 namespace Kartographer\Api;
 
-use ApiBase;
-use ApiQuery;
-use ApiQueryBase;
-use ExtensionRegistry;
 use FlaggableWikiPage;
 use FlaggedRevs;
 use FlaggedRevsParserCache;
-use FormatJson;
 use Kartographer\State;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiQuery;
+use MediaWiki\Api\ApiQueryBase;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use ParserOptions;
+use MediaWiki\Registration\ExtensionRegistry;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 

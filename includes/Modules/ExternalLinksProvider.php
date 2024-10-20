@@ -8,7 +8,7 @@
 
 namespace Kartographer\Modules;
 
-use FormatJson;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\ResourceLoader\Context;
 use RuntimeException;
 use stdClass;

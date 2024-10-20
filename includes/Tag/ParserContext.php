@@ -2,7 +2,7 @@
 
 namespace Kartographer\Tag;
 
-use Language;
+use MediaWiki\Language\Language;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Title\TitleFormatter;
 

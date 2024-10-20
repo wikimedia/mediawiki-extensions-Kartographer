@@ -3,8 +3,8 @@
 namespace Kartographer\Tag;
 
 use InvalidArgumentException;
-use Language;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\Language;
 use StatusValue;
 
 /**

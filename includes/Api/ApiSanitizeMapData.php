@@ -10,16 +10,16 @@
 
 namespace Kartographer\Api;
 
-use ApiBase;
-use ApiMain;
-use FormatJson;
 use Kartographer\MediaWikiWikitextParser;
 use Kartographer\SimpleStyleParser;
+use MediaWiki\Api\ApiBase;
+use MediaWiki\Api\ApiMain;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserFactory;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Status\Status;
 use MediaWiki\Title\Title;
-use ParserFactory;
-use ParserOptions;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

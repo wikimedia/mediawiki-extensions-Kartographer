@@ -8,8 +8,8 @@
 
 namespace Kartographer\Modules;
 
-use ExtensionRegistry;
 use MediaWiki\Config\ConfigException;
+use MediaWiki\Registration\ExtensionRegistry;
 // phpcs:disable MediaWiki.Classes.FullQualifiedClassName -- T308814
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;

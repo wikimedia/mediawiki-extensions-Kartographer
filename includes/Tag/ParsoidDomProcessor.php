@@ -2,10 +2,10 @@
 
 namespace Kartographer\Tag;
 
-use FormatJson;
 use Kartographer\ParsoidUtils;
 use Kartographer\SimpleStyleParser;
 use MediaWiki\Config\Config;
+use MediaWiki\Json\FormatJson;
 use MediaWiki\Parser\ParserOutputStringSets;
 use MediaWiki\Title\Title;
 use stdClass;

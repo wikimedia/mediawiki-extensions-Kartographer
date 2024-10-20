@@ -3,9 +3,9 @@
 namespace Kartographer\Tag;
 
 use DOMException;
-use FormatJson;
 use Kartographer\CoordFormatter;
 use Kartographer\ParsoidUtils;
+use MediaWiki\Json\FormatJson;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
 

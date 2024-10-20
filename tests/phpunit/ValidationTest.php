@@ -4,9 +4,9 @@ namespace Kartographer\Tests;
 
 use Kartographer\SimpleStyleParser;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
-use ParserOptions;
 use StatusValue;
 
 /**
