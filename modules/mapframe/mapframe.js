@@ -150,7 +150,7 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 		//     #/map/0/5
 		//     #/map/0/16/-122.4006/37.7873
 
-		router.route( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([+-]?\d+\.?\d{0,5})?\/([+-]?\d+\.?\d{0,5})?)?/, ( maptagId, zoom, latitude, longitude ) => {
+		router.addRoute( /map\/([0-9]+)(?:\/([0-9]+))?(?:\/([+-]?\d+\.?\d{0,5})?\/([+-]?\d+\.?\d{0,5})?)?/, ( maptagId, zoom, latitude, longitude ) => {
 			const map = maps[ maptagId ];
 
 			if ( !map ) {
