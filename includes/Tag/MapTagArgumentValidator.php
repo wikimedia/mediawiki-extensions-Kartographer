@@ -18,7 +18,7 @@ class MapTagArgumentValidator {
 
 	private Config $config;
 	private Language $defaultLanguage;
-	private ?LanguageNameUtils $languageCodeValidator;
+	private LanguageNameUtils $languageCodeValidator;
 
 	public StatusValue $status;
 	private Tag $args;
@@ -57,14 +57,14 @@ class MapTagArgumentValidator {
 	 * @param array<string,string> $args
 	 * @param Config $config
 	 * @param Language $defaultLanguage
-	 * @param LanguageNameUtils|null $languageCodeValidator
+	 * @param LanguageNameUtils $languageCodeValidator
 	 */
 	public function __construct(
 		string $tag,
 		array $args,
 		Config $config,
 		Language $defaultLanguage,
-		LanguageNameUtils $languageCodeValidator = null
+		LanguageNameUtils $languageCodeValidator
 	) {
 		$this->config = $config;
 		$this->defaultLanguage = $defaultLanguage;
@@ -168,8 +168,6 @@ class MapTagArgumentValidator {
 
 	private function isValidLanguageCode( string $code ): bool {
 		return $code === 'local' ||
-			// Everything is valid without a validator, should only be used in test scenarios
-			!$this->languageCodeValidator ||
 			$this->languageCodeValidator->isKnownLanguageTag( $code );
 	}
 
