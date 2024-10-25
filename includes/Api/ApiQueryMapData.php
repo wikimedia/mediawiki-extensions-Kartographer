@@ -27,13 +27,9 @@ class ApiQueryMapData extends ApiQueryBase {
 	private WikiPageFactory $pageFactory;
 	private ?FlaggedRevsParserCache $parserCache;
 
-	/**
-	 * @param ApiQuery $query
-	 * @param string $moduleName
-	 * @param WikiPageFactory $pageFactory
-	 * @param FlaggedRevsParserCache|null $parserCache
-	 */
-	public function __construct( ApiQuery $query, $moduleName,
+	public function __construct(
+		ApiQuery $query,
+		string $moduleName,
 		WikiPageFactory $pageFactory,
 		?FlaggedRevsParserCache $parserCache
 	) {
