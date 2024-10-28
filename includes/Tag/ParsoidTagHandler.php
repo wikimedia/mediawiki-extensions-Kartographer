@@ -7,6 +7,7 @@ use Kartographer\ParsoidWikitextParser;
 use Kartographer\SimpleStyleParser;
 use LogicException;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Message\Message;
 use StatusValue;
 use stdClass;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
@@ -136,7 +137,15 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 			// individual errors to the fragment instead.
 			$errContainer = $extApi->createInterfaceI18nFragment( 'kartographer-error-context', [ static::TAG, '' ] );
 			$div->appendChild( $errContainer );
-			$err = $extApi->createInterfaceI18nFragment( $errors[0]['message'], $errors[0]['params'] );
+			$params = [];
+			foreach ( $errors[0]['params'] as $k => $p ) {
+				if ( $p instanceof Message ) {
+					$params[$k] = $p->toString( Message::FORMAT_PARSE );
+				} else {
+					$params[$k] = $p;
+				}
+			}
+			$err = $extApi->createInterfaceI18nFragment( $errors[0]['message'], $params );
 			$div->appendChild( $err );
 		}
 

@@ -341,7 +341,7 @@ wgKartographerParsoidSupport=true
 !! html/php
 <div class="mw-kartographer-error">&lt;maplink&gt;: Ошибка JSON: Синтаксическая ошибка</div>
 !! html/parsoid
-<div class="mw-kartographer-error" data-mw-kartographer="maplink" typeof="mw:Extension/maplink" about="#mwt2" data-mw='{"name":"maplink","attrs":{"zoom":"0","latitude":"0","longitude":"0"},"body":{"extsrc":"fail"}}'><span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"kartographer-error-context","params":["maplink",""]}}'></span><span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"kartographer-error-json","params":[{}]}}'></span></div>
+<div class="mw-kartographer-error" data-mw-kartographer="maplink" typeof="mw:Extension/maplink" about="#mwt2" data-mw='{"name":"maplink","attrs":{"zoom":"0","latitude":"0","longitude":"0"},"body":{"extsrc":"fail"}}'><span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"kartographer-error-context","params":["maplink",""]}}'></span><span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"kartographer-error-json","params":["Синтаксическая ошибка"]}}'></span></div>
 !! end
 
 !! test
