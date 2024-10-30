@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"AlvaroMolina",
-			"Amire80",
 			"Dgstranz",
 			"DiegoAmbrocio",
 			"Fitoschido",
@@ -13,7 +12,8 @@
 			"No se",
 			"Rafael.minuesa",
 			"Rubentl134",
-			"YoViajo"
+			"YoViajo",
+			"-jem-"
 		]
 	},
 	"apierror-kartographer-conflicting-revids": "Aún no se admite la consulta de datos de mapas de varias revisiones de la misma página en una solicitud.",

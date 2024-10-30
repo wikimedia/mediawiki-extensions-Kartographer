@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"Agam Riyandana",
-			"Amire80",
 			"Daud I.F. Argana",
 			"Diki Ananta",
 			"Presidenvolksraad",
@@ -10,7 +9,8 @@
 			"Rachmat04",
 			"Sumbukompor",
 			"Veracious",
-			"William Surya Permana"
+			"William Surya Permana",
+			"Rtnf"
 		]
 	},
 	"apierror-kartographer-conflicting-revids": "Melakukan kueri data peta dari beberapa revisi halaman yang sama dalam satu permintaan belum bisa dilakukan.",

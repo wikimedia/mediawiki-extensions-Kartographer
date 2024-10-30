@@ -2,13 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Alshamiri1",
-			"Amire80",
 			"Maroen1990",
 			"Meno25",
 			"Moud hosny",
 			"بدارين",
 			"ديفيد",
-			"محمد أحمد عبد الفتاح"
+			"محمد أحمد عبد الفتاح",
+			"LaMagiaaa"
 		]
 	},
 	"apierror-kartographer-conflicting-revids": "لم يتم دعم الاستعلام عن بيانات الخرائط من مراجعات متعددة لنفس الصفحة في طلب واحد حتى الآن.",
