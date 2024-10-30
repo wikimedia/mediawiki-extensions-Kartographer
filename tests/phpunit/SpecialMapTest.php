@@ -28,7 +28,7 @@ class SpecialMapTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideParseSubpage
 	 */
 	public function testParseSubpage(
-		string $par, float $expectedLat = null, float $expectedLon = null, string $expectedLang = null
+		string $par, ?float $expectedLat = null, ?float $expectedLon = null, ?string $expectedLang = null
 	) {
 		/** @var SpecialMap $specialMap */
 		$specialMap = TestingAccessWrapper::newFromObject( new SpecialMap() );
@@ -98,7 +98,7 @@ class SpecialMapTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::link
 	 * @dataProvider provideLinks
 	 */
-	public function testLink( ?string $expected, ?float $lat, ?float $lon, int $zoom = null, string $lang = 'local' ) {
+	public function testLink( ?string $expected, ?float $lat, ?float $lon, ?int $zoom = null, string $lang = 'local' ) {
 		$this->overrideConfigValue( 'ArticlePath', '/wiki/$1' );
 		$this->assertSame( $expected, SpecialMap::link( $lat, $lon, $zoom, $lang ) );
 	}

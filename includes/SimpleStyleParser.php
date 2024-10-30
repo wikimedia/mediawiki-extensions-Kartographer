@@ -32,7 +32,7 @@ class SimpleStyleParser {
 	private array $options;
 	private string $mapServer;
 
-	public static function newFromParser( Parser $parser, PPFrame $frame = null ): self {
+	public static function newFromParser( Parser $parser, ?PPFrame $frame = null ): self {
 		return new self( new MediaWikiWikitextParser( $parser, $frame ) );
 	}
 

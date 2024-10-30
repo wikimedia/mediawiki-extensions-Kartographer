@@ -69,7 +69,7 @@ class Tag {
 	 * @param string|null $regexp Optional regular expression to validate against
 	 * @return string|null Null when missing or invalid
 	 */
-	public function getString( string $name, string $regexp = null ): ?string {
+	public function getString( string $name, ?string $regexp = null ): ?string {
 		if ( !isset( $this->args[$name] ) ) {
 			return null;
 		}

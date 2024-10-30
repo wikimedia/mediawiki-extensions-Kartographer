@@ -117,9 +117,9 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNormalizeAndSanitize(
 		string $json,
-		string $expected = null,
-		string $expectedError = null,
-		string $option = null
+		?string $expected = null,
+		?string $expectedError = null,
+		?string $option = null
 	) {
 		$parser = $this->createMock( WikitextParser::class );
 		$parser->method( 'parse' )->willReturn( 'HTML' );
@@ -251,7 +251,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 	public function testUpdateMarkerSymbolCounters(
 		string $data,
 		string $expectedData,
-		string $expectedFirstMarker = null
+		?string $expectedFirstMarker = null
 	) {
 		$data = json_decode( $data );
 		$firstMarker = SimpleStyleParser::updateMarkerSymbolCounters( $data );
@@ -269,7 +269,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testFindMarkerSymbolCounters(
 		string $data,
-		string $expectedFirstMarker = null
+		?string $expectedFirstMarker = null
 	) {
 		$expectedData = json_decode( $data );
 		$data = json_decode( $data );
