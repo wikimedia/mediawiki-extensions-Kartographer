@@ -13,7 +13,7 @@ class MediaWikiWikitextParser extends WikitextParser {
 	private Parser $parser;
 	private ?PPFrame $frame;
 
-	public function __construct( Parser $parser, PPFrame $frame = null ) {
+	public function __construct( Parser $parser, ?PPFrame $frame = null ) {
 		$this->parser = $parser;
 		$this->frame = $frame;
 	}
