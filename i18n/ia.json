@@ -1,8 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
-			"McDutchie",
-			"Amire80"
+			"McDutchie"
 		]
 	},
 	"apierror-kartographer-conflicting-revids": "Le consulta de datos cartographic de plure versiones del mesme pagina in un requesta non es ancora possibile.",

@@ -2,8 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Papuass",
-			"Silraks",
-			"Amire80"
+			"Silraks"
 		]
 	},
 	"apierror-kartographer-conflicting-revids": "Kartes datu vaicājumi no vairākām tās pašas lapas versijām vienā pieprasījumā vēl netiek atbalstīti.",

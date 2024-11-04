@@ -13,7 +13,6 @@
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Викимедијине мапе] | Подаци мапе © [https://www.openstreetmap.org/copyright Сарадници OpenStreetMap]",
-	"kartographer-attribution-externaldata": "$1: $2",
 	"kartographer-broken-category": "Странице са поквареним мапама",
 	"kartographer-broken-category-desc": "Страница укључује неважеће коришћење мапе",
 	"kartographer-desc": "Омогућава додавање мапа на вики страницама",
@@ -37,7 +36,6 @@
 	"kartographer-linktype-terrain": "Терен",
 	"kartographer-linktype-topo": "Топографски",
 	"kartographer-link-google-maps": "Гугл мапе",
-	"kartographer-link-openstreetmap": "OpenStreetMap",
 	"kartographer-link-wikimapia": "Викимапија",
 	"kartographer-link-wikiminiatlas": "Вики Мини атлас",
 	"kartographer-sidebar-coordinates": "Координате",

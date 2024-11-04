@@ -6,7 +6,6 @@
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Vikimedijine mape] | Podaci mape © [https://www.openstreetmap.org/copyright Saradnici OpenStreetMap]",
-	"kartographer-attribution-externaldata": "$1: $2",
 	"kartographer-broken-category": "Stranice sa pokvarenim mapama",
 	"kartographer-broken-category-desc": "Stranica uključuje nevažeće korišćenje mape",
 	"kartographer-desc": "Omogućava dodavanje mapa na viki stranicama",
@@ -30,7 +29,6 @@
 	"kartographer-linktype-terrain": "Teren",
 	"kartographer-linktype-topo": "Topografski",
 	"kartographer-link-google-maps": "Gugl mape",
-	"kartographer-link-openstreetmap": "OpenStreetMap",
 	"kartographer-link-wikimapia": "Vikimapija",
 	"kartographer-link-wikiminiatlas": "Viki Mini atlas",
 	"kartographer-sidebar-coordinates": "Koordinate",

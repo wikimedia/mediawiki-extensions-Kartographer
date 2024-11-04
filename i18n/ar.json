@@ -8,7 +8,7 @@
 			"ديفيد",
 			"محمد أحمد عبد الفتاح",
 			"Alshamiri1",
-			"Amire80"
+			"LaMagiaaa"
 		]
 	},
 	"apierror-kartographer-conflicting-revids": "لم يتم دعم الاستعلام عن بيانات الخرائط من مراجعات متعددة لنفس الصفحة في طلب واحد حتى الآن.",
@@ -45,16 +45,8 @@
 	"kartographer-link-bing-maps": "خرائط Bing",
 	"kartographer-link-blue-marble-navigator": "بحار الرخام الأزرق",
 	"kartographer-link-geohack": "خريطة GeoHack",
-	"kartographer-link-geonames": "GeoNames",
 	"kartographer-link-google-maps": "خرائط Google",
-	"kartographer-link-here": "HERE",
-	"kartographer-link-mapquest": "MapQuest",
 	"kartographer-link-openstreetmap": "خريطة OpenStreetMap",
-	"kartographer-link-skyvector": "SkyVector",
-	"kartographer-link-waze": "Waze",
-	"kartographer-link-wikimapia": "Wikimapia",
-	"kartographer-link-wikiminiatlas": "WikiMiniAtlas",
-	"kartographer-link-yandex-maps": "Yandex.Maps",
 	"kartographer-sidebar-coordinates": "الإحداثيات",
 	"kartographer-sidebar-filterdropdown": "اختر نوع خريطة",
 	"kartographer-sidebar-externalservices": "خدمات الخرائط",

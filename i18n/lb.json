@@ -3,7 +3,6 @@
 		"authors": [
 			"Les Meloures",
 			"Robby",
-			"Amire80",
 			"Volvox"
 		]
 	},
@@ -24,13 +23,8 @@
 	"kartographer-linktype-terrain": "Terrain",
 	"kartographer-linktype-topo": "Topographesch",
 	"kartographer-link-apple-maps": "Apple Maps",
-	"kartographer-link-geonames": "GeoNames",
 	"kartographer-link-google-maps": "Google Maps",
 	"kartographer-link-here": "HEI",
-	"kartographer-link-skyvector": "SkyVector",
-	"kartographer-link-wikimapia": "Wikimapia",
-	"kartographer-link-wikiminiatlas": "WikiMiniAtlas",
-	"kartographer-link-yandex-maps": "Yandex.Maps",
 	"kartographer-sidebar-coordinates": "Koordinaten",
 	"kartographer-sidebar-filterdropdown": "E Kaartentyp eraussichen",
 	"kartographer-sidebar-externalservices": "Kaarte-Servicer",
