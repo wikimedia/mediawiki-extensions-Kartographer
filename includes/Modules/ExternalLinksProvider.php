@@ -39,7 +39,13 @@ class ExternalLinksProvider {
 		$usedTypes = [];
 
 		foreach ( $data->services as $service ) {
-			$service->name = $context->msg( 'kartographer-link-' . $service->id )->plain();
+			// Names that don't need localization can be hard-coded in the .json file
+			if ( !isset( $service->name ) ) {
+				$msg = $context->msg( 'kartographer-link-' . $service->id );
+				if ( !$msg->isDisabled() ) {
+					$service->name = $msg->plain();
+				}
+			}
 
 			foreach ( $service->links as $link ) {
 				$usedTypes[$link->type] = true;

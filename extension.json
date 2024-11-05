@@ -247,7 +247,7 @@
 			"packageFiles": [
 				"sidebar.js",
 				{
-					"name": "externalLinks.json",
+					"name": "externalLinks-localized.json",
 					"callback": "Kartographer\\Modules\\ExternalLinksProvider::getData"
 				}
 			],
