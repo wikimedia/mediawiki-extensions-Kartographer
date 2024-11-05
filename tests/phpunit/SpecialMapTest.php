@@ -99,7 +99,7 @@ class SpecialMapTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideLinks
 	 */
 	public function testLink( ?string $expected, ?float $lat, ?float $lon, ?int $zoom = null, string $lang = 'local' ) {
-		$this->overrideConfigValue( 'ArticlePath', '/wiki/$1' );
+		$this->overrideConfigValue( MainConfigNames::ArticlePath, '/wiki/$1' );
 		$this->assertSame( $expected, SpecialMap::link( $lat, $lon, $zoom, $lang ) );
 	}
 

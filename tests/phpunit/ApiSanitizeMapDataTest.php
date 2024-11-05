@@ -126,9 +126,9 @@ class ApiSanitizeMapDataTest extends MediaWikiIntegrationTestCase {
 		} } } }';
 		$this->installMockHttp( $imageInfoResponse );
 
-		$defaults = $this->getConfVar( 'DefaultUserOptions' );
+		$defaults = $this->getConfVar( MainConfigNames::DefaultUserOptions );
 		// thumbsize 0 is equivalent to 120px
-		$this->overrideConfigValue( 'DefaultUserOptions', [ 'thumbsize' => 0 ] + $defaults );
+		$this->overrideConfigValue( MainConfigNames::DefaultUserOptions, [ 'thumbsize' => 0 ] + $defaults );
 
 		$manager = $this->getServiceContainer()->getUserOptionsManager();
 		// thumbsize 1 is equivalent to 150px
