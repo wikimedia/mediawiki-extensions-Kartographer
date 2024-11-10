@@ -27,7 +27,7 @@ function SideBar( options ) {
 	/**
 	 * @property {Object}
 	 */
-	this.metadata = require( './externalLinks.json' );
+	this.metadata = require( './externalLinks-localized.json' );
 	this.parseExternalLinks();
 }
 
@@ -254,7 +254,7 @@ SideBar.prototype.renderExternalServices = function () {
 						target: '_blank',
 						classes: [ 'mw-kartographer-filterservices-list-item-button' ],
 						icon: 'newWindow',
-						label: service.name
+						label: service.name || serviceId
 					} ).$element
 				);
 
