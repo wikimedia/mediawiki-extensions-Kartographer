@@ -18,6 +18,7 @@ use MediaWiki\Hook\ParserFirstCallInitHook;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\StripState;
+use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Title\TitleFormatter;
 
 /**
@@ -81,10 +82,9 @@ class Hooks implements
 	 * This is needed by parserTests that define articles containing Kartographer content - parsing them when
 	 * inserting them in the test DB requires $wgKartographerMapServer to be defined early.
 	 */
-	public static function onRegistration() {
-		global $wgKartographerMapServer;
+	public static function onRegistration( array $extInfo, SettingsBuilder $settings ) {
 		if ( defined( 'MW_PHPUNIT_TEST' ) || defined( 'MW_QUIBBLE_CI' ) ) {
-			$wgKartographerMapServer = 'https://maps.wikimedia.org';
+			$settings->overrideConfigValue( 'KartographerMapServer', 'https://maps.wikimedia.org' );
 		}
 	}
 }
