@@ -54,15 +54,15 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$state = State::getState( $output );
 
 		if ( $expected === false ) {
-			$this->assertTrue( $state->hasBrokenTags(), $message . ' Parse is expected to fail' );
+			$this->assertTrue( $state->hasBrokenTags(), "$message Parse is expected to fail" );
 			$this->assertTrackingCategory( 'kartographer-broken-category', $output );
 			$this->assertNotTrackingCategory( 'kartographer-tracking-category', $output );
 			return;
 		}
-		$this->assertFalse( $state->hasBrokenTags(), $message . ' Parse is expected to succeed' );
+		$this->assertFalse( $state->hasBrokenTags(), "$message Parse is expected to succeed" );
 		$this->assertTrue(
 			$state->hasValidTags(),
-			$message . ' State is expected to have valid tags'
+			"$message State is expected to have valid tags"
 		);
 		$this->assertNotTrackingCategory( 'kartographer-broken-category', $output );
 		$this->assertTrackingCategory( 'kartographer-tracking-category', $output );
@@ -84,15 +84,15 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$state = $output->getExtensionData( 'kartographer' );
 
 		if ( $expected === false ) {
-			$this->assertTrue( $state['broken'] > 0, $message . ' Parse is expected to fail' );
+			$this->assertTrue( $state['broken'] > 0, "$message Parse is expected to fail" );
 			$this->assertTrackingCategory( 'kartographer-broken-category', $output );
 			$this->assertNotTrackingCategory( 'kartographer-tracking-category', $output );
 			return;
 		}
-		$this->assertFalse( $state['broken'] > 0, $message . ' Parse is expected to succeed' );
+		$this->assertFalse( $state['broken'] > 0, "$message Parse is expected to succeed" );
 		$this->assertTrue(
 			$state['maplinks'] + $state['mapframes'] > $state['broken'],
-			$message . ' State is expected to have valid tags'
+			"$message State is expected to have valid tags"
 		);
 		$this->assertNotTrackingCategory( 'kartographer-broken-category', $output );
 		$this->assertTrackingCategory( 'kartographer-tracking-category', $output );
