@@ -9,6 +9,7 @@
 			"Hamilton Abreu",
 			"Mansil",
 			"Mansil alfalb",
+			"Mbs262",
 			"Opraco",
 			"Vitorvicentevalente",
 			"Önni"
@@ -28,7 +29,7 @@
 	"kartographer-error-bad_data": "O conteúdo JSON não é código GeoJSON+simplestyle válido. A lista abaixo mostra todas as tentativas de interpretá-lo de acordo com [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json o esquema JSON]. Nem todas são erros.",
 	"kartographer-error-latlon": "Os parâmetros \"latitude\" e \"longitude\" devem ser ambos fornecidos ou ambos omitidos",
 	"kartographer-error-title": "O título \"$1\" não é uma página de dados cartográficos válida",
-	"kartographer-tracking-category": "Páginas com mapas",
+	"kartographer-tracking-category": "Páginas que utilizam a extensão Kartographer",
 	"kartographer-tracking-category-desc": "A página inclui um mapa",
 	"kartographer-specialmap-invalid-coordinates": "As coordenadas fornecidas são inválidas",
 	"kartographer-specialmap-world": "Mapa do mundo",
