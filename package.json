@@ -15,7 +15,7 @@
 		"grunt-contrib-watch": "1.1.0",
 		"grunt-eslint": "24.3.0",
 		"grunt-stylelint": "0.20.1",
-		"jsdoc": "4.0.3",
+		"jsdoc": "4.0.4",
 		"jsdoc-wmf-theme": "1.1.0",
 		"leaflet.markercluster": "^1.5.3",
 		"replace-in-files-cli": "^2.0.0",
