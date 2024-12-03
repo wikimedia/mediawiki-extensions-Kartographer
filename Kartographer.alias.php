@@ -13,6 +13,11 @@ $specialPageAliases['en'] = [
 	'Map' => [ 'Map' ],
 ];
 
+/** Azerbaijani (azərbaycanca) */
+$specialPageAliases['az'] = [
+	'Map' => [ 'Xəritə' ]
+];
+
 /** Serbian (Cyrillic script) (српски (ћирилица)) */
 $specialPageAliases['sr-ec'] = [
 	'Map' => [ 'Мапа' ],
