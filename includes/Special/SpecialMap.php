@@ -117,7 +117,7 @@ class SpecialMap extends UnlistedSpecialPage {
 	private function getWorldMapUrl( string $factor = '' ): string {
 		return $this->getConfig()->get( 'KartographerMapServer' ) . '/' .
 			$this->getConfig()->get( 'KartographerDfltStyle' ) .
-			'/0/0/0' . $factor . '.png';
+			"/0/0/0$factor.png";
 	}
 
 	/**
@@ -151,10 +151,11 @@ class SpecialMap extends UnlistedSpecialPage {
 		if ( $lat === null || $lon === null ) {
 			return null;
 		}
+		$zoom ??= 0;
 
-		$subpage = (int)$zoom . '/' . $lat . '/' . $lon;
+		$subpage = "$zoom/$lat/$lon";
 		if ( $lang && $lang !== 'local' ) {
-			$subpage .= '/' . $lang;
+			$subpage .= "/$lang";
 		}
 		return SpecialPage::getTitleFor( 'Map', $subpage )->getLocalURL();
 	}
