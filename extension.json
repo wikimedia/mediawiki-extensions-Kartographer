@@ -11,7 +11,7 @@
 	"license-name": "MIT",
 	"type": "parserhook",
 	"requires": {
-		"MediaWiki": ">= 1.43",
+		"MediaWiki": ">= 1.44",
 		"extensions": {
 			"JsonConfig": "*"
 		}
@@ -283,6 +283,7 @@
 			]
 		},
 		"ext.kartographer.staticframe": {
+			"class": "MediaWiki\\ResourceLoader\\CodexModule",
 			"dependencies": [
 				"mediawiki.router",
 				"oojs-ui.styles.icons-media",
@@ -291,6 +292,13 @@
 			],
 			"packageFiles": [
 				"modules/staticframe/staticframe.js"
+			],
+			"styles": [
+				"modules/staticframe/staticframe.less"
+			],
+			"codexStyleOnly": true,
+			"codexComponents": [
+				"CdxButton"
 			],
 			"messages": [
 				"kartographer-attribution-short",
