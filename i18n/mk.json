@@ -19,7 +19,7 @@
 	"kartographer-error-bad_data": "Содржината на JSON е неважечки GeoJSON+simplestyle. Долунаведениот список ги прикажува сите обиди за нејзино толкување според [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json шемата на JSON]. Не сите се грешки.",
 	"kartographer-error-latlon": "Или треба да ги укажете обата параметра „latitude“ и „longitude“, или ниеден од нив",
 	"kartographer-error-title": "Насловот „$1“ е неважечки како страница со картографски податоци",
-	"kartographer-tracking-category": "Страници со карти",
+	"kartographer-tracking-category": "Страници што го користат додадокот Картограф",
 	"kartographer-tracking-category-desc": "Оваа страница содржи карта",
 	"kartographer-specialmap-invalid-coordinates": "Укажани се неважечки координати",
 	"kartographer-specialmap-world": "Светска карта",
