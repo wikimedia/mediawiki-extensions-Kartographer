@@ -22,7 +22,7 @@
 	"kartographer-error-bad_data": "JSON-innholdet er ikke gyldig GeoJSON+simplestyle. Lista nedenfor viser alle forsøk på å tolke den i samsvar med [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json JSON-skjemaet]. Ikke alt er feil.",
 	"kartographer-error-latlon": "Enten må både «latitude» og «longitude»-parameterne oppgis, eller ingen av dem",
 	"kartographer-error-title": "Tittelen «$1» er ikke en gyldig kartdataside",
-	"kartographer-tracking-category": "Sider med kart",
+	"kartographer-tracking-category": "Sider som bruker Kartographer-utvidelsen",
 	"kartographer-tracking-category-desc": "Denne siden inneholder et kart",
 	"kartographer-coord-lat-pos-lon-pos": "$1°$2′$3″N $4°$5′$6″Ø",
 	"kartographer-coord-lat-pos-lon-neg": "$1°$2′$3″N $4°$5′$6″V",
