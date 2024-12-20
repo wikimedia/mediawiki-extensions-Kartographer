@@ -2,11 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Jeblad",
-			"Njardarlogar"
+			"Njardarlogar",
+			"Ranveig"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia-kart] | Kartdata © [https://www.openstreetmap.org/copyright OpenStreetMap-bidragsytarar]",
 	"kartographer-broken-category": "Sider med uverksame kart",
+	"kartographer-tracking-category": "Sider som bruker Kartographer-utvidinga",
+	"kartographer-specialmap-world": "Verdskart",
+	"kartographer-static-mapframe-alt": "Kart",
 	"kartographer-linktype-other": "Andre",
 	"kartographer-linktype-satellite": "Satellitt",
 	"kartographer-linktype-terrain": "Terreng",
@@ -37,5 +41,6 @@
 	"kartographer-fullscreen-text": "Vis som fullskjerm",
 	"visualeditor-mwmapsdialog-display": "Justering",
 	"visualeditor-mwmapsdialog-size": "Storleik",
-	"visualeditor-mwmapsdialog-title": "Kart"
+	"visualeditor-mwmapsdialog-title": "Kart",
+	"visualeditor-mwmapscontextitem-title": "Kart"
 }
