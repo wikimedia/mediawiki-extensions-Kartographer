@@ -4,7 +4,9 @@ namespace Kartographer\Tests;
 
 use Kartographer\Modules\DataModule;
 use MediaWiki\Config\HashConfig;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader\Context;
+use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -46,7 +48,8 @@ class DataModuleTest extends MediaWikiIntegrationTestCase {
 			'KartographerStyles' => [],
 			'KartographerUsePageLanguage' => false,
 		] ) );
-		$script = $module->getScript( $this->createMock( Context::class ) );
+		$context = new Context( $this->createMock( ResourceLoader::class ), new FauxRequest() );
+		$script = $module->getScript( $context );
 		$this->assertStringContainsString( '"wgKartographerNearby":' . $expected . '}', $script );
 	}
 

@@ -12,7 +12,6 @@ use MediaWiki\Config\ConfigException;
 use MediaWiki\Registration\ExtensionRegistry;
 // phpcs:disable MediaWiki.Classes.FullQualifiedClassName -- T308814
 use MediaWiki\ResourceLoader as RL;
-use MediaWiki\ResourceLoader\ResourceLoader;
 
 /**
  * @license MIT
@@ -22,17 +21,19 @@ class DataModule extends RL\Module {
 	/** @inheritDoc */
 	public function getScript( RL\Context $context ) {
 		$config = $this->getConfig();
-		return ResourceLoader::makeConfigSetScript( [
-			'wgKartographerMapServer' => $config->get( 'KartographerMapServer' ),
-			'wgKartographerStaticFullWidth' => $config->get( 'KartographerStaticFullWidth' ),
-			'wgKartographerSrcsetScales' => $config->get( 'KartographerSrcsetScales' ),
-			'wgKartographerStyles' => $config->get( 'KartographerStyles' ),
-			'wgKartographerDfltStyle' => $config->get( 'KartographerDfltStyle' ),
-			'wgKartographerUsePageLanguage' => $config->get( 'KartographerUsePageLanguage' ),
-			'wgKartographerFallbackZoom' => $config->get( 'KartographerFallbackZoom' ),
-			'wgKartographerSimpleStyleMarkers' => $config->get( 'KartographerSimpleStyleMarkers' ),
-			'wgKartographerNearby' => $this->numberOfNearbyPoints(),
-		] );
+		return 'mw.config.set('
+				. $context->encodeJson( [
+					'wgKartographerMapServer' => $config->get( 'KartographerMapServer' ),
+					'wgKartographerStaticFullWidth' => $config->get( 'KartographerStaticFullWidth' ),
+					'wgKartographerSrcsetScales' => $config->get( 'KartographerSrcsetScales' ),
+					'wgKartographerStyles' => $config->get( 'KartographerStyles' ),
+					'wgKartographerDfltStyle' => $config->get( 'KartographerDfltStyle' ),
+					'wgKartographerUsePageLanguage' => $config->get( 'KartographerUsePageLanguage' ),
+					'wgKartographerFallbackZoom' => $config->get( 'KartographerFallbackZoom' ),
+					'wgKartographerSimpleStyleMarkers' => $config->get( 'KartographerSimpleStyleMarkers' ),
+					'wgKartographerNearby' => $this->numberOfNearbyPoints(),
+				] )
+				. ');';
 	}
 
 	/** @inheritDoc */
