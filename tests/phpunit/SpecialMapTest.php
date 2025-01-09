@@ -83,15 +83,27 @@ class SpecialMapTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::__construct
 	 * @covers ::getWorldMapSrcset
 	 * @covers ::getWorldMapUrl
+	 * @dataProvider provideSrcsetScales
 	 */
-	public function testGetWorldMapSrcset() {
-		$this->overrideConfigValue( 'KartographerMapServer', 'http://192.0.2.0' );
+	public function testGetWorldMapSrcset( ?string $expected, string $mapServer, array $srcsetScales ) {
+		$this->overrideConfigValues( [
+			'KartographerMapServer' => $mapServer,
+			'KartographerSrcsetScales' => $srcsetScales,
+		] );
 		/** @var SpecialMap $specialMap */
 		$specialMap = TestingAccessWrapper::newFromObject( new SpecialMap() );
 		$this->assertSame(
-			'http://192.0.2.0/osm-intl/0/0/0@2x.png 2x',
+			$expected,
 			$specialMap->getWorldMapSrcset()
 		);
+	}
+
+	public static function provideSrcsetScales() {
+		return [
+			[ null, 'http://192.0.2.0', [] ],
+			[ null, 'http://192.0.2.0', [ 1 ] ],
+			[ 'http://192.0.2.0/osm-intl/0/0/0@2x.png 2x', 'http://192.0.2.0', [ 2 ] ],
+		];
 	}
 
 	/**
