@@ -23,47 +23,41 @@ class ParsoidKartographerConfig implements ExtensionModule {
 	 * @codeCoverageIgnore
 	 */
 	public function getConfig(): array {
-		if ( $this->config->get( 'KartographerParsoidSupport' ) ) {
-			return [
-				'name' => 'Kartographer',
-				'tags' => [
-					[
-						'name' => 'maplink',
-						'handler' => ParsoidMapLink::class,
-						'options' => [
-							'outputHasCoreMwDomSpecMarkup' => true,
-							'wt2html' => [
-								'embedsHTMLInAttributes' => true
-							]
+		return [
+			'name' => 'Kartographer',
+			'tags' => [
+				[
+					'name' => 'maplink',
+					'handler' => ParsoidMapLink::class,
+					'options' => [
+						'outputHasCoreMwDomSpecMarkup' => true,
+						'wt2html' => [
+							'embedsHTMLInAttributes' => true
+						]
+					],
+				],
+				[
+					'name' => 'mapframe',
+					'handler' => [
+						'class' => ParsoidMapFrame::class,
+						'services' => [
+							'MainConfig'
 						],
 					],
-					[
-						'name' => 'mapframe',
-						'handler' => [
-							'class' => ParsoidMapFrame::class,
-							'services' => [
-								'MainConfig'
-							],
-						],
-						'options' => [
-							'outputHasCoreMwDomSpecMarkup' => true,
-							'wt2html' => [
-								'embedsHTMLInAttributes' => true
-							]
-						],
-					]
-				],
-				'domProcessors' => [ [
-					'class' => ParsoidDomProcessor::class,
-					'services' => [
-						'MainConfig',
-					] ],
-				],
-			];
-		} else {
-			return [
-				'name' => 'Kartographer',
-			];
-		}
+					'options' => [
+						'outputHasCoreMwDomSpecMarkup' => true,
+						'wt2html' => [
+							'embedsHTMLInAttributes' => true
+						]
+					],
+				]
+			],
+			'domProcessors' => [ [
+				'class' => ParsoidDomProcessor::class,
+				'services' => [
+					'MainConfig',
+				] ],
+			],
+		];
 	}
 }

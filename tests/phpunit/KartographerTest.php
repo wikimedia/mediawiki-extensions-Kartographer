@@ -41,7 +41,6 @@ class KartographerTest extends MediaWikiLangTestCase {
 			MainConfigNames::LanguageCode => 'qqx',
 			MainConfigNames::Script => '/w/index.php',
 			MainConfigNames::ScriptPath => '/w',
-			'KartographerParsoidSupport' => 'true',
 		] );
 	}
 
@@ -358,11 +357,6 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$vars = $output->getJsConfigVars();
 		$this->assertArrayHasKey( 'wgKartographerLiveData', $vars );
 
-		if ( $this->getServiceContainer()->getMainConfig()->has( 'KartographerParsoidSupport' ) &&
-			$this->getServiceContainer()->getMainConfig()->get( 'KartographerParsoidSupport' ) !== true ) {
-			// not testing the exact content without parsoid, this would fail
-			return;
-		}
 		// FIXME ideally, we would not ship more data than we strictly need, but for now we're fine with it.
 		// To be revisited when preview mode is implemented in Parsoid.
 		foreach ( $expected as $v ) {
