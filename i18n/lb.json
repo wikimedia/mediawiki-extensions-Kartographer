@@ -15,7 +15,7 @@
 	"kartographer-error-title": "Den Titel \"$1\" ass keng valabel Kaartendatesäit",
 	"kartographer-tracking-category": "Säite  mat Kaarten",
 	"kartographer-tracking-category-desc": "An der Säit ass eng Kaart dran",
-	"kartographer-specialmap-invalid-coordinates": "Net valabel Koordinaten uginn",
+	"kartographer-specialmap-invalid-coordinates": "Ongülteg Koordinaten uginn",
 	"kartographer-specialmap-world": "Weltkaart",
 	"kartographer-static-mapframe-alt": "Kaart",
 	"kartographer-linktype-aerial": "Loft",
