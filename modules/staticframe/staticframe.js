@@ -68,22 +68,18 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 		.each( function ( index ) {
 			const container = this;
 			const $container = $( container );
+			const $icon = $( '<span>' ).addClass( 'cdx-button__icon mw-kartographer-icon--fullscreen' );
+			const $button = $( '<button>' )
+				.addClass( 'cdx-button cdx-button--icon-only' )
+				.attr( 'aria-label', mw.msg( 'kartographer-fullscreen-text' ) )
+				.append( $icon );
 
-			mw.loader.using( 'oojs-ui', () => {
-				const button = new OO.ui.ButtonWidget( {
-					// In static mode this button is just a visual hint but doesn't have its own action
-					tabIndex: -1,
-					icon: 'fullScreen',
-					framed: true
-				} );
-
-				$container.append(
-					$( '<div>' ).addClass( 'mw-kartographer-fullScreen' ).append( button.$element ),
-					$( '<div>' ).addClass( 'mw-kartographer-attribution' ).html(
-						mw.message( 'kartographer-attribution-short' ).parse()
-					)
-				);
-			} );
+			$container.append(
+				$( '<div>' ).addClass( 'mw-kartographer-fullScreen' ).append( $button ),
+				$( '<div>' ).addClass( 'mw-kartographer-attribution' ).html(
+					mw.message( 'kartographer-attribution-short' ).parse()
+				)
+			);
 
 			$container.attr( {
 				title: mw.msg( 'kartographer-fullscreen-text' ),
