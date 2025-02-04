@@ -26,7 +26,7 @@
 	"kartographer-error-bad_data": "JSON-вміст не є правильним GeoJSON+simplestyle. У списку нижче показано усі спроби інтерпретувати його згідно зі [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json схемою JSON]. Не всі є помилковими.",
 	"kartographer-error-latlon": "Мають бути вказані або обидва параметри широти і довготи, або жоден",
 	"kartographer-error-title": "Назва «$1» не є дійсною сторінкою картографічних даних",
-	"kartographer-tracking-category": "Сторінки з мапами",
+	"kartographer-tracking-category": "Сторінки, що використовують розширення Kartographer",
 	"kartographer-tracking-category-desc": "Ця сторінка містить мапу",
 	"kartographer-specialmap-invalid-coordinates": "Надані недійсні координати",
 	"kartographer-specialmap-world": "Карта світу",
