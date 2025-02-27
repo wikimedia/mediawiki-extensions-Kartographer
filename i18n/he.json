@@ -106,7 +106,7 @@
 	"visualeditor-mwmapsdialog-caption": "כיתוב",
 	"visualeditor-mwmapsdialog-caption-help": "הכיתוב הזה יוצג מתחת למפה במסגרת (כמו בכיתובי תמונה). הוספת כיתוב מאלצת את המפה לקבל מסגרת.\n\nניתן להשתמש בעיצוב קוד ויקי כאן, למשל לגופן בולט, קישורים, או הערות שוליים.",
 	"visualeditor-mwmapsdialog-language": "שפה",
-	"visualeditor-mwmapsdialog-language-help": "ההרחבה Kartographer משתמשת בשפת התוכן של הוויקי כברירת מחדל לשפת התוויות. ניתן לשנות את זה באמצעות ההגדרה הזאת עבור המפה הזאת בלבד.\n\nיש להשתמש ב־<code>local</code> במקום בשם שפה כדי להציג את כל התוויות בשפה המקומית לאותו מיקום. לדוגמה, שמות ערים במקסיקו יוצגו בספרדית, בעוד ששמות ערים ביפן יוצגו ביפנית.\n\nכאשר תוויות אינן זמינות בשפה שנבחרה, ההרחבה Kartographer עוקבת אחר תהליך החלפה. למידע נוסף על איך זה עובד ר' את [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Extension:Kartographer#Languages_and_fallbacks דף העזרה של Kartographer].",
+	"visualeditor-mwmapsdialog-language-help": "ההרחבה Kartographer משתמשת בשפת התוכן של הוויקי כברירת מחדל לשפת התוויות. ניתן לשנות את זה באמצעות ההגדרה הזאת עבור המפה הזאת בלבד.\n\nיש להשתמש ב־<code>local</code> במקום בשם שפה כדי להציג את כל התוויות בשפה המקומית לאותו מיקום. לדוגמה, שמות ערים במקסיקו יוצגו בספרדית, בעוד ששמות ערים ביפן יוצגו ביפנית.\n\nכאשר תוויות אינן זמינות בשפה שנבחרה, ההרחבה Kartographer משתמשת בתהליך חיפוש שפת גיבוי. למידע נוסף על איך זה עובד ר' את [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Extension:Kartographer#Languages_and_fallbacks דף העזרה של Kartographer].",
 	"visualeditor-mwmapsdialog-language-local": "$1 (להשתמש בשפה מקומית לכל אזור במפה)",
 	"visualeditor-mwmapsdialog-help-title": "מידע על יצירה ועל עריכה של מפות.",
 	"visualeditor-mwmapsdialog-position-lat": "קו רוחב",
