@@ -18,7 +18,7 @@
 	"kartographer-error-bad_data": "JSON saturs nav derīgs GeoJSON+simplestyle. Zemāk redzamajā sarakstā redzami visi mēģinājumi to interpretēt. Ne visas ir kļūdas.",
 	"kartographer-error-latlon": "Jānorāda vai nu abi vai neviens no parametriem \"latitude\" un \"longitude\"",
 	"kartographer-error-title": "Lapa \"$1\" nav derīga kartes datu lapa",
-	"kartographer-tracking-category": "Lapas ar kartēm",
+	"kartographer-tracking-category": "Lapas, kurās tiek izmantots Kartographer paplašinājums",
 	"kartographer-tracking-category-desc": "Lapā ir karte",
 	"kartographer-specialmap-invalid-coordinates": "Norādītas nederīgas koordniātas",
 	"kartographer-specialmap-world": "Pasaules karte",
