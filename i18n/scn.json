@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ajeje Brazorf"
+			"Ajeje Brazorf",
+			"GianAntonucci"
 		]
 	},
 	"kartographer-linktype-other": "Àutru",
@@ -11,7 +12,7 @@
 	"leafletdraw-draw-toolbar-actions-text": "Annulla",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "Annulla",
 	"leafletdraw-edit-toolbar-actions-save-text": "Sarva",
-	"leafletdraw-edit-toolbar-actions-save-title": "Sarva li canciamenti",
+	"leafletdraw-edit-toolbar-actions-save-title": "Sarba li canci",
 	"leafletdraw-draw-toolbar-finish-text": "Cumpritatu",
 	"kartographer-fullscreen-close": "Chiudi",
 	"visualeditor-mwmapsdialog-options": "Opzioni",
