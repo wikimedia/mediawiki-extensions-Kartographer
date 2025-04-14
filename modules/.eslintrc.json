@@ -10,8 +10,7 @@
 	],
 	"globals": {
 		"L": "readonly",
-		"Kartographer": "readonly",
-		"Set": "readonly"
+		"Kartographer": "readonly"
 	},
 	"rules": {
 		"jsdoc/check-tag-names": "error",
