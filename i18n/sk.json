@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Aceman444",
-			"Luky001"
+			"Luky001",
+			"Teslaton"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Mapy Wikimedia] | Mapové dáta © [https://www.openstreetmap.org/copyright prispievatelia OpenStreetMap]",
@@ -33,6 +34,8 @@
 	"kartographer-sidebar-latitude": "Zemepisná šírka",
 	"kartographer-sidebar-longitude": "Zemepisná dĺžka",
 	"kartographer-sidebar-mapdetails": "Externé mapy",
+	"kartographer-sidebar-nearbybutton": "Zobraziť články v okolí",
+	"kartographer-sidebar-reload-nearbybutton": "Znova načítať výsledky",
 	"kartographer-sidebar-service": "Služba",
 	"kartographer-sidebar-togglebutton": "Externé mapy",
 	"leafletdraw-draw-handlers-circle-radius": "Polomer",
