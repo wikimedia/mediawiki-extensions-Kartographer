@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"محک"
+		]
+	},
+	"kartographer-specialmap-world": "جهون نقشه",
+	"kartographer-linktype-map": "استاندارد نقشه",
+	"kartographer-linktype-other": "بقیه",
+	"kartographer-sidebar-externalservices-show-all": "ویشته هارشی‌ین",
+	"kartographer-sidebar-mapdetails": "بریم سایتونِ نقشه",
+	"kartographer-sidebar-nearbybutton": "نزدیک‌په جائونِ مقالات",
+	"kartographer-sidebar-reload-nearbybutton": "نتایج ره دِباره بیاردن",
+	"kartographer-sidebar-togglebutton": "بریم سایتونِ نقشه",
+	"leafletdraw-draw-handlers-circle-radius": "شعاع",
+	"leafletdraw-draw-handlers-circle-tooltip-start": "دایره خانی بکشی، کلیک هکن و بکش",
+	"leafletdraw-draw-handlers-marker-tooltip-start": "کلیک هاکنی، اتا علمک إلنی",
+	"leafletdraw-draw-handlers-circlemarker-tooltip-start": "کلیک هکنی، اتا دایره‌یی علمک إلنی",
+	"leafletdraw-draw-toolbar-actions-text": "لغو"
+}
