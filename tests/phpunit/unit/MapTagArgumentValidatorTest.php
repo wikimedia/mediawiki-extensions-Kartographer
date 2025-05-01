@@ -137,7 +137,7 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 		}
 	}
 
-	public function provideShowGroups() {
+	public static function provideShowGroups() {
 		return [
 			'empty' => [ '', [] ],
 			'duplicates' => [ 'a,a,b', [ 'a', 'b' ] ],
