@@ -50,7 +50,7 @@ const ControlLayers = L.Control.Layers.extend( {
 
 		if ( input &&
 			event.type === 'click' &&
-			input.className.indexOf( 'leaflet-control-layers-selector' ) !== -1
+			input.className.includes( 'leaflet-control-layers-selector' )
 		) {
 			const obj = this._getLayer( input.layerId );
 			if ( this._map.hasLayer( obj.layer ) ) {

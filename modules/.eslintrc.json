@@ -17,6 +17,7 @@
 		"jsdoc/check-tag-names": "error",
 		"jsdoc/require-returns": "off",
 		"jsdoc/require-returns-check": "off",
-		"max-len": "off"
+		"max-len": "off",
+		"no-jquery/no-done-fail": "warn"
 	}
 }
