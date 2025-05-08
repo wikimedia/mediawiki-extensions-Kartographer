@@ -63,7 +63,7 @@ const ControlLayers = L.Control.Layers.extend( {
 				input.checked = false;
 				this._expand();
 				wikivoyage.isAllowed( obj.layer )
-					.done( () => {
+					.then( () => {
 						input.checked = true;
 						proto.call( this );
 					} );

@@ -175,7 +175,7 @@ ve.ce.MWMapsNode.prototype.update = function () {
 					disablelimitreport: 1,
 					disabletoc: 1
 				} )
-				.done( ( html ) => {
+				.then( ( html ) => {
 					$caption.html( html );
 				} );
 		}

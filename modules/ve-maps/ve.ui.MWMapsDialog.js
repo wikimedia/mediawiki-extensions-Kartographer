@@ -757,13 +757,15 @@ ve.ui.MWMapsDialog.prototype.updateMapContents = function () {
 	this.input.pushPending();
 	require( 'ext.kartographer.editing' )
 		.updateKartographerLayer( this.map, this.input.getValue() )
-		.done( () => {
-			this.input.setValidityFlag( true );
-		} )
-		.fail( () => {
-			this.input.setValidityFlag( false );
-		} )
-		.always( () => {
+		.then(
+			() => {
+				this.input.setValidityFlag( true );
+			},
+			() => {
+				this.input.setValidityFlag( false );
+			}
+		)
+		.then( () => {
 			this.updateActions();
 			this.input.popPending();
 		} );
