@@ -14,7 +14,8 @@
 			"Ykhwong",
 			"밥풀떼기",
 			"아라",
-			"Tensama0415"
+			"Tensama0415",
+			"YeBoy371"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use 위키미디어 지도] | 지도 자료 © [https://www.openstreetmap.org/copyright OpenStreetMap 기여자]",
@@ -38,7 +39,7 @@
 	"kartographer-linktype-terrain": "지형도",
 	"kartographer-linktype-topo": "지형",
 	"kartographer-link-bing-maps": "Bing 지도",
-	"kartographer-link-google-maps": "Google 지도",
+	"kartographer-link-google-maps": "구글 지도",
 	"kartographer-link-openstreetmap": "오픈스트리트맵",
 	"kartographer-link-wikimapia": "위키매피아",
 	"kartographer-link-wikiminiatlas": "위키미니아틀라스",
