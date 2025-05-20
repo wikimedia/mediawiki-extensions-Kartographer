@@ -19,7 +19,7 @@
 	"kartographer-error-bad_data": "JSON чулацам нийса бац GeoJSON+simplestyle стилехь. Лахахь болчу могӀамехь гойту массо а [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json JSON схемица] тида гӀертарш. Уьш дерриге а гӀалаташ дац.",
 	"kartographer-error-latlon": "Йа  \"latitude\" а, \"longitude\" а билгалдаккха деза, йа царах цхьа а ца деза",
 	"kartographer-error-title": "\"$1\" корта нийса картин хаамашца агӀо йац",
-	"kartographer-tracking-category": "Картанаш долу агӀонаш",
+	"kartographer-tracking-category": "Kartographer шордар лелош йолу агӀонаш",
 	"kartographer-tracking-category-desc": "Карта долу агӀо",
 	"kartographer-specialmap-invalid-coordinates": "Йихкина нийса йоцу координаташ",
 	"kartographer-specialmap-world": "Дуьненан карта",
