@@ -56,6 +56,7 @@ class ParsoidKartographerConfig implements ExtensionModule {
 				'class' => ParsoidDomProcessor::class,
 				'services' => [
 					'MainConfig',
+					'TrackingCategories',
 				] ],
 			],
 		];
