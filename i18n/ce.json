@@ -99,6 +99,8 @@
 	"visualeditor-mwmapsdialog-frame": "Гура гайта",
 	"visualeditor-mwmapsdialog-caption": "Куьг",
 	"visualeditor-mwmapsdialog-language": "Мотт",
+	"visualeditor-mwmapsdialog-language-help": "Kartographer лелайо викин чулацаман мотт ярлыкан меттан стандартан санна. ХӀара хийца йиш йу хӀокху настройкица йеккъа хӀокху картана.\n\nМеттан цӀеран метта <code>local</code> леладе, цу меттиган меттигерчу меттан массо а билгалонаш гайта. Масала, Мексикехь гӀаланийн цӀераш испанхойн маттахь гойтур йара, ткъа Японехь гӀаланийн цӀераш японхойн маттахь гойтур йара.\n\nХаьржинчу маттахь билгалонаш ца хилча, Kartographer лелайо резерван процесс. ХӀара болх муха бо кхин а информаци хьажа [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Extension:Kartographer#Languages_and_fallbacks Kartographer гӀоьнан агӀонгахь].",
+	"visualeditor-mwmapsdialog-language-local": "$1 (хӀора картин меттигехь меттигера мотт лелабе)",
 	"visualeditor-mwmapsdialog-help-title": "Карташ кхолларан а, хийцаран а хьокъехь Ӏамор.",
 	"visualeditor-mwmapsdialog-position-lat": "Шоралла",
 	"visualeditor-mwmapsdialog-position-lon": "Дохалла",
