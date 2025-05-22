@@ -2,21 +2,12 @@
 
 namespace Kartographer\Tag;
 
-use MediaWiki\Config\Config;
 use Wikimedia\Parsoid\Ext\ExtensionModule;
 
 /**
  * @license MIT
  */
 class ParsoidKartographerConfig implements ExtensionModule {
-
-	private Config $config;
-
-	public function __construct(
-		Config $config
-	) {
-		$this->config = $config;
-	}
 
 	/**
 	 * @inheritDoc
