@@ -25,7 +25,7 @@ use Wikimedia\Parsoid\Utils\DOMCompat;
 class ParsoidTagHandler extends ExtensionTagHandler {
 	public const TAG = '';
 
-	private Config $config;
+	protected Config $config;
 	private LanguageFactory $languageFactory;
 	private LanguageNameUtils $languageNameUtils;
 
