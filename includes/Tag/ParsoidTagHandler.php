@@ -6,7 +6,9 @@ use Closure;
 use Kartographer\ParsoidWikitextParser;
 use Kartographer\SimpleStyleParser;
 use LogicException;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Config\Config;
+use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Message\Message;
 use StatusValue;
 use stdClass;
@@ -22,6 +24,20 @@ use Wikimedia\Parsoid\Utils\DOMCompat;
  */
 class ParsoidTagHandler extends ExtensionTagHandler {
 	public const TAG = '';
+
+	private Config $config;
+	private LanguageFactory $languageFactory;
+	private LanguageNameUtils $languageNameUtils;
+
+	public function __construct(
+		Config $config,
+		LanguageFactory $languageFactory,
+		LanguageNameUtils $languageNameUtils
+	) {
+		$this->config = $config;
+		$this->languageFactory = $languageFactory;
+		$this->languageNameUtils = $languageNameUtils;
+	}
 
 	/**
 	 * @param ParsoidExtensionAPI $extApi
@@ -85,15 +101,13 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 		array $args,
 		ParsoidExtensionAPI $extApi
 	): MapTagArgumentValidator {
-		$services = MediaWikiServices::getInstance();
-
 		return new MapTagArgumentValidator( static::TAG, $args,
-			$services->getMainConfig(),
+			$this->config,
 			// TODO Ideally, this wouldn't need the page language, and it would generate an href with an i18n'd
 			// attribute that would then get localized. But, this would require rich attributes to do cleanly, so
 			// let's punt that to later.
-			$services->getLanguageFactory()->getLanguage( $extApi->getPageConfig()->getPageLanguageBcp47() ),
-			$services->getLanguageNameUtils()
+			$this->languageFactory->getLanguage( $extApi->getPageConfig()->getPageLanguageBcp47() ),
+			$this->languageNameUtils
 		);
 	}
 
