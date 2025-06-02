@@ -22,6 +22,8 @@
 	"kartographer-tracking-category": "Páxinas con mapas",
 	"kartographer-tracking-category-desc": "A páxina inclúe un mapa",
 	"kartographer-specialmap-invalid-coordinates": "As coordenadas indicadas non son válidas",
+	"kartographer.css": "/* O CSS colocado aquí afectará a todas as páxinas con mapas */",
+	"kartographer.js": "/* O JavaScript colocado aquí cargarase para todos os usuarios en todas as páxinas que conteñen mapas */",
 	"kartographer-linktype-aerial": "Aéreo",
 	"kartographer-linktype-map": "Mapas estándar",
 	"kartographer-linktype-other": "Outro",
