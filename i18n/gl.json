@@ -26,6 +26,8 @@
 	"kartographer-specialmap-invalid-coordinates": "As coordenadas indicadas non son válidas",
 	"kartographer-specialmap-world": "Mapa do mundo",
 	"kartographer-static-mapframe-alt": "Mapa",
+	"kartographer.css": "/* O CSS colocado aquí afectará a todas as páxinas con mapas */",
+	"kartographer.js": "/* O JavaScript colocado aquí cargarase para todos os usuarios en todas as páxinas que conteñen mapas */",
 	"kartographer-linktype-aerial": "Aéreo",
 	"kartographer-linktype-map": "Mapas estándar",
 	"kartographer-linktype-other": "Outro",
