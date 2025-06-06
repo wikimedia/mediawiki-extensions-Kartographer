@@ -118,7 +118,7 @@ class ParsoidDomProcessor extends DOMProcessor {
 		[ $counter, $props ] = SimpleStyleParser::updateMarkerSymbolCounters( $marker->geometries,
 			$state['counters'] );
 		if ( $tagName === ParsoidMapLink::TAG && $counter ) {
-			if ( !isset( DOMDataUtils::getDataMw( $kartnode )->attrs->text ) ) {
+			if ( DOMDataUtils::getDataMw( $kartnode )->getExtAttrib( 'text' ) === null ) {
 				$text = $extApi->getTopLevelDoc()->createTextNode( $counter );
 				$kartnode->replaceChild( $text, $kartnode->firstChild );
 			}
