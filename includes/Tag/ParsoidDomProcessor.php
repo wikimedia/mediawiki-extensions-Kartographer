@@ -2,10 +2,11 @@
 
 namespace Kartographer\Tag;
 
-use Kartographer\ParsoidUtils;
 use Kartographer\SimpleStyleParser;
+use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\Config;
 use MediaWiki\Json\FormatJson;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOutputStringSets;
 use MediaWiki\Title\Title;
 use stdClass;
@@ -23,11 +24,14 @@ use Wikimedia\Parsoid\Utils\DOMTraverser;
 class ParsoidDomProcessor extends DOMProcessor {
 
 	private Config $config;
+	private TrackingCategories $trackingCategories;
 
 	public function __construct(
-		Config $config
+		Config $config,
+		TrackingCategories $trackingCategories
 	) {
 		$this->config = $config;
+		$this->trackingCategories = $trackingCategories;
 	}
 
 	/** @inheritDoc */
@@ -69,10 +73,10 @@ class ParsoidDomProcessor extends DOMProcessor {
 		$traverser->traverse( $extApi, $root );
 
 		if ( $state['broken'] > 0 ) {
-			ParsoidUtils::addCategory( $extApi, 'kartographer-broken-category' );
+			$this->addCategory( $extApi, 'kartographer-broken-category' );
 		}
 		if ( $state['maplinks'] + $state['mapframes'] > $state['broken'] ) {
-			ParsoidUtils::addCategory( $extApi, 'kartographer-tracking-category' );
+			$this->addCategory( $extApi, 'kartographer-tracking-category' );
 		}
 
 		$interactive = $state['interactiveGroups'];
@@ -189,6 +193,23 @@ class ParsoidDomProcessor extends DOMProcessor {
 		);
 
 		return $url[0] . '?' . wfArrayToCgi( $attrs );
+	}
+
+	/**
+	 * Add category to the page, from its key
+	 * @param ParsoidExtensionAPI $extApi
+	 * @param string $category
+	 * @return void
+	 */
+	private function addCategory( ParsoidExtensionAPI $extApi, string $category ) {
+		$linkTarget = $extApi->getPageConfig()->getLinkTarget();
+		$pageRef = PageReferenceValue::localReference(
+			$linkTarget->getNamespace(), $linkTarget->getDBkey()
+		);
+		$cat = $this->trackingCategories->resolveTrackingCategory( $category, $pageRef );
+		if ( $cat ) {
+			$extApi->getMetadata()->addCategory( $cat );
+		}
 	}
 
 }
