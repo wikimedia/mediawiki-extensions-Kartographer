@@ -19,7 +19,14 @@ class ParsoidKartographerConfig implements ExtensionModule {
 			'tags' => [
 				[
 					'name' => 'maplink',
-					'handler' => ParsoidMapLink::class,
+					'handler' => [
+						'class' => ParsoidMapLink::class,
+						'services' => [
+							'MainConfig',
+							'LanguageFactory',
+							'LanguageNameUtils',
+						],
+					],
 					'options' => [
 						'outputHasCoreMwDomSpecMarkup' => true,
 						'wt2html' => [
@@ -32,7 +39,9 @@ class ParsoidKartographerConfig implements ExtensionModule {
 					'handler' => [
 						'class' => ParsoidMapFrame::class,
 						'services' => [
-							'MainConfig'
+							'MainConfig',
+							'LanguageFactory',
+							'LanguageNameUtils',
 						],
 					],
 					'options' => [

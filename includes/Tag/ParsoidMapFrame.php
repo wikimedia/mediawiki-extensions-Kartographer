@@ -5,6 +5,8 @@ namespace Kartographer\Tag;
 use DOMException;
 use Kartographer\ParsoidUtils;
 use MediaWiki\Config\Config;
+use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Title\Title;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
@@ -19,8 +21,11 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 	private Config $config;
 
 	public function __construct(
-		Config $config
+		Config $config,
+		LanguageFactory $languageFactory,
+		LanguageNameUtils $languageNameUtils
 	) {
+		parent::__construct( $config, $languageFactory, $languageNameUtils );
 		$this->config = $config;
 	}
 
