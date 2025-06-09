@@ -542,7 +542,52 @@
 	],
 	"ParsoidModules": [
 		{
-			"class": "Kartographer\\Tag\\ParsoidKartographerConfig"
+			"name": "Kartographer",
+			"tags": [
+				{
+					"name": "maplink",
+					"handler": {
+						"class": "Kartographer\\Tag\\ParsoidMapLink",
+						"services": [
+							"MainConfig",
+							"LanguageFactory",
+							"LanguageNameUtils"
+						]
+					},
+					"options": {
+						"outputHasCoreMwDomSpecMarkup": true,
+						"wt2html": {
+							"embedsHTMLInAttributes": true
+						}
+					}
+				},
+				{
+					"name": "mapframe",
+					"handler": {
+						"class": "Kartographer\\Tag\\ParsoidMapFrame",
+						"services": [
+							"MainConfig",
+							"LanguageFactory",
+							"LanguageNameUtils"
+						]
+					},
+					"options": {
+						"outputHasCoreMwDomSpecMarkup": true,
+						"wt2html": {
+							"embedsHTMLInAttributes": true
+						}
+					}
+				}
+			],
+			"domProcessors": [
+				{
+					"class": "Kartographer\\Tag\\ParsoidDomProcessor",
+					"services": [
+						"MainConfig",
+						"TrackingCategories"
+					]
+				}
+			]
 		}
 	],
 	"load_composer_autoloader": true,
