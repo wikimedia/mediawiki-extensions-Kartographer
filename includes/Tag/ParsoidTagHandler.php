@@ -16,13 +16,12 @@ use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Ext\ExtensionTagHandler;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
-use Wikimedia\Parsoid\Ext\Utils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 
 /**
  * @license MIT
  */
-class ParsoidTagHandler extends ExtensionTagHandler {
+abstract class ParsoidTagHandler extends ExtensionTagHandler {
 	public const TAG = '';
 
 	protected Config $config;
@@ -42,12 +41,12 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 	/**
 	 * @param ParsoidExtensionAPI $extApi
 	 * @param string $input
-	 * @param stdClass[] $extArgs
+	 * @param array $extArgs
 	 * @return array{StatusValue,MapTagArgumentValidator,stdClass[]}
 	 */
 	protected function parseTag( ParsoidExtensionAPI $extApi, string $input, array $extArgs ): array {
 		$args = $this->processArguments(
-			$this->convertParsoidExtensionArguments( $extArgs ),
+			$extApi->extArgsToArray( $extArgs ),
 			$extApi
 		);
 		$status = $args->status;
@@ -69,27 +68,6 @@ class ParsoidTagHandler extends ExtensionTagHandler {
 		}
 
 		return [ $status, $args, $geometries ];
-	}
-
-	/**
-	 * @param stdClass[] $extArgs
-	 * @return array<string,string>
-	 */
-	private function convertParsoidExtensionArguments( array $extArgs ): array {
-		$args = [];
-		foreach ( $extArgs as $extArg ) {
-			// Might be an array or Token object when wikitext like <maplink {{1x|text}}=… /> is
-			// used. The old parser doesn't resolve this either.
-			if ( is_string( $extArg->k ) ) {
-				if ( $extArg->k === 'text' && $extArg->vsrc ) {
-					// preserve newlines and spaces for 'text' attribute
-					$args[$extArg->k] = Utils::decodeWtEntities( $extArg->vsrc );
-				} else {
-					$args[$extArg->k] = $extArg->v;
-				}
-			}
-		}
-		return $args;
 	}
 
 	/**

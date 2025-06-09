@@ -574,7 +574,10 @@
 					"options": {
 						"outputHasCoreMwDomSpecMarkup": true,
 						"wt2html": {
-							"embedsHTMLInAttributes": true
+							"embedsHTMLInAttributes": true,
+							"attributeWSNormalization": {
+								"text": "keepspaces"
+							}
 						}
 					}
 				}
