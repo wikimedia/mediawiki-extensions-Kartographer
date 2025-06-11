@@ -4,11 +4,12 @@
 			"Af420",
 			"Ahmed-Najib-Biabani-Ibrahimkhel",
 			"Amjad Khan",
-			"Baloch Khan"
+			"Baloch Khan",
+			"شاه زمان پټان"
 		]
 	},
 	"kartographer-broken-category": "د ماتو نخشو مخونه",
-	"kartographer-tracking-category": "نخشه لرونکي مخونه",
+	"kartographer-tracking-category": "نخشه‌کښوونکي پراختيا کاروونکي مخونه",
 	"kartographer-tracking-category-desc": "دا مخ يوه نخشه لري",
 	"kartographer-linktype-map": "نخشه",
 	"map": "د کووارډينېټونو مالومات",
