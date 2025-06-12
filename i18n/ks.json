@@ -1,0 +1,23 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"kartographer-broken-category": "صَفہٕ یِمَن. مَنٛز پُٹمِتؠ نَقشہٕ چھِ",
+	"kartographer-tracking-category": "صَفہٕ یِمَن مَنٛز نَقشہٕ چھِ",
+	"kartographer-linktype-other": "باقٕے",
+	"kartographer-linktype-satellite": "سیٹلایِٹ",
+	"kartographer-link-google-maps": "گوٗگٕل نَقشہٕ",
+	"kartographer-sidebar-coordinates": "جاے نۄقطہٕ",
+	"kartographer-sidebar-externalservices-show-all": "بییہٚ وُچُھو",
+	"leafletdraw-draw-toolbar-actions-text": "مَنسوٗخ",
+	"leafletdraw-edit-toolbar-actions-cancel-text": "مَنسوٗخ",
+	"leafletdraw-edit-toolbar-actions-save-text": "مَحفوٗظ",
+	"leafletdraw-edit-toolbar-actions-save-title": "تَبدیٖلی کٔرِو مَحفوٗظ",
+	"mapbox-control-zoomin-title": "بڈاوُن",
+	"mapbox-control-zoomout-title": "دوٗر",
+	"kartographer-fullscreen-close": "بَنٛد",
+	"visualeditor-mwmapsdialog-language": "زَبان",
+	"visualeditor-mwmapsdialog-language-option": "$1 – $2",
+	"visualeditor-mwmapsdialog-language-local": "$1 (ہر نَقشہٕ علاقس کٔرِو مُقٲمی زبان اِستِمال)",
+	"visualeditor-mwmapsdialog-title": "نَقشہٕ"
+}
