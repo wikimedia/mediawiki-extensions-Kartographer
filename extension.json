@@ -437,7 +437,8 @@
 	],
 	"Hooks": {
 		"ParserFirstCallInit": "KartographerHooks",
-		"ParserAfterParse": "KartographerHooks"
+		"ParserAfterParse": "KartographerHooks",
+		"ParserTestGlobals": "KartographerHooks"
 	},
 	"HookHandlers": {
 		"KartographerHooks": {

@@ -14,6 +14,7 @@ use Kartographer\Tag\LegacyTagHandler;
 use MediaWiki\Config\Config;
 use MediaWiki\Hook\ParserAfterParseHook;
 use MediaWiki\Hook\ParserFirstCallInitHook;
+use MediaWiki\Hook\ParserTestGlobalsHook;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\StripState;
@@ -25,7 +26,8 @@ use MediaWiki\Title\TitleFormatter;
  */
 class Hooks implements
 	ParserFirstCallInitHook,
-	ParserAfterParseHook
+	ParserAfterParseHook,
+	ParserTestGlobalsHook
 {
 	private readonly LegacyMapLink $legacyMapLink;
 	private readonly LegacyMapFrame $legacyMapFrame;
@@ -74,6 +76,16 @@ class Hooks implements
 			$tracker = new ParserFunctionTracker( $parser );
 			LegacyTagHandler::finalParseStep( $state, $output, $isPreview, $tracker );
 		}
+	}
+
+	/**
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ParserTestGlobals
+	 * @param array &$globals Array with all the globals which should be set for parser tests.
+	 *   The arrays keys serve as the globals' names, its values are the globals' values.
+	 * @return bool|void True or no return value to continue or false to abort
+	 */
+	public function onParserTestGlobals( &$globals ) {
+		$globals['wgKartographerMapServer'] = 'https://maps.wikimedia.org';
 	}
 
 	/**
