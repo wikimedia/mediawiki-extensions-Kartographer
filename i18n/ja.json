@@ -113,7 +113,7 @@
 	"visualeditor-mwmapsdialog-caption": "キャプション",
 	"visualeditor-mwmapsdialog-caption-help": "このキャプションは、フレーム内の地図の下に表示されます（画像キャプションと同様）。キャプションを追加すると、強制的に地図がフレームありになります。\n\nここでは、太字、リンク、あるは脚注などのウィキテキスト書式が使えます。",
 	"visualeditor-mwmapsdialog-language": "言語",
-	"visualeditor-mwmapsdialog-language-help": "Kartographerは、ウィキのコンテンツの言語をラベル言語の既定として使用します。この設定をこの地図に対してのみ変更することができます。\n\n言語名の代わりに <code>local</code> を使用すると、すべてのラベルをその場所のローカルな言語で表示します。例えば、メキシコの都市名はスペイン語で表示され、日本の都市名は日本語で表示されます。\n\nラベルが選択した言語で利用できないときには、Kartographerはフォールバックプロセスに従います。この機能の詳細は、[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Extension:Kartographer#Languages_and_fallbacks Kartographerのヘルプページ]を参照してください。",
+	"visualeditor-mwmapsdialog-language-help": "Kartographer は、ウィキのコンテンツ言語をラベルの既定言語として使用します。この設定により、この地図に限って変更できます。\n\n言語名の代わりに <code>local</code> を使用すると、その場所のローカルな言語ですべてのラベルが表示されます。例えば、メキシコの都市名はスペイン語で、日本の都市名は日本語で表示されます。\n\n選択した言語でラベルが利用できない場合、Kartographer はフォールバックの手順に従います。この仕組みの詳細については、[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Extension:Kartographer#Languages_and_fallbacks Kartographer のヘルプページ]を参照してください。",
 	"visualeditor-mwmapsdialog-language-local": "$1 (各地図領域にローカルな言語を使用)",
 	"visualeditor-mwmapsdialog-help-title": "地図の作成と編集について詳細を知るには。",
 	"visualeditor-mwmapsdialog-position-lat": "緯度",
