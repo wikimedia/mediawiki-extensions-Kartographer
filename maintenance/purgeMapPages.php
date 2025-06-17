@@ -32,14 +32,17 @@ class PurgeMapPages extends Maintenance {
 		}
 		$categoryTitle = Title::makeTitle( NS_CATEGORY, $categoryMessage->inContentLanguage()->text() );
 		$dryRun = $this->hasOption( 'dry-run' );
+		$linksMigration = $this->getServiceContainer()->getLinksMigration();
+		$queryInfo = $linksMigration->getQueryInfo( 'categorylinks' );
 		$iterator = new BatchRowIterator(
 			$this->getReplicaDB(),
-			[ 'categorylinks', 'page' ],
+			array_merge( $queryInfo['tables'], [ 'page' ] ),
 			[ 'cl_type', 'cl_sortkey', 'cl_from' ],
 			$this->getBatchSize()
 		);
-		$iterator->addConditions( [ 'cl_to' => $categoryTitle->getDBkey() ] );
+		$iterator->addConditions( $linksMigration->getLinksConditions( 'categorylinks', $categoryTitle ) );
 		$iterator->addJoinConditions( [ 'page' => [ 'INNER JOIN', [ 'page_id=cl_from' ] ] ] );
+		$iterator->addJoinConditions( $queryInfo['joins'] );
 		$iterator->setFetchColumns( [ 'page_id', 'page_namespace', 'page_title' ] );
 		$iterator->setCaller( __METHOD__ );
 
