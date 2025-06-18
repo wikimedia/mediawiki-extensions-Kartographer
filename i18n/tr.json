@@ -44,6 +44,7 @@
 	"kartographer-linktype-satellite": "Uydu",
 	"kartographer-linktype-terrain": "Arazi",
 	"kartographer-linktype-topo": "Topografik",
+	"kartographer-link-apple-maps": "Apple Harita",
 	"kartographer-link-bing-maps": "Bing Haritalar",
 	"kartographer-link-google-maps": "Google Haritalar",
 	"kartographer-sidebar-coordinates": "Koordinatlar",
