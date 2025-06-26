@@ -61,7 +61,10 @@ class ParsoidDomProcessor extends DOMProcessor {
 
 		$mapServer = $this->config->get( 'KartographerMapServer' );
 		$extApi->getMetadata()->addModuleStyles( [ 'ext.kartographer.style' ] );
-		$extApi->getMetadata()->appendOutputStrings( ParserOutputStringSets::EXTRA_CSP_DEFAULT_SRC, [ $mapServer ] );
+		$extApi->getMetadata()->appendOutputStrings(
+			ParserOutputStringSets::EXTRA_CSP_DEFAULT_SRC->value,
+			[ $mapServer ]
+		);
 
 		$traverser = new DOMTraverser( false, true );
 		$traverser->addHandler( null, function ( $node ) use ( &$state, $extApi ) {
