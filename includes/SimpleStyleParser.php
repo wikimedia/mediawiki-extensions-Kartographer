@@ -6,6 +6,7 @@ use InvalidArgumentException;
 use JsonConfig\JCMapDataContent;
 use JsonConfig\JCSingleton;
 use JsonSchema\Validator;
+use MediaWiki\Config\Config;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;
@@ -32,22 +33,33 @@ class SimpleStyleParser {
 	private array $options;
 	private string $mapServer;
 
-	public static function newFromParser( Parser $parser, ?PPFrame $frame = null ): self {
-		return new self( new MediaWikiWikitextParser( $parser, $frame ) );
+	public static function newFromParser(
+		Parser $parser,
+		?Config $config = null,
+		?PPFrame $frame = null
+	): self {
+		return new self(
+			new MediaWikiWikitextParser( $parser, $frame ),
+			$config ?? MediaWikiServices::getInstance()->getMainConfig(),
+			[]
+		);
 	}
 
 	/**
 	 * @param WikitextParser $parser
+	 * @param Config $config
 	 * @param array $options Set ['saveUnparsed' => true] to back up the original values of title
 	 *                       and description in _origtitle and _origdescription
 	 */
-	public function __construct( WikitextParser $parser, array $options = [] ) {
+	public function __construct(
+		WikitextParser $parser,
+		Config $config,
+		array $options = []
+	) {
 		$this->parser = $parser;
 		$this->options = $options;
 		// @fixme: More precise config?
-		$this->mapServer = MediaWikiServices::getInstance()
-			->getMainConfig()
-			->get( 'KartographerMapServer' );
+		$this->mapServer = $config->get( 'KartographerMapServer' );
 	}
 
 	/**

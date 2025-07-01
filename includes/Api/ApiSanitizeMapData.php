@@ -67,6 +67,7 @@ class ApiSanitizeMapData extends ApiBase {
 		$parser->setPage( $title );
 		$simpleStyle = new SimpleStyleParser(
 			new MediaWikiWikitextParser( $parser ),
+			$this->getConfig(),
 			[ 'saveUnparsed' => true ]
 		);
 		$status = $simpleStyle->parse( $text );

@@ -54,7 +54,7 @@ abstract class ParsoidTagHandler extends ExtensionTagHandler {
 		$geometries = [];
 		if ( $status->isOK() ) {
 			$wp = new ParsoidWikitextParser( $extApi );
-			$status = ( new SimpleStyleParser( $wp ) )->parse( $input );
+			$status = ( new SimpleStyleParser( $wp, $this->config ) )->parse( $input );
 			if ( $status->isOk() ) {
 				$geometries = $status->getValue()['data'];
 			}
