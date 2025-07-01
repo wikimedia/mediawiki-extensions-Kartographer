@@ -8,7 +8,6 @@ use JsonConfig\JCSingleton;
 use JsonSchema\Validator;
 use MediaWiki\Config\Config;
 use MediaWiki\Json\FormatJson;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\PPFrame;
 use StatusValue;
@@ -35,12 +34,12 @@ class SimpleStyleParser {
 
 	public static function newFromParser(
 		Parser $parser,
-		?Config $config = null,
+		Config $config,
 		?PPFrame $frame = null
 	): self {
 		return new self(
 			new MediaWikiWikitextParser( $parser, $frame ),
-			$config ?? MediaWikiServices::getInstance()->getMainConfig(),
+			$config,
 			[]
 		);
 	}
