@@ -11,12 +11,10 @@ use MediaWiki\Parser\PPFrame;
  */
 class PartialWikitextParser {
 
-	private Parser $parser;
-	private PPFrame $frame;
-
-	public function __construct( Parser $parser, PPFrame $frame ) {
-		$this->parser = $parser;
-		$this->frame = $frame;
+	public function __construct(
+		private readonly Parser $parser,
+		private readonly PPFrame $frame,
+	) {
 	}
 
 	/**

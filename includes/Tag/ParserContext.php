@@ -15,12 +15,10 @@ use MediaWiki\Title\TitleFormatter;
  */
 class ParserContext {
 
-	private Parser $parser;
-	private TitleFormatter $titleFormatter;
-
-	public function __construct( Parser $parser, TitleFormatter $titleFormatter ) {
-		$this->parser = $parser;
-		$this->titleFormatter = $titleFormatter;
+	public function __construct(
+		private readonly Parser $parser,
+		private readonly TitleFormatter $titleFormatter,
+	) {
 	}
 
 	/**

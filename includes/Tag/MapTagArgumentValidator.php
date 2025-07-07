@@ -16,12 +16,8 @@ use stdClass;
  */
 class MapTagArgumentValidator {
 
-	private Config $config;
-	private Language $defaultLanguage;
-	private LanguageNameUtils $languageCodeValidator;
-
-	public StatusValue $status;
-	private Tag $args;
+	public readonly StatusValue $status;
+	private readonly Tag $args;
 
 	public ?float $lat;
 	public ?float $lon;
@@ -62,14 +58,10 @@ class MapTagArgumentValidator {
 	public function __construct(
 		string $tag,
 		array $args,
-		Config $config,
-		Language $defaultLanguage,
-		LanguageNameUtils $languageCodeValidator
+		private readonly Config $config,
+		private readonly Language $defaultLanguage,
+		private readonly LanguageNameUtils $languageCodeValidator,
 	) {
-		$this->config = $config;
-		$this->defaultLanguage = $defaultLanguage;
-		$this->languageCodeValidator = $languageCodeValidator;
-
 		$this->status = StatusValue::newGood();
 		$this->args = new Tag( $tag, $args, $this->status );
 

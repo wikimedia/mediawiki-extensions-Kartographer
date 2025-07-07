@@ -24,18 +24,13 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryMapData extends ApiQueryBase {
 
-	private WikiPageFactory $pageFactory;
-	private ?FlaggedRevsParserCache $parserCache;
-
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		WikiPageFactory $pageFactory,
-		?FlaggedRevsParserCache $parserCache
+		private readonly WikiPageFactory $pageFactory,
+		private readonly ?FlaggedRevsParserCache $parserCache,
 	) {
 		parent::__construct( $query, $moduleName, 'mpd' );
-		$this->pageFactory = $pageFactory;
-		$this->parserCache = $parserCache;
 	}
 
 	/** @inheritDoc */

@@ -30,15 +30,12 @@ use Wikimedia\ParamValidator\ParamValidator;
  */
 class ApiSanitizeMapData extends ApiBase {
 
-	private ParserFactory $parserFactory;
-
 	public function __construct(
 		ApiMain $main,
 		string $action,
-		ParserFactory $parserFactory
+		private readonly ParserFactory $parserFactory,
 	) {
 		parent::__construct( $main, $action );
-		$this->parserFactory = $parserFactory;
 	}
 
 	/** @inheritDoc */

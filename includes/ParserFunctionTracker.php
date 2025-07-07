@@ -10,10 +10,9 @@ use MediaWiki\Parser\Parser;
  */
 class ParserFunctionTracker {
 
-	private Parser $parser;
-
-	public function __construct( Parser $parser ) {
-		$this->parser = $parser;
+	public function __construct(
+		private readonly Parser $parser,
+	) {
 	}
 
 	/**

@@ -10,10 +10,9 @@ use MediaWiki\Json\FormatJson;
  */
 class MapLinkAttributeGenerator {
 
-	private MapTagArgumentValidator $args;
-
-	public function __construct( MapTagArgumentValidator $args ) {
-		$this->args = $args;
+	public function __construct(
+		private readonly MapTagArgumentValidator $args,
+	) {
 	}
 
 	/**

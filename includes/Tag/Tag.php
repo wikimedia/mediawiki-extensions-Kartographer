@@ -12,20 +12,16 @@ use StatusValue;
  */
 class Tag {
 
-	public string $name;
-	/** @var array<string,string> */
-	private array $args;
-	private StatusValue $status;
-
 	/**
 	 * @param string $name Tag name, e.g. "maplink"
 	 * @param array<string,string> $args
 	 * @param StatusValue $status
 	 */
-	public function __construct( string $name, array $args, StatusValue $status ) {
-		$this->name = $name;
-		$this->args = $args;
-		$this->status = $status;
+	public function __construct(
+		public readonly string $name,
+		private readonly array $args,
+		private readonly StatusValue $status,
+	) {
 	}
 
 	/**
@@ -74,6 +70,7 @@ class Tag {
 	 * @return string|null Null when missing or invalid
 	 */
 	public function getString( string $name, ?string $regexp = null ): ?string {
+		// @phan-suppress-next-line PhanAccessReadOnlyProperty Bug in Phan
 		if ( !isset( $this->args[$name] ) ) {
 			return null;
 		}

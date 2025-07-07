@@ -10,12 +10,10 @@ use MediaWiki\Parser\PPFrame;
  */
 class MediaWikiWikitextParser extends WikitextParser {
 
-	private Parser $parser;
-	private ?PPFrame $frame;
-
-	public function __construct( Parser $parser, ?PPFrame $frame = null ) {
-		$this->parser = $parser;
-		$this->frame = $frame;
+	public function __construct(
+		private readonly Parser $parser,
+		private readonly ?PPFrame $frame = null,
+	) {
 	}
 
 	/** @inheritDoc */

@@ -24,18 +24,11 @@ use Wikimedia\Parsoid\Utils\DOMCompat;
 abstract class ParsoidTagHandler extends ExtensionTagHandler {
 	public const TAG = '';
 
-	protected Config $config;
-	private LanguageFactory $languageFactory;
-	private LanguageNameUtils $languageNameUtils;
-
 	public function __construct(
-		Config $config,
-		LanguageFactory $languageFactory,
-		LanguageNameUtils $languageNameUtils
+		protected readonly Config $config,
+		private readonly LanguageFactory $languageFactory,
+		private readonly LanguageNameUtils $languageNameUtils,
 	) {
-		$this->config = $config;
-		$this->languageFactory = $languageFactory;
-		$this->languageNameUtils = $languageNameUtils;
 	}
 
 	/**

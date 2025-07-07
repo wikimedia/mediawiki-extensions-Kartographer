@@ -23,15 +23,10 @@ use Wikimedia\Parsoid\Utils\DOMTraverser;
  */
 class ParsoidDomProcessor extends DOMProcessor {
 
-	private Config $config;
-	private TrackingCategories $trackingCategories;
-
 	public function __construct(
-		Config $config,
-		TrackingCategories $trackingCategories
+		private readonly Config $config,
+		private readonly TrackingCategories $trackingCategories,
 	) {
-		$this->config = $config;
-		$this->trackingCategories = $trackingCategories;
 	}
 
 	/** @inheritDoc */

@@ -28,9 +28,22 @@ class SimpleStyleParser {
 	private const MAX_NUMERIC_COUNTER = 99;
 	public const WIKITEXT_PROPERTIES = [ 'title', 'description' ];
 
-	private WikitextParser $parser;
-	private array $options;
-	private string $mapServer;
+	private readonly string $mapServer;
+
+	/**
+	 * @param WikitextParser $parser
+	 * @param Config $config
+	 * @param array $options Set ['saveUnparsed' => true] to back up the original values of title
+	 *                       and description in _origtitle and _origdescription
+	 */
+	public function __construct(
+		private readonly WikitextParser $parser,
+		Config $config,
+		private readonly array $options = [],
+	) {
+		// @fixme: More precise config?
+		$this->mapServer = $config->get( 'KartographerMapServer' );
+	}
 
 	public static function newFromParser(
 		Parser $parser,
@@ -42,23 +55,6 @@ class SimpleStyleParser {
 			$config,
 			[]
 		);
-	}
-
-	/**
-	 * @param WikitextParser $parser
-	 * @param Config $config
-	 * @param array $options Set ['saveUnparsed' => true] to back up the original values of title
-	 *                       and description in _origtitle and _origdescription
-	 */
-	public function __construct(
-		WikitextParser $parser,
-		Config $config,
-		array $options = []
-	) {
-		$this->parser = $parser;
-		$this->options = $options;
-		// @fixme: More precise config?
-		$this->mapServer = $config->get( 'KartographerMapServer' );
 	}
 
 	/**

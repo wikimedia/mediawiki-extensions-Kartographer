@@ -9,10 +9,9 @@ use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
  */
 class ParsoidWikitextParser extends WikitextParser {
 
-	private ParsoidExtensionAPI $extApi;
-
-	public function __construct( ParsoidExtensionAPI $extApi ) {
-		$this->extApi = $extApi;
+	public function __construct(
+		private readonly ParsoidExtensionAPI $extApi,
+	) {
 	}
 
 	/** @inheritDoc */

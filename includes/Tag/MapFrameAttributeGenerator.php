@@ -25,14 +25,12 @@ class MapFrameAttributeGenerator {
 		'none' => 'tnone',
 	];
 
-	private MapTagArgumentValidator $args;
-	private Config $config;
-	public string $cssWidth;
+	public readonly string $cssWidth;
 
-	public function __construct( MapTagArgumentValidator $args, Config $config ) {
-		$this->args = $args;
-		$this->config = $config;
-
+	public function __construct(
+		private readonly MapTagArgumentValidator $args,
+		private readonly Config $config,
+	) {
 		if ( $this->args->width === 'full' ) {
 			$this->cssWidth = '100%';
 		} else {
