@@ -309,8 +309,6 @@ class SimpleStyleParser {
 
 	/**
 	 * HACK: this function supports JsonConfig-style localization that doesn't pass validation
-	 *
-	 * @param stdClass $properties
 	 */
 	private function parseWikitextProperties( stdClass $properties ) {
 		$saveUnparsed = $this->options['saveUnparsed'] ?? false;

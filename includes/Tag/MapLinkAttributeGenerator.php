@@ -17,7 +17,6 @@ class MapLinkAttributeGenerator {
 
 	/**
 	 * Prepare MapLink array of attributes to be passed to the Node element
-	 * @return array
 	 */
 	public function prepareAttrs(): array {
 		$attrs = [

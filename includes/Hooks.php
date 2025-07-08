@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * @license MIT
  * @file
  *

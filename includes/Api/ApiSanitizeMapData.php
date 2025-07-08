@@ -1,6 +1,5 @@
 <?php
 /**
- *
  * @license MIT
  * @file
  *
@@ -53,10 +52,6 @@ class ApiSanitizeMapData extends ApiBase {
 		$this->sanitizeJson( $title, $params['text'] );
 	}
 
-	/**
-	 * @param Title $title
-	 * @param string $text
-	 */
 	private function sanitizeJson( Title $title, string $text ): void {
 		$parserOptions = new ParserOptions( $this->getUser() );
 		$parser = $this->parserFactory->getInstance();
