@@ -151,6 +151,20 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 		];
 	}
 
+	public function testLongCoordinatesFreezeClient() {
+		$language = $this->createNoOpMock( Language::class );
+		$languageNameUtils = $this->createNoOpMock( LanguageNameUtils::class );
+		$args = new MapTagArgumentValidator( 'mapframe', [
+			'latitude' => '0',
+			'longitude' => '1000',
+			'width' => 'full',
+			'height' => '100',
+			'align' => 'center',
+		], $this->getConfig(), $language, $languageNameUtils );
+
+		$this->assertStatusError( 'kartographer-error-latlon', $args->status );
+	}
+
 	private function getConfig( array $settings = [] ): Config {
 		return new HashConfig( $settings + [
 			'KartographerDfltStyle' => 'custom',

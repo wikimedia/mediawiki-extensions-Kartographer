@@ -99,7 +99,7 @@ class MapTagArgumentValidator {
 		}
 
 		// Arguments valid for both <mapframe> and <maplink>
-		$this->lat = $this->args->getFloat( 'latitude' );
+		$this->lat = $this->args->getFloat( 'latitude', 90 );
 		$this->lon = $this->args->getFloat( 'longitude' );
 		if ( $this->status->isOK() && ( ( $this->lat === null ) xor ( $this->lon === null ) ) ) {
 			$this->lat = null;

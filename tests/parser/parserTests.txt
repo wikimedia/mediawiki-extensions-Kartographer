@@ -280,8 +280,8 @@ Error messages
     }
   }
 </mapframe>
-<mapframe width=200 height=200 latitude=100/>
-<mapframe width=200 height=200 longitude=100/>
+<mapframe width=200 height=200 latitude=10/>
+<mapframe width=200 height=200 longitude=10/>
 !! html/php
 <div class="mw-kartographer-error">&lt;maplink&gt;: Attribute "longitude" has an invalid value</div>
 <div class="mw-kartographer-error">&lt;mapframe&gt; problems:
@@ -306,8 +306,8 @@ Error messages
 <div class="mw-kartographer-error" data-mw-kartographer="mapframe" typeof="mw:Extension/mapframe" about="#mwt10" data-mw='{"name":"mapframe","attrs":{"latitude":"10","longitude":"20","zoom":"13","width":"05%","height":"480"}}'><span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"kartographer-error-context","params":["mapframe",""]}}'></span><span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"kartographer-error-bad_attr","params":["width"]}}'></span></div>
 <div class="mw-kartographer-error" data-mw-kartographer="mapframe" typeof="mw:Extension/mapframe" about="#mwt12" data-mw='{"name":"mapframe","attrs":{"latitude":"10","longitude":"20","zoom":"13","width":"300%","height":"480"}}'><span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"kartographer-error-context","params":["mapframe",""]}}'></span><span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"kartographer-error-bad_attr","params":["width"]}}'></span></div>
 <div class="mw-kartographer-error" data-mw-kartographer="mapframe" typeof="mw:Extension/mapframe" about="#mwt14" data-mw='{"name":"mapframe","attrs":{"latitude":"10","longitude":"20","zoom":"13","width":"640","height":"480","align":"crap","mapstyle":"derp"},"body":{"extsrc":"\n{\n    \"type\": \"Feature\",\n    \"geometry\": {\n      \"type\": \"Point\",\n      \"coordinates\": [-122, 37]\n    },\n    \"properties\": {\n      \"title\": \"Foo bar\",\n      \"marker-symbol\": \"museum\",\n      \"marker-size\": \"medium\",\n      \"marker-color\": \"fail\"\n    }\n  }\n"}}'><span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"kartographer-error-context-multi","params":["mapframe",""]}}'></span><ul><li><span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"kartographer-error-bad_attr","params":["mapstyle"]}}'></span></li><li><span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"kartographer-error-bad_attr","params":["align"]}}'></span></li></ul></div>
-<div class="mw-kartographer-error" data-mw-kartographer="mapframe" typeof="mw:Extension/mapframe" about="#mwt16" data-mw='{"name":"mapframe","attrs":{"width":"200","height":"200","latitude":"100"}}'><span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"kartographer-error-context","params":["mapframe",""]}}'></span><span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"kartographer-error-latlon","params":[]}}'></span></div>
-<div class="mw-kartographer-error" data-mw-kartographer="mapframe" typeof="mw:Extension/mapframe" about="#mwt18" data-mw='{"name":"mapframe","attrs":{"width":"200","height":"200","longitude":"100"}}'><span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"kartographer-error-context","params":["mapframe",""]}}'></span><span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"kartographer-error-latlon","params":[]}}'></span></div>
+<div class="mw-kartographer-error" data-mw-kartographer="mapframe" typeof="mw:Extension/mapframe" about="#mwt16" data-mw='{"name":"mapframe","attrs":{"width":"200","height":"200","latitude":"10"}}'><span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"kartographer-error-context","params":["mapframe",""]}}'></span><span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"kartographer-error-latlon","params":[]}}'></span></div>
+<div class="mw-kartographer-error" data-mw-kartographer="mapframe" typeof="mw:Extension/mapframe" about="#mwt18" data-mw='{"name":"mapframe","attrs":{"width":"200","height":"200","longitude":"10"}}'><span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"kartographer-error-context","params":["mapframe",""]}}'></span><span typeof="mw:I18n" data-mw-i18n='{"/":{"lang":"x-user","key":"kartographer-error-latlon","params":[]}}'></span></div>
 !! end
 
 !! test

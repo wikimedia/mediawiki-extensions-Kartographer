@@ -51,12 +51,16 @@ class Tag {
 
 	/**
 	 * @param string $name
+	 * @param int $max
 	 * @return float|null Null when missing or invalid
 	 */
-	public function getFloat( string $name ): ?float {
+	public function getFloat( string $name, int $max = 360 ): ?float {
 		$value = $this->getString( $name, '/^-?[0-9]*\.?[0-9]+$/' );
 		if ( $value !== null ) {
 			$value = floatval( $value );
+			if ( abs( $value ) > $max ) {
+				return null;
+			}
 		}
 
 		return $value;
