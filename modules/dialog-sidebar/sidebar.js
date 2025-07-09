@@ -226,24 +226,18 @@ SideBar.prototype.renderTypeFilter = function () {
  * Renders the external services partial into its container.
  */
 SideBar.prototype.renderExternalServices = function () {
-	const selectedType = storage.get( this.SELECTEDTYPE_KEY );
 	let $list = this.$servicesContainer.find( '.mw-kartographer-filterservices-list' );
 
-	const toggleShowServicesState = ( state ) => {
-		this.showAllServices = state !== undefined ? !!state : !this.showAllServices;
-	};
-
-	const populateListItems = ( bypassAndShowAllServices ) => {
+	const populateListItems = () => {
 		const featured = [];
 		const regular = [];
-		const services = this.byType[ selectedType ];
+		const services = this.byType[ storage.get( this.SELECTEDTYPE_KEY ) ] || {};
 
 		// eslint-disable-next-line no-jquery/no-each-util
 		$.each( services, ( serviceId, links ) => {
 			// Only one link is supported per type per service for now.
 			const link = links[ 0 ];
 			const service = this.byService[ serviceId ];
-			const formatted = service.featured ? featured : regular;
 			const $item = $( '<div>' )
 				.addClass( 'mw-kartographer-filterservices-list-item' )
 				.toggleClass( 'mw-kartographer-filterservices-list-item-featured', service.featured )
@@ -258,31 +252,21 @@ SideBar.prototype.renderExternalServices = function () {
 					} ).$element
 				);
 
-			formatted.push( $item );
+			( service.featured ? featured : regular ).push( $item );
 		} );
 
-		$list.empty();
-		const items = ( bypassAndShowAllServices || this.showAllServices ) ?
-			featured.concat( regular ) : featured;
+		const items = this.showAllServices ? featured.concat( regular ) : featured;
 
-		// Update message
-		this.toggleShowServices.setLabel(
-			( bypassAndShowAllServices || this.showAllServices ) ?
+		// Show the button only when there is something to expand
+		this.toggleShowServices.toggle( items.length > 7 || ( !this.showAllServices && regular.length ) )
+			.setLabel( this.showAllServices ?
 				mw.msg( 'kartographer-sidebar-externalservices-show-featured' ) :
 				mw.msg( 'kartographer-sidebar-externalservices-show-all' )
-		);
+			);
 
-		$list.append( items );
+		$list.empty().append( items );
 		return items;
 	};
-	const onToggleShowServicesButton = () => {
-		toggleShowServicesState();
-		populateListItems();
-	};
-
-	if ( !selectedType ) {
-		return;
-	}
 
 	if ( !$list.length ) {
 		$list = $( '<div>' )
@@ -297,17 +281,17 @@ SideBar.prototype.renderExternalServices = function () {
 			classes: [ 'mw-kartographer-filterservices-toggleButton' ]
 		} );
 
-		this.toggleShowServices.on( 'click', onToggleShowServicesButton );
+		this.toggleShowServices.on( 'click', () => {
+			this.showAllServices = !this.showAllServices;
+			populateListItems();
+		} );
 		this.$servicesContainer.append( this.toggleShowServices.$element );
 	}
 
-	this.toggleShowServices.toggle( true );
-	if ( Object.keys( this.byType[ selectedType ] ).length <= 7 ) {
-		populateListItems( true );
-		this.toggleShowServices.toggle( false );
-	} else {
-		populateListItems( false );
-	}
+	const selectedType = storage.get( this.SELECTEDTYPE_KEY );
+	// Decide if the initial state should be collapsed or not
+	this.showAllServices = selectedType && Object.keys( this.byType[ selectedType ] ).length <= 7;
+	populateListItems();
 };
 
 /**
