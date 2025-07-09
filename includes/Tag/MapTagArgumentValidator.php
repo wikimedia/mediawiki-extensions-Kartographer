@@ -95,6 +95,12 @@ class MapTagArgumentValidator {
 			// @todo: deprecate old syntax completely
 			if ( $this->width && str_ends_with( $this->width, '%' ) ) {
 				$this->width = $this->width === '100%' ? 'full' : '300';
+			} elseif ( is_numeric( $this->width ) && ( $this->width < 1 || $this->width > 65535 ) ) {
+				$this->status->fatal( 'kartographer-error-bad_attr', 'width' );
+			}
+
+			if ( $this->height !== null && ( $this->height < 1 || $this->height > 65535 ) ) {
+				$this->status->fatal( 'kartographer-error-bad_attr', 'height' );
 			}
 		}
 
@@ -108,6 +114,10 @@ class MapTagArgumentValidator {
 		}
 
 		$this->zoom = $this->args->getInt( 'zoom' );
+		// This code shouldn't need to know much about the zoom, just limit it to +/-100
+		if ( $this->zoom !== null && abs( $this->zoom ) > 100 ) {
+			$this->status->fatal( 'kartographer-error-bad_attr', 'zoom' );
+		}
 		$regexp = '/^(' . implode( '|', $this->config->get( 'KartographerStyles' ) ) . ')$/';
 		$defaultStyle = $this->config->get( 'KartographerDfltStyle' );
 		$this->mapStyle = $this->args->getString( 'mapstyle', $regexp ) ?? $defaultStyle;

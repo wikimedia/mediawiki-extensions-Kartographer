@@ -51,7 +51,7 @@ class Tag {
 
 	/**
 	 * @param string $name
-	 * @param int $max
+	 * @param int $max Defaults to +/-360°
 	 * @return float|null Null when missing or invalid
 	 */
 	public function getFloat( string $name, int $max = 360 ): ?float {

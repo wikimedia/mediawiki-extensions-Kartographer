@@ -151,18 +151,31 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	public function testLongCoordinatesFreezeClient() {
-		$language = $this->createNoOpMock( Language::class );
+	/**
+	 * @dataProvider provideOverflowingNumbers
+	 */
+	public function testOverflowingNumbers( array $args, string $expectedError ) {
+		$language = $this->createMock( Language::class );
 		$languageNameUtils = $this->createNoOpMock( LanguageNameUtils::class );
-		$args = new MapTagArgumentValidator( 'mapframe', [
+		$args = new MapTagArgumentValidator( 'mapframe', $args + [
 			'latitude' => '0',
-			'longitude' => '1000',
+			'longitude' => '0',
 			'width' => 'full',
 			'height' => '100',
 			'align' => 'center',
 		], $this->getConfig(), $language, $languageNameUtils );
 
-		$this->assertStatusError( 'kartographer-error-latlon', $args->status );
+		$this->assertStatusError( $expectedError, $args->status );
+	}
+
+	public function provideOverflowingNumbers() {
+		return [
+			'Degree >360 make no sense' => [ [ 'longitude' => '361' ], 'kartographer-error-latlon' ],
+			'Latitude >90 makes no sense' => [ [ 'latitude' => '91' ], 'kartographer-error-latlon' ],
+			'Extreme width' => [ [ 'width' => '1000000' ], 'kartographer-error-bad_attr' ],
+			'Extreme height' => [ [ 'height' => '1000000' ], 'kartographer-error-bad_attr' ],
+			'Extreme zoom' => [ [ 'zoom' => '1000' ], 'kartographer-error-bad_attr' ],
+		];
 	}
 
 	private function getConfig( array $settings = [] ): Config {
