@@ -229,7 +229,7 @@ SideBar.prototype.renderExternalServices = function () {
 	const selectedType = storage.get( this.SELECTEDTYPE_KEY );
 	let $list = this.$servicesContainer.find( '.mw-kartographer-filterservices-list' );
 
-	const toggleShowServicesState = function ( state ) {
+	const toggleShowServicesState = ( state ) => {
 		this.showAllServices = state !== undefined ? !!state : !this.showAllServices;
 	};
 
