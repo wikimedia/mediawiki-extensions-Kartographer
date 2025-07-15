@@ -4,6 +4,9 @@
 			"Умар"
 		]
 	},
+	"apihelp-sanitize-mapdata-summary": "Kartographer шордарна лерина хаамаш тӀечӀагӀбар кхочушдо",
+	"apihelp-sanitize-mapdata-param-title": "ХӀара GeoJSON тӀехь хила йеза агӀонан цӀе. Нагахь санна цхьа а цӀе билгалйаьккхина йацахь, лелор фиктиван цӀе.",
 	"apihelp-sanitize-mapdata-param-text": "GeoJSON цӀанярна",
-	"apihelp-sanitize-mapdata-example": "GeoJSON хаамаш цӀанбан"
+	"apihelp-sanitize-mapdata-example": "GeoJSON хаамаш цӀанбан",
+	"apihelp-query+mapdata-param-limit": "Маса агӀонна йухаберзо беза хаамаш"
 }
