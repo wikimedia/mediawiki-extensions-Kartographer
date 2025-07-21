@@ -68,7 +68,7 @@ class ParsoidDomProcessor extends DOMProcessor {
 			}
 			return true;
 		} );
-		$traverser->traverse( $extApi, $root );
+		$traverser->traverse( $extApi->getSiteConfig(), $root );
 
 		if ( $state['broken'] > 0 ) {
 			$this->addCategory( $extApi, 'kartographer-broken-category' );
