@@ -6,5 +6,10 @@
 		]
 	},
 	"kartographer-sidebar-nearbybutton": "Tunjuk rencana berdekatan",
-	"visualeditor-mwmapsdialog-language": "Bahasa"
+	"leafletdraw-draw-toolbar-buttons-circle": "Lukis bulatan",
+	"leafletdraw-draw-toolbar-buttons-polygon": "Lukis poligon",
+	"visualeditor-mwmapsdialog-language": "Bahasa",
+	"visualeditor-mwmapsdialog-size": "Saiz",
+	"visualeditor-mwmapsdialog-title": "Peta",
+	"visualeditor-mwmapscontextitem-title": "Peta"
 }
