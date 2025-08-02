@@ -35,20 +35,14 @@ abstract class LegacyTagHandler {
 	public const TAG = '';
 
 	protected MapTagArgumentValidator $args;
-	protected Config $config;
 	protected ParserContext $parserContext;
 	private ContentMetadataCollector $metadataCollector;
-	private LanguageNameUtils $languageCodeValidator;
-	private TitleFormatter $titleFormatter;
 
 	public function __construct(
-		Config $config,
-		LanguageNameUtils $languageCodeValidator,
-		TitleFormatter $titleFormatter
+		protected readonly Config $config,
+		private readonly LanguageNameUtils $languageCodeValidator,
+		private readonly TitleFormatter $titleFormatter,
 	) {
-		$this->config = $config;
-		$this->languageCodeValidator = $languageCodeValidator;
-		$this->titleFormatter = $titleFormatter;
 	}
 
 	/**
