@@ -16,13 +16,9 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 	public const TAG = 'mapframe';
 
 	/**
-	 * @param ParsoidExtensionAPI $extApi
-	 * @param string $src
-	 * @param array $extArgs
-	 * @return DocumentFragment
 	 * @throws DOMException
 	 */
-	public function sourceToDom( ParsoidExtensionAPI $extApi, string $src, array $extArgs ) {
+	public function sourceToDom( ParsoidExtensionAPI $extApi, string $src, array $extArgs ): DocumentFragment {
 		[ $status, $args, $geometries ] = $this->parseTag( $extApi, $src, $extArgs );
 
 		if ( !$status->isGood() ) {

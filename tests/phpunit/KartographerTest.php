@@ -471,10 +471,6 @@ class KartographerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * Parses wikitext
-	 * @param string $text
-	 * @param bool $isPreview
-	 * @param bool $isSectionPreview
-	 * @return ParserOutput
 	 */
 	private function parse( string $text, bool $isPreview = false, bool $isSectionPreview = false ): ParserOutput {
 		$parser = $this->getServiceContainer()->getParserFactory()->create();

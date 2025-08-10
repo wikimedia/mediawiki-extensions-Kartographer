@@ -195,11 +195,8 @@ class ParsoidDomProcessor extends DOMProcessor {
 
 	/**
 	 * Add category to the page, from its key
-	 * @param ParsoidExtensionAPI $extApi
-	 * @param string $category
-	 * @return void
 	 */
-	private function addCategory( ParsoidExtensionAPI $extApi, string $category ) {
+	private function addCategory( ParsoidExtensionAPI $extApi, string $category ): void {
 		$linkTarget = $extApi->getPageConfig()->getLinkTarget();
 		$pageRef = PageReferenceValue::localReference(
 			$linkTarget->getNamespace(), $linkTarget->getDBkey()

@@ -63,9 +63,6 @@ class CoordFormatter {
 	/**
 	 * Formats coordinates as a Parsoid i18n span. This method should not be used to generate
 	 * content that is added to a tag attribute.
-	 * @param ParsoidExtensionAPI $extAPI
-	 * @param string|null $language
-	 * @return DocumentFragment
 	 */
 	public function formatParsoidSpan( ParsoidExtensionAPI $extAPI, ?string $language ): DocumentFragment {
 		$params = [ ...$this->lat, ...$this->lon ];

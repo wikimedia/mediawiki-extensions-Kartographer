@@ -15,11 +15,6 @@ class ParsoidUtils {
 	/**
 	 * Creates an internationalized Parsoid fragment. If $language is not provided, the returned
 	 * fragment is generated in the page language.
-	 * @param string $msgKey
-	 * @param array $params
-	 * @param ParsoidExtensionAPI $extApi
-	 * @param string|null $language
-	 * @return DocumentFragment
 	 */
 	public static function createLangFragment(
 		string $msgKey, array $params, ParsoidExtensionAPI $extApi, ?string $language
@@ -33,13 +28,6 @@ class ParsoidUtils {
 	/**
 	 * Creates an internationalized Parsoid attribute on the provided element. If $language is
 	 * not provided, the created attribute is generated in the page language.
-	 * @param Element $element
-	 * @param string $name
-	 * @param string $msgKey
-	 * @param array $params
-	 * @param ParsoidExtensionAPI $extApi
-	 * @param string|null $language
-	 * @return void
 	 */
 	public static function createLangAttribute(
 		Element $element, string $name, string $msgKey, array $params, ParsoidExtensionAPI $extApi, ?string $language
