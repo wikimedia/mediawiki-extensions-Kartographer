@@ -3,6 +3,8 @@
 namespace Kartographer;
 
 use MediaWiki\Language\Language;
+use Wikimedia\Message\ParamType;
+use Wikimedia\Message\ScalarParam;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
 
@@ -65,7 +67,11 @@ class CoordFormatter {
 	 * content that is added to a tag attribute.
 	 */
 	public function formatParsoidSpan( ParsoidExtensionAPI $extAPI, ?string $language ): DocumentFragment {
-		$params = [ ...$this->lat, ...$this->lon ];
+		// Type coordinates as numbers so they are localized appropriately
+		$params = array_map(
+			static fn ( $x ) => new ScalarParam( ParamType::NUM, $x ),
+			[ ...$this->lat, ...$this->lon ]
+		);
 		return ParsoidUtils::createLangFragment( $this->msgKey, $params, $extAPI, $language );
 	}
 

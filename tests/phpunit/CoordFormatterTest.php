@@ -57,28 +57,34 @@ class CoordFormatterTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideParsoidFormatter() {
 		return [
-			[ '<span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"en","key":' .
-				'"kartographer-coord-lat-pos-lon-pos","params":[0,0,0,0,0,0]}}\'></span>', 0, 0 ],
-			[ '<span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"en","key"' .
-				':"kartographer-coord-lat-pos-lon-pos","params":[0,0,0,0,0,0]}}\'></span>',
+			[ '<span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"en","key":"kartographer-coord-lat-pos-lon-pos",' .
+				'"params":[{"num":0},{"num":0},{"num":0},{"num":0},{"num":0},{"num":0}]}}\'></span>',
+				0, 0 ],
+			[ '<span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"en","key":"kartographer-coord-lat-pos-lon-pos",' .
+				'"params":[{"num":0},{"num":0},{"num":0},{"num":0},{"num":0},{"num":0}]}}\'></span>',
 				-0.000000000001, 0.000000000001 ],
-			[ '<span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"en","key"' .
-				':"kartographer-coord-lat-neg-lon-neg","params":[1,0,0,1,0,0]}}\'></span>', -1, -1 ],
-			[ '<span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"en","key"' .
-				':"kartographer-coord-lat-pos-lon-neg","params":[1,0,0,11,0,0]}}\'></span>',
+			[ '<span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"en","key":"kartographer-coord-lat-neg-lon-neg",' .
+				'"params":[{"num":1},{"num":0},{"num":0},{"num":1},{"num":0},{"num":0}]}}\'></span>',
+				-1, -1 ],
+			[ '<span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"en","key":"kartographer-coord-lat-pos-lon-neg",' .
+				'"params":[{"num":1},{"num":0},{"num":0},{"num":11},{"num":0},{"num":0}]}}\'></span>',
 				0.999999999999, -10.999999999999 ],
-			[ '<span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"en","key"' .
-				':"kartographer-coord-lat-pos-lon-pos","params":[10,20,0,0,0,0]}}\'></span>',
+			[ '<span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"en","key":"kartographer-coord-lat-pos-lon-pos",' .
+				'"params":[{"num":10},{"num":20},{"num":0},{"num":0},{"num":0},{"num":0}]}}\'></span>',
 				10.333333333333333333, 0 ],
 			// Was getting 10°11′60″N 0°0′0″E here
-			[ '<span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"en","key"' .
-				':"kartographer-coord-lat-pos-lon-pos","params":[10,12,0,0,0,0]}}\'></span>', 10.2, 0 ],
-			[ '<span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"en","key":' .
-				'"kartographer-coord-lat-pos-lon-pos","params":[45,30,0,20,0,36]}}\'></span>', 45.5, 20.01 ],
-			[ '<span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"en","key":' .
-				'"kartographer-coord-lat-pos-lon-neg","params":[27,46,23,82,38,24]}}\'></span>', 27.773056, -82.64 ],
-			[ '<span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"en","key":' .
-				'"kartographer-coord-lat-pos-lon-neg","params":[29,57,31,90,3,54]}}\'></span>', 29.958611, -90.065 ],
+			[ '<span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"en","key":"kartographer-coord-lat-pos-lon-pos",' .
+				'"params":[{"num":10},{"num":12},{"num":0},{"num":0},{"num":0},{"num":0}]}}\'></span>',
+				10.2, 0 ],
+			[ '<span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"en","key":"kartographer-coord-lat-pos-lon-pos",' .
+				'"params":[{"num":45},{"num":30},{"num":0},{"num":20},{"num":0},{"num":36}]}}\'></span>',
+				45.5, 20.01 ],
+			[ '<span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"en","key":"kartographer-coord-lat-pos-lon-neg",' .
+				'"params":[{"num":27},{"num":46},{"num":23},{"num":82},{"num":38},{"num":24}]}}\'></span>',
+				27.773056, -82.64 ],
+			[ '<span typeof="mw:I18n" data-mw-i18n=\'{"/":{"lang":"en","key":"kartographer-coord-lat-pos-lon-neg",' .
+				'"params":[{"num":29},{"num":57},{"num":31},{"num":90},{"num":3},{"num":54}]}}\'></span>',
+				29.958611, -90.065 ],
 		];
 	}
 }
