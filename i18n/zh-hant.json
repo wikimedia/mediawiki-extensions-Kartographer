@@ -27,7 +27,7 @@
 	"kartographer-error-bad_data": "JSON 內容不是有效的 GeoJSON + simplestyle。以下清單列出依據 [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json JSON 架構]來解析的所有嘗試。這些並非全是錯誤。",
 	"kartographer-error-latlon": "請同時或都不提供「latitude」和「longitude」參數",
 	"kartographer-error-title": "標題「$1」不是有效的地圖資料頁面",
-	"kartographer-tracking-category": "有地圖的頁面",
+	"kartographer-tracking-category": "使用 Kartographer 擴充功能的頁面",
 	"kartographer-tracking-category-desc": "含有地圖的頁面",
 	"kartographer-specialmap-invalid-coordinates": "提供了無效的座標",
 	"kartographer-specialmap-world": "世界地圖",
