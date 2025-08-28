@@ -14,10 +14,10 @@ use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
 class CoordFormatter {
 
 	/** @var int[] */
-	private array $lat;
+	private readonly array $lat;
 	/** @var int[] */
-	private array $lon;
-	private string $msgKey;
+	private readonly array $lon;
+	private readonly string $msgKey;
 
 	public function __construct( ?float $lat, ?float $lon ) {
 		[ $plusMinusLat, $this->lat ] = $this->convertCoord( $lat );

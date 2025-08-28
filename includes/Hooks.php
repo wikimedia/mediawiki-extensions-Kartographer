@@ -27,8 +27,8 @@ class Hooks implements
 	ParserFirstCallInitHook,
 	ParserAfterParseHook
 {
-	private LegacyMapLink $legacyMapLink;
-	private LegacyMapFrame $legacyMapFrame;
+	private readonly LegacyMapLink $legacyMapLink;
+	private readonly LegacyMapFrame $legacyMapFrame;
 
 	public function __construct(
 		Config $config,

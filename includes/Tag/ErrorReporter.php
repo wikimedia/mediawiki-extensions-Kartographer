@@ -12,14 +12,9 @@ use StatusValue;
  */
 class ErrorReporter {
 
-	/** @var Language|string */
-	private $language;
-
-	/**
-	 * @param Language|string $languageCode
-	 */
-	public function __construct( $languageCode ) {
-		$this->language = $languageCode;
+	public function __construct(
+		private readonly Language|string $language,
+	) {
 	}
 
 	/**
