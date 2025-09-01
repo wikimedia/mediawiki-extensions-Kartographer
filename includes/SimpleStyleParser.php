@@ -73,6 +73,7 @@ class SimpleStyleParser {
 			return StatusValue::newFatal( 'kartographer-error-json', $status->getMessage() );
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchPropertyByRef phan confused by generic and pass-by-ref
 		return $this->parseObject( $status->value );
 	}
 
