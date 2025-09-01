@@ -12,7 +12,7 @@
 	"kartographer-broken-category": "Rûpelên ku di wan de nexşeyên xira hene",
 	"kartographer-broken-category-desc": "Rûpel, bikaranînek nexşeyê yê nemuteber dihewîne",
 	"kartographer-desc": "Rê dide ku mirov karibe nexşeyan li rûpelên wîkiyan îlawe bike",
-	"kartographer-error-context-multi": "Pirsgirêkên $1:\n$2",
+	"kartographer-error-context-multi": "Problemên $1:\n$2",
 	"kartographer-error-json": "JSON: $1 ji hev nikare were veqetandin",
 	"kartographer-error-missing-attr": "Parametreya \"$1\" kêm e",
 	"kartographer-error-bad_attr": "Di parametreya \"$1\" de nirxek nemuteber heye",
