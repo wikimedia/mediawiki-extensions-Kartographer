@@ -6,6 +6,7 @@
 	},
 	"kartographer-wv-group": "Тоба:",
 	"kartographer-wv-warning-external-source-title": "Хаамийн арахьара хьост",
+	"kartographer-wv-warning-external-source-message": "И чулацам арахьарчу сервер тӀехь латтош бу, цундела иза дӀахӀотто хьан IP-адрес а, кхин хаамаш а карта латточуьнга дӀакхачо беза.",
 	"kartographer-wv-warning-external-source-agree": "Кхета со",
 	"kartographer-wv-warning-external-source-disagree": "Йухайаккхар"
 }
