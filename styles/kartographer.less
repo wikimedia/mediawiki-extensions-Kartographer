@@ -42,12 +42,16 @@
  *                        .mw-kartographer-link then, if displaying static snapshot.
  *                        .mw-kartographer-interactive then, if directly interactive.
  */
+@import 'mediawiki.skin.variables.less';
+
 .mw-kartographer-error {
 	display: inline-block;
-	background: #ffc0cb;
+	background: @background-color-error-subtle;
+	color: @color-error;
 
 	.mw-kartographer-error-log {
-		background: #f8f9fa;
+		background: @background-color-neutral-subtle;
+		color: @color-base;
 		font-family: monospace;
 		line-height: 1.2em;
 		margin: 0;
