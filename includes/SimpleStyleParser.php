@@ -61,7 +61,7 @@ class SimpleStyleParser {
 	 * Parses string into JSON and performs validation/sanitization
 	 *
 	 * @param string|null $input
-	 * @return StatusValue with the value being [ 'data' => stdClass[], 'schema-errors' => array[] ]
+	 * @return StatusValue<array> with the value being [ 'data' => stdClass[], 'schema-errors' => array[] ]
 	 */
 	public function parse( ?string $input ): StatusValue {
 		if ( !$input || trim( $input ) === '' ) {
@@ -81,7 +81,7 @@ class SimpleStyleParser {
 	 * Validate and sanitize a parsed GeoJSON data object
 	 *
 	 * @param array|stdClass &$data
-	 * @return StatusValue
+	 * @return StatusValue<array>
 	 */
 	public function parseObject( &$data ): StatusValue {
 		if ( !is_array( $data ) ) {
@@ -96,7 +96,7 @@ class SimpleStyleParser {
 
 	/**
 	 * @param stdClass[]|stdClass &$data
-	 * @return StatusValue
+	 * @return StatusValue<array>
 	 */
 	public function normalizeAndSanitize( &$data ): StatusValue {
 		$status = $this->recursivelyNormalizeExternalData( $data );
@@ -230,7 +230,7 @@ class SimpleStyleParser {
 
 	/**
 	 * @param stdClass[]|stdClass &$json
-	 * @return StatusValue
+	 * @return StatusValue<array>
 	 */
 	private function recursivelyNormalizeExternalData( &$json ): StatusValue {
 		$status = StatusValue::newGood();

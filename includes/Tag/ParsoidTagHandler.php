@@ -85,7 +85,7 @@ abstract class ParsoidTagHandler extends ExtensionTagHandler {
 	/**
 	 * @param ParsoidExtensionAPI $extApi
 	 * @param string $tag
-	 * @param StatusValue $status
+	 * @param StatusValue<array> $status
 	 * @return DocumentFragment
 	 */
 	public function reportErrors(
@@ -144,7 +144,7 @@ abstract class ParsoidTagHandler extends ExtensionTagHandler {
 
 	/**
 	 * @param ParsoidExtensionAPI $extApi
-	 * @param StatusValue $status
+	 * @param StatusValue<array> $status
 	 * @return ?DocumentFragment
 	 */
 	private function getJSONValidatorLog( ParsoidExtensionAPI $extApi, StatusValue $status ): ?DocumentFragment {

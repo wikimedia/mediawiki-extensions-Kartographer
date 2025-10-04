@@ -18,7 +18,7 @@ class ErrorReporter {
 	}
 
 	/**
-	 * @param StatusValue $status
+	 * @param StatusValue<array> $status
 	 * @param string $tag
 	 * @return string HTML
 	 */
