@@ -11,6 +11,7 @@ use MediaWikiUnitTestCase;
 
 /**
  * @covers \Kartographer\Tag\MapLinkAttributeGenerator
+ * @covers \Kartographer\Tag\MapTagArgumentValidator
  * @group Kartographer
  * @license MIT
  */
@@ -32,7 +33,7 @@ class MapLinkAttributeGeneratorTest extends MediaWikiUnitTestCase {
 			'zoom' => 12,
 			'group' => 'hotels',
 		], $config, $language, $languageNameUtils );
-		$args->setFirstMarkerProperties( null, (object)[ 'marker-color' => '#f00' ] );
+		$args->setFirstMarkerProperties( null, (object)[ 'marker-color' => '#F00' ] );
 		$generator = new MapLinkAttributeGenerator( $args );
 
 		$attrs = $generator->prepareAttrs();

@@ -193,12 +193,11 @@ class MapTagArgumentValidator {
 
 		if ( $this->config->get( 'KartographerUseMarkerStyle' ) &&
 			isset( $properties->{'marker-color'} ) &&
-			// JsonSchema already validates this value for us, however this regex will also fail
-			// if the color is invalid
+			// JsonSchema should have validated this already, but it doesn't hurt to do it again
 			preg_match( '/^#?((?:[\da-f]{3}){1,2})$/i', $properties->{'marker-color'}, $m )
 		) {
 			// Simplestyle allows colors "with or without the # prefix". Enforce it here.
-			$this->firstMarkerColor = '#' . $m[1];
+			$this->firstMarkerColor = '#' . strtolower( $m[1] );
 		}
 	}
 
