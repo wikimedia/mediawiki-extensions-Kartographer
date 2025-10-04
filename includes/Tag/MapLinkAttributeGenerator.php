@@ -10,6 +10,16 @@ use MediaWiki\Json\FormatJson;
  */
 class MapLinkAttributeGenerator {
 
+	// Warning, all constants must be the same as in
+	// https://github.com/wikimedia/makizushi/blob/master/lib/color.js
+	private const LIGHT_COLOR = '#fff';
+	// Semi-black text color @color-base according to Wikimedia Codex
+	private const DARK_COLOR = '#202122';
+
+	// Arrived at by playing with an APCA contrast calculator and finding the
+	// luminance where contrast is equal for both dark (Base10) and light symbol fills.
+	private const LUMINANCE_THRESHOLD = 0.386;
+
 	public function __construct(
 		private readonly MapTagArgumentValidator $args,
 	) {
@@ -49,7 +59,9 @@ class MapLinkAttributeGenerator {
 
 		if ( $this->args->firstMarkerColor ) {
 			$attrs['class'][] = 'mw-kartographer-autostyled';
-			$attrs['style'] = "background: {$this->args->firstMarkerColor};";
+			$color = $this->contrastingFill( $this->args->firstMarkerColor );
+			// Must contain both background and foreground for WCAG compliance
+			$attrs['style'] = "background-color: {$this->args->firstMarkerColor}; color: $color;";
 		}
 
 		if ( $this->args->cssClass !== '' ) {
@@ -66,6 +78,37 @@ class MapLinkAttributeGenerator {
 		}
 
 		return $attrs;
+	}
+
+	/**
+	 * Transform an sRGB component to the vector expected by the relative luminance formula.
+	 */
+	private function sRgbToLinear( string $value ): float {
+		$f = hexdec( $value ) / 255.0;
+		return $f <= 0.03928 ?
+			$f / 12.92 :
+			pow( ( $f + 0.055 ) / 1.055, 2.4 );
+	}
+
+	private function contrastingFill( string $background ): string {
+		if ( strlen( $background ) === 4 ) {
+			$r = $background[1] . $background[1];
+			$g = $background[2] . $background[2];
+			$b = $background[3] . $background[3];
+		} else {
+			$r = substr( $background, 1, 2 );
+			$g = substr( $background, 3, 2 );
+			$b = substr( $background, 5, 2 );
+		}
+
+		$r = $this->sRgbToLinear( $r );
+		$g = $this->sRgbToLinear( $g );
+		$b = $this->sRgbToLinear( $b );
+
+		// Factors from https://www.w3.org/TR/WCAG20/#relativeluminancedef
+		$luminance = 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
+
+		return $luminance > self::LUMINANCE_THRESHOLD ? self::DARK_COLOR : self::LIGHT_COLOR;
 	}
 
 }
