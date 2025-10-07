@@ -52,13 +52,13 @@
 	.mw-kartographer-error-log {
 		background-color: @background-color-neutral-subtle;
 		color: @color-base;
-		font-family: monospace;
-		line-height: 1.2em;
+		font-family: @font-family-monospace;
+		line-height: @line-height-x-small;
 		margin: 0;
-		padding: 0.6em 3em;
+		padding: @spacing-30 @spacing-300;
 
 		.mw-collapsible-toggle-li {
-			margin-left: -2em;
+			margin-left: -@spacing-200;
 		}
 	}
 }
@@ -104,8 +104,8 @@
 
 .mw-kartographer-fullScreen {
 	position: absolute;
-	top: 10px;
-	right: 10px;
+	top: @spacing-65;
+	right: @spacing-65;
 	margin-right: 0;
 }
 
@@ -123,8 +123,8 @@
 // static prerendered map
 .mw-kartographer-map:not( .mw-kartographer-interactive ) {
 	> img {
-		box-sizing: border-box;
-		max-width: 100%;
+		box-sizing: @box-sizing-base;
+		max-width: @size-full;
 		object-position: center center;
 		object-fit: cover;
 	}
@@ -132,26 +132,26 @@
 
 // Fullwidth thumb or frameless map
 .mw-kartographer-container.mw-kartographer-full {
-	box-sizing: border-box;
+	box-sizing: @box-sizing-base;
 	clear: both;
-	width: 100%;
+	width: @size-full;
 
 	> img {
-		width: 100%;
+		width: @size-full;
 	}
 
 	.thumbinner {
-		width: 100%;
-		box-sizing: border-box;
+		width: @size-full;
+		box-sizing: @box-sizing-base;
 
 		> a > img {
-			width: 100%;
+			width: @size-full;
 		}
 	}
 }
 
 .mw-kartographer-container:not( .mw-kartographer-full ) {
-	max-width: 100%;
+	max-width: @size-full;
 
 	/* Fixes `align=center` use case */
 	&.center {
@@ -163,13 +163,13 @@
 	&.thumb {
 		.thumbinner {
 			// prevent overflowing content area
-			max-width: 100%;
+			max-width: @size-full;
 
 			> .mw-kartographer-map {
-				background-position: center;
+				background-position: @background-position-base;
 				background-size: cover;
-				box-sizing: border-box;
-				max-width: 100%;
+				box-sizing: @box-sizing-base;
+				max-width: @size-full;
 			}
 		}
 	}
