@@ -17,5 +17,8 @@
 	"apihelp-query+mapdata-example-2": "{{doc-apihelp-example|query+mapdata}}",
 	"apihelp-query+mapdata-param-continue": "{{doc-apihelp-param|query+mapdata|continue}}",
 	"apihelp-query+mapdata-param-groups": "{{doc-apihelp-param|query+mapdata|groups}}",
-	"apihelp-query+mapdata-param-limit": "{{doc-apihelp-param|query+mapdata|limit}}"
+	"apihelp-query+mapdata-param-limit": "{{doc-apihelp-param|query+mapdata|limit}}",
+	"apihelp-query+mapdata-param-parser": "{{doc-apihelp-param|query+mapdata|parser}}",
+	"apihelp-query+mapdata-paramvalue-parser-parsoid": "{{doc-apihelp-paramvalue|query+mapdata|parser|parsoid}}",
+	"apihelp-query+mapdata-paramvalue-parser-legacy": "{{doc-apihelp-paramvalue|query+mapdata|parser|legacy}}"
 }

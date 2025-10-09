@@ -17,5 +17,8 @@
 	"apihelp-query+mapdata-example-2": "Request map data in groups <kbd>group1</kbd> and <kbd>group2</kbd> from the page <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-param-continue": "Use this parameter to continue iterating through results",
 	"apihelp-query+mapdata-param-groups": "Pipe-separated groups to return data for",
-	"apihelp-query+mapdata-param-limit": "Data for how many pages to return"
+	"apihelp-query+mapdata-param-limit": "Data for how many pages to return",
+	"apihelp-query+mapdata-param-parser": "Which wikitext parser to use",
+	"apihelp-query+mapdata-paramvalue-parser-parsoid": "Generate HTML using [[mw:Parsoid|Parsoid]].",
+	"apihelp-query+mapdata-paramvalue-parser-legacy": "Generate HTML using the legacy parser."
 }

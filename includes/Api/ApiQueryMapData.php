@@ -37,6 +37,7 @@ class ApiQueryMapData extends ApiQueryBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$limit = $params['limit'];
+
 		$groupIds = $params['groups'] === '' ? [] : explode( '|', $params['groups'] );
 		$titles = $this->getPageSet()->getGoodPages();
 		if ( !$titles ) {
@@ -65,7 +66,15 @@ class ApiQueryMapData extends ApiQueryBase {
 				$this->getResult()->addValue( [ 'query', 'pages', $pageId ], 'revid', $revId );
 			}
 
-			$parserOutput = $this->getParserOutput( $title, $revId );
+			$parserOptions = ParserOptions::newFromAnon();
+
+			if ( $params[ 'parser' ] === 'parsoid' ) {
+				$parserOptions->setUseParsoid( true );
+			} elseif ( $params[ 'parser' ] === 'legacy' ) {
+				$parserOptions->setUseParsoid( false );
+			}
+
+			$parserOutput = $this->getParserOutput( $title, $revId, $parserOptions );
 			$state = $parserOutput ? State::getState( $parserOutput ) : null;
 			if ( !$state ) {
 				continue;
@@ -149,6 +158,14 @@ class ApiQueryMapData extends ApiQueryBase {
 				ParamValidator::PARAM_TYPE => 'integer',
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			],
+			'parser' => [
+				ParamValidator::PARAM_TYPE => [
+					'parsoid',
+					'legacy'
+				],
+				ParamValidator::PARAM_DEFAULT => null,
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
+			]
 		];
 	}
 
@@ -183,9 +200,7 @@ class ApiQueryMapData extends ApiQueryBase {
 	 *
 	 * @return ParserOutput|false
 	 */
-	private function getParserOutput( PageIdentity $title, ?int $requestedRevId ) {
-		$parserOptions = ParserOptions::newFromAnon();
-
+	private function getParserOutput( PageIdentity $title, ?int $requestedRevId, ParserOptions $parserOptions ) {
 		if ( ExtensionRegistry::getInstance()->isLoaded( 'FlaggedRevs' ) && $this->parserCache ) {
 			$page = FlaggableWikiPage::newInstance( $title );
 			$isOldRev = $requestedRevId && $requestedRevId !== $page->getLatest();

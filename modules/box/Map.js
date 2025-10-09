@@ -521,7 +521,8 @@ const KartographerMap = L.Map.extend( {
 
 		const title = mw.config.get( 'wgPageName' );
 		const revid = mw.config.get( 'wgRevisionId' );
-		return DataManagerFactory().loadGroups( dataGroups, title, revid )
+		const parsoid = mw.config.get( 'wgParsoidHtmlVersion', false );
+		return DataManagerFactory().loadGroups( dataGroups, title, revid, this.lang, parsoid )
 			.then( this.addGeoJSONGroups.bind( this ) );
 	},
 
