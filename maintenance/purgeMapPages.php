@@ -5,6 +5,7 @@ if ( $IP === false ) {
 }
 require_once "$IP/maintenance/Maintenance.php";
 
+use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Title\Title;
 
@@ -35,7 +36,7 @@ class PurgeMapPages extends Maintenance {
 		$linksMigration = $this->getServiceContainer()->getLinksMigration();
 		$queryInfo = $linksMigration->getQueryInfo( 'categorylinks' );
 		$iterator = new BatchRowIterator(
-			$this->getReplicaDB(),
+			$this->getReplicaDB( CategoryLinksTable::VIRTUAL_DOMAIN ),
 			array_merge( $queryInfo['tables'], [ 'page' ] ),
 			[ 'cl_type', 'cl_sortkey', 'cl_from' ],
 			$this->getBatchSize()
