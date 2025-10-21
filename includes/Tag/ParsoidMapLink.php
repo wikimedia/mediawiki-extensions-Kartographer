@@ -45,6 +45,9 @@ class ParsoidMapLink extends ParsoidTagHandler {
 				'processInNewFrame' => true,
 				'clearDSROffsets' => true,
 			], false );
+			if ( !$text->hasChildNodes() ) {
+				$text = null;
+			}
 		}
 		$doc = $extApi->getTopLevelDoc();
 		if ( is_string( $text ) ) {

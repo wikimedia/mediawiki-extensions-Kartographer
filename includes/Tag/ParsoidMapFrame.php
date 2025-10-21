@@ -103,7 +103,10 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 			], false );
 			$div = $doc->createElement( 'div' );
 			$div->setAttribute( 'class', 'thumbcaption' );
-			$div->appendChild( $parsedCaption );
+			$div->appendChild(
+				$parsedCaption->hasChildNodes() ?
+					$parsedCaption : $doc->createTextNode( '' )
+			);
 			$thumbinner->appendChild( $div );
 		}
 		$container = $doc->createElement( 'div' );
