@@ -6,7 +6,7 @@
 	},
 	"apihelp-sanitize-mapdata-summary": "Utfører datavalidering for Kartographer-utvidelsen",
 	"apihelp-sanitize-mapdata-param-title": "Tittelen til en side hvor denne GeoJSON-en skal befinne seg. Om ingen tittel blir oppgitt vil en tilfeldig en bli brukt.",
-	"apihelp-sanitize-mapdata-param-text": "GeoJSON å sanitere",
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON som skal saniteres",
 	"apihelp-sanitize-mapdata-example": "Saniter en GeoJSON-blobb",
 	"apihelp-query+mapdata-summary": "Be om Kartographer-kartdata for de gitte sidene",
 	"apihelp-query+mapdata-example-1": "Etterspør alle kartdata fra side <kbd>Metallica</kbd>",
