@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Volvox"
+		]
+	},
+	"apihelp-query+mapdata-param-parser": "Wat fir ee Wikitext-Parser benotzt soll ginn",
+	"apihelp-query+mapdata-paramvalue-parser-parsoid": "Generéiert HTML mat [[mw:Parsoid|Parsoid]].",
+	"apihelp-query+mapdata-paramvalue-parser-legacy": "Generéiert HTML mam Legacy-Parser."
+}

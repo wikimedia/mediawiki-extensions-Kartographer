@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Steenth"
+		]
+	},
+	"apihelp-query+mapdata-param-parser": "Hvilken wikitekst-parser skal bruges",
+	"apihelp-query+mapdata-paramvalue-parser-parsoid": "Generer HTML ved hjælp af [[mw:Parsoid|Parsoid]].",
+	"apihelp-query+mapdata-paramvalue-parser-legacy": "Generer HTML ved hjælp af den ældre parser."
+}
