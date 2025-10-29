@@ -13,5 +13,8 @@
 	"apihelp-query+mapdata-example-2": "בקשת כל נתוני המפה בקבוצות <kbd>group1</kbd> ו־<kbd>group2</kbd> מהדף <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-param-continue": "יש להשתמש בפרמטר הזה כדי להמשיך לעבור על התוצאות",
 	"apihelp-query+mapdata-param-groups": "קבוצות מופרדות בקו ניצב להחזרת נתונים",
-	"apihelp-query+mapdata-param-limit": "על כמה דפים להחזיר נתונים"
+	"apihelp-query+mapdata-param-limit": "על כמה דפים להחזיר נתונים",
+	"apihelp-query+mapdata-param-parser": "באיזה מפענח קוד ויקי להשתמש",
+	"apihelp-query+mapdata-paramvalue-parser-parsoid": "לחולל HTML באמצעות [[mw:Parsoid|פרסואיד]].",
+	"apihelp-query+mapdata-paramvalue-parser-legacy": "לחולל HTML באמצעות המפענח הישן."
 }
