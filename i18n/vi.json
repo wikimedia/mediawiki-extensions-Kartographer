@@ -5,7 +5,8 @@
 			"Dinhxuanduyet",
 			"Leducthn",
 			"Minh Nguyen",
-			"Phjtieudoc"
+			"Phjtieudoc",
+			"Nvdtn19"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Bản đồ Wikimedia] | Dữ liệu bản đồ © [https://www.openstreetmap.org/copyright/vi những người đóng góp vào OpenStreetMap]",
@@ -15,8 +16,8 @@
 	"kartographer-desc": "Cho phép nhúng bản đồ vào trang wiki",
 	"kartographer-error-context-multi": "Các vấn đề $1:\n$2",
 	"kartographer-error-json": "Không thể phân tích mã JSON: $1",
-	"kartographer-error-missing-attr": "Đặc tính “$1” bị thiếu",
-	"kartographer-error-bad_attr": "Đặc tính “$1” có giá trị không hợp lệ",
+	"kartographer-error-missing-attr": "Thuộc tính “$1” bị thiếu",
+	"kartographer-error-bad_attr": "Thuộc tính “$1” có giá trị không hợp lệ",
 	"kartographer-error-bad_data": "Nội dung JSON không phải là GeoJSON+simplestyle hợp lệ. Danh sách bên dưới liệt kê tất cả những cách đã thử phân tích nó theo [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json sơ đồ JSON]. Không phải tất cả đều là lỗi.",
 	"kartographer-error-latlon": "Phải cung cấp cả hai tham số “latitude” và “longitude” hoặc bỏ qua cả hai",
 	"kartographer-error-title": "“$1” không phải là tên trang dữ liệu bản đồ hợp lệ",
@@ -87,7 +88,7 @@
 	"leafletdraw-edit-toolbar-buttons-remove": "Xóa đối tượng",
 	"leafletdraw-edit-toolbar-buttons-removedisabled": "Không có đối tượng để xóa",
 	"leafletdraw-draw-toolbar-finish-text": "Hoàn thành",
-	"leafletdraw-draw-toolbar-finish-title": "Bấm để sửa đổi xong.",
+	"leafletdraw-draw-toolbar-finish-title": "Nhấp để hoàn thành bản vẽ",
 	"map": "Thông tin tọa độ",
 	"mapbox-control-zoomin-title": "Phóng to",
 	"mapbox-control-zoomout-title": "Thu nhỏ",
