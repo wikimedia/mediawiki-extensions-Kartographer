@@ -14,5 +14,8 @@
 	"apihelp-query+mapdata-example-2": "Ruft Kartendaten in den Gruppen <kbd>group1</kbd> und <kbd>group2</kbd> der Seite <kbd>Metallica</kbd> ab",
 	"apihelp-query+mapdata-param-continue": "Verwende diesen Parameter, um mit der Wiederholung der Ergebnisse fortzufahren.",
 	"apihelp-query+mapdata-param-groups": "Mit | getrennte Gruppen, für die die Daten zurückgegeben werden sollen.",
-	"apihelp-query+mapdata-param-limit": "Für wie viele Seiten Daten zurückgegeben werden sollen"
+	"apihelp-query+mapdata-param-limit": "Für wie viele Seiten Daten zurückgegeben werden sollen",
+	"apihelp-query+mapdata-param-parser": "Welcher Wikitext-Parser soll verwendet werden",
+	"apihelp-query+mapdata-paramvalue-parser-parsoid": "Generiert HTML mit [[mw:Parsoid|Parsoid]].",
+	"apihelp-query+mapdata-paramvalue-parser-legacy": "Generiert HTML mit dem Legacy-Parser."
 }

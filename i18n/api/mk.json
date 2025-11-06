@@ -13,5 +13,8 @@
 	"apihelp-query+mapdata-example-2": "Побарај ги картографските податоци во групите <kbd>група1</kbd> и <kbd>група2</kbd> од страницата <kbd>Металика</kbd>",
 	"apihelp-query+mapdata-param-continue": "Послужете се со параметаров за да продолжите со повторувањето низ исходот",
 	"apihelp-query+mapdata-param-groups": "За кои групи да се дадат податоци (одделени со прави црти)",
-	"apihelp-query+mapdata-param-limit": "Податоци за колку страници да се дадат"
+	"apihelp-query+mapdata-param-limit": "Податоци за колку страници да се дадат",
+	"apihelp-query+mapdata-param-parser": "Кој расчленувач на викитекст да се користи",
+	"apihelp-query+mapdata-paramvalue-parser-parsoid": "Создајте HTML со помош на [[mw:Parsoid|Parsoid]].",
+	"apihelp-query+mapdata-paramvalue-parser-legacy": "Создајте HTML со стар расчленувач."
 }

@@ -5,5 +5,6 @@
 		]
 	},
 	"apihelp-sanitize-mapdata-param-title": "Titolo della pagina in cui si pensa che questo GeoJSON dovrebbe essere situato. Se non viene indicato alcun titolo, ne sarà utilizzato uno fittizio.",
-	"apihelp-query+mapdata-param-continue": "Utilizza questo parametro per continuare l'iterazione attraverso i risultati"
+	"apihelp-query+mapdata-param-continue": "Utilizza questo parametro per continuare l'iterazione attraverso i risultati",
+	"apihelp-query+mapdata-paramvalue-parser-parsoid": "Genera HTML utilizzando [[mw:Parsoid|Parsoid]]."
 }
