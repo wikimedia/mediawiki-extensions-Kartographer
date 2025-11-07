@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Boro",
 			"Tacsipacsi"
 		]
 	},
@@ -80,7 +81,7 @@
 	"visualeditor-mwmapsdialog-area": "Térkép területe",
 	"visualeditor-mwmapsdialog-content": "Térkép tartalma",
 	"visualeditor-mwmapsdialog-options": "Beállítások",
-	"visualeditor-mwmapsdialog-display": "Igazítás",
+	"visualeditor-mwmapsdialog-display": "Megjelenés",
 	"visualeditor-mwmapsdialog-language": "Nyelv",
 	"visualeditor-mwmapsdialog-help-title": "Tudj meg többet a térképek készítéséről és szerkesztéséről.",
 	"visualeditor-mwmapsdialog-position-lat": "Szélesség",

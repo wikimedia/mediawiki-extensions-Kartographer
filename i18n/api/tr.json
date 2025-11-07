@@ -3,7 +3,8 @@
 		"authors": [
 			"BaRaN6161 TURK",
 			"Hbseren",
-			"MuratTheTurkish"
+			"MuratTheTurkish",
+			"Sakblue"
 		]
 	},
 	"apihelp-sanitize-mapdata-summary": "Kartographer uzantısı için veri doğrulaması gerçekleştirir",
@@ -15,5 +16,6 @@
 	"apihelp-query+mapdata-example-2": "Harita verilerini <kbd>group1</kbd> ve <kbd>group2</kbd> gruplarında <kbd>Metallica</kbd> sayfasından isteyin",
 	"apihelp-query+mapdata-param-continue": "Sonuçlar arasında yinelemeye devam etmek için bu parametreyi kullanın",
 	"apihelp-query+mapdata-param-groups": "Veri döndürülecek boru ile ayrılmış gruplar",
-	"apihelp-query+mapdata-param-limit": "Kaç sayfa döndürüleceğine ilişkin veriler"
+	"apihelp-query+mapdata-param-limit": "Kaç sayfa döndürüleceğine ilişkin veriler",
+	"apihelp-query+mapdata-param-parser": "Hangi wikitext analizcisi kullanılmalı"
 }
