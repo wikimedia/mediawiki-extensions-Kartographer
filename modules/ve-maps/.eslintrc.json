@@ -4,5 +4,8 @@
 	},
 	"globals": {
 		"ve": false
+	},
+	"rules": {
+		"mediawiki/no-unlabeled-buttonwidget": "warn"
 	}
 }
