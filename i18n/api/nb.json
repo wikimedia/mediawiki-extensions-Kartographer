@@ -13,5 +13,8 @@
 	"apihelp-query+mapdata-example-2": "Etterspør kartdata i gruppene <kbd>group1</kbd> og <kbd>group2</kbd> fra siden <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-param-continue": "Bruk denne parameteren for å fortsette å iterere over resultatene",
 	"apihelp-query+mapdata-param-groups": "Grupper atskilt med | som data skal returneres for",
-	"apihelp-query+mapdata-param-limit": "Data for hvor mange sider som skal returneres"
+	"apihelp-query+mapdata-param-limit": "Data for hvor mange sider som skal returneres",
+	"apihelp-query+mapdata-param-parser": "Hvilken wikitekstparser som skal brukes",
+	"apihelp-query+mapdata-paramvalue-parser-parsoid": "Generer HTML med [[mw:Parsoid|Parsoid]].",
+	"apihelp-query+mapdata-paramvalue-parser-legacy": "Generer HTML ved hjelp av den gamle parseren."
 }
