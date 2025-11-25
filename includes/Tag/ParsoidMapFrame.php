@@ -21,10 +21,6 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 	public function sourceToDom( ParsoidExtensionAPI $extApi, string $src, array $extArgs ): DocumentFragment {
 		[ $status, $args, $geometries ] = $this->parseTag( $extApi, $src, $extArgs );
 
-		if ( !$status->isGood() ) {
-			return $this->reportErrors( $extApi, self::TAG, $status );
-		}
-
 		// TODO if fullwidth, we really should use interactive mode..
 		// BUT not possible to use both modes at the same time right now. T248023
 		// Should be fixed, especially considering VE in page editing etc...
@@ -38,6 +34,13 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 		$extApi->getMetadata()->addModules( [ $staticMode && $serverMayRenderOverlays
 			? 'ext.kartographer.staticframe'
 			: 'ext.kartographer.frame' ] );
+
+		if ( !$status->isGood() ) {
+			// Don't return until we've added modules, so that
+			// ParsoidDomProcessor knows that there is Kartographer markup
+			// on this page.
+			return $this->reportErrors( $extApi, self::TAG, $status );
+		}
 
 		$gen = new MapFrameAttributeGenerator( $args, $this->config );
 		$attrs = $gen->prepareAttrs();

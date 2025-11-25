@@ -7,6 +7,7 @@ use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\Config;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\ParserOutputStringSets;
 use MediaWiki\Title\Title;
 use stdClass;
@@ -15,7 +16,6 @@ use Wikimedia\Parsoid\DOM\Node;
 use Wikimedia\Parsoid\Ext\DOMDataUtils;
 use Wikimedia\Parsoid\Ext\DOMProcessor;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
-use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMTraverser;
 
 /**
@@ -35,6 +35,21 @@ class ParsoidDomProcessor extends DOMProcessor {
 			return;
 		}
 
+		// Optimization: skip postprocessing if there are no kartographer
+		// nodes.  Use the presence of the kartographer modules as a hint
+		// that there are kartographer nodes on this page.
+		$metadata = $extApi->getMetadata();
+		if ( $metadata instanceof ParserOutput ) {
+			$kartMods = [
+				'ext.kartographer.link',
+				'ext.kartographer.staticframe',
+				'ext.kartographer.frame'
+			];
+			if ( array_intersect( $kartMods, $metadata->getModules() ) === [] ) {
+				return;
+			}
+		}
+
 		$state = [
 			'broken' => 0,
 			'interactiveGroups' => [],
@@ -44,15 +59,6 @@ class ParsoidDomProcessor extends DOMProcessor {
 			'mapframes' => 0,
 			'data' => [],
 		];
-
-		// FIXME This only selects data-mw-kartographer nodes without exploring HTML that may be stored in
-		// attributes. We need to expand the traversal to find these as well.
-		$kartnodes = DOMCompat::querySelectorAll( $root, '*[data-mw-kartographer]' );
-
-		// let's avoid adding data to the page if there's no kartographer nodes!
-		if ( !$kartnodes ) {
-			return;
-		}
 
 		$mapServer = $this->config->get( 'KartographerMapServer' );
 		$extApi->getMetadata()->addModuleStyles( [ 'ext.kartographer.style' ] );
