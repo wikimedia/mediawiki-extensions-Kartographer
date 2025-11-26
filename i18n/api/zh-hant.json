@@ -13,5 +13,8 @@
 	"apihelp-query+mapdata-example-2": "請求所有來自頁面 <kbd>Metallica</kbd> 的 <kbd>group1</kbd> 與 <kbd>group2</kbd> 群組裡地圖資料",
 	"apihelp-query+mapdata-param-continue": "使用此參數來繼續透過結果疊代",
 	"apihelp-query+mapdata-param-groups": "以豎線分隔要回傳資料的群組",
-	"apihelp-query+mapdata-param-limit": "會回傳多少個用於頁面的資料"
+	"apihelp-query+mapdata-param-limit": "會回傳多少個用於頁面的資料",
+	"apihelp-query+mapdata-param-parser": "使用哪個 wikitext 解析器",
+	"apihelp-query+mapdata-paramvalue-parser-parsoid": "使用 [[mw:Parsoid|Parsoid]] 產生 HTML。",
+	"apihelp-query+mapdata-paramvalue-parser-legacy": "使用舊版解析器產生 HTML。"
 }
