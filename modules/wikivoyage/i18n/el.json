@@ -2,12 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"NikosLikomitros",
-			"Nikosgranturismogt"
+			"Nikosgranturismogt",
+			"Jimkats"
 		]
 	},
 	"kartographer-wv-group": "Ομάδα:",
 	"kartographer-wv-warning-external-source-title": "Εξωτερική πηγή δεδομένων",
 	"kartographer-wv-warning-external-source-message": "Το περιεχόμενο φιλοξενείται εξωτερικά, επομένως ενεργοποιώντας το επιτρέπει την κοινοποίηση των δεδομένων σας με άλλες ιστοσελίδες.",
-	"kartographer-wv-warning-external-source-agree": "Είναι εντάξει",
+	"kartographer-wv-warning-external-source-agree": "Καταλαβαίνω",
 	"kartographer-wv-warning-external-source-disagree": "Ακύρωση"
 }
