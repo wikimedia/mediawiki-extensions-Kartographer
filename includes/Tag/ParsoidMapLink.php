@@ -8,6 +8,7 @@ use Kartographer\ParsoidUtils;
 use MediaWiki\Json\FormatJson;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
+use Wikimedia\Parsoid\Utils\DOMCompat;
 
 /**
  * @license MIT
@@ -45,9 +46,6 @@ class ParsoidMapLink extends ParsoidTagHandler {
 				'processInNewFrame' => true,
 				'clearDSROffsets' => true,
 			], false );
-			if ( !$text->hasChildNodes() ) {
-				$text = null;
-			}
 		}
 		$doc = $extApi->getTopLevelDoc();
 		if ( is_string( $text ) ) {
@@ -76,7 +74,7 @@ class ParsoidMapLink extends ParsoidTagHandler {
 
 		ParsoidUtils::addAttributesToNode( $attrs, $a );
 		if ( $text ) {
-			$a->appendChild( $text );
+			DOMCompat::appendChild( $a, $text );
 		}
 
 		$dom->appendChild( $a );

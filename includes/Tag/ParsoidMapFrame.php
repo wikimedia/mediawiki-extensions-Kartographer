@@ -7,6 +7,7 @@ use Kartographer\ParsoidUtils;
 use MediaWiki\Title\Title;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
+use Wikimedia\Parsoid\Utils\DOMCompat;
 
 /**
  * @license MIT
@@ -106,10 +107,7 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 			], false );
 			$div = $doc->createElement( 'div' );
 			$div->setAttribute( 'class', 'thumbcaption' );
-			$div->appendChild(
-				$parsedCaption->hasChildNodes() ?
-					$parsedCaption : $doc->createTextNode( '' )
-			);
+			DOMCompat::appendChild( $div, $parsedCaption );
 			$thumbinner->appendChild( $div );
 		}
 		$container = $doc->createElement( 'div' );
