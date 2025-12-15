@@ -118,7 +118,9 @@ class MapFrameAttributeGenerator {
 	 * @param ?int $revisionId
 	 * @return array
 	 */
-	public function prepareImgAttrs( bool $serverMayRenderOverlays, string $pagetitle, ?int $revisionId ): array {
+	public function prepareImgAttrs(
+		bool $serverMayRenderOverlays, string $pagetitle, ?int $revisionId, string $parser
+	): array {
 		$mapServer = $this->config->get( 'KartographerMapServer' );
 		$fullWidth = $this->config->get( 'KartographerStaticFullWidth' );
 		$staticWidth = $this->args->width === 'full' ? $fullWidth : (int)$this->args->width;
@@ -129,7 +131,8 @@ class MapFrameAttributeGenerator {
 		if ( $this->args->showGroups && $serverMayRenderOverlays ) {
 			// Groups are not available to the static map renderer
 			// before the page was saved, can only be applied via JS
-			$imgUrlParams += self::getUrlAttrs( $this->config, $pagetitle, $revisionId, $this->args->showGroups );
+			$imgUrlParams +=
+				self::getUrlAttrs( $this->config, $pagetitle, $revisionId, $this->args->showGroups, $parser );
 		}
 
 		$imgUrl = "$mapServer/img/{$this->args->mapStyle}," .
@@ -157,20 +160,16 @@ class MapFrameAttributeGenerator {
 		return $imgAttrs;
 	}
 
-	/**
-	 * @param Config $config
-	 * @param string $title
-	 * @param int|null $revId
-	 * @param array $groupId
-	 * @return array
-	 */
-	public static function getUrlAttrs( Config $config, string $title, ?int $revId, array $groupId ): array {
+	public static function getUrlAttrs(
+		Config $config, string $title, ?int $revId, array $groupId, string $parser
+	): array {
 		return [
 			'domain' => $config->get( 'KartographerMediaWikiInternalUrl' ) ??
 				$config->get( MainConfigNames::ServerName ),
 			'title' => $title,
 			'revid' => $revId,
-			'groups' => implode( ',', $groupId )
+			'groups' => implode( ',', $groupId ),
+			'parser' => $parser
 		];
 	}
 

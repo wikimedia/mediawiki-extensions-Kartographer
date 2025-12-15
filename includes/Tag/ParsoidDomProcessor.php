@@ -193,7 +193,7 @@ class ParsoidDomProcessor extends DOMProcessor {
 		$pagetitle = Title::newFromLinkTarget( $linkTarget )->getPrefixedDBkey();
 		$revisionId = $extApi->getPageConfig()->getRevisionId();
 		$attrs = array_merge( $attrs,
-			MapFrameAttributeGenerator::getUrlAttrs( $this->config, $pagetitle, $revisionId, [ $groupId ] )
+			MapFrameAttributeGenerator::getUrlAttrs( $this->config, $pagetitle, $revisionId, [ $groupId ], 'parsoid' )
 		);
 
 		return $url[0] . '?' . wfArrayToCgi( $attrs );
