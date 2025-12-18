@@ -2,11 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"MITO",
-			"Pyscowicz"
+			"Pyscowicz",
+			"Samoasambia"
 		]
 	},
 	"kartographer-wv-group": "Ryhmä:",
 	"kartographer-wv-warning-external-source-title": "Ulkoinen tietolähde",
+	"kartographer-wv-warning-external-source-message": "Tämä sisältö on ulkoisen tahon isännöimä, joten sen käyttöönotto jakaa IP-osoitteesi ja muita tietoja karttapalvelun tarjoajalle.",
 	"kartographer-wv-warning-external-source-agree": "Ymmärrän",
 	"kartographer-wv-warning-external-source-disagree": "Peruuta"
 }

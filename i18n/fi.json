@@ -107,6 +107,7 @@
 	"visualeditor-mwmapsdialog-frame": "Näytä kehys",
 	"visualeditor-mwmapsdialog-caption": "Kuvateksti",
 	"visualeditor-mwmapsdialog-language": "Kieli",
+	"visualeditor-mwmapsdialog-language-local": "$1 (käytä kunkin kartta-alueen paikallista kieltä)",
 	"visualeditor-mwmapsdialog-help-title": "Lue karttojen luomisesta ja muokkaamisesta.",
 	"visualeditor-mwmapsdialog-position-lat": "Leveyspiiri",
 	"visualeditor-mwmapsdialog-position-lon": "Pituuspiiri",
