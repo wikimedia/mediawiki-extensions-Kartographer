@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Func",
+			"GuoPC",
 			"Liuxinyu970226",
 			"Shizhao"
 		]
@@ -15,5 +16,8 @@
 	"apihelp-query+mapdata-example-2": "从页面<kbd>Metallica</kbd>请求组<kbd>group1</kbd>和<kbd>group2</kbd>中的地图数据",
 	"apihelp-query+mapdata-param-continue": "使用此参数继续迭代结果",
 	"apihelp-query+mapdata-param-groups": "要返回数据的组，以竖线分隔",
-	"apihelp-query+mapdata-param-limit": "返回多少页的数据"
+	"apihelp-query+mapdata-param-limit": "返回多少页的数据",
+	"apihelp-query+mapdata-param-parser": "要使用的wikitext解析器",
+	"apihelp-query+mapdata-paramvalue-parser-parsoid": "使用[[mw:Parsoid|Parsoid]]生成HTML。",
+	"apihelp-query+mapdata-paramvalue-parser-legacy": "使用旧版解析器生成HTML。"
 }

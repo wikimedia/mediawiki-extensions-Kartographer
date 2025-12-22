@@ -29,7 +29,7 @@
 	"kartographer-error-bad_data": "JSON 내용이 올비른 GeoJSON+simplestyle이 아닙니다. 첫번째 유효성 오류는 \"$1\": \"$2\"에서 발생했습니다.",
 	"kartographer-error-latlon": "\"latitude\"와 \"longitude\" 변수는 둘 다 있거나 둘 다 없어야 합니다",
 	"kartographer-error-title": "\"$1\" 제목은 유효한 지도 데이터 문서가 아닙니다",
-	"kartographer-tracking-category": "지도가 있는 문서",
+	"kartographer-tracking-category": "Kartographer 확장 기능을 사용하는 문서",
 	"kartographer-tracking-category-desc": "이 문서는 지도를 포함합니다",
 	"kartographer-specialmap-invalid-coordinates": "유효하지 않은 좌표가 지정되었습니다",
 	"kartographer-linktype-aerial": "항공지도",
