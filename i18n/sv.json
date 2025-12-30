@@ -8,7 +8,8 @@
 			"Rockyfelle",
 			"Sabelöga",
 			"WikiPhoenix",
-			"Ainali"
+			"Ainali",
+			"Stefan2255"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia maps] | Kartdata © [https://www.openstreetmap.org/copyright OpenStreetMaps bidragsgivare]",
@@ -19,7 +20,7 @@
 	"kartographer-error-json": "Kunde inte tolka JSON: $1",
 	"kartographer-error-missing-attr": "Attributen \"$1\" saknas",
 	"kartographer-error-bad_attr": "Attributen \"$1\" har ett ogiltigt värde",
-	"kartographer-error-bad_data": "JSON-innehållet är inte giltig GeoJSON+simplestyle. Det första valideringsfelet är på elementet \"$1\": \"$2\".",
+	"kartographer-error-bad_data": "JSON-innehållet är inte giltigt i GeoJSON+simplestyle. Listan nedan visar alla försök att tolka det enligt [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json] JSON-schemat. Alla är inte fel.",
 	"kartographer-error-latlon": "Antingen måste båda parametrarna \"latitude\" och \"longitude\" anges eller ingendera",
 	"kartographer-error-title": "Titeln \"$1\" är inte en giltig sida för kartdata",
 	"kartographer-tracking-category": "Sidor som använder Kartographer-tillägget",
