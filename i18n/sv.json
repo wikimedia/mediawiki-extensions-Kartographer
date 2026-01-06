@@ -12,12 +12,15 @@
 			"Stefan2255"
 		]
 	},
+	"apierror-kartographer-conflicting-revids": "Det stöds ännu inte att fråga efter kartdata från flera versioner av samma sida i en begäran.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia maps] | Kartdata © [https://www.openstreetmap.org/copyright OpenStreetMaps bidragsgivare]",
 	"kartographer-broken-category": "Sidor med trasiga kartor",
 	"kartographer-broken-category-desc": "Sidan inkluderar taggen <code><nowiki><maps></nowiki></code> med felaktig användning.",
 	"kartographer-desc": "Tillåter kartor att läggas till i wikisidor",
 	"kartographer-error-context-multi": "$1 problem:\n$2",
 	"kartographer-error-json": "Kunde inte tolka JSON: $1",
+	"kartographer-error-json-object": "Innehållet måste vara ett giltigt GeoJSON+simplestyle-objekt eller en array av sådana objekt.",
+	"kartographer-error-json-type": "Varje GeoJSON+simplestyle-objekt måste ha en typ som inte är tom, t.ex. <code>{ \"type\": \"Feature\" }</code> .",
 	"kartographer-error-missing-attr": "Attributen \"$1\" saknas",
 	"kartographer-error-bad_attr": "Attributen \"$1\" har ett ogiltigt värde",
 	"kartographer-error-bad_data": "JSON-innehållet är inte giltigt i GeoJSON+simplestyle. Listan nedan visar alla försök att tolka det enligt [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json] JSON-schemat. Alla är inte fel.",

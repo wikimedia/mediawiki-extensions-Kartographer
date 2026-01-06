@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Chrumps"
+			"Chrumps",
+			"Woytecr"
 		]
 	},
 	"kartographer-wv-group": "Grupa:",
 	"kartographer-wv-warning-external-source-title": "Zewnętrzne źródło danych",
-	"kartographer-wv-warning-external-source-agree": "W porządku",
+	"kartographer-wv-warning-external-source-message": "Ta treść jest hostowana zewnętrznie, więc po jej włączeniu Twój adres IP i inne dane zostaną udostępnione dostawcy mapy.",
+	"kartographer-wv-warning-external-source-agree": "Rozumiem",
 	"kartographer-wv-warning-external-source-disagree": "Anuluj"
 }
