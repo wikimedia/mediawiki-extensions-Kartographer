@@ -90,16 +90,18 @@ function initMapBox( data, $container ) {
 	// Special case for collapsed maps.
 	// When the container is initially hidden Leaflet is not able to
 	// calculate the expected size when visible. We need to force
-	// updating the map to the new container size on `expand`.
+	// updating the map to the new container size on expand, which
+	// we'll monitor through viewport intersection
 	// eslint-disable-next-line no-jquery/no-sizzle
 	if ( !$container.is( ':visible' ) ) {
-		$container.closest( '.mw-collapsible' )
-			.on( 'afterExpand.mw-collapsible', map.invalidateSizeAndSetInitialView.bind( map ) );
-
-		// If MobileFrontend is active do the same for collapsible sections
-		// Unfortunately doesn't work when those sections are immediately
-		// made visible again on page load.
-		mw.hook( 'mobileFrontend.section-toggled' ).add( map.invalidateSizeAndSetInitialView.bind( map ) );
+		const intersectionObserver = new IntersectionObserver( ( elements ) => {
+			elements.forEach( ( container ) => {
+				if ( container.isIntersecting ) {
+					map.doWhenReady( map.invalidateSizeAndSetInitialView.bind( map ) );
+				}
+			} );
+		} );
+		$container.get().forEach( ( el ) => intersectionObserver.observe( el ) );
 	}
 
 	return map;
