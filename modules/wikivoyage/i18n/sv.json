@@ -3,12 +3,13 @@
 		"authors": [
 			"Josve05a",
 			"Sabelöga",
-			"WikiPhoenix"
+			"WikiPhoenix",
+			"Stefan2255"
 		]
 	},
 	"kartographer-wv-group": "Grupp:",
 	"kartographer-wv-warning-external-source-title": "Extern datakälla",
-	"kartographer-wv-warning-external-source-message": "Det här innehållet ligger externt, så att aktivera den medför att din data delas med andra webbplatser.",
-	"kartographer-wv-warning-external-source-agree": "Det är okej",
+	"kartographer-wv-warning-external-source-message": "Detta innehåll lagras externt, så om du aktiverar det delar du din IP-adress och annan data med kartleverantören.",
+	"kartographer-wv-warning-external-source-agree": "Jag förstår",
 	"kartographer-wv-warning-external-source-disagree": "Avbryt"
 }
