@@ -2,7 +2,6 @@
 
 namespace Kartographer\Tag;
 
-use Closure;
 use Kartographer\ParsoidWikitextParser;
 use Kartographer\SimpleStyleParser;
 use LogicException;
@@ -171,7 +170,7 @@ abstract class ParsoidTagHandler extends ExtensionTagHandler {
 		return $dom;
 	}
 
-	public function processAttributeEmbeddedHTML( ParsoidExtensionAPI $extApi, Element $elt, Closure $proc ): void {
+	public function processAttributeEmbeddedDom( ParsoidExtensionAPI $extApi, Element $elt, callable $proc ): void {
 		if ( $elt->hasAttribute( 'data-mw-kartographer' ) ) {
 			$node = $elt;
 		} else {
@@ -192,7 +191,13 @@ abstract class ParsoidTagHandler extends ExtensionTagHandler {
 				}
 				foreach ( $geom->properties as $key => $prop ) {
 					if ( in_array( $key, SimpleStyleParser::WIKITEXT_PROPERTIES ) ) {
-						$geom->properties->{$key} = $proc( $prop );
+						$df = $extApi->htmlToDom( $prop );
+						$changed = $proc( $df );
+						if ( $changed ) {
+							$geom->properties->{$key} = $extApi->domToHtml(
+								$df, releaseDom: true
+							);
+						}
 					}
 				}
 			}

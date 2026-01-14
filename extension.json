@@ -558,7 +558,7 @@
 					"options": {
 						"outputHasCoreMwDomSpecMarkup": true,
 						"wt2html": {
-							"embedsHTMLInAttributes": true
+							"embedsDomInAttributes": true
 						}
 					}
 				},
@@ -575,7 +575,7 @@
 					"options": {
 						"outputHasCoreMwDomSpecMarkup": true,
 						"wt2html": {
-							"embedsHTMLInAttributes": true,
+							"embedsDomInAttributes": true,
 							"attributeWSNormalization": {
 								"text": "keepspaces"
 							}
