@@ -13,7 +13,7 @@ use StatusValue;
 class ErrorReporter {
 
 	public function __construct(
-		private readonly Language|string $language,
+		private readonly Language $language,
 	) {
 	}
 
