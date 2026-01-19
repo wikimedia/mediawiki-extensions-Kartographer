@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Stefan2255",
 			"WikiPhoenix"
 		]
 	},
@@ -13,5 +14,8 @@
 	"apihelp-query+mapdata-example-2": "Begär kartdata i grupperna <kbd>group1</kbd> och <kbd>group2</kbd> från sidan <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-param-continue": "Använd denna parameter för att fortsätta gå igenom resultaten.",
 	"apihelp-query+mapdata-param-groups": "Grupper att returnera data för, separerade med vertikalstreck",
-	"apihelp-query+mapdata-param-limit": "Data för hur många sidor att returnera"
+	"apihelp-query+mapdata-param-limit": "Data för hur många sidor att returnera",
+	"apihelp-query+mapdata-param-parser": "Vilken wikitext-parser att använda",
+	"apihelp-query+mapdata-paramvalue-parser-parsoid": "Generera HTML med hjälp av [[mw:Parsoid|Parsoid]].",
+	"apihelp-query+mapdata-paramvalue-parser-legacy": "Generera HTML med hjälp av den äldre parsern."
 }

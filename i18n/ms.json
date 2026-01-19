@@ -2,9 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Anakmalaysia",
+			"Hakimi97",
 			"Tofeiku"
 		]
 	},
+	"kartographer-tracking-category": "Laman yang menggunakan sambungan Kartographer",
 	"kartographer-specialmap-world": "Peta dunia",
 	"kartographer-sidebar-nearbybutton": "Tunjuk rencana berdekatan",
 	"kartographer-sidebar-reload-nearbybutton": "Muat semula hasil",
