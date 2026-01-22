@@ -4,7 +4,14 @@
 			"Cabal"
 		]
 	},
+	"kartographer-specialmap-world": "ਦੁਨੀਆ ਦਾ ਨਕਸ਼ਾ",
+	"kartographer-static-mapframe-alt": "ਨਕਸ਼ਾ",
+	"kartographer-linktype-aerial": "ਹਵਾਈ",
+	"kartographer-linktype-map": "ਮਿਆਰੀ ਨਕਸ਼ੇ",
+	"kartographer-linktype-other": "ਹੋਰ",
 	"kartographer-link-acme-mapper": "ACME ਨਕਸ਼ਾ-ਨਵੀਸ਼",
+	"kartographer-sidebar-externalservices-show-all": "ਹੋਰ ਵੇਖੋ",
+	"kartographer-sidebar-latitude": "ਵਿਥਕਾਰ",
 	"leafletdraw-draw-handlers-circlemarker-tooltip-start": "ਗੋਲ-ਘਤੇਰਾ ਨਿਸ਼ਾਨ ਲਾਉਣ ਲਈ ਨਕਸ਼ੇ ਉੱਤੇ ਕਲਿੱਕ ਕਰੋ",
 	"leafletdraw-draw-toolbar-actions-text": "ਰੱਦ ਕਰੋ",
 	"leafletdraw-draw-toolbar-buttons-circle": "ਇੱਕ ਗੋਲ-ਘਤੇਰਾ ਬਣਾਓ",
