@@ -3,7 +3,8 @@
 		"authors": [
 			"Movses",
 			"Putnik",
-			"Stjn"
+			"Stjn",
+			"Yurina Tatiana"
 		]
 	},
 	"apihelp-sanitize-mapdata-summary": "Выполняет проверку данных для расширения Kartographer",
@@ -15,5 +16,8 @@
 	"apihelp-query+mapdata-example-2": "Запрос данных карты в группах <kbd> group1 </kbd> и <kbd> group2 </kbd> со страницы <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-param-continue": "Используйте этот параметр для продолжения перебора результатов",
 	"apihelp-query+mapdata-param-groups": "Разделенные вертикальной чертой группы для получения данных",
-	"apihelp-query+mapdata-param-limit": "Данные для скольких страниц вернуть"
+	"apihelp-query+mapdata-param-limit": "Данные для скольких страниц вернуть",
+	"apihelp-query+mapdata-param-parser": "Какой парсер вики-текста использовать",
+	"apihelp-query+mapdata-paramvalue-parser-parsoid": "Сгенерировать HTML используя [[mw:Parsoid|Parsoid]].",
+	"apihelp-query+mapdata-paramvalue-parser-legacy": "Сгенерировать HTML используя устаревший парсер."
 }
