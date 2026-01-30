@@ -4,11 +4,10 @@ namespace Kartographer\Tests;
 
 use Kartographer\CoordFormatter;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\Parsoid\Core\DomPageBundle;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
 use Wikimedia\Parsoid\Mocks\MockEnv;
-use Wikimedia\Parsoid\Utils\DOMCompat;
-use Wikimedia\Parsoid\Utils\DOMDataUtils;
-use Wikimedia\Parsoid\Utils\DOMUtils;
+use Wikimedia\Parsoid\ParserTests\TestUtils;
 
 /**
  * @covers \Kartographer\CoordFormatter
@@ -46,12 +45,19 @@ class CoordFormatterTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testParsoidFormatter( string $expected, float $lat, float $lon ) {
 		$extApi = new ParsoidExtensionAPI( new MockEnv( [] ) );
-		$doc = DOMCompat::newDocument( true );
-		$doc->loadHTML( '<html><body></body></html>' );
-		DOMDataUtils::prepareDoc( $doc );
+		$doc = $extApi->getTopLevelDoc();
 		$fragment = ( new CoordFormatter( $lat, $lon ) )->formatParsoidSpan( $extApi, 'en' );
-		DOMDataUtils::visitAndStoreDataAttribs( $fragment, [ 'discardDataParsoid' => true ] );
-		$result = DOMUtils::getFragmentInnerHTML( $fragment );
+		$actual = [];
+		DomPageBundle::fromLoadedDocument(
+			$doc,
+			siteConfig: $extApi->getSiteConfig(),
+			fragments: [ 'f' => $fragment ]
+		)->toInlineAttributeHtml(
+			siteConfig: $extApi->getSiteConfig(),
+			options: [ 'discardDataParsoid' => true ],
+			fragments: $actual
+		);
+		$result = TestUtils::stripParsoidIDs( $actual['f'] );
 		$this->assertEquals( $expected, $result );
 	}
 
