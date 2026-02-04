@@ -2,8 +2,10 @@
 	"@metadata": {
 		"authors": [
 			"Chadyka",
-			"No Sleep till Krupki"
+			"No Sleep till Krupki",
+			"Ucukor"
 		]
 	},
-	"kartographer-wv-warning-external-source-agree": "Я разумею"
+	"kartographer-wv-warning-external-source-agree": "Я разумею",
+	"kartographer-wv-warning-external-source-disagree": "Скасаваць"
 }
