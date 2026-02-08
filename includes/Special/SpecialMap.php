@@ -147,7 +147,12 @@ class SpecialMap extends UnlistedSpecialPage {
 	 * @param string $lang Optional language code. Defaults to 'local'
 	 * @return string|null
 	 */
-	public static function link( ?float $lat, ?float $lon, ?int $zoom, $lang = 'local' ): ?string {
+	public static function link(
+		?float $lat,
+		?float $lon,
+		?int $zoom,
+		string $lang = 'local',
+	): ?string {
 		if ( $lat === null || $lon === null ) {
 			return null;
 		}
