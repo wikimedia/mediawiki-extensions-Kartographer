@@ -4,11 +4,11 @@ namespace Kartographer\Api;
 
 use FlaggableWikiPage;
 use FlaggedRevs;
-use FlaggedRevsParserCache;
 use Kartographer\State;
 use MediaWiki\Api\ApiBase;
 use MediaWiki\Api\ApiQuery;
 use MediaWiki\Api\ApiQueryBase;
+use MediaWiki\Extension\FlaggedRevs\Backend\FlaggedRevsParserCacheFactory;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageIdentity;
@@ -27,8 +27,8 @@ class ApiQueryMapData extends ApiQueryBase {
 	public function __construct(
 		ApiQuery $query,
 		string $moduleName,
-		private readonly WikiPageFactory $pageFactory,
-		private readonly ?FlaggedRevsParserCache $parserCache,
+		private readonly WikiPageFactory $wikiPageFactory,
+		private readonly ?FlaggedRevsParserCacheFactory $flaggedRevsParserCacheFactory,
 	) {
 		parent::__construct( $query, $moduleName, 'mpd' );
 	}
@@ -201,7 +201,7 @@ class ApiQueryMapData extends ApiQueryBase {
 	 * @return ParserOutput|false
 	 */
 	private function getParserOutput( PageIdentity $title, ?int $requestedRevId, ParserOptions $parserOptions ) {
-		if ( ExtensionRegistry::getInstance()->isLoaded( 'FlaggedRevs' ) && $this->parserCache ) {
+		if ( ExtensionRegistry::getInstance()->isLoaded( 'FlaggedRevs' ) && $this->flaggedRevsParserCacheFactory ) {
 			$page = FlaggableWikiPage::newInstance( $title );
 			$isOldRev = $requestedRevId && $requestedRevId !== $page->getLatest();
 			$latestRevMayBeSpecial = FlaggedRevs::inclusionSetting() === FR_INCLUDES_STABLE;
@@ -210,14 +210,15 @@ class ApiQueryMapData extends ApiQueryBase {
 				$requestedRevId = $requestedRevId ?: $page->getLatest();
 				if ( $requestedRevId === $page->getStable() ) {
 					// This is the stable revision, so we need to use the special FlaggedRevs cache.
-					$parserOutput = $this->parserCache->get( $page, $parserOptions );
+					$parserCache = $this->flaggedRevsParserCacheFactory->getParserCache( $parserOptions );
+					$parserOutput = $parserCache->get( $page, $parserOptions );
 					if ( $parserOutput ) {
 						return $parserOutput;
 					}
 				}
 			}
 		} else {
-			$page = $this->pageFactory->newFromTitle( $title );
+			$page = $this->wikiPageFactory->newFromTitle( $title );
 		}
 
 		// This is the line that will replace the whole function, once the workaround can be

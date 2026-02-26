@@ -4,11 +4,12 @@ namespace Kartographer\Tests;
 
 use FlaggableWikiPage;
 use FlaggedRevs;
-use FlaggedRevsParserCache;
 use MediaWiki\Api\ApiUsageException;
 use MediaWiki\Content\WikitextContent;
+use MediaWiki\Extension\FlaggedRevs\Backend\FlaggedRevsParserCacheFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Parser\ParserCache;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Api\ApiTestCase;
@@ -229,12 +230,14 @@ class ApiQueryMapDataTest extends ApiTestCase {
 		// Set up the latest revision
 		$this->addRevision( $page, self::MAPFRAME_CONTENT_OTHER );
 
-		$cache = $this->createNoOpMock( FlaggedRevsParserCache::class, [ 'get' ] );
+		$cache = $this->createNoOpMock( ParserCache::class, [ 'get' ] );
 		// Assert that the stable cache is only used once, i.e. not for the latest revision.
 		$cache->expects( $this->once() )
 			->method( 'get' )
 			->willReturn( $page->getParserOutput( ParserOptions::newFromAnon(), $stableRevision->getId() ) );
-		$this->setService( 'FlaggedRevsParserCache', $cache );
+		$flaggedRevsParserCacheFactory = $this->createMock( FlaggedRevsParserCacheFactory::class );
+		$flaggedRevsParserCacheFactory->method( 'getParserCache' )->willReturn( $cache );
+		$this->setService( 'FlaggedRevsParserCacheFactory', $flaggedRevsParserCacheFactory );
 
 		// Test the latest revision.
 		$params = [
