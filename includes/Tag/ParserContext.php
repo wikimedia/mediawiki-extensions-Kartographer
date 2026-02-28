@@ -25,7 +25,6 @@ class ParserContext {
 	 * @see \MediaWiki\Parser\Parsoid\Config\PageConfig::getLinkTarget
 	 */
 	public function getPrefixedDBkey(): string {
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable That's hard deprecated anyway
 		return $this->titleFormatter->getPrefixedDBkey( $this->parser->getPage() );
 	}
 

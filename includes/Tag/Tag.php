@@ -70,7 +70,6 @@ class Tag {
 	 * @return string|null Null when missing or invalid
 	 */
 	public function getString( string $name, ?string $regexp = null ): ?string {
-		// @phan-suppress-next-line PhanAccessReadOnlyProperty Bug in Phan
 		if ( !isset( $this->args[$name] ) ) {
 			return null;
 		}
