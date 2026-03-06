@@ -127,7 +127,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 		$ssp = new SimpleStyleParser(
 			$parser,
 			$this->getServiceContainer()->getMainConfig(),
-			[ $option => true ]
+			$option ? [ $option => true ] : []
 		);
 		$data = json_decode( $json );
 
