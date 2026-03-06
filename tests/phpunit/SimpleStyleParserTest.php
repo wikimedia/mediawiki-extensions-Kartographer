@@ -123,7 +123,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 	) {
 		$parser = $this->createMock( WikitextParser::class );
 		$parser->method( 'parse' )->willReturn( 'HTML' );
-		$ssp = new SimpleStyleParser( $parser, [ $option => true ] );
+		$ssp = new SimpleStyleParser( $parser, $option ? [ $option => true ] : [] );
 		$data = json_decode( $json );
 
 		if ( $expected && ctype_alpha( $expected ) && class_exists( $expected ) ) {
