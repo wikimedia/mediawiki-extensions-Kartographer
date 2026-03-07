@@ -79,6 +79,12 @@
 				"MediaWiki:Kartographer.css"
 			]
 		},
+		"ext.kartographer.site-loader": {
+			"dependencies": [
+				"ext.kartographer.site"
+			],
+			"skipFunction": "modules/site-loader-skip.js"
+		},
 		"mapbox": {
 			"scripts": [
 				"lib/external/mapbox/mapbox-lib.js",
@@ -166,7 +172,7 @@
 				"ext.kartographer.lib.topojson",
 				"ext.kartographer",
 				"ext.kartographer.style",
-				"ext.kartographer.site",
+				"ext.kartographer.site-loader",
 				"ext.kartographer.data",
 				"ext.kartographer.util"
 			],
