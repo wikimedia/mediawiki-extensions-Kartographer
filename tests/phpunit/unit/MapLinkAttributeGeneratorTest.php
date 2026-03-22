@@ -68,7 +68,7 @@ class MapLinkAttributeGeneratorTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function provideMarkerColors() {
+	public static function provideMarkerColors() {
 		return [
 			// Semi-problematic edge-cases that shouldn't be possible, just to cover the behavior
 			[ '', 'white' ],

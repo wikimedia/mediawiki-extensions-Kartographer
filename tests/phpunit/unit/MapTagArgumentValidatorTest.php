@@ -168,7 +168,7 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 		$this->assertStatusError( $expectedError, $args->status );
 	}
 
-	public function provideOverflowingNumbers() {
+	public static function provideOverflowingNumbers() {
 		return [
 			'Degree >360 make no sense' => [ [ 'longitude' => '361' ], 'kartographer-error-latlon' ],
 			'Latitude >90 makes no sense' => [ [ 'latitude' => '91' ], 'kartographer-error-latlon' ],
