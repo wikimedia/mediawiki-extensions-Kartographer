@@ -54,7 +54,7 @@ class LegacyTagHandlerTest extends MediaWikiUnitTestCase {
 	public static function groupsProvider() {
 		yield 'test requested groups with isPreview false' => [
 				'data' => null,
-				'groups' => [
+				'groupTypes' => [
 					'requested' => [
 						[ 'group1' ],
 						[ 'group2' ],
@@ -72,7 +72,7 @@ class LegacyTagHandlerTest extends MediaWikiUnitTestCase {
 				'groupId' => 'group3',
 				'geometries' => []
 			],
-			'groups' => [
+			'groupTypes' => [
 				'requested' => [
 					[ 'group1' ],
 					[ 'group2' ],
