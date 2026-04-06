@@ -1,12 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"INNERLMNT",
 			"Liridon"
 		]
 	},
 	"kartographer-error-missing-attr": "Atributi \"$1\" mungon",
 	"kartographer-error-bad_attr": "Atributi \"$1\" ka një vlerë të pavlefshme",
-	"kartographer-tracking-category": "Faqet me harta",
+	"kartographer-tracking-category": "Faqe me harta",
 	"kartographer-tracking-category-desc": "Faqja përfshin një hartë",
 	"kartographer-linktype-aerial": "Ajror",
 	"kartographer-linktype-map": "Harta",
