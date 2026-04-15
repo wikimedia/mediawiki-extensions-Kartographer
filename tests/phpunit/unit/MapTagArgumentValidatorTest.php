@@ -6,7 +6,7 @@ use Kartographer\Tag\MapTagArgumentValidator;
 use MediaWiki\Config\Config;
 use MediaWiki\Config\HashConfig;
 use MediaWiki\Language\Language;
-use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Language\LanguageNameUtils;
 use MediaWikiUnitTestCase;
 
 /**

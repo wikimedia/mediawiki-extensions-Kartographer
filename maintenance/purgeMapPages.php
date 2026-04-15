@@ -8,6 +8,7 @@ require_once "$IP/maintenance/Maintenance.php";
 use MediaWiki\Deferred\LinksUpdate\CategoryLinksTable;
 use MediaWiki\Maintenance\Maintenance;
 use MediaWiki\Title\Title;
+use MediaWiki\Utils\BatchRowIterator;
 
 /**
  * Purges all pages that use <maplink> or <mapframe>, using the tracking category.

@@ -4,7 +4,7 @@ namespace Kartographer\Tag;
 
 use MediaWiki\Config\Config;
 use MediaWiki\Language\Language;
-use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Language\LanguageNameUtils;
 use StatusValue;
 use stdClass;
 
