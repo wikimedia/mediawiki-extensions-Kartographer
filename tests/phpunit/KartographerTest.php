@@ -78,6 +78,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 	public function testTagDataParsoid( $expected, string $input, string $message, bool $wikivoyageMode = false,
 										?string $parsoid = null
 	) {
+		$this->markTestSkipped( 'Skipped for update dance.' );
 		$this->overrideConfigValue( 'KartographerWikivoyageMode', $wikivoyageMode );
 		$output = $this->parseParsoid( $input );
 		$state = $output->getExtensionData( 'kartographer' );
