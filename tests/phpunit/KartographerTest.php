@@ -78,7 +78,6 @@ class KartographerTest extends MediaWikiLangTestCase {
 	public function testTagDataParsoid( $expected, string $input, string $message, bool $wikivoyageMode = false,
 										?string $parsoid = null
 	) {
-		$this->markTestSkipped( 'Skipped for update dance.' );
 		$this->overrideConfigValue( 'KartographerWikivoyageMode', $wikivoyageMode );
 		$output = $this->parseParsoid( $input );
 		$state = $output->getExtensionData( 'kartographer' );
@@ -153,10 +152,10 @@ class KartographerTest extends MediaWikiLangTestCase {
 				"properties":{"title":"&lt;script&gt;alert(document.cookie);&lt;\/script&gt;",
 				"description":"<a href=\"\/w\/index.php?title=Link_to_nowhere&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"(red-link-title: Link to nowhere)\">Link to nowhere<\/a>","marker-symbol":"1"}}
 			]}';
-		$wikitextJsonParsoid = '{"_301c273795f88ed29491555b76a382a279ea387e":[
-			{"type":"Feature","geometry":{"type":"Point","coordinates":[-122,37]},
-			"properties":{"title":"&lt;script>alert(document.cookie);&lt;\/script>",
-			"description":"<a rel=\"mw:WikiLink\" href=\".\/Link_to_nowhere\" title=\"Link to nowhere\" data-parsoid=\'{\"tsr\":[0,19],\"stx\":\"simple\",\"a\":{\"href\":\".\/Link_to_nowhere\"},\"sa\":{\"href\":\"Link to nowhere\"}}\'>Link to nowhere<\/a>","marker-symbol":"1"}}
+		$wikitextJsonParsoid = '{"_ab1be191907b354b79ec288c071267b9637a5b9d":[
+				{"type":"Feature","geometry":{"type":"Point","coordinates":[-122,37]},
+				"properties":{"title":"&lt;script>alert(document.cookie);&lt;\/script>",
+				"description":"<a rel=\"mw:WikiLink\" href=\".\/Link_to_nowhere?action=edit&amp;redlink=1\" title=\"Link to nowhere\" class=\"new\" typeof=\"mw:LocalizedAttrs\" data-mw-i18n=\'{\"title\":{\"lang\":\"x-page\",\"key\":\"red-link-title\",\"params\":[\"Link to nowhere\"]}}\' data-parsoid=\'{\"tsr\":[0,19],\"stx\":\"simple\",\"a\":{\"href\":\".\/Link_to_nowhere\"},\"sa\":{\"href\":\"Link to nowhere\"}}\'>Link to nowhere<\/a>","marker-symbol":"1"}}
 			]}';
 		return [
 			[ '[]', '<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37/>', '<mapframe> without JSON' ],
