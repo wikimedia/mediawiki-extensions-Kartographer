@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Tensama0415",
 			"Ykhwong"
 		]
 	},
@@ -10,5 +11,11 @@
 	"apihelp-sanitize-mapdata-example": "GeoJSON 블롭을 정리합니다",
 	"apihelp-query+mapdata-summary": "지정된 문서의 모든 Kartographer 지도 데이터를 요청합니다",
 	"apihelp-query+mapdata-example-1": "<kbd>Metallica</kbd> 문서의 모든 지도 데이터를 요청합니다",
-	"apihelp-query+mapdata-param-groups": "데이터를 반환할 파이프 구분 그룹"
+	"apihelp-query+mapdata-example-2": "<kbd>Metallica</kbd> 문서로부터 그룹 <kbd>group1</kbd>과 <kbd>group2</kbd>에 속한 지도 데이터를 요청",
+	"apihelp-query+mapdata-param-continue": "결과를 계속 처리해 나가려면 이 매개변수를 사용",
+	"apihelp-query+mapdata-param-groups": "데이터를 반환할 파이프 구분 그룹",
+	"apihelp-query+mapdata-param-limit": "반환할 페이지 수에 대한 데이터",
+	"apihelp-query+mapdata-param-parser": "사용할 위키텍스트 파서",
+	"apihelp-query+mapdata-paramvalue-parser-parsoid": "[[mw:Parsoid|파소이드]]를 사용하여 HTML을 생성합니다.",
+	"apihelp-query+mapdata-paramvalue-parser-legacy": "기존 파서를 사용하여 HTML을 생성합니다."
 }
