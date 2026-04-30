@@ -72,7 +72,7 @@
 	"leafletdraw-draw-toolbar-buttons-rectangle": "Намаляваць прамавугольнік",
 	"leafletdraw-draw-toolbar-undo-text": "Выдаліць апошнюю кропку",
 	"leafletdraw-draw-toolbar-undo-title": "Выдаліць апошнюю намаляваную кропку",
-	"leafletdraw-edit-handlers-edit-tooltip-subtext": "Націсніце кнопку «Адмена», каб адмяніць змены",
+	"leafletdraw-edit-handlers-edit-tooltip-subtext": "Націсніце кнопку «Скасаваць», каб скасаваць змены",
 	"leafletdraw-edit-handlers-edit-tooltip-text": "Перацягніце ручкі або маркер, каб правіць элемент",
 	"leafletdraw-edit-handlers-remove-tooltip-text": "Націсніце на аб’ект, каб выдаліць",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "Скасаваць",
