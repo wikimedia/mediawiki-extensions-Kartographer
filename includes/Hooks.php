@@ -55,8 +55,8 @@ class Hooks implements
 	 * @param Parser $parser
 	 */
 	public function onParserFirstCallInit( $parser ) {
-		$parser->setHook( LegacyMapLink::TAG, [ $this->legacyMapLink, 'handle' ] );
-		$parser->setHook( LegacyMapFrame::TAG, [ $this->legacyMapFrame, 'handle' ] );
+		$parser->setHook( LegacyMapLink::TAG, $this->legacyMapLink->handle( ... ) );
+		$parser->setHook( LegacyMapFrame::TAG, $this->legacyMapFrame->handle( ... ) );
 	}
 
 	/**
