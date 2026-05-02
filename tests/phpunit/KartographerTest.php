@@ -320,10 +320,10 @@ class KartographerTest extends MediaWikiLangTestCase {
 		// In preview mode, static maps get disabled and dynamic maps are used
 		// The embedded img url therefor cannot refer to any groups,
 		// because they might not yet exist when the renderer requests them.
-		$this->assertStringNotContainsString( 'domain=localhost&amp;title=Test&amp;', $output->getRawText() );
+		$this->assertStringNotContainsString( 'domain=localhost&amp;title=Test&amp;', $output->getContentHolderText() );
 		$this->assertStringContainsString(
 			'/img/osm-intl,13,37,-122,700x400.png?lang=local',
-			$output->getRawText()
+			$output->getContentHolderText()
 		);
 	}
 
