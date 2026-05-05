@@ -1,8 +1,22 @@
 {
 	"@metadata": {
 		"authors": [
-			"Belkacem77"
+			"Belkacem77",
+			"ButterflyOfFire"
 		]
 	},
-	"leafletdraw-edit-toolbar-actions-save-text": "Sekles"
+	"kartographer-specialmap-world": "Takarḍa n umaḍal",
+	"kartographer-static-mapframe-alt": "Map",
+	"kartographer-link-acme-mapper": "ACME Mapper",
+	"kartographer-link-apple-maps": "Apple Maps",
+	"kartographer-link-bing-maps": "Bing Maps",
+	"kartographer-link-google-maps": "Google Maps",
+	"kartographer-link-mapquest": "MapQuest",
+	"kartographer-link-yandex-maps": "Yandex.Maps",
+	"kartographer-sidebar-filterdropdown": "Fren anaw n tkarḍa",
+	"kartographer-sidebar-externalservices": "Tanfiwin n tkarḍiwin",
+	"leafletdraw-edit-toolbar-actions-save-text": "Sekles",
+	"visualeditor-mwmapsdialog-content": "Agbur n tkarḍa",
+	"visualeditor-mwmapsdialog-title": "Takarḍa",
+	"visualeditor-mwmapscontextitem-title": "Takarḍa"
 }
