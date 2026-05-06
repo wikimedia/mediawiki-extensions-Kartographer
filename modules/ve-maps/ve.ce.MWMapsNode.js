@@ -183,7 +183,6 @@ ve.ce.MWMapsNode.prototype.update = function () {
 
 	this.$thumbinner.remove();
 	// Classes documented in removeClass
-	// eslint-disable-next-line mediawiki/class-doc
 	this.$element
 		.append( frameless ? this.$map : this.$thumbinner.prepend( this.$map ) )
 		.removeClass( 'floatleft center floatright' )
