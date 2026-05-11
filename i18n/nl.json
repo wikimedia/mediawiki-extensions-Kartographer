@@ -13,7 +13,7 @@
 	"apierror-kartographer-conflicting-revids": "Het opvragen van kaartgegevens van meerdere revisies van dezelfde pagina in één verzoek wordt nog niet ondersteund.",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedia-kaarten] | Kaartgegevens © [https://www.openstreetmap.org/copyright OpenStreetMap-bijdragers]",
 	"kartographer-broken-category": "Pagina's met niet-werkende kaarten",
-	"kartographer-broken-category-desc": "De pagina bevat een ongeldig gebruik van een kaart",
+	"kartographer-broken-category-desc": "De pagina bevat een foutief gebruik van een kaart",
 	"kartographer-desc": "Maakt het mogelijk kaarten toe te voegen aan wikipagina's",
 	"kartographer-error-context-multi": "Problemen met $1:\n$2",
 	"kartographer-error-json": "Kon JSON-code niet ontleden: $1",
