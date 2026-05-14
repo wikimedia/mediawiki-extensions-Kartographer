@@ -33,3 +33,11 @@ Many parts of the JavaScript that builds the dynamic maps and provides the GeoJS
 outside of the Wikimedia extension realm so dependencies and requirements on this interface may be hard to discover. Be
 extra careful changing these without notice if they're not explicitly marked private and especially if they are marked
 public.
+
+### Seed a development mapframe page
+
+To create (or reset) a development page with sample mapframe content, run the `Kartographer:seedMapframePage` maintenance script.
+
+This script ensures the page `Extension/Kartographer/Mapframe` exists and has this content:
+
+`<mapframe text="[[wikipedia:Stockholm|Stockholm]] in Wikipedia" width=250 height=250 zoom=7 latitude="59" longitude="18" />`
