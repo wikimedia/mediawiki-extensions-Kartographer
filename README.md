@@ -27,6 +27,30 @@ See https://wiki.openstreetmap.org/wiki/Tile_servers
 * [Wikivoyage](https://www.wikivoyage.org/) – primary user of dynamic maps and the nearby feature on the Wikimedia cluster
 * WV – Wikivoyage
 
+## Tile Server Configuration
+
+Kartographer requires a raster tile server to render maps, configured via the `$wgKartographerMapServer` variable.
+
+**Wikimedia tile server** (default, for local use and for Wikimedia projects):
+```php
+$wgKartographerMapServer = 'https://maps.wikimedia.org';
+$wgKartographerDfltStyle = 'osm-intl';
+```
+
+**OpenStreetMap public tile server** (publicly available):
+```php
+$wgKartographerMapServer = 'https://tile.openstreetmap.org';
+$wgKartographerDfltStyle = '';
+```
+
+You can also include this config via `config/MapServer/openstreetmap.php` and then include that file in your `LocalSettings.php`:
+
+```php
+require_once "$IP/extensions/Kartographer/config/MapServer/openstreetmap.php";
+```
+
+More tile server options can be found at https://wiki.openstreetmap.org/wiki/Raster_tile_providers
+
 ## Developer info
 
 Many parts of the JavaScript that builds the dynamic maps and provides the GeoJSON might be used by tools and Gadgets
