@@ -6,7 +6,7 @@
 	},
 	"kartographer-wv-group": "Taldea:",
 	"kartographer-wv-warning-external-source-title": "Kanpoko datu-iturria",
-	"kartographer-wv-warning-external-source-message": "Eduki hau kanpoan du ostatu, beraz pizten baduzu beste webgune batekin ari zara zure datuak partekatzen.",
-	"kartographer-wv-warning-external-source-agree": "Ondo da",
+	"kartographer-wv-warning-external-source-message": "Eduki hau kanpoan ostatatzen da, beraz, gaituz gero, zure IP helbidea eta bestelako datuak partekatzen dira mapa hornitzailearekin.",
+	"kartographer-wv-warning-external-source-agree": "Ulertzen dut",
 	"kartographer-wv-warning-external-source-disagree": "Utzi"
 }
