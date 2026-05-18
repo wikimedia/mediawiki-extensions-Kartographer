@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Gomoko",
+			"Jérémy-Günther-Heinz Jähnick",
 			"Orlodrim",
 			"Wladek92"
 		]
@@ -15,5 +16,7 @@
 	"apihelp-query+mapdata-example-2": "Demande les données cartographiques dans les groupes <kbd>group1</kbd> et <kbd>group2</kbd> de la page <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-param-continue": "Utiliser ce paramètre pour continuer l’énumération des résultats",
 	"apihelp-query+mapdata-param-groups": "Groupes pour lesquels renvoyer les données, séparés par des barres verticales",
-	"apihelp-query+mapdata-param-limit": "Nombre de pages pour lesquelles renvoyer des données"
+	"apihelp-query+mapdata-param-limit": "Nombre de pages pour lesquelles renvoyer des données",
+	"apihelp-query+mapdata-param-parser": "Quel analyseur de wikitexte utiliser",
+	"apihelp-query+mapdata-paramvalue-parser-parsoid": "Générer du HTML en utilisant [[mw:Parsoid|Parsoid]]."
 }
