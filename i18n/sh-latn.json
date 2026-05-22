@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Winston Sung"
+			"Winston Sung",
+			"Vipz"
 		]
 	},
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Wikimedijine karte] | Kartografski podaci © [https://www.openstreetmap.org/copyright saradnici OpenStreetMapa]",
 	"kartographer-icon-docs-key": "Naziv",
 	"kartographer-icon-docs-help": "Opis",
 	"visualeditor-mwmapsdialog-caption": "Opis"
