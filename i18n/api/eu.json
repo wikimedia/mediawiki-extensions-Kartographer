@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Theklan"
+		]
+	},
+	"apihelp-sanitize-mapdata-summary": "Kartographer luzapenerako datuen balidazioa egiten du",
+	"apihelp-sanitize-mapdata-param-title": "GeoJSON hau kokatu behar den orrialdearen izenburua. Izenbururik ematen ez bada, izenburu faltsu bat erabiliko da.",
+	"apihelp-sanitize-mapdata-param-text": "Garbitu beharreko GeoJSON",
+	"apihelp-sanitize-mapdata-example": "GeoJSON testu bat garbitu",
+	"apihelp-query+mapdata-summary": "Eskatu Kartographer mapa-datu guztiak orrialde jakin batzuetarako",
+	"apihelp-query+mapdata-example-1": "Eskatu maparen datu guztiak <kbd>Metallica</kbd> orrialdetik",
+	"apihelp-query+mapdata-example-2": "Eskatu maparen datuak <kbd>group1</kbd> eta <kbd>group2</kbd> taldeetan <kbd>Metallica</kbd> orrialdetik",
+	"apihelp-query+mapdata-param-continue": "Erabili parametro hau emaitzetan zehar iteratzen jarraitzeko",
+	"apihelp-query+mapdata-param-groups": "Datuak itzultzeko marra bertikalez bereizitako taldeak",
+	"apihelp-query+mapdata-param-limit": "Zenbat orrialde itzuli behar diren jakiteko datuak"
+}
