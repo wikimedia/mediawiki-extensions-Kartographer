@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"AhmedG612"
+		]
+	},
+	"apihelp-sanitize-mapdata-summary": "Waxay fulisaa xaqiijinta xogta ee kordhinta Kartographer",
+	"apihelp-sanitize-mapdata-param-title": "Cinwaanka bogga lagu rabo in GeoJSON-kan ku yaallo. Haddii aan cinwaan la bixin, waxaa la adeegsan doonaa mid ku meel-gaar ah.",
+	"apihelp-sanitize-mapdata-param-text": "GeoJSON la nadiifinayo",
+	"apihelp-sanitize-mapdata-example": "Nadiifi GeoJSON",
+	"apihelp-query+mapdata-summary": "Codso dhammaan xogta khariidadda Kartographer ee bogagga la siiyay",
+	"apihelp-query+mapdata-example-1": "Codso dhammaan xogta khariidadda ee bogga <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-example-2": "Codso xogta khariidadda ee kooxaha <kbd>group1</kbd> iyo <kbd>group2</kbd> ee bogga <kbd>Metallica</kbd>",
+	"apihelp-query+mapdata-param-continue": "Isticmaal cabbirkan si aad u sii waddo soo saarista natiijooyinka",
+	"apihelp-query+mapdata-param-groups": "Kooxo kala go’an oo leh calaamadda | si loo soo celiyo xogta",
+	"apihelp-query+mapdata-param-limit": "Xogta inta bog ee la soo celinayo"
+}
