@@ -4,9 +4,28 @@
 			"Merrahtar"
 		]
 	},
+	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Викимедья ка̄рта] | Да̄ннэ © [https://www.openstreetmap.org/copyright OpenStreetMap кӯскнэй]",
+	"kartographer-specialmap-world": "Э̄ллмант ка̄рта",
+	"kartographer-static-mapframe-alt": "Ка̄рта",
+	"kartographer-sidebar-latitude": "Ко̄ммтвудт",
+	"kartographer-sidebar-longitude": "Куһкьвудт",
+	"kartographer-sidebar-mapdetails": "Оаллк ка̄рта",
+	"kartographer-sidebar-togglebutton": "Оаллк ка̄рта",
+	"mapbox-control-zoomin-title": "Альтнэ",
+	"mapbox-control-zoomout-title": "Туммплаһтӭ",
+	"kartographer-fullscreen-close": "Ка̄һтӭ",
+	"kartographer-fullscreen-text": "Кӣһче о̄ммп экранэсьт",
+	"kartographer-icon-docs-icon": "Тӣтэнч",
+	"kartographer-icon-docs-key": "Нэ̄мм",
+	"visualeditor-mwmapsdialog-options": "Оа̄ссмуж",
 	"visualeditor-mwmapsdialog-display": "Вуэзхэллмушш",
+	"visualeditor-mwmapsdialog-frame": "Вӯзьхэ ра̄ма",
 	"visualeditor-mwmapsdialog-caption": "Кӣдт",
 	"visualeditor-mwmapsdialog-language": "Кӣлл",
+	"visualeditor-mwmapsdialog-position-lat": "Ко̄ммтвудт",
+	"visualeditor-mwmapsdialog-position-lon": "Куһкьвудт",
+	"visualeditor-mwmapsdialog-position-zoom": "Алльтвудт",
+	"visualeditor-mwmapsdialog-size": "Ме̄ррь",
 	"visualeditor-mwmapsdialog-title": "Ка̄рта",
 	"visualeditor-mwmapscontextitem-title": "Ка̄рта"
 }
