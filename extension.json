@@ -16,7 +16,6 @@
 			"JsonConfig": "*"
 		}
 	},
-	"callback": "Kartographer\\Hooks::onRegistration",
 	"MessagesDirs": {
 		"Kartographer": [
 			"i18n",
@@ -30,6 +29,7 @@
 	"SpecialPages": {
 		"Map": "Kartographer\\Special\\SpecialMap"
 	},
+	"load_composer_autoloader": true,
 	"AutoloadNamespaces": {
 		"Kartographer\\": "includes/"
 	},
@@ -441,6 +441,7 @@
 	"LateJSConfigVarNames": [
 		"wgKartographerLiveData"
 	],
+	"callback": "Kartographer\\Hooks::onRegistration",
 	"Hooks": {
 		"ParserFirstCallInit": "KartographerHooks",
 		"ParserAfterParse": "KartographerHooks",
@@ -600,6 +601,5 @@
 			]
 		}
 	],
-	"load_composer_autoloader": true,
 	"manifest_version": 2
 }
