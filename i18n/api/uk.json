@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Movses",
 			"Piramidion",
 			"Ата"
 		]
@@ -14,5 +15,8 @@
 	"apihelp-query+mapdata-example-2": "Подати запит на картографічні дані в групах <kbd>group1</kbd> та <kbd>group2</kbd> зі сторінки <kbd>Metallica</kbd>",
 	"apihelp-query+mapdata-param-continue": "Використати цей параметр для продовження ітерації результатів",
 	"apihelp-query+mapdata-param-groups": "Відокремлені вертикальною рискою групи, дані для яких вивести",
-	"apihelp-query+mapdata-param-limit": "Для скількох сторінок треба вивести дані"
+	"apihelp-query+mapdata-param-limit": "Для скількох сторінок треба вивести дані",
+	"apihelp-query+mapdata-param-parser": "Який парсер вікітексту використовувати",
+	"apihelp-query+mapdata-paramvalue-parser-parsoid": "Генерація HTML за допомогою [[mw:Parsoid|Parsoid]].",
+	"apihelp-query+mapdata-paramvalue-parser-legacy": "Генерація HTML за допомогою застарілого парсера."
 }
