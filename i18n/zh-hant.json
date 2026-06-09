@@ -9,10 +9,11 @@
 			"Mutolisp",
 			"Neetp7k9",
 			"Xiplus",
-			"烈羽"
+			"烈羽",
+			"LowensteinYang"
 		]
 	},
-	"apierror-kartographer-conflicting-revids": "尚未支援在一次請求裡從同個頁面的多筆修訂中查詢地圖資料。",
+	"apierror-kartographer-conflicting-revids": "目前尚不支援在單一請求中查詢同一頁面多個版本的地圖資料。",
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use 維基媒體地圖] | 地圖資料 © [https://www.openstreetmap.org/copyright 開放街圖貢獻者]",
 	"kartographer-attribution-short": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use 維基媒體] | © [https://www.openstreetmap.org/copyright OpenStreetMap]",
 	"kartographer-broken-category": "有損壞地圖的頁面",
@@ -32,6 +33,8 @@
 	"kartographer-specialmap-invalid-coordinates": "提供了無效的座標",
 	"kartographer-specialmap-world": "世界地圖",
 	"kartographer-static-mapframe-alt": "地圖",
+	"kartographer.css": "/* 此處放置的 CSS 將套用於所有包含地圖的頁面 */",
+	"kartographer.js": "/* 此處的任何 JavaScript 程式碼都將在載入包含地圖的頁面時，為所有使用者載入 */",
 	"kartographer-linktype-aerial": "空拍",
 	"kartographer-linktype-map": "標準地圖",
 	"kartographer-linktype-other": "其他",
@@ -113,7 +116,7 @@
 	"visualeditor-mwmapsdialog-caption-help": "此說明文字會顯示在邊框裡地圖的下方（和圖片說明文字相同）。新增說明文字會強制地圖帶有邊框。\n\n可在此使用 Wikitext 格式，例如粗體、連結、或參考。",
 	"visualeditor-mwmapsdialog-language": "語言",
 	"visualeditor-mwmapsdialog-language-help": "Kartographer 預設使用 wiki 的內容語言來作為標籤語言。這可以用此地圖的設定來更動。\n\n請使用 <code>local</code> 而非語言名稱，來以該位置的本地語言顯示所有標籤。例如，墨西哥城市名稱會以西班牙語顯示，日本的城市名城則以日語顯示。\n\n當標籤在所選的語言不可用時，Kartographer 會撤回流程。有關此運作原理的更多資訊，請參閱 [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Extension:Kartographer#Languages_and_fallbacks Kartographer 說明頁面]。",
-	"visualeditor-mwmapsdialog-language-local": "$1（各地圖區域使用的本地語言）",
+	"visualeditor-mwmapsdialog-language-local": "$1（使用各地圖區域的本地語言）",
 	"visualeditor-mwmapsdialog-help-title": "了解如何建立和編輯地圖。",
 	"visualeditor-mwmapsdialog-position-lat": "緯度",
 	"visualeditor-mwmapsdialog-position-lon": "經度",

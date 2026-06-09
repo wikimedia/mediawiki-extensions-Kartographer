@@ -3,7 +3,8 @@
 		"authors": [
 			"Aceman444",
 			"Luky001",
-			"Teslaton"
+			"Teslaton",
+			"Wizzard"
 		]
 	},
 	"kartographer-attribution": "[https://foundation.wikimedia.org/wiki/Maps_Terms_of_Use Mapy Wikimedia] | Mapové dáta © [https://www.openstreetmap.org/copyright prispievatelia OpenStreetMap]",
@@ -17,7 +18,7 @@
 	"kartographer-error-bad_data": "Obsah JSON nie je platný GeoJSON+simplestyle. Nižšie uvedený zoznam zobrazuje všetky pokusy o jeho interpretáciu podľa [https://phabricator.wikimedia.org/diffusion/EKAR/browse/master/schemas/geojson.json schémy JSON]. Nie všetky sú chyby.",
 	"kartographer-error-latlon": "Zadané by mali byť buď oba parametre „zemepisná šírka“ a „zemepisná dĺžka“, alebo ani jeden",
 	"kartographer-error-title": "„$1“ nie je platný názov stránky s mapovými dátami",
-	"kartographer-tracking-category": "Stránky s mapami",
+	"kartographer-tracking-category": "Stránky používajúce rozšírenie Kartographer",
 	"kartographer-tracking-category-desc": "Táto stránka obsahuje mapu",
 	"kartographer-specialmap-invalid-coordinates": "Zadané neplatné súradnice",
 	"kartographer-linktype-aerial": "Letecké",
@@ -83,7 +84,7 @@
 	"visualeditor-mwmapsdialog-area": "Oblasť mapy",
 	"visualeditor-mwmapsdialog-content": "Obsah mapy",
 	"visualeditor-mwmapsdialog-options": "Možnosti",
-	"visualeditor-mwmapsdialog-display": "Zarovnanie",
+	"visualeditor-mwmapsdialog-display": "Zobrazenie",
 	"visualeditor-mwmapsdialog-display-help": "Obsah stránky bude obtekať okolo mapy, len ak je zarovnanie nastavené Vľavo alebo Vpravo, nie Na stred.\n\nVypnutie rámčeku vykreslí mapu bez ohraničenia, podobne ako pri bezrámčekových obrázkoch. Táto možnosť je vypnutá, ak má mapa titulok.",
 	"visualeditor-mwmapsdialog-frame": "Zobraziť rámček",
 	"visualeditor-mwmapsdialog-caption": "Titulok",
