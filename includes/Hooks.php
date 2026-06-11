@@ -14,9 +14,13 @@ use Kartographer\Tag\LegacyTagHandler;
 use MediaWiki\Config\Config;
 use MediaWiki\Hook\ParserTestGlobalsHook;
 use MediaWiki\Language\LanguageNameUtils;
+use MediaWiki\OutputTransform\Hook\OutputTransformFirstStageHook;
+use MediaWiki\OutputTransform\Hook\OutputTransformLastStageHook;
 use MediaWiki\Parser\Hook\ParserAfterParseHook;
 use MediaWiki\Parser\Hook\ParserFirstCallInitHook;
 use MediaWiki\Parser\Parser;
+use MediaWiki\Parser\ParserOptions;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\StripState;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Title\TitleFormatter;
@@ -27,7 +31,9 @@ use MediaWiki\Title\TitleFormatter;
 class Hooks implements
 	ParserFirstCallInitHook,
 	ParserAfterParseHook,
-	ParserTestGlobalsHook
+	ParserTestGlobalsHook,
+	OutputTransformFirstStageHook,
+	OutputTransformLastStageHook
 {
 	private readonly LegacyMapLink $legacyMapLink;
 	private readonly LegacyMapFrame $legacyMapFrame;
@@ -96,6 +102,45 @@ class Hooks implements
 	public static function onRegistration( array $extInfo, SettingsBuilder $settings ) {
 		if ( defined( 'MW_PHPUNIT_TEST' ) || defined( 'MW_QUIBBLE_CI' ) ) {
 			$settings->overrideConfigValue( 'KartographerMapServer', 'https://maps.wikimedia.org' );
+		}
+	}
+
+	public function onOutputTransformFirstStage( ParserOutput &$parserOutput, ParserOptions $parserOptions ): void {
+		$data = $parserOutput->getExtensionData( 'kartographer' )['data'] ?? [];
+		$path = 'kartographer:';
+		$traversal = static function ( ParserOutput $po, $json, string $prop, string $path ) {
+			$po->getContentHolder()->setAsHtmlString( $path, $json->properties->$prop );
+		};
+		$this->traverseJson( $parserOutput, $data, $path, $traversal );
+	}
+
+	public function onOutputTransformLastStage( ParserOutput &$parserOutput, ParserOptions $parserOptions ): void {
+		// Note: this works because $wgKartographerLiveData in jsConfigVars is referencing this same array
+		$data = $parserOutput->getExtensionData( 'kartographer' )['data'] ?? [];
+		$path = 'kartographer:';
+		$traversal = static function ( ParserOutput $po, $json, string $prop, string $path ) {
+			$json->properties->$prop = $po->getContentHolder()->getAsHtmlString( $path ) ?? '';
+			// clean up the contentholder to avoid extraneous serialization
+			$po->getContentHolder()->setAsHtmlString( $path, null );
+		};
+		$this->traverseJson( $parserOutput, $data, $path, $traversal );
+	}
+
+	private function traverseJson( ParserOutput $po, mixed &$json, string $path, callable $callable ): void {
+		if ( is_array( $json ) ) {
+			foreach ( $json as $k => &$element ) {
+				$this->traverseJson( $po, $element, $path . "$k/", $callable );
+			}
+		} elseif ( is_object( $json ) ) {
+			if ( isset( $json->properties ) && is_object( $json->properties ) ) {
+				foreach ( SimpleStyleParser::WIKITEXT_PROPERTIES as $prop ) {
+					if ( !property_exists( $json->properties, $prop ) ) {
+						continue;
+					}
+					$path .= $prop;
+					$callable( $po, $json, $prop, $path );
+				}
+			}
 		}
 	}
 }

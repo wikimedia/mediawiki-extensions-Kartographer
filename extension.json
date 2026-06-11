@@ -445,7 +445,9 @@
 	"Hooks": {
 		"ParserFirstCallInit": "KartographerHooks",
 		"ParserAfterParse": "KartographerHooks",
-		"ParserTestGlobals": "KartographerHooks"
+		"ParserTestGlobals": "KartographerHooks",
+		"OutputTransformFirstStage": "KartographerHooks",
+		"OutputTransformLastStage": "KartographerHooks"
 	},
 	"HookHandlers": {
 		"KartographerHooks": {
