@@ -16,14 +16,13 @@
  */
 ve.ce.MWMapsNode = function VeCeMWMaps( model, config ) {
 	this.$map = $( '<div>' ).addClass( 'mw-kartographer-map' );
-	this.$thumbinner = $( '<div>' ).addClass( 'thumbinner' );
 
 	// HACK: Copy caption from originalDomElements
 	const store = model.doc.getStore();
 	const contents = store.value( store.hashOfValue( null, OO.getHash( [ model.getHashObjectForRendering(), null ] ) ) );
-	const $caption = $( contents ).find( '.thumbcaption' );
+	const $caption = $( contents ).find( 'figcaption' );
 
-	this.$caption = $caption.length ? $caption.clone() : $( '<div>' ).addClass( 'thumbcaption' );
+	this.$caption = $caption.length ? $caption.clone() : $( '<figcaption>' );
 	this.previewedCaption = model.getAttribute( 'mw' ).attrs.text;
 
 	// Parent constructor
@@ -49,12 +48,8 @@ ve.ce.MWMapsNode = function VeCeMWMaps( model, config ) {
 	// DOM changes
 	this.$element
 		.empty()
-		.addClass( 've-ce-mwMapsNode mw-kartographer-container thumb' )
-		.append(
-			this.$thumbinner.append(
-				this.$map, this.$caption
-			)
-		);
+		.addClass( 've-ce-mwMapsNode mw-kartographer-container' )
+		.append( this.$map, this.$caption );
 };
 
 /* Inheritance */
@@ -181,20 +176,23 @@ ve.ce.MWMapsNode.prototype.update = function () {
 		}
 	}
 
-	this.$thumbinner.remove();
+	this.$map.detach();
+	this.$caption.detach();
 	// Classes documented in removeClass
 	this.$element
-		.append( frameless ? this.$map : this.$thumbinner.prepend( this.$map ) )
-		.removeClass( 'floatleft center floatright' )
+		.removeClass( 'floatleft center floatright mw-halign-left mw-halign-center mw-halign-right mw-halign-none' )
 		.addClass( alignClasses[ align ] );
+	if ( frameless ) {
+		this.$element.append( this.$map );
+	} else {
+		this.$element.append( this.$map, this.$caption );
+	}
 	const dim = this.model.getCurrentDimensions();
 	if ( isFullWidth ) {
 		dim.width = '100%';
 	}
 	this.$map
 		.css( dim );
-	this.$thumbinner
-		.css( 'width', dim.width );
 };
 
 /**

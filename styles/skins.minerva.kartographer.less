@@ -15,27 +15,63 @@ a.mw-kartographer-link,
 	}
 }
 
+// Minerva's common.less applies `height: auto !important` to `a > img`, which overrides
+// revert-layer on fullwidth maps. Override their !important with another !important.
+/* stylelint-disable declaration-no-important */
+figure.mw-kartographer-container.mw-kartographer-full > .mw-kartographer-map > img.mw-file-element,
+.mw-kartographer-container.mw-kartographer-full > img {
+	height: initial !important;
+	height: revert-layer !important;
+}
+/* stylelint-enable declaration-no-important */
+
+// Minerva doesn't apply margin/border to img.mw-file-element in thumbnails, so the
+// 4px overlay offsets and interactive map inset from kartographer.less don't apply.
+figure.mw-kartographer-container {
+	> .mw-kartographer-map {
+		.mw-kartographer-fullScreen {
+			top: @spacing-65;
+			right: @spacing-65;
+		}
+
+		.mw-kartographer-attribution {
+			right: 0;
+			bottom: 0;
+		}
+	}
+
+	> .mw-kartographer-interactive {
+		margin: 0;
+		border: 0;
+	}
+}
+
 // Override for MinervaNeue's "hack.less" that tries to fix Template:Multiple_image
 @media all and ( max-width: @max-width-breakpoint-mobile ) {
+	.content figure.mw-kartographer-container,
 	.content .mw-kartographer-container.thumb .thumbinner {
 		// Override the 'flex' rules
-		display: block;
+		display: table;
 		flex-wrap: unset;
 		justify-content: inherit;
 		align-content: normal;
 
+		> figcaption,
 		> .thumbcaption {
-			display: block;
+			display: table-caption;
 		}
 	}
 }
 
-// Override for MinervaNeue's "common.less" rule that specifically
-// enforces width: 320px for thumbs, which means that thumb/maps that
-// are set for width=100% are overrided and remain small. We need
-// to override that override.
+// Override for MinervaNeue's "common.less" rules that cap figure width, float it right,
+// and add margin — none of which are appropriate for fullwidth maps.
 @media screen and ( min-width: @min-width-breakpoint-tablet ) {
-	.content .mw-kartographer-container.mw-kartographer-full.thumb {
+	.content figure.mw-kartographer-container.mw-kartographer-full {
 		width: 100%;
+		max-width: 100%;
+		float: none;
+		clear: both;
+		margin-left: 0;
+		margin-right: 0;
 	}
 }

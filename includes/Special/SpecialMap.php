@@ -56,24 +56,22 @@ class SpecialMap extends UnlistedSpecialPage {
 			$this->msg( 'kartographer-attribution' )->parse() );
 
 		$this->getOutput()->addHTML(
-			Html::rawElement( 'div', [ 'id' => 'mw-specialMap-container', 'class' => 'thumb' ],
-				Html::rawElement( 'div', [ 'class' => 'thumbinner' ],
-					Html::rawElement( 'div', [ 'id' => 'mw-specialMap-inner' ],
-						Html::element( 'img', [
-							'alt' => $this->msg( 'kartographer-specialmap-world' )->text(),
-							'height' => 256,
-							'width' => 256,
-							'src' => $this->getWorldMapUrl(),
-							'srcset' => $this->getWorldMapSrcset()
-						] ) .
-						$markerHtml .
-						$attributions
-					) .
-					Html::rawElement( 'div',
-						[ 'id' => 'mw-specialMap-caption', 'class' => 'thumbcaption' ],
-						Html::element( 'span', [ 'id' => 'mw-specialMap-icon' ] ) .
-						Html::element( 'span', [ 'id' => 'mw-specialMap-coords' ], $coordText )
-					)
+			Html::rawElement( 'figure', [ 'id' => 'mw-specialMap-container' ],
+				Html::rawElement( 'div', [ 'id' => 'mw-specialMap-inner' ],
+					Html::element( 'img', [
+						'alt' => $this->msg( 'kartographer-specialmap-world' )->text(),
+						'height' => 256,
+						'width' => 256,
+						'src' => $this->getWorldMapUrl(),
+						'srcset' => $this->getWorldMapSrcset()
+					] ) .
+					$markerHtml .
+					$attributions
+				) .
+				Html::rawElement( 'figcaption',
+					[ 'id' => 'mw-specialMap-caption' ],
+					Html::element( 'span', [ 'id' => 'mw-specialMap-icon' ] ) .
+					Html::element( 'span', [ 'id' => 'mw-specialMap-coords' ], $coordText )
 				)
 			)
 		);

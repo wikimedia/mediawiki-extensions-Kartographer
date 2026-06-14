@@ -88,11 +88,13 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 			$dom->appendChild( $a );
 			return $dom;
 		}
-		$thumbinner = $doc->createElement( 'div' );
 
-		$thumbinner->setAttribute( 'class', 'thumbinner' );
-		$thumbinner->setAttribute( 'style', "width: $gen->cssWidth;" );
-		$thumbinner->appendChild( $a );
+		$figure = $doc->createElement( 'figure' );
+		$figure->setAttribute( 'class', implode( ' ', $gen->getThumbClasses() ) );
+		$figure->setAttribute( 'typeof', 'mw:File/Thumb' );
+		$figure->appendChild( $a );
+
+		$figcaption = $doc->createElement( 'figcaption' );
 		$caption = (string)$args->text;
 		if ( $caption !== '' ) {
 			// T383004 the $caption can have embedded strip markers! These
@@ -110,16 +112,10 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 				'processInNewFrame' => true,
 				'clearDSROffsets' => true,
 			], false );
-			$div = $doc->createElement( 'div' );
-			$div->setAttribute( 'class', 'thumbcaption' );
-			DOMCompat::appendChild( $div, $parsedCaption );
-			$thumbinner->appendChild( $div );
+			DOMCompat::appendChild( $figcaption, $parsedCaption );
 		}
-		$container = $doc->createElement( 'div' );
-		$containerClasses = $gen->getThumbClasses();
-		$container->setAttribute( 'class', implode( ' ', $containerClasses ) );
-		$container->appendChild( $thumbinner );
-		$dom->appendChild( $container );
+		$figure->appendChild( $figcaption );
+		$dom->appendChild( $figure );
 		return $dom;
 	}
 

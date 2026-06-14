@@ -3,7 +3,7 @@
  *
  * .mw-kartographer-container:
  *     Contains either a framed or frameless .mw-kartographer-map.
- *     When framed this class is at the .thumb level.
+ *     When framed this class is on a <figure> element (typeof="mw:File/Thumb").
  *     When frameless this class is at the a.mw-kartographer-map level
  *
  * .mw-kartographer-maplink:
@@ -130,12 +130,16 @@
 	}
 }
 
-// Fullwidth thumb or frameless map
+// Fullwidth framed or frameless map.
+// The selector without `figure` covers:
+// - new frameless fullwidth maps where the <a> itself carries mw-kartographer-full
+// - old cached HTML where the class was on a div.thumb or <a> instead of a <figure>.
 .mw-kartographer-container.mw-kartographer-full {
 	box-sizing: @box-sizing-base;
 	clear: both;
 	width: @size-full;
 
+	// Old cached HTML (div.thumb structure): make the img fill the full width.
 	> img {
 		width: @size-full;
 	}
@@ -150,32 +154,71 @@
 	}
 }
 
-.mw-kartographer-container:not( .mw-kartographer-full ) {
-	max-width: @size-full;
-
-	/* Fixes `align=center` use case */
-	&.center {
-		margin-left: auto;
-		margin-right: auto;
-		display: block;
+// New figure-based fullwidth: fix height to object-fit:cover the width.
+figure.mw-kartographer-container.mw-kartographer-full {
+	> .mw-kartographer-map > img.mw-file-element {
+		// Core works directly on the img element to limit images based on their width
+		// This is a problem when we want to take up fullwidth, and want to retain the original height.
+		// The intrinsic height is already adjusted to be relative to the width
+		// The solution for this is to use revert-layer. Older browsers will ignore this,
+		// but there isn't really a better way to do this with how the Core styling for thumbnails works
+		height: revert-layer;
 	}
+}
 
-	&.thumb {
-		.thumbinner {
-			// prevent overflowing content area
-			max-width: @size-full;
+figure.mw-kartographer-container {
+	> .mw-kartographer-map {
+		// .mw-kartographer-fullScreen and .mw-kartographer-attribution are not mw-file-elements,
+		// so they do not receive the 3px margin + 1px border that the img gets. Offset them to
+		// align with the img content edges rather than the container edges.
+		.mw-kartographer-fullScreen {
+			top: calc( @spacing-65 + 4px );
+			right: calc( @spacing-65 + 4px );
+		}
 
-			> .mw-kartographer-map {
-				background-position: @background-position-base;
-				background-size: cover;
-				box-sizing: @box-sizing-base;
-				max-width: @size-full;
-			}
+		.mw-kartographer-attribution {
+			right: 4px;
+			bottom: 4px;
 		}
 	}
 }
 
-// Define `.floatright` and `.floatleft` for `a` elements.
+figure.mw-kartographer-container:not( .mw-kartographer-full ) {
+	// prevent overflowing content area
+	max-width: @size-full;
+
+	> .mw-kartographer-map {
+		background-position: @background-position-base;
+		background-size: cover;
+		box-sizing: @box-sizing-base;
+		max-width: @size-full;
+	}
+}
+
+// Old cached HTML (div.thumb structure): non-fullwidth framed map sizing.
+.mw-kartographer-container:not( .mw-kartographer-full ).thumb {
+	.thumbinner {
+		max-width: @size-full;
+
+		> .mw-kartographer-map {
+			background-position: @background-position-base;
+			background-size: cover;
+			box-sizing: @box-sizing-base;
+			max-width: @size-full;
+		}
+	}
+}
+
+// In interactive mode the leaflet-container fills the <a> edge-to-edge. Give .leaflet-pane
+// the same margin + border that img.mw-file-element provides in static mode so the visual
+// inset is consistent between the two modes.
+figure.mw-kartographer-container > .mw-kartographer-interactive {
+	border: 1px solid @border-color-base;
+	margin: 3px;
+	box-sizing: content-box;
+}
+
+// Define `.floatright`, `.floatleft`, and `.center` for `a` elements (frameless maps)
 // FIXME: we should not have to define this here.
 /* @noflip */
 a.floatright {
@@ -189,6 +232,11 @@ a.floatleft {
 	float: left;
 	clear: left;
 	margin: 0.3em 0.5em 0.5em 0;
+}
+
+a.center.mw-kartographer-map {
+	width: fit-content;
+	margin: 0.3em auto;
 }
 
 @media print {

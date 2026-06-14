@@ -41,8 +41,11 @@ class MapFrameAttributeGeneratorTest extends MediaWikiUnitTestCase {
 
 		$attrs = $generator->prepareAttrs();
 		$this->assertSame( [
-			'class' => [ 'mw-kartographer-map', 'notheme', 'mw-kartographer-container', 'mw-kartographer-full' ],
-			'style' => 'width: 100%; height: 300px;',
+			'class' => [
+				'mw-kartographer-map', 'notheme', 'mw-file-description',
+				'mw-kartographer-container', 'mw-kartographer-full',
+			],
+			'style' => 'min-width: 100%; min-height: 300px;',
 			'data-mw-kartographer' => 'mapframe',
 			'data-style' => 'custom',
 			'data-width' => 'full',
@@ -54,6 +57,7 @@ class MapFrameAttributeGeneratorTest extends MediaWikiUnitTestCase {
 
 		$imgAttrs = $generator->prepareImgAttrs( true, 'X', 9, 'legacy' );
 		$this->assertSame( [
+			'class' => 'mw-file-element',
 			'src' => '/img/custom,12,a,a,800x300.png?lang=local&domain=localhost' .
 				'&title=X&revid=9&groups=hotels&parser=legacy',
 			'width' => 800,
@@ -64,8 +68,7 @@ class MapFrameAttributeGeneratorTest extends MediaWikiUnitTestCase {
 		$this->assertSame( [
 			'mw-kartographer-container',
 			'mw-kartographer-full',
-			'thumb',
-			'tnone',
+			'mw-halign-none',
 		], $generator->getThumbClasses() );
 	}
 

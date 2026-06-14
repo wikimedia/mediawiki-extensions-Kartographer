@@ -58,16 +58,13 @@ class LegacyMapFrame extends LegacyTagHandler {
 		}
 
 		$caption = (string)$this->args->text;
-		if ( $caption !== '' ) {
-			$html .= Html::rawElement( 'div', [ 'class' => 'thumbcaption' ],
-				$parser->halfParseWikitext( $caption ) );
-		}
+		$html .= Html::rawElement( 'figcaption', [],
+			$caption !== '' ? $parser->halfParseWikitext( $caption ) : '' );
 
-		return Html::rawElement( 'div', [ 'class' => $gen->getThumbClasses() ],
-			Html::rawElement( 'div', [
-					'class' => 'thumbinner',
-					'style' => "width: $gen->cssWidth;",
-				], $html ) );
+		return Html::rawElement( 'figure', [
+			'class' => $gen->getThumbClasses(),
+			'typeof' => 'mw:File/Thumb',
+		], $html );
 	}
 
 }
