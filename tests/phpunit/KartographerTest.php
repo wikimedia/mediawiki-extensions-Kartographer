@@ -3,6 +3,7 @@ namespace Kartographer\Tests;
 
 use Kartographer\State;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
@@ -477,7 +478,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$options = ParserOptions::newFromAnon();
 		$options->setIsPreview( $isPreview );
 		$options->setIsSectionPreview( $isSectionPreview );
-		$title = Title::newFromText( 'Test' );
+		$title = PageReferenceValue::localReference( NS_MAIN, 'Test' );
 
 		return $parser->parse( $text, $title, $options );
 	}
@@ -506,7 +507,7 @@ class KartographerTest extends MediaWikiLangTestCase {
 
 	private function parseParsoid( string $wikitext ) {
 		$parsoid = $this->getServiceContainer()->getParsoidParserFactory()->create();
-		return $parsoid->parse( $wikitext, Title::newFromText( 'Test Page' ),
+		return $parsoid->parse( $wikitext, PageReferenceValue::localReference( NS_MAIN, 'Test Page' ),
 			ParserOptions::newFromAnon() );
 	}
 }

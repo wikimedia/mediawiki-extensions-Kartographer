@@ -8,9 +8,9 @@ use Kartographer\SimpleStyleParser;
 use Kartographer\WikitextParser;
 use LogicException;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\ParserOptions;
-use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 
 /**
@@ -41,7 +41,7 @@ class SimpleStyleParserTest extends MediaWikiIntegrationTestCase {
 		$options = ParserOptions::newFromAnon();
 		$parser = $this->getServiceContainer()->getParserFactory()->create();
 		$config = $this->getServiceContainer()->getMainConfig();
-		$title = Title::newFromText( 'Test' );
+		$title = PageReferenceValue::localReference( NS_MAIN, 'Test' );
 		$parser->startExternalParse( $title, $options, Parser::OT_HTML );
 		$ssp = SimpleStyleParser::newFromParser( $parser, $config );
 
