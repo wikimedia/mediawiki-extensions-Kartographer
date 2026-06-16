@@ -26,7 +26,7 @@
 	"kartographer-error-title": "De titel \"$1\" verwijst niet naar een geldige pagina met kaartgegevens",
 	"kartographer-tracking-category": "Pagina's die de uitbreiding Kartographer gebruiken",
 	"kartographer-tracking-category-desc": "De pagina bevat een kaart",
-	"kartographer-specialmap-invalid-coordinates": "Ongeldige coördinaten opgegeven",
+	"kartographer-specialmap-invalid-coordinates": "Incorrecte coördinaten opgegeven",
 	"kartographer-specialmap-world": "Wereldkaart",
 	"kartographer-static-mapframe-alt": "Kaart",
 	"kartographer-linktype-aerial": "Luchtfoto's",
