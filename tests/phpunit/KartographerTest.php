@@ -243,7 +243,11 @@ class KartographerTest extends MediaWikiLangTestCase {
 		];
 		foreach ( $tests as $wikitext ) {
 			$output = $this->parseParsoid( $wikitext );
-			PageBundleParserOutputConverter::htmlPageBundleFromParserOutput( $output );
+			PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
+				$output,
+				siteConfig: $this->getServiceContainer()->getParsoidSiteConfig(),
+				bodyOnly: false,
+			);
 			// just checking we're still alive
 			$this->assertTrue( true );
 		}
