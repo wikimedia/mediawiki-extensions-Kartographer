@@ -6,6 +6,7 @@ use DOMException;
 use Kartographer\CoordFormatter;
 use Kartographer\ParsoidUtils;
 use MediaWiki\Json\FormatJson;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
 use Wikimedia\Parsoid\Utils\DOMCompat;
@@ -36,6 +37,12 @@ class ParsoidMapLink extends ParsoidTagHandler {
 			$text = $formatter->formatParsoidSpan( $extApi, null );
 		} elseif ( $text !== '' && !ctype_alnum( $text ) ) {
 			// Don't parse trivial alphanumeric-only strings, e.g. counters like "A" or "99".
+			$dataAccess = MediaWikiServices::getInstance()->getParsoidDataAccess();
+			// T383004 The $caption can have embedded strip markers! These
+			// should be converted to pfragments
+			$text = $dataAccess->preprocessWikitext(
+				$extApi->getPageConfig(), $extApi->getMetadata(), $text
+			);
 			$text = $extApi->wikitextToDOM( $text, [
 				'parseOpts' => [
 					'extTag' => 'maplink',

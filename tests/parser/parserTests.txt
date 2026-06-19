@@ -598,7 +598,7 @@ with lines
 with lines
 <ul><li>that create a list</li>
 <li>listy list</li>
-<li><span about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"even with a template"}},"i":0}}]}'>even with a template</span></li></ul></div></div></div>
+<li>even with a template</li></ul></div></div></div>
 !! end
 
 !! article
@@ -628,4 +628,25 @@ with lines
 <ul><li>that create a list</li>
 <li>listy list</li>
 <li>even with a template</li></ul></div></div></div>
+!! end
+
+!! test
+T383004: maplink caption with embedded extension
+!! wikitext
+{{#tag:maplink||text={{#tag:spantag|inner}}|latitude=10|longitude=20}}
+!! html/php
+<p><a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/0/10/20/en" data-lat="10" data-lon="20"><span>inner</span></a>
+</p>
+!! html/parsoid
+<p><a class="mw-kartographer-maplink" data-mw-kartographer="maplink" data-style="osm-intl" href="/wiki/Special:Map/0/10/20/en" data-lat="10" data-lon="20" typeof="mw:Extension/maplink mw:Transclusion" about="#mwt1" data-parsoid='{"pi":[[{"k":"1"},{"k":"2"},{"k":"3"},{"k":"4"},{"k":"5"}]]}' data-mw='{"name":"maplink","attrs":{"text":"&apos;\"`UNIQ--spantag-00000000-QINU`\"&apos;","latitude":"10","longitude":"20"},"body":{"extsrc":""},"parts":[{"template":{"target":{"wt":"#tag:maplink","function":"tag"},"params":{"1":{"wt":""},"2":{"wt":"text={{#tag:spantag|inner}}"},"3":{"wt":"latitude=10"},"4":{"wt":"longitude=20"}},"i":0}}]}'><span typeof="mw:Extension/spantag" about="#mwt2" data-parsoid='{"src":"&lt;spantag>inner&lt;/spantag>"}' data-mw='{"name":"spantag","attrs":{},"body":{"extsrc":"inner"}}'>inner</span></a></p>
+!! end
+
+!! test
+T383004: mapframe caption with embedded extension
+!! wikitext
+{{#tag:mapframe||text={{#tag:pre|inner}}|latitude=10|longitude=20|zoom=13|width=640|height=480}}
+!! html/php
+<div class="mw-kartographer-container thumb tright"><div class="thumbinner" style="width: 640px;"><a class="mw-kartographer-map notheme" style="width: 640px; height: 480px;" data-mw-kartographer="mapframe" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=en" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=en 2x" alt="Map" /></a><div class="thumbcaption"><pre>inner</pre></div></div></div>
+!! html/parsoid
+<div class="mw-kartographer-container thumb tright" typeof="mw:Extension/mapframe mw:Transclusion" about="#mwt1" data-parsoid='{"pi":[[{"k":"1"},{"k":"2"},{"k":"3"},{"k":"4"},{"k":"5"},{"k":"6"},{"k":"7"},{"k":"8"}]]}' data-mw='{"name":"mapframe","attrs":{"text":"&apos;\"`UNIQ--pre-00000000-QINU`\"&apos;","latitude":"10","longitude":"20","zoom":"13","width":"640","height":"480"},"body":{"extsrc":""},"parts":[{"template":{"target":{"wt":"#tag:mapframe","function":"tag"},"params":{"1":{"wt":""},"2":{"wt":"text={{#tag:pre|inner}}"},"3":{"wt":"latitude=10"},"4":{"wt":"longitude=20"},"5":{"wt":"zoom=13"},"6":{"wt":"width=640"},"7":{"wt":"height=480"}},"i":0}}]}'><div class="thumbinner" style="width: 640px;"><a class="mw-kartographer-map notheme" style="width: 640px; height: 480px;" data-mw-kartographer="mapframe" data-style="osm-intl" data-width="640" data-height="480" data-zoom="13" data-lat="10" data-lon="20" href="/wiki/Special:Map/13/10/20/en"><img src="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480.png?lang=en" width="640" height="480" decoding="async" srcset="https://maps.wikimedia.org/img/osm-intl,13,10,20,640x480@2x.png?lang=en 2x" typeof="mw:LocalizedAttrs" data-mw-i18n='{"alt":{"lang":"x-page","key":"kartographer-static-mapframe-alt","params":[]}}'/></a><div class="thumbcaption"><pre typeof="mw:Extension/pre" about="#mwt2" data-parsoid='{"stx":"html","src":"&lt;pre>inner&lt;/pre>"}' data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"inner"}}'>inner</pre></div></div></div>
 !! end
