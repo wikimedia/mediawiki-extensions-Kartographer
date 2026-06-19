@@ -4,6 +4,7 @@ namespace Kartographer\Tag;
 
 use DOMException;
 use Kartographer\ParsoidUtils;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\Ext\ParsoidExtensionAPI;
@@ -95,6 +96,12 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 		$thumbinner->appendChild( $a );
 		$caption = (string)$args->text;
 		if ( $caption !== '' ) {
+			$dataAccess = MediaWikiServices::getInstance()->getParsoidDataAccess();
+			// T383004 the $caption can have embedded strip markers! These
+			// should be converted to pfragments.
+			$caption = $dataAccess->preprocessWikitext(
+				$extApi->getPageConfig(), $extApi->getMetadata(), $caption
+			);
 			$parsedCaption = $extApi->wikitextToDOM( $caption, [
 				'parseOpts' => [
 					'extTag' => 'mapframe',
