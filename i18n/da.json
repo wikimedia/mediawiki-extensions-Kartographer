@@ -6,7 +6,7 @@
 		]
 	},
 	"kartographer-broken-category": "Sider med uvirksomme kort",
-	"kartographer-tracking-category": "Sider med kort",
+	"kartographer-tracking-category": "Sider, der bruger Kartographer-udvidelsen",
 	"kartographer-linktype-other": "Andet",
 	"kartographer-linktype-satellite": "Satellit",
 	"kartographer-linktype-terrain": "Terræn",
