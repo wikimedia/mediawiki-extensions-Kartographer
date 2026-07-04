@@ -11,6 +11,7 @@ use MediaWiki\Language\LanguageNameUtils;
 use MediaWiki\Message\Message;
 use StatusValue;
 use stdClass;
+use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\DOM\DocumentFragment;
 use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Ext\ExtensionTagHandler;
@@ -27,6 +28,7 @@ abstract class ParsoidTagHandler extends ExtensionTagHandler {
 		protected readonly Config $config,
 		private readonly LanguageFactory $languageFactory,
 		private readonly LanguageNameUtils $languageNameUtils,
+		protected readonly DataAccess $dataAccess,
 	) {
 	}
 

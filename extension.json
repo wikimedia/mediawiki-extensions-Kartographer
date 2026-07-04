@@ -561,7 +561,8 @@
 						"services": [
 							"MainConfig",
 							"LanguageFactory",
-							"LanguageNameUtils"
+							"LanguageNameUtils",
+							"ParsoidDataAccess"
 						]
 					},
 					"options": {
@@ -578,7 +579,8 @@
 						"services": [
 							"MainConfig",
 							"LanguageFactory",
-							"LanguageNameUtils"
+							"LanguageNameUtils",
+							"ParsoidDataAccess"
 						]
 					},
 					"options": {
