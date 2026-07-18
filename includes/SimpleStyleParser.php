@@ -3,10 +3,10 @@
 namespace Kartographer;
 
 use InvalidArgumentException;
-use JsonConfig\JCMapDataContent;
-use JsonConfig\JCSingleton;
 use JsonSchema\Validator;
 use MediaWiki\Config\Config;
+use MediaWiki\Extension\JsonConfig\JCMapDataContent;
+use MediaWiki\Extension\JsonConfig\JCSingleton;
 use MediaWiki\Json\FormatJson;
 use MediaWiki\Parser\Parser;
 use MediaWiki\Parser\PPFrame;

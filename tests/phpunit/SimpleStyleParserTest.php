@@ -2,11 +2,11 @@
 
 namespace Kartographer\Tests;
 
-use JsonConfig\JCMapDataContent;
-use JsonConfig\JCSingleton;
 use Kartographer\SimpleStyleParser;
 use Kartographer\WikitextParser;
 use LogicException;
+use MediaWiki\Extension\JsonConfig\JCMapDataContent;
+use MediaWiki\Extension\JsonConfig\JCSingleton;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\Parser;
