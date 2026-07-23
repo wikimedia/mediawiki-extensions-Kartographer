@@ -4,6 +4,7 @@
 	],
 	"rules": {
 		"declaration-property-unit-disallowed-list": null,
+		"declaration-property-value-keyword-no-deprecated": null,
 		"selector-class-pattern": null
 	}
 }

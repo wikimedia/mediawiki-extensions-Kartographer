@@ -1,4 +1,3 @@
-/* stylelint-disable no-descending-specificity */
 .mw-kartographer-link,
 .mw-kartographer-maplink {
 	cursor: pointer;
@@ -39,6 +38,7 @@ a.mw-kartographer-link,
 	}
 
 	// Fake hover on full screen button as clicking the maps launches fullscreen
+	/* stylelint-disable-next-line no-descending-specificity */
 	&:hover .mw-kartographer-fullScreen .oo-ui-buttonElement-button {
 		background-color: #fff;
 	}
