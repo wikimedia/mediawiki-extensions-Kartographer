@@ -287,8 +287,13 @@ class SimpleStyleParser {
 
 			case 'page':
 				$jct = JCSingleton::parseTitle( $object->title, NS_DATA );
-				if ( !$jct || JCSingleton::getContentClass( $jct->getConfig()->model ) !==
-							  JCMapDataContent::class
+				if ( !$jct ) {
+					return StatusValue::newFatal( 'kartographer-error-title', $object->title );
+				}
+				$contentClass = JCSingleton::getContentClass( $jct->getConfig()->model );
+				if ( $contentClass !== JCMapDataContent::class &&
+					// Support older config with the old class name
+					$contentClass !== 'JsonConfig\JCMapDataContent'
 				) {
 					return StatusValue::newFatal( 'kartographer-error-title', $object->title );
 				}
