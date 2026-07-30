@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Tacsipacsi",
-			"Boro"
+			"Boro",
+			"Dj"
 		]
 	},
 	"kartographer-attribution": "Wikimédia-térképek | Térképadatok © [https://www.openstreetmap.org/copyright OpenStreetMap közreműködők]",
@@ -42,6 +43,7 @@
 	"leafletdraw-draw-handlers-circle-radius": "Sugár",
 	"leafletdraw-draw-handlers-circle-tooltip-start": "Kattints és húzz kör rajzolásához",
 	"leafletdraw-draw-handlers-marker-tooltip-start": "Kattints a térképre jelölő elhelyezéséhez",
+	"leafletdraw-draw-handlers-circlemarker-tooltip-start": "Kattints a térképre köralakú jelölő elhelyezéséhez",
 	"leafletdraw-draw-handlers-polygon-tooltip-cont": "Kattints az alakzat rajzolásának folytatásához",
 	"leafletdraw-draw-handlers-polygon-tooltip-end": "Kattints az első pontra az alakzat befejezéséhez",
 	"leafletdraw-draw-handlers-polygon-tooltip-start": "Kattints egy alakzat rajzolásának elkezdéséhez",
@@ -55,6 +57,7 @@
 	"leafletdraw-draw-toolbar-actions-title": "Rajzolás visszavonása",
 	"leafletdraw-draw-toolbar-buttons-circle": "Kör rajzolása",
 	"leafletdraw-draw-toolbar-buttons-marker": "Jelölő rajzolása",
+	"leafletdraw-draw-toolbar-buttons-circlemarker": "Köralakú jelölő rajzolása",
 	"leafletdraw-draw-toolbar-buttons-polygon": "Sokszög rajzolása",
 	"leafletdraw-draw-toolbar-buttons-polyline": "Vonal rajzolása",
 	"leafletdraw-draw-toolbar-buttons-rectangle": "Téglalap rajzolása",
@@ -78,10 +81,15 @@
 	"mapbox-control-zoomout-title": "Kicsinyítés",
 	"kartographer-fullscreen-close": "Bezárás",
 	"kartographer-fullscreen-text": "Teljes képernyős megjelenítés",
+	"kartographer-icon-docs-table": "Maki-ikonok",
+	"kartographer-icon-docs-icon": "Ikon",
+	"kartographer-icon-docs-key": "Név",
+	"kartographer-icon-docs-help": "Leírás",
 	"visualeditor-mwmapsdialog-area": "Térkép területe",
 	"visualeditor-mwmapsdialog-content": "Térkép tartalma",
 	"visualeditor-mwmapsdialog-options": "Beállítások",
 	"visualeditor-mwmapsdialog-display": "Megjelenés",
+	"visualeditor-mwmapsdialog-caption": "Képaláírás",
 	"visualeditor-mwmapsdialog-language": "Nyelv",
 	"visualeditor-mwmapsdialog-help-title": "Tudj meg többet a térképek készítéséről és szerkesztéséről.",
 	"visualeditor-mwmapsdialog-position-lat": "Szélesség",
