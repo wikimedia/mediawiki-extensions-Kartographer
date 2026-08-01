@@ -35,7 +35,9 @@ ve.dm.MWMapsNode.static.name = 'mwMaps';
 
 ve.dm.MWMapsNode.static.extensionName = 'mapframe';
 
-ve.dm.MWMapsNode.static.matchTagNames = [ 'div' ];
+ve.dm.MWMapsNode.static.matchTagNames = [ 'figure' ];
+
+ve.dm.MWMapsNode.static.allowedRdfaTypes = [ 'mw:File/Thumb' ];
 
 /* Static methods */
 

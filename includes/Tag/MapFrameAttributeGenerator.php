@@ -54,7 +54,7 @@ class MapFrameAttributeGenerator {
 	public function prepareAttrs(): array {
 		$attrs = [
 			// T359082: Temporarily disable dark mode unless we have a better idea
-			'class' => [ 'mw-kartographer-map', 'notheme', 'mw-file-description' ],
+			'class' => [ 'mw-kartographer-map', 'notheme', 'noviewer', 'mw-file-description' ],
 			// We need dimensions for when there is no img (editpreview or no staticmap)
 			// because an <img> element with permanent failing src has either:
 			// - intrinsic dimensions of 0x0, when alt=''

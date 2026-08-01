@@ -19,6 +19,8 @@ class ParsoidMapLink extends ParsoidTagHandler {
 
 	/**
 	 * @throws DOMException
+	 * @note If this method's output DOM shape changes, bump $wgKartographerParsoidVersion in
+	 *  extension.json so stale cached Parsoid output is rejected.
 	 */
 	public function sourceToDom( ParsoidExtensionAPI $extApi, string $src, array $extArgs ): DocumentFragment {
 		$extApi->getMetadata()->addModules( [ 'ext.kartographer.link' ] );
