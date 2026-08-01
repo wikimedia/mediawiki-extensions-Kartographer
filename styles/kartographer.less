@@ -43,6 +43,7 @@
  *                        .mw-kartographer-interactive then, if directly interactive.
  */
 @import 'mediawiki.skin.variables.less';
+@import 'mediawiki.mixins.less';
 
 .mw-kartographer-error {
 	display: inline-block;
@@ -181,6 +182,17 @@ figure.mw-kartographer-container {
 			bottom: 4px;
 		}
 	}
+}
+
+// T433755: core dims and tints images inside a file thumbnail figure in dark mode, treating
+// them like photos. Since our figure typeof matches that rule, it now also dims the map
+// preview, the interactive tiles, and the marker pins. Cancel it for all images in the map.
+.mw-kartographer-container img {
+	.darkmode-override( {
+		background-color: transparent !important; // stylelint-disable-line declaration-no-important
+		color: inherit !important; // stylelint-disable-line declaration-no-important
+		filter: none !important; // stylelint-disable-line declaration-no-important
+	} );
 }
 
 figure.mw-kartographer-container:not( .mw-kartographer-full ) {
