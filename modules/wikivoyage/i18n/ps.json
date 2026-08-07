@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ahmed-Najib-Biabani-Ibrahimkhel"
+			"Ahmed-Najib-Biabani-Ibrahimkhel",
+			"شاه زمان پټان"
 		]
 	},
 	"kartographer-wv-group": "ډله:",
+	"kartographer-wv-warning-external-source-agree": "زه پوهېږم",
 	"kartographer-wv-warning-external-source-disagree": "ناگارل"
 }
