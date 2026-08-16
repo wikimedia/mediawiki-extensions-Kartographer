@@ -170,14 +170,14 @@ class State implements JsonSerializable {
 	 * @return array A JSON serializable associative array
 	 */
 	public function jsonSerialize(): array {
-		// TODO: Replace with the ...$this->usages syntax when we can use PHP 8.1
-		return array_merge( [
+		return [
 			'broken' => $this->broken,
 			'interactiveGroups' => $this->getInteractiveGroups(),
 			'requestedGroups' => $this->getRequestedGroups(),
 			'counters' => $this->counters ?: null,
 			'data' => $this->data,
-		], $this->usages );
+			...$this->usages,
+		];
 	}
 
 	/**

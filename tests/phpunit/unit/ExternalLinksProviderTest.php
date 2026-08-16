@@ -25,8 +25,7 @@ class ExternalLinksProviderTest extends \MediaWikiUnitTestCase {
 
 		$this->assertInstanceOf( \stdClass::class, $data );
 		$this->assertIsArray( $data->types );
-		// TODO: Can be replaced with array_is_list() when we can use PHP 8.1
-		$this->assertSame( array_values( $data->types ), $data->types );
+		$this->assertTrue( array_is_list( $data->types ) );
 		$this->assertIsArray( $data->localization );
 		$this->assertLessThanOrEqual( count( $data->types ), count( $data->localization ) );
 
