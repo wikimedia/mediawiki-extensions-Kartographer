@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"kartographer-wv-group": "Skupina:",
+	"kartographer-wv-warning-external-source-title": "Externý zdroj údajov",
+	"kartographer-wv-warning-external-source-message": "Tento obsah je hosťovaný externe, takže jeho zapnutím poskytnete poskytovateľovi mapy svoju IP adresu a ďalšie údaje.",
+	"kartographer-wv-warning-external-source-agree": "Rozumiem",
+	"kartographer-wv-warning-external-source-disagree": "Zrušiť"
+}
