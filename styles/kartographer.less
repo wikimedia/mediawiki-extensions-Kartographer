@@ -131,27 +131,15 @@
 	}
 }
 
-// Fullwidth framed or frameless map.
-// The selector without `figure` covers:
-// - new frameless fullwidth maps where the <a> itself carries mw-kartographer-full
-// - old cached HTML where the class was on a div.thumb or <a> instead of a <figure>.
+// Fullwidth map, framed (<figure>) or frameless (the <a> itself carries the classes).
 .mw-kartographer-container.mw-kartographer-full {
 	box-sizing: @box-sizing-base;
 	clear: both;
 	width: @size-full;
 
-	// Old cached HTML (div.thumb structure): make the img fill the full width.
+	// Frameless only; a framed map's img sits one level deeper, inside the <a>.
 	> img {
 		width: @size-full;
-	}
-
-	.thumbinner {
-		width: @size-full;
-		box-sizing: @box-sizing-base;
-
-		> a > img {
-			width: @size-full;
-		}
 	}
 }
 
@@ -204,20 +192,6 @@ figure.mw-kartographer-container:not( .mw-kartographer-full ) {
 		background-size: cover;
 		box-sizing: @box-sizing-base;
 		max-width: @size-full;
-	}
-}
-
-// Old cached HTML (div.thumb structure): non-fullwidth framed map sizing.
-.mw-kartographer-container:not( .mw-kartographer-full ).thumb {
-	.thumbinner {
-		max-width: @size-full;
-
-		> .mw-kartographer-map {
-			background-position: @background-position-base;
-			background-size: cover;
-			box-sizing: @box-sizing-base;
-			max-width: @size-full;
-		}
 	}
 }
 

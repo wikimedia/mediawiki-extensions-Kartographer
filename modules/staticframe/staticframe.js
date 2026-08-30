@@ -37,7 +37,7 @@ let routerInited = false;
  */
 function getMapData( element ) {
 	const $el = $( element );
-	const $caption = $el.parent().find( 'figcaption, .thumbcaption' );
+	const $caption = $el.parent().find( 'figcaption' );
 	let captionText = '';
 
 	if ( $caption[ 0 ] ) {

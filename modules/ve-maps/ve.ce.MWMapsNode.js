@@ -62,7 +62,7 @@ OO.mixinClass( ve.ce.MWMapsNode, ve.ce.ResizableNode );
 
 ve.ce.MWMapsNode.static.name = 'mwMaps';
 
-ve.ce.MWMapsNode.static.tagName = 'div';
+ve.ce.MWMapsNode.static.tagName = 'figure';
 
 ve.ce.MWMapsNode.static.primaryCommandName = 'mwMaps';
 
@@ -113,9 +113,9 @@ ve.ce.MWMapsNode.prototype.update = function () {
 	const align = !isFullWidth &&
 			( mwAttrs.align || ( this.model.doc.getDir() === 'ltr' ? 'right' : 'left' ) );
 	const alignClasses = {
-		left: 'floatleft',
-		center: 'center',
-		right: 'floatright'
+		left: 'mw-halign-left',
+		center: 'mw-halign-center',
+		right: 'mw-halign-right'
 	};
 	const frameless = 'frameless' in mwAttrs && !mwAttrs.text;
 
@@ -180,8 +180,10 @@ ve.ce.MWMapsNode.prototype.update = function () {
 	this.$caption.detach();
 	// Classes documented in removeClass
 	this.$element
-		.removeClass( 'floatleft center floatright mw-halign-left mw-halign-center mw-halign-right mw-halign-none' )
-		.addClass( alignClasses[ align ] );
+		.attr( 'typeof', frameless ? 'mw:File/Frameless' : 'mw:File/Thumb' )
+		.removeClass( 'mw-halign-left mw-halign-center mw-halign-right mw-halign-none' )
+		.addClass( alignClasses[ align ] || 'mw-halign-none' )
+		.toggleClass( 'mw-kartographer-full', isFullWidth );
 	if ( frameless ) {
 		this.$element.append( this.$map );
 	} else {

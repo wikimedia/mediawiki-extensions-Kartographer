@@ -56,15 +56,6 @@
 	background-position: center;
 	background-repeat: no-repeat;
 
-	&.center,
-	&.mw-halign-center {
-		/* Fixes align=center */
-		position: relative;
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-	}
-
 	figcaption > p:first-child {
 		margin-top: 0;
 		padding-top: 0;
@@ -74,16 +65,15 @@
 		margin-bottom: 0;
 		padding-bottom: 0;
 	}
+}
 
-	.thumbcaption > p:first-child {
-		margin-top: 0;
-		padding-top: 0;
-	}
-
-	.thumbcaption > p:last-child {
-		margin-bottom: 0;
-		padding-bottom: 0;
-	}
+// The parser puts an <img class="mw-file-element"> inside the framed map, and core insets
+// it from the frame with a 3px margin, capping its width so the margin still fits. The
+// editor draws the map as a <div> instead, which core's selectors cannot reach, so repeat
+// the inset here to keep the editor aligned with the rendered page.
+figure[ typeof~='mw:File/Thumb' ] > div.mw-kartographer-map {
+	margin: 3px;
+	max-width: calc( 100% - 6px );
 }
 
 .ve-ui-mwMapsContextItem-nosupport {

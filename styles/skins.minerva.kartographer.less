@@ -48,16 +48,14 @@ figure.mw-kartographer-container {
 
 // Override for MinervaNeue's "hack.less" that tries to fix Template:Multiple_image
 @media all and ( max-width: @max-width-breakpoint-mobile ) {
-	.content figure.mw-kartographer-container,
-	.content .mw-kartographer-container.thumb .thumbinner {
+	.content figure.mw-kartographer-container {
 		// Override the 'flex' rules
 		display: table;
 		flex-wrap: unset;
 		justify-content: inherit;
 		align-content: normal;
 
-		> figcaption,
-		> .thumbcaption {
+		> figcaption {
 			display: table-caption;
 		}
 	}
