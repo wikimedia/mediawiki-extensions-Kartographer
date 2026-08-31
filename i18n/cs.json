@@ -80,6 +80,7 @@
 	"mapbox-control-zoomout-title": "Oddálit",
 	"kartographer-fullscreen-close": "Zavřít",
 	"kartographer-fullscreen-text": "Zobrazit přes celou obrazovku",
+	"visualeditor-mwmapsdialog-area": "Oblast mapy",
 	"visualeditor-mwmapsdialog-display": "Zobrazení",
 	"visualeditor-mwmapsdialog-display-help": "Obsah stránky bude obtékat okolo mapy, jen když je zarovnání nastavené vlevo anebo vpravo, ne na střed.\n\nVypnutí rámečku vykreslí mapu bez ohraničení, podobně jako u obrázků bez rámečku. Tato možnost je vypnutá, pokud má mapa titulek.",
 	"visualeditor-mwmapsdialog-frame": "Zobrazit rámeček",
