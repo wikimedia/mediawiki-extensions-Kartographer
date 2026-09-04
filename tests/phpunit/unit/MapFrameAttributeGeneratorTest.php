@@ -69,6 +69,7 @@ class MapFrameAttributeGeneratorTest extends MediaWikiUnitTestCase {
 			'mw-kartographer-container',
 			'mw-kartographer-full',
 			'mw-halign-none',
+			'noviewer',
 		], $generator->getThumbClasses() );
 	}
 

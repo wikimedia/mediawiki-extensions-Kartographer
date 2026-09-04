@@ -48,13 +48,20 @@ class MapFrameAttributeGenerator {
 		return [
 			...$this->getContainerClasses(),
 			'mw-halign-' . $this->args->align,
+			'noviewer',
 		];
 	}
 
 	public function prepareAttrs(): array {
+		// T359082: Temporarily disable dark mode unless we have a better idea
+		$class = [ 'mw-kartographer-map', 'notheme' ];
+		if ( $this->args->frameless ) {
+			$class[] = 'noviewer';
+		}
+		$class[] = 'mw-file-description';
+
 		$attrs = [
-			// T359082: Temporarily disable dark mode unless we have a better idea
-			'class' => [ 'mw-kartographer-map', 'notheme', 'noviewer', 'mw-file-description' ],
+			'class' => $class,
 			// We need dimensions for when there is no img (editpreview or no staticmap)
 			// because an <img> element with permanent failing src has either:
 			// - intrinsic dimensions of 0x0, when alt=''
