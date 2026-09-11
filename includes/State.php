@@ -20,8 +20,8 @@ class State implements JsonSerializable {
 	private int $broken = 0;
 
 	/**
-	 * @var array<string,int> Total number of <maplink> and <mapframe> tags on the page, to be
-	 *  stored as a page property
+	 * @var array{maplink?: int, mapframes?: int} Total number of <maplink> and <mapframe> tags on
+	 *  the page
 	 */
 	private array $usages = [];
 
@@ -94,14 +94,8 @@ class State implements JsonSerializable {
 		}
 		// Resulting keys will be "maplinks" and "mapframes"
 		$key = "{$tag}s";
-		$this->usages[$key] = ( $this->usages[$key] ?? 0 ) + 1;
-	}
-
-	/**
-	 * @return array<string,int>
-	 */
-	public function getUsages(): array {
-		return $this->usages;
+		$this->usages[$key] ??= 0;
+		$this->usages[$key]++;
 	}
 
 	/**
@@ -182,8 +176,6 @@ class State implements JsonSerializable {
 
 	/**
 	 * @param array $data A JSON serializable associative array, as returned by jsonSerialize()
-	 *
-	 * @return self
 	 */
 	private static function newFromJson( array $data ): self {
 		$status = new self();

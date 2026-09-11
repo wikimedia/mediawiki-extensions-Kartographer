@@ -394,25 +394,6 @@ class KartographerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider providePageProps
-	 */
-	public function testPageProps( string $text, ?int $frames, ?int $links ) {
-		$po = $this->parse( $text );
-		$this->assertEquals( $frames, $po->getPageProperty( 'kartographer_frames' ) );
-		$this->assertEquals( $links, $po->getPageProperty( 'kartographer_links' ) );
-	}
-
-	public static function providePageProps() {
-		return [
-			[ '', null, null ],
-			[ '<foo>', null, null ],
-			[ '<mapframe>broken but still track</mapframe>
-				<mapframe width=100 height=100 zoom=0 latitude=0 longitude=0 />', 2, null ],
-			[ '<mapframe/><maplink/><mapframe></mapframe><maplink></maplink>', 2, 2 ],
-		];
-	}
-
-	/**
 	 * @dataProvider provideGroupNames
 	 */
 	public function testGroupNames( array $expected, string $input ) {

@@ -157,12 +157,6 @@ abstract class LegacyTagHandler {
 		bool $outputAllLiveData,
 		ParserFunctionTracker $tracker
 	): void {
-		foreach ( $state->getUsages() as $key => $count ) {
-			// Resulting page property names are "kartographer_links" and "kartographer_frames"
-			$name = 'kartographer_' . preg_replace( '/^map/', '', $key );
-			$parserOutput->setNumericPageProperty( $name, $count );
-		}
-
 		$tracker->addTrackingCategories( [
 			'kartographer-broken-category' => $state->hasBrokenTags(),
 			'kartographer-tracking-category' => $state->hasValidTags(),

@@ -34,24 +34,24 @@ class StateTest extends MediaWikiUnitTestCase {
 
 	public function testMapLinks() {
 		$state = new State();
-		$this->assertSame( [], $state->getUsages() );
+		$this->assertArrayNotHasKey( 'maplinks', $state->jsonSerialize() );
 
 		$state->incrementUsage( LegacyMapLink::TAG );
-		$this->assertSame( 1, $state->getUsages()['maplinks'] );
+		$this->assertSame( 1, $state->jsonSerialize()['maplinks'] );
 
 		$state->incrementUsage( LegacyMapLink::TAG );
-		$this->assertSame( 2, $state->getUsages()['maplinks'] );
+		$this->assertSame( 2, $state->jsonSerialize()['maplinks'] );
 	}
 
 	public function testMapframes() {
 		$state = new State();
-		$this->assertSame( [], $state->getUsages() );
+		$this->assertArrayNotHasKey( 'mapframes', $state->jsonSerialize() );
 
 		$state->incrementUsage( LegacyMapFrame::TAG );
-		$this->assertSame( 1, $state->getUsages()['mapframes'] );
+		$this->assertSame( 1, $state->jsonSerialize()['mapframes'] );
 
 		$state->incrementUsage( LegacyMapFrame::TAG );
-		$this->assertSame( 2, $state->getUsages()['mapframes'] );
+		$this->assertSame( 2, $state->jsonSerialize()['mapframes'] );
 	}
 
 	public function testInteractiveGroups() {
