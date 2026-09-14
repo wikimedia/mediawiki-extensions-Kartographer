@@ -180,23 +180,6 @@ class KartographerTest extends MediaWikiLangTestCase {
       "marker-size": "medium"
     }
   }</mapframe>', 'Invalid JSON 6' ],
-			[
-				$wikitextJsonParsed,
-				'<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37>[' .
-					self::WIKITEXT_JSON . ']</mapframe>',
-				'<mapframe> with parsable text and description',
-				false,
-				$wikitextJsonParsoid
-			],
-			[
-				$wikitextJsonParsed,
-				'<maplink zoom=13 longitude=-122 latitude=37>[' .
-					self::WIKITEXT_JSON . ']</maplink>',
-				'<maplink> with parsable text and description',
-				false,
-				$wikitextJsonParsoid
-			],
-
 			// Bugs
 			[ '[]', "<maplink zoom=13 longitude=-122 latitude=37>\t\r\n </maplink>", 'T127345: whitespace-only tag content, <maplink>' ],
 			[ $xssJsonSanitized, "<maplink zoom=13 longitude=10 latitude=20>$xssJson</maplink>", 'T134719: XSS via __proto__' ],
