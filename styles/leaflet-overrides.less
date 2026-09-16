@@ -111,8 +111,8 @@
 	}
 
 	.leaflet-draw-actions,
-	.leaflet-control-layers,
 	/* stylelint-disable-next-line no-descending-specificity */
+	.leaflet-control-layers,
 	.leaflet-bar {
 		background-color: @background-color-interactive-subtle;
 		border: 0;
@@ -125,10 +125,10 @@
 		background-color: unset;
 	}
 
-	/* stylelint-disable-next-line no-descending-specificity */
+	/* stylelint-disable no-descending-specificity */
 	.leaflet-draw-actions a,
-	/* stylelint-disable-next-line no-descending-specificity */
 	.leaflet-bar > a {
+		/* stylelint-enable no-descending-specificity */
 		background-color: @background-color-interactive-subtle; // Override Leaflet.Draw default
 		color: @color-base;
 		box-sizing: content-box;
@@ -205,4 +205,11 @@
 	.mapbox-icon {
 		opacity: @opacity-base;
 	}
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+	// T429179: Fix issue with Leaflet's text-indent hack with RTL languages
+	overflow: hidden;
 }
