@@ -6,7 +6,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverterStatic as PageBundleParserOutputConverter;
 use MediaWiki\Title\Title;
 use MediaWikiLangTestCase;
 
@@ -224,11 +223,12 @@ class KartographerTest extends MediaWikiLangTestCase {
 			'<mapframe zoom=13 latitude = 45.76 longitude =8.56' .
 			' align=right width=250 height=350 text=" {{Légende|#400080|Collégiale de la Nativité}}"/>'
 		];
+		$pageBundleParserOutputConverter = $this->getServiceContainer()
+			->getPageBundleParserOutputConverter();
 		foreach ( $tests as $wikitext ) {
 			$output = $this->parseParsoid( $wikitext );
-			PageBundleParserOutputConverter::htmlPageBundleFromParserOutput(
+			$pageBundleParserOutputConverter->htmlPageBundleFromParserOutput(
 				$output,
-				siteConfig: $this->getServiceContainer()->getParsoidSiteConfig(),
 				bodyOnly: false,
 			);
 			// just checking we're still alive
