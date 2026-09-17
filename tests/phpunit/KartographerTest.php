@@ -6,7 +6,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOptions;
 use MediaWiki\Parser\ParserOutput;
-use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverterStatic as PageBundleParserOutputConverter;
 use MediaWiki\Title\Title;
 use MediaWikiLangTestCase;
 
