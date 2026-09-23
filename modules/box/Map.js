@@ -926,23 +926,21 @@ const KartographerMap = L.Map.extend( {
 	},
 
 	/**
-	 * Makes the map interactive IIF :
-	 *
-	 * - the `device width > 480px`,
-	 * - there is at least a 200px horizontal margin.
-	 *
+	 * Makes the map interactive if the screen is big enough to meaningfully navigate both the map
+	 * and the page via touch, and there is enough room for that around the map.
 	 * Otherwise makes it static.
 	 *
 	 * @chainable
 	 */
 	toggleStaticState: function () {
 		const deviceWidth = window.innerWidth;
-		// All maps static if deviceWitdh < 480px
-		const isSmallWindow = deviceWidth <= 480;
-
-		// If the window is wide enough, make sure there is at least
-		// a 200px margin to scroll, otherwise make the map static.
-		const staticMap = this.options.alwaysStatic || isSmallWindow || ( this.getSize().x + 200 ) > deviceWidth;
+		const staticMap = this.options.alwaysStatic ||
+			// Interactive maps consume all touch events. To scroll the page you have to touch the
+			// page outside of the map. There is just not enough room for that on small phones.
+			// Disable map scrolling and favor page scrolling then.
+			deviceWidth < 375 ||
+			// Make sure there is at least a 200px margin to scroll, otherwise make the map static
+			( this.getSize().x + 200 ) > deviceWidth;
 
 		// Skip if the map is already static
 		if ( this._static === staticMap ) {
