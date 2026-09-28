@@ -121,6 +121,12 @@ function initMapframeFromElement( element ) {
  * This code will be executed once the article is rendered and ready.
  */
 mw.hook( 'wikipage.content' ).add( ( $content ) => {
+	// T438713: Keep auto-loading maps on wikitext pages, but give e.g. Wikibase item pages a chance
+	// to do it manually
+	if ( mw.config.get( 'wgKartographerSkipContentHook' ) ) {
+		return;
+	}
+
 	// Wait for next draw cycle, so that the JS map is not initialized before it is on screen.
 	// If initialized too early leaflet uses incorrect dimensions. phab:T151524
 	// https://github.com/Leaflet/Leaflet/issues/4200
