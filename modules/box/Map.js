@@ -934,13 +934,16 @@ const KartographerMap = L.Map.extend( {
 	 */
 	toggleStaticState: function () {
 		const deviceWidth = window.innerWidth;
+		const minMargin = 200;
+		const enoughTouchMargin = deviceWidth - this.getSize().x >= minMargin ||
+			window.innerHeight - this.getSize().y >= minMargin;
 		const staticMap = this.options.alwaysStatic ||
 			// Interactive maps consume all touch events. To scroll the page you have to touch the
 			// page outside of the map. There is just not enough room for that on small phones.
 			// Disable map scrolling and favor page scrolling then.
 			deviceWidth < 375 ||
 			// Make sure there is at least a 200px margin to scroll, otherwise make the map static
-			( this.getSize().x + 200 ) > deviceWidth;
+			!enoughTouchMargin;
 
 		// Skip if the map is already static
 		if ( this._static === staticMap ) {
