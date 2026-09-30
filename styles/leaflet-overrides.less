@@ -4,6 +4,9 @@
 	z-index: 0;
 
 	&.leaflet-container {
+		// Replace Leaflet's white with the most common (land) color on Wikimedia maps. Reduces the
+		// distracting FOUC effect when map tiles are progressively loaded.
+		background-color: #f8f4f0;
 		color: @color-base;
 		// Default to Vector's base font-size
 		font-size: 14px;
