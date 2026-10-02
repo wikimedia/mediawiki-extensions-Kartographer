@@ -66,8 +66,6 @@ function getMapData( element ) {
 function initMapBox( data, $container ) {
 	const index = maps.length;
 
-	data.enableFullScreenButton = true;
-
 	const map = kartobox.map( {
 		featureType: 'mapframe',
 		container: $container.get( 0 ),
@@ -76,10 +74,10 @@ function initMapBox( data, $container ) {
 		lang: data.lang,
 		style: data.style,
 		fullScreenRoute: '/map/' + index,
-		allowFullScreen: true,
+		allowFullScreen: data.allowFullScreen !== false,
 		dataGroups: data.overlays,
 		captionText: data.captionText,
-		alwaysStatic: mw.config.get( 'wgKartographerStaticMapframePreview' )
+		alwaysStatic: data.alwaysStatic || mw.config.get( 'wgKartographerStaticMapframePreview' )
 	} );
 
 	$container.removeAttr( 'href' );
@@ -111,9 +109,13 @@ function initMapBox( data, $container ) {
  * Create a mapbox from a given element.
  *
  * @param {HTMLElement} element Parsed <mapframe> element
+ * @param {Object} [options={}]
+ * @param {boolean} [options.allowFullScreen=true]
+ * @param {boolean} [options.alwaysStatic=false]
  */
-function initMapframeFromElement( element ) {
-	const map = initMapBox( getMapData( element ), $( element ) );
+function initMapframeFromElement( element, options = {} ) {
+	options = Object.assign( getMapData( element ), options );
+	const map = initMapBox( options, $( element ) );
 	mw.hook( 'wikipage.maps' ).fire( [ map ], false /* isFullScreen */ );
 }
 

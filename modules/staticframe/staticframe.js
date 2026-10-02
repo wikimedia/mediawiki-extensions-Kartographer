@@ -95,8 +95,6 @@ mw.hook( 'wikipage.content' ).add( ( $content ) => {
 
 		const data = getMapData( container );
 
-		data.enableFullScreenButton = true;
-
 		maplinks[ index ] = kartolink.link( {
 			featureType: 'mapframe',
 			container: container,
