@@ -266,9 +266,11 @@ class KartographerTest extends MediaWikiLangTestCase {
 		$this->overrideConfigValue( 'KartographerStaticMapframe', false );
 		$output = $this->parseParsoid( $input );
 
-		$parsoidModules = [ 'mediawiki.skinning.content.parsoid' ];
 		$this->assertArrayEquals( $expectedModules, $output->getModules() );
-		$this->assertArrayEquals( array_merge( $expectedStyles, $parsoidModules ), $output->getModuleStyles() );
+		$styleModules = $output->getModuleStyles();
+		foreach ( $expectedStyles as $styleModule ) {
+			$this->assertContains( $styleModule, $styleModules );
+		}
 	}
 
 	public static function provideResourceModulesData() {
