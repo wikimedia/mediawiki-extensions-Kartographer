@@ -477,7 +477,9 @@ class KartographerTest extends MediaWikiLangTestCase {
 
 	private function parseParsoid( string $wikitext ) {
 		$parsoid = $this->getServiceContainer()->getParsoidParserFactory()->create();
+		$parserOptions = ParserOptions::newFromAnon();
+		$parserOptions->setUseParsoid();
 		return $parsoid->parse( $wikitext, PageReferenceValue::localReference( NS_MAIN, 'Test Page' ),
-			ParserOptions::newFromAnon() );
+			$parserOptions );
 	}
 }
