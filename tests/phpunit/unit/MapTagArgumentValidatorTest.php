@@ -170,11 +170,20 @@ class MapTagArgumentValidatorTest extends MediaWikiUnitTestCase {
 
 	public static function provideOverflowingNumbers() {
 		return [
-			'Degree >360 make no sense' => [ [ 'longitude' => '361' ], 'kartographer-error-latlon' ],
-			'Latitude >90 makes no sense' => [ [ 'latitude' => '91' ], 'kartographer-error-latlon' ],
+			'Degree >360 make no sense' => [ [ 'longitude' => '361' ], 'kartographer-error-bad_attr' ],
+			'Latitude >90 makes no sense' => [ [ 'latitude' => '91' ], 'kartographer-error-bad_attr' ],
 			'Extreme width' => [ [ 'width' => '1000000' ], 'kartographer-error-bad_attr' ],
 			'Extreme height' => [ [ 'height' => '1000000' ], 'kartographer-error-bad_attr' ],
 			'Extreme zoom' => [ [ 'zoom' => '1000' ], 'kartographer-error-bad_attr' ],
+			'Latitude <-90 makes no sense' => [ [ 'latitude' => '-91' ], 'kartographer-error-bad_attr' ],
+			'Latitude >90 with valid longitude' => [
+				[ 'latitude' => '93.522', 'longitude' => '56.253' ],
+				'kartographer-error-bad_attr'
+			],
+			'Latitude and longitude out of range' => [
+				[ 'latitude' => '100', 'longitude' => '400' ],
+				'kartographer-error-bad_attr'
+			],
 		];
 	}
 

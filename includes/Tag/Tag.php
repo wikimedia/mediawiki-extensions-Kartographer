@@ -55,6 +55,7 @@ class Tag {
 		if ( $value !== null ) {
 			$value = floatval( $value );
 			if ( abs( $value ) > $max ) {
+				$this->status->fatal( 'kartographer-error-bad_attr', $name );
 				return null;
 			}
 		}
