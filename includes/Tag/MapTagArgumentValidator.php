@@ -140,7 +140,7 @@ class MapTagArgumentValidator {
 
 		$show = $this->args->getString( 'show', '/^([\w ]+(\s*,\s*+[\w ]+)*)?$/u' );
 		if ( $show ) {
-			$this->showGroups = array_map( 'trim', explode( ',', $show ) );
+			$this->showGroups = array_map( trim( ... ), explode( ',', $show ) );
 		}
 
 		// Make sure the current group is shown for this map, even if there is no geojson
