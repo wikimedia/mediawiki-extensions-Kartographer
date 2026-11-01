@@ -164,7 +164,6 @@
 		"ext.kartographer.box": {
 			"localBasePath": "modules/box",
 			"dependencies": [
-				"web2017-polyfills",
 				"mediawiki.api",
 				"mediawiki.util",
 				"oojs-ui.styles.icons-media",
