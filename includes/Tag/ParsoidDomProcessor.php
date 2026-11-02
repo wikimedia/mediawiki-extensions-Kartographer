@@ -83,13 +83,12 @@ class ParsoidDomProcessor extends DOMProcessor {
 			$this->addCategory( $extApi, 'kartographer-tracking-category' );
 		}
 
-		$interactive = $state['interactiveGroups'];
 		$state['interactiveGroups'] = array_keys( $state['interactiveGroups'] );
 		$state['requestedGroups'] = array_keys( $state['requestedGroups'] );
 		$state['parsoidIntVersion'] = $this->config->get( 'KartographerParsoidVersion' );
 		$extApi->getMetadata()->setExtensionData( 'kartographer', $state );
 
-		foreach ( $interactive as $req ) {
+		foreach ( $state['interactiveGroups'] as $req ) {
 			if ( !isset( $state['data'][$req] ) ) {
 				$state['data'][$req] = [];
 			}
@@ -110,10 +109,12 @@ class ParsoidDomProcessor extends DOMProcessor {
 			return;
 		}
 		$marker = json_decode( $markerStr ?? '' );
+		$isMapFrame = $tagName === ParsoidMapFrame::TAG;
 
-		$state['requestedGroups'] = array_merge( $state['requestedGroups'], $marker->showGroups ?? [] );
-		if ( $tagName === ParsoidMapFrame::TAG ) {
-			$state['interactiveGroups'] = array_merge( $state['interactiveGroups'], $marker->showGroups ?? [] );
+		// array_fill_keys solves the issue of group unicity in the arrays
+		$state['requestedGroups'] += array_fill_keys( $marker->showGroups ?? [], true );
+		if ( $isMapFrame ) {
+			$state['interactiveGroups'] += array_fill_keys( $marker->showGroups ?? [], true );
 		}
 
 		if ( !$marker || !$marker->geometries || !$marker->geometries[0] instanceof stdClass ) {
@@ -142,6 +143,10 @@ class ParsoidDomProcessor extends DOMProcessor {
 			if ( $img instanceof Element ) {
 				$this->updateSrc( $img, $groupId, $extApi );
 				$this->updateSrcSet( $img, $groupId, $extApi );
+			}
+			// A mapframe shows its private group
+			if ( $isMapFrame ) {
+				$state['interactiveGroups'][$groupId] = null;
 			}
 		}
 

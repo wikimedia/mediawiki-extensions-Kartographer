@@ -102,7 +102,7 @@ class State implements JsonSerializable {
 	 * @param string[] $groupIds
 	 */
 	public function addInteractiveGroups( array $groupIds ): void {
-		$this->interactiveGroups += array_fill_keys( $groupIds, null );
+		$this->interactiveGroups += array_fill_keys( $groupIds, true );
 	}
 
 	/**
@@ -116,7 +116,7 @@ class State implements JsonSerializable {
 	 * @param string[] $groupIds
 	 */
 	public function addRequestedGroups( array $groupIds ): void {
-		$this->requestedGroups += array_fill_keys( $groupIds, null );
+		$this->requestedGroups += array_fill_keys( $groupIds, true );
 	}
 
 	/**

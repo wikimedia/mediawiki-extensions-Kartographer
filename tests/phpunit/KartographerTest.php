@@ -16,6 +16,7 @@ use MediaWikiLangTestCase;
  * @covers \Kartographer\Tag\LegacyTagHandler
  * @covers \Kartographer\Tag\LegacyMapFrame
  * @covers \Kartographer\Tag\LegacyMapLink
+ * @covers \Kartographer\Tag\ParsoidDomProcessor
  * @license MIT
  */
 class KartographerTest extends MediaWikiLangTestCase {
@@ -438,6 +439,35 @@ class KartographerTest extends MediaWikiLangTestCase {
 			[ '<maplink show="hell.o"></maplink>' ],
 			[ '<maplink group="c,1" show="a 1"></maplink>' ],
 		];
+	}
+
+	public function testGroupsParsoid() {
+		$this->overrideConfigValue( 'KartographerWikivoyageMode', true );
+		$input = <<<INPUT
+<maplink group="a">
+	{"type":"Feature","geometry":{"type":"Point","coordinates":[-120,37]}}
+</maplink>
+<maplink group="b">
+	{"type":"Feature","geometry":{"type":"Point","coordinates":[-121,37]}}
+</maplink>
+<mapframe width=700 height=400 zoom=13 longitude=-122 latitude=37 show="a, b">
+	{"type":"Feature","geometry":{"type":"Point","coordinates":[-122,37]}}
+</mapframe>
+INPUT;
+
+		$parsoid = $this->parseParsoid( $input )->getExtensionData( 'kartographer' );
+		$this->assertSame( [ 'a', 'b' ], $parsoid['requestedGroups'] );
+		$this->assertCount( 3, $parsoid['interactiveGroups'] );
+		[ $a, $b, $private ] = $parsoid['interactiveGroups'];
+		$this->assertSame( [ 'a', 'b' ], [ $a, $b ] );
+		$this->assertStringStartsWith( '_', $private );
+		$this->assertArrayHasKey( $private, $parsoid['data'] );
+
+		$legacy = $this->parse( $input )->getExtensionData( 'kartographer' );
+
+		// if the features do not contain any wikitext we expect these to be the same
+		$this->assertSame( $legacy['requestedGroups'], $parsoid['requestedGroups'] );
+		$this->assertSame( $legacy['interactiveGroups'], $parsoid['interactiveGroups'] );
 	}
 
 	/**
