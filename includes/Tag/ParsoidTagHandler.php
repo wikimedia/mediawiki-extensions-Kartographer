@@ -83,6 +83,14 @@ abstract class ParsoidTagHandler extends ExtensionTagHandler {
 		);
 	}
 
+	protected function setDataKart( Element $node, MapTagArgumentValidator $args, array $geometries ): void {
+		$node->setAttribute( 'data-kart', json_encode( [
+			'groupId' => $args->groupId,
+			'showGroups' => $args->showGroups,
+			'geometries' => $geometries,
+		] ) );
+	}
+
 	/**
 	 * @param ParsoidExtensionAPI $extApi
 	 * @param string $tag

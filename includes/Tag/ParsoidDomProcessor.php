@@ -119,7 +119,9 @@ class ParsoidDomProcessor extends DOMProcessor {
 		if ( !$marker || !$marker->geometries || !$marker->geometries[0] instanceof stdClass ) {
 			return;
 		}
-		[ $counter, $props ] = SimpleStyleParser::updateMarkerSymbolCounters( $marker->geometries,
+
+		$geometries = $marker->geometries;
+		[ $counter, $props ] = SimpleStyleParser::updateMarkerSymbolCounters( $geometries,
 			$state['counters'] );
 		if ( $tagName === ParsoidMapLink::TAG && $counter ) {
 			if ( DOMDataUtils::getDataMw( $kartnode )->getExtAttrib( 'text' ) === null ) {
@@ -128,22 +130,10 @@ class ParsoidDomProcessor extends DOMProcessor {
 			}
 		}
 
-		$data = $marker->geometries;
-
-		if ( $counter ) {
-			// If we have a counter, we update the marker data prior to encoding the groupId, and we remove
-			// the (previously computed) groupId from showGroups
-			if ( ( $marker->groupId[0] ?? '' ) === '_' ) {
-				// TODO unclear if this is necessary or if we could simply set it to [].
-				$marker->showGroups = array_values( array_diff( $marker->showGroups, [ $marker->groupId ] ) );
-				$marker->groupId = null;
-			}
-		}
-
 		$groupId = $marker->groupId ?? null;
 		if ( $groupId === null ) {
 			// This hash calculation MUST be the same as in LegacyTagHandler::updateState
-			$groupId = '_' . sha1( FormatJson::encode( $marker->geometries, false, FormatJson::ALL_OK ) );
+			$groupId = '_' . sha1( FormatJson::encode( $geometries, false, FormatJson::ALL_OK ) );
 			$marker->groupId = $groupId;
 			$marker->showGroups[] = $groupId;
 			$kartnode->setAttribute( 'data-overlays', FormatJson::encode( $marker->showGroups ) );
@@ -157,9 +147,9 @@ class ParsoidDomProcessor extends DOMProcessor {
 
 		// There is no way to ever add anything to a private group starting with `_`
 		if ( isset( $state['data'][$groupId] ) && !str_starts_with( $groupId, '_' ) ) {
-			$state['data'][$groupId] = array_merge( $state['data'][$groupId], $data );
+			$state['data'][$groupId] = array_merge( $state['data'][$groupId], $geometries );
 		} else {
-			$state['data'][$groupId] = $data;
+			$state['data'][$groupId] = $geometries;
 		}
 	}
 

@@ -61,23 +61,12 @@ class ParsoidMapLink extends ParsoidTagHandler {
 
 		$dom = $doc->createDocumentFragment();
 		$a = $doc->createElement( 'a' );
-		if ( $args->groupId === null && $geometries ) {
-			$groupId = '_' . sha1( FormatJson::encode( $geometries, false,
-					FormatJson::ALL_OK ) );
-			$args->groupId = $groupId;
-			$args->showGroups[] = $groupId;
-		}
-
 		if ( $args->showGroups ) {
 			$attrs['data-overlays'] = FormatJson::encode( $args->showGroups, false,
 				FormatJson::ALL_OK );
-			$dataKart = [
-				'groupId' => $args->groupId,
-				'showGroups' => $args->showGroups,
-				'geometries' => $geometries
-			];
-			$a->setAttribute( 'data-kart', json_encode( $dataKart ) );
 		}
+
+		$this->setDataKart( $a, $args, $geometries );
 
 		ParsoidUtils::addAttributesToNode( $attrs, $a );
 		if ( $text ) {

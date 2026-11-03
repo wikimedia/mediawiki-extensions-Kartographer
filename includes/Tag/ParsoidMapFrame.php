@@ -76,12 +76,7 @@ class ParsoidMapFrame extends ParsoidTagHandler {
 		}
 
 		$a = $doc->createElement( 'a' );
-		$dataKart = [
-			'groupId' => $args->groupId,
-			'showGroups' => $args->showGroups,
-			'geometries' => $geometries
-		];
-		$a->setAttribute( 'data-kart', json_encode( $dataKart ) );
+		$this->setDataKart( $a, $args, $geometries );
 		ParsoidUtils::addAttributesToNode( $attrs, $a );
 
 		$a->appendChild( $thumbnail );
