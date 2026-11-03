@@ -71,7 +71,7 @@
 	"leafletdraw-draw-toolbar-buttons-rectangle": "یک مستطیل بکشید",
 	"leafletdraw-draw-toolbar-undo-text": "آخرین نقطه را پاک کن",
 	"leafletdraw-draw-toolbar-undo-title": "آخرین نقطه کشیده شده را دور بریز",
-	"leafletdraw-edit-handlers-edit-tooltip-subtext": "لغو رو لمس کنید تا تغییرات بازگردانی شوند.",
+	"leafletdraw-edit-handlers-edit-tooltip-subtext": "لغو را لمس کنید تا تغییرات واگردانی شوند",
 	"leafletdraw-edit-handlers-remove-tooltip-text": "برای حذف یک عارضه روی آن کلیک کنید",
 	"leafletdraw-edit-toolbar-actions-cancel-text": "لغو",
 	"leafletdraw-edit-toolbar-actions-cancel-title": "لغو ویرایش، همه تغییرات را دور بریز",
