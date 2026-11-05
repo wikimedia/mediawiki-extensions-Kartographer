@@ -88,7 +88,7 @@ class ParsoidDomProcessor extends DOMProcessor {
 		$state['parsoidIntVersion'] = $this->config->get( 'KartographerParsoidVersion' );
 		$extApi->getMetadata()->setExtensionData( 'kartographer', $state );
 
-		foreach ( $state['interactiveGroups'] as $req ) {
+		foreach ( $state['requestedGroups'] as $req ) {
 			if ( !isset( $state['data'][$req] ) ) {
 				$state['data'][$req] = [];
 			}
