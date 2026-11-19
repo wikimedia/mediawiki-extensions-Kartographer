@@ -1,7 +1,0 @@
-{
-	"root": true,
-	"extends": [
-		"../../modules/.eslintrc",
-		"wikimedia/qunit"
-	]
-}
