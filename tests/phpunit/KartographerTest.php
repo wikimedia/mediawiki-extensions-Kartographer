@@ -462,12 +462,14 @@ INPUT;
 		$this->assertSame( [ 'a', 'b' ], [ $a, $b ] );
 		$this->assertStringStartsWith( '_', $private );
 		$this->assertArrayHasKey( $private, $parsoid['data'] );
+		$this->assertNull( $parsoid['counters'] );
 
 		$legacy = $this->parse( $input )->getExtensionData( 'kartographer' );
 
 		// if the features do not contain any wikitext we expect these to be the same
 		$this->assertSame( $legacy['requestedGroups'], $parsoid['requestedGroups'] );
 		$this->assertSame( $legacy['interactiveGroups'], $parsoid['interactiveGroups'] );
+		$this->assertSame( $legacy['counters'], $parsoid['counters'] );
 	}
 
 	/**
