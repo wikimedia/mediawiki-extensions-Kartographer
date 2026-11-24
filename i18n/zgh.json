@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hakim1bal"
+			"Hakim1bal",
+			"Daoudsfouli"
 		]
 	},
+	"leafletdraw-edit-toolbar-actions-save-text": "ⵙⴽⵍⵙ",
+	"leafletdraw-edit-toolbar-actions-save-title": "ⵙⴽⵍⵙ ⵉⵙⵏⴼⴰⵍⵏ",
 	"visualeditor-mwmapsdialog-language": "ⵜⵓⵜⵍⴰⵢⵜ"
 }
