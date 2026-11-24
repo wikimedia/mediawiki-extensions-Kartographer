@@ -12,13 +12,13 @@ class MapLinkAttributeGenerator {
 
 	// Warning, all constants must be the same as in
 	// https://github.com/wikimedia/makizushi/blob/master/lib/color.js
-	private const LIGHT_COLOR = '#fff';
+	private const string LIGHT_COLOR = '#fff';
 	// Semi-black text color @color-base according to Wikimedia Codex
-	private const DARK_COLOR = '#202122';
+	private const string DARK_COLOR = '#202122';
 
 	// Arrived at by playing with an APCA contrast calculator and finding the
 	// luminance where contrast is equal for both dark (Base10) and light symbol fills.
-	private const LUMINANCE_THRESHOLD = 0.386;
+	private const float LUMINANCE_THRESHOLD = 0.386;
 
 	public function __construct(
 		private readonly MapTagArgumentValidator $args,

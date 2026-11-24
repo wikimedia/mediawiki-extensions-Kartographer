@@ -12,7 +12,7 @@ use MediaWikiUnitTestCase;
  */
 class ProjectionTest extends MediaWikiUnitTestCase {
 
-	private const DELTA = 0.00001;
+	private const float DELTA = 0.00001;
 
 	public static function provideCoordinatesAndZoom() {
 		return [

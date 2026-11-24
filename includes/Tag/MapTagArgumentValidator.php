@@ -16,6 +16,9 @@ use stdClass;
  */
 class MapTagArgumentValidator {
 
+	/** Hard-coded upper limit for the width and height of rendered map images */
+	private const int MAX_PIXELS = 65535;
+
 	public readonly StatusValue $status;
 	private readonly Tag $args;
 
@@ -73,7 +76,7 @@ class MapTagArgumentValidator {
 
 	private function parseArgs(): void {
 		// Required arguments
-		if ( $this->args->name === LegacyMapFrame::TAG ) {
+		if ( $this->args->tagName === LegacyMapFrame::TAG ) {
 			foreach ( [ 'width', 'height' ] as $required ) {
 				if ( !$this->args->has( $required ) ) {
 					$this->status->fatal( 'kartographer-error-missing-attr', $required );
@@ -81,17 +84,19 @@ class MapTagArgumentValidator {
 			}
 
 			// @todo: should these have defaults?
-			$this->width = $this->args->getString( 'width', '/^(\d+|([1-9]\d?|100)%|full)$/' );
-			$this->height = $this->args->getInt( 'height' );
+			$this->width = $this->args->getString( 'width', '/^(\d+|[1-9]\d?%|100%|full)$/' );
+			$this->height = $this->args->getInt( 'height', self::MAX_PIXELS );
 
 			// @todo: deprecate old syntax completely
 			if ( $this->width && str_ends_with( $this->width, '%' ) ) {
 				$this->width = $this->width === '100%' ? 'full' : '300';
-			} elseif ( is_numeric( $this->width ) && ( $this->width < 1 || $this->width > 65535 ) ) {
+			} elseif ( is_numeric( $this->width ) &&
+				( $this->width < 1 || $this->width > self::MAX_PIXELS )
+			) {
 				$this->status->fatal( 'kartographer-error-bad_attr', 'width' );
 			}
 
-			if ( $this->height !== null && ( $this->height < 1 || $this->height > 65535 ) ) {
+			if ( $this->height !== null && $this->height < 1 ) {
 				$this->status->fatal( 'kartographer-error-bad_attr', 'height' );
 			}
 		}
@@ -105,11 +110,8 @@ class MapTagArgumentValidator {
 			$this->status->fatal( 'kartographer-error-latlon' );
 		}
 
-		$this->zoom = $this->args->getInt( 'zoom' );
 		// This code shouldn't need to know much about the zoom, just limit it to +/-100
-		if ( $this->zoom !== null && abs( $this->zoom ) > 100 ) {
-			$this->status->fatal( 'kartographer-error-bad_attr', 'zoom' );
-		}
+		$this->zoom = $this->args->getInt( 'zoom', 100 );
 		$regexp = '/^(' . implode( '|', $this->config->get( 'KartographerStyles' ) ) . ')$/';
 		$defaultStyle = $this->config->get( 'KartographerDfltStyle' );
 		$this->mapStyle = $this->args->getString( 'mapstyle', $regexp ) ?? $defaultStyle;

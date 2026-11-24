@@ -13,7 +13,7 @@ use MediaWiki\Html\Html;
  */
 class LegacyMapLink extends LegacyTagHandler {
 
-	public const TAG = 'maplink';
+	public const string TAG = 'maplink';
 
 	/** @inheritDoc */
 	protected function render( PartialWikitextParser $parser, bool $serverMayRenderOverlays ): string {

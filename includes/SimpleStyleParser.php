@@ -25,8 +25,8 @@ class SimpleStyleParser {
 	 * Maximum for marker-symbol="-number…" counters. See T141335 for discussion to possibly
 	 * increase this to 199 or even 999.
 	 */
-	private const MAX_NUMERIC_COUNTER = 99;
-	public const WIKITEXT_PROPERTIES = [ 'title', 'description' ];
+	private const int MAX_NUMERIC_COUNTER = 99;
+	public const array WIKITEXT_PROPERTIES = [ 'title', 'description' ];
 
 	private readonly string $mapServer;
 

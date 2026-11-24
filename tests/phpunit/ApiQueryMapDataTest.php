@@ -24,14 +24,13 @@ use MediaWiki\Title\Title;
  */
 class ApiQueryMapDataTest extends ApiTestCase {
 
-	private const MAPFRAME_JSON = '{"type":"Feature","geometry":{"type":"Point","coordinates":[1,2],"properties":{}}}';
-	private const MAPFRAME_CONTENT = '<mapframe latitude=0 longitude=0 width=1 height=1>' .
-		self::MAPFRAME_JSON . '</mapframe>';
-	private const MAPFRAME_JSON_OTHER = '{"type":"Feature","geometry":{"type":"Point","coordinates":[2,1]}}';
-	private const MAPFRAME_CONTENT_OTHER = '<mapframe latitude=0 longitude=0 width=1 height=1>' .
-		self::MAPFRAME_JSON_OTHER . '</mapframe>';
-	private const MAPFRAME_NAMED_GROUP = '<mapframe group="foo" latitude=0 longitude=0 width=1 height=1>' .
-		self::MAPFRAME_JSON . '</mapframe>';
+	// phpcs:disable Generic.Files.LineLength
+	private const string MAPFRAME_JSON = '{"type":"Feature","geometry":{"type":"Point","coordinates":[1,2],"properties":{}}}';
+	private const string MAPFRAME_CONTENT = '<mapframe latitude=0 longitude=0 width=1 height=1>' . self::MAPFRAME_JSON . '</mapframe>';
+	private const string MAPFRAME_JSON_OTHER = '{"type":"Feature","geometry":{"type":"Point","coordinates":[2,1]}}';
+	private const string MAPFRAME_CONTENT_OTHER = '<mapframe latitude=0 longitude=0 width=1 height=1>' . self::MAPFRAME_JSON_OTHER . '</mapframe>';
+	private const string MAPFRAME_NAMED_GROUP = '<mapframe group="foo" latitude=0 longitude=0 width=1 height=1>' . self::MAPFRAME_JSON . '</mapframe>';
+	// phpcs:enable
 
 	protected function setUp(): void {
 		parent::setUp();

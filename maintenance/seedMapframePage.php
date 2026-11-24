@@ -20,11 +20,12 @@ use MediaWiki\User\User;
  * @license MIT
  */
 class SeedMapframePage extends Maintenance {
-	private const PAGE_TITLE = 'Extension/Kartographer/Mapframe';
-	private const PAGE_CONTENT =
+
+	private const string PAGE_TITLE = 'Extension/Kartographer/Mapframe';
+	private const string PAGE_CONTENT =
 		'<mapframe text="[[wikipedia:Stockholm|Stockholm]] in Wikipedia" ' .
 		'width=250 height=250 zoom=7 latitude="59" longitude="18" />';
-	private const EDIT_SUMMARY = 'Seed Kartographer mapframe development content';
+	private const string EDIT_SUMMARY = 'Seed Kartographer mapframe development content';
 
 	public function __construct() {
 		parent::__construct();

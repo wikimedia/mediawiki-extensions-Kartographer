@@ -12,7 +12,7 @@ use MediaWiki\MainConfigNames;
  */
 class MapFrameAttributeGenerator {
 
-	private const ALIGN_CLASSES = [
+	private const array ALIGN_CLASSES = [
 		'left' => 'floatleft',
 		'center' => 'center',
 		'right' => 'floatright',

@@ -22,7 +22,8 @@ use Wikimedia\Parsoid\Utils\DOMCompat;
  * @license MIT
  */
 abstract class ParsoidTagHandler extends ExtensionTagHandler {
-	public const TAG = '';
+
+	public const string TAG = '';
 
 	public function __construct(
 		protected readonly Config $config,

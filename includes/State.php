@@ -14,7 +14,7 @@ use Wikimedia\Parsoid\Core\ContentMetadataCollector;
  */
 class State implements JsonSerializable {
 
-	public const DATA_KEY = 'kartographer';
+	public const string DATA_KEY = 'kartographer';
 
 	/** @var int Total number of invalid <map…> tags on the page */
 	private int $broken = 0;

@@ -37,6 +37,20 @@ class TagTest extends MediaWikiUnitTestCase {
 		$this->assertStatusError( 'kartographer-error-bad_attr', $status );
 	}
 
+	public function testGetIntOverflow() {
+		$status = new StatusValue();
+		$args = new Tag( '', [ 'bad' => '99999' ], $status );
+		$this->assertNull( $args->getInt( 'bad', 100 ) );
+		$this->assertStatusError( 'kartographer-error-bad_attr', $status );
+	}
+
+	public function testGetFloatOverflow() {
+		$status = new StatusValue();
+		$args = new Tag( '', [ 'bad' => '99999' ], $status );
+		$this->assertNull( $args->getFloat( 'bad' ) );
+		$this->assertStatusError( 'kartographer-error-bad_attr', $status );
+	}
+
 	public function testGetString() {
 		$status = new StatusValue();
 		$args = new Tag( '', [ 'key' => 'a' ], $status );

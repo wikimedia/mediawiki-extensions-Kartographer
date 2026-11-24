@@ -15,7 +15,7 @@ use Wikimedia\Parsoid\Utils\DOMCompat;
  */
 class ParsoidMapLink extends ParsoidTagHandler {
 
-	public const TAG = 'maplink';
+	public const string TAG = 'maplink';
 
 	/**
 	 * @throws DOMException

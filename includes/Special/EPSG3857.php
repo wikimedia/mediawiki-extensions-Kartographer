@@ -7,8 +7,8 @@ namespace Kartographer\Special;
  */
 class EPSG3857 {
 
-	private const MAX_LATITUDE = 85.0511287798;
-	private const A = 0.159154943;
+	private const float MAX_LATITUDE = 85.0511287798;
+	private const float A = 0.159154943;
 
 	/**
 	 * EPSG3857 (Spherical Mercator) is the most common CRS for web mapping and is used by Leaflet

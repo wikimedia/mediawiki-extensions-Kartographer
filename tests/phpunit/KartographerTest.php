@@ -21,7 +21,7 @@ use MediaWikiLangTestCase;
  */
 class KartographerTest extends MediaWikiLangTestCase {
 
-	private const WIKITEXT_JSON = '{
+	private const string WIKITEXT_JSON = '{
     "type": "Feature",
     "geometry": {
       "type": "Point",

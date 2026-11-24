@@ -14,7 +14,7 @@ use Wikimedia\Parsoid\Utils\DOMCompat;
  */
 class ParsoidMapFrame extends ParsoidTagHandler {
 
-	public const TAG = 'mapframe';
+	public const string TAG = 'mapframe';
 
 	/**
 	 * @throws DOMException

@@ -13,7 +13,7 @@ use MediaWiki\Html\Html;
  */
 class LegacyMapFrame extends LegacyTagHandler {
 
-	public const TAG = 'mapframe';
+	public const string TAG = 'mapframe';
 
 	protected function updateState( State $state, array $geometries ): void {
 		parent::updateState( $state, $geometries );

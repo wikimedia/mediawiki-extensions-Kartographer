@@ -13,12 +13,12 @@ use StatusValue;
 class Tag {
 
 	/**
-	 * @param string $name Tag name, e.g. "maplink"
-	 * @param array<string,string> $args
-	 * @param StatusValue $status
+	 * @param string $tagName Tag name, e.g. "maplink" for the <maplink> tag
+	 * @param array<string,string> $args Optional key="value" pairs
+	 * @param StatusValue $status for the collection of validation errors
 	 */
 	public function __construct(
-		public readonly string $name,
+		public readonly string $tagName,
 		private readonly array $args,
 		private readonly StatusValue $status,
 	) {
@@ -34,12 +34,17 @@ class Tag {
 
 	/**
 	 * @param string $name
+	 * @param int|null $max
 	 * @return int|null Null when missing or invalid
 	 */
-	public function getInt( string $name ): ?int {
-		$value = $this->getString( $name, '/^-?[0-9]+$/' );
+	public function getInt( string $name, ?int $max = null ): ?int {
+		$value = $this->getString( $name, '/^-?\d+$/' );
 		if ( $value !== null ) {
 			$value = intval( $value );
+			if ( $max && abs( $value ) > $max ) {
+				$this->status->fatal( 'kartographer-error-bad_attr', $name );
+				return null;
+			}
 		}
 
 		return $value;
@@ -51,7 +56,7 @@ class Tag {
 	 * @return float|null Null when missing or invalid
 	 */
 	public function getFloat( string $name, int $max = 360 ): ?float {
-		$value = $this->getString( $name, '/^-?[0-9]*\.?[0-9]+$/' );
+		$value = $this->getString( $name, '/^-?\d*\.?\d+$/' );
 		if ( $value !== null ) {
 			$value = floatval( $value );
 			if ( abs( $value ) > $max ) {

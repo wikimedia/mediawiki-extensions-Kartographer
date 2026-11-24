@@ -32,7 +32,7 @@ abstract class LegacyTagHandler {
 	 * Lower case name of the XML-style parser tag, e.g. "mapframe". Currently expected to start
 	 * with "map…" by the {@see State} class.
 	 */
-	public const TAG = '';
+	public const string TAG = '';
 
 	protected MapTagArgumentValidator $args;
 	protected ParserContext $parserContext;
